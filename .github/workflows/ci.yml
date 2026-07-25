@@ -23,7 +23,7 @@ jobs:
           python-version: "3.12"
       - name: bake config (toml -> public/config json)
         working-directory: ${{ github.workspace }}
-        run: python -m tools.bake_config
+        run: python -m backend.bake_config
       - run: npm ci
       - run: npm run typecheck
       - run: npm run lint
@@ -38,5 +38,5 @@ jobs:
         with:
           python-version: "3.12"
       - run: python -m venv .venv
-      - run: .venv/bin/pip install -r tools/requirements.txt
-      - run: .venv/bin/pytest tools -q
+      - run: .venv/bin/pip install -r backend/requirements.txt
+      - run: .venv/bin/pytest backend -q

@@ -21,7 +21,7 @@ When editing agent/customization Markdown, use ASCII only: "-", "->", ">=", "sec
 ## When bootstrap is mandatory
 
 - Any persona invocation (custom agents) - they all start here.
-- Any default-agent task that crosses a subsystem boundary (touches >= 2 of: `frontend/`, `tools/`, `datasets/`, `config/`, `schemas/`).
+- Any default-agent task that crosses a subsystem boundary (touches >= 2 of: `frontend/`, `backend/`, `datasets/`, `config/`, `schemas/`).
 - Any task escalated to Correction Level 2 or higher (`CLAUDE.md section 6`).
 
 ## When bootstrap is optional

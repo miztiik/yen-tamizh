@@ -37,7 +37,7 @@ Adding a sixth persona requires a distinct altitude not already covered; two per
 
 ## Project-level non-goals (do NOT raise these)
 
-- **Production backend.** No backend at runtime (Holy Law #1). `tools/` is a build-time pipeline only.
+- **Production backend.** No runtime backend (Holy Law #1). The `backend/` folder is a build-time producer only (Python; writes committed data), never a runtime server.
 - **Account systems** (login, signup, email collection, server-backed cross-device sync). Game state is `localStorage` / `IndexedDB` only.
 - **Push notifications.** The player decides when to play.
 - **Runtime telemetry / analytics SDKs / third-party scripts that fetch at runtime.** Static-first means no runtime calls home; measure perf locally in DevTools.
@@ -73,18 +73,18 @@ In-memory `Path` objects for local I/O may stay platform-native; the rule applie
 ## Layer / dependency rules
 
 - `frontend/src/` MUST NOT depend on a runtime backend service - there is none in production.
-- `tools/` (the Python build-time pipeline: OR-Tools solver, glyph + asset bake) is the only writer of pipeline output under `frontend/public/`. The game reads only pipeline output, never raw `assets/` sources.
+- `backend/` (the Python build-time pipeline: generate, solve/validate, glyph + asset bake) is the only writer of pipeline output under `frontend/public/`. The game reads only pipeline output, never raw `assets/` or `datasets/` sources.
 - Game / domain code MUST NOT import build tools.
-- Long compute in the browser (any future physics step, pathfinding, or procedural generation) runs in a Web Worker; the main thread keeps painting. The puzzle solver is build-time (Python in `tools/`), so it never runs on the runtime thread.
+- Long compute in the browser (any future physics step, pathfinding, or procedural generation) runs in a Web Worker; the main thread keeps painting. The puzzle solver is build-time (Python in `backend/`), so it never runs on the runtime thread.
 - The game canvas is one DOM element styled by Tailwind to fit its container. Tailwind does NOT style canvas internals - those are the renderer's job.
 
 ## Schema versioning (rules only - see `CLAUDE.md` section 11 for full spec)
 
 The persisted surfaces: **save format** (`localStorage`, the one MIGRATING surface), **level / puzzle data**, and **asset + glyph manifest** (bundle-shipped, rewrite-in-place, no migration). Each has a typed schema in `schemas/` before logic is written (Holy Law #3).
 
-- Each schema carries a `schemaVersion` integer and an `evolution` array; every change appends one `evolution` entry (`{version, date, change, why}`) in the same commit.
-- Additive + backwards-compatible change: keep `schemaVersion`, add the evolution entry (older payloads still validate).
-- Breaking change (removed field, type change, semantic shift): bump `schemaVersion` AND write the read-side migration the new build runs on older payloads - same commit.
+- Each schema carries a `version` date-stamp (`YYYY-MM-DD`, or `YYYY-MM-DDTHH:MM[:SS]` for same-day revisions) - never an integer, never an epoch timestamp - and a `changelog` array; every change appends one `changelog` entry (`{version, change, why}`) in the same commit.
+- Additive + backwards-compatible change: append the `changelog` entry, set `version` to today (older payloads still validate).
+- Breaking change (removed field, type change, semantic shift): append the `changelog` entry, set `version` to today, AND write the read-side migration the new build runs on older payloads - same commit.
 - `$id` is the schema file's relative path (`<name>.schema.json`), local not URL, so IDE JSON-Schema plugins validate offline.
 - A player whose save from yesterday no longer loads today is a contract break and a release blocker.
 
@@ -113,12 +113,12 @@ When in doubt, choose the higher level (`CLAUDE.md` section 6). Level 2 and abov
 - Use `setTimeout` / `setInterval` for game-loop timing. Use `requestAnimationFrame`.
 - Ship a layout-triggering CSS animation when `transform` + `opacity` will do.
 - Style canvas internals with Tailwind. Tailwind is for the chrome (HUD, menu, modal).
-- Commit raw source assets (`.obj`, 4K PNG, uncompressed WAV) into the served bundle. Run them through `tools/` first.
+- Commit raw source assets (`.obj`, 4K PNG, uncompressed WAV) into the served bundle. Run them through the `backend/` pipeline first.
 - Add a runtime telemetry / analytics / error-tracking SDK, or a monetisation pattern (ads, IAP, timers, pay-to-skip).
 - Ship a feature that depends on a runtime backend, account, or push notification.
 - Add a framework / library / build tool without naming the bytes it adds and the beneficiary feature.
 - Pick the renderer or physics engine in isolation - Carmack picks both together, with dimensionality, body-count budget, and determinism named in writing.
-- Mint a new save-format / level-data field without bumping `schemaVersion` and writing the read-side migration in the same commit.
+- Mint a new save-format / level-data field without stamping the schema `version` date, appending a `changelog` entry, and writing the read-side migration in the same commit.
 - Lower the perf target to fit a feature. The target is the player's phone, not the feature.
 - Edit a `package.json` without updating and staging its lockfile in the same commit.
 - Use broad, lossy, or history-rewriting git commands instead of the `CLAUDE.md` section 8 workflow.
