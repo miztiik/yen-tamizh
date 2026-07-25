@@ -1,0 +1,71 @@
+name: deploy
+
+# Regenerate the recent bank days, bake config, and publish the static bundle to GitHub
+# Pages. `--backfill 7` re-freezes/creates the last 7 days (add-only gap-recovery so a fresh
+# runner always has today); the served index then advertises the FULL on-disk archive
+# (tools.generate scans every dated file), so the board's DayPicker can reach every past day.
+# Gated on CI: this runs only AFTER the "ci" workflow concludes success on master,
+# so a red build (failing typecheck / lint / test / pytest) never deploys. The
+# workflow_dispatch trigger is a manual escape hatch that bypasses the gate for a
+# forced re-deploy.
+# Static-first: no runtime backend. base = /yen-tamizh/. See docs/how-to/
+# ship-to-github-pages.md and docs/architecture/runtime/stack-and-bundle.md.
+on:
+  workflow_run:
+    workflows: ["ci"]
+    types: [completed]
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    # Only when CI passed (workflow_run path) or on a manual dispatch. If this is
+    # skipped, the deploy job (needs: build) is skipped too and nothing publishes.
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # Build the exact commit CI validated (falls back to the dispatched ref).
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: pip install -r tools/requirements.txt
+      # Regenerate the recent 7 days (add-only; existing days frozen); the served index then
+      # lists the FULL on-disk archive so the DayPicker reaches every past day. Matches daily.yml.
+      - run: python -m tools.generate --backfill 7
+      - run: python -m tools.bake_config
+      - run: npm ci
+        working-directory: frontend
+      - run: npm run build
+        working-directory: frontend
+        env:
+          GH_PAGES_BASE: /yen-tamizh/
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: frontend/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

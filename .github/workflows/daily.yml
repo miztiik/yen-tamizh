@@ -1,0 +1,36 @@
+name: daily
+
+# Once a day, backfill the last 7 days x four tiers (rolling archive, add-only, never
+# future) and commit the fresh bank back to master. The served puzzles are STORY-FIRST
+# (the served-puzzle writer derives them from the story-first matrix generator, all tiers,
+# emitted with exclude_none). The deploy workflow then publishes it. See
+# docs/architecture/generator/pipeline.md and docs/how-to/ship-to-github-pages.md.
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install -r tools/requirements.txt
+      - run: python -m tools.generate --backfill 7 --tiers easy,standard,sharp,expert
+      - name: commit bank
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add frontend/public/puzzles
+          if git diff --cached --quiet; then
+            echo "no bank changes"
+          else
+            git commit -m "chore(bank): daily puzzle generation"
+            git push
+          fi
