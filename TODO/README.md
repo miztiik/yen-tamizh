@@ -42,7 +42,7 @@ This is the spine of every sibling and must be ours:
 
 ```
 AUTHOR (you, locally / in CI)                GITHUB (the storage layer)             PLAYER (browser)
-  tools/ (Python, BUILD-TIME ONLY)             frontend/dist -> GitHub Pages          Svelte app loads shell
+  backend/ (Python, BUILD-TIME ONLY)             frontend/dist -> GitHub Pages          Svelte app loads shell
     ingest  raw corpora -> clean wordlist        (static HTML/JS/CSS)                   computes today's date
     rank    wordlist -> difficulty/freq tiers   data/puzzles/ -> raw.githubusercontent   fetches puzzle (CDN) or
     generate ranked list -> puzzle JSON           .com (free CDN)                          reads level data (bundle)
@@ -77,7 +77,7 @@ Every sibling ships the same trio, matching our existing `.github/workflows/{ci,
 
 | Workflow | When | What |
 | --- | --- | --- |
-| `ci.yml` | every PR + push | typecheck + unit/contract/e2e (frontend), mypy + pytest (tools), schema validation |
+| `ci.yml` | every PR + push | typecheck + unit/contract/e2e (frontend), mypy + pytest (backend), schema validation |
 | `daily.yml` | cron (00:05 UTC) | generate the day's puzzle(s), validate, commit |
 | `deploy.yml` | push to main | build frontend, deploy to Pages (base-path aware, SPA `404.html` fallback) |
 
@@ -143,7 +143,7 @@ Tailwind's `theme.extend` mirrors these tokens so utilities (`bg-accent`, `text-
 
 ### 2.4 Glyphs (Holy Law #10)
 
-- All icons are **vector glyphs referenced by id from a generated manifest** (`frontend/public/assets/glyphs/index.json`), never inline SVG, never a hardcoded path, never a PNG. `tools/` bakes the glyph pack at build time; the frontend reads only the manifest.
+- All icons are **vector glyphs referenced by id from a generated manifest** (`frontend/public/assets/glyphs/index.json`), never inline SVG, never a hardcoded path, never a PNG. `backend/` bakes the glyph pack at build time; the frontend reads only the manifest.
 - `yen-cinthanai` ships a **glyph-only difficulty** indicator and a compact command bar - both good models for our toolbar (undo, hint, check, shuffle, note).
 - Mascot opportunity (from `yen-tamizh_OLD` Phase 8 and the One More Letter reference): a Tamil letter with eyes (e.g. an anthropomorphic "ஓ") as the Journey guide. Inline SVG, themeable, tiny.
 
@@ -174,7 +174,7 @@ Every Game is a **pure mechanic**: it receives a `payload` + a `GameContext`, re
 | `missing-letters` | `idaiveli nirappu` (இடைவெளி நிரப்பு) | Fill the blanked ezhuthu(s) of a partially shown word. | Blank whole ezhuthu, not half a cluster. |
 | `wordle` | `sol yugi` (சொல் யூகி) | Guess an N-ezhuthu word in N tries; per-tile present/correct/absent feedback. | "Letter" = ezhuthu; keyboard is an ezhuthu picker (uyir + mei + uyirmei). |
 | `word-search` | `sol thedal` (சொல் தேடல்) | Trace hidden words in an ezhuthu grid (8 directions). | Grid cells are ezhuthu; tracing is drag/keyboard. |
-| `crossword` | `sorkatam` (சொற்கட்டம்) | Fill a mini crossword from clues; entries interlock on shared ezhuthu. | Interlock is on ezhuthu identity. Build-time solver (`tools/`) places words. |
+| `crossword` | `sorkatam` (சொற்கட்டம்) | Fill a mini crossword from clues; entries interlock on shared ezhuthu. | Interlock is on ezhuthu identity. Build-time solver (`backend/`) places words. |
 
 ### 3.3 Mode catalog
 
@@ -198,16 +198,16 @@ Adopt the `yen-tamizh_OLD` shell model wholesale, expressed in Svelte:
 - **SPA routing + PWA**: base-path aware (`import.meta.env.BASE_URL`), `404.html` == `index.html` for deep links, service worker precaches the shell + opened-game chunks; Journey/theme art is a runtime (non-precached) asset. (Already specified in [../docs/how-to/ship-to-github-pages.md](../docs/how-to/ship-to-github-pages.md).)
 - **Code-split per Game** so the shell stays light and a Game's bytes load only when first opened (the `yen-neram` multi-game-shell lesson; propose a modest bundle budget - see section 7, open question O3).
 
-### 3.5 Data + generation pipeline (`tools/`, Python)
+### 3.5 Data + generation pipeline (`backend/`, Python)
 
 - **Corpus -> curated wordlists.** Tamil vocabulary is finite and the gameplay-relevant subset is small; curate it once. A streaming ingest (never `json.load` a multi-MB corpus) produces a frequency-ranked master list, then per-Game derived sets (anagram-friendly, wordle-friendly 5-ezhuthu, ladder-reachable, search-placeable, crossword-placeable). This is the `yen-tamizh_OLD` "data consolidation" epic.
 - **Generators are idempotent pure functions of their inputs**, date-seeded for Daily. Each writes puzzle JSON to the frozen data location and updates an index.
 - **Validation gates CI**: a generated puzzle that is unsolvable, non-unique (where uniqueness applies, e.g. crossword), or malformed fails CI and never ships (the `yen-doku` discipline).
-- **Ezhuthu segmentation is a shared library** used by both `tools/` (to build/validate) and the frontend (to render/score). One implementation, one test suite. See section 6.
+- **Ezhuthu segmentation is a shared library** used by both `backend/` (to build/validate) and the frontend (to render/score). One implementation, one test suite. See section 6.
 
 ### 3.6 Persisted schemas (contracts before logic)
 
-Each gets a typed schema in `schemas/` with a `schemaVersion` integer + an `evolution` array before any logic is written (Holy Law #3, and the guardrails' schema rules):
+Each gets a typed schema in `schemas/` (a single file `schemas/<name>.schema.json`) with a date-stamp `version` + a `changelog` array before any logic is written (Holy Law #3, and the guardrails' schema rules):
 
 - `app-config` - all tunables (playlist length + mix, hint visibility per Game, infinite LRU window, time-trial duration, enabled Modes/Games).
 - `puzzle-file` - the Daily playlist file (array of `{ gameId, packId, difficulty, payload, hints? }`).
@@ -232,7 +232,7 @@ The reference (playonemoreletter.com) is the clearest single "journey" to model,
 
 **Why it fits our spine**: it is a Game (`word-ladder`) that can be served by any Mode - Daily (one ladder/day, shareable), Journey (a path of ever-longer ladders), Infinite (endless ladders), Time Trial (how many rungs in 90s). The chrome (stats row, share card, countdown, mascot) is shell-level and reused by every Game.
 
-**Tamil adaptation**: a rung adds one **ezhuthu** and rearranges, e.g. a ladder over increasingly long valid Tamil words. Reachability (does a one-ezhuthu-add path exist between consecutive words?) is computed and validated **at build time** in `tools/`, so the browser only ever plays a proven-valid ladder. The "+letter" badge on each rung shows the added ezhuthu.
+**Tamil adaptation**: a rung adds one **ezhuthu** and rearranges, e.g. a ladder over increasingly long valid Tamil words. Reachability (does a one-ezhuthu-add path exist between consecutive words?) is computed and validated **at build time** in `backend/`, so the browser only ever plays a proven-valid ladder. The "+letter" badge on each rung shows the added ezhuthu.
 
 **Scoring/stats mapping**: TIME (elapsed), INSTINCT (first-try rungs), RETRIES (wrong submissions), STREAK (consecutive days) - all derivable from the standard telemetry events; no new persistence beyond the save record.
 
@@ -249,7 +249,7 @@ Each phase is an independently shippable slice. Phase 0-2 are the architectural 
 - **Phase 4 - Missing Letters** (proves the Game abstraction with a second mechanic; Daily mix starts interleaving).
 - **Phase 5 - Wordle-style** (ezhuthu keyboard + flip/shake animations).
 - **Phase 6 - Word Search** (drag/keyboard trace, 8 directions).
-- **Phase 7 - Crossword** (build-time placement solver in `tools/`).
+- **Phase 7 - Crossword** (build-time placement solver in `backend/`).
 - **Phase 8 - Infinite + Time Trial Modes** (reuse the Game pools; new session framings only).
 - **Cross-cutting - Data consolidation** runs in parallel: master wordlist -> per-Game derived sets, feeding each Game phase just-in-time.
 
@@ -260,7 +260,7 @@ Each phase is an independently shippable slice. Phase 0-2 are the architectural 
 Because the app is Tamil-only, one technical decision touches every layer and must be settled first (it is the reason a naive port of the English reference breaks):
 
 - The unit a player manipulates - a tile, a grid cell, a wordle "letter", a ladder rung's added character - is the **ezhuthu (grapheme cluster)**, not the Unicode codepoint. Example: "தமிழ்" is **3** ezhuthu (த + மி + ழ்) but more codepoints; "க்ஷ" and uyirmei combos (consonant + vowel sign) are single units.
-- Build a small, well-tested **ezhuthu segmentation + reconstruction library** (uyir / mei-with-pulli / uyirmei), shared by `tools/` and `frontend/`. Every Game's scoring, blanking, shuffling, tracing, and interlock is defined over ezhuthu, and every wordlist is stored with its ezhuthu segmentation precomputed.
+- Build a small, well-tested **ezhuthu segmentation + reconstruction library** (uyir / mei-with-pulli / uyirmei), shared by `backend/` and `frontend/`. Every Game's scoring, blanking, shuffling, tracing, and interlock is defined over ezhuthu, and every wordlist is stored with its ezhuthu segmentation precomputed.
 - The `yen-tamizh_OLD` corpus and its "grapheme multiset" anagram logic are the starting point; do not re-derive Tamil vocabulary from scratch.
 
 ---
@@ -269,24 +269,24 @@ Because the app is Tamil-only, one technical decision touches every layer and mu
 
 Per Correction Level 5, these pause for a decision; they are the genuine forks a system design carries:
 
-- **O1 - Right-size the inherited contract.** The current `CLAUDE.md` is tuned for a **canvas/physics "richer game"** (renderer, physics engine, WASM, `gltf-pipeline`, KTX2 textures, "style canvas internals" rules). A Tamil word game is **DOM + Tailwind + CSS transitions** - no canvas, no physics, no 3D assets. Proposal: keep the contract's spine but replace the renderer/physics/asset-pipeline language with DOM/CSS/word-data language, and reinstate a **modest bundle budget** (the `yen-neram` 50KB-shell model) since we have no heavy assets to justify dropping it. Authority: Fowler + Carmack.
+- **O1 - Right-size the inherited contract.** The current `CLAUDE.md` is tuned for a **canvas/physics "richer game"** (renderer, physics engine, WASM, `gltf-pipeline`, KTX2 textures, "style canvas internals" rules). A Tamil word game is **DOM + Tailwind + CSS transitions** - no canvas, no physics, no 3D assets. Decided direction: a DOM word game with **no artificial bundle byte cap** (Holy Law #2 - measure-then-optimize); the runtime constraint is 60fps + input-to-photon < 50ms on a mid-tier Android, not a fixed byte budget. Still to do: replace the contract's renderer/physics/asset-pipeline language with DOM/CSS/word-data language. Authority: Fowler + Carmack.
 - **O2 - Journey as a Mode vs a third axis.** Proposal (section 3.1): Journey is a Mode (a curated ordered Session), not a new top-level axis - it composes cleanly with the existing Game registry and needs no new engine. Confirm. Authority: Fowler + Palm.
-- **O3 - Bundle budget number.** If O1 reinstates a budget, pick the shell cap (proposal: 50KB gzipped shell, per-Game chunk lazy-loaded) and enforce it in CI via `size-limit`. Authority: Carmack.
-- **O4 - Word Ladder in Tamil - difficulty of the corpus.** Add-one-ezhuthu-and-rearrange ladders require a dense enough validated word graph. Proposal: build the ladder graph offline in `tools/` and, if Tamil density is thin at short lengths, seed ladders from a curated list rather than pure search. Confirm acceptable. Authority: Palm + Fowler.
+- **O3 - Bundle budget number - RESOLVED.** No artificial byte cap (Holy Law #2): ship the richer game first and measure-then-optimize in DevTools against the target-device profile (60fps, input-to-photon < 50ms); per-Game chunks stay lazy-loaded. Authority: Carmack.
+- **O4 - Word Ladder in Tamil - difficulty of the corpus.** Add-one-ezhuthu-and-rearrange ladders require a dense enough validated word graph. Proposal: build the ladder graph offline in `backend/` and, if Tamil density is thin at short lengths, seed ladders from a curated list rather than pure search. Confirm acceptable. Authority: Palm + Fowler.
 - **O5 - Final Tamil display names.** The Tamil Mode/Game names in sections 3.2-3.3 are working names; they need a native-speaker pass before they land in `config/copy.json`. Authority: Player + you.
 
 ---
 
 ## 8. Missing contract files (checklist - flagged, not created)
 
-Per the agreed deliverable scope, this is the gap list, not the work. The current tree on disk is only `.claude/`, `.github/` (5 agents + `ci`/`daily`/`deploy` workflows), `docs/` (with `architecture/` and `concepts/` **empty**), and `CLAUDE.MD`.
+Per the agreed deliverable scope, this is the gap list, not the work. The tree on disk now also has `CLAUDE.md` (renamed from `CLAUDE.MD`), a root `README.md`, an `AGENTS.md`, and `TODO/` - alongside `.claude/`, `.github/` (5 agents + `ci`/`daily`/`deploy` workflows), and `docs/` (with `architecture/` and `concepts/` still **empty**).
 
 **Broken / stale (fix first):**
-- [ ] `CLAUDE.md` is a **verbatim `yen-cinthanai` copy**: the H1 says "yen-cinthanai Engineering Contract", section 11 says "yen-cinthanai cares about", and its Repository Topology marks `frontend/`, `config/`, `.github/agents/` as "created" though `frontend/`/`config/`/`tools/` do **not** exist on disk. Rebrand to yen-tamizh and correct the topology statuses. (Also: the file is `CLAUDE.MD`; normalise to `CLAUDE.md`.)
+- [x] `CLAUDE.md` (DONE): was a verbatim `yen-cinthanai` copy (H1 said "yen-cinthanai Engineering Contract", section 11 said "yen-cinthanai cares about"); now rebranded to yen-tamizh (H1 + section 11), renamed `CLAUDE.MD` -> `CLAUDE.md`, topology statuses corrected, the pipeline folder switched from `tools/` to `backend/`, Holy Law #2 (the player's phone) restored, and schema versioning switched to a date-stamp `version` + `changelog`.
 
 **Missing top-level files:**
-- [ ] `README.md` (root entry point - marked "TBD" in the contract).
-- [ ] `AGENTS.md` (referenced by the contract's Definition of Done).
+- [x] `README.md` (created - root entry point).
+- [x] `AGENTS.md` (created - a derived pointer to `CLAUDE.md`).
 
 **Empty doc tiers the bootstrap/guardrails already link to (dangling links today):**
 - [ ] `docs/concepts/`: `core-loop.md`, `ui-shell.md`, `difficulty-and-scoring.md` (all three are linked from `docs/agents/bootstrap.md`), plus the design docs this proposal implies: `vision.md`, `games.md`, `modes.md`, `journeys.md`, `principles.md`, `telemetry.md`, `config.md`, `design-system.md`.
@@ -294,7 +294,7 @@ Per the agreed deliverable scope, this is the gap list, not the work. The curren
 - [ ] `docs/how-to/`: `execute-a-plan.md` and `handle-scope-change.md` are referenced by `author-a-plan.md` / `bootstrap.md` but not present - confirm and add.
 
 **Source trees not yet created (per Topology, land with their first PR):**
-- [ ] `frontend/` (Svelte + Vite + Tailwind app), `tools/` (Python pipeline), `config/` (tunables + `copy.json`), `schemas/` (the section 3.6 list), `datasets/` (curated wordlists), `data/puzzles/` (generated JSON), `TODO/` plan-docs.
+- [ ] `frontend/` (Svelte + Vite + Tailwind app), `backend/` (Python pipeline), `config/` (tunables + `copy.json`), `schemas/` (the section 3.6 list), `datasets/` (curated wordlists), `data/puzzles/` (generated JSON), `TODO/` plan-docs.
 
 ---
 
