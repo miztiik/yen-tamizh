@@ -47,8 +47,8 @@ Envelope `{ ts, src, v, session, name, level, ctx, data }`. Game: `puzzle.starte
 | # | Row title | Level | Depends-on | Group | Status | Worktree | PR | Subagent |
 | --- | --- | :---: | --- | --- | --- | --- | --- | --- |
 | 1 | Contract right-size + rebrand | 5 | - | - | DONE (2026-07-25 commit) | - | - | - |
-| 2 | Foundational concept + how-to docs + AGENTS.md | 3 | 1 | A | PENDING | - | - | - |
-| 3 | Repo skeleton (frontend + backend) + CI wiring | 5 | 1 | A | PENDING | - | - | - |
+| 2 | Foundational concept + how-to docs + AGENTS.md | 3 | 1 | A | DONE | - | #1 | worker |
+| 3 | Repo skeleton (frontend + backend) + CI wiring | 5 | 1 | A | IN-FLIGHT | ../yen-tamizh-row3 | - | worker |
 | 4 | PWA + offline shell (service worker, base-path, install) | 4 | 3 | B | PENDING | - | - | - |
 | 5 | Evolutionary contract pipeline (Pydantic -> JSON Schema -> TS/ajv) | 5 | 3 | B | PENDING | - | - | - |
 | 6 | Ezhuthu library (Python + TS twins) | 4 | 3 | B | PENDING | - | - | - |
