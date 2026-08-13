@@ -54,11 +54,11 @@ Envelope `{ ts, src, v, session, name, level, ctx, data }`. Game: `puzzle.starte
 | 6 | Ezhuthu library (Python + TS twins) | 4 | 3 | B | DONE | - | #3 | worker |
 | 7 | Core schemas (app-config/event-envelope/save/puzzle-file/bank-index/anagram) | 5 | 5,6 | C | DONE | - | #7 | worker |
 | 8 | Corpus ingest + master wordlist | 4 | 5,6 | C | DONE | - | #10 | worker |
-| 9 | Derived-wordlist framework + anagram set | 3 | 8 | - | READY | - | - | - |
+| 9 | Derived-wordlist framework + anagram set | 3 | 8 | - | DONE | - | #11 | worker |
 | 10 | Design system (tokens + animation + glyph bake + manifest) | 3 | 5 | - | DONE | - | #6 | worker |
 | 11 | Shell + runtime (SessionShell/Runner/registry/storage/bus) | 4 | 7,10 | - | DONE | - | #8 | worker |
 | 12 | AnagramGame | 3 | 11 | - | DONE | - | #9 | worker |
-| 13 | DailyMode + daily bank generator + Home | 4 | 9,12 | - | PENDING | - | - | - |
+| 13 | DailyMode + daily bank generator + Home | 4 | 9,12 | - | READY | - | - | - |
 | 14 | Daily playlist + hints (changelog evolution) | 3 | 13 | - | PENDING | - | - | - |
 | 15 | Ladder graph builder + word-ladder schema | 5 | 7,8 | - | PENDING | - | - | - |
 | 16 | WordLadderGame + share-result card | 3 | 11,15 | - | PENDING | - | - | - |
@@ -371,7 +371,7 @@ Dependency spine: `1(done) -> {2,3} -> {4,5,6} -> {7,8} -> {9,10} -> 11 -> 12 ->
   | 1 | Word Ladder first | Needs the build-time ladder graph (Row 15) first; higher risk for a first slice. | Palm |
 
 ### Row #13 - DailyMode + daily bank generator + Home (Level 4)
-- **Scope:** Ship Daily (இன்றைய புதிர்) end-to-end: a date-seeded backend generator bakes today's puzzle-file into the bundle; DailyMode plays it; the Home lists Mode cards.
+- **Scope:** Ship Daily (இன்றைய புதிர்) end-to-end: a date-seeded backend generator bakes today's puzzle-file into the bundle; DailyMode plays it; the Home lists Mode cards. Carried over from Row 9 (this row is the first CONSUMER of the derived set, so it fixes both while they are still free): (a) normalize the `game-wordlist` `hints` field names to camelCase (`firstEzhuthu`, not `first_ezhuthu`) to match every other persisted shape in the repo - orchestrator ruling, repo convention beats the plan's literal sketch; (b) a content-quality pass on `datasets/wordlists/derived/anagram.json`, whose co-anagram rule admits some corpus noise (inflected variants and likely misspellings such as `அதற்க்கு` pairing with `அதற்குக்`) - a served puzzle answer must be a word a Tamil speaker recognises (Player).
 - **Reuse:** port `yen-tamizh_OLD/backend/src/yen_tamizh_backend` generate + `frontend/src/modes/DailyMode.ts`.
 - **Files touched:**
   - `backend/yen_tamizh_backend/generate/anagram.py`, `backend/yen_tamizh_backend/scripts/generate_today.py` -> `frontend/public/bank/<YYYY>/<YYYY-MM-DD>.json` + `frontend/public/bank/index.json`.
