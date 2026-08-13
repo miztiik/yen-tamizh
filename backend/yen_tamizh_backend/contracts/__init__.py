@@ -17,9 +17,17 @@ from __future__ import annotations
 
 from yen_tamizh_backend.contracts.base import ChangelogEntry, SchemaModel
 from yen_tamizh_backend.contracts.example import Example
+from yen_tamizh_backend.contracts.glyph_manifest import GlyphManifest, GlyphShape
 
 # Explicit registry (not auto-discovery) so the exporter's output set is
 # deterministic and reviewed. Export sorts by name; order here is not load-bearing.
-REGISTRY: tuple[type[SchemaModel], ...] = (Example,)
+REGISTRY: tuple[type[SchemaModel], ...] = (Example, GlyphManifest)
 
-__all__ = ["REGISTRY", "ChangelogEntry", "Example", "SchemaModel"]
+__all__ = [
+    "REGISTRY",
+    "ChangelogEntry",
+    "Example",
+    "GlyphManifest",
+    "GlyphShape",
+    "SchemaModel",
+]

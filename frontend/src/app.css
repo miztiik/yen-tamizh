@@ -3,16 +3,130 @@
 @tailwind utilities;
 
 /*
- * Minimal token seed for the skeleton shell. The full design-token system
- * (colour ramp, spacing scale, easing, keyframes, dark-mode + Journey themes)
- * lands in Row 10 and is mirrored into tailwind.config.js theme.extend.
+ * Design tokens - the single source of truth for the look (Row 10 design
+ * system, docs/concepts/design-system.md). Every colour, space, radius, shadow,
+ * font, easing and duration is a CSS custom property named BY PURPOSE, mirrored
+ * one-for-one into tailwind.config.js theme.extend so a utility (bg-accent,
+ * text-danger, rounded-md) resolves to the same var(). The mirror is enforced
+ * by designsystem/app-tokens.test.ts (every non-exempt token has a mirror).
+ *
+ * Theming is override, not a second set of names: the default :root is light,
+ * dark mode overrides the same tokens (prefers-color-scheme), and a [data-theme]
+ * attribute axis lets a Journey force a palette regardless of the OS setting.
  */
 :root {
+  /* Fonts - a Tamil-capable display face and a tile/grid mono face. */
+  --font-display: "Noto Sans Tamil", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Segoe UI Mono", "Noto Sans Tamil", monospace;
+
+  /* Space scale. */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 0.75rem;
+  --space-lg: 1rem;
+  --space-xl: 1.5rem;
+  --space-2xl: 2rem;
+
+  /* Corner radii. */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-full: 9999px;
+
+  /* Elevation. */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.08);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.12);
+  --shadow-lg: 0 12px 32px rgba(15, 23, 42, 0.18);
+
+  /* Colour - light theme (default). */
+  --bg: #f8fafc;
+  --bg-elevated: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #94a3b8;
+  --accent: #d97706;
+  --success: #16a34a;
+  --warning: #ea580c;
+  --danger: #dc2626;
+  --border: #e2e8f0;
+
+  /* Difficulty ramp (easy -> extreme; docs/concepts/difficulty-and-scoring.md). */
+  --diff-1: #22c55e;
+  --diff-2: #eab308;
+  --diff-3: #f97316;
+  --diff-4: #ef4444;
+
+  /* Wordle-style tile-feedback set. */
+  --tile-empty: #e2e8f0;
+  --tile-present: #eab308;
+  --tile-correct: #22c55e;
+  --tile-absent: #94a3b8;
+
+  /* Motion - a utility ease, a spring ease, and a duration scale. */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 120ms;
+  --dur-base: 220ms;
+  --dur-slow: 360ms;
+}
+
+/*
+ * Dark theme - overrides the same token names. Applied when the OS asks for it,
+ * unless a [data-theme] attribute forces a palette (the attribute rules below
+ * come later in source order, so they win over this media block).
+ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a;
+    --bg-elevated: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-tertiary: #64748b;
+    --accent: #f59e0b;
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #f87171;
+    --border: #334155;
+    --tile-empty: #334155;
+    --tile-present: #eab308;
+    --tile-correct: #22c55e;
+    --tile-absent: #475569;
+  }
+}
+
+/* [data-theme] axis - a Journey (or a settings toggle) forces a palette. */
+[data-theme="light"] {
+  --bg: #f8fafc;
+  --bg-elevated: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #94a3b8;
+  --accent: #d97706;
+  --success: #16a34a;
+  --warning: #ea580c;
+  --danger: #dc2626;
+  --border: #e2e8f0;
+  --tile-empty: #e2e8f0;
+  --tile-present: #eab308;
+  --tile-correct: #22c55e;
+  --tile-absent: #94a3b8;
+}
+
+[data-theme="dark"] {
   --bg: #0f172a;
   --bg-elevated: #1e293b;
   --text-primary: #f8fafc;
   --text-secondary: #cbd5e1;
+  --text-tertiary: #64748b;
   --accent: #f59e0b;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #f87171;
+  --border: #334155;
+  --tile-empty: #334155;
+  --tile-present: #eab308;
+  --tile-correct: #22c55e;
+  --tile-absent: #475569;
 }
 
 body {
@@ -20,6 +134,10 @@ body {
   min-height: 100dvh;
   background: var(--bg);
   color: var(--text-primary);
-  font-family: "Noto Sans Tamil", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: var(--font-display);
   -webkit-font-smoothing: antialiased;
+  /* Colour-only theme swap - paint, not layout, so it holds the frame budget. */
+  transition:
+    background-color var(--dur-base) var(--ease),
+    color var(--dur-base) var(--ease);
 }

@@ -1,0 +1,175 @@
+/*
+ * Animation vocabulary (Row 10 design system, docs/concepts/design-system.md).
+ *
+ * HARD INVARIANT (Carmack): every keyframe animates ONLY `transform` and
+ * `opacity` - never a layout- or paint-heavy property - so motion holds 60fps on
+ * the target phone (Holy Law #2). designsystem/reduced-motion.test.ts enforces
+ * this by scanning the @keyframes blocks.
+ *
+ * `prefers-reduced-motion: reduce` is a HARD kill-switch at the bottom of this
+ * file: it collapses every duration to ~0 and stops iteration, so nothing moves
+ * for a player who asked for stillness.
+ */
+
+/* --- Keyframes (transform + opacity only) --- */
+
+@keyframes pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-0.4rem);
+  }
+  40% {
+    transform: translateX(0.4rem);
+  }
+  60% {
+    transform: translateX(-0.25rem);
+  }
+  80% {
+    transform: translateX(0.25rem);
+  }
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateX(0deg);
+  }
+  50% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes toastIn {
+  0% {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes modalIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes victoryPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes confettiFall {
+  0% {
+    opacity: 1;
+    transform: translateY(-10%) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(110%) rotate(360deg);
+  }
+}
+
+@keyframes rungClimb {
+  0% {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Utility classes - name the motion; tokens carry the timing --- */
+
+.anim-pop {
+  animation: pop var(--dur-base) var(--ease-spring) both;
+}
+.anim-shake {
+  animation: shake var(--dur-slow) var(--ease) both;
+}
+.anim-flip {
+  animation: flip var(--dur-base) var(--ease) both;
+}
+.anim-toast-in {
+  animation: toastIn var(--dur-base) var(--ease-spring) both;
+}
+.anim-modal-in {
+  animation: modalIn var(--dur-base) var(--ease-spring) both;
+}
+.anim-fade-in {
+  animation: fadeIn var(--dur-base) var(--ease) both;
+}
+.anim-victory {
+  animation: victoryPulse var(--dur-slow) var(--ease-spring) 2;
+}
+.anim-rung-climb {
+  animation: rungClimb var(--dur-base) var(--ease-spring) both;
+}
+.anim-shimmer {
+  animation: shimmer 1.4s var(--ease) infinite;
+}
+
+/* --- Reduced-motion kill-switch (hard) --- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

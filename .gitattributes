@@ -6,3 +6,9 @@
 schemas/*.schema.json text eol=lf
 frontend/src/contracts/*.schema.json text eol=lf
 frontend/src/contracts/*.d.ts text eol=lf
+
+# The baked glyph manifest and its source SVGs are LF too, so the glyph bake is
+# byte-stable across operating systems (test_glyphs.py compares the committed
+# manifest to a fresh bake).
+frontend/public/assets/glyphs/*.json text eol=lf
+assets/glyphs/*.svg text eol=lf
