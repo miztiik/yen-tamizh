@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "yen-tamizh-backend"
+version = "0.1.0"
+description = "Build-time puzzle generators and data pipeline for the yen-tamizh frontend. Runs in CI / locally only; never a runtime server (Holy Law #1)."
+requires-python = ">=3.12"
+license = { text = "MIT" }
+dependencies = ["pydantic>=2"]
+
+[project.optional-dependencies]
+dev = ["mypy>=1.13", "pytest>=8.3"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["yen_tamizh_backend", "utilities"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["yen_tamizh_backend", "utilities", "tests"]
+plugins = ["pydantic.mypy"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

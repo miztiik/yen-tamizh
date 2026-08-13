@@ -1,20 +1,19 @@
 name: deploy
 
-# Regenerate the recent bank days, bake config, and publish the static bundle to GitHub
-# Pages. `--backfill 7` re-freezes/creates the last 7 days (add-only gap-recovery so a fresh
-# runner always has today); the served index then advertises the FULL on-disk archive
-# (backend.generate scans every dated file), so the board's DayPicker can reach every past day.
-# Gated on CI: this runs only AFTER the "ci" workflow concludes success on master,
-# so a red build (failing typecheck / lint / test / pytest) never deploys. The
-# workflow_dispatch trigger is a manual escape hatch that bypasses the gate for a
-# forced re-deploy.
-# Static-first: no runtime backend. base = /yen-tamizh/. See docs/how-to/
-# ship-to-github-pages.md and docs/architecture/runtime/stack-and-bundle.md.
+# Build the static shell and publish it to GitHub Pages. Gated on CI: runs only
+# AFTER the "ci" workflow concludes success on main, so a red build never
+# deploys. workflow_dispatch is a manual escape hatch that bypasses the gate.
+#
+# Static-first (Holy Law #1): no runtime backend. base = /yen-tamizh/, and
+# dist/404.html mirrors index.html so deep links boot the SPA. The real bank
+# build (backend generate -> frontend/public/) lands in Row 13; for now deploy
+# just publishes the shell. See docs/how-to/ship-to-github-pages.md and
+# docs/architecture/runtime/stack-and-bundle.md.
 on:
   workflow_run:
     workflows: ["ci"]
     types: [completed]
-    branches: [master]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -32,30 +31,25 @@ jobs:
     # skipped, the deploy job (needs: build) is skipped too and nothing publishes.
     if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
     steps:
       - uses: actions/checkout@v7
         with:
           # Build the exact commit CI validated (falls back to the dispatched ref).
           ref: ${{ github.event.workflow_run.head_sha || github.sha }}
-      - uses: actions/setup-python@v6
-        with:
-          python-version: "3.12"
       - uses: actions/setup-node@v6
         with:
           node-version: "22"
           cache: npm
           cache-dependency-path: frontend/package-lock.json
-      - run: pip install -r backend/requirements.txt
-      # Regenerate the recent 7 days (add-only; existing days frozen); the served index then
-      # lists the FULL on-disk archive so the DayPicker reaches every past day. Matches daily.yml.
-      - run: python -m backend.generate --backfill 7
-      - run: python -m backend.bake_config
       - run: npm ci
-        working-directory: frontend
       - run: npm run build
-        working-directory: frontend
         env:
           GH_PAGES_BASE: /yen-tamizh/
+      - name: verify SPA fallback (404.html == index.html)
+        run: cmp dist/index.html dist/404.html
       - uses: actions/upload-pages-artifact@v5
         with:
           path: frontend/dist

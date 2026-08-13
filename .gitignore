@@ -1,0 +1,29 @@
+# Node / frontend build
+node_modules/
+dist/
+dev-dist/
+*.tsbuildinfo
+.vite/
+
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Python / backend
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.mypy_cache/
+.pytest_cache/
+build/
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+
+# Scratch
+.tmp_*
