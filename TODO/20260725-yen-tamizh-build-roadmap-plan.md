@@ -48,10 +48,10 @@ Envelope `{ ts, src, v, session, name, level, ctx, data }`. Game: `puzzle.starte
 | --- | --- | :---: | --- | --- | --- | --- | --- | --- |
 | 1 | Contract right-size + rebrand | 5 | - | - | DONE (2026-07-25 commit) | - | - | - |
 | 2 | Foundational concept + how-to docs + AGENTS.md | 3 | 1 | A | DONE | - | #1 | worker |
-| 3 | Repo skeleton (frontend + backend) + CI wiring | 5 | 1 | A | IN-FLIGHT | ../yen-tamizh-row3 | - | worker |
-| 4 | PWA + offline shell (service worker, base-path, install) | 4 | 3 | B | PENDING | - | - | - |
-| 5 | Evolutionary contract pipeline (Pydantic -> JSON Schema -> TS/ajv) | 5 | 3 | B | PENDING | - | - | - |
-| 6 | Ezhuthu library (Python + TS twins) | 4 | 3 | B | PENDING | - | - | - |
+| 3 | Repo skeleton (frontend + backend) + CI wiring | 5 | 1 | A | DONE | - | #2 | worker |
+| 4 | PWA + offline shell (service worker, base-path, install) | 4 | 3 | B | READY | - | - | - |
+| 5 | Evolutionary contract pipeline (Pydantic -> JSON Schema -> TS/ajv) | 5 | 3 | B | READY (ESCALATE) | - | - | - |
+| 6 | Ezhuthu library (Python + TS twins) | 4 | 3 | B | READY | - | - | - |
 | 7 | Core schemas (app-config/event-envelope/save/puzzle-file/bank-index/anagram) | 5 | 5,6 | C | PENDING | - | - | - |
 | 8 | Corpus ingest + master wordlist | 4 | 5,6 | C | PENDING | - | - | - |
 | 9 | Derived-wordlist framework + anagram set | 3 | 8 | - | PENDING | - | - | - |
@@ -537,7 +537,7 @@ Dependency spine: `1(done) -> {2,3} -> {4,5,6} -> {7,8} -> {9,10} -> 11 -> 12 ->
 
 ## 3. Execution stamp
 
-`Execute per docs/how-to/execute-a-plan.md: orchestrator dispatches one worktree-isolated worker subagent per row; workers consult personas (Fowler/Carmack/Jony/Palm/Player/Explore) on ambiguity; AUTO-merge on green gates; parallel N = 2; honor the ESCALATE triggers in section 0. AUTHOR-AND-STOP until the user authorizes. Row 1 is DONE (2026-07-25 commit); the first dispatchable rows are 2 and 3.`
+`Execute per docs/how-to/execute-a-plan.md: orchestrator dispatches one worktree-isolated worker subagent per row; workers consult personas (Fowler/Carmack/Jony/Palm/Player/Explore) on ambiguity; AUTO-merge on green gates; parallel N = 2; honor the ESCALATE triggers in section 0. EXECUTING (user-authorized 2026-08-13). Rows 1-3 DONE (Row 1 = 2026-07-25 contract commit; Row 2 = PR #1; Row 3 = PR #2, skeleton green on CI). Frontier = Group B {4, 5, 6}: Rows 4 (PWA, Level 4) and 6 (ezhuthu, Level 4) are AUTO-dispatchable in parallel; Row 5 (contract pipeline, Level 5) is an ESCALATE pause awaiting user sign-off before merge.`
 
 ## See also
 
