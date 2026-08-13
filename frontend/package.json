@@ -12,10 +12,14 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "gen:contracts": "node scripts/gen-contracts.mjs",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "lint": "eslint .",
     "test": "vitest run",
     "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "ajv": "^8.20.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
@@ -26,6 +30,7 @@
     "autoprefixer": "^10.4.20",
     "eslint": "^9.15.0",
     "globals": "^15.12.0",
+    "json-schema-to-typescript": "15.0.4",
     "postcss": "^8.4.49",
     "svelte": "^5.2.0",
     "svelte-check": "^4.1.0",

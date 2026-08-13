@@ -51,12 +51,45 @@ jobs:
       - run: mypy
       - run: pytest -q
 
-  # Schema drift gate. PLACEHOLDER: Row 5 replaces this with the real
-  # "regenerate schemas + TS types from the Pydantic models, then
-  # git diff --exit-code" gate. Green no-op keeps the job wired until then.
+  # Schema drift gate (Row 5). The backend Pydantic models are the single source
+  # of truth: regenerate schemas/*.schema.json (Python export) and the frontend
+  # TS types + schema copies (npm run gen:contracts), then fail on any diff - so
+  # the committed schema, types, and validators can never drift from the models.
   contracts:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - name: schema drift gate (placeholder)
-        run: echo "contracts drift-gate lands in Row 5 (Pydantic -> JSON Schema -> TS/ajv)."
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      # pyproject pins pydantic exactly so model_json_schema() output is
+      # byte-reproducible here (Python 3.12) and locally (3.14).
+      - name: install backend (Pydantic source of truth)
+        run: pip install -e .
+        working-directory: backend
+      # Same pinned npm as the frontend job so the codegen deps
+      # (json-schema-to-typescript) resolve identically to the committed lockfile.
+      - name: install frontend codegen deps
+        working-directory: frontend
+        run: |
+          npm install -g npm@10.9.2
+          npm ci
+      - name: regenerate schemas from the Pydantic models
+        run: python -m yen_tamizh_backend.contracts.export
+        working-directory: backend
+      - name: regenerate frontend types + schema copies
+        run: npm run gen:contracts
+        working-directory: frontend
+      - name: fail on any drift
+        run: |
+          git diff --exit-code -- schemas frontend/src/contracts
+          if [ -n "$(git status --porcelain -- schemas frontend/src/contracts)" ]; then
+            echo "::error::Regenerated contracts differ from the committed files. Run the exporter + 'npm run gen:contracts' and commit the result."
+            git status --porcelain -- schemas frontend/src/contracts
+            exit 1
+          fi

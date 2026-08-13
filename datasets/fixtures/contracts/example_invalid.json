@@ -1,0 +1,11 @@
+{
+  "version": "2026-08-13",
+  "changelog": [
+    {
+      "version": "2026-08-13",
+      "change": "Initial demonstrator schema.",
+      "why": "Prove the evolutionary contract pipeline end to end (Row 5)."
+    }
+  ],
+  "count": -2
+}

@@ -1,6 +1,6 @@
 # schemas/
 
-**Last Updated**: 2026-07-29
+**Last Updated**: 2026-08-13
 
 Typed JSON Schemas for every persisted surface in yen-tamizh (Holy Law #3,
 `CLAUDE.md` sections 3 and 11). A contract lands here *before* the logic that
@@ -15,9 +15,15 @@ Each schema is a single flat file `schemas/<name>.schema.json` that carries:
 JSON-Schema plugins validate without a network call.
 
 The schemas are generated from the backend's Pydantic models (the single source
-of truth) by the evolutionary contract pipeline; a CI drift gate regenerates and
-fails on any diff. The pipeline and the first real schemas land in later rows -
-this directory is a placeholder until then.
+of truth) by the evolutionary contract pipeline (Row 5); a CI drift gate
+regenerates and fails on any diff. Run `python -m
+yen_tamizh_backend.contracts.export` (backend) then `npm run gen:contracts`
+(frontend) to regenerate. `example.schema.json` is the pipeline's demonstrator;
+the real named surfaces (`app-config`, `save`, `puzzle-file`, `bank-index`,
+`event-envelope`, `anagram-puzzle`, ...) are added to the registry in later rows.
+
+Do not edit the `*.schema.json` files by hand - edit the Pydantic model and
+re-run the exporter.
 
 ## See also
 

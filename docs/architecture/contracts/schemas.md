@@ -1,6 +1,6 @@
 # Persisted-Surface Schemas (Overview)
 
-**Last Updated**: 2026-07-29
+**Last Updated**: 2026-08-13
 
 The map of every persisted surface in yen-tamizh and the discipline every schema follows. This is a **forward-declaring overview**: it names the surfaces and fixes the versioning rules so [../../agents/guardrails.md](../../agents/guardrails.md) and the concept docs have a stable place to link. It deliberately does **not** list concrete fields - the schema files and their field-level contracts land with the contract-pipeline and core-schema code rows. The full rules live in [../../../CLAUDE.md](../../../CLAUDE.md) section 11; this page is the concept-level index of them.
 
@@ -47,7 +47,30 @@ Named here so every doc has one place to point; the field lists are owned by the
 
 ## The source of truth
 
-These schemas are not hand-authored twice. `backend/` Pydantic models are authoritative and export the flat `schemas/<name>.schema.json`; a frontend codegen step emits the TypeScript types and validators the game uses, and a CI drift gate fails on any divergence. That pipeline is described in [../overview.md](../overview.md) and built in its own row - this page only fixes the surface list and the versioning rules it must honour.
+These schemas are not hand-authored twice. The pipeline (built in Row 5) runs one way:
+
+1. **`backend/yen_tamizh_backend/contracts/`** - Pydantic models are authoritative. `base.py` gives every contract its `version` + `changelog` (and enforces `version == changelog[0].version`); each model subclasses `SchemaModel`.
+2. **`export.py`** (`python -m yen_tamizh_backend.contracts.export`) walks the model `REGISTRY` and writes each flat `schemas/<name>.schema.json` - draft 2020-12, relative `$id`, deterministic bytes (sorted keys, 2-space indent, LF, trailing newline, ASCII).
+3. **`frontend/scripts/gen-contracts.mjs`** (`npm run gen:contracts`) reads those schemas and writes, under `frontend/src/contracts/`, a `<name>.d.ts` (TypeScript types via `json-schema-to-typescript`) plus a byte-copy `<name>.schema.json` that ajv compiles into a runtime validator.
+4. **`frontend/src/contracts/index.ts`** is the typed load-boundary: `loadValidated<T>(url, schemaName)` fetches JSON same-origin and validates it with the compiled ajv validator, throwing at the boundary on invalid data (section 1a, "payloads not calls").
+5. **The CI `contracts` job** regenerates both sides and fails on any diff (`git diff --exit-code`), so the schema, the types, and the validators can never drift from the models.
+
+A tiny `example` contract (`example.schema.json`) ships as the pipeline's demonstrator and drift-gate exercise; the real named surfaces below are added to the registry in their own rows. The two-runtime context is in [../overview.md](../overview.md).
+
+## Design rationale
+
+- **Pydantic is the single source of truth; JSON Schema, TS types, and validators are generated, never hand-authored.** One model definition yields every downstream artifact, so a corpus/field change is made once and the generated types + validators follow. The drift gate makes divergence impossible rather than merely discouraged. (Fowler, user-directed.)
+- **Runtime validation is ajv over the generated schema; static types are `json-schema-to-typescript`.** The frontend consumes backend output only as schema-validated payloads and fails fast at the load-boundary. ajv is a runtime dependency (it ships when the boundary is used); `json-schema-to-typescript` is build-time only. (Fowler.)
+- **Determinism is engineered, not assumed.** The drift gate runs on CI (Python 3.12, npm 10.9.2) but authors run other versions, so the pipeline pins `pydantic` exactly, canonicalises the JSON (sorted keys, fixed indent), pins `json-schema-to-typescript` and disables its external formatter (`format:false`), and forces LF (`export` `newline`, `.gitattributes`). Same inputs -> byte-identical outputs on every machine.
+
+## Rejected alternatives
+
+| Option | Why rejected | Authority |
+| --- | --- | --- |
+| Hand-authored Zod on the frontend | A second source of truth that drifts from Pydantic; defeats "refresh the corpus without rebuilding the mechanics". | Fowler |
+| `schemas/<name>/vN.schema.json` version folders | The contract versions in-file via `version`/`changelog` (CLAUDE.md section 11), not by folder; folders duplicate history git already keeps. | Fowler |
+| valibot | Weaker JSON-Schema codegen path than ajv today. | Fowler |
+| ajv standalone precompiled validators | More generated, version-sensitive surface in the drift gate for no current benefit; runtime-compile is simpler. If Carmack's frame budget later flags ajv's bytes, standalone is the named optimization. | Fowler / Carmack |
 
 ## See also
 
