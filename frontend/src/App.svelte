@@ -3,16 +3,19 @@
 
   import { APP_TITLE, APP_TAGLINE } from "./lib/meta";
 
-  // The default view is the skeleton title screen (Row 3). Row 11 adds a
-  // developer harness behind `?harness=session` that boots the SessionShell +
-  // SessionRunner over a fake session; it is lazy-imported so it never weighs on
-  // the default critical path (Carmack). Row 13 replaces this with the real Home.
+  // The default view is the skeleton title screen (Row 3). Row 11 added a
+  // developer harness behind `?harness=session` (the fake-Game runtime proof)
+  // and Row 12 adds `?harness=anagram` (the first playable Game inside that same
+  // runtime). Both are lazy-imported so they never weigh on the default critical
+  // path (Carmack). Row 13 replaces them with the real Home.
   let Harness = $state<Component | null>(null);
 
   onMount(async () => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("harness") === "session") {
+    const harness = new URLSearchParams(window.location.search).get("harness");
+    if (harness === "session") {
       Harness = (await import("./shell/SessionHarness.svelte")).default;
+    } else if (harness === "anagram") {
+      Harness = (await import("./shell/AnagramHarness.svelte")).default;
     }
   });
 </script>

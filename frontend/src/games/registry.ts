@@ -5,9 +5,8 @@
 //
 // Each entry is a lazy loader: `load()` dynamically imports the Game's module so
 // its bytes arrive only when the Game is first opened (route-level code-split,
-// Carmack / Holy Law #2). The map is empty until Row 12 registers `anagram`; the
-// runner takes the registry by injection, so tests and the Row 11 harness supply
-// their own without touching this file.
+// Carmack / Holy Law #2). The runner takes the registry by injection, so tests
+// and the Row 11 harness supply their own without touching this file.
 
 import type { GameModule } from "../session/types";
 
@@ -22,11 +21,14 @@ export interface GameRegistryEntry {
 export type GameRegistry = Readonly<Record<string, GameRegistryEntry>>;
 
 /**
- * The production registry. Games register here as their rows land, e.g.:
- *   anagram: { load: () => import("./anagram/AnagramGame").then((m) => m.factory) }
- * Empty until Row 12; the runner resolves against whatever registry it is given.
+ * The production registry. Games register here as their rows land; `anagram` is
+ * the first (Row 12). Each entry stays a lazy `import()` so a Game's bytes
+ * arrive only when it is first opened; the runner resolves against whatever
+ * registry it is given, so tests and harnesses supply their own.
  */
-export const GAME_REGISTRY: GameRegistry = {};
+export const GAME_REGISTRY: GameRegistry = {
+  anagram: { load: () => import("./anagram").then((m) => m.anagramGameFactory) },
+};
 
 /** Look a Game up in a registry, or `null` if it is not registered. */
 export function resolveGame(

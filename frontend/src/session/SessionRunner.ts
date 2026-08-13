@@ -12,7 +12,8 @@
 // Advance is EVENT-DRIVEN (CLAUDE.md section 1a, payloads-not-calls): a Game
 // signals it is done by EMITTING `puzzle.completed` through its logger; the
 // runner subscribes to the bus and advances. It also snapshots the current
-// Game's state on every `puzzle.attempt.submitted` so a reload resumes mid-item.
+// Game's state whenever a Game reports durable progress (an attempt submitted, a
+// hint revealed) so a reload resumes mid-item.
 
 import type { EventBus } from "../telemetry/bus";
 import type { EventEnvelope, Logger } from "../telemetry/logger";
@@ -186,7 +187,9 @@ export class SessionRunner {
     if (env.ctx.sessionId !== this.deps.session.sessionId) return;
     if (this.currentGame === null) return;
 
-    if (env.name === "puzzle.attempt.submitted") {
+    if (env.name === "puzzle.attempt.submitted" || env.name === "puzzle.hint.used") {
+      // Both change durable, score-bearing state (an attempt spent, a hint
+      // revealed and its cost incurred), so both must survive a reload.
       this.snapshot();
       return;
     }
