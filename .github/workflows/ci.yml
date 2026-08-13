@@ -2,10 +2,12 @@ name: ci
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   pull_request:
 
 jobs:
+  # Frontend runtime: install, lint (eslint), svelte-check, unit tests (vitest),
+  # production build, and the Playwright e2e smoke.
   frontend:
     runs-on: ubuntu-latest
     defaults:
@@ -18,25 +20,43 @@ jobs:
           node-version: "22"
           cache: npm
           cache-dependency-path: frontend/package-lock.json
-      - uses: actions/setup-python@v6
-        with:
-          python-version: "3.12"
-      - name: bake config (toml -> public/config json)
-        working-directory: ${{ github.workspace }}
-        run: python -m backend.bake_config
+      # Pin npm to the version that produced the committed lockfile so `npm ci`
+      # resolves the dependency graph (incl. the picomatch override) identically
+      # to local. Matches the "packageManager" field in frontend/package.json.
+      - run: npm install -g npm@10.9.2
       - run: npm ci
-      - run: npm run typecheck
       - run: npm run lint
-      - run: npm test
+      - run: npm run check
+      - run: npm run test
       - run: npm run build
+      - name: install Playwright browser
+        run: npx playwright install --with-deps chromium
+      - name: e2e smoke
+        run: npm run test:e2e
 
-  generator:
+  # Backend build-time producer: install the package + dev deps from pyproject,
+  # type-check (mypy strict) and run the pytest smoke suite.
+  backend:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-      - run: python -m venv .venv
-      - run: .venv/bin/pip install -r backend/requirements.txt
-      - run: .venv/bin/pytest backend -q
+      - run: python -m pip install --upgrade pip
+      - run: pip install -e ".[dev]"
+      - run: mypy
+      - run: pytest -q
+
+  # Schema drift gate. PLACEHOLDER: Row 5 replaces this with the real
+  # "regenerate schemas + TS types from the Pydantic models, then
+  # git diff --exit-code" gate. Green no-op keeps the job wired until then.
+  contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: schema drift gate (placeholder)
+        run: echo "contracts drift-gate lands in Row 5 (Pydantic -> JSON Schema -> TS/ajv)."

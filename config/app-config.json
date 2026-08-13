@@ -1,0 +1,6 @@
+{
+  "version": "2026-07-29",
+  "enabledModes": ["daily"],
+  "enabledGames": ["anagram"],
+  "defaultPackId": "ta-core"
+}
