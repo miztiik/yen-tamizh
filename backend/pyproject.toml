@@ -8,7 +8,11 @@ version = "0.1.0"
 description = "Build-time puzzle generators and data pipeline for the yen-tamizh frontend. Runs in CI / locally only; never a runtime server (Holy Law #1)."
 requires-python = ">=3.12"
 license = { text = "MIT" }
-dependencies = ["pydantic>=2"]
+# Pinned exact so the contract pipeline's `model_json_schema()` output is
+# byte-reproducible across machines and Python versions (the CI drift gate runs
+# on Python 3.12; local authoring is 3.14). Pinning pydantic pins pydantic-core
+# transitively. Bump deliberately, then re-run the exporter in the same commit.
+dependencies = ["pydantic==2.13.4"]
 
 [project.optional-dependencies]
 dev = ["mypy>=1.13", "pytest>=8.3"]

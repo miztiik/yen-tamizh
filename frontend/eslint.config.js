@@ -26,4 +26,12 @@ export default tseslint.config(
       "no-console": "error",
     },
   },
+  {
+    // Node build scripts (contract codegen, etc.) are CLI tools: console is
+    // their sanctioned output channel, unlike game code (which uses the bus).
+    files: ["scripts/**/*.{js,mjs}"],
+    rules: {
+      "no-console": "off",
+    },
+  },
 );

@@ -1,0 +1,8 @@
+# Generated contract artifacts and their source schemas are always LF so the
+# Row 5 drift gate (regenerate + `git diff --exit-code`) is byte-stable across
+# operating systems and every contributor's core.autocrlf setting. The Pydantic
+# exporter and scripts/gen-contracts.mjs both emit LF; these attributes make the
+# stored blob and every checkout match.
+schemas/*.schema.json text eol=lf
+frontend/src/contracts/*.schema.json text eol=lf
+frontend/src/contracts/*.d.ts text eol=lf
