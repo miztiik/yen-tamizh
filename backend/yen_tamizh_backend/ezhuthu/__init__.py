@@ -1,0 +1,15 @@
+"""Tamil ezhuthu (grapheme-cluster) segmentation + classification.
+
+The ezhuthu is the atomic written unit of Tamil and the atomic gameplay unit
+everywhere in yen-tamizh (tiles, wordle letters, ladder rungs, crossword cells).
+This package has a TypeScript twin at ``frontend/src/tamil/ezhuthu.ts`` kept in
+lockstep by the shared golden corpus
+``datasets/fixtures/ezhuthu_golden.jsonl`` (Row 6).
+"""
+
+from __future__ import annotations
+
+from yen_tamizh_backend.ezhuthu.classify import EzhuthuKind, classify
+from yen_tamizh_backend.ezhuthu.segment import segment
+
+__all__ = ["EzhuthuKind", "classify", "segment"]
