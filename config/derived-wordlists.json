@@ -1,0 +1,25 @@
+{
+  "version": "2026-08-13",
+  "changelog": [
+    {
+      "version": "2026-08-13",
+      "change": "Initial derived-wordlist registry: the anagram set, cut from the ranked master at 3-6 ezhuthu, common/mid bands, co-anagram required.",
+      "why": "Row 9 - adding another Game's wordlist must be a data change plus a re-run, never a code rewrite (the corpus and the daily puzzle are different layers)."
+    }
+  ],
+  "masterPath": "datasets/wordlists/master/words_ranked.json",
+  "sets": [
+    {
+      "gameId": "anagram",
+      "out": "datasets/wordlists/derived/anagram.json",
+      "note": "3-6 ezhuthu keeps a scramble solvable on a phone in a 2-minute burst (2 tiles has one wrong arrangement, which is a coin flip and not a puzzle). common+mid are the ranks a Tamil speaker actually knows; the rare band is a dictionary lookup, not a guess. requireCoAnagram is the unscramble-tension rule: the tiles must rearrange into at least one other real master word.",
+      "selection": {
+        "minLength": 3,
+        "maxLength": 6,
+        "bands": ["common", "mid"],
+        "requireCoAnagram": true,
+        "maxWords": null
+      }
+    }
+  ]
+}

@@ -126,8 +126,12 @@ you what a run did:
 `backend/tests/test_corpus.py` re-checks that ledger and every row's ezhuthu
 segmentation against the committed artifact.
 
+After a refresh, re-run the derived sets too - they are cut from the master and
+would otherwise be stale (see [add-a-derived-wordlist.md](add-a-derived-wordlist.md)).
+
 ## See also
 
+- [add-a-derived-wordlist.md](add-a-derived-wordlist.md) - the layer below: cutting a Game's wordlist out of the master.
 - [`../architecture/contracts/schemas.md`](../architecture/contracts/schemas.md) - the contract pipeline and the `corpus-sources` / `master-wordlist` decisions.
 - [`../../datasets/corpus/README.md`](../../datasets/corpus/README.md) - the raw-source directory and how to repopulate it.
 - [`../../CLAUDE.md`](../../CLAUDE.md) - Holy Law #3 (contracts before logic), #6 (no hardcoding), section 11 (schema versioning).
