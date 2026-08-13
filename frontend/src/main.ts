@@ -1,5 +1,6 @@
 import { mount } from "svelte";
 import App from "./App.svelte";
+import { registerServiceWorker } from "./sw-register";
 import "./app.css";
 
 const target = document.getElementById("app");
@@ -8,5 +9,7 @@ if (!target) {
 }
 
 const app = mount(App, { target });
+
+registerServiceWorker();
 
 export default app;
