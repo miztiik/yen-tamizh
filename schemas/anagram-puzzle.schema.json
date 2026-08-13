@@ -1,0 +1,141 @@
+{
+  "$defs": {
+    "ChangelogEntry": {
+      "additionalProperties": false,
+      "description": "One dated entry in a schema's in-file change log (newest first).\n\n``version`` is the date-stamp of the change; ``change`` is what changed;\n``why`` is the reason it changed (CLAUDE.md section 11).",
+      "properties": {
+        "change": {
+          "minLength": 1,
+          "title": "Change",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+          "title": "Version",
+          "type": "string"
+        },
+        "why": {
+          "minLength": 1,
+          "title": "Why",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "change",
+        "why"
+      ],
+      "title": "ChangelogEntry",
+      "type": "object"
+    },
+    "Hint": {
+      "additionalProperties": false,
+      "description": "One optional, honest hint: its kind, its text, and its score cost.\n\n``text`` is per-puzzle generated DATA (the next honest step for this\npuzzle), not a static UI label - so it lives in the puzzle payload, not in\n``config/copy.json``. A hint never sells a power-up (a project non-goal); it\nreveals the next honest step (core-loop.md).",
+      "properties": {
+        "cost": {
+          "minimum": 0,
+          "title": "Cost",
+          "type": "integer"
+        },
+        "kind": {
+          "minLength": 1,
+          "title": "Kind",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "text",
+        "cost"
+      ],
+      "title": "Hint",
+      "type": "object"
+    }
+  },
+  "$id": "anagram-puzzle.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "One anagram puzzle: a target word, its scrambled ezhuthu tiles, and rules.",
+  "properties": {
+    "attempts": {
+      "minimum": 1,
+      "title": "Attempts",
+      "type": "integer"
+    },
+    "changelog": {
+      "items": {
+        "$ref": "#/$defs/ChangelogEntry"
+      },
+      "minItems": 1,
+      "title": "Changelog",
+      "type": "array"
+    },
+    "hints": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/Hint"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Hints"
+    },
+    "reveal": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Reveal"
+    },
+    "tiles": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Tiles",
+      "type": "array"
+    },
+    "timeLimitSec": {
+      "minimum": 0,
+      "title": "Timelimitsec",
+      "type": "integer"
+    },
+    "version": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+      "title": "Version",
+      "type": "string"
+    },
+    "word": {
+      "minLength": 1,
+      "title": "Word",
+      "type": "string"
+    }
+  },
+  "required": [
+    "version",
+    "changelog",
+    "word",
+    "tiles",
+    "timeLimitSec",
+    "attempts"
+  ],
+  "title": "AnagramPuzzle",
+  "type": "object"
+}

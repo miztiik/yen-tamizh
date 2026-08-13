@@ -15,19 +15,74 @@ bank-index, anagram-puzzle).
 
 from __future__ import annotations
 
+from yen_tamizh_backend.contracts.anagram_puzzle import AnagramPuzzle
+from yen_tamizh_backend.contracts.app_config import (
+    AppConfig,
+    DailyConfig,
+    HintsConfig,
+    InfiniteConfig,
+    TimeTrialConfig,
+    UiConfig,
+)
+from yen_tamizh_backend.contracts.bank_index import BankDay, BankIndex
 from yen_tamizh_backend.contracts.base import ChangelogEntry, SchemaModel
+from yen_tamizh_backend.contracts.common import (
+    CopySlug,
+    DifficultyId,
+    GameId,
+    Hint,
+    ModeId,
+    PackId,
+)
+from yen_tamizh_backend.contracts.copy import Copy
+from yen_tamizh_backend.contracts.event_envelope import EventEnvelope
 from yen_tamizh_backend.contracts.example import Example
 from yen_tamizh_backend.contracts.glyph_manifest import GlyphManifest, GlyphShape
+from yen_tamizh_backend.contracts.puzzle_file import PuzzleFile, PuzzleItem
+from yen_tamizh_backend.contracts.save import Save, compute_day_key
 
 # Explicit registry (not auto-discovery) so the exporter's output set is
-# deterministic and reviewed. Export sorts by name; order here is not load-bearing.
-REGISTRY: tuple[type[SchemaModel], ...] = (Example, GlyphManifest)
+# deterministic and reviewed. Export sorts by name; order here is not
+# load-bearing. Row 7 adds the six core surfaces plus copy alongside the Row 5
+# demonstrator and the Row 10 glyph manifest.
+REGISTRY: tuple[type[SchemaModel], ...] = (
+    AnagramPuzzle,
+    AppConfig,
+    BankIndex,
+    Copy,
+    EventEnvelope,
+    Example,
+    GlyphManifest,
+    PuzzleFile,
+    Save,
+)
 
 __all__ = [
     "REGISTRY",
+    "AnagramPuzzle",
+    "AppConfig",
+    "BankDay",
+    "BankIndex",
     "ChangelogEntry",
+    "Copy",
+    "CopySlug",
+    "DailyConfig",
+    "DifficultyId",
+    "EventEnvelope",
     "Example",
+    "GameId",
     "GlyphManifest",
     "GlyphShape",
+    "Hint",
+    "HintsConfig",
+    "InfiniteConfig",
+    "ModeId",
+    "PackId",
+    "PuzzleFile",
+    "PuzzleItem",
+    "Save",
     "SchemaModel",
+    "TimeTrialConfig",
+    "UiConfig",
+    "compute_day_key",
 ]

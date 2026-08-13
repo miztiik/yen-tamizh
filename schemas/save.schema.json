@@ -1,0 +1,94 @@
+{
+  "$defs": {
+    "ChangelogEntry": {
+      "additionalProperties": false,
+      "description": "One dated entry in a schema's in-file change log (newest first).\n\n``version`` is the date-stamp of the change; ``change`` is what changed;\n``why`` is the reason it changed (CLAUDE.md section 11).",
+      "properties": {
+        "change": {
+          "minLength": 1,
+          "title": "Change",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+          "title": "Version",
+          "type": "string"
+        },
+        "why": {
+          "minLength": 1,
+          "title": "Why",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "change",
+        "why"
+      ],
+      "title": "ChangelogEntry",
+      "type": "object"
+    }
+  },
+  "$id": "save.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Today's progress, streak, and last-played day; browser-local only.",
+  "properties": {
+    "changelog": {
+      "items": {
+        "$ref": "#/$defs/ChangelogEntry"
+      },
+      "minItems": 1,
+      "title": "Changelog",
+      "type": "array"
+    },
+    "dayKey": {
+      "minLength": 1,
+      "title": "Daykey",
+      "type": "string"
+    },
+    "lastPlayed": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "title": "Lastplayed",
+      "type": "string"
+    },
+    "perMode": {
+      "patternProperties": {
+        "^[a-z][a-z0-9-]*$": {
+          "additionalProperties": true,
+          "type": "object"
+        }
+      },
+      "title": "Permode",
+      "type": "object"
+    },
+    "seenInfiniteIds": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Seeninfiniteids",
+      "type": "array"
+    },
+    "streak": {
+      "minimum": 0,
+      "title": "Streak",
+      "type": "integer"
+    },
+    "version": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "version",
+    "changelog",
+    "dayKey",
+    "streak",
+    "lastPlayed",
+    "perMode",
+    "seenInfiniteIds"
+  ],
+  "title": "Save",
+  "type": "object"
+}

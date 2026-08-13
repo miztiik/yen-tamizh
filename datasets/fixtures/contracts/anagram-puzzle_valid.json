@@ -1,0 +1,16 @@
+{
+  "version": "2026-08-13",
+  "changelog": [
+    {
+      "version": "2026-08-13",
+      "change": "Initial anagram-puzzle fixture.",
+      "why": "Row 7 contract Oracle - the valid anagram payload shape."
+    }
+  ],
+  "word": "\u0BA4\u0BAE\u0BBF\u0BB4\u0BCD",
+  "tiles": ["\u0BA4", "\u0BAE\u0BBF", "\u0BB4\u0BCD"],
+  "reveal": 1,
+  "timeLimitSec": 0,
+  "attempts": 3,
+  "hints": [{ "kind": "reveal-first", "text": "Starts with \u0BA4", "cost": 1 }]
+}

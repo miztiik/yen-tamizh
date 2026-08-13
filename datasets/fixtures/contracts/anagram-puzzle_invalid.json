@@ -1,0 +1,14 @@
+{
+  "version": "2026-08-13",
+  "changelog": [
+    {
+      "version": "2026-08-13",
+      "change": "Malformed anagram-puzzle fixture.",
+      "why": "Row 7 contract Oracle - 'attempts' is below the minimum of 1; rejected by both sides."
+    }
+  ],
+  "word": "\u0BA4\u0BAE\u0BBF\u0BB4\u0BCD",
+  "tiles": ["\u0BA4", "\u0BAE\u0BBF", "\u0BB4\u0BCD"],
+  "timeLimitSec": 0,
+  "attempts": 0
+}

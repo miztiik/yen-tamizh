@@ -1,0 +1,15 @@
+{
+  "version": "2026-08-13",
+  "changelog": [
+    {
+      "version": "2026-08-13",
+      "change": "Initial save fixture.",
+      "why": "Row 7 contract Oracle - the valid save shape."
+    }
+  ],
+  "dayKey": "2026-08-13|daily|anagram|ta-core",
+  "streak": 5,
+  "lastPlayed": "2026-08-13",
+  "perMode": { "daily": { "completed": true, "stars": 3 } },
+  "seenInfiniteIds": ["anagram-0007", "anagram-0042"]
+}

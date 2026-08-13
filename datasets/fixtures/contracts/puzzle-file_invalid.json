@@ -1,0 +1,12 @@
+{
+  "version": "2026-08-13",
+  "changelog": [
+    {
+      "version": "2026-08-13",
+      "change": "Malformed puzzle-file fixture.",
+      "why": "Row 7 contract Oracle - 'items' is empty (min 1); rejected by both sides."
+    }
+  ],
+  "date": "2026-08-13",
+  "items": []
+}

@@ -1,0 +1,15 @@
+{
+  "version": "2026-08-13",
+  "changelog": [
+    {
+      "version": "2026-08-13",
+      "change": "Malformed save fixture.",
+      "why": "Row 7 contract Oracle - 'lastPlayed' is not a YYYY-MM-DD date; rejected by both sides."
+    }
+  ],
+  "dayKey": "2026-08-13|daily|anagram|ta-core",
+  "streak": 5,
+  "lastPlayed": "yesterday",
+  "perMode": { "daily": { "completed": true } },
+  "seenInfiniteIds": []
+}

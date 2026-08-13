@@ -1,0 +1,11 @@
+{
+  "version": "2026-08-13",
+  "changelog": [
+    {
+      "version": "2026-08-13",
+      "change": "Malformed copy fixture.",
+      "why": "Row 7 contract Oracle - a 'strings' value is not a string; rejected by both sides."
+    }
+  ],
+  "strings": { "play": 5 }
+}
