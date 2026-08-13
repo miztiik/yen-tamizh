@@ -1,0 +1,33 @@
+{
+  "version": "2026-08-13",
+  "changelog": [
+    {
+      "version": "2026-08-13",
+      "change": "Demonstrator corpus source registry with a mis-mapped source.",
+      "why": "Row 8 - a delimited source carrying json-array mappings must fail at the boundary, not be silently ignored."
+    }
+  ],
+  "corpusRoot": "/absolute/not/allowed",
+  "filters": {
+    "minLength": 9,
+    "maxLength": 3,
+    "minTotalFrequency": 5,
+    "maxWords": 50000,
+    "dropCategories": []
+  },
+  "bands": {
+    "commonMaxPercentile": 0.6,
+    "midMaxPercentile": 0.5
+  },
+  "sources": [
+    {
+      "id": "demo-frequency",
+      "name": "Demonstrator word,count frequency list",
+      "origin": "datasets/fixtures/contracts/corpus-sources_invalid.json",
+      "kind": "delimited",
+      "path": "demo-frequency/source.csv",
+      "rootKey": "data",
+      "wordField": "ta"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "version": "2026-08-13",
+  "changelog": [
+    {
+      "version": "2026-08-13",
+      "change": "Initial ranked master wordlist emitted by the corpus ingest.",
+      "why": "Row 8 corpus layer - the single source the derived per-Game sets read."
+    }
+  ],
+  "generatedAt": "2026-08-13T00:00:00Z",
+  "provenance": [
+    {
+      "id": "demo-source",
+      "name": "Demonstrator Tamil word list",
+      "origin": "datasets/fixtures/contracts/master-wordlist_valid.json",
+      "path": "datasets/corpus/demo-source/source.csv",
+      "bytes": 42,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "rowsIn": 5,
+      "rowsKept": 4
+    }
+  ],
+  "counters": {
+    "rowsIn": 5,
+    "rejected": 1,
+    "duplicates": 2,
+    "distinct": 2,
+    "belowFrequencyFloor": 0,
+    "capped": 0,
+    "rowsKept": 2
+  },
+  "words": [
+    {
+      "word": "\u0ba4\u0bae\u0bbf\u0bb4\u0bcd",
+      "ezhuthu": ["\u0ba4", "\u0bae\u0bbf", "\u0bb4\u0bcd"],
+      "length": 3,
+      "freqRank": 1,
+      "freqBand": "common",
+      "sources": ["demo-source"]
+    },
+    {
+      "word": "\u0b95\u0ba4\u0bc8",
+      "ezhuthu": ["\u0b95", "\u0ba4\u0bc8"],
+      "length": 2,
+      "freqRank": 2,
+      "freqBand": "rare",
+      "sources": ["demo-source"],
+      "category": ["nouns"]
+    }
+  ]
+}
