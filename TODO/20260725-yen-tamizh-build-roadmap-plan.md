@@ -49,9 +49,9 @@ Envelope `{ ts, src, v, session, name, level, ctx, data }`. Game: `puzzle.starte
 | 1 | Contract right-size + rebrand | 5 | - | - | DONE (2026-07-25 commit) | - | - | - |
 | 2 | Foundational concept + how-to docs + AGENTS.md | 3 | 1 | A | DONE | - | #1 | worker |
 | 3 | Repo skeleton (frontend + backend) + CI wiring | 5 | 1 | A | DONE | - | #2 | worker |
-| 4 | PWA + offline shell (service worker, base-path, install) | 4 | 3 | B | READY | - | - | - |
+| 4 | PWA + offline shell (service worker, base-path, install) | 4 | 3 | B | IN-FLIGHT | ../yen-tamizh-row4 | - | worker |
 | 5 | Evolutionary contract pipeline (Pydantic -> JSON Schema -> TS/ajv) | 5 | 3 | B | READY (ESCALATE) | - | - | - |
-| 6 | Ezhuthu library (Python + TS twins) | 4 | 3 | B | READY | - | - | - |
+| 6 | Ezhuthu library (Python + TS twins) | 4 | 3 | B | DONE | - | #3 | worker |
 | 7 | Core schemas (app-config/event-envelope/save/puzzle-file/bank-index/anagram) | 5 | 5,6 | C | PENDING | - | - | - |
 | 8 | Corpus ingest + master wordlist | 4 | 5,6 | C | PENDING | - | - | - |
 | 9 | Derived-wordlist framework + anagram set | 3 | 8 | - | PENDING | - | - | - |
