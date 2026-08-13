@@ -35,9 +35,13 @@ class DerivedSelection(BaseModel):
     Game plays in (Row 6). ``bands`` names the ``freqBand`` values a player is
     expected to know. ``requireCoAnagram`` keeps only words whose ezhuthu
     multiset is shared with at least one other master word, which is what
-    guarantees an unscramble has real tension. ``maxWords`` caps the committed
-    artifact (``null`` means uncapped); a derived set is a build artifact in git,
-    so an uncapped one is an unbounded commit.
+    guarantees an unscramble has real tension. ``requireValidWordFinal`` drops
+    tokens that do not END the way a Tamil word ends (the corpus is scraped, so
+    it carries sandhi artifacts and transliterated loanwords that no Tamil
+    speaker would accept as an ANSWER); it applies to the co-anagram partner
+    too, so tension can only come from another real word. ``maxWords`` caps the
+    committed artifact (``null`` means uncapped); a derived set is a build
+    artifact in git, so an uncapped one is an unbounded commit.
 
     This model is shared: the registry declares it and the emitted wordlist
     echoes back the selection that produced it, so a reviewer reading a diff can
@@ -50,6 +54,7 @@ class DerivedSelection(BaseModel):
     maxLength: int = Field(ge=1)
     bands: list[FreqBand] = Field(min_length=1)
     requireCoAnagram: bool = False
+    requireValidWordFinal: bool = False
     maxWords: int | None = Field(default=None, ge=1)
 
     @model_validator(mode="after")

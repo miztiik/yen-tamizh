@@ -14,9 +14,10 @@ its path, its schema version, its own ``generatedAt``, its sha256, and its row
 count - and git history records when the file changed (CLAUDE.md section 5).
 
 ``counters`` is the integrity Oracle, enforced by the model itself:
-``masterRows - outsideLength - outsideBand - withoutCoAnagram - capped ==
-rowsKept == len(words)``. Every master row is accounted for by exactly one
-outcome, so a selection bug cannot quietly drop words.
+``masterRows - outsideLength - outsideBand - invalidWordFinal -
+withoutCoAnagram - capped == rowsKept == len(words)``. Every master row is
+accounted for by exactly one outcome, so a selection bug cannot quietly drop
+words.
 """
 
 from __future__ import annotations
@@ -47,14 +48,11 @@ class GameWordHints(BaseModel):
     English source labels, and a Tamil category name is player-facing COPY,
     which lives in ``config/copy.json`` and never inside a dataset. Inventing
     Tamil category strings here would be a dishonest field.
-
-    Field names are snake_case here, matching the contract named in the build
-    roadmap; the rest of the repo's persisted shapes are camelCase.
     """
 
     model_config = ConfigDict(extra="forbid")
 
-    first_ezhuthu: str = Field(min_length=1)
+    firstEzhuthu: str = Field(min_length=1)
     length: int = Field(ge=1)
 
 
@@ -76,9 +74,9 @@ class GameWord(BaseModel):
             raise ValueError(f"ezhuthu does not rejoin to {self.word!r}")
         if self.hints is None:
             return self
-        if self.hints.first_ezhuthu != self.ezhuthu[0]:
+        if self.hints.firstEzhuthu != self.ezhuthu[0]:
             raise ValueError(
-                f"hints.first_ezhuthu {self.hints.first_ezhuthu!r} != "
+                f"hints.firstEzhuthu {self.hints.firstEzhuthu!r} != "
                 f"{self.ezhuthu[0]!r} for {self.word!r}"
             )
         if self.hints.length != len(self.ezhuthu):
@@ -109,6 +107,7 @@ class DerivedCounters(BaseModel):
     masterRows: int = Field(ge=0)
     outsideLength: int = Field(ge=0)
     outsideBand: int = Field(ge=0)
+    invalidWordFinal: int = Field(default=0, ge=0)
     withoutCoAnagram: int = Field(ge=0)
     capped: int = Field(ge=0)
     rowsKept: int = Field(ge=0)
@@ -118,6 +117,7 @@ class DerivedCounters(BaseModel):
         accounted = (
             self.outsideLength
             + self.outsideBand
+            + self.invalidWordFinal
             + self.withoutCoAnagram
             + self.capped
             + self.rowsKept
@@ -125,9 +125,9 @@ class DerivedCounters(BaseModel):
         if accounted != self.masterRows:
             raise ValueError(
                 f"outsideLength {self.outsideLength} + outsideBand "
-                f"{self.outsideBand} + withoutCoAnagram {self.withoutCoAnagram} + "
-                f"capped {self.capped} + rowsKept {self.rowsKept} != masterRows "
-                f"{self.masterRows}"
+                f"{self.outsideBand} + invalidWordFinal {self.invalidWordFinal} + "
+                f"withoutCoAnagram {self.withoutCoAnagram} + capped {self.capped} + "
+                f"rowsKept {self.rowsKept} != masterRows {self.masterRows}"
             )
         return self
 

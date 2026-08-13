@@ -169,10 +169,10 @@ def test_group_by_multiset_puts_anagrams_together() -> None:
     from yen_tamizh_backend.ezhuthu import segment
 
     groups = derive.group_by_multiset(_sample_master().words)
-    assert sorted(groups[derive.multiset_key(segment(VAASAL))]) == sorted(
-        [VAASAL, SAVAAL]
-    )
-    assert groups[derive.multiset_key(segment(ITHAZH))] == [ITHAZH]
+    assert sorted(
+        row.word for row in groups[derive.multiset_key(segment(VAASAL))]
+    ) == sorted([VAASAL, SAVAAL])
+    assert [row.word for row in groups[derive.multiset_key(segment(ITHAZH))]] == [ITHAZH]
 
 
 def test_selection_rejects_by_length_band_and_co_anagram() -> None:
@@ -372,7 +372,7 @@ def test_every_committed_row_can_be_rearranged_into_another_real_word(
         if len(members) < 2:
             solitary.append(row.word)
         else:
-            assert row.word in members
+            assert row.word in [member.word for member in members]
 
     assert solitary == [], f"{len(solitary)} rows have no co-anagram"
     assert committed_anagram.words, "the anagram set is empty"
@@ -385,6 +385,7 @@ def test_committed_counters_account_for_every_master_row(
     assert counters.masterRows == (
         counters.outsideLength
         + counters.outsideBand
+        + counters.invalidWordFinal
         + counters.withoutCoAnagram
         + counters.capped
         + counters.rowsKept
@@ -419,7 +420,7 @@ def test_every_committed_row_validates_against_the_contract(
         assert row.ezhuthu == segment(row.word)
         assert row.freqBand in bands
         assert row.hints is not None
-        assert row.hints.first_ezhuthu == row.ezhuthu[0]
+        assert row.hints.firstEzhuthu == row.ezhuthu[0]
         assert row.hints.length == len(row.ezhuthu)
 
 
@@ -432,7 +433,7 @@ def test_committed_set_omits_an_invented_category(committed_anagram: GameWordlis
     """A Tamil category name is player-facing copy, so no row may invent one."""
     raw = json.loads(_ANAGRAM.read_text(encoding="utf-8"))
     for row in raw["words"]:
-        assert set(row["hints"]) == {"first_ezhuthu", "length"}
+        assert set(row["hints"]) == {"firstEzhuthu", "length"}
 
 
 def test_registered_output_paths_are_relative_and_posix() -> None:
@@ -457,19 +458,19 @@ def test_a_row_whose_hints_disagree_with_its_ezhuthu_is_rejected() -> None:
     from yen_tamizh_backend.ezhuthu import segment
 
     ezhuthu = segment(VAASAL)
-    with pytest.raises(ValidationError, match="first_ezhuthu"):
+    with pytest.raises(ValidationError, match="firstEzhuthu"):
         GameWord(
             word=VAASAL,
             ezhuthu=ezhuthu,
             freqBand="common",
-            hints=GameWordHints(first_ezhuthu=ezhuthu[1], length=len(ezhuthu)),
+            hints=GameWordHints(firstEzhuthu=ezhuthu[1], length=len(ezhuthu)),
         )
     with pytest.raises(ValidationError, match="hints.length"):
         GameWord(
             word=VAASAL,
             ezhuthu=ezhuthu,
             freqBand="common",
-            hints=GameWordHints(first_ezhuthu=ezhuthu[0], length=len(ezhuthu) + 1),
+            hints=GameWordHints(firstEzhuthu=ezhuthu[0], length=len(ezhuthu) + 1),
         )
 
 

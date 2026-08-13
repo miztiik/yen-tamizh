@@ -37,6 +37,12 @@
           "title": "Capped",
           "type": "integer"
         },
+        "invalidWordFinal": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Invalidwordfinal",
+          "type": "integer"
+        },
         "masterRows": {
           "minimum": 0,
           "title": "Masterrows",
@@ -76,7 +82,7 @@
     },
     "DerivedSelection": {
       "additionalProperties": false,
-      "description": "Which master words a derived set keeps. Every knob is tunable data.\n\n``minLength`` / ``maxLength`` count EZHUTHU, not code points - the unit every\nGame plays in (Row 6). ``bands`` names the ``freqBand`` values a player is\nexpected to know. ``requireCoAnagram`` keeps only words whose ezhuthu\nmultiset is shared with at least one other master word, which is what\nguarantees an unscramble has real tension. ``maxWords`` caps the committed\nartifact (``null`` means uncapped); a derived set is a build artifact in git,\nso an uncapped one is an unbounded commit.\n\nThis model is shared: the registry declares it and the emitted wordlist\nechoes back the selection that produced it, so a reviewer reading a diff can\nsee which knob moved. Defining it once is why the two cannot disagree.",
+      "description": "Which master words a derived set keeps. Every knob is tunable data.\n\n``minLength`` / ``maxLength`` count EZHUTHU, not code points - the unit every\nGame plays in (Row 6). ``bands`` names the ``freqBand`` values a player is\nexpected to know. ``requireCoAnagram`` keeps only words whose ezhuthu\nmultiset is shared with at least one other master word, which is what\nguarantees an unscramble has real tension. ``requireValidWordFinal`` drops\ntokens that do not END the way a Tamil word ends (the corpus is scraped, so\nit carries sandhi artifacts and transliterated loanwords that no Tamil\nspeaker would accept as an ANSWER); it applies to the co-anagram partner\ntoo, so tension can only come from another real word. ``maxWords`` caps the\ncommitted artifact (``null`` means uncapped); a derived set is a build\nartifact in git, so an uncapped one is an unbounded commit.\n\nThis model is shared: the registry declares it and the emitted wordlist\nechoes back the selection that produced it, so a reviewer reading a diff can\nsee which knob moved. Defining it once is why the two cannot disagree.",
       "properties": {
         "bands": {
           "items": {
@@ -117,6 +123,11 @@
         "requireCoAnagram": {
           "default": false,
           "title": "Requirecoanagram",
+          "type": "boolean"
+        },
+        "requireValidWordFinal": {
+          "default": false,
+          "title": "Requirevalidwordfinal",
           "type": "boolean"
         }
       },
@@ -216,11 +227,11 @@
     },
     "GameWordHints": {
       "additionalProperties": false,
-      "description": "The honest, derivable hint material for one word.\n\nBoth fields are recomputed from ``ezhuthu`` on every rebuild and validated\nagainst it, so precomputing them cannot drift - the same bargain\n``MasterWord.length`` makes in the master list.\n\nA category hint is deliberately absent. The master's category tags are\nEnglish source labels, and a Tamil category name is player-facing COPY,\nwhich lives in ``config/copy.json`` and never inside a dataset. Inventing\nTamil category strings here would be a dishonest field.\n\nField names are snake_case here, matching the contract named in the build\nroadmap; the rest of the repo's persisted shapes are camelCase.",
+      "description": "The honest, derivable hint material for one word.\n\nBoth fields are recomputed from ``ezhuthu`` on every rebuild and validated\nagainst it, so precomputing them cannot drift - the same bargain\n``MasterWord.length`` makes in the master list.\n\nA category hint is deliberately absent. The master's category tags are\nEnglish source labels, and a Tamil category name is player-facing COPY,\nwhich lives in ``config/copy.json`` and never inside a dataset. Inventing\nTamil category strings here would be a dishonest field.",
       "properties": {
-        "first_ezhuthu": {
+        "firstEzhuthu": {
           "minLength": 1,
-          "title": "First Ezhuthu",
+          "title": "Firstezhuthu",
           "type": "string"
         },
         "length": {
@@ -230,7 +241,7 @@
         }
       },
       "required": [
-        "first_ezhuthu",
+        "firstEzhuthu",
         "length"
       ],
       "title": "GameWordHints",

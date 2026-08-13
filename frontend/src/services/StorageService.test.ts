@@ -116,3 +116,66 @@ describe("StorageService (the only persistence writer)", () => {
     expect(svc.readSessionState(DAY)).toEqual(state);
   });
 });
+
+describe("the streak ticks once per completed day", () => {
+  test("a first completion starts the run at 1", () => {
+    const svc = new StorageService({ store: memStore() });
+    expect(svc.tickStreak(DAY)).toEqual({ before: 0, after: 1, ticked: true });
+    expect(svc.loadSave()?.streak).toBe(1);
+    expect(svc.loadSave()?.lastStreakDay).toBe(DAY.date);
+  });
+
+  test("re-completing the same day does NOT tick again (idempotent)", () => {
+    const svc = new StorageService({ store: memStore() });
+    svc.tickStreak(DAY);
+    expect(svc.tickStreak(DAY)).toEqual({ before: 1, after: 1, ticked: false });
+    expect(svc.tickStreak(DAY)).toEqual({ before: 1, after: 1, ticked: false });
+    expect(svc.loadSave()?.streak).toBe(1);
+  });
+
+  test("finishing the next day extends the run", () => {
+    const svc = new StorageService({ store: memStore() });
+    svc.tickStreak(DAY);
+    expect(svc.tickStreak({ ...DAY, date: "2026-08-14" })).toEqual({
+      before: 1,
+      after: 2,
+      ticked: true,
+    });
+    expect(svc.tickStreak({ ...DAY, date: "2026-08-15" }).after).toBe(3);
+  });
+
+  test("a skipped day restarts the run at 1 (an honest streak)", () => {
+    const svc = new StorageService({ store: memStore() });
+    svc.tickStreak(DAY);
+    svc.tickStreak({ ...DAY, date: "2026-08-14" });
+    expect(svc.tickStreak({ ...DAY, date: "2026-08-16" })).toEqual({
+      before: 2,
+      after: 1,
+      ticked: true,
+    });
+  });
+
+  test("ticking preserves the day's session progress (single writer, no clobber)", () => {
+    const svc = new StorageService({ store: memStore() });
+    const state: SessionState = {
+      itemIndex: 3,
+      completedCount: 3,
+      totalScore: 90,
+      currentGameState: null,
+    };
+    svc.writeSessionState(DAY, state);
+    svc.tickStreak(DAY);
+    expect(svc.readSessionState(DAY)).toEqual(state);
+    expect(svc.loadSave()?.streak).toBe(1);
+  });
+
+  test("a pre-Row-13 save without lastStreakDay still loads and ticks", () => {
+    const store = memStore();
+    const legacy = validSave();
+    delete (legacy as { lastStreakDay?: string }).lastStreakDay;
+    store.setItem("yt:save", JSON.stringify(legacy));
+    const svc = new StorageService({ store });
+    expect(svc.loadSave()).not.toBeNull();
+    expect(svc.tickStreak(DAY)).toEqual({ before: 2, after: 1, ticked: true });
+  });
+});

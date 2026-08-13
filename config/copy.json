@@ -1,11 +1,43 @@
 {
-  "version": "2026-08-13",
+  "version": "2026-08-13T20:08",
   "changelog": [
+    {
+      "version": "2026-08-13T20:08",
+      "change": "Added the Home, Daily, and end-of-session strings.",
+      "why": "Row 13 - the first player-facing screens; every string a player reads lives here, never inside a component."
+    },
     {
       "version": "2026-08-13",
       "change": "Initial copy map (empty).",
       "why": "Row 7 - player-facing text keyed by stable slug, separate from app-config identifiers; entries land as UI rows add labels."
     }
   ],
-  "strings": {}
+  "strings": {
+    "home-tagline": "தினமும் ஒரு தமிழ்ச் சொல் புதிர்",
+    "home-modes-label": "விளையாட்டு வகைகள்",
+    "mode-daily-title": "இன்றைய புதிர்",
+    "mode-daily-title-en": "Daily",
+    "mode-daily-note": "இன்றைய சொற்கள்",
+    "mode-journey-title": "பயணம்",
+    "mode-journey-title-en": "Journey",
+    "mode-journey-note": "படிப்படியாக ஒரு பாதை",
+    "mode-infinite-title": "முடிவில்லா",
+    "mode-infinite-title-en": "Infinite",
+    "mode-infinite-note": "நிற்காத புதிர்கள்",
+    "mode-time-trial-title": "நேர சவால்",
+    "mode-time-trial-title-en": "Time trial",
+    "mode-time-trial-note": "நேரத்துக்குள் விளையாடு",
+    "mode-coming-soon": "விரைவில்",
+    "action-play": "விளையாடு",
+    "action-home": "முகப்பு",
+    "action-settings": "அமைப்புகள்",
+    "daily-loading": "ஏற்றுகிறது",
+    "daily-empty-title": "இன்று புதிர் இல்லை",
+    "daily-empty-body": "அடுத்த புதிர் விரைவில் வரும். தயவுசெய்து பிறகு வாருங்கள்.",
+    "daily-older-day": "சமீபத்திய புதிர்",
+    "summary-title": "இன்றைய புதிர் முடிந்தது",
+    "summary-score": "மதிப்பெண்",
+    "summary-solved": "தீர்த்தவை",
+    "summary-streak": "தொடர் நாட்கள்"
+  }
 }

@@ -1,0 +1,196 @@
+{
+  "$defs": {
+    "ChangelogEntry": {
+      "additionalProperties": false,
+      "description": "One dated entry in a schema's in-file change log (newest first).\n\n``version`` is the date-stamp of the change; ``change`` is what changed;\n``why`` is the reason it changed (CLAUDE.md section 11).",
+      "properties": {
+        "change": {
+          "minLength": 1,
+          "title": "Change",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+          "title": "Version",
+          "type": "string"
+        },
+        "why": {
+          "minLength": 1,
+          "title": "Why",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "change",
+        "why"
+      ],
+      "title": "ChangelogEntry",
+      "type": "object"
+    },
+    "DifficultyBand": {
+      "additionalProperties": false,
+      "description": "One difficulty bucket: the ezhuthu lengths it covers and its id.\n\nDifficulty is derived from the word's ezhuthu count because that is the only\nhonest difficulty signal the derived set carries; a 3-ezhuthu scramble has 6\narrangements and a 6-ezhuthu one has 720. Where the cuts fall is a\ngame-balance number, so it lives here rather than in Python (Holy Law #6).",
+      "properties": {
+        "id": {
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "maxLength": {
+          "minimum": 1,
+          "title": "Maxlength",
+          "type": "integer"
+        },
+        "minLength": {
+          "minimum": 1,
+          "title": "Minlength",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "minLength",
+        "maxLength"
+      ],
+      "title": "DifficultyBand",
+      "type": "object"
+    },
+    "GameGeneration": {
+      "additionalProperties": false,
+      "description": "How one Game turns a wordlist row into a playable puzzle.",
+      "properties": {
+        "attempts": {
+          "minimum": 1,
+          "title": "Attempts",
+          "type": "integer"
+        },
+        "difficulties": {
+          "items": {
+            "$ref": "#/$defs/DifficultyBand"
+          },
+          "minItems": 1,
+          "title": "Difficulties",
+          "type": "array"
+        },
+        "gameId": {
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "title": "Gameid",
+          "type": "string"
+        },
+        "hints": {
+          "items": {
+            "$ref": "#/$defs/HintSpec"
+          },
+          "title": "Hints",
+          "type": "array"
+        },
+        "packId": {
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "title": "Packid",
+          "type": "string"
+        },
+        "reveal": {
+          "minimum": 0,
+          "title": "Reveal",
+          "type": "integer"
+        },
+        "timeLimitSec": {
+          "minimum": 0,
+          "title": "Timelimitsec",
+          "type": "integer"
+        },
+        "wordlist": {
+          "pattern": "^[A-Za-z0-9._-]+(/[A-Za-z0-9._+-]+)*$",
+          "title": "Wordlist",
+          "type": "string"
+        }
+      },
+      "required": [
+        "gameId",
+        "packId",
+        "wordlist",
+        "attempts",
+        "timeLimitSec",
+        "reveal",
+        "difficulties"
+      ],
+      "title": "GameGeneration",
+      "type": "object"
+    },
+    "HintSpec": {
+      "additionalProperties": false,
+      "description": "One offered hint: its kind, its wording, and what revealing it costs.\n\n``template`` is a Python format string over the wordlist row's honest hint\nfields (``{firstEzhuthu}``, ``{length}``). The rendered TEXT is per-puzzle\ndata and ships inside the puzzle payload, but the WORDING is player-facing\ncopy - so it lives in config, not in a Python literal, and the generator\nonly fills in the values.",
+      "properties": {
+        "cost": {
+          "minimum": 0,
+          "title": "Cost",
+          "type": "integer"
+        },
+        "kind": {
+          "minLength": 1,
+          "title": "Kind",
+          "type": "string"
+        },
+        "template": {
+          "minLength": 1,
+          "title": "Template",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "template",
+        "cost"
+      ],
+      "title": "HintSpec",
+      "type": "object"
+    }
+  },
+  "$id": "daily-generator.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "The daily engine's knobs: where the bank lands and how a day is filled.",
+  "properties": {
+    "bankDir": {
+      "pattern": "^[A-Za-z0-9._-]+(/[A-Za-z0-9._+-]+)*$",
+      "title": "Bankdir",
+      "type": "string"
+    },
+    "changelog": {
+      "items": {
+        "$ref": "#/$defs/ChangelogEntry"
+      },
+      "minItems": 1,
+      "title": "Changelog",
+      "type": "array"
+    },
+    "daysAhead": {
+      "minimum": 0,
+      "title": "Daysahead",
+      "type": "integer"
+    },
+    "games": {
+      "items": {
+        "$ref": "#/$defs/GameGeneration"
+      },
+      "minItems": 1,
+      "title": "Games",
+      "type": "array"
+    },
+    "version": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "version",
+    "changelog",
+    "bankDir",
+    "daysAhead",
+    "games"
+  ],
+  "title": "DailyGenerator",
+  "type": "object"
+}

@@ -1,0 +1,16 @@
+{
+  "changelog": [
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-08-13",
+  "items": [
+    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: உ"}, {"cost": 1, "kind": "length", "text": "4 எழுத்துகள்"}], "reveal": 0, "tiles": ["த", "ர", "த்", "உ"], "timeLimitSec": 0, "word": "உத்தர"}},
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ம"}, {"cost": 1, "kind": "length", "text": "3 எழுத்துகள்"}], "reveal": 0, "tiles": ["த", "ம", "ர்"], "timeLimitSec": 0, "word": "மதர்"}},
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: த"}, {"cost": 1, "kind": "length", "text": "3 எழுத்துகள்"}], "reveal": 0, "tiles": ["ல்", "பா", "த"], "timeLimitSec": 0, "word": "தபால்"}}
+  ],
+  "version": "2026-08-13"
+}

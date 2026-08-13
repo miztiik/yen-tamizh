@@ -45,14 +45,27 @@ from yen_tamizh_backend.contracts.game_wordlist import (
 )
 from yen_tamizh_backend.contracts.master_wordlist import MasterWord, MasterWordlist
 from yen_tamizh_backend.corpus.artifact import render_document, sha256_of
+from yen_tamizh_backend.ezhuthu import ends_like_a_word
 
-_SCHEMA_VERSION = "2026-08-13"
+_SCHEMA_VERSION = "2026-08-13T20:08"
 _CHANGELOG = [
     ChangelogEntry(
         version=_SCHEMA_VERSION,
+        change=(
+            "Renamed hints.first_ezhuthu to hints.firstEzhuthu; added the "
+            "counters.invalidWordFinal rejection bucket."
+        ),
+        why=(
+            "Row 13 - every other persisted shape in the repo is camelCase, and "
+            "the new word-final quality rule needs its own bucket so the "
+            "counters still reconcile against the master."
+        ),
+    ),
+    ChangelogEntry(
+        version="2026-08-13",
         change="Initial per-Game derived wordlist cut from the ranked master.",
         why="Row 9 derived layer - the words one Game's generator draws from.",
-    )
+    ),
 ]
 
 # The canonical anagram key: an ezhuthu multiset, order removed. Sorting the
@@ -66,23 +79,27 @@ def multiset_key(ezhuthu: Sequence[str]) -> MultisetKey:
     return tuple(sorted(ezhuthu))
 
 
-def group_by_multiset(words: Iterable[MasterWord]) -> dict[MultisetKey, list[str]]:
+def group_by_multiset(words: Iterable[MasterWord]) -> dict[MultisetKey, list[MasterWord]]:
     """Index every master word by its ezhuthu multiset.
 
     Built once per run over the whole master, not per set, because a candidate's
     co-anagram may be any master word - including one its own Game's selection
     rejects. Tension comes from the language, not from the shortlist.
+
+    Whole rows are indexed, not just the words, so a selection can ask the
+    partner a question too - ``requireValidWordFinal`` needs the partner to be a
+    plausible word, not merely a token sharing the ezhuthu.
     """
-    groups: dict[MultisetKey, list[str]] = defaultdict(list)
+    groups: dict[MultisetKey, list[MasterWord]] = defaultdict(list)
     for row in words:
-        groups[multiset_key(row.ezhuthu)].append(row.word)
+        groups[multiset_key(row.ezhuthu)].append(row)
     return dict(groups)
 
 
 def select(
     master: MasterWordlist,
     selection: DerivedSelection,
-    groups: dict[MultisetKey, list[str]],
+    groups: dict[MultisetKey, list[MasterWord]],
 ) -> tuple[list[MasterWord], DerivedCounters]:
     """Apply one Game's selection to the master; return the rows and the ledger.
 
@@ -95,7 +112,7 @@ def select(
     drop words.
     """
     bands = frozenset(selection.bands)
-    outside_length = outside_band = without_co_anagram = 0
+    outside_length = outside_band = invalid_word_final = without_co_anagram = 0
     kept: list[MasterWord] = []
     for row in master.words:
         if not selection.minLength <= row.length <= selection.maxLength:
@@ -104,7 +121,10 @@ def select(
         if row.freqBand not in bands:
             outside_band += 1
             continue
-        if selection.requireCoAnagram and len(groups[multiset_key(row.ezhuthu)]) < 2:
+        if selection.requireValidWordFinal and not ends_like_a_word(row.ezhuthu):
+            invalid_word_final += 1
+            continue
+        if selection.requireCoAnagram and not _has_co_anagram(row, selection, groups):
             without_co_anagram += 1
             continue
         kept.append(row)
@@ -118,6 +138,7 @@ def select(
         masterRows=len(master.words),
         outsideLength=outside_length,
         outsideBand=outside_band,
+        invalidWordFinal=invalid_word_final,
         withoutCoAnagram=without_co_anagram,
         capped=capped,
         rowsKept=len(kept),
@@ -125,11 +146,32 @@ def select(
     return kept, counters
 
 
+def _has_co_anagram(
+    row: MasterWord,
+    selection: DerivedSelection,
+    groups: dict[MultisetKey, list[MasterWord]],
+) -> bool:
+    """Whether another master word shares this row's ezhuthu multiset.
+
+    When the set demands real words, the PARTNER must be one as well: a scraped
+    corpus pairs an inflected form with its own misspelling, which satisfies the
+    co-anagram rule on a technicality while giving the player no real second
+    reading. Requiring both ends the pair honestly.
+    """
+    for partner in groups[multiset_key(row.ezhuthu)]:
+        if partner.word == row.word:
+            continue
+        if selection.requireValidWordFinal and not ends_like_a_word(partner.ezhuthu):
+            continue
+        return True
+    return False
+
+
 def derive(
     master: MasterWordlist,
     source: DerivedSource,
     spec: DerivedSet,
-    groups: dict[MultisetKey, list[str]],
+    groups: dict[MultisetKey, list[MasterWord]],
 ) -> GameWordlist:
     """Cut one Game's wordlist out of the master."""
     kept, counters = select(master, spec.selection, groups)
@@ -146,7 +188,7 @@ def derive(
                 ezhuthu=row.ezhuthu,
                 freqBand=row.freqBand,
                 hints=GameWordHints(
-                    first_ezhuthu=row.ezhuthu[0], length=len(row.ezhuthu)
+                    firstEzhuthu=row.ezhuthu[0], length=len(row.ezhuthu)
                 ),
             )
             for row in kept

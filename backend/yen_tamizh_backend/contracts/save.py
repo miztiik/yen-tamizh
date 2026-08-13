@@ -43,5 +43,10 @@ class Save(SchemaModel):
     dayKey: str = Field(min_length=1)
     streak: int = Field(ge=0)
     lastPlayed: str = Field(pattern=_DATE)
+    # The last day the streak was TICKED, which is not the last day played: a
+    # day counts once it is COMPLETED, and re-completing it must not tick again
+    # (Palm - one tick per day, never per item). Optional so a save written
+    # before Row 13 still loads; absent means "the streak has not ticked yet".
+    lastStreakDay: str | None = Field(default=None, pattern=_DATE)
     perMode: dict[ModeId, dict[str, Any]]
     seenInfiniteIds: list[str]
