@@ -56,8 +56,8 @@ Envelope `{ ts, src, v, session, name, level, ctx, data }`. Game: `puzzle.starte
 | 8 | Corpus ingest + master wordlist | 4 | 5,6 | C | READY (approved: OLD + free source) | - | - | - |
 | 9 | Derived-wordlist framework + anagram set | 3 | 8 | - | PENDING | - | - | - |
 | 10 | Design system (tokens + animation + glyph bake + manifest) | 3 | 5 | - | DONE | - | #6 | worker |
-| 11 | Shell + runtime (SessionShell/Runner/registry/storage/bus) | 4 | 7,10 | - | READY | - | - | - |
-| 12 | AnagramGame | 3 | 11 | - | PENDING | - | - | - |
+| 11 | Shell + runtime (SessionShell/Runner/registry/storage/bus) | 4 | 7,10 | - | DONE | - | #8 | worker |
+| 12 | AnagramGame | 3 | 11 | - | READY | - | - | - |
 | 13 | DailyMode + daily bank generator + Home | 4 | 9,12 | - | PENDING | - | - | - |
 | 14 | Daily playlist + hints (changelog evolution) | 3 | 13 | - | PENDING | - | - | - |
 | 15 | Ladder graph builder + word-ladder schema | 5 | 7,8 | - | PENDING | - | - | - |
@@ -537,7 +537,7 @@ Dependency spine: `1(done) -> {2,3} -> {4,5,6} -> {7,8} -> {9,10} -> 11 -> 12 ->
 
 ## 3. Execution stamp
 
-`Execute per docs/how-to/execute-a-plan.md: orchestrator dispatches one worktree-isolated worker subagent per row; workers consult personas (Fowler/Carmack/Jony/Palm/Player/Explore) on ambiguity; AUTO-merge on green gates; parallel N = 2; honor the ESCALATE triggers in section 0. EXECUTING (user-authorized 2026-08-13). Rows 1-7 + 10 DONE (PRs #1-#7, all green on CI). The entire contract/data-model foundation is in. Frontier (all AUTO, next ESCALATE is Row 15): Row 8 (corpus ingest - APPROVED: OLD + one free Tamil source) and Row 11 (shell + runtime, unblocked by 7+10). Serialize where both touch npm/contracts; Row 8 -> 9 feeds Game content; 11 -> 12 (AnagramGame) is the path to first-playable.`
+`Execute per docs/how-to/execute-a-plan.md: orchestrator dispatches one worktree-isolated worker subagent per row; workers consult personas (Fowler/Carmack/Jony/Palm/Player/Explore) on ambiguity; AUTO-merge on green gates; parallel N = 2; honor the ESCALATE triggers in section 0. EXECUTING (user-authorized 2026-08-13). Rows 1-7 + 10 + 11 DONE (PRs #1-#8, all green on CI). Foundation + runtime shell are in. Frontier (all AUTO, next ESCALATE is Row 15): Row 12 (AnagramGame - first playable, unblocked by 11) and Row 8 (corpus ingest - APPROVED: OLD + one free Tamil source). Path to first daily: 12 + (8 -> 9) -> 13. Serialize two npm-heavy frontend rows (terminal contention).`
 
 ## See also
 
