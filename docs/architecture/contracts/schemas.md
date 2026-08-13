@@ -43,6 +43,7 @@ Named here so every doc has one place to point; the field lists are owned by the
 
 **Build-time, data (rewrite-in-place):**
 
+- `corpus-sources` - the declarative registry of raw word sources the corpus ingest reads ([../../how-to/add-a-corpus-source.md](../../how-to/add-a-corpus-source.md)).
 - `master-wordlist` / `game-wordlist` - the curated data the generators consume.
 
 ## The source of truth
@@ -55,7 +56,7 @@ These schemas are not hand-authored twice. The pipeline (built in Row 5) runs on
 4. **`frontend/src/contracts/index.ts`** is the typed load-boundary: `loadValidated<T>(url, schemaName)` fetches JSON same-origin and validates it with the compiled ajv validator, throwing at the boundary on invalid data (section 1a, "payloads not calls").
 5. **The CI `contracts` job** regenerates both sides and fails on any diff (`git diff --exit-code`), so the schema, the types, and the validators can never drift from the models.
 
-A tiny `example` contract (`example.schema.json`) ships as the pipeline's demonstrator and drift-gate exercise; the real named surfaces below are added to the registry in their own rows - Row 7 registered the six core surfaces (`app-config`, `event-envelope`, `save`, `puzzle-file`, `bank-index`, `anagram-puzzle`) plus `copy`. The two-runtime context is in [../overview.md](../overview.md).
+A tiny `example` contract (`example.schema.json`) ships as the pipeline's demonstrator and drift-gate exercise; the real named surfaces below are added to the registry in their own rows - Row 7 registered the six core surfaces (`app-config`, `event-envelope`, `save`, `puzzle-file`, `bank-index`, `anagram-puzzle`) plus `copy`, and Row 8 added the corpus layer (`corpus-sources`, `master-wordlist`). The two-runtime context is in [../overview.md](../overview.md).
 
 ## Design rationale
 
@@ -72,12 +73,25 @@ The six core surfaces plus `copy` land as Pydantic models registered in the pipe
 - **Identifiers are stable slugs; copy is a separate, validated surface.** `gameId`, `modeId`, `packId`, and difficulty are lower-case slugs; player-facing text lives in `config/copy.json`, keyed by a slug. `copy` is a pipeline `SchemaModel` (with `version`/`changelog`) like `app-config`, not a hand-authored map, so there is one source of truth and the drift gate covers it. (Jony + Fowler.)
 - **`event-envelope` carries both `v` and `version`/`changelog`.** `v` is the lightweight per-event version a reader uses to evolve its parsing; `version`/`changelog` are the schema-discipline stamp every persisted surface carries (CLAUDE.md section 11). `name` is constrained to the canonical event catalog, so an unregistered name is rejected at the boundary.
 
+### Corpus-layer field decisions (Row 8)
+
+The corpus is a layer of its own: `corpus-sources` in, `master-wordlist` out, and nothing in between knows about a Game, a mode, or a day. That separation is the point - the derived per-Game sets read the master list and the daily engine reads those, so a corpus refresh never rebuilds a Game.
+
+- **The source registry is a schema-backed config, so extending the corpus is a data change.** `config/corpus-sources.json` names every source, where its bytes are, and how to map its columns/fields; the ingest dispatches on `kind` to one reader per format. Adding a frequency list or a dictionary is an entry plus a re-run. Only an unseen FORMAT costs code (a reader plus a `SourceKind` member). A mapping that belongs to the other `kind` is rejected rather than ignored - a knob that silently does nothing is a lie in the config. (Fowler; user-directed.)
+- **`master-wordlist` embeds its own provenance and counters instead of a sibling `provenance.json`.** A second file describing the same run is a second source of truth that goes stale; embedding puts the traceability (`name`, `origin`, `bytes`, `sha256`, `rowsIn`, `rowsKept` per source) under the same drift gate as the words. The `counters` block is the integrity Oracle, enforced by the model itself: `rowsIn - rejected - duplicates == distinct` and `distinct - belowFrequencyFloor - capped == rowsKept == len(words)`, so a silent drop cannot validate. (Fowler.)
+- **`length` counts ezhuthu, and the model proves the segmentation rejoins.** `MasterWord` rejects any row where `"".join(ezhuthu) != word` or `length != len(ezhuthu)`, so a corrupt row cannot reach a derived set. The segmentation itself is the Row 6 library, never re-implemented.
+- **Neither corpus schema is registered in `frontend/src/contracts/index.ts`.** Both are build-time surfaces the game never fetches; compiling an ajv validator for a 12 MiB dataset would ship dead runtime bytes (Holy Law #2). They still flow through the pipeline and the drift gate, exactly like `glyph-manifest`. (Carmack + Fowler.)
+- **`pos` was dropped from the specified row shape; `category` was kept.** Nothing on disk produces a trustworthy part of speech - the one curated dictionary labels 99.8 percent of its entries `nouns`, including verbs and verbal nouns - so emitting `pos` would assert something the data does not support, and an always-absent optional field is a contract with no producer. Its themed tags (`trees`, `flowers`, `birds`, `animals`) do carry signal and are kept as `category`. Adding `pos` later is one additive `changelog` entry, which is what the pipeline is for. (Fowler.)
+
 ## Rejected alternatives
 
 | Option | Why rejected | Authority |
 | --- | --- | --- |
 | Hand-authored Zod on the frontend | A second source of truth that drifts from Pydantic; defeats "refresh the corpus without rebuilding the mechanics". | Fowler |
 | `schemas/<name>/vN.schema.json` version folders | The contract versions in-file via `version`/`changelog` (CLAUDE.md section 11), not by folder; folders duplicate history git already keeps. | Fowler |
+| A separate `datasets/corpus/provenance.json` | Two files describing one run drift; the master wordlist carries its own provenance under the same drift gate. | Fowler |
+| Hard-coding the corpus source list in `ingest.py` | Every new word source would then be a code change, breaking the corpus-vs-puzzle-engine separation the row exists to establish. | Fowler (user-directed) |
+| Committing the raw corpora (about 265 MB) | `datasets/corpus/**` is gitignored; `origin` + `bytes` + `sha256` in the provenance block make a run reproducible without the bytes in history. | Carmack |
 | valibot | Weaker JSON-Schema codegen path than ajv today. | Fowler |
 | ajv standalone precompiled validators | More generated, version-sensitive surface in the drift gate for no current benefit; runtime-compile is simpler. If Carmack's frame budget later flags ajv's bytes, standalone is the named optimization. | Fowler / Carmack |
 | One mega puzzle schema for all Games | Couples every Game's payload into one shape; a new Game or a payload change forces an edit to the shared schema and risks breaking the others. An open per-item `payload` plus one schema per Game keeps them independent. | Fowler |

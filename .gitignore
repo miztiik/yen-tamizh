@@ -25,5 +25,11 @@ build/
 .DS_Store
 Thumbs.db
 
+# Raw corpus inputs (Row 8). Hundreds of MB of third-party word lists that the
+# ingest streams; only the derived, ranked master wordlist is committed. See
+# datasets/corpus/README.md for how to repopulate them.
+datasets/corpus/*
+!datasets/corpus/README.md
+
 # Scratch
 .tmp_*
