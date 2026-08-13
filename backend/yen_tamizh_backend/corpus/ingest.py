@@ -24,7 +24,6 @@ than reinventing a JSON parser. Peak memory is one chunk plus one record, so a
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import re
 import unicodedata
@@ -43,6 +42,7 @@ from yen_tamizh_backend.contracts.master_wordlist import (
     SourceProvenance,
 )
 from yen_tamizh_backend.corpus import rank
+from yen_tamizh_backend.corpus.artifact import render_document, sha256_of, write_artifact
 from yen_tamizh_backend.ezhuthu import classify, segment
 
 # 64 KB keeps the JSON reader's working set small while still swallowing any
@@ -240,17 +240,6 @@ def accept(word: str, min_length: int, max_length: int) -> list[str] | None:
 # --------------------------------------------------------------------------
 
 
-def _sha256_of(path: Path) -> tuple[str, int]:
-    """Hash a source file in chunks; return its digest and size in bytes."""
-    digest = hashlib.sha256()
-    size = 0
-    with path.open("rb") as handle:
-        while chunk := handle.read(_CHUNK):
-            digest.update(chunk)
-            size += len(chunk)
-    return digest.hexdigest(), size
-
-
 def ingest(registry: CorpusSources, repo_root: Path) -> IngestResult:
     """Run every enabled source through the pipeline into a master wordlist."""
     corpus_root = repo_root / registry.corpusRoot
@@ -325,7 +314,7 @@ def ingest(registry: CorpusSources, repo_root: Path) -> IngestResult:
 
     provenance: list[SourceProvenance] = []
     for source in enabled:
-        sha256, size = _sha256_of(corpus_root / source.path)
+        sha256, size = sha256_of(corpus_root / source.path)
         provenance.append(
             SourceProvenance(
                 id=source.id,
@@ -367,28 +356,10 @@ def ingest(registry: CorpusSources, repo_root: Path) -> IngestResult:
 # Rendering + CLI
 # --------------------------------------------------------------------------
 
-_WORDS_PLACEHOLDER = "__WORDS__"
-
 
 def render(wordlist: MasterWordlist) -> str:
-    """Render the artifact deterministically: pretty header, one word per line.
-
-    ``json.dumps`` alone gives either a 10 MB single line (unreadable, and a
-    whole-file churn on every regeneration) or a 4x larger fully indented file.
-    Splicing the compact rows in keeps the header greppable, the git delta
-    proportional to the words that actually changed, and the bytes reproducible.
-    """
-    payload: dict[str, Any] = wordlist.model_dump(mode="json", exclude_none=True)
-    rows: list[dict[str, Any]] = payload["words"]
-    payload["words"] = _WORDS_PLACEHOLDER
-    text = json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True)
-    body = "[\n" + ",\n".join(
-        "    " + json.dumps(row, ensure_ascii=False, sort_keys=True) for row in rows
-    ) + "\n  ]"
-    token = json.dumps(_WORDS_PLACEHOLDER)
-    if text.count(token) != 1:
-        raise ValueError("words placeholder is not unique in the rendered payload")
-    return text.replace(token, body) + "\n"
+    """Render the artifact deterministically: pretty header, one word per line."""
+    return render_document(wordlist.model_dump(mode="json", exclude_none=True), "words")
 
 
 def _repo_root() -> Path:
@@ -419,9 +390,7 @@ def main() -> None:
     args = parser.parse_args()
 
     result = ingest(load_registry(args.registry), root)
-    args.out.parent.mkdir(parents=True, exist_ok=True)
-    # newline="\n" forces LF on every OS so the artifact is byte-reproducible.
-    args.out.write_text(render(result.wordlist), encoding="utf-8", newline="\n")
+    write_artifact(args.out, render(result.wordlist))
 
     for note in result.notes:
         print(note)

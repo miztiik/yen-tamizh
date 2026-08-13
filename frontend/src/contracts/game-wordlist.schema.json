@@ -1,0 +1,291 @@
+{
+  "$defs": {
+    "ChangelogEntry": {
+      "additionalProperties": false,
+      "description": "One dated entry in a schema's in-file change log (newest first).\n\n``version`` is the date-stamp of the change; ``change`` is what changed;\n``why`` is the reason it changed (CLAUDE.md section 11).",
+      "properties": {
+        "change": {
+          "minLength": 1,
+          "title": "Change",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+          "title": "Version",
+          "type": "string"
+        },
+        "why": {
+          "minLength": 1,
+          "title": "Why",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "change",
+        "why"
+      ],
+      "title": "ChangelogEntry",
+      "type": "object"
+    },
+    "DerivedCounters": {
+      "additionalProperties": false,
+      "description": "The reconciliation ledger for one derive run (no silent drops).",
+      "properties": {
+        "capped": {
+          "minimum": 0,
+          "title": "Capped",
+          "type": "integer"
+        },
+        "masterRows": {
+          "minimum": 0,
+          "title": "Masterrows",
+          "type": "integer"
+        },
+        "outsideBand": {
+          "minimum": 0,
+          "title": "Outsideband",
+          "type": "integer"
+        },
+        "outsideLength": {
+          "minimum": 0,
+          "title": "Outsidelength",
+          "type": "integer"
+        },
+        "rowsKept": {
+          "minimum": 0,
+          "title": "Rowskept",
+          "type": "integer"
+        },
+        "withoutCoAnagram": {
+          "minimum": 0,
+          "title": "Withoutcoanagram",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "masterRows",
+        "outsideLength",
+        "outsideBand",
+        "withoutCoAnagram",
+        "capped",
+        "rowsKept"
+      ],
+      "title": "DerivedCounters",
+      "type": "object"
+    },
+    "DerivedSelection": {
+      "additionalProperties": false,
+      "description": "Which master words a derived set keeps. Every knob is tunable data.\n\n``minLength`` / ``maxLength`` count EZHUTHU, not code points - the unit every\nGame plays in (Row 6). ``bands`` names the ``freqBand`` values a player is\nexpected to know. ``requireCoAnagram`` keeps only words whose ezhuthu\nmultiset is shared with at least one other master word, which is what\nguarantees an unscramble has real tension. ``maxWords`` caps the committed\nartifact (``null`` means uncapped); a derived set is a build artifact in git,\nso an uncapped one is an unbounded commit.\n\nThis model is shared: the registry declares it and the emitted wordlist\nechoes back the selection that produced it, so a reviewer reading a diff can\nsee which knob moved. Defining it once is why the two cannot disagree.",
+      "properties": {
+        "bands": {
+          "items": {
+            "enum": [
+              "common",
+              "mid",
+              "rare"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Bands",
+          "type": "array"
+        },
+        "maxLength": {
+          "minimum": 1,
+          "title": "Maxlength",
+          "type": "integer"
+        },
+        "maxWords": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Maxwords"
+        },
+        "minLength": {
+          "minimum": 1,
+          "title": "Minlength",
+          "type": "integer"
+        },
+        "requireCoAnagram": {
+          "default": false,
+          "title": "Requirecoanagram",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "minLength",
+        "maxLength",
+        "bands"
+      ],
+      "title": "DerivedSelection",
+      "type": "object"
+    },
+    "DerivedSource": {
+      "additionalProperties": false,
+      "description": "The exact master wordlist a derived set was cut from.",
+      "properties": {
+        "generatedAt": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$",
+          "title": "Generatedat",
+          "type": "string"
+        },
+        "path": {
+          "pattern": "^[A-Za-z0-9._-]+(/[A-Za-z0-9._+-]+)*$",
+          "title": "Path",
+          "type": "string"
+        },
+        "rows": {
+          "minimum": 1,
+          "title": "Rows",
+          "type": "integer"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "version",
+        "generatedAt",
+        "sha256",
+        "rows"
+      ],
+      "title": "DerivedSource",
+      "type": "object"
+    },
+    "GameWord": {
+      "additionalProperties": false,
+      "description": "One word a Game may build a puzzle from.",
+      "properties": {
+        "ezhuthu": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Ezhuthu",
+          "type": "array"
+        },
+        "freqBand": {
+          "enum": [
+            "common",
+            "mid",
+            "rare"
+          ],
+          "title": "Freqband",
+          "type": "string"
+        },
+        "hints": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/GameWordHints"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "word": {
+          "minLength": 1,
+          "title": "Word",
+          "type": "string"
+        }
+      },
+      "required": [
+        "word",
+        "ezhuthu",
+        "freqBand"
+      ],
+      "title": "GameWord",
+      "type": "object"
+    },
+    "GameWordHints": {
+      "additionalProperties": false,
+      "description": "The honest, derivable hint material for one word.\n\nBoth fields are recomputed from ``ezhuthu`` on every rebuild and validated\nagainst it, so precomputing them cannot drift - the same bargain\n``MasterWord.length`` makes in the master list.\n\nA category hint is deliberately absent. The master's category tags are\nEnglish source labels, and a Tamil category name is player-facing COPY,\nwhich lives in ``config/copy.json`` and never inside a dataset. Inventing\nTamil category strings here would be a dishonest field.\n\nField names are snake_case here, matching the contract named in the build\nroadmap; the rest of the repo's persisted shapes are camelCase.",
+      "properties": {
+        "first_ezhuthu": {
+          "minLength": 1,
+          "title": "First Ezhuthu",
+          "type": "string"
+        },
+        "length": {
+          "minimum": 1,
+          "title": "Length",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "first_ezhuthu",
+        "length"
+      ],
+      "title": "GameWordHints",
+      "type": "object"
+    }
+  },
+  "$id": "game-wordlist.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "One Game's derived wordlist, with the master and selection that made it.",
+  "properties": {
+    "changelog": {
+      "items": {
+        "$ref": "#/$defs/ChangelogEntry"
+      },
+      "minItems": 1,
+      "title": "Changelog",
+      "type": "array"
+    },
+    "counters": {
+      "$ref": "#/$defs/DerivedCounters"
+    },
+    "gameId": {
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "title": "Gameid",
+      "type": "string"
+    },
+    "selection": {
+      "$ref": "#/$defs/DerivedSelection"
+    },
+    "source": {
+      "$ref": "#/$defs/DerivedSource"
+    },
+    "version": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+      "title": "Version",
+      "type": "string"
+    },
+    "words": {
+      "items": {
+        "$ref": "#/$defs/GameWord"
+      },
+      "title": "Words",
+      "type": "array"
+    }
+  },
+  "required": [
+    "version",
+    "changelog",
+    "gameId",
+    "source",
+    "selection",
+    "counters",
+    "words"
+  ],
+  "title": "GameWordlist",
+  "type": "object"
+}

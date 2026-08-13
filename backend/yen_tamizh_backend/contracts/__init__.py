@@ -10,7 +10,8 @@ schema, the types, and the validators can never drift from the models.
 
 ``REGISTRY`` is the explicit list of models the exporter walks. Later rows
 append their models here (Row 7: app-config, event-envelope, save, puzzle-file,
-bank-index, anagram-puzzle; Row 8: corpus-sources, master-wordlist).
+bank-index, anagram-puzzle; Row 8: corpus-sources, master-wordlist; Row 9:
+derived-wordlists, game-wordlist).
 """
 
 from __future__ import annotations
@@ -44,8 +45,20 @@ from yen_tamizh_backend.contracts.corpus_sources import (
     SourceId,
     SourceKind,
 )
+from yen_tamizh_backend.contracts.derived_wordlists import (
+    DerivedSelection,
+    DerivedSet,
+    DerivedWordlists,
+)
 from yen_tamizh_backend.contracts.event_envelope import EventEnvelope
 from yen_tamizh_backend.contracts.example import Example
+from yen_tamizh_backend.contracts.game_wordlist import (
+    DerivedCounters,
+    DerivedSource,
+    GameWord,
+    GameWordHints,
+    GameWordlist,
+)
 from yen_tamizh_backend.contracts.glyph_manifest import GlyphManifest, GlyphShape
 from yen_tamizh_backend.contracts.master_wordlist import (
     FreqBand,
@@ -60,15 +73,18 @@ from yen_tamizh_backend.contracts.save import Save, compute_day_key
 # Explicit registry (not auto-discovery) so the exporter's output set is
 # deterministic and reviewed. Export sorts by name; order here is not
 # load-bearing. Row 7 adds the six core surfaces plus copy alongside the Row 5
-# demonstrator and the Row 10 glyph manifest; Row 8 adds the corpus layer.
+# demonstrator and the Row 10 glyph manifest; Row 8 adds the corpus layer, and
+# Row 9 the derived layer between the corpus and the puzzle engine.
 REGISTRY: tuple[type[SchemaModel], ...] = (
     AnagramPuzzle,
     AppConfig,
     BankIndex,
     Copy,
     CorpusSources,
+    DerivedWordlists,
     EventEnvelope,
     Example,
+    GameWordlist,
     GlyphManifest,
     MasterWordlist,
     PuzzleFile,
@@ -89,11 +105,19 @@ __all__ = [
     "CorpusSource",
     "CorpusSources",
     "DailyConfig",
+    "DerivedCounters",
+    "DerivedSelection",
+    "DerivedSet",
+    "DerivedSource",
+    "DerivedWordlists",
     "DifficultyId",
     "EventEnvelope",
     "Example",
     "FreqBand",
     "GameId",
+    "GameWord",
+    "GameWordHints",
+    "GameWordlist",
     "GlyphManifest",
     "GlyphShape",
     "Hint",

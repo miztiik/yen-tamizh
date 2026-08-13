@@ -1,0 +1,164 @@
+{
+  "$defs": {
+    "ChangelogEntry": {
+      "additionalProperties": false,
+      "description": "One dated entry in a schema's in-file change log (newest first).\n\n``version`` is the date-stamp of the change; ``change`` is what changed;\n``why`` is the reason it changed (CLAUDE.md section 11).",
+      "properties": {
+        "change": {
+          "minLength": 1,
+          "title": "Change",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+          "title": "Version",
+          "type": "string"
+        },
+        "why": {
+          "minLength": 1,
+          "title": "Why",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "change",
+        "why"
+      ],
+      "title": "ChangelogEntry",
+      "type": "object"
+    },
+    "DerivedSelection": {
+      "additionalProperties": false,
+      "description": "Which master words a derived set keeps. Every knob is tunable data.\n\n``minLength`` / ``maxLength`` count EZHUTHU, not code points - the unit every\nGame plays in (Row 6). ``bands`` names the ``freqBand`` values a player is\nexpected to know. ``requireCoAnagram`` keeps only words whose ezhuthu\nmultiset is shared with at least one other master word, which is what\nguarantees an unscramble has real tension. ``maxWords`` caps the committed\nartifact (``null`` means uncapped); a derived set is a build artifact in git,\nso an uncapped one is an unbounded commit.\n\nThis model is shared: the registry declares it and the emitted wordlist\nechoes back the selection that produced it, so a reviewer reading a diff can\nsee which knob moved. Defining it once is why the two cannot disagree.",
+      "properties": {
+        "bands": {
+          "items": {
+            "enum": [
+              "common",
+              "mid",
+              "rare"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Bands",
+          "type": "array"
+        },
+        "maxLength": {
+          "minimum": 1,
+          "title": "Maxlength",
+          "type": "integer"
+        },
+        "maxWords": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Maxwords"
+        },
+        "minLength": {
+          "minimum": 1,
+          "title": "Minlength",
+          "type": "integer"
+        },
+        "requireCoAnagram": {
+          "default": false,
+          "title": "Requirecoanagram",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "minLength",
+        "maxLength",
+        "bands"
+      ],
+      "title": "DerivedSelection",
+      "type": "object"
+    },
+    "DerivedSet": {
+      "additionalProperties": false,
+      "description": "One registered per-Game derived set: who consumes it and where it lands.",
+      "properties": {
+        "gameId": {
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "title": "Gameid",
+          "type": "string"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        },
+        "out": {
+          "pattern": "^[A-Za-z0-9._-]+(/[A-Za-z0-9._+-]+)*$",
+          "title": "Out",
+          "type": "string"
+        },
+        "selection": {
+          "$ref": "#/$defs/DerivedSelection"
+        }
+      },
+      "required": [
+        "gameId",
+        "out",
+        "selection"
+      ],
+      "title": "DerivedSet",
+      "type": "object"
+    }
+  },
+  "$id": "derived-wordlists.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "The registry: one master in, one derived set out per registered Game.",
+  "properties": {
+    "changelog": {
+      "items": {
+        "$ref": "#/$defs/ChangelogEntry"
+      },
+      "minItems": 1,
+      "title": "Changelog",
+      "type": "array"
+    },
+    "masterPath": {
+      "pattern": "^[A-Za-z0-9._-]+(/[A-Za-z0-9._+-]+)*$",
+      "title": "Masterpath",
+      "type": "string"
+    },
+    "sets": {
+      "items": {
+        "$ref": "#/$defs/DerivedSet"
+      },
+      "minItems": 1,
+      "title": "Sets",
+      "type": "array"
+    },
+    "version": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "version",
+    "changelog",
+    "masterPath",
+    "sets"
+  ],
+  "title": "DerivedWordlists",
+  "type": "object"
+}
