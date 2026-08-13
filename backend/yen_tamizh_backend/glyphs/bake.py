@@ -17,6 +17,7 @@ import json
 from pathlib import Path
 from xml.etree import ElementTree
 
+from yen_tamizh_backend.contracts.base import ChangelogEntry
 from yen_tamizh_backend.contracts.glyph_manifest import GlyphManifest, GlyphShape
 
 # The manifest's own date-stamp version + changelog (CLAUDE.md section 11). This
@@ -25,15 +26,15 @@ from yen_tamizh_backend.contracts.glyph_manifest import GlyphManifest, GlyphShap
 # changelog entry) in the same commit that changes the pack.
 _PACK_VERSION = "2026-08-13"
 _CHANGELOG = [
-    {
-        "version": _PACK_VERSION,
-        "change": "Initial essential UI glyph pack baked from assets/glyphs/.",
-        "why": (
+    ChangelogEntry(
+        version=_PACK_VERSION,
+        change="Initial essential UI glyph pack baked from assets/glyphs/.",
+        why=(
             "Row 10 needs a baked, schema-validated manifest the Glyph "
             "component resolves by id (Holy Law #10); placeholder-quality art "
             "for later polish."
         ),
-    },
+    ),
 ]
 
 
