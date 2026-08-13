@@ -50,12 +50,12 @@ Envelope `{ ts, src, v, session, name, level, ctx, data }`. Game: `puzzle.starte
 | 2 | Foundational concept + how-to docs + AGENTS.md | 3 | 1 | A | DONE | - | #1 | worker |
 | 3 | Repo skeleton (frontend + backend) + CI wiring | 5 | 1 | A | DONE | - | #2 | worker |
 | 4 | PWA + offline shell (service worker, base-path, install) | 4 | 3 | B | DONE | - | #4 | worker |
-| 5 | Evolutionary contract pipeline (Pydantic -> JSON Schema -> TS/ajv) | 5 | 3 | B | READY (ESCALATE) | - | - | - |
+| 5 | Evolutionary contract pipeline (Pydantic -> JSON Schema -> TS/ajv) | 5 | 3 | B | DONE | - | #5 | worker |
 | 6 | Ezhuthu library (Python + TS twins) | 4 | 3 | B | DONE | - | #3 | worker |
-| 7 | Core schemas (app-config/event-envelope/save/puzzle-file/bank-index/anagram) | 5 | 5,6 | C | PENDING | - | - | - |
-| 8 | Corpus ingest + master wordlist | 4 | 5,6 | C | PENDING | - | - | - |
+| 7 | Core schemas (app-config/event-envelope/save/puzzle-file/bank-index/anagram) | 5 | 5,6 | C | READY (ESCALATE) | - | - | - |
+| 8 | Corpus ingest + master wordlist | 4 | 5,6 | C | READY (ESCALATE license) | - | - | - |
 | 9 | Derived-wordlist framework + anagram set | 3 | 8 | - | PENDING | - | - | - |
-| 10 | Design system (tokens + animation + glyph bake + manifest) | 3 | 5 | - | PENDING | - | - | - |
+| 10 | Design system (tokens + animation + glyph bake + manifest) | 3 | 5 | - | READY | - | - | - |
 | 11 | Shell + runtime (SessionShell/Runner/registry/storage/bus) | 4 | 7,10 | - | PENDING | - | - | - |
 | 12 | AnagramGame | 3 | 11 | - | PENDING | - | - | - |
 | 13 | DailyMode + daily bank generator + Home | 4 | 9,12 | - | PENDING | - | - | - |
@@ -537,7 +537,7 @@ Dependency spine: `1(done) -> {2,3} -> {4,5,6} -> {7,8} -> {9,10} -> 11 -> 12 ->
 
 ## 3. Execution stamp
 
-`Execute per docs/how-to/execute-a-plan.md: orchestrator dispatches one worktree-isolated worker subagent per row; workers consult personas (Fowler/Carmack/Jony/Palm/Player/Explore) on ambiguity; AUTO-merge on green gates; parallel N = 2; honor the ESCALATE triggers in section 0. EXECUTING (user-authorized 2026-08-13). Rows 1-4 + 6 DONE (Row 1 = 2026-07-25 contract commit; Row 2 = PR #1; Row 3 = PR #2; Row 6 = PR #3; Row 4 = PR #4 - all green on CI). Frontier = Row 5 (evolutionary contract pipeline, Level 5): it is the SOLE gate to all further rows (7, 8, 10 and everything downstream depend on it) and is an ESCALATE pause awaiting user sign-off. No AUTO work remains until Row 5 lands.`
+`Execute per docs/how-to/execute-a-plan.md: orchestrator dispatches one worktree-isolated worker subagent per row; workers consult personas (Fowler/Carmack/Jony/Palm/Player/Explore) on ambiguity; AUTO-merge on green gates; parallel N = 2; honor the ESCALATE triggers in section 0. EXECUTING (user-authorized 2026-08-13). Rows 1-6 DONE (Row 1 = contract commit; Rows 2-6 = PRs #1-#5, all green on CI; Row 5 contract pipeline merged with the real drift gate live). Frontier = Group C + Row 10: Row 10 (design system, Level 3) is AUTO-dispatchable now; Row 7 (core schemas, Level 5) and Row 8 (corpus + license choice, Level 4) are both ESCALATE pauses awaiting user sign-off. Row 7 is the sole gate to the game-logic spine (11 -> 12 -> 13 ...).`
 
 ## See also
 
