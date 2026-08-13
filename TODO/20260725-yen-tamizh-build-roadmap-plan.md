@@ -49,7 +49,7 @@ Envelope `{ ts, src, v, session, name, level, ctx, data }`. Game: `puzzle.starte
 | 1 | Contract right-size + rebrand | 5 | - | - | DONE (2026-07-25 commit) | - | - | - |
 | 2 | Foundational concept + how-to docs + AGENTS.md | 3 | 1 | A | DONE | - | #1 | worker |
 | 3 | Repo skeleton (frontend + backend) + CI wiring | 5 | 1 | A | DONE | - | #2 | worker |
-| 4 | PWA + offline shell (service worker, base-path, install) | 4 | 3 | B | IN-FLIGHT | ../yen-tamizh-row4 | - | worker |
+| 4 | PWA + offline shell (service worker, base-path, install) | 4 | 3 | B | DONE | - | #4 | worker |
 | 5 | Evolutionary contract pipeline (Pydantic -> JSON Schema -> TS/ajv) | 5 | 3 | B | READY (ESCALATE) | - | - | - |
 | 6 | Ezhuthu library (Python + TS twins) | 4 | 3 | B | DONE | - | #3 | worker |
 | 7 | Core schemas (app-config/event-envelope/save/puzzle-file/bank-index/anagram) | 5 | 5,6 | C | PENDING | - | - | - |
@@ -537,7 +537,7 @@ Dependency spine: `1(done) -> {2,3} -> {4,5,6} -> {7,8} -> {9,10} -> 11 -> 12 ->
 
 ## 3. Execution stamp
 
-`Execute per docs/how-to/execute-a-plan.md: orchestrator dispatches one worktree-isolated worker subagent per row; workers consult personas (Fowler/Carmack/Jony/Palm/Player/Explore) on ambiguity; AUTO-merge on green gates; parallel N = 2; honor the ESCALATE triggers in section 0. EXECUTING (user-authorized 2026-08-13). Rows 1-3 DONE (Row 1 = 2026-07-25 contract commit; Row 2 = PR #1; Row 3 = PR #2, skeleton green on CI). Frontier = Group B {4, 5, 6}: Rows 4 (PWA, Level 4) and 6 (ezhuthu, Level 4) are AUTO-dispatchable in parallel; Row 5 (contract pipeline, Level 5) is an ESCALATE pause awaiting user sign-off before merge.`
+`Execute per docs/how-to/execute-a-plan.md: orchestrator dispatches one worktree-isolated worker subagent per row; workers consult personas (Fowler/Carmack/Jony/Palm/Player/Explore) on ambiguity; AUTO-merge on green gates; parallel N = 2; honor the ESCALATE triggers in section 0. EXECUTING (user-authorized 2026-08-13). Rows 1-4 + 6 DONE (Row 1 = 2026-07-25 contract commit; Row 2 = PR #1; Row 3 = PR #2; Row 6 = PR #3; Row 4 = PR #4 - all green on CI). Frontier = Row 5 (evolutionary contract pipeline, Level 5): it is the SOLE gate to all further rows (7, 8, 10 and everything downstream depend on it) and is an ESCALATE pause awaiting user sign-off. No AUTO work remains until Row 5 lands.`
 
 ## See also
 
