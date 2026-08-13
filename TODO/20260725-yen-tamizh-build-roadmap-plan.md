@@ -57,7 +57,7 @@ Envelope `{ ts, src, v, session, name, level, ctx, data }`. Game: `puzzle.starte
 | 9 | Derived-wordlist framework + anagram set | 3 | 8 | - | PENDING | - | - | - |
 | 10 | Design system (tokens + animation + glyph bake + manifest) | 3 | 5 | - | DONE | - | #6 | worker |
 | 11 | Shell + runtime (SessionShell/Runner/registry/storage/bus) | 4 | 7,10 | - | DONE | - | #8 | worker |
-| 12 | AnagramGame | 3 | 11 | - | READY | - | - | - |
+| 12 | AnagramGame | 3 | 11 | - | DONE | - | #9 | worker |
 | 13 | DailyMode + daily bank generator + Home | 4 | 9,12 | - | PENDING | - | - | - |
 | 14 | Daily playlist + hints (changelog evolution) | 3 | 13 | - | PENDING | - | - | - |
 | 15 | Ladder graph builder + word-ladder schema | 5 | 7,8 | - | PENDING | - | - | - |
@@ -398,7 +398,7 @@ Dependency spine: `1(done) -> {2,3} -> {4,5,6} -> {7,8} -> {9,10} -> 11 -> 12 ->
 ### Row #14 - Daily playlist + hints (changelog evolution) (Level 3)
 - **Scope:** Turn Daily into a playlist of N items with progress + summary, surface the footer hint widget, and evolve the anagram schema additively to carry hints.
 - **Reuse:** the playlist/hints model from `yen-tamizh_OLD` PLAN Phase 2.
-- **Files touched:** `frontend/src/session/SessionRunner.ts` (inter-item "X of N" + summary), `frontend/src/shell/HintFooter.svelte`, `backend/yen_tamizh_backend/generate/anagram.py` (emit `hints[]`), `schemas/anagram-puzzle.schema.json` (append `changelog` entry, keep same shape valid), `config/app-config.json` (`daily.playlistLength`, `daily.mix`, `hints.*`).
+- **Files touched:** `frontend/src/session/SessionRunner.ts` (inter-item "X of N" + summary), `frontend/src/shell/HintFooter.svelte`, `backend/yen_tamizh_backend/generate/anagram.py` (emit `hints[]`), `schemas/anagram-puzzle.schema.json` (append `changelog` entry, keep same shape valid), `config/app-config.json` (`daily.playlistLength`, `daily.mix`, `hints.*`, and `ui.winCelebrationMs` - carried over from Row 12, which reads it from the injected config slice with a 900ms sane default but has no `config/` home yet).
 - **Contracts:** demonstrates the evolutionary model - `anagram-puzzle` gains optional `hints[]` as an ADDITIVE change: append `{version: <today>, change, why}` to `changelog`, no migration; old bank files still validate.
 - **Acceptance gates:** playlist of N plays with progress + summary; hint visibility honors config; a pre-hints fixture still validates after the append (contract test); browser smoke.
 - **Oracle:** backward-compat - a pre-hints `anagram-puzzle` fixture validates unchanged after the `changelog` append (additive, no break), proving "refresh data without rebuilding mechanics".
@@ -537,7 +537,7 @@ Dependency spine: `1(done) -> {2,3} -> {4,5,6} -> {7,8} -> {9,10} -> 11 -> 12 ->
 
 ## 3. Execution stamp
 
-`Execute per docs/how-to/execute-a-plan.md: orchestrator dispatches one worktree-isolated worker subagent per row; workers consult personas (Fowler/Carmack/Jony/Palm/Player/Explore) on ambiguity; AUTO-merge on green gates; parallel N = 2; honor the ESCALATE triggers in section 0. EXECUTING (user-authorized 2026-08-13). Rows 1-7 + 10 + 11 DONE (PRs #1-#8, all green on CI). Foundation + runtime shell are in. Frontier (all AUTO, next ESCALATE is Row 15): Row 12 (AnagramGame - first playable, unblocked by 11) and Row 8 (corpus ingest - APPROVED: OLD + one free Tamil source). Path to first daily: 12 + (8 -> 9) -> 13. Serialize two npm-heavy frontend rows (terminal contention).`
+`Execute per docs/how-to/execute-a-plan.md: orchestrator dispatches one worktree-isolated worker subagent per row; workers consult personas (Fowler/Carmack/Jony/Palm/Player/Explore) on ambiguity; AUTO-merge on green gates; parallel N = 2; honor the ESCALATE triggers in section 0. EXECUTING (user-authorized 2026-08-13). Rows 1-7 + 10 + 11 + 12 DONE (PRs #1-#9, all green on CI). Foundation + runtime shell + the FIRST PLAYABLE game (Anagram) are in. Frontier (all AUTO, next ESCALATE is Row 15): Row 8 (corpus ingest - APPROVED: OLD + one free Tamil source) -> Row 9 (derived sets) -> Row 13 (DailyMode + bank + Home) completes the first daily. Serialize npm-touching rows (proven terminal contention).`
 
 ## See also
 
