@@ -1,0 +1,149 @@
+{
+  "$defs": {
+    "ChangelogEntry": {
+      "additionalProperties": false,
+      "description": "One dated entry in a schema's in-file change log (newest first).\n\n``version`` is the date-stamp of the change; ``change`` is what changed;\n``why`` is the reason it changed (CLAUDE.md section 11).",
+      "properties": {
+        "change": {
+          "minLength": 1,
+          "title": "Change",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+          "title": "Version",
+          "type": "string"
+        },
+        "why": {
+          "minLength": 1,
+          "title": "Why",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "change",
+        "why"
+      ],
+      "title": "ChangelogEntry",
+      "type": "object"
+    },
+    "Hint": {
+      "additionalProperties": false,
+      "description": "One optional, honest hint: its kind, its text, and its score cost.\n\n``text`` is per-puzzle generated DATA (the next honest step for this\npuzzle), not a static UI label - so it lives in the puzzle payload, not in\n``config/copy.json``. A hint never sells a power-up (a project non-goal); it\nreveals the next honest step (core-loop.md).",
+      "properties": {
+        "cost": {
+          "minimum": 0,
+          "title": "Cost",
+          "type": "integer"
+        },
+        "kind": {
+          "minLength": 1,
+          "title": "Kind",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "text",
+        "cost"
+      ],
+      "title": "Hint",
+      "type": "object"
+    },
+    "PuzzleItem": {
+      "additionalProperties": false,
+      "description": "One playlist entry: a Game + Pack + difficulty and its open payload.",
+      "properties": {
+        "difficulty": {
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "title": "Difficulty",
+          "type": "string"
+        },
+        "gameId": {
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "title": "Gameid",
+          "type": "string"
+        },
+        "hints": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/Hint"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Hints"
+        },
+        "packId": {
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "title": "Packid",
+          "type": "string"
+        },
+        "payload": {
+          "additionalProperties": true,
+          "title": "Payload",
+          "type": "object"
+        }
+      },
+      "required": [
+        "gameId",
+        "packId",
+        "difficulty",
+        "payload"
+      ],
+      "title": "PuzzleItem",
+      "type": "object"
+    }
+  },
+  "$id": "puzzle-file.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "One day's committed, ordered playlist of puzzle items.",
+  "properties": {
+    "changelog": {
+      "items": {
+        "$ref": "#/$defs/ChangelogEntry"
+      },
+      "minItems": 1,
+      "title": "Changelog",
+      "type": "array"
+    },
+    "date": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "title": "Date",
+      "type": "string"
+    },
+    "items": {
+      "items": {
+        "$ref": "#/$defs/PuzzleItem"
+      },
+      "minItems": 1,
+      "title": "Items",
+      "type": "array"
+    },
+    "version": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "version",
+    "changelog",
+    "date",
+    "items"
+  ],
+  "title": "PuzzleFile",
+  "type": "object"
+}

@@ -1,1 +1,11 @@
-{}
+{
+  "version": "2026-08-13",
+  "changelog": [
+    {
+      "version": "2026-08-13",
+      "change": "Initial copy map (empty).",
+      "why": "Row 7 - player-facing text keyed by stable slug, separate from app-config identifiers; entries land as UI rows add labels."
+    }
+  ],
+  "strings": {}
+}

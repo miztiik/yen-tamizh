@@ -1,0 +1,124 @@
+{
+  "$defs": {
+    "ChangelogEntry": {
+      "additionalProperties": false,
+      "description": "One dated entry in a schema's in-file change log (newest first).\n\n``version`` is the date-stamp of the change; ``change`` is what changed;\n``why`` is the reason it changed (CLAUDE.md section 11).",
+      "properties": {
+        "change": {
+          "minLength": 1,
+          "title": "Change",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+          "title": "Version",
+          "type": "string"
+        },
+        "why": {
+          "minLength": 1,
+          "title": "Why",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "change",
+        "why"
+      ],
+      "title": "ChangelogEntry",
+      "type": "object"
+    }
+  },
+  "$id": "event-envelope.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "One structured telemetry event; ``name`` is from the canonical catalog.\n\n``ctx`` (stable context: modeId, gameId, packId, day) and ``data`` (the\nevent-specific payload) are open objects on purpose: their keys vary by\nevent, so pinning them would force a schema bump every time a Game emits a\nnew context key - which fights the \"a Game is observable for free\" design.\nThe fixed, typed part is the envelope; ``ctx`` and ``data`` are the open part.",
+  "properties": {
+    "changelog": {
+      "items": {
+        "$ref": "#/$defs/ChangelogEntry"
+      },
+      "minItems": 1,
+      "title": "Changelog",
+      "type": "array"
+    },
+    "ctx": {
+      "additionalProperties": true,
+      "title": "Ctx",
+      "type": "object"
+    },
+    "data": {
+      "additionalProperties": true,
+      "title": "Data",
+      "type": "object"
+    },
+    "level": {
+      "enum": [
+        "debug",
+        "info",
+        "warn",
+        "error"
+      ],
+      "title": "Level",
+      "type": "string"
+    },
+    "name": {
+      "enum": [
+        "puzzle.started",
+        "puzzle.attempt.submitted",
+        "puzzle.hint.used",
+        "puzzle.completed",
+        "puzzle.abandoned",
+        "mode.session.started",
+        "mode.session.completed",
+        "streak.updated",
+        "pipeline.stage.started",
+        "pipeline.stage.completed",
+        "pipeline.stage.failed",
+        "puzzle.generated",
+        "bank.updated"
+      ],
+      "title": "Name",
+      "type": "string"
+    },
+    "session": {
+      "minLength": 1,
+      "title": "Session",
+      "type": "string"
+    },
+    "src": {
+      "minLength": 1,
+      "title": "Src",
+      "type": "string"
+    },
+    "ts": {
+      "minimum": 0,
+      "title": "Ts",
+      "type": "integer"
+    },
+    "v": {
+      "minimum": 1,
+      "title": "V",
+      "type": "integer"
+    },
+    "version": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "version",
+    "changelog",
+    "ts",
+    "src",
+    "v",
+    "session",
+    "name",
+    "level",
+    "ctx",
+    "data"
+  ],
+  "title": "EventEnvelope",
+  "type": "object"
+}

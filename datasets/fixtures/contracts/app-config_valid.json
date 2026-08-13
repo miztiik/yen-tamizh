@@ -3,8 +3,8 @@
   "changelog": [
     {
       "version": "2026-08-13",
-      "change": "Initial core app-config: daily, hints, infinite, timeTrial, and ui knobs with sane defaults.",
-      "why": "Row 7 core schemas - a fresh clone runs on these defaults (Holy Law #6)."
+      "change": "Initial app-config fixture.",
+      "why": "Row 7 contract Oracle - the valid app-config shape."
     }
   ],
   "daily": { "playlistLength": 3, "mix": { "anagram": 3 } },

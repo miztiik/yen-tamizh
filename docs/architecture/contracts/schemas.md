@@ -55,13 +55,22 @@ These schemas are not hand-authored twice. The pipeline (built in Row 5) runs on
 4. **`frontend/src/contracts/index.ts`** is the typed load-boundary: `loadValidated<T>(url, schemaName)` fetches JSON same-origin and validates it with the compiled ajv validator, throwing at the boundary on invalid data (section 1a, "payloads not calls").
 5. **The CI `contracts` job** regenerates both sides and fails on any diff (`git diff --exit-code`), so the schema, the types, and the validators can never drift from the models.
 
-A tiny `example` contract (`example.schema.json`) ships as the pipeline's demonstrator and drift-gate exercise; the real named surfaces below are added to the registry in their own rows. The two-runtime context is in [../overview.md](../overview.md).
+A tiny `example` contract (`example.schema.json`) ships as the pipeline's demonstrator and drift-gate exercise; the real named surfaces below are added to the registry in their own rows - Row 7 registered the six core surfaces (`app-config`, `event-envelope`, `save`, `puzzle-file`, `bank-index`, `anagram-puzzle`) plus `copy`. The two-runtime context is in [../overview.md](../overview.md).
 
 ## Design rationale
 
 - **Pydantic is the single source of truth; JSON Schema, TS types, and validators are generated, never hand-authored.** One model definition yields every downstream artifact, so a corpus/field change is made once and the generated types + validators follow. The drift gate makes divergence impossible rather than merely discouraged. (Fowler, user-directed.)
 - **Runtime validation is ajv over the generated schema; static types are `json-schema-to-typescript`.** The frontend consumes backend output only as schema-validated payloads and fails fast at the load-boundary. ajv is a runtime dependency (it ships when the boundary is used); `json-schema-to-typescript` is build-time only. (Fowler.)
 - **Determinism is engineered, not assumed.** The drift gate runs on CI (Python 3.12, npm 10.9.2) but authors run other versions, so the pipeline pins `pydantic` exactly, canonicalises the JSON (sorted keys, fixed indent), pins `json-schema-to-typescript` and disables its external formatter (`format:false`), and forces LF (`export` `newline`, `.gitattributes`). Same inputs -> byte-identical outputs on every machine.
+
+### Core-surface field decisions (Row 7)
+
+The six core surfaces plus `copy` land as Pydantic models registered in the pipeline. The shape decisions are Fowler's altitude (persisted-contract authority):
+
+- **Per-Game payload schemas, not one mega-schema.** A `puzzle-file` item carries an OPEN `payload` object; each Game validates its own slice against its own schema (`anagram-puzzle` is the first). A new Game costs a payload schema, not an edit to `puzzle-file`, so Games evolve independently. `event-envelope`'s `ctx`/`data` are open for the same reason - pinning them would force a schema bump every time a Game emits a new context key.
+- **The save `dayKey` is recomputed on read, never trusted from storage.** It is a derived key (`date|modeId|gameId|packId`); the reader rebuilds it from its value fields so a stale or tampered stored key can never select the wrong day (the guardrails derived-key rule). `compute_day_key` is that single recompute; the read-side migration and the TypeScript twin land with the reader (Row 11).
+- **Identifiers are stable slugs; copy is a separate, validated surface.** `gameId`, `modeId`, `packId`, and difficulty are lower-case slugs; player-facing text lives in `config/copy.json`, keyed by a slug. `copy` is a pipeline `SchemaModel` (with `version`/`changelog`) like `app-config`, not a hand-authored map, so there is one source of truth and the drift gate covers it. (Jony + Fowler.)
+- **`event-envelope` carries both `v` and `version`/`changelog`.** `v` is the lightweight per-event version a reader uses to evolve its parsing; `version`/`changelog` are the schema-discipline stamp every persisted surface carries (CLAUDE.md section 11). `name` is constrained to the canonical event catalog, so an unregistered name is rejected at the boundary.
 
 ## Rejected alternatives
 
@@ -71,6 +80,9 @@ A tiny `example` contract (`example.schema.json`) ships as the pipeline's demons
 | `schemas/<name>/vN.schema.json` version folders | The contract versions in-file via `version`/`changelog` (CLAUDE.md section 11), not by folder; folders duplicate history git already keeps. | Fowler |
 | valibot | Weaker JSON-Schema codegen path than ajv today. | Fowler |
 | ajv standalone precompiled validators | More generated, version-sensitive surface in the drift gate for no current benefit; runtime-compile is simpler. If Carmack's frame budget later flags ajv's bytes, standalone is the named optimization. | Fowler / Carmack |
+| One mega puzzle schema for all Games | Couples every Game's payload into one shape; a new Game or a payload change forces an edit to the shared schema and risks breaking the others. An open per-item `payload` plus one schema per Game keeps them independent. | Fowler |
+| Trusting the stored save `dayKey` | A derived key read from storage can be stale or tampered and would select the wrong day's progress; it is recomputed on read from its value fields instead. | Fowler |
+| A hand-authored `config/copy.json` map with no schema | A second, un-validated surface that drifts from the pipeline; `copy` is a `SchemaModel`, so the drift gate and ajv cover it like every other contract. | Fowler |
 
 ## See also
 

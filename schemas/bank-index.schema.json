@@ -1,0 +1,87 @@
+{
+  "$defs": {
+    "BankDay": {
+      "additionalProperties": false,
+      "description": "One baked day in the bank: its date and how many items it holds.",
+      "properties": {
+        "date": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "title": "Date",
+          "type": "string"
+        },
+        "itemCount": {
+          "minimum": 0,
+          "title": "Itemcount",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "date",
+        "itemCount"
+      ],
+      "title": "BankDay",
+      "type": "object"
+    },
+    "ChangelogEntry": {
+      "additionalProperties": false,
+      "description": "One dated entry in a schema's in-file change log (newest first).\n\n``version`` is the date-stamp of the change; ``change`` is what changed;\n``why`` is the reason it changed (CLAUDE.md section 11).",
+      "properties": {
+        "change": {
+          "minLength": 1,
+          "title": "Change",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+          "title": "Version",
+          "type": "string"
+        },
+        "why": {
+          "minLength": 1,
+          "title": "Why",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "change",
+        "why"
+      ],
+      "title": "ChangelogEntry",
+      "type": "object"
+    }
+  },
+  "$id": "bank-index.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "The index of every day baked into the puzzle bank.",
+  "properties": {
+    "changelog": {
+      "items": {
+        "$ref": "#/$defs/ChangelogEntry"
+      },
+      "minItems": 1,
+      "title": "Changelog",
+      "type": "array"
+    },
+    "days": {
+      "items": {
+        "$ref": "#/$defs/BankDay"
+      },
+      "title": "Days",
+      "type": "array"
+    },
+    "version": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "version",
+    "changelog",
+    "days"
+  ],
+  "title": "BankIndex",
+  "type": "object"
+}

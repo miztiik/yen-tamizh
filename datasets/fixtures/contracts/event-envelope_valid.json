@@ -1,0 +1,18 @@
+{
+  "version": "2026-08-13",
+  "changelog": [
+    {
+      "version": "2026-08-13",
+      "change": "Initial event-envelope fixture.",
+      "why": "Row 7 contract Oracle - the valid envelope shape."
+    }
+  ],
+  "ts": 1786579200000,
+  "src": "anagram",
+  "v": 1,
+  "session": "sess-abc123",
+  "name": "puzzle.completed",
+  "level": "info",
+  "ctx": { "modeId": "daily", "gameId": "anagram", "packId": "ta-core", "day": "2026-08-13" },
+  "data": { "elapsedMs": 41200, "hintsUsed": 0 }
+}

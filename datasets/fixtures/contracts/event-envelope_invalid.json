@@ -1,0 +1,18 @@
+{
+  "version": "2026-08-13",
+  "changelog": [
+    {
+      "version": "2026-08-13",
+      "change": "Malformed event-envelope fixture.",
+      "why": "Row 7 contract Oracle - 'name' is outside the canonical catalog; rejected by both sides."
+    }
+  ],
+  "ts": 1786579200000,
+  "src": "anagram",
+  "v": 1,
+  "session": "sess-abc123",
+  "name": "puzzle.exploded",
+  "level": "info",
+  "ctx": {},
+  "data": {}
+}

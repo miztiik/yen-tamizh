@@ -1,0 +1,11 @@
+{
+  "version": "2026-08-13",
+  "changelog": [
+    {
+      "version": "2026-08-13",
+      "change": "Initial copy fixture.",
+      "why": "Row 7 contract Oracle - the valid copy map shape."
+    }
+  ],
+  "strings": { "play": "Play", "settings": "Settings" }
+}

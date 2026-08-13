@@ -1,0 +1,198 @@
+{
+  "$defs": {
+    "ChangelogEntry": {
+      "additionalProperties": false,
+      "description": "One dated entry in a schema's in-file change log (newest first).\n\n``version`` is the date-stamp of the change; ``change`` is what changed;\n``why`` is the reason it changed (CLAUDE.md section 11).",
+      "properties": {
+        "change": {
+          "minLength": 1,
+          "title": "Change",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+          "title": "Version",
+          "type": "string"
+        },
+        "why": {
+          "minLength": 1,
+          "title": "Why",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "change",
+        "why"
+      ],
+      "title": "ChangelogEntry",
+      "type": "object"
+    },
+    "DailyConfig": {
+      "additionalProperties": false,
+      "description": "The Daily playlist: how many items and the per-Game mix (modes.md).",
+      "properties": {
+        "mix": {
+          "patternProperties": {
+            "^[a-z][a-z0-9-]*$": {
+              "type": "integer"
+            }
+          },
+          "title": "Mix",
+          "type": "object"
+        },
+        "playlistLength": {
+          "minimum": 1,
+          "title": "Playlistlength",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "playlistLength",
+        "mix"
+      ],
+      "title": "DailyConfig",
+      "type": "object"
+    },
+    "HintsConfig": {
+      "additionalProperties": false,
+      "description": "Hint availability: a global switch and a per-Game allowance.",
+      "properties": {
+        "enabled": {
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "perGame": {
+          "patternProperties": {
+            "^[a-z][a-z0-9-]*$": {
+              "type": "integer"
+            }
+          },
+          "title": "Pergame",
+          "type": "object"
+        }
+      },
+      "required": [
+        "enabled",
+        "perGame"
+      ],
+      "title": "HintsConfig",
+      "type": "object"
+    },
+    "InfiniteConfig": {
+      "additionalProperties": false,
+      "description": "Infinite mode: the anti-repeat LRU window and the default difficulty.",
+      "properties": {
+        "defaultDifficulty": {
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "title": "Defaultdifficulty",
+          "type": "string"
+        },
+        "lruWindow": {
+          "minimum": 0,
+          "title": "Lruwindow",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "lruWindow",
+        "defaultDifficulty"
+      ],
+      "title": "InfiniteConfig",
+      "type": "object"
+    },
+    "TimeTrialConfig": {
+      "additionalProperties": false,
+      "description": "Time Trial mode: the run duration in seconds.",
+      "properties": {
+        "durationSec": {
+          "minimum": 1,
+          "title": "Durationsec",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "durationSec"
+      ],
+      "title": "TimeTrialConfig",
+      "type": "object"
+    },
+    "UiConfig": {
+      "additionalProperties": false,
+      "description": "UI shell: which Modes are live, and the default Mode and theme.",
+      "properties": {
+        "defaultMode": {
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "title": "Defaultmode",
+          "type": "string"
+        },
+        "defaultTheme": {
+          "minLength": 1,
+          "title": "Defaulttheme",
+          "type": "string"
+        },
+        "enabledModes": {
+          "items": {
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Enabledmodes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "enabledModes",
+        "defaultMode",
+        "defaultTheme"
+      ],
+      "title": "UiConfig",
+      "type": "object"
+    }
+  },
+  "$id": "app-config.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "The tunable knobs both runtimes read; a fresh clone runs on the defaults.",
+  "properties": {
+    "changelog": {
+      "items": {
+        "$ref": "#/$defs/ChangelogEntry"
+      },
+      "minItems": 1,
+      "title": "Changelog",
+      "type": "array"
+    },
+    "daily": {
+      "$ref": "#/$defs/DailyConfig"
+    },
+    "hints": {
+      "$ref": "#/$defs/HintsConfig"
+    },
+    "infinite": {
+      "$ref": "#/$defs/InfiniteConfig"
+    },
+    "timeTrial": {
+      "$ref": "#/$defs/TimeTrialConfig"
+    },
+    "ui": {
+      "$ref": "#/$defs/UiConfig"
+    },
+    "version": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "version",
+    "changelog",
+    "daily",
+    "hints",
+    "infinite",
+    "timeTrial",
+    "ui"
+  ],
+  "title": "AppConfig",
+  "type": "object"
+}

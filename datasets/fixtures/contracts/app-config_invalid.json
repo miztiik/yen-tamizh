@@ -1,0 +1,14 @@
+{
+  "version": "2026-08-13",
+  "changelog": [
+    {
+      "version": "2026-08-13",
+      "change": "Malformed app-config fixture.",
+      "why": "Row 7 contract Oracle - missing the required 'ui' block; rejected by both sides."
+    }
+  ],
+  "daily": { "playlistLength": 3, "mix": { "anagram": 3 } },
+  "hints": { "enabled": true, "perGame": { "anagram": 2 } },
+  "infinite": { "lruWindow": 200, "defaultDifficulty": "medium" },
+  "timeTrial": { "durationSec": 120 }
+}
