@@ -1,0 +1,40 @@
+{
+  "changelog": [
+    {
+      "change": "Initial essential UI glyph pack baked from assets/glyphs/.",
+      "version": "2026-08-13",
+      "why": "Row 10 needs a baked, schema-validated manifest the Glyph component resolves by id (Holy Law #10); placeholder-quality art for later polish."
+    }
+  ],
+  "glyphs": {
+    "back": {
+      "path": "M15 5 L8 12 L15 19",
+      "viewBox": "0 0 24 24"
+    },
+    "check": {
+      "path": "M4 12 L9 17 L20 6",
+      "viewBox": "0 0 24 24"
+    },
+    "close": {
+      "path": "M6 6 L18 18 M18 6 L6 18",
+      "viewBox": "0 0 24 24"
+    },
+    "hint": {
+      "path": "M12 3 A6 6 0 0 1 16 13 L8 13 A6 6 0 0 1 12 3 Z M9 16 L15 16 M10 19 L14 19",
+      "viewBox": "0 0 24 24"
+    },
+    "settings": {
+      "path": "M12 9 A3 3 0 1 0 12 15 A3 3 0 1 0 12 9 M12 2 L12 5 M12 19 L12 22 M2 12 L5 12 M19 12 L22 12 M5 5 L7 7 M17 17 L19 19 M17 7 L19 5 M5 19 L7 17",
+      "viewBox": "0 0 24 24"
+    },
+    "share": {
+      "path": "M5 12 A2 2 0 1 0 9 12 A2 2 0 1 0 5 12 M15 6 A2 2 0 1 0 19 6 A2 2 0 1 0 15 6 M15 18 A2 2 0 1 0 19 18 A2 2 0 1 0 15 18 M9 11 L15 7 M9 13 L15 17",
+      "viewBox": "0 0 24 24"
+    },
+    "star": {
+      "path": "M12 3 L14.5 9 L21 9.5 L16 13.5 L17.5 20 L12 16.5 L6.5 20 L8 13.5 L3 9.5 L9.5 9 Z",
+      "viewBox": "0 0 24 24"
+    }
+  },
+  "version": "2026-08-13"
+}
