@@ -55,7 +55,7 @@ Envelope `{ ts, src, v, session, name, level, ctx, data }`. Game: `puzzle.starte
 | 7 | Core schemas (app-config/event-envelope/save/puzzle-file/bank-index/anagram) | 5 | 5,6 | C | IN-FLIGHT | ../yen-tamizh-row7 | - | worker |
 | 8 | Corpus ingest + master wordlist | 4 | 5,6 | C | READY (approved: OLD + free source) | - | - | - |
 | 9 | Derived-wordlist framework + anagram set | 3 | 8 | - | PENDING | - | - | - |
-| 10 | Design system (tokens + animation + glyph bake + manifest) | 3 | 5 | - | READY | - | - | - |
+| 10 | Design system (tokens + animation + glyph bake + manifest) | 3 | 5 | - | DONE | - | #6 | worker |
 | 11 | Shell + runtime (SessionShell/Runner/registry/storage/bus) | 4 | 7,10 | - | PENDING | - | - | - |
 | 12 | AnagramGame | 3 | 11 | - | PENDING | - | - | - |
 | 13 | DailyMode + daily bank generator + Home | 4 | 9,12 | - | PENDING | - | - | - |
@@ -537,7 +537,7 @@ Dependency spine: `1(done) -> {2,3} -> {4,5,6} -> {7,8} -> {9,10} -> 11 -> 12 ->
 
 ## 3. Execution stamp
 
-`Execute per docs/how-to/execute-a-plan.md: orchestrator dispatches one worktree-isolated worker subagent per row; workers consult personas (Fowler/Carmack/Jony/Palm/Player/Explore) on ambiguity; AUTO-merge on green gates; parallel N = 2; honor the ESCALATE triggers in section 0. EXECUTING (user-authorized 2026-08-13). Rows 1-6 DONE (Row 1 = contract commit; Rows 2-6 = PRs #1-#5, all green on CI; Row 5 contract pipeline merged with the real drift gate live). Frontier = Group C + Row 10: Row 10 (design system, Level 3) is AUTO-dispatchable now; Row 7 (core schemas, Level 5) and Row 8 (corpus + license choice, Level 4) are both ESCALATE pauses awaiting user sign-off. Row 7 is the sole gate to the game-logic spine (11 -> 12 -> 13 ...).`
+`Execute per docs/how-to/execute-a-plan.md: orchestrator dispatches one worktree-isolated worker subagent per row; workers consult personas (Fowler/Carmack/Jony/Palm/Player/Explore) on ambiguity; AUTO-merge on green gates; parallel N = 2; honor the ESCALATE triggers in section 0. EXECUTING (user-authorized 2026-08-13). Rows 1-6 + 10 DONE (PRs #1-#6, all green on CI; Row 10 finished via orchestrator mypy remediation after a provider outage killed the worker post-commit). Frontier = Group C: Row 7 (core schemas, Level 5) is APPROVED + IN-FLIGHT (sole gate to the game-logic spine 11 -> 12 -> 13 ...); Row 8 (corpus ingest, Level 4) is APPROVED (OLD + one free Tamil source) and queued next. Contract-pipeline rows are serialized (shared Row 5 model registry).`
 
 ## See also
 
