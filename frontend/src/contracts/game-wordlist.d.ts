@@ -14,6 +14,7 @@ export type Change = string
 export type Version = string
 export type Why = string
 export type Capped = number
+export type Invalidwordfinal = number
 export type Masterrows = number
 export type Outsideband = number
 export type Outsidelength = number
@@ -28,6 +29,7 @@ export type Maxlength = number
 export type Maxwords = (number | null)
 export type Minlength = number
 export type Requirecoanagram = boolean
+export type Requirevalidwordfinal = boolean
 export type Generatedat = string
 export type Path = string
 export type Rows = number
@@ -39,7 +41,7 @@ export type Version2 = string
  */
 export type Ezhuthu = [string, ...(string)[]]
 export type Freqband = ("common" | "mid" | "rare")
-export type FirstEzhuthu = string
+export type Firstezhuthu = string
 export type Length = number
 export type Word = string
 export type Words = GameWord[]
@@ -72,6 +74,7 @@ why: Why
  */
 export interface DerivedCounters {
 capped: Capped
+invalidWordFinal?: Invalidwordfinal
 masterRows: Masterrows
 outsideBand: Outsideband
 outsideLength: Outsidelength
@@ -85,9 +88,13 @@ withoutCoAnagram: Withoutcoanagram
  * Game plays in (Row 6). ``bands`` names the ``freqBand`` values a player is
  * expected to know. ``requireCoAnagram`` keeps only words whose ezhuthu
  * multiset is shared with at least one other master word, which is what
- * guarantees an unscramble has real tension. ``maxWords`` caps the committed
- * artifact (``null`` means uncapped); a derived set is a build artifact in git,
- * so an uncapped one is an unbounded commit.
+ * guarantees an unscramble has real tension. ``requireValidWordFinal`` drops
+ * tokens that do not END the way a Tamil word ends (the corpus is scraped, so
+ * it carries sandhi artifacts and transliterated loanwords that no Tamil
+ * speaker would accept as an ANSWER); it applies to the co-anagram partner
+ * too, so tension can only come from another real word. ``maxWords`` caps the
+ * committed artifact (``null`` means uncapped); a derived set is a build
+ * artifact in git, so an uncapped one is an unbounded commit.
  * 
  * This model is shared: the registry declares it and the emitted wordlist
  * echoes back the selection that produced it, so a reviewer reading a diff can
@@ -99,6 +106,7 @@ maxLength: Maxlength
 maxWords?: Maxwords
 minLength: Minlength
 requireCoAnagram?: Requirecoanagram
+requireValidWordFinal?: Requirevalidwordfinal
 }
 /**
  * The exact master wordlist a derived set was cut from.
@@ -130,11 +138,8 @@ word: Word
  * English source labels, and a Tamil category name is player-facing COPY,
  * which lives in ``config/copy.json`` and never inside a dataset. Inventing
  * Tamil category strings here would be a dishonest field.
- * 
- * Field names are snake_case here, matching the contract named in the build
- * roadmap; the rest of the repo's persisted shapes are camelCase.
  */
 export interface GameWordHints {
-first_ezhuthu: FirstEzhuthu
+firstEzhuthu: Firstezhuthu
 length: Length
 }

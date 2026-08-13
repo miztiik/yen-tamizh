@@ -11,5 +11,17 @@ from __future__ import annotations
 
 from yen_tamizh_backend.ezhuthu.classify import EzhuthuKind, classify
 from yen_tamizh_backend.ezhuthu.segment import segment
+from yen_tamizh_backend.ezhuthu.word_shape import (
+    FINAL_MEI,
+    ends_like_a_word,
+    is_word_final,
+)
 
-__all__ = ["EzhuthuKind", "classify", "segment"]
+__all__ = [
+    "FINAL_MEI",
+    "EzhuthuKind",
+    "classify",
+    "ends_like_a_word",
+    "is_word_final",
+    "segment",
+]

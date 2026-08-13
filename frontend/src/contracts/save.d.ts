@@ -15,6 +15,7 @@ export type Version = string
 export type Why = string
 export type Daykey = string
 export type Lastplayed = string
+export type Laststreakday = (string | null)
 export type Seeninfiniteids = string[]
 export type Streak = number
 export type Version1 = string
@@ -26,6 +27,7 @@ export interface Save {
 changelog: Changelog
 dayKey: Daykey
 lastPlayed: Lastplayed
+lastStreakDay?: Laststreakday
 perMode: Permode
 seenInfiniteIds: Seeninfiniteids
 streak: Streak

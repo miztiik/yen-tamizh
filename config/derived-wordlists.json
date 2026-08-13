@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-13",
+  "version": "2026-08-13T20:08",
   "changelog": [
+    {
+      "version": "2026-08-13T20:08",
+      "change": "Turned on requireValidWordFinal for the anagram set.",
+      "why": "Row 13 content-quality pass - the scraped corpus pairs sandhi artifacts and transliterated loanwords with each other, and a served answer must be a word a Tamil speaker recognises (Player)."
+    },
     {
       "version": "2026-08-13",
       "change": "Initial derived-wordlist registry: the anagram set, cut from the ranked master at 3-6 ezhuthu, common/mid bands, co-anagram required.",
@@ -12,12 +17,13 @@
     {
       "gameId": "anagram",
       "out": "datasets/wordlists/derived/anagram.json",
-      "note": "3-6 ezhuthu keeps a scramble solvable on a phone in a 2-minute burst (2 tiles has one wrong arrangement, which is a coin flip and not a puzzle). common+mid are the ranks a Tamil speaker actually knows; the rare band is a dictionary lookup, not a guess. requireCoAnagram is the unscramble-tension rule: the tiles must rearrange into at least one other real master word.",
+      "note": "3-6 ezhuthu keeps a scramble solvable on a phone in a 2-minute burst (2 tiles has one wrong arrangement, which is a coin flip and not a puzzle). common+mid are the ranks a Tamil speaker actually knows; the rare band is a dictionary lookup, not a guess. requireCoAnagram is the unscramble-tension rule: the tiles must rearrange into at least one other real master word. requireValidWordFinal drops tokens that do not end the way a Tamil word ends - sandhi artifacts (atharkuk) and transliterated loanwords (ticket) - and applies to the co-anagram partner too, so the tension comes from a real second word rather than from a misspelling of the first.",
       "selection": {
         "minLength": 3,
         "maxLength": 6,
         "bands": ["common", "mid"],
         "requireCoAnagram": true,
+        "requireValidWordFinal": true,
         "maxWords": null
       }
     }

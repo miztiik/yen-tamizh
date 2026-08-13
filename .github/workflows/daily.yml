@@ -1,21 +1,46 @@
 name: daily
 
-# Daily bank generation. STUB for now: the real generator (backend generate ->
-# frontend/public/ bank, then commit) lands in Row 13. This keeps the cron +
-# manual trigger + contents:write permission wired so Row 13 only has to fill in
-# the generate + commit steps. See docs/architecture/generator/pipeline.md.
+# Bake the daily puzzle bank and commit it. The generator is date-seeded and
+# idempotent, so a run that changes nothing commits nothing (Row 13). It bakes
+# the run date plus the look-ahead declared in config/daily-generator.json, which
+# is what keeps a player whose local calendar runs ahead of UTC in a real puzzle.
+#
+# A push to main from here triggers the existing deploy workflow; this one never
+# deploys anything itself.
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "5 0 * * *"
   workflow_dispatch:
 
+# Least privilege: this job writes the bank back to the branch and nothing else.
 permissions:
   contents: write
+
+concurrency:
+  group: daily-bank
+  cancel-in-progress: false
 
 jobs:
   generate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - name: bank generation (stub)
-        run: echo "Daily bank generator lands in Row 13 (backend generate -> frontend/public/)."
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: install the build-time producer
+        run: pip install -e .
+        working-directory: backend
+      - name: bake today's bank
+        run: python -m yen_tamizh_backend.scripts.generate_today
+      - name: commit the bank if it changed
+        run: |
+          if [ -z "$(git status --porcelain -- frontend/public/bank)" ]; then
+            echo "bank unchanged - nothing to commit"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add frontend/public/bank
+          git commit -m "chore(bank): bake the daily puzzles"
+          git push

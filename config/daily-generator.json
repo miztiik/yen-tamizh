@@ -1,0 +1,35 @@
+{
+  "version": "2026-08-13",
+  "changelog": [
+    {
+      "version": "2026-08-13",
+      "change": "Initial daily-engine registry: the anagram generator, its difficulty bands, and its hint wording.",
+      "why": "Row 13 - the daily puzzle engine is a separate layer from the corpus, so its knobs are a separate file from the runtime app config."
+    }
+  ],
+  "bankDir": "frontend/public/bank",
+  "daysAhead": 6,
+  "games": [
+    {
+      "gameId": "anagram",
+      "packId": "ta-core",
+      "wordlist": "datasets/wordlists/derived/anagram.json",
+      "attempts": 3,
+      "timeLimitSec": 0,
+      "reveal": 0,
+      "difficulties": [
+        { "id": "easy", "minLength": 3, "maxLength": 3 },
+        { "id": "medium", "minLength": 4, "maxLength": 4 },
+        { "id": "hard", "minLength": 5, "maxLength": 6 }
+      ],
+      "hints": [
+        {
+          "kind": "first-ezhuthu",
+          "template": "முதல் எழுத்து: {firstEzhuthu}",
+          "cost": 2
+        },
+        { "kind": "length", "template": "{length} எழுத்துகள்", "cost": 1 }
+      ]
+    }
+  ]
+}

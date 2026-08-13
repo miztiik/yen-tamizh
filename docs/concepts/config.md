@@ -1,6 +1,6 @@
 # Config
 
-**Last Updated**: 2026-07-29
+**Last Updated**: 2026-08-13
 
 Where tunable behaviour and player-facing copy live, and the rule that separates a knob from an identifier. Config-driven with sane defaults is a project principle ([principles.md](principles.md), Holy Law #6): a fresh clone runs on the defaults, and no game-balance number is hardcoded in code.
 
@@ -31,9 +31,34 @@ Player-facing text lives in **`config/copy.json`**, separate from the knobs. Thi
 
 This is where the Tamil display names for the Games and Modes - working names today - get finalized after a native-speaker pass, without touching a single `gameId` or line of code.
 
+## Runtime config vs build-time config
+
+Not every config file is for the browser. Two of them are read only by the build-time producer and never ship to a player:
+
+- **`config/corpus-sources.json`** and **`config/derived-wordlists.json`** - the corpus and derived layers ([../how-to/add-a-corpus-source.md](../how-to/add-a-corpus-source.md), [../how-to/add-a-derived-wordlist.md](../how-to/add-a-derived-wordlist.md)).
+- **`config/daily-generator.json`** - the daily puzzle engine: attempts, time limit, head start, hint wording and cost, and the ezhuthu-length bands that map to a difficulty ([../how-to/generate-the-daily-bank.md](../how-to/generate-the-daily-bank.md)).
+
+`app-config` stays the SHARED surface: how many items a day holds, which Games fill it, how many hints are allowed, which Modes are live. The generator reads those same numbers, so the day it bakes and the session the shell frames can never disagree.
+
+## How config reaches the running game
+
+`app-config` and `copy.json` are IMPORTED into the bundle (`frontend/src/lib/config.ts`), not fetched. They are tiny, they are needed before the first paint, and importing them means one source of truth, no extra request, and nothing to 404 offline. Copying them into `frontend/public/` would have created a second copy free to drift; fetching them would have put a round trip on the critical path for about a kilobyte.
+
+A missing copy slug renders its own slug rather than an empty control, so a forgotten string is visible in the UI instead of silently blanking a button. A Game never reads config directly - it receives a read-only slice from the session runner ([ui-shell.md](ui-shell.md)).
+
 ## Design rationale
 
 Splitting `app-config` (knobs) from `config/copy.json` (text) keeps a translation or a difficulty re-tune from ever forcing a code change or an identifier rename: the enums are the stable spine, the JSON files are the movable surface. The rejected alternative - inlining labels next to the enums, or hardcoding defaults in code - couples display text to identifiers and reintroduces the magic numbers Holy Law #6 forbids. Authority: Fowler (contract shape) and the guardrails identifier discipline.
+
+Splitting the daily engine's knobs OUT of `app-config` follows the same logic one layer down: attempts, hint templates, and difficulty bands are generation decisions the browser can never act on, so shipping them in the bundle would be dead bytes and a muddled surface. Authority: Fowler + Carmack.
+
+## Rejected alternatives
+
+| Option | Why rejected | Authority |
+| --- | --- | --- |
+| Fetch `config/*.json` at runtime | A round trip on the critical path for about a kilobyte, plus a request that can fail offline, to load something that never changes between builds. | Carmack |
+| Copy `config/*.json` into `frontend/public/` at build time | Two copies of one file, free to drift, with nothing gating them. | Fowler |
+| Put the generator's knobs in `app-config` | Ships build-time-only knobs into the player's bundle and mixes the engine's surface with the runtime's. | Fowler |
 
 ## See also
 

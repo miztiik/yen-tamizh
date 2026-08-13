@@ -15,7 +15,13 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from yen_tamizh_backend.ezhuthu import classify, segment
+from yen_tamizh_backend.ezhuthu import (
+    FINAL_MEI,
+    classify,
+    ends_like_a_word,
+    is_word_final,
+    segment,
+)
 
 _GOLDEN = (
     Path(__file__).resolve().parents[2]
@@ -97,3 +103,41 @@ def test_classify_kinds() -> None:
     assert classify("1") == "other"
     assert classify(" ") == "other"
     assert classify("") == "other"
+
+
+# --------------------------------------------------------------------------
+# Word shape - which ezhuthu may END a Tamil word (Row 13's quality rule)
+# --------------------------------------------------------------------------
+
+
+def test_a_vowel_bearing_ezhuthu_always_ends_a_word() -> None:
+    assert is_word_final("\u0b85")  # a (uyir)
+    assert is_word_final("\u0b95")  # ka (uyirmei)
+    assert is_word_final("\u0b95\u0bbe")  # kaa
+
+
+def test_only_the_eight_mei_end_a_word() -> None:
+    for final in FINAL_MEI:
+        assert is_word_final(final), final
+    assert not is_word_final("\u0b95\u0bcd")  # k
+    assert not is_word_final("\u0ba4\u0bcd")  # th
+    assert not is_word_final("\u0baa\u0bcd")  # p
+    assert not is_word_final("\u0bb1\u0bcd")  # tr
+    assert not is_word_final("\u0bb8\u0bcd")  # Grantha sa (loanword tail)
+
+
+def test_ends_like_a_word_rejects_the_corpus_noise_it_was_written_for() -> None:
+    # atharku-k: the euphonic doubling of the NEXT word, scraped onto this one.
+    atharkuk = "\u0b85\u0ba4\u0bb1\u0bcd\u0b95\u0bc1\u0b95\u0bcd"
+    # atharkku: the same ezhuthu in the wrong order - the misspelling that made
+    # the pair look like a legitimate anagram (Row 13 Player finding).
+    atharkku = "\u0b85\u0ba4\u0bb1\u0bcd\u0b95\u0bcd\u0b95\u0bc1"
+    assert not ends_like_a_word(segment(atharkuk))
+    assert ends_like_a_word(segment(atharkku))  # ends in a vowel, kept by shape
+    # vaasal (doorway) and maram (tree) are real words and must survive.
+    assert ends_like_a_word(segment("\u0bb5\u0bbe\u0b9a\u0bb2\u0bcd"))
+    assert ends_like_a_word(segment("\u0bae\u0bb0\u0bae\u0bcd"))
+
+
+def test_an_empty_segmentation_is_not_a_word() -> None:
+    assert not ends_like_a_word([])

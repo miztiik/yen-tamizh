@@ -18,6 +18,7 @@ import saveSchema from "../contracts/save.schema.json";
 import type { Save } from "../contracts/save";
 
 import { dayKeyOf, type DayContext } from "../session/dayKey";
+import { previousDayIso } from "../lib/dates";
 import type { SessionState } from "../session/types";
 
 /** The minimal key-value surface StorageService needs; `localStorage` fits. */
@@ -30,14 +31,26 @@ export interface KeyValueStore {
 const KEY_PREFIX = "yt:";
 const SAVE_KEY = `${KEY_PREFIX}save`;
 
+/** What one streak tick did: the run before, after, and whether it moved. */
+export interface StreakTick {
+  before: number;
+  after: number;
+  ticked: boolean;
+}
+
 // The save-contract version this frontend writes. Mirrors the newest entry of
 // schemas/save.schema.json's changelog; bump both together when the save shape
 // changes (and add the read-side migration). ajv validates the date pattern +
 // changelog shape on every write, so a malformed stamp is caught immediately.
-const SAVE_VERSION = "2026-08-13";
+const SAVE_VERSION = "2026-08-13T20:08";
 const SAVE_CHANGELOG: Save["changelog"] = [
   {
     version: SAVE_VERSION,
+    change: "Added the optional lastStreakDay marker.",
+    why: "Row 13 - the streak ticks once per COMPLETED day, so it needs a marker of its own; lastPlayed moves on every write and cannot answer that question.",
+  },
+  {
+    version: "2026-08-13",
     change: "Initial browser-written save.",
     why: "Row 11 StorageService writes the save surface.",
   },
@@ -109,6 +122,34 @@ export class StorageService {
       },
     };
     this.writeSave(next);
+  }
+
+  /**
+   * Tick the streak for a COMPLETED day - once, however many times the day is
+   * finished (Palm: one tick per day, never per item; re-opening a finished day
+   * must not inflate it). `lastStreakDay` is the marker that makes it
+   * idempotent: `lastPlayed` moves on every save and cannot answer "has this
+   * day already counted?".
+   *
+   * A gap breaks the run: finishing after skipping a day starts again at 1,
+   * which is the honest reading of a streak.
+   */
+  tickStreak(ctx: DayContext): StreakTick {
+    const save = this.loadSave() ?? this.freshSave(ctx);
+    const before = save.streak;
+    if (save.lastStreakDay === ctx.date) return { before, after: before, ticked: false };
+
+    const after = save.lastStreakDay === previousDayIso(ctx.date) ? before + 1 : 1;
+    this.writeSave({
+      ...save,
+      version: SAVE_VERSION,
+      changelog: SAVE_CHANGELOG,
+      dayKey: dayKeyOf(ctx),
+      streak: after,
+      lastStreakDay: ctx.date,
+      lastPlayed: ctx.date,
+    });
+    return { before, after, ticked: true };
   }
 
   private freshSave(ctx: DayContext): Save {

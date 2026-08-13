@@ -53,6 +53,7 @@ def _report(wordlist: GameWordlist, rel_out: str) -> str:
     return (
         f"{wordlist.gameId}: rowsKept={counters.rowsKept} "
         f"outsideLength={counters.outsideLength} outsideBand={counters.outsideBand} "
+        f"invalidWordFinal={counters.invalidWordFinal} "
         f"withoutCoAnagram={counters.withoutCoAnagram} capped={counters.capped} "
         f"lengths[{spread}] -> {rel_out}"
     )

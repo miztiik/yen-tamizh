@@ -45,6 +45,12 @@ from yen_tamizh_backend.contracts.corpus_sources import (
     SourceId,
     SourceKind,
 )
+from yen_tamizh_backend.contracts.daily_generator import (
+    DailyGenerator,
+    DifficultyBand,
+    GameGeneration,
+    HintSpec,
+)
 from yen_tamizh_backend.contracts.derived_wordlists import (
     DerivedSelection,
     DerivedSet,
@@ -73,14 +79,16 @@ from yen_tamizh_backend.contracts.save import Save, compute_day_key
 # Explicit registry (not auto-discovery) so the exporter's output set is
 # deterministic and reviewed. Export sorts by name; order here is not
 # load-bearing. Row 7 adds the six core surfaces plus copy alongside the Row 5
-# demonstrator and the Row 10 glyph manifest; Row 8 adds the corpus layer, and
-# Row 9 the derived layer between the corpus and the puzzle engine.
+# demonstrator and the Row 10 glyph manifest; Row 8 adds the corpus layer, Row 9
+# the derived layer between the corpus and the puzzle engine, and Row 13 the
+# daily engine's own registry.
 REGISTRY: tuple[type[SchemaModel], ...] = (
     AnagramPuzzle,
     AppConfig,
     BankIndex,
     Copy,
     CorpusSources,
+    DailyGenerator,
     DerivedWordlists,
     EventEnvelope,
     Example,
@@ -105,15 +113,18 @@ __all__ = [
     "CorpusSource",
     "CorpusSources",
     "DailyConfig",
+    "DailyGenerator",
     "DerivedCounters",
     "DerivedSelection",
     "DerivedSet",
     "DerivedSource",
     "DerivedWordlists",
+    "DifficultyBand",
     "DifficultyId",
     "EventEnvelope",
     "Example",
     "FreqBand",
+    "GameGeneration",
     "GameId",
     "GameWord",
     "GameWordHints",
@@ -121,6 +132,7 @@ __all__ = [
     "GlyphManifest",
     "GlyphShape",
     "Hint",
+    "HintSpec",
     "HintsConfig",
     "InfiniteConfig",
     "IngestCounters",
