@@ -52,8 +52,8 @@ Envelope `{ ts, src, v, session, name, level, ctx, data }`. Game: `puzzle.starte
 | 4 | PWA + offline shell (service worker, base-path, install) | 4 | 3 | B | DONE | - | #4 | worker |
 | 5 | Evolutionary contract pipeline (Pydantic -> JSON Schema -> TS/ajv) | 5 | 3 | B | DONE | - | #5 | worker |
 | 6 | Ezhuthu library (Python + TS twins) | 4 | 3 | B | DONE | - | #3 | worker |
-| 7 | Core schemas (app-config/event-envelope/save/puzzle-file/bank-index/anagram) | 5 | 5,6 | C | READY (ESCALATE) | - | - | - |
-| 8 | Corpus ingest + master wordlist | 4 | 5,6 | C | READY (ESCALATE license) | - | - | - |
+| 7 | Core schemas (app-config/event-envelope/save/puzzle-file/bank-index/anagram) | 5 | 5,6 | C | IN-FLIGHT | ../yen-tamizh-row7 | - | worker |
+| 8 | Corpus ingest + master wordlist | 4 | 5,6 | C | READY (approved: OLD + free source) | - | - | - |
 | 9 | Derived-wordlist framework + anagram set | 3 | 8 | - | PENDING | - | - | - |
 | 10 | Design system (tokens + animation + glyph bake + manifest) | 3 | 5 | - | READY | - | - | - |
 | 11 | Shell + runtime (SessionShell/Runner/registry/storage/bus) | 4 | 7,10 | - | PENDING | - | - | - |
