@@ -58,8 +58,8 @@ Envelope `{ ts, src, v, session, name, level, ctx, data }`. Game: `puzzle.starte
 | 10 | Design system (tokens + animation + glyph bake + manifest) | 3 | 5 | - | DONE | - | #6 | worker |
 | 11 | Shell + runtime (SessionShell/Runner/registry/storage/bus) | 4 | 7,10 | - | DONE | - | #8 | worker |
 | 12 | AnagramGame | 3 | 11 | - | DONE | - | #9 | worker |
-| 13 | DailyMode + daily bank generator + Home | 4 | 9,12 | - | READY | - | - | - |
-| 14 | Daily playlist + hints (changelog evolution) | 3 | 13 | - | PENDING | - | - | - |
+| 13 | DailyMode + daily bank generator + Home | 4 | 9,12 | - | DONE | - | #12 | worker |
+| 14 | Daily playlist + hints (changelog evolution) | 3 | 13 | - | READY | - | - | - |
 | 15 | Ladder graph builder + word-ladder schema | 5 | 7,8 | - | PENDING | - | - | - |
 | 16 | WordLadderGame + share-result card | 3 | 11,15 | - | PENDING | - | - | - |
 | 17 | JourneyMode + winding-path home | 4 | 10,16 | - | PENDING | - | - | - |
@@ -537,7 +537,7 @@ Dependency spine: `1(done) -> {2,3} -> {4,5,6} -> {7,8} -> {9,10} -> 11 -> 12 ->
 
 ## 3. Execution stamp
 
-`Execute per docs/how-to/execute-a-plan.md: orchestrator dispatches one worktree-isolated worker subagent per row; workers consult personas (Fowler/Carmack/Jony/Palm/Player/Explore) on ambiguity; AUTO-merge on green gates; parallel N = 2; honor the ESCALATE triggers in section 0. EXECUTING (user-authorized 2026-08-13). Rows 1-7 + 10 + 11 + 12 DONE (PRs #1-#9, all green on CI). Foundation + runtime shell + the FIRST PLAYABLE game (Anagram) are in. Frontier (all AUTO, next ESCALATE is Row 15): Row 8 (corpus ingest - APPROVED: OLD + one free Tamil source) -> Row 9 (derived sets) -> Row 13 (DailyMode + bank + Home) completes the first daily. Serialize npm-touching rows (proven terminal contention).`
+`Execute per docs/how-to/execute-a-plan.md: orchestrator dispatches one worktree-isolated worker subagent per row; workers consult personas (Fowler/Carmack/Jony/Palm/Player/Explore) on ambiguity; AUTO-merge on green gates; parallel N = 2; honor the ESCALATE triggers in section 0. EXECUTING (user-authorized 2026-08-13). Rows 1-13 DONE (PRs #1-#12, all green on CI). MILESTONE: the game is PLAYABLE end-to-end - Home -> Daily -> three baked ezhuthu anagram puzzles -> summary -> streak, offline-capable, deployed to GitHub Pages. Frontier (all AUTO, next ESCALATE is Row 15): Row 14 (daily playlist + hints + the winCelebrationMs config home). Known content constraint: the anagram derived set is 163 words (~54 days at 3/day) because true Tamil co-anagrams are rare (247 ezhuthu vs 26 Latin letters); it grows with the corpus, and Rows 18-21 add Games that do not need co-anagram tension.`
 
 ## See also
 
