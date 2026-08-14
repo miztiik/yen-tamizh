@@ -208,8 +208,8 @@ Phase-A rows MUST NOT assert anything about the real corpus - their Oracles run 
 
 | # | Row title | Phase | Depends-on | Parallel-group | Status | Worktree | PR | Subagent |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Delete `requireCoAnagram`; retain the multiset index; add the re-bake guard | A | - | A | PENDING | - | - | - |
-| 2 | Move `RelPath` / `SourceId` to `contracts/common.py` | A | 1 | - | PENDING | - | - | - |
+| 1 | Delete `requireCoAnagram`; retain the multiset index; add the re-bake guard | A | - | A | DONE #13 | `../yen-tamizh-row1` (removed) | #13 | worker |
+| 2 | Move `RelPath` / `SourceId` to `contracts/common.py` | A | 1 | - | IN-FLIGHT | `../yen-tamizh-row2` | - | worker |
 | 3 | `lexicon` + `lexicon-sources` contracts | A | 2, 4 | - | PENDING | - | - | - |
 | 4 | Source acquisition + committed fixtures | B | - | A | PENDING | - | - | - |
 | 5 | `wordsmith/extract.py` + `config/lexicon-sources.json` | A | 3, 4 | - | PENDING | - | - | - |
