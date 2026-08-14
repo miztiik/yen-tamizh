@@ -8,16 +8,16 @@ same shapes the committed artifact does.
 
 Five things are proven:
 
-1. **Selection** - length, band, and the co-anagram rule each reject for their
+1. **Selection** - length, band, and the word-final rule each reject for their
    own reason, and the counters reconcile against the master with no silent
    drops.
 2. **Determinism** - ``rebuild`` writes byte-identical output from identical
    input, and the COMMITTED ``anagram.json`` is exactly what a fresh rebuild from
    the committed master produces. That second assertion is the hand-edit gate: a
    derived set is a build artifact, so any hand edit fails here.
-3. **The Oracle** - over the REAL committed artifact: every row's ezhuthu
-   multiset is shared with at least one OTHER master word, so an unscramble is
-   never trivially the only arrangement.
+3. **The Oracle** - over the REAL committed artifact: every row's
+   ``anagramFanOut`` equals the number of SERVED rows sharing its ezhuthu
+   multiset, so a word whose tiles spell nothing else carries 1, never 0.
 4. **Coverage + schema** - the committed set is non-empty at every target ezhuthu
    length and validates row-by-row against the contract.
 5. **Rejection** - a malformed row, an incoherent selection, and a colliding
@@ -35,7 +35,7 @@ import pytest
 from pydantic import ValidationError
 
 from yen_tamizh_backend.contracts import DerivedWordlists, GameWordlist, MasterWordlist
-from yen_tamizh_backend.contracts.derived_wordlists import DerivedSelection
+from yen_tamizh_backend.contracts.derived_wordlists import DerivedSelection, DerivedSet
 from yen_tamizh_backend.contracts.game_wordlist import (
     DerivedCounters,
     GameWord,
@@ -51,13 +51,13 @@ _MASTER = _REPO_ROOT / "datasets" / "wordlists" / "master" / "words_ranked.json"
 _REGISTRY = _REPO_ROOT / "config" / "derived-wordlists.json"
 _ANAGRAM = _REPO_ROOT / "datasets" / "wordlists" / "derived" / "anagram.json"
 
-# A real co-anagram pair: vaasal (doorway, rank 421) and savaal (challenge, rank
+# A real anagram pair: vaasal (doorway, rank 421) and savaal (challenge, rank
 # 3385) are the same three ezhuthu in a different order. Both common band.
 VAASAL = "\u0bb5\u0bbe\u0b9a\u0bb2\u0bcd"
 SAVAAL = "\u0b9a\u0bb5\u0bbe\u0bb2\u0bcd"
 
 # A real SOLITARY word: ithazh (petal, rank 1) has no anagram anywhere in the
-# master, so requireCoAnagram must reject it however common it is.
+# master, so it must be SERVED and must carry a fan-out of exactly 1.
 ITHAZH = "\u0b87\u0ba4\u0bb4\u0bcd"
 
 # A real 2-ezhuthu word (oru, rank 2) - inside the bands, outside the lengths.
@@ -118,7 +118,7 @@ def _master(rows: list[dict[str, Any]]) -> MasterWordlist:
 
 
 def _sample_master() -> MasterWordlist:
-    """A master holding one co-anagram pair, one solitary word, one short word."""
+    """A master holding one anagram pair, one solitary word, one short word."""
     return _master(
         [
             _master_word(VAASAL, 1, "common"),
@@ -134,7 +134,6 @@ def _spec(out: str, **selection: Any) -> dict[str, Any]:
         "minLength": 3,
         "maxLength": 6,
         "bands": ["common", "mid"],
-        "requireCoAnagram": True,
         "maxWords": None,
     }
     base.update(selection)
@@ -175,52 +174,62 @@ def test_group_by_multiset_puts_anagrams_together() -> None:
     assert [row.word for row in groups[derive.multiset_key(segment(ITHAZH))]] == [ITHAZH]
 
 
-def test_selection_rejects_by_length_band_and_co_anagram() -> None:
+def test_selection_rejects_by_length_and_band() -> None:
     master = _sample_master()
-    groups = derive.group_by_multiset(master.words)
-    selection = DerivedSelection(
-        minLength=3, maxLength=6, bands=["common", "mid"], requireCoAnagram=True
-    )
+    selection = DerivedSelection(minLength=3, maxLength=6, bands=["common", "mid"])
 
-    kept, counters = derive.select(master, selection, groups)
+    kept, counters = derive.select(master, selection)
 
-    # vaasal alone survives: savaal is out of band, ithazh has no anagram, oru
-    # is too short - one word rejected under each heading.
-    assert [row.word for row in kept] == [VAASAL]
+    # oru is too short and savaal is out of band; the solitary ithazh SURVIVES -
+    # a scramble with one arrangement is an ordinary puzzle, not a reject.
+    assert [row.word for row in kept] == [VAASAL, ITHAZH]
     assert counters.outsideLength == 1
     assert counters.outsideBand == 1
-    assert counters.withoutCoAnagram == 1
-    assert counters.rowsKept == 1
+    assert counters.rowsKept == 2
     assert counters.masterRows == 4
 
 
-def test_co_anagram_rule_looks_at_the_whole_master_not_the_shortlist() -> None:
-    """A rejected partner still supplies the tension - the language does, not the set."""
+def test_a_solitary_word_is_served_with_a_fan_out_of_one() -> None:
+    """The number the Oracle names: a word counts ITSELF, so 1 means unique."""
     master = _sample_master()
-    groups = derive.group_by_multiset(master.words)
-    kept, _ = derive.select(
-        master,
-        DerivedSelection(
-            minLength=3, maxLength=6, bands=["common"], requireCoAnagram=True
-        ),
-        groups,
-    )
-    # savaal is rare and never reaches the output, yet vaasal is still keepable.
-    assert [row.word for row in kept] == [VAASAL]
+    source = derive.describe_source(master, _MASTER, "datasets/x.json")
+    spec = DerivedSet.model_validate(_spec("datasets/wordlists/derived/anagram.json"))
+
+    wordlist = derive.derive(master, source, spec)
+
+    fan_out = {row.word: row.anagramFanOut for row in wordlist.words}
+    assert fan_out == {VAASAL: 1, ITHAZH: 1}
 
 
-def test_selection_without_the_co_anagram_rule_keeps_solitary_words() -> None:
+def test_fan_out_counts_the_served_rows_that_share_a_multiset() -> None:
+    """savaal is in band here, so both halves of the pair are served and see 2."""
     master = _sample_master()
-    groups = derive.group_by_multiset(master.words)
-    kept, counters = derive.select(
-        master,
-        DerivedSelection(
-            minLength=3, maxLength=6, bands=["common"], requireCoAnagram=False
-        ),
-        groups,
+    source = derive.describe_source(master, _MASTER, "datasets/x.json")
+    spec = DerivedSet.model_validate(
+        _spec("datasets/wordlists/derived/anagram.json", bands=["common", "rare"])
     )
-    assert sorted(row.word for row in kept) == sorted([VAASAL, ITHAZH])
-    assert counters.withoutCoAnagram == 0
+
+    wordlist = derive.derive(master, source, spec)
+
+    fan_out = {row.word: row.anagramFanOut for row in wordlist.words}
+    assert fan_out == {VAASAL: 2, ITHAZH: 1, SAVAAL: 2}
+
+
+def test_fan_out_ignores_master_words_the_selection_dropped() -> None:
+    """A partner nobody is served cannot be the answer a Game offers back."""
+    master = _sample_master()
+    source = derive.describe_source(master, _MASTER, "datasets/x.json")
+    spec = DerivedSet.model_validate(
+        _spec("datasets/wordlists/derived/anagram.json", bands=["common"])
+    )
+
+    wordlist = derive.derive(master, source, spec)
+
+    # savaal is rare and never reaches the output, so vaasal is alone in the set.
+    assert {row.word: row.anagramFanOut for row in wordlist.words} == {
+        VAASAL: 1,
+        ITHAZH: 1,
+    }
 
 
 def test_cap_trims_the_lowest_ranked_and_reports_what_it_cut() -> None:
@@ -230,21 +239,36 @@ def test_cap_trims_the_lowest_ranked_and_reports_what_it_cut() -> None:
             _master_word(SAVAAL, 2, "common"),
         ]
     )
-    groups = derive.group_by_multiset(master.words)
     kept, counters = derive.select(
         master,
         DerivedSelection(
             minLength=3,
             maxLength=6,
             bands=["common"],
-            requireCoAnagram=True,
             maxWords=1,
         ),
-        groups,
     )
     assert [row.word for row in kept] == [VAASAL]
     assert counters.capped == 1
     assert counters.rowsKept == 1
+
+
+def test_the_cap_is_applied_before_fan_out_is_counted() -> None:
+    """Fan-out counts SERVED rows, and a capped row is not served."""
+    master = _master(
+        [
+            _master_word(VAASAL, 1, "common"),
+            _master_word(SAVAAL, 2, "common"),
+        ]
+    )
+    source = derive.describe_source(master, _MASTER, "datasets/x.json")
+    spec = DerivedSet.model_validate(
+        _spec("datasets/wordlists/derived/anagram.json", bands=["common"], maxWords=1)
+    )
+
+    wordlist = derive.derive(master, source, spec)
+
+    assert [(row.word, row.anagramFanOut) for row in wordlist.words] == [(VAASAL, 1)]
 
 
 def test_rows_stay_in_master_rank_order() -> None:
@@ -254,11 +278,9 @@ def test_rows_stay_in_master_rank_order() -> None:
             _master_word(VAASAL, 2, "common"),
         ]
     )
-    groups = derive.group_by_multiset(master.words)
     kept, _ = derive.select(
         master,
         DerivedSelection(minLength=3, maxLength=6, bands=["common"]),
-        groups,
     )
     assert [row.word for row in kept] == [SAVAAL, VAASAL]
 
@@ -298,7 +320,7 @@ def test_rebuild_writes_every_registered_set(tmp_path: Path) -> None:
         [
             _spec("datasets/wordlists/derived/anagram.json"),
             {
-                **_spec("datasets/wordlists/derived/other.json", requireCoAnagram=False),
+                **_spec("datasets/wordlists/derived/other.json", maxLength=5),
                 "gameId": "wordle",
             },
         ],
@@ -333,9 +355,8 @@ def test_committed_anagram_set_is_exactly_what_a_rebuild_produces(
     registry = derive.load_registry(_REGISTRY)
     spec = next(entry for entry in registry.sets if entry.gameId == "anagram")
     source = derive.describe_source(committed_master, _MASTER, registry.masterPath)
-    groups = derive.group_by_multiset(committed_master.words)
 
-    rebuilt = derive.render(derive.derive(committed_master, source, spec, groups))
+    rebuilt = derive.render(derive.derive(committed_master, source, spec))
 
     assert rebuilt == _ANAGRAM.read_text(encoding="utf-8")
 
@@ -357,25 +378,35 @@ def test_master_render_survives_the_shared_renderer(
 
 
 # --------------------------------------------------------------------------
-# 3. The Oracle: every committed row has a co-anagram in the master
+# 3. The Oracle: every committed row records how many served rows share its tiles
 # --------------------------------------------------------------------------
 
 
-def test_every_committed_row_can_be_rearranged_into_another_real_word(
-    committed_master: MasterWordlist, committed_anagram: GameWordlist
+def test_every_committed_row_records_its_served_fan_out(
+    committed_anagram: GameWordlist,
 ) -> None:
-    groups = derive.group_by_multiset(committed_master.words)
-
-    solitary: list[str] = []
+    served: dict[tuple[str, ...], list[str]] = {}
     for row in committed_anagram.words:
-        members = groups[derive.multiset_key(row.ezhuthu)]
-        if len(members) < 2:
-            solitary.append(row.word)
-        else:
-            assert row.word in [member.word for member in members]
+        served.setdefault(derive.multiset_key(row.ezhuthu), []).append(row.word)
 
-    assert solitary == [], f"{len(solitary)} rows have no co-anagram"
+    for row in committed_anagram.words:
+        sharing = served[derive.multiset_key(row.ezhuthu)]
+        assert row.anagramFanOut == len(sharing), row.word
+        assert row.word in sharing
+
+    # A word counts ITSELF, so the floor is 1 - a solitary word is served, not
+    # rejected, and no row may claim 0.
+    assert min(row.anagramFanOut for row in committed_anagram.words) == 1
     assert committed_anagram.words, "the anagram set is empty"
+
+
+def test_the_committed_set_serves_both_solitary_and_shared_words(
+    committed_anagram: GameWordlist,
+) -> None:
+    """Both populations exist, so a Game can rely on the signal being real."""
+    fan_out = [row.anagramFanOut for row in committed_anagram.words]
+    assert any(count == 1 for count in fan_out)
+    assert any(count > 1 for count in fan_out)
 
 
 def test_committed_counters_account_for_every_master_row(
@@ -386,7 +417,6 @@ def test_committed_counters_account_for_every_master_row(
         counters.outsideLength
         + counters.outsideBand
         + counters.invalidWordFinal
-        + counters.withoutCoAnagram
         + counters.capped
         + counters.rowsKept
     )
@@ -451,7 +481,22 @@ def test_registered_output_paths_are_relative_and_posix() -> None:
 
 def test_a_row_whose_ezhuthu_do_not_rejoin_is_rejected() -> None:
     with pytest.raises(ValidationError, match="does not rejoin"):
-        GameWord(word=VAASAL, ezhuthu=["\u0b95"], freqBand="common")
+        GameWord(
+            word=VAASAL, ezhuthu=["\u0b95"], freqBand="common", anagramFanOut=1
+        )
+
+
+def test_a_row_claiming_a_fan_out_below_one_is_rejected() -> None:
+    """A served row always shares its tiles with at least itself."""
+    from yen_tamizh_backend.ezhuthu import segment
+
+    with pytest.raises(ValidationError):
+        GameWord(
+            word=VAASAL,
+            ezhuthu=segment(VAASAL),
+            freqBand="common",
+            anagramFanOut=0,
+        )
 
 
 def test_a_row_whose_hints_disagree_with_its_ezhuthu_is_rejected() -> None:
@@ -463,6 +508,7 @@ def test_a_row_whose_hints_disagree_with_its_ezhuthu_is_rejected() -> None:
             word=VAASAL,
             ezhuthu=ezhuthu,
             freqBand="common",
+            anagramFanOut=1,
             hints=GameWordHints(firstEzhuthu=ezhuthu[1], length=len(ezhuthu)),
         )
     with pytest.raises(ValidationError, match="hints.length"):
@@ -470,6 +516,7 @@ def test_a_row_whose_hints_disagree_with_its_ezhuthu_is_rejected() -> None:
             word=VAASAL,
             ezhuthu=ezhuthu,
             freqBand="common",
+            anagramFanOut=1,
             hints=GameWordHints(firstEzhuthu=ezhuthu[0], length=len(ezhuthu) + 1),
         )
 
@@ -483,6 +530,7 @@ def test_an_unknown_row_field_is_rejected() -> None:
                 "word": VAASAL,
                 "ezhuthu": segment(VAASAL),
                 "freqBand": "common",
+                "anagramFanOut": 1,
                 "category_ta": "\u0bae\u0bb0\u0bae\u0bcd",
             }
         )
@@ -494,7 +542,6 @@ def test_counters_that_do_not_reconcile_are_rejected() -> None:
             masterRows=10,
             outsideLength=1,
             outsideBand=1,
-            withoutCoAnagram=1,
             capped=0,
             rowsKept=1,
         )
@@ -522,13 +569,11 @@ def test_a_wordlist_whose_count_disagrees_with_its_rows_is_rejected() -> None:
                     "minLength": 3,
                     "maxLength": 6,
                     "bands": ["common"],
-                    "requireCoAnagram": True,
                 },
                 "counters": {
                     "masterRows": 2,
                     "outsideLength": 0,
                     "outsideBand": 0,
-                    "withoutCoAnagram": 0,
                     "capped": 0,
                     "rowsKept": 2,
                 },
@@ -537,6 +582,50 @@ def test_a_wordlist_whose_count_disagrees_with_its_rows_is_rejected() -> None:
                         "word": VAASAL,
                         "ezhuthu": segment(VAASAL),
                         "freqBand": "common",
+                        "anagramFanOut": 1,
+                    }
+                ],
+            }
+        )
+
+
+def test_a_wordlist_whose_fan_out_disagrees_with_its_rows_is_rejected() -> None:
+    """The signal is recomputed on read, so a hand-edited count cannot survive."""
+    from yen_tamizh_backend.ezhuthu import segment
+
+    with pytest.raises(ValidationError, match="anagramFanOut"):
+        GameWordlist.model_validate(
+            {
+                "version": "2026-08-13",
+                "changelog": [
+                    {"version": "2026-08-13", "change": "test", "why": "test"}
+                ],
+                "gameId": "anagram",
+                "source": {
+                    "path": "datasets/wordlists/master/words_ranked.json",
+                    "version": "2026-08-13",
+                    "generatedAt": "2026-08-13T00:00:00Z",
+                    "sha256": _SHA,
+                    "rows": 1,
+                },
+                "selection": {
+                    "minLength": 3,
+                    "maxLength": 6,
+                    "bands": ["common"],
+                },
+                "counters": {
+                    "masterRows": 1,
+                    "outsideLength": 0,
+                    "outsideBand": 0,
+                    "capped": 0,
+                    "rowsKept": 1,
+                },
+                "words": [
+                    {
+                        "word": VAASAL,
+                        "ezhuthu": segment(VAASAL),
+                        "freqBand": "common",
+                        "anagramFanOut": 2,
                     }
                 ],
             }

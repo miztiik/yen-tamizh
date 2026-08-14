@@ -13,7 +13,7 @@ the daily puzzle engine (Row 13) is a separate process that reads these sets::
 Adding a Game's set is a DATA change (see docs/how-to/add-a-derived-wordlist.md):
 append an entry to ``config/derived-wordlists.json`` and re-run
 ``python -m yen_tamizh_backend.scripts.rebuild_wordlists``. The selection knobs -
-ezhuthu length range, frequency bands, the co-anagram rule, the cap - are config
+ezhuthu length range, frequency bands, the word-final rule, the cap - are config
 because they are tunable game-balance numbers (Holy Law #6); this module is the
 mechanism that interprets them. Only a Game needing a predicate the knobs cannot
 express costs code, which is the same line the corpus layer draws at an unseen
@@ -47,10 +47,24 @@ from yen_tamizh_backend.contracts.master_wordlist import MasterWord, MasterWordl
 from yen_tamizh_backend.corpus.artifact import render_document, sha256_of
 from yen_tamizh_backend.ezhuthu import ends_like_a_word
 
-_SCHEMA_VERSION = "2026-08-13T20:08"
+_SCHEMA_VERSION = "2026-08-14"
 _CHANGELOG = [
     ChangelogEntry(
         version=_SCHEMA_VERSION,
+        change=(
+            "Removed the counters.withoutCoAnagram bucket along with the "
+            "requireCoAnagram selection knob; added anagramFanOut to every row."
+        ),
+        why=(
+            "Row 1 of the lexicon pipeline - demanding a second arrangement cut "
+            "the served set 106-fold and selected for bound stems, because "
+            "fragments are what collide with real words. The multiset index was "
+            "measuring something worth keeping, so it now records fan-out on "
+            "the row instead of deciding admission."
+        ),
+    ),
+    ChangelogEntry(
+        version="2026-08-13T20:08",
         change=(
             "Renamed hints.first_ezhuthu to hints.firstEzhuthu; added the "
             "counters.invalidWordFinal rejection bucket."
@@ -80,15 +94,11 @@ def multiset_key(ezhuthu: Sequence[str]) -> MultisetKey:
 
 
 def group_by_multiset(words: Iterable[MasterWord]) -> dict[MultisetKey, list[MasterWord]]:
-    """Index every master word by its ezhuthu multiset.
+    """Index words by their ezhuthu multiset - the rows one scramble can spell.
 
-    Built once per run over the whole master, not per set, because a candidate's
-    co-anagram may be any master word - including one its own Game's selection
-    rejects. Tension comes from the language, not from the shortlist.
-
-    Whole rows are indexed, not just the words, so a selection can ask the
-    partner a question too - ``requireValidWordFinal`` needs the partner to be a
-    plausible word, not merely a token sharing the ezhuthu.
+    Built over the SERVED rows of one set, because that is the population a
+    Game can say anything true about: telling a player their arrangement is
+    another word only helps when the set actually serves that word.
     """
     groups: dict[MultisetKey, list[MasterWord]] = defaultdict(list)
     for row in words:
@@ -99,7 +109,6 @@ def group_by_multiset(words: Iterable[MasterWord]) -> dict[MultisetKey, list[Mas
 def select(
     master: MasterWordlist,
     selection: DerivedSelection,
-    groups: dict[MultisetKey, list[MasterWord]],
 ) -> tuple[list[MasterWord], DerivedCounters]:
     """Apply one Game's selection to the master; return the rows and the ledger.
 
@@ -112,7 +121,7 @@ def select(
     drop words.
     """
     bands = frozenset(selection.bands)
-    outside_length = outside_band = invalid_word_final = without_co_anagram = 0
+    outside_length = outside_band = invalid_word_final = 0
     kept: list[MasterWord] = []
     for row in master.words:
         if not selection.minLength <= row.length <= selection.maxLength:
@@ -123,9 +132,6 @@ def select(
             continue
         if selection.requireValidWordFinal and not ends_like_a_word(row.ezhuthu):
             invalid_word_final += 1
-            continue
-        if selection.requireCoAnagram and not _has_co_anagram(row, selection, groups):
-            without_co_anagram += 1
             continue
         kept.append(row)
 
@@ -139,42 +145,22 @@ def select(
         outsideLength=outside_length,
         outsideBand=outside_band,
         invalidWordFinal=invalid_word_final,
-        withoutCoAnagram=without_co_anagram,
         capped=capped,
         rowsKept=len(kept),
     )
     return kept, counters
 
 
-def _has_co_anagram(
-    row: MasterWord,
-    selection: DerivedSelection,
-    groups: dict[MultisetKey, list[MasterWord]],
-) -> bool:
-    """Whether another master word shares this row's ezhuthu multiset.
-
-    When the set demands real words, the PARTNER must be one as well: a scraped
-    corpus pairs an inflected form with its own misspelling, which satisfies the
-    co-anagram rule on a technicality while giving the player no real second
-    reading. Requiring both ends the pair honestly.
-    """
-    for partner in groups[multiset_key(row.ezhuthu)]:
-        if partner.word == row.word:
-            continue
-        if selection.requireValidWordFinal and not ends_like_a_word(partner.ezhuthu):
-            continue
-        return True
-    return False
-
-
 def derive(
     master: MasterWordlist,
     source: DerivedSource,
     spec: DerivedSet,
-    groups: dict[MultisetKey, list[MasterWord]],
 ) -> GameWordlist:
     """Cut one Game's wordlist out of the master."""
-    kept, counters = select(master, spec.selection, groups)
+    kept, counters = select(master, spec.selection)
+    # Indexed AFTER the cap, so the recorded fan-out counts rows this set really
+    # serves rather than rows the cap threw away.
+    fan_out = {key: len(rows) for key, rows in group_by_multiset(kept).items()}
     return GameWordlist(
         version=_SCHEMA_VERSION,
         changelog=_CHANGELOG,
@@ -187,6 +173,7 @@ def derive(
                 word=row.word,
                 ezhuthu=row.ezhuthu,
                 freqBand=row.freqBand,
+                anagramFanOut=fan_out[multiset_key(row.ezhuthu)],
                 hints=GameWordHints(
                     firstEzhuthu=row.ezhuthu[0], length=len(row.ezhuthu)
                 ),

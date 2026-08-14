@@ -1,6 +1,6 @@
 # How to add a derived wordlist
 
-**Last Updated**: 2026-08-13
+**Last Updated**: 2026-08-14
 
 A derived wordlist is one Game's slice of the ranked master corpus - the words
 its generator is allowed to build puzzles from. Adding one is a **data change
@@ -34,7 +34,6 @@ so a typo fails the run instead of being silently ignored.
     "minLength": 5,
     "maxLength": 5,
     "bands": ["common", "mid"],
-    "requireCoAnagram": false,
     "requireValidWordFinal": true,
     "maxWords": 2000
   }
@@ -54,12 +53,13 @@ python -m yen_tamizh_backend.scripts.rebuild_wordlists
 ```
 
 ONE command regenerates ALL derived sets, so none is left cut from a stale
-master. It prints what each set kept, why the rest went, and its length spread:
+master. It prints what each set kept, why the rest went, how many of its rows
+share their tiles with another served row, and its length spread:
 
 ```
-anagram: rowsKept=163 outsideLength=13386 outsideBand=17329
-  invalidWordFinal=1972 withoutCoAnagram=17150 capped=0
-  lengths[3:104 4:41 5:12 6:6]
+anagram: rowsKept=17313 outsideLength=13386 outsideBand=17329
+  invalidWordFinal=1972 capped=0 sharedFanOut=93
+  lengths[3:3305 4:5286 5:5044 6:3678]
   -> datasets/wordlists/derived/anagram.json
 ```
 
@@ -75,26 +75,36 @@ which words a player actually knows are tunable game-balance numbers
 | --- | --- |
 | `minLength` / `maxLength` | Bounds on a word's **ezhuthu** count, not its code points. |
 | `bands` | Which `freqBand` values to keep. `common` + `mid` are the ranks a Tamil speaker knows; `rare` is the tail of the ranked list - a dictionary lookup rather than a guess. |
-| `requireCoAnagram` | Keep only words whose ezhuthu multiset is shared with at least one OTHER master word. |
-| `requireValidWordFinal` | Keep only words that END the way a Tamil word ends. Also applied to the co-anagram partner. |
+| `requireValidWordFinal` | Keep only words that END the way a Tamil word ends. |
 | `maxWords` | Cap on the committed artifact; `null` means uncapped. A derived set lives in git, so an uncapped one is an unbounded commit. |
 
 Rows are emitted in master rank order (most common first), which is a total
 order because `freqRank` is unique - so a Game wanting an easier slice can take
 it off the front, and the bytes are reproducible without a tie-break.
 
-## The co-anagram rule
+## The anagram fan-out signal
 
-`requireCoAnagram` is what gives an unscramble real tension: the tiles must
-rearrange into at least one other real word, so the answer is never trivially
-the only arrangement the letters allow. The check runs against the WHOLE master,
-not against the set being built - a partner the Game's own selection rejects
-still proves the ambiguity, because the tension comes from the language.
+Every emitted row carries `anagramFanOut`: how many rows of THIS set share its
+ezhuthu multiset, counting itself. A word whose tiles spell nothing else in the
+set carries `1`, never `0`.
 
-It is a strict rule and it costs a lot of words. Tamil has 247 ezhuthu against
-English's 26 letters, so multiset collisions are rare by construction: only
-**558 of the 50,000** master words (1.1 percent) have any anagram at all. Set it
-`true` only for a Game whose verb is rearrangement.
+It is recorded, never used to admit or reject. What it buys is a decent answer
+to a player who rearranges the tiles into a different real word: a Game can say
+"that is a word, but not today's" instead of a flat red X, and a player who
+formed real Tamil and was told they were simply wrong concludes the game
+cheated.
+
+It is counted over the SERVED rows - after every filter and after the cap -
+because a partner nobody is served cannot be the word a Game offers back. The
+contract recomputes it on read (`GameWordlist` validates each row against the
+set's own grouping), so a stale count cannot survive a rebuild or a hand edit.
+
+The signal is thin by construction: Tamil has 247 ezhuthu against English's 26
+letters, so multiset collisions are rare. On the anagram set, 93 of 17,313 rows
+have any partner at all. That is a fact about the language, and it is exactly
+why fan-out is a signal rather than a filter - see
+[`../architecture/contracts/schemas.md`](../architecture/contracts/schemas.md)
+for the rule this replaced and what it cost.
 
 ## The word-final rule
 
@@ -103,13 +113,11 @@ a vowel-bearing ezhuthu, or on one of the eight mei consonants that may close a
 word. Everything else is corpus noise of two kinds - a sandhi artifact, where
 the euphonic doubling belonging to the NEXT word was scraped onto this one, and
 a transliterated loanword that kept its final stop. Neither is a word a Tamil
-speaker would accept as a puzzle ANSWER.
+speaker would accept as a puzzle ANSWER. On the anagram set the rule removes
+1,972 rows.
 
-It applies to the co-anagram PARTNER too, and that is the point. The noise pairs
-with itself: an inflected form and its own misspelling are anagrams of each
-other, so they satisfy `requireCoAnagram` while offering the player no real
-second reading. Requiring both ends of the pair to be plausible words is what
-makes the tension honest. On the anagram set the rule removed 71 of 234 rows.
+It is the only content-quality net the served set has, so it stays on until word
+hood is classified from dictionary attestation rather than from orthography.
 
 The table of legal word-final ezhuthu lives in the ezhuthu library
 (`backend/yen_tamizh_backend/ezhuthu/word_shape.py`) because it is a fact about
@@ -138,10 +146,9 @@ tells you what a run did:
 - `selection` - the knobs that produced it, so a reviewer reading a diff can see
   which one moved.
 - `counters` - the reconciliation ledger, which the contract itself enforces:
-  `masterRows - outsideLength - outsideBand - invalidWordFinal -
-  withoutCoAnagram - capped == rowsKept == len(words)`. Every master row is
-  accounted for under exactly one heading, so a selection bug cannot quietly
-  drop words.
+  `masterRows - outsideLength - outsideBand - invalidWordFinal - capped ==
+  rowsKept == len(words)`. Every master row is accounted for under exactly one
+  heading, so a selection bug cannot quietly drop words.
 
 ## See also
 

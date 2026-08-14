@@ -19,7 +19,6 @@ export type Masterrows = number
 export type Outsideband = number
 export type Outsidelength = number
 export type Rowskept = number
-export type Withoutcoanagram = number
 export type Gameid = string
 /**
  * @minItems 1
@@ -28,7 +27,6 @@ export type Bands = [("common" | "mid" | "rare"), ...(("common" | "mid" | "rare"
 export type Maxlength = number
 export type Maxwords = (number | null)
 export type Minlength = number
-export type Requirecoanagram = boolean
 export type Requirevalidwordfinal = boolean
 export type Generatedat = string
 export type Path = string
@@ -36,6 +34,7 @@ export type Rows = number
 export type Sha256 = string
 export type Version1 = string
 export type Version2 = string
+export type Anagramfanout = number
 /**
  * @minItems 1
  */
@@ -79,22 +78,25 @@ masterRows: Masterrows
 outsideBand: Outsideband
 outsideLength: Outsidelength
 rowsKept: Rowskept
-withoutCoAnagram: Withoutcoanagram
 }
 /**
  * Which master words a derived set keeps. Every knob is tunable data.
  * 
  * ``minLength`` / ``maxLength`` count EZHUTHU, not code points - the unit every
  * Game plays in (Row 6). ``bands`` names the ``freqBand`` values a player is
- * expected to know. ``requireCoAnagram`` keeps only words whose ezhuthu
- * multiset is shared with at least one other master word, which is what
- * guarantees an unscramble has real tension. ``requireValidWordFinal`` drops
- * tokens that do not END the way a Tamil word ends (the corpus is scraped, so
- * it carries sandhi artifacts and transliterated loanwords that no Tamil
- * speaker would accept as an ANSWER); it applies to the co-anagram partner
- * too, so tension can only come from another real word. ``maxWords`` caps the
- * committed artifact (``null`` means uncapped); a derived set is a build
- * artifact in git, so an uncapped one is an unbounded commit.
+ * expected to know. ``requireValidWordFinal`` drops tokens that do not END the
+ * way a Tamil word ends (the corpus is scraped, so it carries sandhi artifacts
+ * and transliterated loanwords that no Tamil speaker would accept as an
+ * ANSWER). ``maxWords`` caps the committed artifact (``null`` means uncapped);
+ * a derived set is a build artifact in git, so an uncapped one is an unbounded
+ * commit.
+ * 
+ * There is deliberately no anagram knob. Whether a word's tiles also spell
+ * something else is RECORDED on the emitted row as ``anagramFanOut``, never
+ * used to admit or reject: a scramble of a word with no second arrangement is
+ * a perfectly ordinary puzzle, and demanding a partner cut the served set by
+ * two orders of magnitude while selecting for bound stems, because fragments
+ * are what collide with real words.
  * 
  * This model is shared: the registry declares it and the emitted wordlist
  * echoes back the selection that produced it, so a reviewer reading a diff can
@@ -105,7 +107,6 @@ bands: Bands
 maxLength: Maxlength
 maxWords?: Maxwords
 minLength: Minlength
-requireCoAnagram?: Requirecoanagram
 requireValidWordFinal?: Requirevalidwordfinal
 }
 /**
@@ -120,8 +121,17 @@ version: Version1
 }
 /**
  * One word a Game may build a puzzle from.
+ * 
+ * ``anagramFanOut`` counts how many SERVED rows share this row's ezhuthu
+ * multiset, including the row itself - so a word whose tiles spell nothing
+ * else carries ``1``, never ``0``. It is a recorded signal, not an admission
+ * test: a Game that knows a submitted arrangement is a different served word
+ * can answer "that is a word, but not today's" instead of a flat rejection,
+ * which is the difference between a player learning something and a player
+ * concluding the game cheated.
  */
 export interface GameWord {
+anagramFanOut: Anagramfanout
 ezhuthu: Ezhuthu
 freqBand: Freqband
 hints?: (GameWordHints | null)

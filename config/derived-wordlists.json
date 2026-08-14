@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-13T20:08",
+  "version": "2026-08-14",
   "changelog": [
+    {
+      "version": "2026-08-14",
+      "change": "Dropped the requireCoAnagram knob from the anagram set's selection.",
+      "why": "Row 1 of the lexicon pipeline - a scramble of a word with no second arrangement is an ordinary puzzle, while demanding a partner cut the served set 106-fold and selected for bound stems, because fragments are what collide with real words. The multiset index now records anagramFanOut on each row instead of deciding admission."
+    },
     {
       "version": "2026-08-13T20:08",
       "change": "Turned on requireValidWordFinal for the anagram set.",
@@ -17,12 +22,11 @@
     {
       "gameId": "anagram",
       "out": "datasets/wordlists/derived/anagram.json",
-      "note": "3-6 ezhuthu keeps a scramble solvable on a phone in a 2-minute burst (2 tiles has one wrong arrangement, which is a coin flip and not a puzzle). common+mid are the ranks a Tamil speaker actually knows; the rare band is a dictionary lookup, not a guess. requireCoAnagram is the unscramble-tension rule: the tiles must rearrange into at least one other real master word. requireValidWordFinal drops tokens that do not end the way a Tamil word ends - sandhi artifacts (atharkuk) and transliterated loanwords (ticket) - and applies to the co-anagram partner too, so the tension comes from a real second word rather than from a misspelling of the first.",
+      "note": "3-6 ezhuthu keeps a scramble solvable on a phone in a 2-minute burst (2 tiles has one wrong arrangement, which is a coin flip and not a puzzle). common+mid are the ranks a Tamil speaker actually knows; the rare band is a dictionary lookup, not a guess. requireValidWordFinal drops tokens that do not end the way a Tamil word ends - sandhi artifacts (atharkuk) and transliterated loanwords (ticket). Whether the tiles also spell something else is RECORDED per row as anagramFanOut rather than required: it is what lets a Game answer 'that is a word, but not today's', and as an admission test it threw away 106 words out of every 107.",
       "selection": {
         "minLength": 3,
         "maxLength": 6,
         "bands": ["common", "mid"],
-        "requireCoAnagram": true,
         "requireValidWordFinal": true,
         "maxWords": null
       }

@@ -7,8 +7,9 @@ ASCII (CLAUDE.md section 5).
 Five things are proven:
 
 1. **The Oracle - determinism.** Two runs of ``generate`` for the same date, into
-   two empty banks, produce BYTE-IDENTICAL files; and re-running over the
-   COMMITTED bank reproduces the committed bytes, which is the hand-edit gate.
+   two empty banks, produce BYTE-IDENTICAL files; and a run over a copy of the
+   COMMITTED bank leaves every published day untouched, because a day that has
+   shipped is history rather than a rebuildable artifact.
 2. **The contracts.** Every baked day validates against ``puzzle-file``, every
    payload against ``anagram-puzzle``, and the index against ``bank-index``.
 3. **Playability.** The tiles rejoin to the answer word (ezhuthu integrity, Row
@@ -16,13 +17,15 @@ Five things are proven:
 4. **The knobs.** Difficulty comes from the configured length bands, hints are
    capped by the app config's per-Game allowance, and a mix that does not add up
    to the playlist length is an error rather than a short day.
-5. **The seam.** The engine reads the derived wordlist and nothing above it.
+5. **The seam.** The engine reads the derived wordlist and nothing above it, and
+   a published day survives a changed wordlist untouched.
 """
 
 from __future__ import annotations
 
 import json
-from datetime import date
+import shutil
+from datetime import date, timedelta
 from pathlib import Path
 
 import pytest
@@ -71,6 +74,16 @@ def _committed_days(bank_dir: Path) -> list[Path]:
     return sorted(bank_dir.glob("*/*.json"))
 
 
+def _committed_span(bank_dir: Path) -> tuple[date, int]:
+    """The first committed day and the look-ahead that reaches the last one.
+
+    Derived from the bank rather than pinned, because the daily cron adds a day
+    at a time: a fixed window would stop covering the bank the moment it grew.
+    """
+    days = [date.fromisoformat(path.stem) for path in _committed_days(bank_dir)]
+    return days[0], (days[-1] - days[0]).days
+
+
 # --------------------------------------------------------------------------
 # 1. The Oracle: determinism
 # --------------------------------------------------------------------------
@@ -103,24 +116,37 @@ def test_two_runs_for_the_same_date_produce_identical_bytes(
     assert f"bank/2026/{FIRST_DAY}.json" in runs[0]
 
 
-def test_regenerating_the_committed_bank_reproduces_it_byte_for_byte(
+def test_a_rerun_over_the_committed_bank_leaves_every_published_day_alone(
     tmp_path: Path,
     app_config: AppConfig,
     generator: DailyGenerator,
     wordlists: dict[str, GameWordlist],
     bank_dir: Path,
 ) -> None:
-    """The hand-edit gate: the bank is a build artifact, never edited in place."""
-    spec = generator.model_copy(update={"bankDir": "bank"})
-    generate(date.fromisoformat(FIRST_DAY), tmp_path, app_config, spec, wordlists)
+    """The published bank is history, and a cron tick may not rewrite history.
 
-    for committed in _committed_days(bank_dir):
-        rebuilt = tmp_path / "bank" / committed.parent.name / committed.name
-        assert rebuilt.exists(), f"{committed.name} was not regenerated"
-        assert rebuilt.read_bytes() == committed.read_bytes(), committed.name
-    assert (tmp_path / "bank" / "index.json").read_bytes() == (
-        bank_dir / "index.json"
-    ).read_bytes()
+    A day is a pure function of its date and of the wordlist it drew from, so
+    once that wordlist changes the committed days are no longer re-derivable -
+    which is exactly why they are frozen rather than regenerated. This runs the
+    real entry point over a copy of the REAL bank and proves nothing moves.
+    """
+    bank_copy = tmp_path / "bank"
+    shutil.copytree(bank_dir, bank_copy)
+    before = {
+        path.relative_to(bank_copy).as_posix(): path.read_bytes()
+        for path in sorted(bank_copy.rglob("*.json"))
+    }
+    start, days_ahead = _committed_span(bank_dir)
+    spec = generator.model_copy(update={"bankDir": "bank", "daysAhead": days_ahead})
+
+    run = generate(start, tmp_path, app_config, spec, wordlists)
+
+    after = {
+        path.relative_to(bank_copy).as_posix(): path.read_bytes()
+        for path in sorted(bank_copy.rglob("*.json"))
+    }
+    assert run.written == []
+    assert after == before
 
 
 def test_a_rerun_over_an_existing_bank_is_idempotent(
@@ -136,7 +162,9 @@ def test_a_rerun_over_an_existing_bank_is_idempotent(
     before = {
         path: path.read_bytes() for path in sorted((tmp_path / "bank").rglob("*.json"))
     }
-    generate(day, tmp_path, app_config, spec, wordlists)
+    # Forced, so this still proves the day is a pure function rather than merely
+    # proving the guard below skipped it.
+    generate(day, tmp_path, app_config, spec, wordlists, rebake=True)
     after = {
         path: path.read_bytes() for path in sorted((tmp_path / "bank").rglob("*.json"))
     }
@@ -152,6 +180,112 @@ def test_the_seeded_shuffle_is_stable_and_permutes(tmp_path: Path) -> None:
     assert seeded_shuffle(items, "2026-08-14|anagram") != once
     assert hash_seed("2026-08-13") == hash_seed("2026-08-13")
     assert hash_seed("2026-08-13") != hash_seed("2026-08-14")
+
+
+# --------------------------------------------------------------------------
+# 1a. The guard: a published day is never rewritten
+# --------------------------------------------------------------------------
+
+
+def _reordered(wordlists: dict[str, GameWordlist]) -> dict[str, GameWordlist]:
+    """The same real rows in a different order - what a wordlist change looks like.
+
+    A day is a pure function of its date AND of the list it drew from, so
+    reordering the candidates is enough to make every later pick differ.
+    """
+    return {
+        game_id: wordlist.model_copy(update={"words": list(reversed(wordlist.words))})
+        for game_id, wordlist in wordlists.items()
+    }
+
+
+def test_a_changed_wordlist_does_not_rewrite_a_day_already_baked(
+    tmp_path: Path,
+    app_config: AppConfig,
+    generator: DailyGenerator,
+    wordlists: dict[str, GameWordlist],
+) -> None:
+    """A published day has shipped, and a player may be part-way through it."""
+    spec = generator.model_copy(update={"bankDir": "bank"})
+    day = date.fromisoformat(FIRST_DAY)
+    generate(day, tmp_path, app_config, spec, wordlists)
+    published = {
+        path: path.read_bytes()
+        for path in sorted((tmp_path / "bank").rglob("2026/*.json"))
+    }
+    assert published, "nothing was baked to guard"
+
+    run = generate(day, tmp_path, app_config, spec, _reordered(wordlists))
+
+    assert run.written == []
+    assert run.skipped == sorted(path.stem for path in published)
+    for path, before in published.items():
+        assert path.read_bytes() == before, path.name
+
+
+def test_the_guard_still_bakes_the_days_that_are_missing(
+    tmp_path: Path,
+    app_config: AppConfig,
+    generator: DailyGenerator,
+    wordlists: dict[str, GameWordlist],
+) -> None:
+    """Skipping published days must not stop the look-ahead from growing."""
+    spec = generator.model_copy(update={"bankDir": "bank"})
+    generate(date.fromisoformat(FIRST_DAY), tmp_path, app_config, spec, wordlists)
+
+    run = generate(
+        date.fromisoformat(FIRST_DAY) + timedelta(days=1),
+        tmp_path,
+        app_config,
+        spec,
+        wordlists,
+    )
+
+    assert [day.date for day in run.written] == ["2026-08-20"]
+    index = BankIndex.model_validate_json(
+        (tmp_path / "bank" / "index.json").read_text(encoding="utf-8")
+    )
+    assert [entry.date for entry in index.days] == sorted(
+        path.stem for path in (tmp_path / "bank").rglob("2026/*.json")
+    )
+
+
+def test_the_index_is_rebuilt_from_disk_even_when_every_day_is_skipped(
+    tmp_path: Path,
+    app_config: AppConfig,
+    generator: DailyGenerator,
+    wordlists: dict[str, GameWordlist],
+) -> None:
+    """The guard may not leave the manifest behind the days it lists."""
+    spec = generator.model_copy(update={"bankDir": "bank"})
+    day = date.fromisoformat(FIRST_DAY)
+    generate(day, tmp_path, app_config, spec, wordlists)
+    index_path = tmp_path / "bank" / "index.json"
+    expected = index_path.read_bytes()
+    index_path.unlink()
+
+    run = generate(day, tmp_path, app_config, spec, wordlists)
+
+    assert run.written == []
+    assert index_path.read_bytes() == expected
+
+
+def test_rebake_is_the_deliberate_way_to_rewrite_a_published_day(
+    tmp_path: Path,
+    app_config: AppConfig,
+    generator: DailyGenerator,
+    wordlists: dict[str, GameWordlist],
+) -> None:
+    spec = generator.model_copy(update={"bankDir": "bank"})
+    day = date.fromisoformat(FIRST_DAY)
+    generate(day, tmp_path, app_config, spec, wordlists)
+    before = (tmp_path / "bank" / "2026" / f"{FIRST_DAY}.json").read_bytes()
+
+    run = generate(day, tmp_path, app_config, spec, _reordered(wordlists), rebake=True)
+
+    assert run.skipped == []
+    assert len(run.written) == generator.daysAhead + 1
+    assert (tmp_path / "bank" / "2026" / f"{FIRST_DAY}.json").read_bytes() != before
 
 
 # --------------------------------------------------------------------------
@@ -389,9 +523,9 @@ def test_generated_paths_are_relative_and_posix(
     wordlists: dict[str, GameWordlist],
 ) -> None:
     spec = generator.model_copy(update={"bankDir": "bank"})
-    written = generate(date.fromisoformat(FIRST_DAY), tmp_path, app_config, spec, wordlists)
-    assert len(written) == generator.daysAhead + 1
-    for day in written:
+    run = generate(date.fromisoformat(FIRST_DAY), tmp_path, app_config, spec, wordlists)
+    assert len(run.written) == generator.daysAhead + 1
+    for day in run.written:
         assert not day.rel_path.startswith("/")
         assert "\\" not in day.rel_path
         assert day.rel_path == f"bank/{day.date[:4]}/{day.date}.json"
