@@ -34,6 +34,8 @@ from yen_tamizh_backend.contracts.common import (
     Hint,
     ModeId,
     PackId,
+    RelPath,
+    SourceId,
 )
 from yen_tamizh_backend.contracts.copy import Copy
 from yen_tamizh_backend.contracts.corpus_sources import (
@@ -41,8 +43,6 @@ from yen_tamizh_backend.contracts.corpus_sources import (
     CorpusFilters,
     CorpusSource,
     CorpusSources,
-    RelPath,
-    SourceId,
     SourceKind,
 )
 from yen_tamizh_backend.contracts.daily_generator import (

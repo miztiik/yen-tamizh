@@ -23,7 +23,7 @@ from typing import Literal, Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from yen_tamizh_backend.contracts.base import SchemaModel
-from yen_tamizh_backend.contracts.corpus_sources import RelPath, SourceId
+from yen_tamizh_backend.contracts.common import RelPath, SourceId
 
 # Rank-percentile bands, cut where config/corpus-sources.json says (Row 8).
 FreqBand = Literal["common", "mid", "rare"]
