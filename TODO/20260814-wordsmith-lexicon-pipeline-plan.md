@@ -444,7 +444,8 @@ Rows 3 and 13 change `REGISTRY` in `backend/yen_tamizh_backend/contracts/__init_
   | 3 | Signal `breadth`: count of distinct sources observing the surface. A real word appears across independent sources; a typo appears in one. | Fowler |
   | 4 | Signal `nannulValid`: membership in source A3, whose 355,275 words were validated by a Nannul-rules Tamil spellchecker. A ready-made grammar judgement already in hand - it costs a membership lookup and answers the user's grammar-compliance question directly. | Fowler |
   | 5 | Signal `knownVerbForm`: membership in sources B1 (1,461,494 inflected verb forms) and B2 (19,249). This is the single largest classification win available - it labels `inflected` by direct evidence rather than inference, and it is free. `formEvidence` sources can only assert NOT-a-headword; they never assert word-hood. | Fowler |
-  | 6 | Every threshold lives in `config/wordhood.json`, never a Python literal. | Holy Law #6 |
+  | 6 | Signal `orthotactic` additionally flags GRANTHA characters - `ஜ ஷ ஸ ஹ` and the compounds `க்ஷ`, `ஸ்ரீ`. These are not among the 247 ezhuthu; they were added to write Sanskrit and foreign sounds, so their presence is positive evidence for `loanword` rather than a defect. Recording it as part of signal 2 costs one table lookup and gives the classifier its cheapest `loanword` discriminator. | User observation |
+  | 7 | Every threshold lives in `config/wordhood.json`, never a Python literal. | Holy Law #6 |
 
 - **Rejected alternatives:**
 
