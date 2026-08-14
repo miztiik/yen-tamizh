@@ -1,6 +1,6 @@
 # Generate the daily bank
 
-**Last Updated**: 2026-08-13
+**Last Updated**: 2026-08-14
 
 How today's puzzles get made, and what to do when you need to bake, re-bake, or
 back-fill a day. The generator is the DAILY PUZZLE ENGINE: it consumes a per-Game
@@ -22,15 +22,15 @@ python -m yen_tamizh_backend.scripts.generate_today
 ```
 
 It bakes the run date (today, UTC) plus the look-ahead in
-[`../../config/daily-generator.json`](../../config/daily-generator.json), and
-writes:
+[`../../config/daily-generator.json`](../../config/daily-generator.json), skips
+any of those dates the bank already holds, and writes:
 
 - `frontend/public/bank/<YYYY>/<YYYY-MM-DD>.json` - one day's playlist, a
   [`puzzle-file`](../../schemas/puzzle-file.schema.json);
 - `frontend/public/bank/index.json` - the manifest of every baked day, a
   [`bank-index`](../../schemas/bank-index.schema.json).
 
-Pass a date to re-bake or back-fill one:
+Pass a date to back-fill from one:
 
 ```
 python -m yen_tamizh_backend.scripts.generate_today 2026-08-13
@@ -43,23 +43,59 @@ JSON on stdout:
 {"data": {"date": "2026-08-13", "gameId": "anagram", "outputPath": "frontend/public/bank/2026/2026-08-13.json"}, "level": "info", "name": "puzzle.generated", "src": "generate_today"}
 ```
 
+The `bank.updated` line lists both what it `generated` and what it `skipped`, so
+a cron tick that had nothing new to bake says so instead of looking idle.
+
 Commit whatever it wrote. The bank lives inside `frontend/public/` so the game
 reads it same-origin from its own bundle and it works offline - there is no CDN
 and no runtime backend (Holy Law #1).
 
-## Re-running is safe
+## A published day is never rewritten
 
-A day is a pure function of its date: selection is a seeded shuffle over the
-derived wordlist, so re-running any date rewrites the same bytes and leaves the
-working tree clean. That is the determinism Oracle, and it is also the hand-edit
-gate - `backend/tests/test_generate.py` re-bakes the committed bank and compares
-it byte for byte, so an edited day file fails the suite.
+**A date whose file already exists is skipped.** A day is a pure function of its
+date AND of the derived wordlist it drew from, so the moment that wordlist
+changes, re-running the generator would produce a DIFFERENT puzzle for a day
+that has already shipped - including, on any given night, a day a player is
+part-way through. That is the same class of break as a save that no longer
+loads: the bank the player already has must keep meaning what it meant.
+
+The cron re-runs the generator over the whole look-ahead window every night, so
+without the guard every wordlist change would silently rewrite up to a week of
+published days. With it, a run bakes only the dates the bank does not have yet,
+and new words reach players through the days baked from here on.
 
 Two consequences worth knowing:
 
+- **The index is rebuilt from disk on every run**, skipped days included, so it
+  can never fall behind the days it lists.
+- **Published days are history, not a rebuildable artifact.** Once the wordlist
+  moves, no command reproduces yesterday's bytes. `backend/tests/test_generate.py`
+  therefore asserts that a re-run over the committed bank moves nothing, rather
+  than that it reproduces it.
+
+### `--rebake`, the escape hatch
+
+```
+python -m yen_tamizh_backend.scripts.generate_today 2026-08-13 --rebake
+```
+
+Rewrites the dates in the run even if they already exist. Use it when changing
+published days is the point - a bad word to pull, a payload shape to migrate -
+and never in the cron. Review the resulting diff before committing: every day it
+touches is a day some player may already be playing.
+
+## Re-running is safe
+
+A date is a pure function of its date and its wordlist, so baking one twice from
+the same inputs writes the same bytes and leaves the working tree clean. That is
+the determinism Oracle, and it is what makes `--rebake` predictable rather than
+a roll of the dice.
+
+Two more consequences:
+
 - **A word is not served twice.** Words already used on OTHER days in the bank
   are skipped. The target day's own file is ignored while collecting them, which
-  is exactly what keeps a re-run idempotent instead of self-poisoning.
+  is exactly what keeps a re-bake idempotent instead of self-poisoning.
 - **Order matters across days, not within a run.** Days are baked oldest first,
   so back-filling a date that sits BEFORE existing days can change what those
   later days would pick if they were re-baked. Bake forward.
@@ -102,8 +138,10 @@ bundle. That matters in a game with a leaderboard; this one has none.
 
 [`../../.github/workflows/daily.yml`](../../.github/workflows/daily.yml) runs the
 same command at 00:05 UTC (and on demand), then commits
-`frontend/public/bank/**` only if something changed. The push to `main` triggers
-the existing deploy workflow; the daily job never deploys anything itself.
+`frontend/public/bank/**` only if something changed. Under the guard, "something
+changed" now means one new day at the far end of the look-ahead window, never a
+rewrite of the days already there. The push to `main` triggers the existing
+deploy workflow; the daily job never deploys anything itself.
 
 ## See also
 

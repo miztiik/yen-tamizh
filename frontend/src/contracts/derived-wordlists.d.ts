@@ -28,7 +28,6 @@ export type Bands = [("common" | "mid" | "rare"), ...(("common" | "mid" | "rare"
 export type Maxlength = number
 export type Maxwords = (number | null)
 export type Minlength = number
-export type Requirecoanagram = boolean
 export type Requirevalidwordfinal = boolean
 export type Version1 = string
 
@@ -66,15 +65,19 @@ selection: DerivedSelection
  * 
  * ``minLength`` / ``maxLength`` count EZHUTHU, not code points - the unit every
  * Game plays in (Row 6). ``bands`` names the ``freqBand`` values a player is
- * expected to know. ``requireCoAnagram`` keeps only words whose ezhuthu
- * multiset is shared with at least one other master word, which is what
- * guarantees an unscramble has real tension. ``requireValidWordFinal`` drops
- * tokens that do not END the way a Tamil word ends (the corpus is scraped, so
- * it carries sandhi artifacts and transliterated loanwords that no Tamil
- * speaker would accept as an ANSWER); it applies to the co-anagram partner
- * too, so tension can only come from another real word. ``maxWords`` caps the
- * committed artifact (``null`` means uncapped); a derived set is a build
- * artifact in git, so an uncapped one is an unbounded commit.
+ * expected to know. ``requireValidWordFinal`` drops tokens that do not END the
+ * way a Tamil word ends (the corpus is scraped, so it carries sandhi artifacts
+ * and transliterated loanwords that no Tamil speaker would accept as an
+ * ANSWER). ``maxWords`` caps the committed artifact (``null`` means uncapped);
+ * a derived set is a build artifact in git, so an uncapped one is an unbounded
+ * commit.
+ * 
+ * There is deliberately no anagram knob. Whether a word's tiles also spell
+ * something else is RECORDED on the emitted row as ``anagramFanOut``, never
+ * used to admit or reject: a scramble of a word with no second arrangement is
+ * a perfectly ordinary puzzle, and demanding a partner cut the served set by
+ * two orders of magnitude while selecting for bound stems, because fragments
+ * are what collide with real words.
  * 
  * This model is shared: the registry declares it and the emitted wordlist
  * echoes back the selection that produced it, so a reviewer reading a diff can
@@ -85,6 +88,5 @@ bands: Bands
 maxLength: Maxlength
 maxWords?: Maxwords
 minLength: Minlength
-requireCoAnagram?: Requirecoanagram
 requireValidWordFinal?: Requirevalidwordfinal
 }

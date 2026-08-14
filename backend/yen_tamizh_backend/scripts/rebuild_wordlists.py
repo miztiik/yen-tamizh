@@ -7,9 +7,8 @@ edited, always reproducible, and always regenerated together so no Game's set is
 left cut from a stale master. Run it after a corpus refresh, or after tuning a
 selection in ``config/derived-wordlists.json``, and commit what it writes.
 
-The master is loaded and indexed ONCE and every registered set is cut from that
-one in-memory copy, so adding the fifth Game costs a filter pass, not a fifth
-12 MB parse.
+The master is loaded ONCE and every registered set is cut from that one in-memory
+copy, so adding the fifth Game costs a filter pass, not a fifth 12 MB parse.
 """
 
 from __future__ import annotations
@@ -34,11 +33,10 @@ def rebuild(registry_path: Path, repo_root: Path) -> list[tuple[Path, GameWordli
     master_path = repo_root / registry.masterPath
     master = derive.load_master(master_path)
     source = derive.describe_source(master, master_path, registry.masterPath)
-    groups = derive.group_by_multiset(master.words)
 
     written: list[tuple[Path, GameWordlist]] = []
     for spec in registry.sets:
-        wordlist = derive.derive(master, source, spec, groups)
+        wordlist = derive.derive(master, source, spec)
         out_path = repo_root / spec.out
         write_artifact(out_path, derive.render(wordlist))
         written.append((out_path, wordlist))
@@ -50,12 +48,12 @@ def _report(wordlist: GameWordlist, rel_out: str) -> str:
     counters = wordlist.counters
     lengths = Counter(len(row.ezhuthu) for row in wordlist.words)
     spread = " ".join(f"{n}:{lengths[n]}" for n in sorted(lengths))
+    shared = sum(1 for row in wordlist.words if row.anagramFanOut > 1)
     return (
         f"{wordlist.gameId}: rowsKept={counters.rowsKept} "
         f"outsideLength={counters.outsideLength} outsideBand={counters.outsideBand} "
-        f"invalidWordFinal={counters.invalidWordFinal} "
-        f"withoutCoAnagram={counters.withoutCoAnagram} capped={counters.capped} "
-        f"lengths[{spread}] -> {rel_out}"
+        f"invalidWordFinal={counters.invalidWordFinal} capped={counters.capped} "
+        f"sharedFanOut={shared} lengths[{spread}] -> {rel_out}"
     )
 
 

@@ -14,10 +14,9 @@ its path, its schema version, its own ``generatedAt``, its sha256, and its row
 count - and git history records when the file changed (CLAUDE.md section 5).
 
 ``counters`` is the integrity Oracle, enforced by the model itself:
-``masterRows - outsideLength - outsideBand - invalidWordFinal -
-withoutCoAnagram - capped == rowsKept == len(words)``. Every master row is
-accounted for by exactly one outcome, so a selection bug cannot quietly drop
-words.
+``masterRows - outsideLength - outsideBand - invalidWordFinal - capped ==
+rowsKept == len(words)``. Every master row is accounted for by exactly one
+outcome, so a selection bug cannot quietly drop words.
 """
 
 from __future__ import annotations
@@ -57,13 +56,23 @@ class GameWordHints(BaseModel):
 
 
 class GameWord(BaseModel):
-    """One word a Game may build a puzzle from."""
+    """One word a Game may build a puzzle from.
+
+    ``anagramFanOut`` counts how many SERVED rows share this row's ezhuthu
+    multiset, including the row itself - so a word whose tiles spell nothing
+    else carries ``1``, never ``0``. It is a recorded signal, not an admission
+    test: a Game that knows a submitted arrangement is a different served word
+    can answer "that is a word, but not today's" instead of a flat rejection,
+    which is the difference between a player learning something and a player
+    concluding the game cheated.
+    """
 
     model_config = ConfigDict(extra="forbid")
 
     word: str = Field(min_length=1)
     ezhuthu: list[str] = Field(min_length=1)
     freqBand: FreqBand
+    anagramFanOut: int = Field(ge=1)
     hints: GameWordHints | None = None
 
     @model_validator(mode="after")
@@ -108,7 +117,6 @@ class DerivedCounters(BaseModel):
     outsideLength: int = Field(ge=0)
     outsideBand: int = Field(ge=0)
     invalidWordFinal: int = Field(default=0, ge=0)
-    withoutCoAnagram: int = Field(ge=0)
     capped: int = Field(ge=0)
     rowsKept: int = Field(ge=0)
 
@@ -118,7 +126,6 @@ class DerivedCounters(BaseModel):
             self.outsideLength
             + self.outsideBand
             + self.invalidWordFinal
-            + self.withoutCoAnagram
             + self.capped
             + self.rowsKept
         )
@@ -126,8 +133,8 @@ class DerivedCounters(BaseModel):
             raise ValueError(
                 f"outsideLength {self.outsideLength} + outsideBand "
                 f"{self.outsideBand} + invalidWordFinal {self.invalidWordFinal} + "
-                f"withoutCoAnagram {self.withoutCoAnagram} + capped {self.capped} + "
-                f"rowsKept {self.rowsKept} != masterRows {self.masterRows}"
+                f"capped {self.capped} + rowsKept {self.rowsKept} != masterRows "
+                f"{self.masterRows}"
             )
         return self
 
@@ -152,4 +159,22 @@ class GameWordlist(SchemaModel):
                 f"counters.masterRows {self.counters.masterRows} != source.rows "
                 f"{self.source.rows}"
             )
+        return self
+
+    @model_validator(mode="after")
+    def _fan_out_matches_the_served_rows(self) -> Self:
+        # Recomputed rather than trusted, like every other derived field here:
+        # a stale fan-out would have a Game tell a player their arrangement is
+        # another word when this set no longer serves one.
+        served: dict[tuple[str, ...], int] = {}
+        for row in self.words:
+            key = tuple(sorted(row.ezhuthu))
+            served[key] = served.get(key, 0) + 1
+        for row in self.words:
+            expected = served[tuple(sorted(row.ezhuthu))]
+            if row.anagramFanOut != expected:
+                raise ValueError(
+                    f"anagramFanOut {row.anagramFanOut} != {expected} served rows "
+                    f"sharing the ezhuthu of {row.word!r}"
+                )
         return self
