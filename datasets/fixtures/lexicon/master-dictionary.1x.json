@@ -1,0 +1,1852 @@
+{
+  "metadata": {
+    "processed_at": "2026-01-16T18:33:40.828793",
+    "format_version": "2.0",
+    "total_entries": 104421,
+    "statistics": {
+      "total_entries": 104421,
+      "with_translation": 12954,
+      "with_frequency": 52764,
+      "grapheme_distribution": {
+        "1": 69,
+        "2": 1961,
+        "3": 8178,
+        "4": 18302,
+        "5": 21779,
+        "6": 19876,
+        "7": 14914,
+        "8": 9425,
+        "9": 4881,
+        "10": 2480,
+        "11": 1247,
+        "12": 566,
+        "13": 313,
+        "14": 182,
+        "15": 103,
+        "16": 62,
+        "17": 32,
+        "18": 14,
+        "19": 14,
+        "20": 7,
+        "21": 6,
+        "22": 1,
+        "23": 4,
+        "24": 1,
+        "28": 2,
+        "30": 1,
+        "31": 1
+      }
+    }
+  },
+  "data": [
+    {
+      "ta": "அம்மா",
+      "en": "mamma",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 39114
+    },
+    {
+      "ta": "ஏடு",
+      "en": "almagest",
+      "grapheme_count": 2,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 558
+    },
+    {
+      "ta": "அப்பா",
+      "en": "papa",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 131428
+    },
+    {
+      "ta": "தமிழ்",
+      "en": "Dravidian",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 304699
+    },
+    {
+      "ta": "கயல்",
+      "en": "dare",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 506
+    },
+    {
+      "ta": "புனல்",
+      "en": "funnelled",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 499
+    },
+    {
+      "ta": "வைகறை",
+      "en": "Aurora",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 602
+    },
+    {
+      "ta": "கோன்",
+      "en": "",
+      "grapheme_count": 2,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 502
+    },
+    {
+      "ta": "கதிர்",
+      "en": "anastigmatic",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 3097
+    },
+    {
+      "ta": "திகிரி",
+      "en": "discobolus",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 107
+    },
+    {
+      "ta": "பொங்கர்",
+      "en": "",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 4
+    },
+    {
+      "ta": "பொதும்பர்",
+      "en": "arbour",
+      "grapheme_count": 5,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 21
+    },
+    {
+      "ta": "கைதை",
+      "en": "",
+      "grapheme_count": 2,
+      "category": [
+        "flowers",
+        "nouns"
+      ],
+      "word_frequency": 105
+    },
+    {
+      "ta": "காழ்",
+      "en": "adamant",
+      "grapheme_count": 2,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 79
+    },
+    {
+      "ta": "நிலம்",
+      "en": "acred",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 13345
+    },
+    {
+      "ta": "விழி",
+      "en": "awake",
+      "grapheme_count": 2,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 1667
+    },
+    {
+      "ta": "ஆடி",
+      "en": "amble",
+      "grapheme_count": 2,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 9711
+    },
+    {
+      "ta": "ஐப்பசி",
+      "en": "",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 1345
+    },
+    {
+      "ta": "கார்த்திகை",
+      "en": "Pleiads, Pleiades",
+      "grapheme_count": 5,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 2765
+    },
+    {
+      "ta": "வகுத்தல்",
+      "en": "division",
+      "grapheme_count": 5,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 312
+    },
+    {
+      "ta": "அறுகோணி",
+      "en": "",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 3
+    },
+    {
+      "ta": "வட்டம்",
+      "en": "agio",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 6159
+    },
+    {
+      "ta": "படி",
+      "en": "ad valorem",
+      "grapheme_count": 2,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 22152
+    },
+    {
+      "ta": "ஆடு",
+      "en": "bellwether",
+      "grapheme_count": 2,
+      "category": [
+        "animals",
+        "nouns"
+      ],
+      "word_frequency": 4306
+    },
+    {
+      "ta": "பலுக்கல்",
+      "en": "",
+      "grapheme_count": 5,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 30
+    },
+    {
+      "ta": "கோ",
+      "en": "went",
+      "grapheme_count": 1,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 15816
+    },
+    {
+      "ta": "நஷ்டம்",
+      "en": "",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 2483
+    },
+    {
+      "ta": "மைந்தன்",
+      "en": "boy",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 1075
+    },
+    {
+      "ta": "வருஷம்",
+      "en": "",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 4049
+    },
+    {
+      "ta": "இராத்திரி",
+      "en": "",
+      "grapheme_count": 5,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 277
+    },
+    {
+      "ta": "தேசம்",
+      "en": "clime",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 5542
+    },
+    {
+      "ta": "சம்பிரதாயம்",
+      "en": "formality",
+      "grapheme_count": 7,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 453
+    },
+    {
+      "ta": "மதகு",
+      "en": "culvert",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 311
+    },
+    {
+      "ta": "விரோதி",
+      "en": "anti-alcoholist",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 339
+    },
+    {
+      "ta": "கர்ணம்",
+      "en": "",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 123
+    },
+    {
+      "ta": "பந்தம்",
+      "en": "codicil",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 800
+    },
+    {
+      "ta": "சுதந்திரம்",
+      "en": "freedom",
+      "grapheme_count": 6,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 7994
+    },
+    {
+      "ta": "இந்திரன்",
+      "en": "",
+      "grapheme_count": 5,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 1892
+    },
+    {
+      "ta": "பொய்",
+      "en": "alarmist",
+      "grapheme_count": 2,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 9432
+    },
+    {
+      "ta": "பொன்",
+      "en": "alloy",
+      "grapheme_count": 2,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 30524
+    },
+    {
+      "ta": "ஞாயிறு",
+      "en": "afterglow",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 3765
+    },
+    {
+      "ta": "துடி",
+      "en": "flicker",
+      "grapheme_count": 2,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 159
+    },
+    {
+      "ta": "நெடுமை",
+      "en": "",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 5
+    },
+    {
+      "ta": "நெடுவாலி",
+      "en": "",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 0
+    },
+    {
+      "ta": "அசைவூட்டம்",
+      "en": "",
+      "grapheme_count": 6,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 49
+    },
+    {
+      "ta": "துணைக்கோள்",
+      "en": "Ganymede",
+      "grapheme_count": 5,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 302
+    },
+    {
+      "ta": "இலங்கை",
+      "en": "Ceylonese",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 47175
+    },
+    {
+      "ta": "அகராதி",
+      "en": "Antonym dictionary",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 1310
+    },
+    {
+      "ta": "மனிதன்",
+      "en": "Adam",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 37697
+    },
+    {
+      "ta": "சோதிடம்",
+      "en": "astrology",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 440
+    },
+    {
+      "ta": "தானம்",
+      "en": "sanctum",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 4730
+    },
+    {
+      "ta": "எண்ணெய்",
+      "en": "anoint",
+      "grapheme_count": 4,
+      "category": [
+        "trees",
+        "nouns"
+      ],
+      "word_frequency": 16910
+    },
+    {
+      "ta": "விலங்கு",
+      "en": "agamogenesis",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 2320
+    },
+    {
+      "ta": "துண்டு",
+      "en": "biscuit",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 3525
+    },
+    {
+      "ta": "இசைவு",
+      "en": "acclamation",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 337
+    },
+    {
+      "ta": "அழைப்பிதழ்",
+      "en": "call",
+      "grapheme_count": 6,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 674
+    },
+    {
+      "ta": "நபர்",
+      "en": "",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 11991
+    },
+    {
+      "ta": "பணி",
+      "en": "Agro service",
+      "grapheme_count": 2,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 35853
+    },
+    {
+      "ta": "பதம்",
+      "en": "candied",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 1981
+    },
+    {
+      "ta": "தமிழர்",
+      "en": "Tamil",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 15499
+    },
+    {
+      "ta": "பயன்பாடு",
+      "en": "use",
+      "grapheme_count": 5,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 4977
+    },
+    {
+      "ta": "கடுகு",
+      "en": "charlock",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 1928
+    },
+    {
+      "ta": "அகம்",
+      "en": "Clinic",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 1313
+    },
+    {
+      "ta": "தமிழகம்",
+      "en": "",
+      "grapheme_count": 5,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 60522
+    },
+    {
+      "ta": "பலம்",
+      "en": "force",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 8042
+    },
+    {
+      "ta": "பாட்டு",
+      "en": "acrostic",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 6237
+    },
+    {
+      "ta": "கை",
+      "en": "armchair",
+      "grapheme_count": 1,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 33954
+    },
+    {
+      "ta": "தனம்",
+      "en": "footle",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 738
+    },
+    {
+      "ta": "ஈழம்",
+      "en": "",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 1219
+    },
+    {
+      "ta": "தூசர்",
+      "en": "",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 0
+    },
+    {
+      "ta": "பத்துப்பாட்டு",
+      "en": "",
+      "grapheme_count": 7,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 236
+    },
+    {
+      "ta": "சிவன்",
+      "en": "Siva",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 10282
+    },
+    {
+      "ta": "படலம்",
+      "en": "bed",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 1371
+    },
+    {
+      "ta": "பிள்ளையார்",
+      "en": "",
+      "grapheme_count": 5,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 3819
+    },
+    {
+      "ta": "முருகன்",
+      "en": "",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 33892
+    },
+    {
+      "ta": "அல்லா",
+      "en": "but",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 584
+    },
+    {
+      "ta": "ஞமலி",
+      "en": "retriver",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 28
+    },
+    {
+      "ta": "அகடு",
+      "en": "altazimuth",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 34
+    },
+    {
+      "ta": "சக்கரம்",
+      "en": "arbor",
+      "grapheme_count": 5,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 2212
+    },
+    {
+      "ta": "திருமால்",
+      "en": "Vaishnava",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 1848
+    },
+    {
+      "ta": "அசரை",
+      "en": "",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 2
+    },
+    {
+      "ta": "சிறுகுடல்",
+      "en": "pylorus",
+      "grapheme_count": 5,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 229
+    },
+    {
+      "ta": "பெருங்குடல்",
+      "en": "caecum",
+      "grapheme_count": 6,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 418
+    },
+    {
+      "ta": "இருக்கை",
+      "en": "bench",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 2246
+    },
+    {
+      "ta": "சேமி",
+      "en": "Auto save",
+      "grapheme_count": 2,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 39
+    },
+    {
+      "ta": "கையிருப்பு",
+      "en": "balance",
+      "grapheme_count": 5,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 664
+    },
+    {
+      "ta": "முதலீடு",
+      "en": "banian",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 13659
+    },
+    {
+      "ta": "விண்மீன்",
+      "en": "Aquarius",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 624
+    },
+    {
+      "ta": "படுக்கை",
+      "en": "bed",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 3074
+    },
+    {
+      "ta": "தாள்",
+      "en": "anticholor",
+      "grapheme_count": 2,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 1934
+    },
+    {
+      "ta": "அலைவரிசை",
+      "en": "",
+      "grapheme_count": 5,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 668
+    },
+    {
+      "ta": "தூரிகை",
+      "en": "aspergill, aspergillum",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 303
+    },
+    {
+      "ta": "குடிசை",
+      "en": "anchorage",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 1834
+    },
+    {
+      "ta": "விருப்பம்",
+      "en": "affection",
+      "grapheme_count": 5,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 7975
+    },
+    {
+      "ta": "பிடிப்பு",
+      "en": "anuria",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 838
+    },
+    {
+      "ta": "கேழ்வரகு",
+      "en": "",
+      "grapheme_count": 5,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 663
+    },
+    {
+      "ta": "வட்டகை",
+      "en": "block",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 27
+    },
+    {
+      "ta": "வெள்ளை",
+      "en": "Abderite",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 12838
+    },
+    {
+      "ta": "ஊதா",
+      "en": "dogberry, ",
+      "grapheme_count": 2,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 1416
+    },
+    {
+      "ta": "அகச்சிவப்பு",
+      "en": "",
+      "grapheme_count": 7,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 291
+    },
+    {
+      "ta": "மகரந்தம்",
+      "en": "ambrosia",
+      "grapheme_count": 6,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 56135
+    },
+    {
+      "ta": "சிறுநீர்ப்பை",
+      "en": "cystritis",
+      "grapheme_count": 6,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 109
+    },
+    {
+      "ta": "பட்டியல்",
+      "en": "bibliography",
+      "grapheme_count": 5,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 33149
+    },
+    {
+      "ta": "மளிகை",
+      "en": "Stationery",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 846
+    },
+    {
+      "ta": "செய்தி",
+      "en": "admission",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 41654
+    },
+    {
+      "ta": "சப்பான்",
+      "en": "",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 364
+    },
+    {
+      "ta": "அருங்காட்சியகம்",
+      "en": "",
+      "grapheme_count": 9,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 1739
+    },
+    {
+      "ta": "எழுச்சி",
+      "en": "accent",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 2679
+    },
+    {
+      "ta": "கீழ்",
+      "en": "banner",
+      "grapheme_count": 2,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 25826
+    },
+    {
+      "ta": "கோவில்",
+      "en": "ambry",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 21084
+    },
+    {
+      "ta": "சூழல்",
+      "en": "ambience",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 13832
+    },
+    {
+      "ta": "சூழ்நிலை",
+      "en": "atmosphere",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 6505
+    },
+    {
+      "ta": "ஆய்வு",
+      "en": "aerolithology",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 52042
+    },
+    {
+      "ta": "பொது",
+      "en": "advertisement",
+      "grapheme_count": 2,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 36117
+    },
+    {
+      "ta": "வழக்கம்",
+      "en": "boroughEnglish",
+      "grapheme_count": 5,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 14765
+    },
+    {
+      "ta": "வரவேற்பு",
+      "en": "at-home",
+      "grapheme_count": 5,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 8664
+    },
+    {
+      "ta": "உறவு",
+      "en": "affinity",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 11481
+    },
+    {
+      "ta": "அதிபர்",
+      "en": "cottonocracy",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 22214
+    },
+    {
+      "ta": "அரண்மனை",
+      "en": "Alhambra",
+      "grapheme_count": 5,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 3676
+    },
+    {
+      "ta": "ஒழுக்கம்",
+      "en": "adultery",
+      "grapheme_count": 5,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 2124
+    },
+    {
+      "ta": "இந்தியா",
+      "en": "chop",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 75270
+    },
+    {
+      "ta": "அமைவு",
+      "en": "air-trap",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 209
+    },
+    {
+      "ta": "பின்",
+      "en": "addendum",
+      "grapheme_count": 2,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 61384
+    },
+    {
+      "ta": "திறன்",
+      "en": "adaptability",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 14905
+    },
+    {
+      "ta": "மனிதவளம்",
+      "en": "",
+      "grapheme_count": 6,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 129
+    },
+    {
+      "ta": "மோதல்",
+      "en": "buffet",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 6000
+    },
+    {
+      "ta": "முல்லை",
+      "en": "bucolic",
+      "grapheme_count": 3,
+      "category": [
+        "flowers",
+        "nouns"
+      ],
+      "word_frequency": 5381
+    },
+    {
+      "ta": "ஒழுங்கு",
+      "en": "alignment",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 5165
+    },
+    {
+      "ta": "குறவன்",
+      "en": "",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 127
+    },
+    {
+      "ta": "ஊரணி",
+      "en": "",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 116
+    },
+    {
+      "ta": "தாக்கம்",
+      "en": "",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 5853
+    },
+    {
+      "ta": "கூட்டம்",
+      "en": "armada",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 30294
+    },
+    {
+      "ta": "சங்கரா",
+      "en": "",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 214
+    },
+    {
+      "ta": "கெழங்கா",
+      "en": "",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 2
+    },
+    {
+      "ta": "வஞ்சிரம்",
+      "en": "",
+      "grapheme_count": 5,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 55
+    },
+    {
+      "ta": "நெத்திலி",
+      "en": "",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 67
+    },
+    {
+      "ta": "ஊறுகாய்",
+      "en": "bean-caper",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 1038
+    },
+    {
+      "ta": "வகு",
+      "en": "chapter",
+      "grapheme_count": 2,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 33
+    },
+    {
+      "ta": "பொங்கல்",
+      "en": "flower",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 5550
+    },
+    {
+      "ta": "பாங்கு",
+      "en": "affinity",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 535
+    },
+    {
+      "ta": "நம்பிக்கை",
+      "en": "aberglaube",
+      "grapheme_count": 5,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 28025
+    },
+    {
+      "ta": "தாங்கி",
+      "en": "arbalest",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 2700
+    },
+    {
+      "ta": "ஊர்வலம்",
+      "en": "cortege",
+      "grapheme_count": 5,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 2953
+    },
+    {
+      "ta": "சீமையிலுப்பை",
+      "en": "",
+      "grapheme_count": 6,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 0
+    },
+    {
+      "ta": "பேரிடர்",
+      "en": "affiction",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 3133
+    },
+    {
+      "ta": "இடர்",
+      "en": "adventure",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 695
+    },
+    {
+      "ta": "நலம்",
+      "en": "adore",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 9348
+    },
+    {
+      "ta": "கொலை",
+      "en": "assassin",
+      "grapheme_count": 2,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 27540
+    },
+    {
+      "ta": "கிழங்கு",
+      "en": "alizari",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 1287
+    },
+    {
+      "ta": "மா",
+      "en": "ale",
+      "grapheme_count": 1,
+      "category": [
+        "trees",
+        "flowers",
+        "nouns"
+      ],
+      "word_frequency": 9767
+    },
+    {
+      "ta": "புலால்",
+      "en": "carnivore",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 583
+    },
+    {
+      "ta": "பொம்மை",
+      "en": "ark",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 2920
+    },
+    {
+      "ta": "குகை",
+      "en": "bone-cave",
+      "grapheme_count": 2,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 1549
+    },
+    {
+      "ta": "செம்மண்",
+      "en": "terra ross a.",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 604
+    },
+    {
+      "ta": "வேங்கை",
+      "en": "kino",
+      "grapheme_count": 3,
+      "category": [
+        "animals",
+        "trees",
+        "flowers",
+        "nouns"
+      ],
+      "word_frequency": 404
+    },
+    {
+      "ta": "சாணம்",
+      "en": "bedung",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 482
+    },
+    {
+      "ta": "நடு",
+      "en": "axis",
+      "grapheme_count": 2,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 2974
+    },
+    {
+      "ta": "ஒலிபரப்பு",
+      "en": "broadcasting",
+      "grapheme_count": 6,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 706
+    },
+    {
+      "ta": "மாரி",
+      "en": "rant",
+      "grapheme_count": 2,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 2581
+    },
+    {
+      "ta": "வறுவல்",
+      "en": "clam-bake",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 257
+    },
+    {
+      "ta": "இறால்",
+      "en": "Decapoda",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 855
+    },
+    {
+      "ta": "துத்தி",
+      "en": "",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 40
+    },
+    {
+      "ta": "தளம்",
+      "en": "antiparallel",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 8605
+    },
+    {
+      "ta": "யாக்கை",
+      "en": "able-bodied,",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 352
+    },
+    {
+      "ta": "படைப்பு",
+      "en": "chef-d oeuvre",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 2938
+    },
+    {
+      "ta": "படகு",
+      "en": "barge",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 5011
+    },
+    {
+      "ta": "இனப்படுகொலை",
+      "en": "",
+      "grapheme_count": 7,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 861
+    },
+    {
+      "ta": "அருகாமை",
+      "en": "contiguity",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 266
+    },
+    {
+      "ta": "தட்டச்சு",
+      "en": "type-wheel",
+      "grapheme_count": 5,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 1768
+    },
+    {
+      "ta": "ஒட்டியாணம்",
+      "en": "girdle",
+      "grapheme_count": 6,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 102
+    },
+    {
+      "ta": "கோப்பை",
+      "en": "twist",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 7916
+    },
+    {
+      "ta": "வால்",
+      "en": "axon",
+      "grapheme_count": 2,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 4160
+    },
+    {
+      "ta": "கால்வாசி",
+      "en": "",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 69
+    },
+    {
+      "ta": "துடுப்பு",
+      "en": "bank",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 321
+    },
+    {
+      "ta": "பணிவு",
+      "en": "condescend",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 310
+    },
+    {
+      "ta": "தடங்கல்",
+      "en": "bar",
+      "grapheme_count": 5,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 319
+    },
+    {
+      "ta": "நாற்றம்",
+      "en": "exhalation",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 734
+    },
+    {
+      "ta": "களிம்பு",
+      "en": "aeruginous",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 196
+    },
+    {
+      "ta": "தகனம்",
+      "en": "",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 1164
+    },
+    {
+      "ta": "மகரம்",
+      "en": "",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 709
+    },
+    {
+      "ta": "பணவிடை",
+      "en": "",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 16
+    },
+    {
+      "ta": "திருக்கு",
+      "en": "contortion",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 41
+    },
+    {
+      "ta": "பாணி",
+      "en": "bon ton",
+      "grapheme_count": 2,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 2320
+    },
+    {
+      "ta": "திரிபு",
+      "en": "anamorphous",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 317
+    },
+    {
+      "ta": "கரண்டி",
+      "en": "bucket",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 449
+    },
+    {
+      "ta": "கன்று",
+      "en": "baby",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 765
+    },
+    {
+      "ta": "அண்டங்காக்கை",
+      "en": "corbie",
+      "grapheme_count": 7,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 23
+    },
+    {
+      "ta": "சட்டம்",
+      "en": "act",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 38992
+    },
+    {
+      "ta": "சங்கம்",
+      "en": "academy",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 12460
+    },
+    {
+      "ta": "சீர்திருத்தம்",
+      "en": "betterement",
+      "grapheme_count": 7,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 981
+    },
+    {
+      "ta": "சொம்பு",
+      "en": "",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 222
+    },
+    {
+      "ta": "தகரம்",
+      "en": "Babbitt-metal",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 131
+    },
+    {
+      "ta": "தாகம்",
+      "en": "adry",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 2223
+    },
+    {
+      "ta": "திருநாள்",
+      "en": "Candlemas",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 1600
+    },
+    {
+      "ta": "துடை",
+      "en": "assoil",
+      "grapheme_count": 2,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 29
+    },
+    {
+      "ta": "அலைபரப்பு",
+      "en": "",
+      "grapheme_count": 6,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 32
+    },
+    {
+      "ta": "இரசாயனம்",
+      "en": "",
+      "grapheme_count": 6,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 128
+    },
+    {
+      "ta": "பகல்",
+      "en": "day",
+      "grapheme_count": 3,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 6749
+    },
+    {
+      "ta": "படை",
+      "en": "adjutant",
+      "grapheme_count": 2,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 12129
+    },
+    {
+      "ta": "பட்டம்",
+      "en": "accolade",
+      "grapheme_count": 4,
+      "category": [
+        "nouns"
+      ],
+      "word_frequency": 15676
+    }
+  ]
+}

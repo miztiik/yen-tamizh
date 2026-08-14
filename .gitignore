@@ -31,5 +31,15 @@ Thumbs.db
 datasets/corpus/*
 !datasets/corpus/README.md
 
+# Raw lexicon inputs (wordsmith row 4). Same rule, same reason: hundreds of MB of
+# third-party dictionaries and word lists that the pipeline streams. Only the
+# committed fixture slices under datasets/fixtures/lexicon/ and the published
+# artifacts ship. See datasets/lexicon/sources/README.md to repopulate them.
+datasets/lexicon/sources/*
+!datasets/lexicon/sources/README.md
+
+# Build cache of the wordsmith stages (extracts, the staging SQLite store).
+datasets/lexicon/cache/
+
 # Scratch
 .tmp_*
