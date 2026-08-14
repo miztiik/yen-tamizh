@@ -21,8 +21,7 @@ from typing import Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from yen_tamizh_backend.contracts.base import SchemaModel
-from yen_tamizh_backend.contracts.common import DifficultyId, GameId, PackId
-from yen_tamizh_backend.contracts.corpus_sources import RelPath
+from yen_tamizh_backend.contracts.common import DifficultyId, GameId, PackId, RelPath
 
 
 class DifficultyBand(BaseModel):

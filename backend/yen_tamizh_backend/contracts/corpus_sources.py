@@ -19,23 +19,12 @@ reader to ``corpus/ingest.py`` and a member to ``SourceKind`` here.
 
 from __future__ import annotations
 
-from typing import Annotated, Literal, Self
+from typing import Literal, Self
 
-from pydantic import BaseModel, ConfigDict, Field, StringConstraints, model_validator
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from yen_tamizh_backend.contracts.base import SchemaModel
-
-# A stable source identifier slug, matching the guardrails identifier discipline
-# used by the core contracts: "wiki", "ta-dedup", "opensubtitles-ta".
-SourceId = Annotated[str, StringConstraints(pattern=r"^[a-z][a-z0-9-]*$")]
-
-# A repo-relative POSIX path (CLAUDE.md section 2: no absolute paths, no drive
-# letters, no backslashes in anything that leaves the process). The leading
-# character class excludes "/" so an absolute path cannot match, and ":" is
-# absent throughout so "C:/x" cannot match either.
-RelPath = Annotated[
-    str, StringConstraints(pattern=r"^[A-Za-z0-9._-]+(/[A-Za-z0-9._+-]+)*$")
-]
+from yen_tamizh_backend.contracts.common import RelPath, SourceId
 
 SourceKind = Literal["delimited", "json-array"]
 

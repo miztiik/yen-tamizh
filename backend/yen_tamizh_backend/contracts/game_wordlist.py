@@ -26,8 +26,7 @@ from typing import Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from yen_tamizh_backend.contracts.base import SchemaModel
-from yen_tamizh_backend.contracts.common import GameId
-from yen_tamizh_backend.contracts.corpus_sources import RelPath
+from yen_tamizh_backend.contracts.common import GameId, RelPath
 from yen_tamizh_backend.contracts.derived_wordlists import DerivedSelection
 from yen_tamizh_backend.contracts.master_wordlist import FreqBand
 
