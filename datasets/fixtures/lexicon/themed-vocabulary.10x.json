@@ -1,0 +1,6509 @@
+{
+  "metadata": {
+    "source_file": "ta_vocabulary_categorized.json",
+    "processed_at": "2026-01-16T13:16:05.983860",
+    "format_version": "1.1",
+    "description": "Clean Tamil vocabulary - single words only",
+    "total_entries": 1290,
+    "categories": [
+      "Adjectives",
+      "Amphibians",
+      "Animals",
+      "Aquatic Animals",
+      "Arts",
+      "Bathroom",
+      "Bedroom",
+      "Birds",
+      "Colours",
+      "Days",
+      "Dresses And Accessories",
+      "Emotions",
+      "Flowers",
+      "Food",
+      "Fruits",
+      "Functions",
+      "Games",
+      "Garden",
+      "Hall",
+      "Hobby",
+      "Hospital",
+      "House",
+      "Insects",
+      "Kitchen",
+      "Nature",
+      "Nouns",
+      "Parts Of Plants",
+      "Places",
+      "Profession",
+      "Relations",
+      "Reptiles",
+      "School",
+      "Space",
+      "Spices",
+      "Symbols Shapes",
+      "Tools",
+      "Transport",
+      "Types Of Plants",
+      "Vegetables",
+      "Verbs"
+    ],
+    "processing_notes": [
+      "Category names converted to Title Case",
+      "NOUNS/PRONOUNS/PREPOSITIONS split into separate categories",
+      "Unicode normalized (வௌ → வெள்)",
+      "English text removed from Tamil fields"
+    ]
+  },
+  "data": [
+    {
+      "category": "House",
+      "english": "Building",
+      "tamil": "கட்டிடம்"
+    },
+    {
+      "category": "House",
+      "english": "Door",
+      "tamil": "கதவு"
+    },
+    {
+      "category": "House",
+      "english": "Floor",
+      "tamil": "தரை"
+    },
+    {
+      "category": "House",
+      "english": "Hall",
+      "tamil": "கூடம்"
+    },
+    {
+      "category": "House",
+      "english": "Hut",
+      "tamil": "குடிசை"
+    },
+    {
+      "category": "House",
+      "english": "Lock",
+      "tamil": "பூட்டு"
+    },
+    {
+      "category": "House",
+      "english": "Step",
+      "tamil": "படி"
+    },
+    {
+      "category": "House",
+      "english": "Wall",
+      "tamil": "சுவர்"
+    },
+    {
+      "category": "Hall",
+      "english": "Carpet",
+      "tamil": "கம்பளம்"
+    },
+    {
+      "category": "Hall",
+      "english": "Chair",
+      "tamil": "நாற்காலி"
+    },
+    {
+      "category": "Hall",
+      "english": "Clock",
+      "tamil": "கடிகாரம்"
+    },
+    {
+      "category": "Hall",
+      "english": "Computer",
+      "tamil": "கணினி"
+    },
+    {
+      "category": "Hall",
+      "english": "Curtain",
+      "tamil": "திரை"
+    },
+    {
+      "category": "Hall",
+      "english": "Fan",
+      "tamil": "விசிறி"
+    },
+    {
+      "category": "Hall",
+      "english": "Lamp/Light",
+      "tamil": "விளக்கு"
+    },
+    {
+      "category": "Hall",
+      "english": "Laptop",
+      "tamil": "மடிக்கணினி"
+    },
+    {
+      "category": "Hall",
+      "english": "Newspaper",
+      "tamil": "செய்தித்தாள்"
+    },
+    {
+      "category": "Hall",
+      "english": "Picture",
+      "tamil": "படம்"
+    },
+    {
+      "category": "Hall",
+      "english": "Table",
+      "tamil": "மேசை"
+    },
+    {
+      "category": "Hall",
+      "english": "Television",
+      "tamil": "தொலைக்காட்சி"
+    },
+    {
+      "category": "Bedroom",
+      "english": "Bed",
+      "tamil": "படுக்கை"
+    },
+    {
+      "category": "Bedroom",
+      "english": "Blanket",
+      "tamil": "போர்வை"
+    },
+    {
+      "category": "Bedroom",
+      "english": "Cot",
+      "tamil": "கட்டில்"
+    },
+    {
+      "category": "Bedroom",
+      "english": "Mat",
+      "tamil": "பாய்"
+    },
+    {
+      "category": "Bedroom",
+      "english": "Mirror",
+      "tamil": "கண்ணாடி"
+    },
+    {
+      "category": "Bedroom",
+      "english": "Net",
+      "tamil": "வலை"
+    },
+    {
+      "category": "Bedroom",
+      "english": "Pillow",
+      "tamil": "தலையணை"
+    },
+    {
+      "category": "Bedroom",
+      "english": "Shelf",
+      "tamil": "அலமாரி"
+    },
+    {
+      "category": "Kitchen",
+      "english": "Basket",
+      "tamil": "கூடை"
+    },
+    {
+      "category": "Kitchen",
+      "english": "Bowl",
+      "tamil": "கிண்ணம்"
+    },
+    {
+      "category": "Kitchen",
+      "english": "Cup",
+      "tamil": "கோப்பை"
+    },
+    {
+      "category": "Kitchen",
+      "english": "Glass",
+      "tamil": "கண்ணாடி"
+    },
+    {
+      "category": "Kitchen",
+      "english": "Jug",
+      "tamil": "கூஜா"
+    },
+    {
+      "category": "Kitchen",
+      "english": "Knife",
+      "tamil": "கத்தி"
+    },
+    {
+      "category": "Kitchen",
+      "english": "Plate",
+      "tamil": "தட்டு"
+    },
+    {
+      "category": "Kitchen",
+      "english": "Pot",
+      "tamil": "பானை"
+    },
+    {
+      "category": "Kitchen",
+      "english": "Spoon",
+      "tamil": "கரண்டி"
+    },
+    {
+      "category": "Kitchen",
+      "english": "Stove",
+      "tamil": "அடுப்பு"
+    },
+    {
+      "category": "Kitchen",
+      "english": "Strainer",
+      "tamil": "வடிகட்டி"
+    },
+    {
+      "category": "Kitchen",
+      "english": "Vessel",
+      "tamil": "பாத்திரம்"
+    },
+    {
+      "category": "Bathroom",
+      "english": "Acid",
+      "tamil": "அமிலம்"
+    },
+    {
+      "category": "Bathroom",
+      "english": "Bucket",
+      "tamil": "வாளி"
+    },
+    {
+      "category": "Bathroom",
+      "english": "Comb",
+      "tamil": "சீப்பு"
+    },
+    {
+      "category": "Bathroom",
+      "english": "Scissors",
+      "tamil": "கத்தரிக்கோல்"
+    },
+    {
+      "category": "Bathroom",
+      "english": "Toothpaste",
+      "tamil": "பற்பசை"
+    },
+    {
+      "category": "Bathroom",
+      "english": "Towel",
+      "tamil": "துண்டு"
+    },
+    {
+      "category": "Bathroom",
+      "english": "Mug",
+      "tamil": "குவளை"
+    },
+    {
+      "category": "Bathroom",
+      "english": "Tub",
+      "tamil": "தொட்டி"
+    },
+    {
+      "category": "Garden",
+      "english": "Broom",
+      "tamil": "துடைப்பம்"
+    },
+    {
+      "category": "Garden",
+      "english": "Dustbin",
+      "tamil": "குப்பைத்தொட்டி"
+    },
+    {
+      "category": "Garden",
+      "english": "Fence",
+      "tamil": "வேலி"
+    },
+    {
+      "category": "Garden",
+      "english": "Fertilizer",
+      "tamil": "உரம்"
+    },
+    {
+      "category": "Garden",
+      "english": "Flowerpot",
+      "tamil": "பூந்தொட்டி"
+    },
+    {
+      "category": "Garden",
+      "english": "Plants",
+      "tamil": "செடிகள்"
+    },
+    {
+      "category": "Garden",
+      "english": "Rope",
+      "tamil": "கயிறு"
+    },
+    {
+      "category": "Garden",
+      "english": "Soil",
+      "tamil": "மண்"
+    },
+    {
+      "category": "Garden",
+      "english": "Sapling",
+      "tamil": "மரக்கன்று"
+    },
+    {
+      "category": "Garden",
+      "english": "Swing",
+      "tamil": "ஊஞ்சல்"
+    },
+    {
+      "category": "Garden",
+      "english": "Tap",
+      "tamil": "குழாய்"
+    },
+    {
+      "category": "Garden",
+      "english": "Tent",
+      "tamil": "கூடாரம்"
+    },
+    {
+      "category": "Tools",
+      "english": "Axe",
+      "tamil": "கோடாரி"
+    },
+    {
+      "category": "Tools",
+      "english": "Gun",
+      "tamil": "துப்பாக்கி"
+    },
+    {
+      "category": "Tools",
+      "english": "Hammer",
+      "tamil": "சுத்தி"
+    },
+    {
+      "category": "Tools",
+      "english": "Ladder",
+      "tamil": "ஏணி"
+    },
+    {
+      "category": "Tools",
+      "english": "Nail",
+      "tamil": "ஆணி"
+    },
+    {
+      "category": "Tools",
+      "english": "Needle",
+      "tamil": "ஊசி"
+    },
+    {
+      "category": "Tools",
+      "english": "Pliers",
+      "tamil": "இடுக்கி"
+    },
+    {
+      "category": "Animals",
+      "english": "Bat",
+      "tamil": "வெளவால்"
+    },
+    {
+      "category": "Animals",
+      "english": "Bear",
+      "tamil": "கரடி"
+    },
+    {
+      "category": "Animals",
+      "english": "Camel",
+      "tamil": "ஒட்டகம்"
+    },
+    {
+      "category": "Animals",
+      "english": "Cat",
+      "tamil": "பூனை"
+    },
+    {
+      "category": "Animals",
+      "english": "Cow",
+      "tamil": "பசு"
+    },
+    {
+      "category": "Animals",
+      "english": "Deer",
+      "tamil": "மான்"
+    },
+    {
+      "category": "Animals",
+      "english": "Dog",
+      "tamil": "நாய்"
+    },
+    {
+      "category": "Animals",
+      "english": "Donkey",
+      "tamil": "கழுதை"
+    },
+    {
+      "category": "Animals",
+      "english": "Elephant",
+      "tamil": "யானை"
+    },
+    {
+      "category": "Animals",
+      "english": "Fox",
+      "tamil": "நரி"
+    },
+    {
+      "category": "Animals",
+      "english": "Goat",
+      "tamil": "வெள்ளாடு"
+    },
+    {
+      "category": "Animals",
+      "english": "Horse",
+      "tamil": "குதிரை"
+    },
+    {
+      "category": "Animals",
+      "english": "Leopard",
+      "tamil": "சிறுத்தை"
+    },
+    {
+      "category": "Animals",
+      "english": "Lion",
+      "tamil": "சிங்கம்"
+    },
+    {
+      "category": "Animals",
+      "english": "Monkey",
+      "tamil": "குரங்கு"
+    },
+    {
+      "category": "Animals",
+      "english": "Mouse",
+      "tamil": "எலி"
+    },
+    {
+      "category": "Animals",
+      "english": "Ox",
+      "tamil": "எருது"
+    },
+    {
+      "category": "Animals",
+      "english": "Pig",
+      "tamil": "பன்றி"
+    },
+    {
+      "category": "Animals",
+      "english": "Rabbit",
+      "tamil": "முயல்"
+    },
+    {
+      "category": "Animals",
+      "english": "Squirrel",
+      "tamil": "அணில்"
+    },
+    {
+      "category": "Animals",
+      "english": "Tiger",
+      "tamil": "புலி"
+    },
+    {
+      "category": "Animals",
+      "english": "Wolf",
+      "tamil": "ஓநாய்"
+    },
+    {
+      "category": "Animals",
+      "english": "Zebra",
+      "tamil": "வரிக்குதிரை"
+    },
+    {
+      "category": "Birds",
+      "english": "Cock",
+      "tamil": "சேவல்"
+    },
+    {
+      "category": "Birds",
+      "english": "Crane",
+      "tamil": "கொக்கு"
+    },
+    {
+      "category": "Birds",
+      "english": "Crow",
+      "tamil": "காகம்"
+    },
+    {
+      "category": "Birds",
+      "english": "Dove",
+      "tamil": "புறா"
+    },
+    {
+      "category": "Birds",
+      "english": "Duck",
+      "tamil": "வாத்து"
+    },
+    {
+      "category": "Birds",
+      "english": "Hen",
+      "tamil": "கோழி"
+    },
+    {
+      "category": "Birds",
+      "english": "Ostrich",
+      "tamil": "நெருப்புக்கோழி"
+    },
+    {
+      "category": "Birds",
+      "english": "Owl",
+      "tamil": "ஆந்தை"
+    },
+    {
+      "category": "Birds",
+      "english": "Parrot",
+      "tamil": "கிளி"
+    },
+    {
+      "category": "Birds",
+      "english": "Peacock",
+      "tamil": "மயில்"
+    },
+    {
+      "category": "Birds",
+      "english": "Sparrow",
+      "tamil": "சிட்டுக்குருவி"
+    },
+    {
+      "category": "Birds",
+      "english": "Woodpecker",
+      "tamil": "மரங்கொத்தி"
+    },
+    {
+      "category": "Aquatic Animals",
+      "english": "Crab",
+      "tamil": "நண்டு"
+    },
+    {
+      "category": "Aquatic Animals",
+      "english": "Fish",
+      "tamil": "மீன்"
+    },
+    {
+      "category": "Aquatic Animals",
+      "english": "Oyster",
+      "tamil": "சிப்பி"
+    },
+    {
+      "category": "Aquatic Animals",
+      "english": "Shark",
+      "tamil": "சுறா"
+    },
+    {
+      "category": "Aquatic Animals",
+      "english": "Shrimp",
+      "tamil": "இறால்"
+    },
+    {
+      "category": "Aquatic Animals",
+      "english": "Squid",
+      "tamil": "கனவா"
+    },
+    {
+      "category": "Aquatic Animals",
+      "english": "Whale",
+      "tamil": "திமிங்கிலம்"
+    },
+    {
+      "category": "Reptiles",
+      "english": "Centipede",
+      "tamil": "பூரான்"
+    },
+    {
+      "category": "Reptiles",
+      "english": "Chameleon",
+      "tamil": "பச்சோந்தி"
+    },
+    {
+      "category": "Reptiles",
+      "english": "Crocodile",
+      "tamil": "முதலை"
+    },
+    {
+      "category": "Reptiles",
+      "english": "Lizard",
+      "tamil": "பல்லி"
+    },
+    {
+      "category": "Reptiles",
+      "english": "Python",
+      "tamil": "மலைப்பாம்பு"
+    },
+    {
+      "category": "Reptiles",
+      "english": "Scorpion",
+      "tamil": "தேள்"
+    },
+    {
+      "category": "Reptiles",
+      "english": "Snail",
+      "tamil": "நத்தை"
+    },
+    {
+      "category": "Reptiles",
+      "english": "Snake",
+      "tamil": "பாம்பு"
+    },
+    {
+      "category": "Amphibians",
+      "english": "Frog",
+      "tamil": "தவளை"
+    },
+    {
+      "category": "Amphibians",
+      "english": "Turtle/Tortoise",
+      "tamil": "ஆமை"
+    },
+    {
+      "category": "Insects",
+      "english": "Ant",
+      "tamil": "எறும்பு"
+    },
+    {
+      "category": "Insects",
+      "english": "Bee",
+      "tamil": "தேனீ"
+    },
+    {
+      "category": "Insects",
+      "english": "Black Ant",
+      "tamil": "கட்டெறும்பு"
+    },
+    {
+      "category": "Insects",
+      "english": "Fly",
+      "tamil": "ஈ"
+    },
+    {
+      "category": "Insects",
+      "english": "Grasshopper",
+      "tamil": "வெட்டுக்கிளி"
+    },
+    {
+      "category": "Insects",
+      "english": "Mosquito",
+      "tamil": "கொசு"
+    },
+    {
+      "category": "Insects",
+      "english": "Spider",
+      "tamil": "சிலந்தி"
+    },
+    {
+      "category": "Insects",
+      "english": "Worm",
+      "tamil": "புழு"
+    },
+    {
+      "category": "Types Of Plants",
+      "english": "Bamboo",
+      "tamil": "மூங்கில்"
+    },
+    {
+      "category": "Types Of Plants",
+      "english": "Bush",
+      "tamil": "புதர்"
+    },
+    {
+      "category": "Types Of Plants",
+      "english": "Climber",
+      "tamil": "கொடி"
+    },
+    {
+      "category": "Types Of Plants",
+      "english": "Grass",
+      "tamil": "புல்"
+    },
+    {
+      "category": "Types Of Plants",
+      "english": "Herb",
+      "tamil": "மூலிகை"
+    },
+    {
+      "category": "Types Of Plants",
+      "english": "Mushroom",
+      "tamil": "காளான்"
+    },
+    {
+      "category": "Types Of Plants",
+      "english": "Tree",
+      "tamil": "மரம்"
+    },
+    {
+      "category": "Types Of Plants",
+      "english": "Weed",
+      "tamil": "களை"
+    },
+    {
+      "category": "Parts Of Plants",
+      "english": "Bark",
+      "tamil": "பட்டை"
+    },
+    {
+      "category": "Parts Of Plants",
+      "english": "Branch",
+      "tamil": "கிளை"
+    },
+    {
+      "category": "Parts Of Plants",
+      "english": "Bud",
+      "tamil": "மொட்டு"
+    },
+    {
+      "category": "Parts Of Plants",
+      "english": "Flower",
+      "tamil": "பூ"
+    },
+    {
+      "category": "Parts Of Plants",
+      "english": "Fruit",
+      "tamil": "பழம்"
+    },
+    {
+      "category": "Parts Of Plants",
+      "english": "Leaf",
+      "tamil": "இலை"
+    },
+    {
+      "category": "Parts Of Plants",
+      "english": "Root",
+      "tamil": "வேர்"
+    },
+    {
+      "category": "Parts Of Plants",
+      "english": "Seed",
+      "tamil": "விதை"
+    },
+    {
+      "category": "Parts Of Plants",
+      "english": "Stem",
+      "tamil": "தண்டு"
+    },
+    {
+      "category": "Flowers",
+      "english": "Jasmine",
+      "tamil": "மல்லிகை"
+    },
+    {
+      "category": "Flowers",
+      "english": "Lily",
+      "tamil": "அல்லி"
+    },
+    {
+      "category": "Flowers",
+      "english": "Lotus",
+      "tamil": "தாமரை"
+    },
+    {
+      "category": "Flowers",
+      "english": "Sunflower",
+      "tamil": "சூரியகாந்தி"
+    },
+    {
+      "category": "Food",
+      "english": "Butter",
+      "tamil": "வெண்ணெய்"
+    },
+    {
+      "category": "Food",
+      "english": "Cheese",
+      "tamil": "பாலாடைக்கட்டி"
+    },
+    {
+      "category": "Food",
+      "english": "Coconut",
+      "tamil": "தேங்காய்"
+    },
+    {
+      "category": "Food",
+      "english": "Coffee",
+      "tamil": "குளம்பி"
+    },
+    {
+      "category": "Food",
+      "english": "Egg",
+      "tamil": "முட்டை"
+    },
+    {
+      "category": "Food",
+      "english": "Gravy",
+      "tamil": "குழம்பு"
+    },
+    {
+      "category": "Food",
+      "english": "Honey",
+      "tamil": "தேன்"
+    },
+    {
+      "category": "Food",
+      "english": "Milk",
+      "tamil": "பால்"
+    },
+    {
+      "category": "Food",
+      "english": "Rice",
+      "tamil": "சாதம்"
+    },
+    {
+      "category": "Food",
+      "english": "Tea",
+      "tamil": "தேநீர்"
+    },
+    {
+      "category": "Vegetables",
+      "english": "Bitter Gourd",
+      "tamil": "பாகற்காய்"
+    },
+    {
+      "category": "Vegetables",
+      "english": "Bottle Gourd",
+      "tamil": "சுரைக்காய்"
+    },
+    {
+      "category": "Vegetables",
+      "english": "Brinjal",
+      "tamil": "கத்திரிக்காய்"
+    },
+    {
+      "category": "Vegetables",
+      "english": "Broad Beans",
+      "tamil": "அவரைக்காய்"
+    },
+    {
+      "category": "Vegetables",
+      "english": "Cluster Beans",
+      "tamil": "கொத்தவரங்காய்"
+    },
+    {
+      "category": "Vegetables",
+      "english": "Corn",
+      "tamil": "மக்காச்சோளம்"
+    },
+    {
+      "category": "Vegetables",
+      "english": "Cucumber",
+      "tamil": "வெள்ளரிக்காய்"
+    },
+    {
+      "category": "Vegetables",
+      "english": "Drumstick",
+      "tamil": "முருங்கைக்காய்"
+    },
+    {
+      "category": "Vegetables",
+      "english": "Elephant Yam",
+      "tamil": "கருணைக்கிழங்கு"
+    },
+    {
+      "category": "Vegetables",
+      "english": "Ladys Finger",
+      "tamil": "வெண்டைக்காய்"
+    },
+    {
+      "category": "Vegetables",
+      "english": "Onion",
+      "tamil": "வெங்காயம்"
+    },
+    {
+      "category": "Vegetables",
+      "english": "Peas",
+      "tamil": "பட்டாணி"
+    },
+    {
+      "category": "Vegetables",
+      "english": "Plantain",
+      "tamil": "வாழைக்காய்"
+    },
+    {
+      "category": "Vegetables",
+      "english": "Plantain Stem",
+      "tamil": "வாழைத்தண்டு"
+    },
+    {
+      "category": "Vegetables",
+      "english": "Potato",
+      "tamil": "உருளைக்கிழங்கு"
+    },
+    {
+      "category": "Vegetables",
+      "english": "Pumpkin",
+      "tamil": "பூசணிக்காய்"
+    },
+    {
+      "category": "Vegetables",
+      "english": "Radish",
+      "tamil": "முள்ளங்கி"
+    },
+    {
+      "category": "Vegetables",
+      "english": "Ridge Gourd",
+      "tamil": "பீர்க்கங்காய்"
+    },
+    {
+      "category": "Vegetables",
+      "english": "Snake Gourd",
+      "tamil": "புடலங்காய்"
+    },
+    {
+      "category": "Vegetables",
+      "english": "Spinach",
+      "tamil": "கீரை"
+    },
+    {
+      "category": "Vegetables",
+      "english": "Tomato",
+      "tamil": "தக்காளி"
+    },
+    {
+      "category": "Vegetables",
+      "english": "Yam",
+      "tamil": "சேனைக்கிழங்கு"
+    },
+    {
+      "category": "Fruits",
+      "english": "Banana",
+      "tamil": "வாழைப்பழம்"
+    },
+    {
+      "category": "Fruits",
+      "english": "Dates",
+      "tamil": "பேரிச்சை"
+    },
+    {
+      "category": "Fruits",
+      "english": "Fig",
+      "tamil": "அத்தி"
+    },
+    {
+      "category": "Fruits",
+      "english": "Grape",
+      "tamil": "திராட்சை"
+    },
+    {
+      "category": "Fruits",
+      "english": "Guava",
+      "tamil": "கொய்யா"
+    },
+    {
+      "category": "Fruits",
+      "english": "Custard Apple",
+      "tamil": "சீத்தாப்பழம்"
+    },
+    {
+      "category": "Fruits",
+      "english": "Jackfruit",
+      "tamil": "பலாப்பழம்"
+    },
+    {
+      "category": "Fruits",
+      "english": "Mango",
+      "tamil": "மாம்பழம்"
+    },
+    {
+      "category": "Fruits",
+      "english": "Papaya",
+      "tamil": "பப்பாளி"
+    },
+    {
+      "category": "Fruits",
+      "english": "Pears",
+      "tamil": "பேரிக்காய்"
+    },
+    {
+      "category": "Fruits",
+      "english": "Pineapple",
+      "tamil": "அன்னாசி"
+    },
+    {
+      "category": "Fruits",
+      "english": "Pomegranate",
+      "tamil": "மாதுளை"
+    },
+    {
+      "category": "Fruits",
+      "english": "Sweet Lime",
+      "tamil": "சாத்துக்குடி"
+    },
+    {
+      "category": "Fruits",
+      "english": "Watermelon",
+      "tamil": "தர்பூசணி"
+    },
+    {
+      "category": "Spices",
+      "english": "Asafoetida",
+      "tamil": "பெருங்காயம்"
+    },
+    {
+      "category": "Spices",
+      "english": "Basil",
+      "tamil": "துளசி"
+    },
+    {
+      "category": "Spices",
+      "english": "Chilli",
+      "tamil": "மிளகாய்"
+    },
+    {
+      "category": "Spices",
+      "english": "Clove",
+      "tamil": "கிராம்பு"
+    },
+    {
+      "category": "Spices",
+      "english": "Coriander",
+      "tamil": "கொத்துமல்லி"
+    },
+    {
+      "category": "Spices",
+      "english": "Cumin",
+      "tamil": "சீரகம்"
+    },
+    {
+      "category": "Spices",
+      "english": "Curry Leaf",
+      "tamil": "கறிவேப்பிலை"
+    },
+    {
+      "category": "Spices",
+      "english": "Fennel Seed",
+      "tamil": "சோம்பு"
+    },
+    {
+      "category": "Spices",
+      "english": "Fenugreek Seed",
+      "tamil": "வெந்தயம்"
+    },
+    {
+      "category": "Spices",
+      "english": "Garlic",
+      "tamil": "பூண்டு"
+    },
+    {
+      "category": "Spices",
+      "english": "Ginger",
+      "tamil": "இஞ்சி"
+    },
+    {
+      "category": "Spices",
+      "english": "Cardamom",
+      "tamil": "ஏலக்காய்"
+    },
+    {
+      "category": "Spices",
+      "english": "Mint leaves",
+      "tamil": "புதினா"
+    },
+    {
+      "category": "Spices",
+      "english": "Mustard",
+      "tamil": "கடுகு"
+    },
+    {
+      "category": "Spices",
+      "english": "Pepper",
+      "tamil": "மிளகு"
+    },
+    {
+      "category": "Spices",
+      "english": "Sesame Seed",
+      "tamil": "எள்"
+    },
+    {
+      "category": "Spices",
+      "english": "Turmeric",
+      "tamil": "மஞ்சள்"
+    },
+    {
+      "category": "Dresses And Accessories",
+      "english": "Bangle",
+      "tamil": "வளையல்"
+    },
+    {
+      "category": "Dresses And Accessories",
+      "english": "Button",
+      "tamil": "பொத்தான்"
+    },
+    {
+      "category": "Dresses And Accessories",
+      "english": "Cap",
+      "tamil": "தொப்பி"
+    },
+    {
+      "category": "Dresses And Accessories",
+      "english": "Earrings",
+      "tamil": "தோடு"
+    },
+    {
+      "category": "Dresses And Accessories",
+      "english": "Hat",
+      "tamil": "தொப்பி"
+    },
+    {
+      "category": "Dresses And Accessories",
+      "english": "Ring",
+      "tamil": "மோதிரம்"
+    },
+    {
+      "category": "Dresses And Accessories",
+      "english": "Shirt",
+      "tamil": "சட்டை"
+    },
+    {
+      "category": "Dresses And Accessories",
+      "english": "Skirt",
+      "tamil": "பாவாடை"
+    },
+    {
+      "category": "Dresses And Accessories",
+      "english": "Umbrella",
+      "tamil": "குடை"
+    },
+    {
+      "category": "Dresses And Accessories",
+      "english": "Vest",
+      "tamil": "உள்ளாடை"
+    },
+    {
+      "category": "Relations",
+      "english": "Aunt",
+      "tamil": "அத்தை"
+    },
+    {
+      "category": "Relations",
+      "english": "Brother",
+      "tamil": "சகோதரன்"
+    },
+    {
+      "category": "Relations",
+      "english": "Daughter",
+      "tamil": "மகள்"
+    },
+    {
+      "category": "Relations",
+      "english": "Daughter-in-law",
+      "tamil": "மருமகள்"
+    },
+    {
+      "category": "Relations",
+      "english": "Father",
+      "tamil": "அப்பா"
+    },
+    {
+      "category": "Relations",
+      "english": "Granddaughter",
+      "tamil": "பேத்தி"
+    },
+    {
+      "category": "Relations",
+      "english": "Grandfather",
+      "tamil": "தாத்தா"
+    },
+    {
+      "category": "Relations",
+      "english": "Grandmother",
+      "tamil": "பாட்டி"
+    },
+    {
+      "category": "Relations",
+      "english": "Grandson",
+      "tamil": "பேரன்"
+    },
+    {
+      "category": "Relations",
+      "english": "Husband",
+      "tamil": "கணவன்"
+    },
+    {
+      "category": "Relations",
+      "english": "Mother",
+      "tamil": "அம்மா"
+    },
+    {
+      "category": "Relations",
+      "english": "Sister",
+      "tamil": "சகோதரி"
+    },
+    {
+      "category": "Relations",
+      "english": "Son",
+      "tamil": "மகன்"
+    },
+    {
+      "category": "Relations",
+      "english": "Son-in-law",
+      "tamil": "மருமகன்"
+    },
+    {
+      "category": "Relations",
+      "english": "Uncle",
+      "tamil": "மாமா"
+    },
+    {
+      "category": "Relations",
+      "english": "Wife",
+      "tamil": "மனைவி"
+    },
+    {
+      "category": "Emotions",
+      "english": "Afraid/Fear",
+      "tamil": "பயம்"
+    },
+    {
+      "category": "Emotions",
+      "english": "Anxiety",
+      "tamil": "பதட்டம்"
+    },
+    {
+      "category": "Emotions",
+      "english": "Brave",
+      "tamil": "துணிச்சல்"
+    },
+    {
+      "category": "Emotions",
+      "english": "Calm",
+      "tamil": "அமைதி"
+    },
+    {
+      "category": "Emotions",
+      "english": "Cautious",
+      "tamil": "எச்சரிக்கையாக"
+    },
+    {
+      "category": "Emotions",
+      "english": "Confused",
+      "tamil": "குழப்பமான"
+    },
+    {
+      "category": "Emotions",
+      "english": "Curious",
+      "tamil": "ஆர்வமாக"
+    },
+    {
+      "category": "Emotions",
+      "english": "Energetic",
+      "tamil": "துடிப்புள்ள"
+    },
+    {
+      "category": "Emotions",
+      "english": "Envy",
+      "tamil": "பொறாமை"
+    },
+    {
+      "category": "Emotions",
+      "english": "Glad",
+      "tamil": "மகிழ்ச்சி"
+    },
+    {
+      "category": "Emotions",
+      "english": "Grief",
+      "tamil": "துக்கம்"
+    },
+    {
+      "category": "Emotions",
+      "english": "Happy",
+      "tamil": "மகிழ்ச்சி"
+    },
+    {
+      "category": "Emotions",
+      "english": "Hot",
+      "tamil": "சூடான"
+    },
+    {
+      "category": "Emotions",
+      "english": "Hungry",
+      "tamil": "பசி"
+    },
+    {
+      "category": "Emotions",
+      "english": "Interest",
+      "tamil": "விருப்பம்"
+    },
+    {
+      "category": "Emotions",
+      "english": "Jolly",
+      "tamil": "மகிழ்ச்சியான"
+    },
+    {
+      "category": "Emotions",
+      "english": "Excitement",
+      "tamil": "உற்சாகம்"
+    },
+    {
+      "category": "Emotions",
+      "english": "Lonely",
+      "tamil": "தனிமை"
+    },
+    {
+      "category": "Emotions",
+      "english": "Loving",
+      "tamil": "அன்பான"
+    },
+    {
+      "category": "Emotions",
+      "english": "Lucky",
+      "tamil": "அதிர்ஷடமான"
+    },
+    {
+      "category": "Emotions",
+      "english": "Needy",
+      "tamil": "தேவையுள்ள"
+    },
+    {
+      "category": "Emotions",
+      "english": "Nervous",
+      "tamil": "பதட்டமாக"
+    },
+    {
+      "category": "Emotions",
+      "english": "Peaceful",
+      "tamil": "அமைதியான"
+    },
+    {
+      "category": "Emotions",
+      "english": "Proud",
+      "tamil": "பெருமை"
+    },
+    {
+      "category": "Emotions",
+      "english": "Sad",
+      "tamil": "சோகம்"
+    },
+    {
+      "category": "Emotions",
+      "english": "Selfishness",
+      "tamil": "சுயநலம்"
+    },
+    {
+      "category": "Emotions",
+      "english": "Shame",
+      "tamil": "அவமானம்"
+    },
+    {
+      "category": "Emotions",
+      "english": "Shock",
+      "tamil": "அதிர்ச்சி"
+    },
+    {
+      "category": "Emotions",
+      "english": "Shy",
+      "tamil": "கூச்சம்"
+    },
+    {
+      "category": "Emotions",
+      "english": "Stress",
+      "tamil": "அழுத்தம்"
+    },
+    {
+      "category": "Emotions",
+      "english": "Suffering",
+      "tamil": "துன்பம்"
+    },
+    {
+      "category": "Emotions",
+      "english": "Thirsty",
+      "tamil": "தாகம்"
+    },
+    {
+      "category": "Emotions",
+      "english": "Tired",
+      "tamil": "களைப்பு"
+    },
+    {
+      "category": "Emotions",
+      "english": "Worry",
+      "tamil": "கவலை"
+    },
+    {
+      "category": "Emotions",
+      "english": "Jealous",
+      "tamil": "பொறாமை"
+    },
+    {
+      "category": "Hobby",
+      "english": "Chess",
+      "tamil": "சதுரங்கம்"
+    },
+    {
+      "category": "Hobby",
+      "english": "Cooking",
+      "tamil": "சமைத்தல்"
+    },
+    {
+      "category": "Hobby",
+      "english": "Dancing",
+      "tamil": "நடனம்"
+    },
+    {
+      "category": "Hobby",
+      "english": "Gardening",
+      "tamil": "தோட்டக்கலை"
+    },
+    {
+      "category": "Hobby",
+      "english": "Hunting",
+      "tamil": "வேட்டையாடுதல்"
+    },
+    {
+      "category": "Hobby",
+      "english": "Knitting",
+      "tamil": "பின்னல்"
+    },
+    {
+      "category": "Hobby",
+      "english": "Meditation",
+      "tamil": "தியானம்"
+    },
+    {
+      "category": "Hobby",
+      "english": "Reading",
+      "tamil": "வாசித்தல்"
+    },
+    {
+      "category": "Hobby",
+      "english": "Sewing",
+      "tamil": "தையல்"
+    },
+    {
+      "category": "Hobby",
+      "english": "Singing",
+      "tamil": "பாடுதல்"
+    },
+    {
+      "category": "Hobby",
+      "english": "Swimming",
+      "tamil": "நீந்துதல்"
+    },
+    {
+      "category": "Games",
+      "english": "Archery",
+      "tamil": "வில்வித்தை"
+    },
+    {
+      "category": "Games",
+      "english": "Badminton",
+      "tamil": "பூப்பந்து"
+    },
+    {
+      "category": "Games",
+      "english": "Basketball",
+      "tamil": "கூடைப்பந்து"
+    },
+    {
+      "category": "Games",
+      "english": "Boxing",
+      "tamil": "குத்துச்சண்டை"
+    },
+    {
+      "category": "Games",
+      "english": "Climbing",
+      "tamil": "ஏறுதல்"
+    },
+    {
+      "category": "Games",
+      "english": "Cricket",
+      "tamil": "மட்டைப்பந்து"
+    },
+    {
+      "category": "Games",
+      "english": "Football",
+      "tamil": "கால்பந்து"
+    },
+    {
+      "category": "Games",
+      "english": "Running",
+      "tamil": "ஓடுதல்"
+    },
+    {
+      "category": "Games",
+      "english": "Shooting",
+      "tamil": "சுடுதல்"
+    },
+    {
+      "category": "Games",
+      "english": "Volleyball",
+      "tamil": "கைப்பந்து"
+    },
+    {
+      "category": "Games",
+      "english": "Walking",
+      "tamil": "நடத்தல்"
+    },
+    {
+      "category": "Games",
+      "english": "Wrestling",
+      "tamil": "மல்யுத்தம்"
+    },
+    {
+      "category": "Arts",
+      "english": "Drums",
+      "tamil": "மேளம்"
+    },
+    {
+      "category": "Arts",
+      "english": "Joke",
+      "tamil": "நகைச்சுவை"
+    },
+    {
+      "category": "Arts",
+      "english": "Movie",
+      "tamil": "திரைப்படம்"
+    },
+    {
+      "category": "Arts",
+      "english": "Music",
+      "tamil": "இசை"
+    },
+    {
+      "category": "Arts",
+      "english": "Play",
+      "tamil": "நாடகம்"
+    },
+    {
+      "category": "Arts",
+      "english": "Poem",
+      "tamil": "கவிதை"
+    },
+    {
+      "category": "Arts",
+      "english": "Poet",
+      "tamil": "கவிஞர்"
+    },
+    {
+      "category": "Arts",
+      "english": "Singer",
+      "tamil": "பாடகர்"
+    },
+    {
+      "category": "Arts",
+      "english": "Sound",
+      "tamil": "ஒலி"
+    },
+    {
+      "category": "Arts",
+      "english": "Voice",
+      "tamil": "குரல்"
+    },
+    {
+      "category": "Arts",
+      "english": "Whistle",
+      "tamil": "சீட்டி"
+    },
+    {
+      "category": "Days",
+      "english": "Monday",
+      "tamil": "திங்கள்"
+    },
+    {
+      "category": "Days",
+      "english": "Tuesday",
+      "tamil": "செவ்வாய்"
+    },
+    {
+      "category": "Days",
+      "english": "Wednesday",
+      "tamil": "புதன்"
+    },
+    {
+      "category": "Days",
+      "english": "Thursday",
+      "tamil": "வியாழன்"
+    },
+    {
+      "category": "Days",
+      "english": "Saturday",
+      "tamil": "சனி"
+    },
+    {
+      "category": "Days",
+      "english": "Sunday",
+      "tamil": "ஞாயிறு"
+    },
+    {
+      "category": "Colours",
+      "english": "Black",
+      "tamil": "கருப்பு"
+    },
+    {
+      "category": "Colours",
+      "english": "Brown",
+      "tamil": "பழுப்பு"
+    },
+    {
+      "category": "Colours",
+      "english": "Grey",
+      "tamil": "சாம்பல்"
+    },
+    {
+      "category": "Colours",
+      "english": "Green",
+      "tamil": "பச்சை"
+    },
+    {
+      "category": "Colours",
+      "english": "Orange",
+      "tamil": "ஆரஞ்சு"
+    },
+    {
+      "category": "Colours",
+      "english": "Red",
+      "tamil": "சிவப்பு"
+    },
+    {
+      "category": "Colours",
+      "english": "White",
+      "tamil": "வெள்ளை"
+    },
+    {
+      "category": "Symbols Shapes",
+      "english": "Addition",
+      "tamil": "கூட்டல்"
+    },
+    {
+      "category": "Symbols Shapes",
+      "english": "Circle",
+      "tamil": "வட்டம்"
+    },
+    {
+      "category": "Symbols Shapes",
+      "english": "Cylinder",
+      "tamil": "உருளை"
+    },
+    {
+      "category": "Symbols Shapes",
+      "english": "Division",
+      "tamil": "வகுத்தல்"
+    },
+    {
+      "category": "Symbols Shapes",
+      "english": "Multiplication",
+      "tamil": "பெருக்கல்"
+    },
+    {
+      "category": "Symbols Shapes",
+      "english": "Sphere",
+      "tamil": "கோளம்"
+    },
+    {
+      "category": "Symbols Shapes",
+      "english": "Square",
+      "tamil": "சதுரம்"
+    },
+    {
+      "category": "Symbols Shapes",
+      "english": "Subtraction",
+      "tamil": "கழித்தல்"
+    },
+    {
+      "category": "Symbols Shapes",
+      "english": "Triangle",
+      "tamil": "முக்கோணம்"
+    },
+    {
+      "category": "Space",
+      "english": "Full Moon",
+      "tamil": "பௌர்ணமி"
+    },
+    {
+      "category": "Space",
+      "english": "Mars",
+      "tamil": "செவ்வாய்"
+    },
+    {
+      "category": "Space",
+      "english": "Mercury",
+      "tamil": "புதன்"
+    },
+    {
+      "category": "Space",
+      "english": "New moon",
+      "tamil": "அமாவாசை"
+    },
+    {
+      "category": "Space",
+      "english": "Planet",
+      "tamil": "கோள்"
+    },
+    {
+      "category": "Space",
+      "english": "Saturn",
+      "tamil": "சனி"
+    },
+    {
+      "category": "Space",
+      "english": "Weather",
+      "tamil": "வானிலை"
+    },
+    {
+      "category": "Space",
+      "english": "Cloud",
+      "tamil": "மேகம்"
+    },
+    {
+      "category": "Space",
+      "english": "Drizzle",
+      "tamil": "தூறல்"
+    },
+    {
+      "category": "Space",
+      "english": "Hot",
+      "tamil": "வெப்பம்"
+    },
+    {
+      "category": "Space",
+      "english": "Snow",
+      "tamil": "பனி"
+    },
+    {
+      "category": "Space",
+      "english": "Storm",
+      "tamil": "புயல்"
+    },
+    {
+      "category": "Nature",
+      "english": "Air",
+      "tamil": "காற்று"
+    },
+    {
+      "category": "Nature",
+      "english": "Bay",
+      "tamil": "விரிகுடா"
+    },
+    {
+      "category": "Nature",
+      "english": "Beach",
+      "tamil": "கடற்கரை"
+    },
+    {
+      "category": "Nature",
+      "english": "Bridge",
+      "tamil": "பாலம்"
+    },
+    {
+      "category": "Nature",
+      "english": "Cave",
+      "tamil": "குகை"
+    },
+    {
+      "category": "Nature",
+      "english": "Coast",
+      "tamil": "கடற்கரை"
+    },
+    {
+      "category": "Nature",
+      "english": "Dam",
+      "tamil": "அணை"
+    },
+    {
+      "category": "Nature",
+      "english": "Desert",
+      "tamil": "பாலைவனம்"
+    },
+    {
+      "category": "Nature",
+      "english": "Field",
+      "tamil": "வயல்"
+    },
+    {
+      "category": "Nature",
+      "english": "Forest",
+      "tamil": "காடு"
+    },
+    {
+      "category": "Nature",
+      "english": "Hill",
+      "tamil": "மலை"
+    },
+    {
+      "category": "Nature",
+      "english": "Island",
+      "tamil": "தீவு"
+    },
+    {
+      "category": "Nature",
+      "english": "Jungle",
+      "tamil": "காடு"
+    },
+    {
+      "category": "Nature",
+      "english": "Land",
+      "tamil": "நிலம்"
+    },
+    {
+      "category": "Nature",
+      "english": "Meadow",
+      "tamil": "புல்வெளி"
+    },
+    {
+      "category": "Nature",
+      "english": "Mine",
+      "tamil": "சுரங்கம்"
+    },
+    {
+      "category": "Nature",
+      "english": "Mud",
+      "tamil": "சேறு"
+    },
+    {
+      "category": "Nature",
+      "english": "Path",
+      "tamil": "பாதை"
+    },
+    {
+      "category": "Nature",
+      "english": "Pond",
+      "tamil": "குளம்"
+    },
+    {
+      "category": "Nature",
+      "english": "River",
+      "tamil": "ஆறு"
+    },
+    {
+      "category": "Nature",
+      "english": "Riverbank",
+      "tamil": "ஆற்றங்கரை"
+    },
+    {
+      "category": "Nature",
+      "english": "Road",
+      "tamil": "சாலை"
+    },
+    {
+      "category": "Nature",
+      "english": "Rock",
+      "tamil": "பாறை"
+    },
+    {
+      "category": "Nature",
+      "english": "Sea",
+      "tamil": "கடல்"
+    },
+    {
+      "category": "Nature",
+      "english": "Sky",
+      "tamil": "வானம்"
+    },
+    {
+      "category": "Nature",
+      "english": "Smoke",
+      "tamil": "புகை"
+    },
+    {
+      "category": "Nature",
+      "english": "Stone",
+      "tamil": "கல்"
+    },
+    {
+      "category": "Nature",
+      "english": "Tunnel",
+      "tamil": "சுரங்கப்பாதை"
+    },
+    {
+      "category": "Nature",
+      "english": "Volcano",
+      "tamil": "எரிமலை"
+    },
+    {
+      "category": "Nature",
+      "english": "Water",
+      "tamil": "நீர்"
+    },
+    {
+      "category": "Nature",
+      "english": "Wave",
+      "tamil": "அலை"
+    },
+    {
+      "category": "Nature",
+      "english": "Rainbow",
+      "tamil": "வானவில்"
+    },
+    {
+      "category": "Nature",
+      "english": "Rain",
+      "tamil": "மழை"
+    },
+    {
+      "category": "Nature",
+      "english": "Nest",
+      "tamil": "கூடு"
+    },
+    {
+      "category": "Places",
+      "english": "Bank",
+      "tamil": "வங்கி"
+    },
+    {
+      "category": "Places",
+      "english": "Church",
+      "tamil": "தேவாலயம்"
+    },
+    {
+      "category": "Places",
+      "english": "Castle",
+      "tamil": "கோட்டை"
+    },
+    {
+      "category": "Places",
+      "english": "College",
+      "tamil": "கல்லூரி"
+    },
+    {
+      "category": "Places",
+      "english": "Court",
+      "tamil": "நீதிமன்றம்"
+    },
+    {
+      "category": "Places",
+      "english": "Factory",
+      "tamil": "தொழிற்சாலை"
+    },
+    {
+      "category": "Places",
+      "english": "Farm",
+      "tamil": "பண்ணை"
+    },
+    {
+      "category": "Places",
+      "english": "Flyover",
+      "tamil": "மேம்பாலம்"
+    },
+    {
+      "category": "Places",
+      "english": "Hospital",
+      "tamil": "மருத்துவமனை"
+    },
+    {
+      "category": "Places",
+      "english": "Hotel",
+      "tamil": "உணவகம்"
+    },
+    {
+      "category": "Places",
+      "english": "Jail",
+      "tamil": "சிறைச்சாலை"
+    },
+    {
+      "category": "Places",
+      "english": "Market",
+      "tamil": "சந்தை"
+    },
+    {
+      "category": "Places",
+      "english": "Mosque",
+      "tamil": "பள்ளிவாசல்"
+    },
+    {
+      "category": "Places",
+      "english": "Park",
+      "tamil": "பூங்கா"
+    },
+    {
+      "category": "Places",
+      "english": "Restaurant",
+      "tamil": "உணவகம்"
+    },
+    {
+      "category": "Places",
+      "english": "School",
+      "tamil": "பள்ளி"
+    },
+    {
+      "category": "Places",
+      "english": "Street",
+      "tamil": "தெரு"
+    },
+    {
+      "category": "Places",
+      "english": "Temple",
+      "tamil": "கோவில்"
+    },
+    {
+      "category": "Places",
+      "english": "Theater",
+      "tamil": "திரையரங்கம்"
+    },
+    {
+      "category": "Profession",
+      "english": "Actor",
+      "tamil": "நடிகர்"
+    },
+    {
+      "category": "Profession",
+      "english": "Actress",
+      "tamil": "நடிகை"
+    },
+    {
+      "category": "Profession",
+      "english": "Artist",
+      "tamil": "ஓவியர்"
+    },
+    {
+      "category": "Profession",
+      "english": "Assistant",
+      "tamil": "உதவியாளர்"
+    },
+    {
+      "category": "Profession",
+      "english": "Author",
+      "tamil": "எழுத்தாளர்"
+    },
+    {
+      "category": "Profession",
+      "english": "Cook",
+      "tamil": "சமையல்காரர்"
+    },
+    {
+      "category": "Profession",
+      "english": "Counselor",
+      "tamil": "ஆலோசகர்"
+    },
+    {
+      "category": "Profession",
+      "english": "Dancer",
+      "tamil": "நடனகலைஞர்"
+    },
+    {
+      "category": "Profession",
+      "english": "Doctor",
+      "tamil": "மருத்துவர்"
+    },
+    {
+      "category": "Profession",
+      "english": "Driver",
+      "tamil": "ஓட்டுநர்"
+    },
+    {
+      "category": "Profession",
+      "english": "Engineer",
+      "tamil": "பொறியாளர்"
+    },
+    {
+      "category": "Profession",
+      "english": "Farmer",
+      "tamil": "விவசாயி"
+    },
+    {
+      "category": "Profession",
+      "english": "Gardener",
+      "tamil": "தோட்டக்காரர்"
+    },
+    {
+      "category": "Profession",
+      "english": "Judge",
+      "tamil": "நீதிபதி"
+    },
+    {
+      "category": "Profession",
+      "english": "Lawyer",
+      "tamil": "வழக்கறிஞர்"
+    },
+    {
+      "category": "Profession",
+      "english": "Musician",
+      "tamil": "இசையமைப்பாளர்"
+    },
+    {
+      "category": "Profession",
+      "english": "Pilot",
+      "tamil": "விமானி"
+    },
+    {
+      "category": "Profession",
+      "english": "Politician",
+      "tamil": "அரசியல்வாதி"
+    },
+    {
+      "category": "Profession",
+      "english": "Police",
+      "tamil": "காவலர்"
+    },
+    {
+      "category": "Profession",
+      "english": "Producer",
+      "tamil": "தயாரிப்பாளர்"
+    },
+    {
+      "category": "Profession",
+      "english": "Shop keeper",
+      "tamil": "கடைக்காரர்"
+    },
+    {
+      "category": "Profession",
+      "english": "Speaker",
+      "tamil": "பேச்சாளர்"
+    },
+    {
+      "category": "Profession",
+      "english": "Tailor",
+      "tamil": "தையல்காரர்"
+    },
+    {
+      "category": "Profession",
+      "english": "Teacher",
+      "tamil": "ஆசிரியர்"
+    },
+    {
+      "category": "Profession",
+      "english": "Watchman",
+      "tamil": "காவலாளி"
+    },
+    {
+      "category": "School",
+      "english": "Answer Sheet",
+      "tamil": "விடைத்தாள்"
+    },
+    {
+      "category": "School",
+      "english": "Bell",
+      "tamil": "மணி"
+    },
+    {
+      "category": "School",
+      "english": "Book",
+      "tamil": "புத்தகம்"
+    },
+    {
+      "category": "School",
+      "english": "Class Room",
+      "tamil": "வகுப்பறை"
+    },
+    {
+      "category": "School",
+      "english": "Exam",
+      "tamil": "தேர்வு"
+    },
+    {
+      "category": "School",
+      "english": "Glue",
+      "tamil": "பசை"
+    },
+    {
+      "category": "School",
+      "english": "Library",
+      "tamil": "நூலகம்"
+    },
+    {
+      "category": "School",
+      "english": "Map",
+      "tamil": "வரைபடம்"
+    },
+    {
+      "category": "School",
+      "english": "Parents",
+      "tamil": "பெற்றோர்"
+    },
+    {
+      "category": "School",
+      "english": "Pen",
+      "tamil": "பேனா"
+    },
+    {
+      "category": "School",
+      "english": "Pencil",
+      "tamil": "கரிக்கோல்"
+    },
+    {
+      "category": "School",
+      "english": "Question Paper",
+      "tamil": "வினாத்தாள்"
+    },
+    {
+      "category": "School",
+      "english": "Student",
+      "tamil": "மாணவர்"
+    },
+    {
+      "category": "Hospital",
+      "english": "Backache",
+      "tamil": "முதுகுவலி"
+    },
+    {
+      "category": "Hospital",
+      "english": "Blood",
+      "tamil": "இரத்தம்"
+    },
+    {
+      "category": "Hospital",
+      "english": "Cough",
+      "tamil": "இருமல்"
+    },
+    {
+      "category": "Hospital",
+      "english": "Exercise",
+      "tamil": "உடற்பயிற்சி"
+    },
+    {
+      "category": "Hospital",
+      "english": "Face mask",
+      "tamil": "முகக்கவசம்"
+    },
+    {
+      "category": "Hospital",
+      "english": "Fever",
+      "tamil": "காய்ச்சல்"
+    },
+    {
+      "category": "Hospital",
+      "english": "Headache",
+      "tamil": "தலைவலி"
+    },
+    {
+      "category": "Hospital",
+      "english": "Injury",
+      "tamil": "காயம்"
+    },
+    {
+      "category": "Hospital",
+      "english": "Medical Shop",
+      "tamil": "மருந்துக்கடை"
+    },
+    {
+      "category": "Hospital",
+      "english": "Medicine",
+      "tamil": "மருந்து"
+    },
+    {
+      "category": "Hospital",
+      "english": "Nausea",
+      "tamil": "குமட்டல்"
+    },
+    {
+      "category": "Hospital",
+      "english": "Powder",
+      "tamil": "பொடி"
+    },
+    {
+      "category": "Hospital",
+      "english": "Rest",
+      "tamil": "ஓய்வு"
+    },
+    {
+      "category": "Hospital",
+      "english": "Tablet",
+      "tamil": "மாத்திரை"
+    },
+    {
+      "category": "Transport",
+      "english": "Aeroplane",
+      "tamil": "விமானம்"
+    },
+    {
+      "category": "Transport",
+      "english": "Bicycle",
+      "tamil": "மிதிவண்டி"
+    },
+    {
+      "category": "Transport",
+      "english": "Boat",
+      "tamil": "படகு"
+    },
+    {
+      "category": "Transport",
+      "english": "Bus",
+      "tamil": "பேருந்து"
+    },
+    {
+      "category": "Transport",
+      "english": "Car",
+      "tamil": "சிற்றுந்து"
+    },
+    {
+      "category": "Transport",
+      "english": "Passenger",
+      "tamil": "பயணியர்"
+    },
+    {
+      "category": "Transport",
+      "english": "Subway",
+      "tamil": "சுரங்கப்பாதை"
+    },
+    {
+      "category": "Transport",
+      "english": "Wheel",
+      "tamil": "சக்கரம்"
+    },
+    {
+      "category": "Functions",
+      "english": "Anniversary",
+      "tamil": "ஆண்டுவிழா"
+    },
+    {
+      "category": "Functions",
+      "english": "Bride",
+      "tamil": "மணமகள்"
+    },
+    {
+      "category": "Functions",
+      "english": "Candle",
+      "tamil": "மெழுகுவர்த்தி"
+    },
+    {
+      "category": "Functions",
+      "english": "Candy",
+      "tamil": "மிட்டாய்"
+    },
+    {
+      "category": "Functions",
+      "english": "Engagement",
+      "tamil": "நிச்சயதார்த்தம்"
+    },
+    {
+      "category": "Functions",
+      "english": "Gift",
+      "tamil": "பரிசு"
+    },
+    {
+      "category": "Functions",
+      "english": "Groom",
+      "tamil": "மணமகன்"
+    },
+    {
+      "category": "Functions",
+      "english": "Marriage",
+      "tamil": "திருமணம்"
+    },
+    {
+      "category": "Functions",
+      "english": "Reception",
+      "tamil": "வரவேற்பு"
+    },
+    {
+      "category": "Functions",
+      "english": "Relatives",
+      "tamil": "உறவினர்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Absorb",
+      "tamil": "உறிஞ்சு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Accept",
+      "tamil": "ஏற்றுக்கொள்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Accomplish",
+      "tamil": "நிறைவேற்று"
+    },
+    {
+      "category": "Verbs",
+      "english": "Acquire",
+      "tamil": "பெறு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Add",
+      "tamil": "கூட்டு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Adopt",
+      "tamil": "தத்தெடு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Advise",
+      "tamil": "அறிவுறுத்து"
+    },
+    {
+      "category": "Verbs",
+      "english": "Agree",
+      "tamil": "ஒப்புக்கொள்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Alter",
+      "tamil": "மாற்று"
+    },
+    {
+      "category": "Verbs",
+      "english": "Apply",
+      "tamil": "பயன்படுத்து"
+    },
+    {
+      "category": "Verbs",
+      "english": "Appoint",
+      "tamil": "நியமி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Appreciate",
+      "tamil": "பாராட்டு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Arise",
+      "tamil": "எழு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Ask",
+      "tamil": "கேள்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Assist",
+      "tamil": "உதவு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Assume",
+      "tamil": "கருது"
+    },
+    {
+      "category": "Verbs",
+      "english": "Assure",
+      "tamil": "உறுதிசெய்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Attack",
+      "tamil": "தாக்கு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Attend",
+      "tamil": "கலந்துகொள்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Attract",
+      "tamil": "கவர்ந்திழு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Avoid",
+      "tamil": "தவிர்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Bathe",
+      "tamil": "குளி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Begin",
+      "tamil": "துவங்கு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Bend",
+      "tamil": "வளை"
+    },
+    {
+      "category": "Verbs",
+      "english": "Benefit",
+      "tamil": "பயன்பெறு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Bind",
+      "tamil": "கட்டு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Bite",
+      "tamil": "கடி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Borrow",
+      "tamil": "கடன்வாங்கு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Breathe",
+      "tamil": "சுவாசி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Build",
+      "tamil": "கட்டு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Burn",
+      "tamil": "எரி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Bury",
+      "tamil": "புதை"
+    },
+    {
+      "category": "Verbs",
+      "english": "Buy",
+      "tamil": "வாங்கு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Calculate",
+      "tamil": "கணக்கிடு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Call",
+      "tamil": "அழை"
+    },
+    {
+      "category": "Verbs",
+      "english": "Carry",
+      "tamil": "சும"
+    },
+    {
+      "category": "Verbs",
+      "english": "Catch",
+      "tamil": "பிடி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Change",
+      "tamil": "மாற்று"
+    },
+    {
+      "category": "Verbs",
+      "english": "Chase",
+      "tamil": "துரத்து"
+    },
+    {
+      "category": "Verbs",
+      "english": "Clap",
+      "tamil": "கைதட்டு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Climb",
+      "tamil": "ஏறு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Close",
+      "tamil": "மூடு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Come",
+      "tamil": "வா"
+    },
+    {
+      "category": "Verbs",
+      "english": "Compete",
+      "tamil": "போட்டியிடு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Continue",
+      "tamil": "தொடர்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Cook",
+      "tamil": "சமை"
+    },
+    {
+      "category": "Verbs",
+      "english": "Count",
+      "tamil": "எண்ணு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Crawl",
+      "tamil": "தவழ்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Create",
+      "tamil": "உருவாக்கு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Cry",
+      "tamil": "அழு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Cut",
+      "tamil": "வெட்டு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Dance",
+      "tamil": "ஆடு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Describe",
+      "tamil": "விவரி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Destroy",
+      "tamil": "அழி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Dig",
+      "tamil": "தோண்டு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Discover",
+      "tamil": "கண்டுபிடி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Distribute",
+      "tamil": "விநியோகி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Divide",
+      "tamil": "பிரி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Do",
+      "tamil": "செய்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Drag",
+      "tamil": "இழு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Draw",
+      "tamil": "வரை"
+    },
+    {
+      "category": "Verbs",
+      "english": "Drink",
+      "tamil": "குடி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Drive",
+      "tamil": "ஓட்டு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Drop",
+      "tamil": "விடு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Earn",
+      "tamil": "சம்பாதி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Eat",
+      "tamil": "சாப்பிடு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Eliminate",
+      "tamil": "நீக்கு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Enter",
+      "tamil": "நுழை"
+    },
+    {
+      "category": "Verbs",
+      "english": "Escape",
+      "tamil": "தப்பித்துக்கொள்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Exchange",
+      "tamil": "பரிமாறு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Experiment",
+      "tamil": "சோதனைசெய்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Fall",
+      "tamil": "விழு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Fight",
+      "tamil": "சண்டையிடு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Fill",
+      "tamil": "நிரப்பு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Find",
+      "tamil": "கண்டுபிடி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Flee",
+      "tamil": "ஓடு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Float",
+      "tamil": "மித"
+    },
+    {
+      "category": "Verbs",
+      "english": "Fly",
+      "tamil": "பற"
+    },
+    {
+      "category": "Verbs",
+      "english": "Forget",
+      "tamil": "மற"
+    },
+    {
+      "category": "Verbs",
+      "english": "Fry",
+      "tamil": "வறு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Give",
+      "tamil": "கொடு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Go",
+      "tamil": "போ"
+    },
+    {
+      "category": "Verbs",
+      "english": "Grow",
+      "tamil": "வளர்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Guess",
+      "tamil": "யூகி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Hate",
+      "tamil": "வெறு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Hear",
+      "tamil": "கேள்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Hit",
+      "tamil": "அடி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Hold",
+      "tamil": "பிடி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Identify",
+      "tamil": "கண்டுபிடி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Ignore",
+      "tamil": "புறக்கணி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Include",
+      "tamil": "சேர்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Increase",
+      "tamil": "அதிகரி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Invite",
+      "tamil": "அழை"
+    },
+    {
+      "category": "Verbs",
+      "english": "Join",
+      "tamil": "சேர்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Jump",
+      "tamil": "குதி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Kick",
+      "tamil": "உதை"
+    },
+    {
+      "category": "Verbs",
+      "english": "Kill",
+      "tamil": "கொல்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Kneel",
+      "tamil": "மண்டியிடு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Knock",
+      "tamil": "தட்டு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Laugh",
+      "tamil": "சிரி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Lean",
+      "tamil": "சாய்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Learn",
+      "tamil": "கற்றுக்கொள்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Lift",
+      "tamil": "தூக்கு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Listen",
+      "tamil": "கவனி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Live",
+      "tamil": "வாழ்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Look",
+      "tamil": "பார்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Meet",
+      "tamil": "சந்தி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Mix",
+      "tamil": "கலக்கு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Observe",
+      "tamil": "கவனி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Open",
+      "tamil": "திற"
+    },
+    {
+      "category": "Verbs",
+      "english": "Pick up",
+      "tamil": "எடு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Pinch",
+      "tamil": "கிள்ளு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Play",
+      "tamil": "விளையாடு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Pour",
+      "tamil": "ஊற்று"
+    },
+    {
+      "category": "Verbs",
+      "english": "Prepare",
+      "tamil": "தயார்செய்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Produce",
+      "tamil": "உருவாக்கு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Prove",
+      "tamil": "நிரூபி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Pull",
+      "tamil": "இழு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Punch",
+      "tamil": "குத்து"
+    },
+    {
+      "category": "Verbs",
+      "english": "Purchase",
+      "tamil": "வாங்கு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Push",
+      "tamil": "தள்ளு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Put",
+      "tamil": "வை"
+    },
+    {
+      "category": "Verbs",
+      "english": "Read",
+      "tamil": "வாசி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Reduce",
+      "tamil": "குறை"
+    },
+    {
+      "category": "Verbs",
+      "english": "Reject",
+      "tamil": "மறு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Remember",
+      "tamil": "நினைவுகூர்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Resist",
+      "tamil": "எதிர்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Return",
+      "tamil": "திருப்பிக்கொடு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Rub",
+      "tamil": "தேய்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Run",
+      "tamil": "ஓடு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Save",
+      "tamil": "காப்பாற்று"
+    },
+    {
+      "category": "Verbs",
+      "english": "Say",
+      "tamil": "சொல்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Scream",
+      "tamil": "அலறு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Search",
+      "tamil": "தேடு"
+    },
+    {
+      "category": "Verbs",
+      "english": "See",
+      "tamil": "பார்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Seek",
+      "tamil": "தேடு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Select",
+      "tamil": "தேர்ந்தெடு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Send",
+      "tamil": "அனுப்பு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Sew",
+      "tamil": "தை"
+    },
+    {
+      "category": "Verbs",
+      "english": "Shake",
+      "tamil": "குலுக்கு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Shoot",
+      "tamil": "சுடு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Shout",
+      "tamil": "கத்து"
+    },
+    {
+      "category": "Verbs",
+      "english": "Show",
+      "tamil": "காண்பி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Shut",
+      "tamil": "மூடு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Sing",
+      "tamil": "பாடு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Sit",
+      "tamil": "உட்கார்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Sleep",
+      "tamil": "தூங்கு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Smile",
+      "tamil": "சிரி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Snore",
+      "tamil": "குறட்டையிடு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Speak",
+      "tamil": "பேசு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Spell",
+      "tamil": "உச்சரி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Spread",
+      "tamil": "பரப்பு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Stand",
+      "tamil": "நில்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Start",
+      "tamil": "தொடங்கு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Steal",
+      "tamil": "திருடு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Stir",
+      "tamil": "கலக்கு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Stop",
+      "tamil": "நில்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Stretch",
+      "tamil": "நீட்டு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Strike",
+      "tamil": "அடி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Study",
+      "tamil": "படி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Support",
+      "tamil": "ஆதரி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Suspect",
+      "tamil": "சந்தேகப்படு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Swim",
+      "tamil": "நீந்து"
+    },
+    {
+      "category": "Verbs",
+      "english": "Take",
+      "tamil": "எடு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Talk",
+      "tamil": "பேசு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Tear",
+      "tamil": "கிழி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Teach",
+      "tamil": "கற்றுக்கொடு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Think",
+      "tamil": "யோசி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Threaten",
+      "tamil": "பயமுறுத்து"
+    },
+    {
+      "category": "Verbs",
+      "english": "Throw",
+      "tamil": "எறி"
+    },
+    {
+      "category": "Verbs",
+      "english": "Touch",
+      "tamil": "தொடு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Understand",
+      "tamil": "புரிந்துகொள்"
+    },
+    {
+      "category": "Verbs",
+      "english": "Wait",
+      "tamil": "காத்திரு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Wake",
+      "tamil": "எழு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Walk",
+      "tamil": "நட"
+    },
+    {
+      "category": "Verbs",
+      "english": "Wash",
+      "tamil": "கழுவு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Weigh",
+      "tamil": "நிறு"
+    },
+    {
+      "category": "Verbs",
+      "english": "Wipe",
+      "tamil": "துடை"
+    },
+    {
+      "category": "Verbs",
+      "english": "Write",
+      "tamil": "எழுது"
+    },
+    {
+      "category": "Verbs",
+      "english": "Yell",
+      "tamil": "கத்து"
+    },
+    {
+      "category": "Adjectives",
+      "english": "Bad",
+      "tamil": "கெட்ட"
+    },
+    {
+      "category": "Adjectives",
+      "english": "Beautiful",
+      "tamil": "அழகான"
+    },
+    {
+      "category": "Adjectives",
+      "english": "Big",
+      "tamil": "பெரிய"
+    },
+    {
+      "category": "Adjectives",
+      "english": "Brave",
+      "tamil": "தைரியமான"
+    },
+    {
+      "category": "Adjectives",
+      "english": "Dark",
+      "tamil": "கருத்த"
+    },
+    {
+      "category": "Adjectives",
+      "english": "Fast",
+      "tamil": "வேகமாக"
+    },
+    {
+      "category": "Adjectives",
+      "english": "Fat",
+      "tamil": "பருமனான"
+    },
+    {
+      "category": "Adjectives",
+      "english": "Good",
+      "tamil": "நல்ல"
+    },
+    {
+      "category": "Adjectives",
+      "english": "Healthy",
+      "tamil": "ஆரோக்கியமான"
+    },
+    {
+      "category": "Adjectives",
+      "english": "Heavy",
+      "tamil": "கனமான"
+    },
+    {
+      "category": "Adjectives",
+      "english": "High",
+      "tamil": "உயர்ந்த"
+    },
+    {
+      "category": "Adjectives",
+      "english": "Lazy",
+      "tamil": "சோம்பேறி"
+    },
+    {
+      "category": "Adjectives",
+      "english": "Low",
+      "tamil": "தாழ்வான"
+    },
+    {
+      "category": "Adjectives",
+      "english": "Poor",
+      "tamil": "ஏழை"
+    },
+    {
+      "category": "Adjectives",
+      "english": "Short",
+      "tamil": "குட்டை"
+    },
+    {
+      "category": "Adjectives",
+      "english": "Sick",
+      "tamil": "நோயுற்ற"
+    },
+    {
+      "category": "Adjectives",
+      "english": "Slow",
+      "tamil": "மெதுவாக"
+    },
+    {
+      "category": "Adjectives",
+      "english": "Small",
+      "tamil": "சிறிய"
+    },
+    {
+      "category": "Adjectives",
+      "english": "Strong",
+      "tamil": "வலிமையான"
+    },
+    {
+      "category": "Adjectives",
+      "english": "Tall",
+      "tamil": "உயரமான"
+    },
+    {
+      "category": "Adjectives",
+      "english": "Thin",
+      "tamil": "மெலிந்த"
+    },
+    {
+      "category": "Adjectives",
+      "english": "Thin",
+      "tamil": "ஒல்லியான"
+    },
+    {
+      "category": "Adjectives",
+      "english": "Ugly",
+      "tamil": "அசிங்கமான"
+    },
+    {
+      "category": "Adjectives",
+      "english": "Weak",
+      "tamil": "வலிமையற்ற"
+    },
+    {
+      "category": "Adjectives",
+      "english": "Wealthy",
+      "tamil": "பணக்கார"
+    },
+    {
+      "category": "Nouns",
+      "english": "Ability",
+      "tamil": "திறமை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Able",
+      "tamil": "முடியும்"
+    },
+    {
+      "category": "Nouns",
+      "english": "About",
+      "tamil": "அதைப்பற்றி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Above",
+      "tamil": "மேலே"
+    },
+    {
+      "category": "Nouns",
+      "english": "Abroad",
+      "tamil": "வெளிநாடு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Accident",
+      "tamil": "விபத்து"
+    },
+    {
+      "category": "Nouns",
+      "english": "Account",
+      "tamil": "கணக்கு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Accurate",
+      "tamil": "துல்லியமாக"
+    },
+    {
+      "category": "Nouns",
+      "english": "Achievement",
+      "tamil": "சாதனை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Across",
+      "tamil": "குறுக்கே"
+    },
+    {
+      "category": "Nouns",
+      "english": "Active",
+      "tamil": "சுறுசுறுப்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Actual",
+      "tamil": "உண்மையான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Additional",
+      "tamil": "கூடுதலாக"
+    },
+    {
+      "category": "Nouns",
+      "english": "Address",
+      "tamil": "முகவரி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Adequate",
+      "tamil": "போதுமான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Advance",
+      "tamil": "முன்கூட்டியே"
+    },
+    {
+      "category": "Nouns",
+      "english": "Advantage",
+      "tamil": "நன்மை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Adventure",
+      "tamil": "சாகசம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Advertising",
+      "tamil": "விளம்பரம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Advice",
+      "tamil": "அறிவுரை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Afraid",
+      "tamil": "பயம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "After",
+      "tamil": "பிறகு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Again",
+      "tamil": "மீண்டும்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Against",
+      "tamil": "எதிராக"
+    },
+    {
+      "category": "Nouns",
+      "english": "Age",
+      "tamil": "வயது"
+    },
+    {
+      "category": "Nouns",
+      "english": "Aggressive",
+      "tamil": "தீவிரமாக"
+    },
+    {
+      "category": "Nouns",
+      "english": "Agreement",
+      "tamil": "ஒப்பந்தம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Agriculture",
+      "tamil": "விவசாயம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Ahead",
+      "tamil": "முன்னதாக"
+    },
+    {
+      "category": "Nouns",
+      "english": "Aid",
+      "tamil": "உதவி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Aim",
+      "tamil": "குறிக்கோள்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Alive",
+      "tamil": "உயிரோடு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Ally",
+      "tamil": "நட்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Almost",
+      "tamil": "ஏறக்குறைய"
+    },
+    {
+      "category": "Nouns",
+      "english": "Alone",
+      "tamil": "தனியே"
+    },
+    {
+      "category": "Nouns",
+      "english": "Along",
+      "tamil": "உடன்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Already",
+      "tamil": "ஏற்கனவே"
+    },
+    {
+      "category": "Nouns",
+      "english": "Also",
+      "tamil": "மேலும்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Although",
+      "tamil": "இருந்தபோதிலும்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Always",
+      "tamil": "எப்பொழுதும்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Amazing",
+      "tamil": "அற்புதமான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Amount",
+      "tamil": "தொகை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Ancient",
+      "tamil": "பழமையான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Anything",
+      "tamil": "ஏதாவது"
+    },
+    {
+      "category": "Nouns",
+      "english": "Appearance",
+      "tamil": "தோற்றம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Approval",
+      "tamil": "அனுமதி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Approximately",
+      "tamil": "ஏறக்குறைய"
+    },
+    {
+      "category": "Nouns",
+      "english": "Argument",
+      "tamil": "விவாதம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Army",
+      "tamil": "இராணுவம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Around",
+      "tamil": "சுற்றி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Arrangement",
+      "tamil": "ஏற்பாடு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Arrival",
+      "tamil": "வருகை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Aside",
+      "tamil": "பக்கமாக"
+    },
+    {
+      "category": "Nouns",
+      "english": "Asleep",
+      "tamil": "தூங்கிக்கொண்டு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Assistance",
+      "tamil": "உதவி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Association",
+      "tamil": "சங்கம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Assumption",
+      "tamil": "அனுமானம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Attention",
+      "tamil": "கவனம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Attractive",
+      "tamil": "கவர்ச்சியான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Audience",
+      "tamil": "பார்வையாளர்கள்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Authority",
+      "tamil": "அதிகாரம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Award",
+      "tamil": "விருது"
+    },
+    {
+      "category": "Nouns",
+      "english": "Awareness",
+      "tamil": "விழிப்புணர்வு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Away",
+      "tamil": "தொலைவில்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Baby",
+      "tamil": "குழந்தை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Bag",
+      "tamil": "பை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Balance",
+      "tamil": "மீதம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Ball",
+      "tamil": "பந்து"
+    },
+    {
+      "category": "Nouns",
+      "english": "Ban",
+      "tamil": "தடைசெய்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Barrier",
+      "tamil": "தடை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Base",
+      "tamil": "அடிப்படை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Basic",
+      "tamil": "அடிப்படையான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Battle",
+      "tamil": "யுத்தம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Beauty",
+      "tamil": "அழகு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Because",
+      "tamil": "ஏனென்றால்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Before",
+      "tamil": "முன்னதாக"
+    },
+    {
+      "category": "Nouns",
+      "english": "Beginning",
+      "tamil": "ஆரம்பம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Behavior",
+      "tamil": "நடத்தை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Behind",
+      "tamil": "பின்னால்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Belief",
+      "tamil": "நம்பிக்கை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Below",
+      "tamil": "கீழே"
+    },
+    {
+      "category": "Nouns",
+      "english": "Beside",
+      "tamil": "அருகில்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Best",
+      "tamil": "சிறந்த"
+    },
+    {
+      "category": "Nouns",
+      "english": "Between",
+      "tamil": "நடுவில்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Beyond",
+      "tamil": "அப்பால்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Big",
+      "tamil": "பெரிய"
+    },
+    {
+      "category": "Nouns",
+      "english": "Board",
+      "tamil": "பலகை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Body",
+      "tamil": "உடல்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Bomb",
+      "tamil": "குண்டு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Border",
+      "tamil": "எல்லை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Bottom",
+      "tamil": "அடிப்பாகம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Box",
+      "tamil": "பெட்டி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Boy",
+      "tamil": "பையன்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Breath",
+      "tamil": "சுவாசம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Brick",
+      "tamil": "செங்கல்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Briefly",
+      "tamil": "சுருக்கமாக"
+    },
+    {
+      "category": "Nouns",
+      "english": "Bright",
+      "tamil": "பிரகாசமான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Broad",
+      "tamil": "அகலமான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Broken",
+      "tamil": "உடைந்த"
+    },
+    {
+      "category": "Nouns",
+      "english": "Burden",
+      "tamil": "சுமை"
+    },
+    {
+      "category": "Nouns",
+      "english": "But",
+      "tamil": "ஆனால்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Buyer",
+      "tamil": "வாங்குபவர்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Campus",
+      "tamil": "வளாகம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Capability",
+      "tamil": "திறமை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Capable",
+      "tamil": "திறமையான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Capital",
+      "tamil": "தலைநகர்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Captain",
+      "tamil": "தலைவன்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Card",
+      "tamil": "அட்டை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Care",
+      "tamil": "கவனிப்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Carefully",
+      "tamil": "கவனமாக"
+    },
+    {
+      "category": "Nouns",
+      "english": "Case",
+      "tamil": "வழக்கு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Cash",
+      "tamil": "பணம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Category",
+      "tamil": "பிரிவு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Ceiling",
+      "tamil": "மேற்கூரை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Celebration",
+      "tamil": "கொண்டாட்டம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Central",
+      "tamil": "மையம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Ceremony",
+      "tamil": "சடங்கு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Challenge",
+      "tamil": "சவால்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Chance",
+      "tamil": "வாய்ப்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Chapter",
+      "tamil": "அத்தியாயம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Character",
+      "tamil": "குணம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Charity",
+      "tamil": "தொண்டு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Cheap",
+      "tamil": "மலிவான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Check",
+      "tamil": "சரிபார்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Chicken",
+      "tamil": "கோழிக்குஞ்சு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Child",
+      "tamil": "குழந்தை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Choice",
+      "tamil": "தேர்ந்தெடுப்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Citizen",
+      "tamil": "குடிமகன்"
+    },
+    {
+      "category": "Nouns",
+      "english": "City",
+      "tamil": "நகரம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Clean",
+      "tamil": "தூய்மையான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Clear",
+      "tamil": "தௌிவான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Climate",
+      "tamil": "காலநிலை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Closely",
+      "tamil": "நெருக்கமாக"
+    },
+    {
+      "category": "Nouns",
+      "english": "Coach",
+      "tamil": "பயிற்சியாளர்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Cold",
+      "tamil": "குளிர்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Collection",
+      "tamil": "சேகரிப்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Comfortable",
+      "tamil": "வசதியான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Common",
+      "tamil": "பொதுவான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Competition",
+      "tamil": "போட்டி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Complaint",
+      "tamil": "புகார்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Complex",
+      "tamil": "சிக்கலான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Concentration",
+      "tamil": "கவனம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Conclusion",
+      "tamil": "தீர்மானம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Condition",
+      "tamil": "நிபந்தனை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Conference",
+      "tamil": "மாநாடு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Confidence",
+      "tamil": "நம்பிக்கை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Conflict",
+      "tamil": "முரண்பாடு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Confusion",
+      "tamil": "குழப்பம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Connection",
+      "tamil": "இணைப்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Consequence",
+      "tamil": "விளைவு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Contact",
+      "tamil": "தொடர்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Contest",
+      "tamil": "போட்டி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Contribution",
+      "tamil": "பங்களிப்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Control",
+      "tamil": "கட்டுப்பாடு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Cooking",
+      "tamil": "சமைத்தல்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Corner",
+      "tamil": "மூலை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Correct",
+      "tamil": "சரி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Cost",
+      "tamil": "விலை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Cotton",
+      "tamil": "பருத்தி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Country",
+      "tamil": "நாடு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Courage",
+      "tamil": "தைரியம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Creation",
+      "tamil": "படைப்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Crime",
+      "tamil": "குற்றம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Criminal",
+      "tamil": "குற்றவாளி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Crowd",
+      "tamil": "கூட்டம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Crucial",
+      "tamil": "முக்கியமான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Daily",
+      "tamil": "தினமும்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Damage",
+      "tamil": "பாதிப்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Dance",
+      "tamil": "நடனம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Danger",
+      "tamil": "ஆபத்து"
+    },
+    {
+      "category": "Nouns",
+      "english": "Dark",
+      "tamil": "இருட்டு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Debt",
+      "tamil": "கடன்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Decrease",
+      "tamil": "குறைவு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Deep",
+      "tamil": "ஆழம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Defeat",
+      "tamil": "தோல்வி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Degree",
+      "tamil": "பட்டம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Delay",
+      "tamil": "தாமதம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Depth",
+      "tamil": "ஆழம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Desire",
+      "tamil": "ஆசை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Development",
+      "tamil": "முன்னேற்றம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Device",
+      "tamil": "கருவி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Dialogue",
+      "tamil": "உரையாடல்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Difference",
+      "tamil": "வித்தியாசம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Difficult",
+      "tamil": "கடினம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Direct",
+      "tamil": "நேரடியான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Direction",
+      "tamil": "திசை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Dirt",
+      "tamil": "அழுக்கு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Disaster",
+      "tamil": "அழிவு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Discipline",
+      "tamil": "ஒழுங்கு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Discussion",
+      "tamil": "கலந்துரையாடல்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Disease",
+      "tamil": "நோய்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Distance",
+      "tamil": "தூரம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "District",
+      "tamil": "மாவட்டம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Doubt",
+      "tamil": "சந்தேகம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Drama",
+      "tamil": "நாடகம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Dream",
+      "tamil": "கனவு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Drug",
+      "tamil": "மருந்து"
+    },
+    {
+      "category": "Nouns",
+      "english": "Dry",
+      "tamil": "வறண்ட"
+    },
+    {
+      "category": "Nouns",
+      "english": "Dust",
+      "tamil": "தூசி"
+    },
+    {
+      "category": "Nouns",
+      "english": "East",
+      "tamil": "கிழக்கு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Easy",
+      "tamil": "எளிய"
+    },
+    {
+      "category": "Nouns",
+      "english": "Edge",
+      "tamil": "விளிம்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Education",
+      "tamil": "கல்வி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Efficiency",
+      "tamil": "திறமை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Effort",
+      "tamil": "முயற்சி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Election",
+      "tamil": "தேர்தல்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Electricity",
+      "tamil": "மின்சாரம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Emergency",
+      "tamil": "அவசரம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Empty",
+      "tamil": "காலியான"
+    },
+    {
+      "category": "Nouns",
+      "english": "End",
+      "tamil": "முடிவு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Enemy",
+      "tamil": "எதிரி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Energy",
+      "tamil": "ஆற்றல்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Enough",
+      "tamil": "போதுமான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Entertainment",
+      "tamil": "பொழுதுபோக்கு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Entirely",
+      "tamil": "முழுமையாக"
+    },
+    {
+      "category": "Nouns",
+      "english": "Entrance",
+      "tamil": "நுழைவாயில்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Equal",
+      "tamil": "சமம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Equipment",
+      "tamil": "சாதனம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Error",
+      "tamil": "பிழை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Essential",
+      "tamil": "அவசியமான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Evening",
+      "tamil": "மாலைப்பொழுது"
+    },
+    {
+      "category": "Nouns",
+      "english": "Event",
+      "tamil": "நிகழ்ச்சி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Everyday",
+      "tamil": "தினமும்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Everyone",
+      "tamil": "ஒவ்வொருவரும்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Everything",
+      "tamil": "அனைத்தும்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Example",
+      "tamil": "உதாரணம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Executive",
+      "tamil": "நிர்வாகி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Exhibition",
+      "tamil": "கண்காட்சி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Expansion",
+      "tamil": "விரிவடைதல்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Expense",
+      "tamil": "செலவு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Experience",
+      "tamil": "அனுபவம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Experiment",
+      "tamil": "சோதனை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Facility",
+      "tamil": "வசதி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Fact",
+      "tamil": "உண்மை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Failure",
+      "tamil": "தோல்வி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Faith",
+      "tamil": "நம்பிக்கை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Fast",
+      "tamil": "வேகம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Fat",
+      "tamil": "கொழுப்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Fee",
+      "tamil": "கட்டணம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Feeling",
+      "tamil": "உணர்வு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Flaw",
+      "tamil": "குறைபாடு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Final",
+      "tamil": "இறுதி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Fire",
+      "tamil": "நெருப்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "First",
+      "tamil": "முதலாவது"
+    },
+    {
+      "category": "Nouns",
+      "english": "Flag",
+      "tamil": "கொடி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Flat",
+      "tamil": "தட்டையான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Flesh",
+      "tamil": "சதை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Fight",
+      "tamil": "சண்டை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Foundation",
+      "tamil": "அடித்தளம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Free",
+      "tamil": "இலவசம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Freedom",
+      "tamil": "சுதந்திரம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Frequently",
+      "tamil": "அடிக்கடி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Friend",
+      "tamil": "நண்பன்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Friendship",
+      "tamil": "நட்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Fuel",
+      "tamil": "எரிபொருள்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Full",
+      "tamil": "முழு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Future",
+      "tamil": "எதிர்காலம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Gap",
+      "tamil": "இடைவெளி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Gas",
+      "tamil": "வாயு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Gate",
+      "tamil": "கதவு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Generally",
+      "tamil": "பொதுவாக"
+    },
+    {
+      "category": "Nouns",
+      "english": "Ghost",
+      "tamil": "பேய்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Gift",
+      "tamil": "பரிசு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Glad",
+      "tamil": "மகிழ்ச்சி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Goal",
+      "tamil": "இலக்கு"
+    },
+    {
+      "category": "Nouns",
+      "english": "God",
+      "tamil": "கடவுள்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Gold",
+      "tamil": "தங்கம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Government",
+      "tamil": "அரசு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Grain",
+      "tamil": "தானியம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Group",
+      "tamil": "குழு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Growth",
+      "tamil": "வளர்ச்சி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Guest",
+      "tamil": "விருந்தினர்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Guide",
+      "tamil": "வழிகாட்டி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Habit",
+      "tamil": "பழக்கம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Half",
+      "tamil": "பாதி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Hard",
+      "tamil": "கடினமான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Heat",
+      "tamil": "வெப்பம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Heaven",
+      "tamil": "சுவர்க்கம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Heavy",
+      "tamil": "கனமான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Height",
+      "tamil": "உயரம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Hell",
+      "tamil": "நரகம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Help",
+      "tamil": "உதவி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Here",
+      "tamil": "இங்கே"
+    },
+    {
+      "category": "Nouns",
+      "english": "Hide",
+      "tamil": "மறைத்துக்கொள்"
+    },
+    {
+      "category": "Nouns",
+      "english": "History",
+      "tamil": "வரலாறு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Hole",
+      "tamil": "துளை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Holiday",
+      "tamil": "விடுமுறை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Honest",
+      "tamil": "நேர்மையான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Hope",
+      "tamil": "நம்பிக்கை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Hour",
+      "tamil": "மணி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Huge",
+      "tamil": "மிகப்பெரிய"
+    },
+    {
+      "category": "Nouns",
+      "english": "Humor",
+      "tamil": "நகைச்சுவை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Hungry",
+      "tamil": "பசி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Hunting",
+      "tamil": "வேட்டையாடுதல்"
+    },
+    {
+      "category": "Nouns",
+      "english": "I",
+      "tamil": "நான்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Idea",
+      "tamil": "ஆலோசனை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Identification",
+      "tamil": "அடையாளம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Image",
+      "tamil": "உருவம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Imagination",
+      "tamil": "கற்பனை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Immediately",
+      "tamil": "உடனடியாக"
+    },
+    {
+      "category": "Nouns",
+      "english": "Important",
+      "tamil": "முக்கியமான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Impossible",
+      "tamil": "முடியாதது"
+    },
+    {
+      "category": "Nouns",
+      "english": "Improvement",
+      "tamil": "முன்னேற்றம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Incident",
+      "tamil": "சம்பவம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Income",
+      "tamil": "வருமானம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Independence",
+      "tamil": "சுதந்தரம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Infection",
+      "tamil": "தொற்று"
+    },
+    {
+      "category": "Nouns",
+      "english": "Information",
+      "tamil": "தகவல்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Inside",
+      "tamil": "உள்ளே"
+    },
+    {
+      "category": "Nouns",
+      "english": "Instrument",
+      "tamil": "கருவி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Intelligence",
+      "tamil": "புத்திக்கூர்மை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Intention",
+      "tamil": "நோக்கம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Interest",
+      "tamil": "ஆர்வம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Iron",
+      "tamil": "இரும்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "King",
+      "tamil": "அரசன்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Knowledge",
+      "tamil": "அறிவு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Lake",
+      "tamil": "ஏரி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Language",
+      "tamil": "மொழி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Large",
+      "tamil": "பெரிய"
+    },
+    {
+      "category": "Nouns",
+      "english": "Late",
+      "tamil": "தாமதம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Law",
+      "tamil": "சட்டம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Length",
+      "tamil": "நீளம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Lie",
+      "tamil": "பொய்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Life",
+      "tamil": "வாழ்க்கை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Limit",
+      "tamil": "வரம்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Line",
+      "tamil": "கோடு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Listen",
+      "tamil": "கவனி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Little",
+      "tamil": "குறைந்த"
+    },
+    {
+      "category": "Nouns",
+      "english": "Loan",
+      "tamil": "கடன்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Location",
+      "tamil": "இடம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Long",
+      "tamil": "நீளமான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Loss",
+      "tamil": "இழப்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Loud",
+      "tamil": "சத்தமாக"
+    },
+    {
+      "category": "Nouns",
+      "english": "Love",
+      "tamil": "அன்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Luck",
+      "tamil": "யோகம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Mad",
+      "tamil": "பைத்தியம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Male",
+      "tamil": "ஆண்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Market",
+      "tamil": "சந்தை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Meal",
+      "tamil": "உணவு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Meaning",
+      "tamil": "அர்த்தம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Measure",
+      "tamil": "அளவு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Meeting",
+      "tamil": "சந்திப்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Memory",
+      "tamil": "நினைவு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Military",
+      "tamil": "இராணுவம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Minister",
+      "tamil": "அமைச்சர்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Mistake",
+      "tamil": "தவறு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Model",
+      "tamil": "மாதிரி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Money",
+      "tamil": "பணம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Month",
+      "tamil": "மாதம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Morning",
+      "tamil": "காலை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Mountain",
+      "tamil": "மலை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Murder",
+      "tamil": "கொலை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Mystery",
+      "tamil": "மர்மம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Name",
+      "tamil": "பெயர்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Narrow",
+      "tamil": "குறுகிய"
+    },
+    {
+      "category": "Nouns",
+      "english": "Nation",
+      "tamil": "தேசம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Native",
+      "tamil": "பூர்வீகம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Near",
+      "tamil": "அருகில்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Need",
+      "tamil": "தேவை"
+    },
+    {
+      "category": "Nouns",
+      "english": "New",
+      "tamil": "புதிய"
+    },
+    {
+      "category": "Nouns",
+      "english": "News",
+      "tamil": "செய்தி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Night",
+      "tamil": "இரவு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Normally",
+      "tamil": "பொதுவாக"
+    },
+    {
+      "category": "Nouns",
+      "english": "North",
+      "tamil": "வடக்கு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Now",
+      "tamil": "இப்பொழுது"
+    },
+    {
+      "category": "Nouns",
+      "english": "Number",
+      "tamil": "எண்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Object",
+      "tamil": "பொருள்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Occupation",
+      "tamil": "தொழில்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Offense",
+      "tamil": "குற்றம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Office",
+      "tamil": "அலுவலகம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Often",
+      "tamil": "அடிக்கடி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Oil",
+      "tamil": "எண்ணெய்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Old",
+      "tamil": "பழைய"
+    },
+    {
+      "category": "Nouns",
+      "english": "Open",
+      "tamil": "திறந்த"
+    },
+    {
+      "category": "Nouns",
+      "english": "Opportunity",
+      "tamil": "வாய்ப்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Opposition",
+      "tamil": "எதிர்ப்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Order",
+      "tamil": "கட்டளை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Ordinary",
+      "tamil": "சாதாரணமான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Organization",
+      "tamil": "நிறுவனம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Origin",
+      "tamil": "தோற்றம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Outside",
+      "tamil": "வெளியே"
+    },
+    {
+      "category": "Nouns",
+      "english": "Over",
+      "tamil": "மேலே"
+    },
+    {
+      "category": "Nouns",
+      "english": "Own",
+      "tamil": "சொந்தமான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Owner",
+      "tamil": "உரிமையாளர்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Page",
+      "tamil": "பக்கம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Pain",
+      "tamil": "வலி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Paint",
+      "tamil": "வண்ணம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Parking",
+      "tamil": "நிறுத்தம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Particular",
+      "tamil": "குறிப்பிட்ட"
+    },
+    {
+      "category": "Nouns",
+      "english": "Peace",
+      "tamil": "அமைதி"
+    },
+    {
+      "category": "Nouns",
+      "english": "People",
+      "tamil": "மக்கள்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Permanent",
+      "tamil": "நிரந்தரமான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Permission",
+      "tamil": "அனுமதி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Place",
+      "tamil": "இடம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Planning",
+      "tamil": "திட்டம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Pleasure",
+      "tamil": "இன்பம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Pollution",
+      "tamil": "மாசுபாடு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Poor",
+      "tamil": "ஏழை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Port",
+      "tamil": "துறைமுகம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Possibility",
+      "tamil": "சாத்தியம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Post",
+      "tamil": "பதவி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Practice",
+      "tamil": "பயிற்சி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Preparation",
+      "tamil": "தயாரிப்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Present",
+      "tamil": "தற்போதைய"
+    },
+    {
+      "category": "Nouns",
+      "english": "Preservation",
+      "tamil": "பதப்படுத்துதல்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Pressure",
+      "tamil": "அழுத்தம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Previous",
+      "tamil": "முந்தைய"
+    },
+    {
+      "category": "Nouns",
+      "english": "Price",
+      "tamil": "விலை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Pride",
+      "tamil": "பெருமை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Principle",
+      "tamil": "கொள்கை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Prisoner",
+      "tamil": "கைதி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Problem",
+      "tamil": "பிரச்சனை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Production",
+      "tamil": "உற்பத்தி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Profession",
+      "tamil": "தொழில்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Profit",
+      "tamil": "இலாபம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Program",
+      "tamil": "நிகழ்ச்சி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Promise",
+      "tamil": "வாக்குறுதி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Proof",
+      "tamil": "ஆதாரம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Property",
+      "tamil": "சொத்து"
+    },
+    {
+      "category": "Nouns",
+      "english": "Protection",
+      "tamil": "பாதுகாப்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Public",
+      "tamil": "பொது"
+    },
+    {
+      "category": "Nouns",
+      "english": "Punishment",
+      "tamil": "தண்டனை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Pure",
+      "tamil": "தூய்மையான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Purpose",
+      "tamil": "நோக்கம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Quality",
+      "tamil": "தரம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Quickly",
+      "tamil": "வேகமாக"
+    },
+    {
+      "category": "Nouns",
+      "english": "Quiet",
+      "tamil": "அமைதியான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Quite",
+      "tamil": "மிகவும்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Race",
+      "tamil": "பந்தயம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Rapidly",
+      "tamil": "வேகமாக"
+    },
+    {
+      "category": "Nouns",
+      "english": "Ready",
+      "tamil": "தயார்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Real",
+      "tamil": "உண்மையான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Reason",
+      "tamil": "காரணம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Refugee",
+      "tamil": "அகதி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Region",
+      "tamil": "பிரதேசம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Regulation",
+      "tamil": "கட்டுப்பாடு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Relationship",
+      "tamil": "உறவு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Relative",
+      "tamil": "உறவினர்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Religion",
+      "tamil": "மதம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Remaining",
+      "tamil": "மீதம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Report",
+      "tamil": "அறிக்கை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Request",
+      "tamil": "கோரிக்கை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Requirement",
+      "tamil": "தேவை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Reservation",
+      "tamil": "ஒதுக்கீடு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Respect",
+      "tamil": "மரியாதை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Responsibility",
+      "tamil": "பொறுப்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Rest",
+      "tamil": "ஓய்வு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Restriction",
+      "tamil": "கட்டுப்பாடு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Result",
+      "tamil": "முடிவு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Retirement",
+      "tamil": "ஓய்வு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Revenue",
+      "tamil": "வருமானம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Revolution",
+      "tamil": "புரட்சி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Rich",
+      "tamil": "பணக்கார"
+    },
+    {
+      "category": "Nouns",
+      "english": "Right",
+      "tamil": "சரி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Riot",
+      "tamil": "கலவரம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "River",
+      "tamil": "ஆறு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Road",
+      "tamil": "சாலை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Rock",
+      "tamil": "பாறை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Round",
+      "tamil": "வட்டமான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Row",
+      "tamil": "வரிசை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Rule",
+      "tamil": "சட்டம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Rush",
+      "tamil": "அவசரம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Sad",
+      "tamil": "சோகம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Safety",
+      "tamil": "பாதுகாப்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Salary",
+      "tamil": "சம்பளம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Sale",
+      "tamil": "விற்பனை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Same",
+      "tamil": "ஒரே"
+    },
+    {
+      "category": "Nouns",
+      "english": "Sand",
+      "tamil": "மணல்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Scale",
+      "tamil": "அளவுகோல்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Scene",
+      "tamil": "காட்சி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Scheme",
+      "tamil": "திட்டம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Science",
+      "tamil": "அறிவியல்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Screen",
+      "tamil": "திரை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Secret",
+      "tamil": "இரகசியம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Security",
+      "tamil": "பாதுகாப்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Sentence",
+      "tamil": "வாக்கியம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Separate",
+      "tamil": "தனியான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Serious",
+      "tamil": "தீவிரமான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Seriously",
+      "tamil": "தீவிரமாக"
+    },
+    {
+      "category": "Nouns",
+      "english": "Service",
+      "tamil": "தொண்டு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Several",
+      "tamil": "பல"
+    },
+    {
+      "category": "Nouns",
+      "english": "Shadow",
+      "tamil": "நிழல்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Shape",
+      "tamil": "வடிவம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Sharp",
+      "tamil": "கூர்மை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Shell",
+      "tamil": "ஓடு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Shock",
+      "tamil": "அதிர்ச்சி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Short",
+      "tamil": "குட்டை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Side",
+      "tamil": "அருகில்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Sign",
+      "tamil": "அடையாளம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Significance",
+      "tamil": "முக்கியத்துவம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Silence",
+      "tamil": "அமைதி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Simple",
+      "tamil": "எளிய"
+    },
+    {
+      "category": "Nouns",
+      "english": "Situation",
+      "tamil": "சூழ்நிலை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Size",
+      "tamil": "அளவு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Skill",
+      "tamil": "திறமை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Slave",
+      "tamil": "அடிமை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Slip",
+      "tamil": "நழுவு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Small",
+      "tamil": "சிறிய"
+    },
+    {
+      "category": "Nouns",
+      "english": "Smell",
+      "tamil": "வாசனை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Society",
+      "tamil": "சமுதாயம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Soft",
+      "tamil": "மென்மையான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Sometimes",
+      "tamil": "சிலநேரங்களில்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Soon",
+      "tamil": "விரைவில்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Specifically",
+      "tamil": "குறிப்பாக"
+    },
+    {
+      "category": "Nouns",
+      "english": "Speech",
+      "tamil": "பேச்சு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Speed",
+      "tamil": "வேகம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Stable",
+      "tamil": "நிலையான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Stage",
+      "tamil": "மேடை"
+    },
+    {
+      "category": "Nouns",
+      "english": "State",
+      "tamil": "மாநிலம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Statue",
+      "tamil": "சிலை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Story",
+      "tamil": "கதை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Straight",
+      "tamil": "நேராக"
+    },
+    {
+      "category": "Nouns",
+      "english": "Stranger",
+      "tamil": "அந்நியன்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Street",
+      "tamil": "தெரு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Strength",
+      "tamil": "பலம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Strong",
+      "tamil": "உறுதியான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Struggle",
+      "tamil": "போராட்டம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Subject",
+      "tamil": "பாடம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Substance",
+      "tamil": "பொருள்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Success",
+      "tamil": "வெற்றி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Suddenly",
+      "tamil": "திடீரென"
+    },
+    {
+      "category": "Nouns",
+      "english": "Sufficient",
+      "tamil": "போதுமான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Sure",
+      "tamil": "நிச்சயம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Surprise",
+      "tamil": "ஆச்சரியம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Sweet",
+      "tamil": "இனிப்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Sword",
+      "tamil": "வாள்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Symptom",
+      "tamil": "அறிகுறி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Tail",
+      "tamil": "வால்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Talent",
+      "tamil": "திறமை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Tall",
+      "tamil": "உயரம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Tank",
+      "tamil": "தொட்டி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Tap",
+      "tamil": "குழாய்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Tax",
+      "tamil": "வரி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Teaching",
+      "tamil": "கற்பித்தல்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Team",
+      "tamil": "அணி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Terrorist",
+      "tamil": "தீவிரவாதி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Test",
+      "tamil": "சோதனை"
+    },
+    {
+      "category": "Nouns",
+      "english": "There",
+      "tamil": "அங்கே"
+    },
+    {
+      "category": "Nouns",
+      "english": "They",
+      "tamil": "அவர்கள்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Thick",
+      "tamil": "தடித்த"
+    },
+    {
+      "category": "Nouns",
+      "english": "Thin",
+      "tamil": "மெலிந்த"
+    },
+    {
+      "category": "Nouns",
+      "english": "Thing",
+      "tamil": "பொருள்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Time",
+      "tamil": "நேரம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Tobacco",
+      "tamil": "புகையிலை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Today",
+      "tamil": "இன்று"
+    },
+    {
+      "category": "Nouns",
+      "english": "Tomorrow",
+      "tamil": "நாளை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Top",
+      "tamil": "மேலே"
+    },
+    {
+      "category": "Nouns",
+      "english": "Topic",
+      "tamil": "தலைப்பு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Total",
+      "tamil": "மொத்தம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Tough",
+      "tamil": "கடினம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Tour",
+      "tamil": "சுற்றுலா"
+    },
+    {
+      "category": "Nouns",
+      "english": "Tower",
+      "tamil": "கோபுரம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Town",
+      "tamil": "நகரம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Toy",
+      "tamil": "பொம்மை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Training",
+      "tamil": "பயிற்சி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Transportation",
+      "tamil": "போக்குவரத்து"
+    },
+    {
+      "category": "Nouns",
+      "english": "Trial",
+      "tamil": "சோதனை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Tribe",
+      "tamil": "பழங்குடியினர்"
+    },
+    {
+      "category": "Nouns",
+      "english": "TRUE",
+      "tamil": "உண்மை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Ugly",
+      "tamil": "அசிங்கம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "University",
+      "tamil": "பல்கலைக்கழகம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Up",
+      "tamil": "மேலே"
+    },
+    {
+      "category": "Nouns",
+      "english": "Use",
+      "tamil": "பயன்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Usually",
+      "tamil": "வழக்கமாக"
+    },
+    {
+      "category": "Nouns",
+      "english": "Valuable",
+      "tamil": "மதிப்புமிக்க"
+    },
+    {
+      "category": "Nouns",
+      "english": "Variety",
+      "tamil": "வகை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Victory",
+      "tamil": "வெற்றி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Village",
+      "tamil": "கிராமம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Violation",
+      "tamil": "மீறுதல்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Violence",
+      "tamil": "வன்முறை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Vote",
+      "tamil": "வாக்கு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Wage",
+      "tamil": "சம்பளம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "War",
+      "tamil": "யுத்தம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Warning",
+      "tamil": "எச்சரிக்கை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Waste",
+      "tamil": "வீண்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Water",
+      "tamil": "தண்ணீர்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Wave",
+      "tamil": "அலை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Way",
+      "tamil": "வழி"
+    },
+    {
+      "category": "Nouns",
+      "english": "We",
+      "tamil": "நாம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Weak",
+      "tamil": "பலவீனம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Wealth",
+      "tamil": "சொத்து"
+    },
+    {
+      "category": "Nouns",
+      "english": "Weapon",
+      "tamil": "ஆயுதம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Weather",
+      "tamil": "வானிலை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Wedding",
+      "tamil": "திருமணம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Week",
+      "tamil": "வாரம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Weight",
+      "tamil": "எடை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Wet",
+      "tamil": "ஈரம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "What",
+      "tamil": "என்ன"
+    },
+    {
+      "category": "Nouns",
+      "english": "When",
+      "tamil": "எப்பொழுது"
+    },
+    {
+      "category": "Nouns",
+      "english": "Where",
+      "tamil": "எங்கே"
+    },
+    {
+      "category": "Nouns",
+      "english": "Which",
+      "tamil": "எந்த"
+    },
+    {
+      "category": "Nouns",
+      "english": "Who",
+      "tamil": "யார்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Whole",
+      "tamil": "மொத்தம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Whom",
+      "tamil": "யாரை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Whose",
+      "tamil": "யாருடைய"
+    },
+    {
+      "category": "Nouns",
+      "english": "Why",
+      "tamil": "ஏன்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Wide",
+      "tamil": "அகலம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Wild",
+      "tamil": "காடு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Wing",
+      "tamil": "சிறகு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Winner",
+      "tamil": "வெற்றியாளர்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Winter",
+      "tamil": "குளிர்காலம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Wire",
+      "tamil": "கம்பி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Wisdom",
+      "tamil": "புத்தி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Wise",
+      "tamil": "புத்திசாலி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Wish",
+      "tamil": "விருப்பம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Witness",
+      "tamil": "சாட்சி"
+    },
+    {
+      "category": "Nouns",
+      "english": "Woman",
+      "tamil": "பெண்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Wonderful",
+      "tamil": "அற்புதமான"
+    },
+    {
+      "category": "Nouns",
+      "english": "Wood",
+      "tamil": "மரம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Word",
+      "tamil": "வார்த்தை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Work",
+      "tamil": "வேலை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Worker",
+      "tamil": "வேலையாள்"
+    },
+    {
+      "category": "Nouns",
+      "english": "World",
+      "tamil": "உலகம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Worry",
+      "tamil": "கவலை"
+    },
+    {
+      "category": "Nouns",
+      "english": "Wound",
+      "tamil": "காயம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Wrong",
+      "tamil": "தவறு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Year",
+      "tamil": "ஆண்டு"
+    },
+    {
+      "category": "Nouns",
+      "english": "Yes",
+      "tamil": "ஆம்"
+    },
+    {
+      "category": "Nouns",
+      "english": "Yesterday",
+      "tamil": "நேற்று"
+    },
+    {
+      "category": "Nouns",
+      "english": "You",
+      "tamil": "நீ"
+    },
+    {
+      "category": "Nouns",
+      "english": "Young",
+      "tamil": "இளைய"
+    },
+    {
+      "category": "Nouns",
+      "english": "Your",
+      "tamil": "உன்னுடைய"
+    }
+  ]
+}

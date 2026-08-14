@@ -12,3 +12,9 @@ frontend/src/contracts/*.d.ts text eol=lf
 # manifest to a fresh bake).
 frontend/public/assets/glyphs/*.json text eol=lf
 assets/glyphs/*.svg text eol=lf
+
+# The lexicon fixtures are byte-exact slices of their raw sources, several of
+# which use CRLF. Any end-of-line conversion would rewrite those bytes and break
+# the row-4 claim that a fixture is a contiguous slice of its source, so git must
+# store and check them out unchanged.
+datasets/fixtures/lexicon/** -text

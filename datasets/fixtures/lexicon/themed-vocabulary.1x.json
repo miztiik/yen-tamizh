@@ -1,0 +1,704 @@
+{
+  "metadata": {
+    "source_file": "ta_vocabulary_categorized.json",
+    "processed_at": "2026-01-16T13:16:05.983860",
+    "format_version": "1.1",
+    "description": "Clean Tamil vocabulary - single words only",
+    "total_entries": 1290,
+    "categories": [
+      "Adjectives",
+      "Amphibians",
+      "Animals",
+      "Aquatic Animals",
+      "Arts",
+      "Bathroom",
+      "Bedroom",
+      "Birds",
+      "Colours",
+      "Days",
+      "Dresses And Accessories",
+      "Emotions",
+      "Flowers",
+      "Food",
+      "Fruits",
+      "Functions",
+      "Games",
+      "Garden",
+      "Hall",
+      "Hobby",
+      "Hospital",
+      "House",
+      "Insects",
+      "Kitchen",
+      "Nature",
+      "Nouns",
+      "Parts Of Plants",
+      "Places",
+      "Profession",
+      "Relations",
+      "Reptiles",
+      "School",
+      "Space",
+      "Spices",
+      "Symbols Shapes",
+      "Tools",
+      "Transport",
+      "Types Of Plants",
+      "Vegetables",
+      "Verbs"
+    ],
+    "processing_notes": [
+      "Category names converted to Title Case",
+      "NOUNS/PRONOUNS/PREPOSITIONS split into separate categories",
+      "Unicode normalized (வௌ → வெள்)",
+      "English text removed from Tamil fields"
+    ]
+  },
+  "data": [
+    {
+      "category": "House",
+      "english": "Building",
+      "tamil": "கட்டிடம்"
+    },
+    {
+      "category": "House",
+      "english": "Door",
+      "tamil": "கதவு"
+    },
+    {
+      "category": "House",
+      "english": "Floor",
+      "tamil": "தரை"
+    },
+    {
+      "category": "House",
+      "english": "Hall",
+      "tamil": "கூடம்"
+    },
+    {
+      "category": "House",
+      "english": "Hut",
+      "tamil": "குடிசை"
+    },
+    {
+      "category": "House",
+      "english": "Lock",
+      "tamil": "பூட்டு"
+    },
+    {
+      "category": "House",
+      "english": "Step",
+      "tamil": "படி"
+    },
+    {
+      "category": "House",
+      "english": "Wall",
+      "tamil": "சுவர்"
+    },
+    {
+      "category": "Hall",
+      "english": "Carpet",
+      "tamil": "கம்பளம்"
+    },
+    {
+      "category": "Hall",
+      "english": "Chair",
+      "tamil": "நாற்காலி"
+    },
+    {
+      "category": "Hall",
+      "english": "Clock",
+      "tamil": "கடிகாரம்"
+    },
+    {
+      "category": "Hall",
+      "english": "Computer",
+      "tamil": "கணினி"
+    },
+    {
+      "category": "Hall",
+      "english": "Curtain",
+      "tamil": "திரை"
+    },
+    {
+      "category": "Hall",
+      "english": "Fan",
+      "tamil": "விசிறி"
+    },
+    {
+      "category": "Hall",
+      "english": "Lamp/Light",
+      "tamil": "விளக்கு"
+    },
+    {
+      "category": "Hall",
+      "english": "Laptop",
+      "tamil": "மடிக்கணினி"
+    },
+    {
+      "category": "Hall",
+      "english": "Newspaper",
+      "tamil": "செய்தித்தாள்"
+    },
+    {
+      "category": "Hall",
+      "english": "Picture",
+      "tamil": "படம்"
+    },
+    {
+      "category": "Hall",
+      "english": "Table",
+      "tamil": "மேசை"
+    },
+    {
+      "category": "Hall",
+      "english": "Television",
+      "tamil": "தொலைக்காட்சி"
+    },
+    {
+      "category": "Bedroom",
+      "english": "Bed",
+      "tamil": "படுக்கை"
+    },
+    {
+      "category": "Bedroom",
+      "english": "Blanket",
+      "tamil": "போர்வை"
+    },
+    {
+      "category": "Bedroom",
+      "english": "Cot",
+      "tamil": "கட்டில்"
+    },
+    {
+      "category": "Bedroom",
+      "english": "Mat",
+      "tamil": "பாய்"
+    },
+    {
+      "category": "Bedroom",
+      "english": "Mirror",
+      "tamil": "கண்ணாடி"
+    },
+    {
+      "category": "Bedroom",
+      "english": "Net",
+      "tamil": "வலை"
+    },
+    {
+      "category": "Bedroom",
+      "english": "Pillow",
+      "tamil": "தலையணை"
+    },
+    {
+      "category": "Bedroom",
+      "english": "Shelf",
+      "tamil": "அலமாரி"
+    },
+    {
+      "category": "Kitchen",
+      "english": "Basket",
+      "tamil": "கூடை"
+    },
+    {
+      "category": "Kitchen",
+      "english": "Bowl",
+      "tamil": "கிண்ணம்"
+    },
+    {
+      "category": "Kitchen",
+      "english": "Cup",
+      "tamil": "கோப்பை"
+    },
+    {
+      "category": "Kitchen",
+      "english": "Glass",
+      "tamil": "கண்ணாடி"
+    },
+    {
+      "category": "Kitchen",
+      "english": "Jug",
+      "tamil": "கூஜா"
+    },
+    {
+      "category": "Kitchen",
+      "english": "Knife",
+      "tamil": "கத்தி"
+    },
+    {
+      "category": "Kitchen",
+      "english": "Plate",
+      "tamil": "தட்டு"
+    },
+    {
+      "category": "Kitchen",
+      "english": "Pot",
+      "tamil": "பானை"
+    },
+    {
+      "category": "Kitchen",
+      "english": "Spoon",
+      "tamil": "கரண்டி"
+    },
+    {
+      "category": "Kitchen",
+      "english": "Stove",
+      "tamil": "அடுப்பு"
+    },
+    {
+      "category": "Kitchen",
+      "english": "Strainer",
+      "tamil": "வடிகட்டி"
+    },
+    {
+      "category": "Kitchen",
+      "english": "Vessel",
+      "tamil": "பாத்திரம்"
+    },
+    {
+      "category": "Bathroom",
+      "english": "Acid",
+      "tamil": "அமிலம்"
+    },
+    {
+      "category": "Bathroom",
+      "english": "Bucket",
+      "tamil": "வாளி"
+    },
+    {
+      "category": "Bathroom",
+      "english": "Comb",
+      "tamil": "சீப்பு"
+    },
+    {
+      "category": "Bathroom",
+      "english": "Scissors",
+      "tamil": "கத்தரிக்கோல்"
+    },
+    {
+      "category": "Bathroom",
+      "english": "Toothpaste",
+      "tamil": "பற்பசை"
+    },
+    {
+      "category": "Bathroom",
+      "english": "Towel",
+      "tamil": "துண்டு"
+    },
+    {
+      "category": "Bathroom",
+      "english": "Mug",
+      "tamil": "குவளை"
+    },
+    {
+      "category": "Bathroom",
+      "english": "Tub",
+      "tamil": "தொட்டி"
+    },
+    {
+      "category": "Garden",
+      "english": "Broom",
+      "tamil": "துடைப்பம்"
+    },
+    {
+      "category": "Garden",
+      "english": "Dustbin",
+      "tamil": "குப்பைத்தொட்டி"
+    },
+    {
+      "category": "Garden",
+      "english": "Fence",
+      "tamil": "வேலி"
+    },
+    {
+      "category": "Garden",
+      "english": "Fertilizer",
+      "tamil": "உரம்"
+    },
+    {
+      "category": "Garden",
+      "english": "Flowerpot",
+      "tamil": "பூந்தொட்டி"
+    },
+    {
+      "category": "Garden",
+      "english": "Plants",
+      "tamil": "செடிகள்"
+    },
+    {
+      "category": "Garden",
+      "english": "Rope",
+      "tamil": "கயிறு"
+    },
+    {
+      "category": "Garden",
+      "english": "Soil",
+      "tamil": "மண்"
+    },
+    {
+      "category": "Garden",
+      "english": "Sapling",
+      "tamil": "மரக்கன்று"
+    },
+    {
+      "category": "Garden",
+      "english": "Swing",
+      "tamil": "ஊஞ்சல்"
+    },
+    {
+      "category": "Garden",
+      "english": "Tap",
+      "tamil": "குழாய்"
+    },
+    {
+      "category": "Garden",
+      "english": "Tent",
+      "tamil": "கூடாரம்"
+    },
+    {
+      "category": "Tools",
+      "english": "Axe",
+      "tamil": "கோடாரி"
+    },
+    {
+      "category": "Tools",
+      "english": "Gun",
+      "tamil": "துப்பாக்கி"
+    },
+    {
+      "category": "Tools",
+      "english": "Hammer",
+      "tamil": "சுத்தி"
+    },
+    {
+      "category": "Tools",
+      "english": "Ladder",
+      "tamil": "ஏணி"
+    },
+    {
+      "category": "Tools",
+      "english": "Nail",
+      "tamil": "ஆணி"
+    },
+    {
+      "category": "Tools",
+      "english": "Needle",
+      "tamil": "ஊசி"
+    },
+    {
+      "category": "Tools",
+      "english": "Pliers",
+      "tamil": "இடுக்கி"
+    },
+    {
+      "category": "Animals",
+      "english": "Bat",
+      "tamil": "வெளவால்"
+    },
+    {
+      "category": "Animals",
+      "english": "Bear",
+      "tamil": "கரடி"
+    },
+    {
+      "category": "Animals",
+      "english": "Camel",
+      "tamil": "ஒட்டகம்"
+    },
+    {
+      "category": "Animals",
+      "english": "Cat",
+      "tamil": "பூனை"
+    },
+    {
+      "category": "Animals",
+      "english": "Cow",
+      "tamil": "பசு"
+    },
+    {
+      "category": "Animals",
+      "english": "Deer",
+      "tamil": "மான்"
+    },
+    {
+      "category": "Animals",
+      "english": "Dog",
+      "tamil": "நாய்"
+    },
+    {
+      "category": "Animals",
+      "english": "Donkey",
+      "tamil": "கழுதை"
+    },
+    {
+      "category": "Animals",
+      "english": "Elephant",
+      "tamil": "யானை"
+    },
+    {
+      "category": "Animals",
+      "english": "Fox",
+      "tamil": "நரி"
+    },
+    {
+      "category": "Animals",
+      "english": "Goat",
+      "tamil": "வெள்ளாடு"
+    },
+    {
+      "category": "Animals",
+      "english": "Horse",
+      "tamil": "குதிரை"
+    },
+    {
+      "category": "Animals",
+      "english": "Leopard",
+      "tamil": "சிறுத்தை"
+    },
+    {
+      "category": "Animals",
+      "english": "Lion",
+      "tamil": "சிங்கம்"
+    },
+    {
+      "category": "Animals",
+      "english": "Monkey",
+      "tamil": "குரங்கு"
+    },
+    {
+      "category": "Animals",
+      "english": "Mouse",
+      "tamil": "எலி"
+    },
+    {
+      "category": "Animals",
+      "english": "Ox",
+      "tamil": "எருது"
+    },
+    {
+      "category": "Animals",
+      "english": "Pig",
+      "tamil": "பன்றி"
+    },
+    {
+      "category": "Animals",
+      "english": "Rabbit",
+      "tamil": "முயல்"
+    },
+    {
+      "category": "Animals",
+      "english": "Squirrel",
+      "tamil": "அணில்"
+    },
+    {
+      "category": "Animals",
+      "english": "Tiger",
+      "tamil": "புலி"
+    },
+    {
+      "category": "Animals",
+      "english": "Wolf",
+      "tamil": "ஓநாய்"
+    },
+    {
+      "category": "Animals",
+      "english": "Zebra",
+      "tamil": "வரிக்குதிரை"
+    },
+    {
+      "category": "Birds",
+      "english": "Cock",
+      "tamil": "சேவல்"
+    },
+    {
+      "category": "Birds",
+      "english": "Crane",
+      "tamil": "கொக்கு"
+    },
+    {
+      "category": "Birds",
+      "english": "Crow",
+      "tamil": "காகம்"
+    },
+    {
+      "category": "Birds",
+      "english": "Dove",
+      "tamil": "புறா"
+    },
+    {
+      "category": "Birds",
+      "english": "Duck",
+      "tamil": "வாத்து"
+    },
+    {
+      "category": "Birds",
+      "english": "Hen",
+      "tamil": "கோழி"
+    },
+    {
+      "category": "Birds",
+      "english": "Ostrich",
+      "tamil": "நெருப்புக்கோழி"
+    },
+    {
+      "category": "Birds",
+      "english": "Owl",
+      "tamil": "ஆந்தை"
+    },
+    {
+      "category": "Birds",
+      "english": "Parrot",
+      "tamil": "கிளி"
+    },
+    {
+      "category": "Birds",
+      "english": "Peacock",
+      "tamil": "மயில்"
+    },
+    {
+      "category": "Birds",
+      "english": "Sparrow",
+      "tamil": "சிட்டுக்குருவி"
+    },
+    {
+      "category": "Birds",
+      "english": "Woodpecker",
+      "tamil": "மரங்கொத்தி"
+    },
+    {
+      "category": "Aquatic Animals",
+      "english": "Crab",
+      "tamil": "நண்டு"
+    },
+    {
+      "category": "Aquatic Animals",
+      "english": "Fish",
+      "tamil": "மீன்"
+    },
+    {
+      "category": "Aquatic Animals",
+      "english": "Oyster",
+      "tamil": "சிப்பி"
+    },
+    {
+      "category": "Aquatic Animals",
+      "english": "Shark",
+      "tamil": "சுறா"
+    },
+    {
+      "category": "Aquatic Animals",
+      "english": "Shrimp",
+      "tamil": "இறால்"
+    },
+    {
+      "category": "Aquatic Animals",
+      "english": "Squid",
+      "tamil": "கனவா"
+    },
+    {
+      "category": "Aquatic Animals",
+      "english": "Whale",
+      "tamil": "திமிங்கிலம்"
+    },
+    {
+      "category": "Reptiles",
+      "english": "Centipede",
+      "tamil": "பூரான்"
+    },
+    {
+      "category": "Reptiles",
+      "english": "Chameleon",
+      "tamil": "பச்சோந்தி"
+    },
+    {
+      "category": "Reptiles",
+      "english": "Crocodile",
+      "tamil": "முதலை"
+    },
+    {
+      "category": "Reptiles",
+      "english": "Lizard",
+      "tamil": "பல்லி"
+    },
+    {
+      "category": "Reptiles",
+      "english": "Python",
+      "tamil": "மலைப்பாம்பு"
+    },
+    {
+      "category": "Reptiles",
+      "english": "Scorpion",
+      "tamil": "தேள்"
+    },
+    {
+      "category": "Reptiles",
+      "english": "Snail",
+      "tamil": "நத்தை"
+    },
+    {
+      "category": "Reptiles",
+      "english": "Snake",
+      "tamil": "பாம்பு"
+    },
+    {
+      "category": "Amphibians",
+      "english": "Frog",
+      "tamil": "தவளை"
+    },
+    {
+      "category": "Amphibians",
+      "english": "Turtle/Tortoise",
+      "tamil": "ஆமை"
+    },
+    {
+      "category": "Insects",
+      "english": "Ant",
+      "tamil": "எறும்பு"
+    },
+    {
+      "category": "Insects",
+      "english": "Bee",
+      "tamil": "தேனீ"
+    },
+    {
+      "category": "Insects",
+      "english": "Black Ant",
+      "tamil": "கட்டெறும்பு"
+    },
+    {
+      "category": "Insects",
+      "english": "Fly",
+      "tamil": "ஈ"
+    },
+    {
+      "category": "Insects",
+      "english": "Grasshopper",
+      "tamil": "வெட்டுக்கிளி"
+    },
+    {
+      "category": "Insects",
+      "english": "Mosquito",
+      "tamil": "கொசு"
+    },
+    {
+      "category": "Insects",
+      "english": "Spider",
+      "tamil": "சிலந்தி"
+    },
+    {
+      "category": "Insects",
+      "english": "Worm",
+      "tamil": "புழு"
+    },
+    {
+      "category": "Types Of Plants",
+      "english": "Bamboo",
+      "tamil": "மூங்கில்"
+    },
+    {
+      "category": "Types Of Plants",
+      "english": "Bush",
+      "tamil": "புதர்"
+    }
+  ]
+}
