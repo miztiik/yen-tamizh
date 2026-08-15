@@ -35,8 +35,8 @@ to be recomputable in isolation before it can be replaced or removed in
 isolation, and an addressable per-source extract file is the cheapest way to
 make it so.
 
-EXTRACT and STAGE exist today. ENRICH and PUBLISH document themselves here as
-they land.
+EXTRACT, STAGE and ENRICH exist today. PUBLISH documents itself here as it
+lands.
 
 ## EXTRACT
 
@@ -218,6 +218,63 @@ measured real load is 278 seconds.
 rebuildable by one command, and the reproducibility anchor is the published
 artifact, never this file.
 
+## ENRICH
+
+ENRICH reads the STAGED zone and writes the DERIVED one: one `signal` row per
+staged surface, one column per word-hood signal. WHAT the signals are and what
+each catches is [word-hood.md](word-hood.md); this section is the stage
+mechanics.
+
+### The zone is recomputed WHOLE, never merged
+
+Four of the eight signals are whole-corpus functions, so a derived zone merged
+from deltas would carry values computed over a pre-delta fact set. It is
+therefore not merged at all: `signal` and `classification` are emptied and
+rebuilt on every full run. A row left behind from an earlier population cannot
+survive, which is what makes the zone a pure FUNCTION of the staged one rather
+than a history of it.
+
+### One pass over the population
+
+The population is the union of every observed surface and every worded fact -
+6,249,903 rows over the real sources. Each signal contributes a SQL EXPRESSION
+to a single streamed `INSERT ... SELECT` rather than running its own update pass
+over the whole table, and each prepares a small keyed temp table first so the
+expression is a primary-key probe rather than a correlated scan. The one signal
+that cannot be written in SQL at all, `orthotactic`, runs in the same statement
+as a deterministic user-defined function.
+
+Nothing materialises the population in Python. The measured real run is 290
+seconds end to end, of which 278 is the single population write.
+
+### `--signal NAME` recomputes one column
+
+The development path: it updates one column over the population the zone already
+holds, and refuses when there is no population to update. It deliberately does
+NOT touch `derived_epoch` - the column is a pure function of the staged zone, so
+recomputing it cannot make a current zone stale, and it cannot make a stale one
+current either. The stamp is right wherever it already stood.
+
+### The epoch is stamped at the end of a full run
+
+`derived_epoch` takes the `stage_epoch` the run read. PUBLISH refuses when the
+two disagree, so a published artifact can never carry signals from a store that
+has moved on underneath them.
+
+### A signal that has not landed yet is NULL
+
+Row 7 writes five of the eight columns; `ngram`, `neighbour` and `zipf` stay
+NULL until Row 8 appends its signals. NULL here means **not measured**, which is
+a different fact from a measured zero, and the store keeps them different.
+
+### Configured source ids are checked before anything is computed
+
+Two signals are membership in a NAMED source, and the name is config. A
+misspelled id would produce a column of zeros - which reads exactly like a
+signal that honestly found nothing - so ENRICH checks every configured id
+against the store's `source` table and refuses to run rather than reporting a
+silent all-negative. Fail fast at the boundary.
+
 ## Design rationale
 
 ### The self-terminating element rule
@@ -361,6 +418,7 @@ and recomputed whole.
 ## See also
 
 - [../../concepts/lexicon.md](../../concepts/lexicon.md) - the vocabulary this pipeline produces.
+- [word-hood.md](word-hood.md) - the eight signals ENRICH computes and what each one catches.
 - [../contracts/schemas.md](../contracts/schemas.md) - the `lexicon` and `lexicon-sources` contracts.
 - [../../how-to/add-a-lexicon-source.md](../../how-to/add-a-lexicon-source.md) - adding a source as a data change.
 - [../../../datasets/lexicon/sources/README.md](../../../datasets/lexicon/sources/README.md) - the acquisition ledger: every source's origin, bytes and sha256.

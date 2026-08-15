@@ -33,9 +33,11 @@ This is where the Tamil display names for the Games and Modes - working names to
 
 ## Runtime config vs build-time config
 
-Not every config file is for the browser. Two of them are read only by the build-time producer and never ship to a player:
+Not every config file is for the browser. Several are read only by the build-time producer and never ship to a player:
 
 - **`config/corpus-sources.json`** and **`config/derived-wordlists.json`** - the corpus and derived layers ([../how-to/add-a-corpus-source.md](../how-to/add-a-corpus-source.md), [../how-to/add-a-derived-wordlist.md](../how-to/add-a-derived-wordlist.md)).
+- **`config/lexicon-sources.json`** - the lexicon's source registry ([../how-to/add-a-lexicon-source.md](../how-to/add-a-lexicon-source.md)).
+- **`config/wordhood.json`** - what each word-hood defect costs, and which registered source carries a ready-made grammar or verb-form judgement ([../architecture/lexicon/word-hood.md](../architecture/lexicon/word-hood.md)). The letter rules themselves are NOT here: which ezhuthu may open a Tamil word is a fact about the language, not a knob, so it lives in the ezhuthu library.
 - **`config/daily-generator.json`** - the daily puzzle engine: attempts, time limit, head start, hint wording and cost, and the ezhuthu-length bands that map to a difficulty ([../how-to/generate-the-daily-bank.md](../how-to/generate-the-daily-bank.md)).
 
 `app-config` stays the SHARED surface: how many items a day holds, which Games fill it, how many hints are allowed, which Modes are live. The generator reads those same numbers, so the day it bakes and the session the shell frames can never disagree.

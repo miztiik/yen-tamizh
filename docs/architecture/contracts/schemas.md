@@ -48,6 +48,7 @@ Named here so every doc has one place to point; the field lists are owned by the
 - `master-wordlist` / `game-wordlist` - the curated data the generators consume.
 - `lexicon` - the META document (`provenance`, per-class `counters`, the partition table) beside the streamed all-words NDJSON that supersedes `master-wordlist`. Its ROW shape, `LexiconEntry`, is not a separate schema file - it reaches `lexicon.schema.json`'s `$defs` through the meta document ([../../concepts/lexicon.md](../../concepts/lexicon.md)).
 - `lexicon-sources` - the declarative registry the lexicon stages read, superseding `corpus-sources`.
+- `wordhood` - the word-hood knobs the lexicon's ENRICH stage reads: what an orthotactic defect costs, and which registered source carries a ready-made grammar or verb-form judgement ([../lexicon/word-hood.md](../lexicon/word-hood.md)).
 
 ## The source of truth
 
@@ -131,6 +132,16 @@ The lexicon replaces the corpus layer's destructive funnel: every surface any so
 - **`sources` does not survive; `attestedBy` replaces it.** Which scraper OBSERVED a surface decides nothing about word-hood and stays in the build-time store; only authorities that carried a headword fact reach the published row. (Fowler + user.)
 - **Neither lexicon schema is registered in `frontend/src/contracts/index.ts`.** Both are build-time surfaces the browser never fetches, so an ajv validator for either would ship dead runtime bytes. Same precedent as the corpus and derived schemas and `glyph-manifest`; the drift gate still covers them. (Carmack + Fowler.)
 - **Migration class is build-time rewrite-in-place.** A change stamps `version` and appends a `changelog` entry and needs no read-side migration, because the only reader is `backend/` and every artifact regenerates in the same commit. (Fowler, CLAUDE.md section 11.)
+
+### Word-hood config decisions (Row 7)
+
+`config/wordhood.json` is what the lexicon's ENRICH stage reads. WHAT the signals are and what each catches is [../lexicon/word-hood.md](../lexicon/word-hood.md); what follows is why the CONTRACT has the shape it does.
+
+- **The knobs are a schema-backed config because they are a persisted surface.** CLAUDE.md section 11 names config as one of the surfaces every schema rule covers, and Holy Law #6 is what puts these numbers in a file rather than in Python - which is exactly what makes the file need a schema. The alternative considered and rejected was leaving it a plain hand-validated JSON: a hand-edited weight that no model checks is a silent behaviour change over 6.25M rows, and it would be the only config in the repo outside the drift gate. (Fowler, Holy Laws #3 and #6.)
+- **Weights are validated to fit inside the score they are subtracted from, and a configuration that overruns is REJECTED rather than clamped.** Clamping flattens every defective surface onto zero, and then no threshold downstream can tell an unopenable surface from a merely mis-ended one - which is the entire reason the signal is a score and not a bit. (Fowler.)
+- **Each source list requires at least one entry.** A membership signal whose list is empty is a column of zeros wearing a name, and a column of zeros is indistinguishable from a signal that honestly found nothing. Same reasoning that kept an always-absent `pos` field out of the corpus layer: a field with no producer asserts nothing and hides that it asserts nothing. The complementary check - that a named id is actually STAGED - cannot live in the contract, because the contract does not see the store; it is a fail-fast check at the start of the ENRICH run. (Fowler.)
+- **The letter rules are NOT in this file.** Which ezhuthu may open a Tamil word, which eight may end it, and which mei clusters are legal are facts about the language, in the same category as the `wordClass` set and the part-of-speech vocabulary - so they live in the ezhuthu library and are tested exhaustively over the 247-ezhuthu inventory. Only what a broken rule COSTS is a knob. (User + Fowler.)
+- **`wordhood` is not registered in `frontend/src/contracts/index.ts`.** It is a build-time surface the browser never fetches; an ajv validator for it would ship dead runtime bytes. Same precedent as the corpus, derived and lexicon schemas and `glyph-manifest`; the drift gate still covers it. (Carmack + Fowler.)
 
 ## Rejected alternatives
 
