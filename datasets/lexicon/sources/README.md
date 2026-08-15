@@ -1,6 +1,6 @@
 # Lexicon sources (raw, not committed)
 
-**Last Updated**: 2026-08-14
+**Last Updated**: 2026-08-15
 
 This directory holds the raw dictionaries, word lists and frequency tables the
 `wordsmith` pipeline streams. The bytes are **gitignored** - roughly 450 MB of
@@ -33,7 +33,7 @@ allowed to assert:
 
 | role | May assert | Sources |
 | --- | --- | --- |
-| `authority` | that a surface IS a word (a headword), plus whatever else it carries | A1-A7 |
+| `authority` | that a surface IS a word (a headword), plus whatever else it carries | A1-A8 |
 | `formEvidence` | only that a surface is NOT a headword - an inflected form | B1, B2 |
 | `category` | semantic metadata; never word-hood | C1 |
 | `frequency` | counts; never word-hood | D1-D9, E1 |
@@ -51,10 +51,15 @@ rather than argued with.
 
 ## The ledger
 
-`bytes`, `records` and `sha256` describe the raw file exactly as acquired on
-2026-08-14. `records` counts physical lines for the line-based formats (so D1's
-count includes its `word,frequency` header line) and root-array elements for the
-JSON formats.
+`bytes`, `records` and `sha256` describe the file at `path` exactly as acquired -
+on 2026-08-14 for A1-A7 and B1 through E1, and on 2026-08-15 for A8. `records`
+counts physical lines for the line-based formats (so D1's count includes its
+`word,frequency` header line, and A8's includes its `page_title` one) and
+root-array elements for the JSON formats.
+
+A8 is the one source whose origin is an ARCHIVE rather than the file itself, so
+its row describes the decompressed bytes and the archive's own digest is
+recorded in [its section below](#a8---acquired-from-a-gzip-archive).
 
 | # | id | role | origin | path | bytes | records | sha256 | status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -65,6 +70,7 @@ JSON formats.
 | A5 | old-wordlist | authority | yen-tamizh_OLD/src/dictionary/raw/t2.json | datasets/corpus/old-wordlist/source.json | 1712398 | 36082 | `defb1b04013299925dd0bb1086891e6ef64b1dbc672bc9208233777ed3de0fda` | acquired |
 | A6 | madras-lexicon | authority | https://dsal.uchicago.edu/dictionaries/tamil-lex/ | - | - | - | - | NOT ACQUIRED |
 | A7 | wiktextract-ta | authority | https://kaikki.org/dictionary/Tamil/kaikki.org-dictionary-Tamil.jsonl | datasets/lexicon/sources/wiktextract-ta/source.jsonl | 86701341 | 13773 | `56c3063941fe4fe8004efbd51e6a57173b25f5d86c68fff648e27be5a15fc723` | acquired |
+| A8 | ta-wiktionary-titles | authority | https://dumps.wikimedia.org/tawiktionary/20260801/tawiktionary-20260801-all-titles-in-ns0.gz | datasets/lexicon/sources/ta-wiktionary-titles/source.txt | 7745492 | 410075 | `7b4954ccad02227771354192a88bbae82939009068067b029abd073e29321cf0` | acquired |
 | B1 | inflected-verbs-bulk | formEvidence | yen-tamizh_OLD/src/dictionary/raw/Simple-verbs-01022021.txt | datasets/lexicon/sources/inflected-verbs-bulk/source.txt | 69572318 | 1461494 | `3baf32b9662c248b81273be0446c4f8fbfcb812c0ea6675ee47485293a9fb3b5` | acquired |
 | B2 | inflected-verbs-clean | formEvidence | yen-tamizh_OLD/src/dictionary/intermediate/verbs.txt | datasets/lexicon/sources/inflected-verbs-clean/source.txt | 727814 | 19249 | `0e1913e15f1ebc7413b50f8b738a933ab7f6ecd48c3db09e9a6f4ef107226d1e` | acquired |
 | C1 | themed-vocabulary | category | yen-tamizh_OLD/src/dictionary/intermediate/ta_vocabulary_clean.json | datasets/lexicon/sources/themed-vocabulary/source.json | 144240 | 1290 | `91a78edadca357690975066c6d00815060f79e6a679f07e9a63cd8758f26ed6c` | acquired |
@@ -118,6 +124,69 @@ rather than papered over: without it, `llm_enrich` authors Tamil meanings from
 A2's glosses, C1's pairs and A7's senses alone. The entry stays in the ledger so
 a later reader knows it was sought, where, and what happened.
 
+### A8 - acquired from a gzip archive
+
+A8 exists because A7 is not what its name suggests. `wiktextract-ta` is the
+ENGLISH Wiktionary's Tamil subset, which is what kaikki.org publishes: kaikki
+exports roughly twenty Wiktionary editions and Tamil is not one of them, so the
+Tamil Wiktionary itself had never been read. At 13,773 entries A7 is the thinner
+half of Wiktionary's Tamil coverage; the Tamil edition's main namespace holds
+410,074 pages.
+
+Three things about acquiring it are worth writing down, because each one costs an
+hour to rediscover.
+
+**Wikimedia refuses the default Python User-Agent.** A plain
+`urllib.request.urlopen` on any `dumps.wikimedia.org` URL returns **HTTP 403
+Forbidden**. A descriptive User-Agent is required and is enough:
+
+```
+User-Agent: yen-tamizh-lexicon/1.0 (build-time corpus tooling)
+```
+
+**The URL is a DATED one, not `latest`.** `latest` is a moving target: the same
+path serves different bytes every month, so a recorded sha256 goes stale without
+anything in the repository changing. Wikimedia also publishes dated runs, and on
+2026-08-15 ten of them resolved - `20251201` through `20260801` - which is a
+retention window of roughly nine months. The `20260801` run and `latest` returned
+byte-identical files (1,888,498 bytes, the same digest, both `Last-Modified: Tue,
+04 Aug 2026 12:30:54 GMT`), so pinning the dated URL costs nothing and buys a
+reproducible fetch. The dump run is NAMED `20260801` and was PRODUCED on
+2026-08-04; the ledger's origin is the name, this paragraph is the date.
+
+**The row describes the decompressed file.** The origin is a `.gz`; the bytes at
+`path` are what `gzip` yields from it. That is not a convenience - a fixture must
+be a byte-exact contiguous slice of the file the reader reads, and a truncated
+gzip member is not a readable gzip file at all, so a `.gz` on disk could not have
+an honest 1x fixture. Both digests are on record, so the chain from the published
+archive to the file the pipeline reads is verifiable end to end:
+
+| artifact | bytes | sha256 |
+| --- | --- | --- |
+| the published archive | 1888498 | `a7f97c8122461f70937753e0039aa727f0aacfca3b6157f610397c9aa361a09b` |
+| decompressed, at `path` | 7745492 | `7b4954ccad02227771354192a88bbae82939009068067b029abd073e29321cf0` |
+
+The file is LF-only (zero carriage returns), ends with a newline, holds no blank
+line, and its first line is the header `page_title`, which is why the registry
+entry sets `hasHeader`.
+
+**It is a TIER-2, enumerative authority.** The role is `authority` because no
+other role in the closed vocabulary is true of it - it asserts no negative, no
+theme and no count - and because three sources already registered as authorities
+(A3, A4, A5) are bare word lists too, two of them machine-generated, which this
+one is not: a page in the main namespace exists because a person wrote a
+dictionary entry. But that editorial act is not IN the bytes. The dump carries no
+gloss, no definition, no part of speech, no synonym and no category, so it can
+never satisfy the entry test - a `headword` fact plus a describing fact from the
+SAME source - and can never make a surface a headword by itself. Provenance
+describes the bytes on hand, not what is believed about how they came to exist,
+so the ruling is tier 2 with the editorial provenance recorded beside it.
+
+What it contributes, measured against the store on 2026-08-15: of the 98,100
+single-token, wholly Tamil titles of 25 ezhuthu or fewer, 12,383 are surfaces the
+lexicon had never seen and 2,722 are surfaces it had seen but no authority had
+vouched for. 83,701 fall in the 1-7 ezhuthu band the games draw from.
+
 ### E1 - acquired, disabled
 
 E1 stays registered and stays off. The extraction that produced it stripped
@@ -155,7 +224,7 @@ datasets/fixtures/lexicon/<source-id>.1x.<ext>
 datasets/fixtures/lexicon/<source-id>.10x.<ext>
 ```
 
-38 files, 3,103,925 bytes in total. Three rules govern them:
+40 files, 3,127,902 bytes in total. Three rules govern them:
 
 1. **A fixture keeps its source's extension.** A byte-exact slice of a CSV is a
    CSV and a slice of a JSON array is JSON, so each reader is exercised against
@@ -170,6 +239,8 @@ datasets/fixtures/lexicon/<source-id>.10x.<ext>
    the reader memory predicate has both of its inputs. N is 2,000 records at 10x,
    reduced where 2,000 records would exceed a one-mebibyte fixture (A7, whose
    records are 6 KB each) or where the source is smaller (C1 has 1,290 rows).
+   For a source with a header line the count is of physical LINES, header
+   included, which is what keeps the ten-times ratio exact (A8: 200 and 2,000).
 
 Because a fixture is a head slice it is not a representative SAMPLE. Never infer
 a distribution from one - the part-of-speech census in this row's pull request was
@@ -179,7 +250,10 @@ counted over the whole of every source, not over a fixture.
 
 Fetch each `origin` back to its `path`. Sources whose origin is a
 `yen-tamizh_OLD/...` path come from the predecessor repository; sources whose
-origin is a URL can be fetched directly. Then confirm the bytes:
+origin is a URL can be fetched directly. A8 needs two extra steps and is the
+only one that does: its `dumps.wikimedia.org` URL answers 403 without a
+descriptive User-Agent, and its origin is a gzip archive, so decompress it into
+`path` rather than saving the archive there. Then confirm the bytes:
 
 ```
 python -c "import hashlib,pathlib;print(hashlib.sha256(pathlib.Path('<path>').read_bytes()).hexdigest())"
