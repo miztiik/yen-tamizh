@@ -210,9 +210,9 @@ Phase-A rows MUST NOT assert anything about the real corpus - their Oracles run 
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Delete `requireCoAnagram`; retain the multiset index; add the re-bake guard | A | - | A | DONE #13 | `../yen-tamizh-row1` (removed) | #13 | worker |
 | 2 | Move `RelPath` / `SourceId` to `contracts/common.py` | A | 1 | - | DONE #14 | `../yen-tamizh-row2` (removed) | #14 | worker |
-| 3 | `lexicon` + `lexicon-sources` contracts | A | 2, 4 | - | IN-FLIGHT | `../yen-tamizh-lex3` | - | worker |
+| 3 | `lexicon` + `lexicon-sources` contracts | A | 2, 4 | - | DONE #16 | `../yen-tamizh-lex3` (removed) | #16 | worker |
 | 4 | Source acquisition + committed fixtures | B | - | A | DONE #15 | `../yen-tamizh-lex4` (removed) | #15 | worker |
-| 5 | `wordsmith/extract.py` + `config/lexicon-sources.json` | A | 3, 4 | - | PENDING | - | - | - |
+| 5 | `wordsmith/extract.py` + `config/lexicon-sources.json` | A | 3, 4 | - | IN-FLIGHT | `../yen-tamizh-lex5` | - | worker |
 | 6 | `wordsmith/stage.py` - the delta store | A | 5 | - | PENDING | - | - | - |
 | 7 | Word-hood exact signals (attestation, orthotactics, breadth) | A | 6 | B | PENDING | - | - | - |
 | 8 | Word-hood inexact signals (n-gram, neighbour, Zipf) | A | 6 | B | PENDING | - | - | - |
@@ -303,6 +303,7 @@ Rows 3 and 13 change `REGISTRY` in `backend/yen_tamizh_backend/contracts/__init_
   - `schemas/lexicon.schema.json`, `schemas/lexicon-sources.schema.json` (generated)
   - `frontend/src/contracts/lexicon.*`, `lexicon-sources.*` (generated)
   - `docs/architecture/contracts/schemas.md`
+  - `docs/concepts/lexicon.md` (new - the vocabulary is MINTED by this row's contract, so defining it anywhere else would be one concept defined twice; Fowler ratified row 3 as its home)
 
 - **Acceptance gates:** `mypy backend` strict; `pytest backend`; drift gate green; `npm run lint`; `npm run check`.
 
