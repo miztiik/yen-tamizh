@@ -38,6 +38,15 @@ datasets/corpus/*
 datasets/lexicon/sources/*
 !datasets/lexicon/sources/README.md
 
+# The one source that is AUTHORED rather than acquired (wordsmith row 10). The
+# rule above exists to keep unreviewed third-party bytes out of history; these
+# bytes are ours, reviewable line by line, and are the record of what the game
+# tells a player a word means, so they are committed. Only that one file - a
+# stray download dropped in the same directory stays ignored.
+!datasets/lexicon/sources/llm-authored/
+datasets/lexicon/sources/llm-authored/*
+!datasets/lexicon/sources/llm-authored/entries.jsonl
+
 # Build cache of the wordsmith stages (extracts, the staging SQLite store).
 datasets/lexicon/cache/
 
