@@ -632,7 +632,11 @@ def test_the_derived_zone_is_recomputed_whole_rather_than_merged(
     conn = _connect(db)
     try:
         assert _scalar(conn, "SELECT count(*) FROM signal") == _population(conn)
-        assert _scalar(conn, "SELECT count(*) FROM classification") == 0
+        # Row 9 writes this table too, so "dropped and recomputed whole" is now
+        # a claim about both: the injected row is gone and every surface has a
+        # verdict, rather than the table simply being empty.
+        assert _scalar(conn, "SELECT count(*) FROM classification") == _population(conn)
+        assert _scalar(conn, "SELECT count(*) FROM classification WHERE word = 'x'") == 0
     finally:
         conn.close()
 

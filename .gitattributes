@@ -18,3 +18,10 @@ assets/glyphs/*.svg text eol=lf
 # the row-4 claim that a fixture is a contiguous slice of its source, so git must
 # store and check them out unchanged.
 datasets/fixtures/lexicon/** -text
+
+# The golden fixtures are the opposite case: they are hand-written, ASCII-only
+# (Tamil is escaped) and LF-only, and a test byte-compares one against a fresh
+# render. `-text` would leave them at the mercy of whatever the author's editor
+# wrote, so they are pinned to LF instead - the same rule the generated contract
+# artifacts above use, and for the same reason.
+datasets/fixtures/*.jsonl text eol=lf

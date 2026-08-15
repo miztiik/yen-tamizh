@@ -19,7 +19,7 @@ and nothing else.
 | --- | --- | --- | --- |
 | EXTRACT | `python -m yen_tamizh_backend.wordsmith.extract [--source ID]` | one raw source plus its registry entry | `datasets/lexicon/cache/extracts/<source-id>.jsonl` |
 | STAGE | `... .stage [--source ID] [--remove ID]` | the extracts | the STAGED zone of `datasets/lexicon/cache/lexicon.db` |
-| ENRICH | `... .enrich [--signal NAME]` | the STAGED zone | the DERIVED zone: signals and `wordClass` |
+| ENRICH | `... .enrich [--signal NAME] [--classify]` | the STAGED zone | the DERIVED zone: signals and `wordClass` |
 | PUBLISH | `... .publish [--format ...]` | both zones | `datasets/lexicon/*` |
 
 Each stage reads the previous stage's ON-DISK artifact rather than an in-process
@@ -288,6 +288,28 @@ surface nobody counted, because a word with no frequency has no rank to sit off,
 and `neighbour` is NULL for a surface its prune skipped, because nobody asked.
 A measured zero says something different in both cases -
 [word-hood.md](word-hood.md) says what.
+
+### The classifier is the last step of the rebuild
+
+Once the eight columns are written, one more streamed statement over the
+`signal` table turns them into exactly one `wordClass` per surface. It runs
+INSIDE the same transaction, so the derived zone stays a single all-or-nothing
+rebuild and a store can never hold signals with no verdicts - a missing verdict
+would read to Row 12's allow-list as "not served" rather than as the failure it
+is.
+
+It reads two things the signal columns do not carry, both from the staged zone
+and both prepared as small keyed temp tables first: whether an authority gave
+the surface a lexicographic ENTRY rather than a bare listing, and every
+`wordClassEvidence` fact any source asserted about it. The cascade itself is a
+pure function of a plain value, registered as a deterministic SQLite function -
+so the same code classifies 6.25M surfaces here and 200 committed fixture rows
+in CI.
+
+`--classify` recomputes only the verdicts over the population the zone already
+holds. It is the development path for the cascade and behaves exactly like
+`--signal`: it refuses when there is no population, and it does not touch
+`derived_epoch`.
 
 ### Configured source ids are checked before anything is computed
 

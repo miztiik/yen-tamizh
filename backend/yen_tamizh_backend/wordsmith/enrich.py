@@ -26,6 +26,11 @@ NULL still means the same thing where it survives, and two of Row 8's signals
 leave it on purpose. ``zipf`` is NULL for a surface no source ever observed,
 because a word with no frequency has no rank to sit off; ``neighbour`` is NULL
 for a surface its prune skipped, because nobody asked.
+
+Row 9 added the last step of the rebuild: the classifier, which reads the
+columns everything before it wrote and turns them into exactly one ``wordClass``
+per surface. It runs inside the same transaction, so the derived zone is still
+one all-or-nothing rebuild and a store can never hold signals with no verdicts.
 """
 
 from __future__ import annotations
@@ -66,6 +71,12 @@ from yen_tamizh_backend.wordsmith.store import (
     staged_sources,
     transaction,
 )
+from yen_tamizh_backend.wordsmith.wordhood import (
+    classify_population,
+    discoveries,
+)
+from yen_tamizh_backend.wordsmith.wordhood import distribution as class_distribution
+from yen_tamizh_backend.wordsmith.wordhood import prepare as prepare_classifier
 
 # The order is the order the columns are written in, and nothing else depends
 # on it. Row 8's three are appended rather than interleaved so the diff that
@@ -100,6 +111,8 @@ class EnrichRun:
     passes: list[SignalResult] = field(default_factory=list)
     rows: int = 0
     queried: int = 0
+    classified: int = 0
+    classifySeconds: float = 0.0
     stageEpoch: int = 0
     derivedEpoch: int = 0
     writeSeconds: float = 0.0
@@ -176,6 +189,20 @@ def _second_passes(
         )
 
 
+def _classify(ctx: SignalContext, run: EnrichRun) -> None:
+    """Reach one ``wordClass`` per surface. Call INSIDE the caller's transaction.
+
+    Last, because it reads the columns everything before it wrote, and inside
+    the same transaction for the same reason the second passes are: a store
+    holding signals but no verdicts is a state PUBLISH would have to invent a
+    rule for, and there is no need for one to exist.
+    """
+    started = time.perf_counter()
+    prepare_classifier(ctx)
+    run.classified = classify_population(ctx)
+    run.classifySeconds = time.perf_counter() - started
+
+
 def _rebuild(ctx: SignalContext, signals: tuple[Signal, ...], run: EnrichRun) -> int:
     """Drop the derived zone and recompute it whole, in one transaction."""
     conn = ctx.conn
@@ -190,8 +217,42 @@ def _rebuild(ctx: SignalContext, signals: tuple[Signal, ...], run: EnrichRun) ->
         )
         rows = cursor.rowcount
         _second_passes(ctx, signals, run)
+        _classify(ctx, run)
         set_derived_epoch(conn, stage_epoch(conn))
     return rows
+
+
+def reclassify(config: Wordhood, db: Path) -> EnrichRun:
+    """Recompute only ``classification``, over the population the zone holds.
+
+    The development path for the cascade, mirroring ``--signal`` for the columns
+    and refusing on the same condition: there has to be a population to classify.
+    It deliberately does not touch ``derived_epoch`` either - a verdict is a pure
+    function of the staged zone plus the knobs, so recomputing it can neither
+    make a current zone stale nor make a stale one current.
+    """
+    conn = open_store(db)
+    started = time.perf_counter()
+    run = EnrichRun()
+    try:
+        check_configured_sources(conn, config)
+        row = conn.execute("SELECT count(*) FROM signal").fetchone()
+        if row is None or int(row[0]) == 0:
+            raise ValueError(
+                "the derived zone is empty - run ENRICH with no --classify "
+                "first, so there is a population to classify"
+            )
+        run.rows = int(row[0])
+        ctx = SignalContext(conn=conn, config=config, state=run.state)
+        with transaction(conn):
+            conn.execute("DELETE FROM classification")
+            _classify(ctx, run)
+        run.stageEpoch = stage_epoch(conn)
+        run.derivedEpoch = derived_epoch(conn)
+    finally:
+        conn.close()
+    run.seconds = time.perf_counter() - started
+    return run
 
 
 def _recompute(ctx: SignalContext, signal: Signal, run: EnrichRun) -> int:
@@ -302,6 +363,11 @@ def main() -> None:
         help="recompute only this signal's column, over the existing population",
     )
     parser.add_argument(
+        "--classify",
+        action="store_true",
+        help="recompute only the wordClass verdicts, over the existing population",
+    )
+    parser.add_argument(
         "--workers",
         type=int,
         default=None,
@@ -311,7 +377,13 @@ def main() -> None:
 
     registry = load_registry(args.registry)
     path = store_path(registry, root) if args.db is None else args.db
-    run = enrich(load_config(args.config), path, args.signal, args.workers)
+    config = load_config(args.config)
+    if args.classify:
+        if args.signal is not None:
+            parser.error("--classify recomputes the verdicts; --signal a column")
+        run = reclassify(config, path)
+    else:
+        run = enrich(config, path, args.signal, args.workers)
     for note in run.notes():
         print(note)
     for measurement in (HEADWORDS, NGRAM_MODEL, NEIGHBOUR_INDEX, ZIPF_FIT):
@@ -325,11 +397,18 @@ def main() -> None:
         f"written in {run.writeSeconds:.1f}s "
         f"stageEpoch={run.stageEpoch} derivedEpoch={run.derivedEpoch}"
     )
+    print(
+        f"classified rows={run.classified} in {run.classifySeconds:.1f}s"
+    )
 
     conn = open_store(path)
     try:
-        for column, (measured, positive) in distribution(conn).items():
-            print(f"  {column}: measured={measured} positive={positive}")
+        if args.signal is None:
+            for column, (measured, positive) in distribution(conn).items():
+                print(f"  {column}: measured={measured} positive={positive}")
+        for name, rows in class_distribution(conn).items():
+            print(f"  {name}: {rows}")
+        print(f"  discovery profile: {discoveries(conn, config)}")
     finally:
         conn.close()
     print(f"enriched in {run.seconds:.1f}s -> {path}")
