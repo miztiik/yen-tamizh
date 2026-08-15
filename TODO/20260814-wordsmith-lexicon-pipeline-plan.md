@@ -226,6 +226,31 @@ Every figure below was measured against the real staged store during execution, 
 
 Raised during execution as a possible contradiction. It is not one (user-ruled 2026-08-15). `docs/reference/documentation-structure.md` says a plan-doc never carries rationale prose; `docs/how-to/author-a-plan.md` says every claim that drove a decision lives in a Decisions or Rejected-alternatives row. Both are correct, and they speak to different things: the plan-doc carries the trade-off as an EXECUTION instruction and is DELETED at closure, while the durable rationale lands on the living doc the decision impacts (Holy Law #4). That is exactly how this plan has been run - every row shipped its doc target in the same commit as its code. Neither doc requires an amendment; this entry exists so the question is not re-litigated.
 
+### PHASE C - ENRICH BEFORE PUBLISH (user-ruled 2026-08-15, reverses the row 10 -> row 11 sequence)
+
+**The user's ruling, and it is correct:** the plan was about to publish a number it had not earned. Having several dictionaries is only worth something if they are COMBINED and CROSS-VALIDATED; taking each source's word for what it happens to contain, then reporting the union, is not lexicography. The file layout must NOT be settled until the data underneath it is. Rows 11-15 are therefore BLOCKED behind a measured re-run.
+
+Three defects were found by measurement, not by review. Each is quantified:
+
+| # | Defect | Evidence | Cost |
+| --- | --- | --- | --- |
+| C1 | **The `headword` entry test is wrong.** Row 9's cascade requires a `pos` fact from the SAME source as the headword fact. A1 `master-dictionary` supplies ZERO `pos` facts, because its blanket `nouns` tag (99.81% of rows) was correctly rejected at EXTRACT. So the predecessor's entire curated dictionary was demoted. | A1 has 104,073 headword facts; only **10,300 (9.9%)** are classified `headword`; **86,249 (82.6%) went to `unclassified`**. Only 3 sources supply `pos` at all, so `headword` is effectively A2-only. | ~90,000 real dictionary words wrongly demoted |
+| C2 | **The classifier has no verdict for "not a word at all",** so it spends real classes on scrape junk - repeated aytham strings classified `loanword`, leading-dot and leading-hyphen strings, a 1,212-ezhuthu scraped paragraph. | A shape pass (non-Tamil unit / over 25 ezhuthu / one character repeated) removes **641,819 surfaces (10.3%)** and collapses (`wordClass`, `length`) cells from **509 to 140**. | 10.3% of the lexicon is garbage wearing a real class |
+| C3 | **A7 is the WRONG Wiktionary.** Row 4 acquired the ENGLISH edition's Tamil subset (13,773 entries) because that is what kaikki.org publishes. kaikki supports ~20 editions and **Tamil is not one of them**. The Tamil Wiktionary itself was never tried. | `ta.wiktionary.org` reports **408,721 articles**, and `dumps.wikimedia.org/tawiktionary/latest/tawiktionary-latest-all-titles-in-ns0.gz` is a plain TITLE LIST - headword attestation with no wikitext parsing required. **30x A7.** | The single largest attestation source in the inventory was missed |
+
+**The corrected `headword` projection**, measured: tier-1 headword facts (A1+A2+A7) = 262,026; wholly Tamil and <= 25 ezhuthu = 142,908; minus known inflected verb forms = **139,425**. Against today's buggy 49,873 and the predecessor's 104,073. That is the number the plan should have been reasoning about, and it does not yet include C3's 408,721.
+
+**Sequencing, which is the actual ruling.** ENRICH and VALIDATE first, REMEASURE, then decide the layout, then publish:
+
+| New row | What | Blocks |
+| --- | --- | --- |
+| **4a** | Acquire `ta.wiktionary` titles as a new `authority` source (408,721). Registry entry + reader; the title-list format is one new reader at most. | 9a |
+| **9a** | Fix BOTH classifier defects in one row, since both live in the cascade: (a) an ENTRY is TIER-1 ATTESTATION - a meaning-bearing source asserting a headword - INDEPENDENT of whether that source supplied a usable POS; (b) mint `notAWord` as a closed-enum `WordClass` member, assigned FIRST as a precondition, with every shape threshold in `config/wordhood.json` (Holy Law #6). Level 4. | 10a |
+| **10a** | The ENRICHMENT LOOP the user asked for: iterate words FREQUENCY-ORDERED within 1-10 ezhuthu, cross-validate against every acquired authority plus authored enrichment, and fill `definitionTa` / `translationEn` / `synonymsTa` / `pos` / `categories`. LOW-FREQUENCY WORDS ARE DEFERRED, NEVER DROPPED - they stay in the store for a later pass. | remeasure |
+| - | **REMEASURE** the nine-class distribution, real row widths per class, and the byte table. Only then re-open the layout. | 11 |
+
+**The layout is explicitly NOT settled.** Fowler's and Carmack's 2026-08-15 rulings (one file per class, no `length` key, no hex, no `ezhuthuIndex`) were reasoned over a 50,949-row artifact that C1 and C2 prove is wrong. They are RETAINED AS INPUT, not as a decision. The user's alternative - one file per FIRST EZHUTHU, up to 247 files (12 uyir + 18 mei + 1 aytham base letters; 18 x 12 = 216 uyirmei) - is on the table and is arithmetically sound. It is re-decided after the remeasure, with the personas re-consulted on the real numbers.
+
 | # | Row title | Phase | Depends-on | Parallel-group | Status | Worktree | PR | Subagent |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Delete `requireCoAnagram`; retain the multiset index; add the re-bake guard | A | - | A | DONE #13 | `../yen-tamizh-row1` (removed) | #13 | worker |
@@ -237,8 +262,12 @@ Raised during execution as a possible contradiction. It is not one (user-ruled 2
 | 7 | Word-hood exact signals (attestation, orthotactics, breadth) | A | 6 | B | DONE #19 | `../yen-tamizh-lex7` | #19 | worker |
 | 8 | Word-hood inexact signals (n-gram, neighbour, Zipf) | A | 6 | B | DONE #20 | `../yen-tamizh-lex8` | #20 | worker |
 | 9 | `wordsmith/wordhood.py` - the classifier | A | 7, 8 | - | DONE #21 | `../yen-tamizh-lex9` | #21 | worker |
-| 10 | `wordsmith/llm_enrich.py` - meaning + synonym authoring | B | 9 | - | READY - operator gate (authoring batch + cost) | - | - | - |
-| 11 | `wordsmith/publish.py` + `pipeline.py` | B | 10 | - | PENDING | - | - | - |
+| 10 | `wordsmith/llm_enrich.py` - meaning + synonym authoring | B | 9 | - | DONE #22 | `../yen-tamizh-lex10` (removed) | #22 | worker |
+| 4a | Acquire `ta.wiktionary` titles (408,721) as an authority | C | 4 | - | READY | - | - | - |
+| 9a | Fix the entry test + mint `notAWord` (Level 4) | C | 4a | - | BLOCKED on 4a | - | - | - |
+| 10a | Enrichment loop - frequency-ordered, 1-10 ezhuthu, cross-validated | C | 9a | - | BLOCKED on 9a | - | - | - |
+| - | **REMEASURE + re-decide the layout with the personas** | C | 10a | - | BLOCKED | - | - | - |
+| 11 | `wordsmith/publish.py` + `pipeline.py` | B | 10 | - | BLOCKED on the remeasure | - | - | - |
 | 12 | Cut the derived layer over; real serving gates; two-axis difficulty | B | 1, 11 | - | PENDING | - | - | - |
 | 13 | Retire the corpus layer; purge the retired `master` identifiers | A | 12 | - | PENDING | - | - | - |
 | 14 | Rebuild the hint ladder; show a solved word's meaning | B | 13, 15 | - | PENDING | - | - | - |
