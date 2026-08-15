@@ -10,11 +10,18 @@ Three reader families cover every source in the inventory:
 
 - ``delimited``  - one record per line (``delimiter``, ``hasHeader``,
   ``wordColumn``, ``countColumn``).
-- ``json-array`` - a JSON document holding an array under ``rootKey``, read with
-  ``JSONDecoder.raw_decode`` over a sliding buffer. ``elementKind`` says what
-  one element IS.
+- ``json-array`` - a JSON document holding an array, read with
+  ``JSONDecoder.raw_decode`` over a sliding buffer. ``rootKey`` names the key the
+  array hangs under, and is ABSENT when the document ROOT is the array itself.
+  ``elementKind`` says what one element IS.
 - ``jsonl``      - one JSON object per line (``wordField`` and the other field
   mappings).
+
+``rootKey`` is optional rather than required because a real acquired source has
+no key: ``en-ta-dictionary`` is 56,856 elements inside a bare top-level ``[``.
+An absent ``rootKey`` therefore MEANS "the document root is the array", which the
+reader verifies against the bytes and fails loudly on - it is a claim about the
+document, not a fallback.
 
 ``elementKind`` is REQUIRED on ``json-array`` and forbidden everywhere else,
 with no default. The reader's element rule is not "elements must be objects" -
@@ -196,7 +203,9 @@ class LexiconSource(BaseModel):
     wordColumn: int | None = Field(default=None, ge=0)
     countColumn: int | None = Field(default=None, ge=0)
 
-    # kind == "json-array"
+    # kind == "json-array". An absent rootKey asserts that the document ROOT is
+    # the array; the reader checks that against the bytes and raises when it is
+    # not, so the absence is a claim rather than a guess.
     rootKey: str | None = Field(default=None, min_length=1)
     elementKind: ElementKind | None = None
 
@@ -232,16 +241,12 @@ class LexiconSource(BaseModel):
                 f"self-terminating element rule exists to prevent"
             )
         elif self.elementKind == "object":
-            if self.rootKey is None or self.wordField is None:
+            if self.wordField is None:
                 raise ValueError(
-                    f"source {self.id!r}: json-array of objects needs rootKey + wordField"
+                    f"source {self.id!r}: json-array of objects needs wordField"
                 )
             stray = self._set_among(_DELIMITED_ONLY)
         else:
-            if self.rootKey is None:
-                raise ValueError(
-                    f"source {self.id!r}: json-array of strings needs rootKey"
-                )
             # A bare string element has no fields at all, so every field mapping
             # is meaningless on it - not merely the three the decision listed.
             stray = self._set_among(_DELIMITED_ONLY + _FIELD_MAPPINGS)
