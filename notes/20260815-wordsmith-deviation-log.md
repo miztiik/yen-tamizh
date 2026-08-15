@@ -24,6 +24,8 @@ Build the Tamil lexicon by COMBINING and CROSS-VALIDATING every authority, not b
 | 8 | #20 | Three inexact signals - n-gram, neighbour, Zipf. |
 | 9 | #21 | The classifier. Live proper-noun bug closed: the political party and the politician are no longer `headword`. |
 | 10 | #22 | `llm_enrich` - 801 authored entries covering 58.7% of the servable set's frequency mass. |
+| 4a | #23 | `ta-wiktionary-titles` (A8) acquired - 410,074 titles, 98,100 single wholly-Tamil words. Ruled TIER 2 (a page title carries no gloss, so the editorial act is not in the bytes). Pinned to the dated `20260801` dump. |
+| 9a | #24 | **Both classifier defects fixed.** `headword` **49,873 -> 137,991** (85,314 at 3-6 ezhuthu). A1 recovery **10,300 (9.9%) -> 97,446 (93.6%)**, its `unclassified` **86,249 -> 0**. `notAWord` minted: **949,378**. Store 6,569,694 surfaces after staging A8. |
 
 ## Course changes, and what caused each
 
@@ -63,6 +65,8 @@ Build the Tamil lexicon by COMBINING and CROSS-VALIDATING every authority, not b
 | Q3 | Raw-source archive - Release asset or private? | Carmack made it a merge condition on publish. `yen-tamizh_OLD` is NOT a git repo, so there is no upstream copy today. |
 | Q4 | A6 replacement authority | Only on a user-named source with sign-off |
 | Q5 | Missing-Letters per-blank-mask uniqueness | Out of scope; note it when that Game is planned |
+| Q6 | **Tier-1 including A1 re-admits `அசுர`** (a bound stem, the plan's canonical junk example), because A1's dictionary lists it as a headword. Three stricter entry rules were measured and each costs 84-89% of A1's 87k recovery - a bad trade. Row 9a resolved it by splitting Oracle (b) and pinning the escape by name. | OPEN for row 12. `headword` is NOT the serving decision - row 12's four gates are (`minAttestations >= 2` + tier-1 composition, `minFrequency >= 1`, `requireMeaning`). A low-frequency bound stem with no authored meaning should fail them. **Row 12 must MEASURE whether it does, rather than assume.** |
+| Q7 | `notAWord` came in at 949,378 vs the 641,819 estimate - the extra 307,559 is A8's own packaging (multi-word titles, romanizations), not new junk in the older sources. | Informational; confirms A8 needed the shape gate |
 
 ## See also
 
