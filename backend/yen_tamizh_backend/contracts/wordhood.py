@@ -25,26 +25,42 @@ neighbourhood is millions of entries and the pass is minutes; at three it is two
 and a half times as many entries and hours, so the ceiling belongs where a
 hand-edited file cannot step over it.
 
-Row 9 extends this file again with the classifier's own thresholds.
+Row 9 added the ``classifier`` section - the order the classifier resolves
+contradictory source assertions in, what makes a listing an ENTRY, and the two
+profiles that separate a modern word the dictionaries missed from a misspelling.
 """
 
 from __future__ import annotations
 
-from typing import Self
+from typing import Literal, Self, get_args
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from yen_tamizh_backend.contracts.base import ChangelogEntry, SchemaModel
 from yen_tamizh_backend.contracts.common import SourceId
+from yen_tamizh_backend.contracts.lexicon_sources import WordClassEvidence
 
 # The initial mint. The file that will carry this schema is written by hand, so
 # the date-stamp and its first changelog entry live here: two writers of one
 # schema picking their own dates is the drift CLAUDE.md section 11 exists to
 # stop. Migration class is build-time rewrite-in-place.
-WORDHOOD_VERSION = "2026-08-15T14:00"
+WORDHOOD_VERSION = "2026-08-15T16:00"
 WORDHOOD_CHANGELOG = (
     ChangelogEntry(
         version=WORDHOOD_VERSION,
+        change=(
+            "Added the classifier section: entryAttrs, evidencePriority, "
+            "headwordMinOrthotactic, and the discovery and typo profiles."
+        ),
+        why=(
+            "Row 9 - the classifier turns the eight signals into one wordClass, "
+            "and which evidence outranks which, what makes a listing an entry, "
+            "and where the discovery and typo profiles sit are all tunable "
+            "judgements rather than facts about Tamil (Holy Law #6)."
+        ),
+    ),
+    ChangelogEntry(
+        version="2026-08-15T14:00",
         change=(
             "Added the ngram section (model order and smoothing) and the "
             "neighbour section (maxEditDistance, capped at 2, and the breadth "
@@ -77,6 +93,29 @@ WORDHOOD_CHANGELOG = (
 # statements of one number rather than an import, because a contract module
 # reaching into a pipeline module for a bound would invert the dependency.
 MAX_EDIT_DISTANCE = 2
+
+# What a source can say ABOUT a word, as against merely listing it. A bare
+# wordlist emits a ``headword`` fact and nothing else; a dictionary also says
+# what part of speech the word is, what it translates to, what it means, what it
+# is a synonym of, or what theme it belongs to. That difference is what
+# ``docs/concepts/lexicon.md`` already means by "this authority lists this as an
+# ENTRY", so the members here are exactly the describing attributes.
+#
+# ``headword`` is deliberately absent - it IS the listing, and admitting it
+# would collapse the distinction. ``graphemeCount`` is absent because it is a
+# property of the string that any source can compute without deciding anything,
+# and ``wordClassEvidence`` because it is an assertion the classifier already
+# reads first and directly.
+EntryAttr = Literal[
+    "pos",
+    "translation",
+    "definitionEn",
+    "definitionTa",
+    "synonym",
+    "category",
+]
+
+_EVIDENCE_CLASSES: tuple[WordClassEvidence, ...] = get_args(WordClassEvidence)
 
 
 class OrthotacticWeights(BaseModel):
@@ -159,12 +198,99 @@ class NeighbourSettings(BaseModel):
     pruneBreadth: int = Field(ge=1)
 
 
+class DiscoveryProfile(BaseModel):
+    """What a modern word the dictionaries MISSED looks like (Row 9).
+
+    A surface that is orthotactically clean, seen by several independent
+    sources, sits well under the sequence model and is still unattested is not
+    junk - that profile is a real word the acquired dictionaries are simply too
+    old or too thin to hold. It goes to the enrichment queue, and the reason the
+    profile is written down at all is that it must never be read as a
+    misspelling on the way there.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    minOrthotactic: float = Field(ge=0.0, le=1.0)
+    minBreadth: int = Field(ge=1)
+    minNgram: float = Field(gt=0.0, le=1.0)
+
+
+class TypoProfile(BaseModel):
+    """What a misspelling looks like (Row 9).
+
+    ``minNeighbour`` is the reciprocal edit distance at which a real word is
+    close enough that this surface is probably a slip of it: one means a
+    headword exactly one ezhuthu away, a half means two. There is deliberately
+    no breadth bound here - the neighbour signal is only MEASURED where Row 8's
+    prune admitted the surface, so a widely-seen surface arrives carrying NULL
+    and the profile cannot fire on it. Restating the bound would let the two
+    drift apart.
+
+    ``maxNgram`` is the other half, and it is what stops the profile accusing
+    ordinary Tamil. A near neighbour ALONE is not evidence of a slip: an
+    agglutinative language generates real forms one ezhuthu apart by the
+    thousand. What a typo also is, is IMPROBABLE - and the sequence model is the
+    signal that says so. It is a separate knob from the discovery floor even
+    where the two happen to share a value, because they answer different
+    questions and tuning one must not silently move the other.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    minNeighbour: float = Field(gt=0.0, le=1.0)
+    maxNgram: float = Field(gt=0.0, le=1.0)
+
+
+class ClassifierSettings(BaseModel):
+    """How the eight signals become exactly one ``wordClass`` (Row 9).
+
+    ``entryAttrs`` is what makes an attestation an ENTRY. It is config rather
+    than a constant because WHICH describing fact a lexicographic source happens
+    to carry is a property of the inventory acquired so far, not of Tamil: the
+    two real dictionaries on disk both emit a part of speech, so the shipping
+    default is that alone, and a future gloss-only authority is a config edit.
+
+    ``evidencePriority`` orders the classes a source may assert when two sources
+    assert different ones. It must be a permutation of the whole evidence
+    vocabulary - a partial list would leave an assertion with no rank, and the
+    verdict would then depend on which fact SQLite happened to return first.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    entryAttrs: list[EntryAttr] = Field(min_length=1)
+    evidencePriority: list[WordClassEvidence]
+    headwordMinOrthotactic: float = Field(ge=0.0, le=1.0)
+    discovery: DiscoveryProfile
+    typo: TypoProfile
+
+    @model_validator(mode="after")
+    def _entry_attrs_are_a_set(self) -> Self:
+        if len(set(self.entryAttrs)) != len(self.entryAttrs):
+            raise ValueError(f"entryAttrs names an attribute twice: {self.entryAttrs}")
+        return self
+
+    @model_validator(mode="after")
+    def _evidence_priority_ranks_every_class(self) -> Self:
+        # Rejected rather than defaulted: an unranked assertion has no defined
+        # winner, and a classifier whose verdict depends on row order is not a
+        # classifier.
+        if sorted(self.evidencePriority) != sorted(_EVIDENCE_CLASSES):
+            raise ValueError(
+                "evidencePriority must rank every wordClassEvidence value "
+                f"exactly once - got {self.evidencePriority}"
+            )
+        return self
+
+
 class Wordhood(SchemaModel):
     """The word-hood layer's knobs. Read by ENRICH, never by the browser."""
 
     orthotactic: OrthotacticWeights
     ngram: NgramSettings
     neighbour: NeighbourSettings
+    classifier: ClassifierSettings
     # The sources whose membership IS the signal. Each list needs at least one
     # entry, because a signal with no producer is a column of zeros wearing a
     # name - the same reason the corpus layer refused to publish a `pos` field

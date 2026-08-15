@@ -48,7 +48,7 @@ Named here so every doc has one place to point; the field lists are owned by the
 - `master-wordlist` / `game-wordlist` - the curated data the generators consume.
 - `lexicon` - the META document (`provenance`, per-class `counters`, the partition table) beside the streamed all-words NDJSON that supersedes `master-wordlist`. Its ROW shape, `LexiconEntry`, is not a separate schema file - it reaches `lexicon.schema.json`'s `$defs` through the meta document ([../../concepts/lexicon.md](../../concepts/lexicon.md)).
 - `lexicon-sources` - the declarative registry the lexicon stages read, superseding `corpus-sources`.
-- `wordhood` - the word-hood knobs the lexicon's ENRICH stage reads: what an orthotactic defect costs, which registered source carries a ready-made grammar or verb-form judgement, how the ezhuthu sequence model is fitted, and how far the nearest-headword search looks before it gives up ([../lexicon/word-hood.md](../lexicon/word-hood.md)).
+- `wordhood` - the word-hood knobs the lexicon's ENRICH stage reads: what an orthotactic defect costs, which registered source carries a ready-made grammar or verb-form judgement, how the ezhuthu sequence model is fitted, how far the nearest-headword search looks before it gives up, and how the classifier turns all of that into one `wordClass` ([../lexicon/word-hood.md](../lexicon/word-hood.md)).
 
 ## The source of truth
 
@@ -133,7 +133,7 @@ The lexicon replaces the corpus layer's destructive funnel: every surface any so
 - **Neither lexicon schema is registered in `frontend/src/contracts/index.ts`.** Both are build-time surfaces the browser never fetches, so an ajv validator for either would ship dead runtime bytes. Same precedent as the corpus and derived schemas and `glyph-manifest`; the drift gate still covers them. (Carmack + Fowler.)
 - **Migration class is build-time rewrite-in-place.** A change stamps `version` and appends a `changelog` entry and needs no read-side migration, because the only reader is `backend/` and every artifact regenerates in the same commit. (Fowler, CLAUDE.md section 11.)
 
-### Word-hood config decisions (Rows 7 and 8)
+### Word-hood config decisions (Rows 7, 8 and 9)
 
 `config/wordhood.json` is what the lexicon's ENRICH stage reads. WHAT the signals are and what each catches is [../lexicon/word-hood.md](../lexicon/word-hood.md); what follows is why the CONTRACT has the shape it does.
 
@@ -143,6 +143,9 @@ The lexicon replaces the corpus layer's destructive funnel: every surface any so
 - **The letter rules are NOT in this file.** Which ezhuthu may open a Tamil word, which eight may end it, and which mei clusters are legal are facts about the language, in the same category as the `wordClass` set and the part-of-speech vocabulary - so they live in the ezhuthu library and are tested exhaustively over the 247-ezhuthu inventory. Only what a broken rule COSTS is a knob. (User + Fowler.)
 - **`wordhood` is not registered in `frontend/src/contracts/index.ts`.** It is a build-time surface the browser never fetches; an ajv validator for it would ship dead runtime bytes. Same precedent as the corpus, derived and lexicon schemas and `glyph-manifest`; the drift gate still covers it. (Carmack + Fowler.)
 - **One bound in this schema is about COST rather than correctness, and it is stated anyway.** `maxEditDistance` is capped at 2. A 3 would validate fine as a number and describe a perfectly correct search - it would just take hours instead of minutes and build an index two and a half times the size. Raising it is therefore not a tuning decision but a contract change, which is exactly what a schema bound makes it. The pipeline asserts the same number again before it builds anything, because a bound stated in only one of the two places is a bound someone can construct their way around. (Carmack + Fowler.)
+- **`evidencePriority` must be a PERMUTATION of the evidence vocabulary, and a partial list is rejected.** It decides which class wins when two sources assert different ones, so an unranked value has no defined winner and the verdict would fall back on whatever order SQLite returned the facts in. A validator that accepted a partial list would let a config edit make the classifier non-deterministic without changing a line of code. (Fowler.)
+- **`entryAttrs` is a closed vocabulary of DESCRIBING attributes, and `headword` is not in it.** The entry test is the whole of what separates a dictionary from a word list, and `headword` IS the listing - admitting it would collapse the distinction with a one-line config edit, in the same shape as the Row 3 fix that narrowed `wordClassEvidence` so config could not assert word-hood. `graphemeCount` is excluded too: any source can compute it without deciding anything. (Fowler.)
+- **The discovery floor and the typo ceiling are separate knobs even where they share a value.** Both sit at the measured n-gram separator today, but they answer different questions - "probable enough to be a word we missed" and "improbable enough to be a slip" - and one knob would mean tuning either silently moved the other. (Fowler.)
 
 ## Rejected alternatives
 

@@ -28,6 +28,95 @@
       "title": "ChangelogEntry",
       "type": "object"
     },
+    "ClassifierSettings": {
+      "additionalProperties": false,
+      "description": "How the eight signals become exactly one ``wordClass`` (Row 9).\n\n``entryAttrs`` is what makes an attestation an ENTRY. It is config rather\nthan a constant because WHICH describing fact a lexicographic source happens\nto carry is a property of the inventory acquired so far, not of Tamil: the\ntwo real dictionaries on disk both emit a part of speech, so the shipping\ndefault is that alone, and a future gloss-only authority is a config edit.\n\n``evidencePriority`` orders the classes a source may assert when two sources\nassert different ones. It must be a permutation of the whole evidence\nvocabulary - a partial list would leave an assertion with no rank, and the\nverdict would then depend on which fact SQLite happened to return first.",
+      "properties": {
+        "discovery": {
+          "$ref": "#/$defs/DiscoveryProfile"
+        },
+        "entryAttrs": {
+          "items": {
+            "enum": [
+              "pos",
+              "translation",
+              "definitionEn",
+              "definitionTa",
+              "synonym",
+              "category"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Entryattrs",
+          "type": "array"
+        },
+        "evidencePriority": {
+          "items": {
+            "enum": [
+              "inflected",
+              "colloquial",
+              "properNoun",
+              "loanword",
+              "boundStem",
+              "sandhiArtifact",
+              "suspectedTypo"
+            ],
+            "type": "string"
+          },
+          "title": "Evidencepriority",
+          "type": "array"
+        },
+        "headwordMinOrthotactic": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Headwordminorthotactic",
+          "type": "number"
+        },
+        "typo": {
+          "$ref": "#/$defs/TypoProfile"
+        }
+      },
+      "required": [
+        "entryAttrs",
+        "evidencePriority",
+        "headwordMinOrthotactic",
+        "discovery",
+        "typo"
+      ],
+      "title": "ClassifierSettings",
+      "type": "object"
+    },
+    "DiscoveryProfile": {
+      "additionalProperties": false,
+      "description": "What a modern word the dictionaries MISSED looks like (Row 9).\n\nA surface that is orthotactically clean, seen by several independent\nsources, sits well under the sequence model and is still unattested is not\njunk - that profile is a real word the acquired dictionaries are simply too\nold or too thin to hold. It goes to the enrichment queue, and the reason the\nprofile is written down at all is that it must never be read as a\nmisspelling on the way there.",
+      "properties": {
+        "minBreadth": {
+          "minimum": 1,
+          "title": "Minbreadth",
+          "type": "integer"
+        },
+        "minNgram": {
+          "exclusiveMinimum": 0.0,
+          "maximum": 1.0,
+          "title": "Minngram",
+          "type": "number"
+        },
+        "minOrthotactic": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Minorthotactic",
+          "type": "number"
+        }
+      },
+      "required": [
+        "minOrthotactic",
+        "minBreadth",
+        "minNgram"
+      ],
+      "title": "DiscoveryProfile",
+      "type": "object"
+    },
     "NeighbourSettings": {
       "additionalProperties": false,
       "description": "How far the nearest-headword search looks, and what it skips (Row 8).\n\n``maxEditDistance`` is capped at two by the schema itself. It is the one\nknob here whose ceiling is not a preference: the deletion neighbourhood\ngrows two and a half times and the pass grows from minutes to hours at\nthree, so a config typo has to fail on load rather than run all afternoon.\nThe pipeline asserts the same bound again before it builds anything.\n\n``pruneBreadth`` is the number of distinct sources at which a surface stops\nbeing queried at all. The signal's only consumer is the ``suspectedTypo``\nverdict, and a surface several independent sources agree on is not one - so\nquerying it would buy nothing and cost the largest pass in the stage.",
@@ -112,6 +201,30 @@
       ],
       "title": "OrthotacticWeights",
       "type": "object"
+    },
+    "TypoProfile": {
+      "additionalProperties": false,
+      "description": "What a misspelling looks like (Row 9).\n\n``minNeighbour`` is the reciprocal edit distance at which a real word is\nclose enough that this surface is probably a slip of it: one means a\nheadword exactly one ezhuthu away, a half means two. There is deliberately\nno breadth bound here - the neighbour signal is only MEASURED where Row 8's\nprune admitted the surface, so a widely-seen surface arrives carrying NULL\nand the profile cannot fire on it. Restating the bound would let the two\ndrift apart.\n\n``maxNgram`` is the other half, and it is what stops the profile accusing\nordinary Tamil. A near neighbour ALONE is not evidence of a slip: an\nagglutinative language generates real forms one ezhuthu apart by the\nthousand. What a typo also is, is IMPROBABLE - and the sequence model is the\nsignal that says so. It is a separate knob from the discovery floor even\nwhere the two happen to share a value, because they answer different\nquestions and tuning one must not silently move the other.",
+      "properties": {
+        "maxNgram": {
+          "exclusiveMinimum": 0.0,
+          "maximum": 1.0,
+          "title": "Maxngram",
+          "type": "number"
+        },
+        "minNeighbour": {
+          "exclusiveMinimum": 0.0,
+          "maximum": 1.0,
+          "title": "Minneighbour",
+          "type": "number"
+        }
+      },
+      "required": [
+        "minNeighbour",
+        "maxNgram"
+      ],
+      "title": "TypoProfile",
+      "type": "object"
     }
   },
   "$id": "wordhood.schema.json",
@@ -126,6 +239,9 @@
       "minItems": 1,
       "title": "Changelog",
       "type": "array"
+    },
+    "classifier": {
+      "$ref": "#/$defs/ClassifierSettings"
     },
     "nannulSources": {
       "items": {
@@ -166,6 +282,7 @@
     "orthotactic",
     "ngram",
     "neighbour",
+    "classifier",
     "nannulSources",
     "verbFormSources"
   ],

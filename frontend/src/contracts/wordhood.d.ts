@@ -13,6 +13,17 @@ export type Changelog = [ChangelogEntry, ...(ChangelogEntry)[]]
 export type Change = string
 export type Version = string
 export type Why = string
+export type Minbreadth = number
+export type Minngram = number
+export type Minorthotactic = number
+/**
+ * @minItems 1
+ */
+export type Entryattrs = [("pos" | "translation" | "definitionEn" | "definitionTa" | "synonym" | "category"), ...(("pos" | "translation" | "definitionEn" | "definitionTa" | "synonym" | "category"))[]]
+export type Evidencepriority = ("inflected" | "colloquial" | "properNoun" | "loanword" | "boundStem" | "sandhiArtifact" | "suspectedTypo")[]
+export type Headwordminorthotactic = number
+export type Maxngram = number
+export type Minneighbour = number
 /**
  * @minItems 1
  */
@@ -36,6 +47,7 @@ export type Version1 = string
  */
 export interface Wordhood {
 changelog: Changelog
+classifier: ClassifierSettings
 nannulSources: Nannulsources
 neighbour: NeighbourSettings
 ngram: NgramSettings
@@ -53,6 +65,65 @@ export interface ChangelogEntry {
 change: Change
 version: Version
 why: Why
+}
+/**
+ * How the eight signals become exactly one ``wordClass`` (Row 9).
+ * 
+ * ``entryAttrs`` is what makes an attestation an ENTRY. It is config rather
+ * than a constant because WHICH describing fact a lexicographic source happens
+ * to carry is a property of the inventory acquired so far, not of Tamil: the
+ * two real dictionaries on disk both emit a part of speech, so the shipping
+ * default is that alone, and a future gloss-only authority is a config edit.
+ * 
+ * ``evidencePriority`` orders the classes a source may assert when two sources
+ * assert different ones. It must be a permutation of the whole evidence
+ * vocabulary - a partial list would leave an assertion with no rank, and the
+ * verdict would then depend on which fact SQLite happened to return first.
+ */
+export interface ClassifierSettings {
+discovery: DiscoveryProfile
+entryAttrs: Entryattrs
+evidencePriority: Evidencepriority
+headwordMinOrthotactic: Headwordminorthotactic
+typo: TypoProfile
+}
+/**
+ * What a modern word the dictionaries MISSED looks like (Row 9).
+ * 
+ * A surface that is orthotactically clean, seen by several independent
+ * sources, sits well under the sequence model and is still unattested is not
+ * junk - that profile is a real word the acquired dictionaries are simply too
+ * old or too thin to hold. It goes to the enrichment queue, and the reason the
+ * profile is written down at all is that it must never be read as a
+ * misspelling on the way there.
+ */
+export interface DiscoveryProfile {
+minBreadth: Minbreadth
+minNgram: Minngram
+minOrthotactic: Minorthotactic
+}
+/**
+ * What a misspelling looks like (Row 9).
+ * 
+ * ``minNeighbour`` is the reciprocal edit distance at which a real word is
+ * close enough that this surface is probably a slip of it: one means a
+ * headword exactly one ezhuthu away, a half means two. There is deliberately
+ * no breadth bound here - the neighbour signal is only MEASURED where Row 8's
+ * prune admitted the surface, so a widely-seen surface arrives carrying NULL
+ * and the profile cannot fire on it. Restating the bound would let the two
+ * drift apart.
+ * 
+ * ``maxNgram`` is the other half, and it is what stops the profile accusing
+ * ordinary Tamil. A near neighbour ALONE is not evidence of a slip: an
+ * agglutinative language generates real forms one ezhuthu apart by the
+ * thousand. What a typo also is, is IMPROBABLE - and the sequence model is the
+ * signal that says so. It is a separate knob from the discovery floor even
+ * where the two happen to share a value, because they answer different
+ * questions and tuning one must not silently move the other.
+ */
+export interface TypoProfile {
+maxNgram: Maxngram
+minNeighbour: Minneighbour
 }
 /**
  * How far the nearest-headword search looks, and what it skips (Row 8).

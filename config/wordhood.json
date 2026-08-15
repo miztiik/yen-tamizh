@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-15T14:00",
+  "version": "2026-08-15T16:00",
   "changelog": [
+    {
+      "version": "2026-08-15T16:00",
+      "change": "Added the classifier section: entryAttrs, evidencePriority, headwordMinOrthotactic, and the discovery and typo profiles.",
+      "why": "Row 9 - the classifier turns the eight signals into one wordClass, and which evidence outranks which, what makes a listing an entry, and where the discovery and typo profiles sit are all tunable judgements rather than facts about Tamil (Holy Law #6)."
+    },
     {
       "version": "2026-08-15T14:00",
       "change": "Added the ngram section (model order and smoothing) and the neighbour section (maxEditDistance, capped at 2, and the breadth at which a surface stops being queried).",
@@ -25,6 +30,28 @@
   "neighbour": {
     "maxEditDistance": 2,
     "pruneBreadth": 3
+  },
+  "classifier": {
+    "entryAttrs": ["pos"],
+    "evidencePriority": [
+      "properNoun",
+      "boundStem",
+      "sandhiArtifact",
+      "suspectedTypo",
+      "loanword",
+      "colloquial",
+      "inflected"
+    ],
+    "headwordMinOrthotactic": 1.0,
+    "discovery": {
+      "minOrthotactic": 1.0,
+      "minBreadth": 3,
+      "minNgram": 0.03
+    },
+    "typo": {
+      "minNeighbour": 1.0,
+      "maxNgram": 0.03
+    }
   },
   "nannulSources": ["spellcheck-wordlist"],
   "verbFormSources": ["inflected-verbs-bulk", "inflected-verbs-clean"]
