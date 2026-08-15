@@ -47,6 +47,7 @@
               "boundStem",
               "sandhiArtifact",
               "suspectedTypo",
+              "notAWord",
               "unclassified"
             ]
           },
@@ -293,6 +294,7 @@
             "boundStem",
             "sandhiArtifact",
             "suspectedTypo",
+            "notAWord",
             "unclassified"
           ],
           "title": "Wordclass",
@@ -411,6 +413,7 @@
             "boundStem",
             "sandhiArtifact",
             "suspectedTypo",
+            "notAWord",
             "unclassified"
           ],
           "title": "Wordclass",

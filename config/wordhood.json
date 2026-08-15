@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-15T16:00",
+  "version": "2026-08-16",
   "changelog": [
+    {
+      "version": "2026-08-16",
+      "change": "Replaced classifier.entryAttrs with classifier.notAWord - the maximum ezhuthu length, the minimum distinct ezhuthu, and whether a non-Tamil unit rejects the surface outright.",
+      "why": "Row 9a - what makes a listing an ENTRY is now the source's declared attestationTier rather than a describing fact from the same row, so entryAttrs had no reader left and a knob nothing reads is a lie in the config. The notAWord precondition needs three thresholds, and every one of them is a tunable judgement rather than a fact about Tamil (Holy Law #6)."
+    },
     {
       "version": "2026-08-15T16:00",
       "change": "Added the classifier section: entryAttrs, evidencePriority, headwordMinOrthotactic, and the discovery and typo profiles.",
@@ -32,7 +37,6 @@
     "pruneBreadth": 3
   },
   "classifier": {
-    "entryAttrs": ["pos"],
     "evidencePriority": [
       "properNoun",
       "boundStem",
@@ -43,6 +47,11 @@
       "inflected"
     ],
     "headwordMinOrthotactic": 1.0,
+    "notAWord": {
+      "maxEzhuthu": 25,
+      "minDistinctEzhuthu": 2,
+      "rejectNonTamil": true
+    },
     "discovery": {
       "minOrthotactic": 1.0,
       "minBreadth": 3,

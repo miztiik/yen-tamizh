@@ -26,6 +26,7 @@ export type Wordclassevidence = ([("inflected" | "colloquial" | "properNoun" | "
  * @minItems 1
  */
 export type Sources = [LexiconSource, ...(LexiconSource)[]]
+export type Attestationtier = (("lexicographic" | "enumerative") | null)
 export type Bytes = number
 export type Categoryfield = (string | null)
 export type Countcolumn = (number | null)
@@ -99,6 +100,7 @@ wordClassEvidence?: Wordclassevidence
  * One registered source: where its bytes are, what it may assert, how to read it.
  */
 export interface LexiconSource {
+attestationTier?: Attestationtier
 bytes: Bytes
 categoryField?: Categoryfield
 countColumn?: Countcolumn

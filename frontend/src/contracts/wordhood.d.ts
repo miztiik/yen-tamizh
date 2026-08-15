@@ -16,12 +16,11 @@ export type Why = string
 export type Minbreadth = number
 export type Minngram = number
 export type Minorthotactic = number
-/**
- * @minItems 1
- */
-export type Entryattrs = [("pos" | "translation" | "definitionEn" | "definitionTa" | "synonym" | "category"), ...(("pos" | "translation" | "definitionEn" | "definitionTa" | "synonym" | "category"))[]]
 export type Evidencepriority = ("inflected" | "colloquial" | "properNoun" | "loanword" | "boundStem" | "sandhiArtifact" | "suspectedTypo")[]
 export type Headwordminorthotactic = number
+export type Maxezhuthu = number
+export type Mindistinctezhuthu = number
+export type Rejectnontamil = boolean
 export type Maxngram = number
 export type Minneighbour = number
 /**
@@ -69,22 +68,21 @@ why: Why
 /**
  * How the eight signals become exactly one ``wordClass`` (Row 9).
  * 
- * ``entryAttrs`` is what makes an attestation an ENTRY. It is config rather
- * than a constant because WHICH describing fact a lexicographic source happens
- * to carry is a property of the inventory acquired so far, not of Tamil: the
- * two real dictionaries on disk both emit a part of speech, so the shipping
- * default is that alone, and a future gloss-only authority is a config edit.
- * 
  * ``evidencePriority`` orders the classes a source may assert when two sources
  * assert different ones. It must be a permutation of the whole evidence
  * vocabulary - a partial list would leave an assertion with no rank, and the
  * verdict would then depend on which fact SQLite happened to return first.
+ * 
+ * What makes a listing an ENTRY is NOT here. It is the asserting source's
+ * declared ``attestationTier`` in ``config/lexicon-sources.json``, because
+ * what a source's unit IS is a property of the source and cannot be recovered
+ * from one row of it (Row 9a).
  */
 export interface ClassifierSettings {
 discovery: DiscoveryProfile
-entryAttrs: Entryattrs
 evidencePriority: Evidencepriority
 headwordMinOrthotactic: Headwordminorthotactic
+notAWord: NotAWordProfile
 typo: TypoProfile
 }
 /**
@@ -101,6 +99,41 @@ export interface DiscoveryProfile {
 minBreadth: Minbreadth
 minNgram: Minngram
 minOrthotactic: Minorthotactic
+}
+/**
+ * What makes a surface not a Tamil word at all (Row 9a).
+ * 
+ * The classifier's PRECONDITION, weighed before any signal and before any
+ * source assertion. A statement about the STRING outranks a statement about
+ * the word it is not: a scraped paragraph tagged as a name is still a scraped
+ * paragraph, and letting the tag win is how junk comes to wear a real class.
+ * 
+ * All three are thresholds rather than facts about Tamil, so all three are
+ * config (Holy Law #6). The letter rules that say which shapes Tamil BUILDS
+ * stay in ``ezhuthu/word_shape.py``; these say when a string is not a
+ * candidate for those rules to judge.
+ * 
+ * ``maxEzhuthu`` is a length ceiling. Tamil compounds freely, so there is no
+ * grammatical bound to appeal to - what is bounded is the length beyond which
+ * every surface inspected was a scrape that lost its spaces, and the longest
+ * in the real store runs to 1,212 ezhuthu.
+ * 
+ * ``minDistinctEzhuthu`` applies only to a surface of more than one ezhuthu:
+ * a one-ezhuthu word obviously holds one distinct ezhuthu and is a perfectly
+ * ordinary Tamil word. What it rejects is the same character repeated - a
+ * keyboard artifact or a run of the aytham, never a word.
+ * 
+ * ``rejectNonTamil`` is what a unit that is not an ezhuthu at all - Latin, a
+ * digit, a space, punctuation - costs. It is a knob rather than a constant
+ * because it is the one clause that could reasonably be turned off: a project
+ * that wanted to keep transliterations as their own class would set it false
+ * and get the Row 9 behaviour back, where such a surface is judged by
+ * orthography and lands in ``suspectedTypo``.
+ */
+export interface NotAWordProfile {
+maxEzhuthu: Maxezhuthu
+minDistinctEzhuthu: Mindistinctezhuthu
+rejectNonTamil: Rejectnontamil
 }
 /**
  * What a misspelling looks like (Row 9).

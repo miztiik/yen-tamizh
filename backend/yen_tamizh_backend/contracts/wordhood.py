@@ -44,10 +44,26 @@ from yen_tamizh_backend.contracts.lexicon_sources import WordClassEvidence
 # the date-stamp and its first changelog entry live here: two writers of one
 # schema picking their own dates is the drift CLAUDE.md section 11 exists to
 # stop. Migration class is build-time rewrite-in-place.
-WORDHOOD_VERSION = "2026-08-15T16:00"
+WORDHOOD_VERSION = "2026-08-16"
 WORDHOOD_CHANGELOG = (
     ChangelogEntry(
         version=WORDHOOD_VERSION,
+        change=(
+            "Replaced classifier.entryAttrs with classifier.notAWord - the "
+            "maximum ezhuthu length, the minimum distinct ezhuthu, and whether "
+            "a non-Tamil unit rejects the surface outright."
+        ),
+        why=(
+            "Row 9a - what makes a listing an ENTRY is now the source's "
+            "declared attestationTier rather than a describing fact from the "
+            "same row, so entryAttrs had no reader left and a knob nothing "
+            "reads is a lie in the config. The notAWord precondition needs "
+            "three thresholds, and every one of them is a tunable judgement "
+            "rather than a fact about Tamil (Holy Law #6)."
+        ),
+    ),
+    ChangelogEntry(
+        version="2026-08-15T16:00",
         change=(
             "Added the classifier section: entryAttrs, evidencePriority, "
             "headwordMinOrthotactic, and the discovery and typo profiles."
@@ -93,27 +109,6 @@ WORDHOOD_CHANGELOG = (
 # statements of one number rather than an import, because a contract module
 # reaching into a pipeline module for a bound would invert the dependency.
 MAX_EDIT_DISTANCE = 2
-
-# What a source can say ABOUT a word, as against merely listing it. A bare
-# wordlist emits a ``headword`` fact and nothing else; a dictionary also says
-# what part of speech the word is, what it translates to, what it means, what it
-# is a synonym of, or what theme it belongs to. That difference is what
-# ``docs/concepts/lexicon.md`` already means by "this authority lists this as an
-# ENTRY", so the members here are exactly the describing attributes.
-#
-# ``headword`` is deliberately absent - it IS the listing, and admitting it
-# would collapse the distinction. ``graphemeCount`` is absent because it is a
-# property of the string that any source can compute without deciding anything,
-# and ``wordClassEvidence`` because it is an assertion the classifier already
-# reads first and directly.
-EntryAttr = Literal[
-    "pos",
-    "translation",
-    "definitionEn",
-    "definitionTa",
-    "synonym",
-    "category",
-]
 
 _EVIDENCE_CLASSES: tuple[WordClassEvidence, ...] = get_args(WordClassEvidence)
 
@@ -242,34 +237,65 @@ class TypoProfile(BaseModel):
     maxNgram: float = Field(gt=0.0, le=1.0)
 
 
+class NotAWordProfile(BaseModel):
+    """What makes a surface not a Tamil word at all (Row 9a).
+
+    The classifier's PRECONDITION, weighed before any signal and before any
+    source assertion. A statement about the STRING outranks a statement about
+    the word it is not: a scraped paragraph tagged as a name is still a scraped
+    paragraph, and letting the tag win is how junk comes to wear a real class.
+
+    All three are thresholds rather than facts about Tamil, so all three are
+    config (Holy Law #6). The letter rules that say which shapes Tamil BUILDS
+    stay in ``ezhuthu/word_shape.py``; these say when a string is not a
+    candidate for those rules to judge.
+
+    ``maxEzhuthu`` is a length ceiling. Tamil compounds freely, so there is no
+    grammatical bound to appeal to - what is bounded is the length beyond which
+    every surface inspected was a scrape that lost its spaces, and the longest
+    in the real store runs to 1,212 ezhuthu.
+
+    ``minDistinctEzhuthu`` applies only to a surface of more than one ezhuthu:
+    a one-ezhuthu word obviously holds one distinct ezhuthu and is a perfectly
+    ordinary Tamil word. What it rejects is the same character repeated - a
+    keyboard artifact or a run of the aytham, never a word.
+
+    ``rejectNonTamil`` is what a unit that is not an ezhuthu at all - Latin, a
+    digit, a space, punctuation - costs. It is a knob rather than a constant
+    because it is the one clause that could reasonably be turned off: a project
+    that wanted to keep transliterations as their own class would set it false
+    and get the Row 9 behaviour back, where such a surface is judged by
+    orthography and lands in ``suspectedTypo``.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    maxEzhuthu: int = Field(ge=1)
+    minDistinctEzhuthu: int = Field(ge=1)
+    rejectNonTamil: bool
+
+
 class ClassifierSettings(BaseModel):
     """How the eight signals become exactly one ``wordClass`` (Row 9).
-
-    ``entryAttrs`` is what makes an attestation an ENTRY. It is config rather
-    than a constant because WHICH describing fact a lexicographic source happens
-    to carry is a property of the inventory acquired so far, not of Tamil: the
-    two real dictionaries on disk both emit a part of speech, so the shipping
-    default is that alone, and a future gloss-only authority is a config edit.
 
     ``evidencePriority`` orders the classes a source may assert when two sources
     assert different ones. It must be a permutation of the whole evidence
     vocabulary - a partial list would leave an assertion with no rank, and the
     verdict would then depend on which fact SQLite happened to return first.
+
+    What makes a listing an ENTRY is NOT here. It is the asserting source's
+    declared ``attestationTier`` in ``config/lexicon-sources.json``, because
+    what a source's unit IS is a property of the source and cannot be recovered
+    from one row of it (Row 9a).
     """
 
     model_config = ConfigDict(extra="forbid")
 
-    entryAttrs: list[EntryAttr] = Field(min_length=1)
     evidencePriority: list[WordClassEvidence]
     headwordMinOrthotactic: float = Field(ge=0.0, le=1.0)
+    notAWord: NotAWordProfile
     discovery: DiscoveryProfile
     typo: TypoProfile
-
-    @model_validator(mode="after")
-    def _entry_attrs_are_a_set(self) -> Self:
-        if len(set(self.entryAttrs)) != len(self.entryAttrs):
-            raise ValueError(f"entryAttrs names an attribute twice: {self.entryAttrs}")
-        return self
 
     @model_validator(mode="after")
     def _evidence_priority_ranks_every_class(self) -> Self:

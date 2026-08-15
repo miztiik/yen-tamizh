@@ -31,7 +31,7 @@ Only sources with `role: authority` or `role: authored` can assert word-hood. `a
 
 ## `wordClass` - what KIND of thing a surface is
 
-Every row carries exactly one `wordClass`, from a closed set of nine. A closed set rather than a numeric score, because a score says how CONFIDENT we are and not what KIND of thing this is - and proper nouns and inflected forms are both non-headwords for entirely different reasons. One of them must never be served; the other is future lemmatizer input.
+Every row carries exactly one `wordClass`, from a closed set of ten. A closed set rather than a numeric score, because a score says how CONFIDENT we are and not what KIND of thing this is - and proper nouns and inflected forms are both non-headwords for entirely different reasons. One of them must never be served; the other is future lemmatizer input.
 
 | Value | What it means |
 | --- | --- |
@@ -43,7 +43,10 @@ Every row carries exactly one `wordClass`, from a closed set of nine. A closed s
 | `boundStem` | A morpheme that cannot stand alone - a prefix, a suffix, an interfix, or a stem stripped of its ending. This is the class that catches the junk the old co-anagram rule actively selected for: fragments are exactly what collide with real words. |
 | `sandhiArtifact` | A tokenization casualty - the euphonic doubling belonging to the NEXT word got attached to this one. |
 | `suspectedTypo` | Present in the sources, rejected by orthography or by every authority. |
+| `notAWord` | Not a Tamil word at all: a string carrying something that is not an ezhuthu, longer than any word runs, or one character repeated. A CONFIDENT NEGATIVE about the string itself. |
 | `unclassified` | The classifier could not reach a verdict. |
+
+`notAWord` and `unclassified` are the two ends of one axis and are deliberately kept apart. `notAWord` is a verdict REACHED - the shape pass looked at the string and ruled; `unclassified` is a verdict ABSENT - the enrichment queue, where a later pass may still find a real word. Collapsing them would hide both how much junk the corpus carries and how much work is left, which are the only two counters that say whether the classifier is working.
 
 Selection is an ALLOW-LIST over these values, never a deny-list, so `unclassified` can never be served by omission.
 
