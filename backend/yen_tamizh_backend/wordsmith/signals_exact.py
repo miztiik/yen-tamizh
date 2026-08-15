@@ -25,15 +25,16 @@ expression is a primary-key probe rather than a correlated scan; the one signal
 that cannot be expressed in SQL at all, ``orthotactic``, is a deterministic
 user-defined function over the same single pass.
 
-Row 8 adds three more entries to ``INEXACT_SIGNALS`` and appends them to the
-runner's tuple. Nothing here needs to change for that.
+Row 8 appends three more signals to the runner's tuple. Two of them fit this
+shape unchanged; the third needed one field on ``Signal`` and one on
+``SignalContext``, and nothing else here moved.
 """
 
 from __future__ import annotations
 
 import sqlite3
 from collections.abc import Callable, Sequence
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Final
 
 from yen_tamizh_backend.contracts.lexicon import SignalName
@@ -55,13 +56,41 @@ _VERB_FORM_TABLE: Final = "tmp_verb_form"
 
 ORTHOTACTIC_UDF: Final = "orthotactic_score"
 
+# What "an authority listed this as a headword" IS, as one query, because Row 8
+# consults the same set to train its n-gram model and to build its dictionary of
+# real words. Two statements of it would be two places for it to drift. Bind
+# ``ATTESTING_ROLES`` as the parameters.
+ATTESTED_WORDS_SQL: Final = (
+    "SELECT f.word FROM fact f JOIN source s ON s.id = f.source_id "
+    f"WHERE f.attr = 'headword' AND s.role IN ({','.join('?' for _ in ATTESTING_ROLES)})"
+)
+
+# What a signal's ``expression`` is when the column is not written by the one
+# pass over the population at all. Row 8's ``neighbour`` prunes its query set on
+# values that pass has only just computed, so it runs after it - and a row the
+# prune skipped keeps the NULL this leaves behind, which is exactly the fact:
+# not measured, as against measured and found nothing.
+NOT_MEASURED: Final = "NULL"
+
 
 @dataclass(frozen=True, slots=True)
 class SignalContext:
-    """What a signal's preparation is allowed to see: the store and the knobs."""
+    """What a signal's preparation is allowed to see: the store and the knobs.
+
+    ``workers`` is how many processes the one signal with a search of its own
+    may score across. It is a property of the machine rather than a tunable
+    judgement, so it arrives as an argument and not from config - the same line
+    the store draws around its bulk-load pragmas.
+
+    ``state`` is where a preparation leaves what its own second pass will need,
+    and it belongs to ONE run: two ENRICH calls in one process each get their
+    own, so neither can read a model the other fitted.
+    """
 
     conn: sqlite3.Connection
     config: Wordhood
+    workers: int = 1
+    state: dict[str, object] = field(default_factory=dict)
 
 
 @dataclass(frozen=True, slots=True)
@@ -73,11 +102,17 @@ class Signal:
     ``expression`` is SQL with a single ``{word}`` placeholder, which the runner
     fills with whichever surface expression its pass has: the population alias
     on a full rebuild, the row's own column on a single-signal recompute.
+
+    ``second_pass`` is for the signal that cannot be one expression over the
+    population, because its query set is decided by values that same pass is
+    still computing. Such a signal declares ``NOT_MEASURED`` as its expression
+    and fills its column afterwards, inside the same transaction.
     """
 
     name: SignalName
     expression: str
     prepare: Callable[[SignalContext], None]
+    second_pass: Callable[[SignalContext], int] | None = None
 
 
 def orthotactic_score(word: str, weights: OrthotacticWeights) -> float:
@@ -133,13 +168,10 @@ def _membership_table(ctx: SignalContext, table: str, sources: Sequence[str]) ->
 def prepare_attested(ctx: SignalContext) -> None:
     """Every word an attesting source carried a ``headword`` fact for."""
     name = quoted(_ATTESTED_TABLE)
-    placeholders = ",".join("?" for _ in ATTESTING_ROLES)
     ctx.conn.execute(f"DROP TABLE IF EXISTS {name}")
     ctx.conn.execute(f"CREATE TEMP TABLE {name} (word TEXT PRIMARY KEY) WITHOUT ROWID")
     ctx.conn.execute(
-        f"INSERT OR IGNORE INTO {name} (word) "
-        f"SELECT f.word FROM fact f JOIN source s ON s.id = f.source_id "
-        f"WHERE f.attr = 'headword' AND s.role IN ({placeholders})",
+        f"INSERT OR IGNORE INTO {name} (word) {ATTESTED_WORDS_SQL}",
         ATTESTING_ROLES,
     )
 

@@ -12,8 +12,9 @@ Two halves, and they are tested differently on purpose:
   (Holy Law #7), and no raw sources, so the whole file runs in CI.
 
 The row's Oracle is one predicate: every staged surface receives exactly these
-five signal values - all five present, and the three Row 8 has not written yet
-still NULL, because "not measured" and "measured zero" are different facts.
+five signal values. Row 8 has since filled the other three columns, and their
+coverage - including where each of them deliberately leaves a NULL - is asserted
+in ``test_wordsmith_signals_inexact.py`` rather than restated here.
 
 Tamil is written with ``\\uXXXX`` escapes so this file's own normalization form
 cannot change what it asserts.
@@ -82,9 +83,9 @@ _FIXTURES = _REPO_ROOT / "datasets" / "fixtures" / "lexicon"
 REGISTRY = load_registry(_REGISTRY_PATH)
 CONFIG = load_config(_CONFIG_PATH)
 
-# The five this row writes; ngram, neighbour and zipf belong to Row 8.
+# The five this row writes. Row 8 writes ngram, neighbour and zipf.
 WRITTEN: tuple[SignalName, ...] = tuple(signal.name for signal in EXACT_SIGNALS)
-UNWRITTEN: tuple[str, ...] = tuple(
+INEXACT: tuple[str, ...] = tuple(
     column for column in SIGNAL_COLUMNS if column not in WRITTEN
 )
 
@@ -378,16 +379,13 @@ def test_every_staged_surface_receives_all_five_signal_values(enriched: Enriched
         conn.close()
 
 
-def test_the_signals_row_8_owns_stay_unmeasured(enriched: Enriched) -> None:
-    # THE ORACLE, second half. NULL here means "not measured yet", which is a
-    # different fact from a measured zero - and it is the fact that is true.
-    assert UNWRITTEN == ("ngram", "neighbour", "zipf")
-    conn = _connect(enriched.db)
-    try:
-        written = " OR ".join(f'"{column}" IS NOT NULL' for column in UNWRITTEN)
-        assert _scalar(conn, f"SELECT count(*) FROM signal WHERE {written}") == 0
-    finally:
-        conn.close()
+def test_the_signals_this_row_owns_are_exactly_the_exact_five() -> None:
+    # The split between the two rows is a fact about the runner's tuple, not a
+    # comment: these five are lookups, and the other three need a model or a
+    # search. Row 8 appended its own rather than editing any of these.
+    assert INEXACT == ("ngram", "neighbour", "zipf")
+    assert tuple(signal.name for signal in SIGNALS)[: len(WRITTEN)] == WRITTEN
+    assert all(signal.second_pass is None for signal in EXACT_SIGNALS)
 
 
 def test_attested_marks_exactly_the_authority_headwords(enriched: Enriched) -> None:
@@ -611,8 +609,6 @@ def test_the_run_reports_a_measurement_for_every_column(enriched: Enriched) -> N
     for column in WRITTEN:
         assert measured[column][0] == rows, column
         assert measured[column][1] > 0, column
-    for unwritten in UNWRITTEN:
-        assert measured[unwritten] == (0, 0), unwritten
 
 
 def test_the_derived_zone_is_recomputed_whole_rather_than_merged(

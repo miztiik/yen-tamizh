@@ -104,6 +104,8 @@ from yen_tamizh_backend.contracts.save import Save, compute_day_key
 from yen_tamizh_backend.contracts.wordhood import (
     WORDHOOD_CHANGELOG,
     WORDHOOD_VERSION,
+    NeighbourSettings,
+    NgramSettings,
     OrthotacticWeights,
     Wordhood,
 )
@@ -193,6 +195,8 @@ __all__ = [
     "MasterWord",
     "MasterWordlist",
     "ModeId",
+    "NeighbourSettings",
+    "NgramSettings",
     "OrthotacticWeights",
     "OutputFormat",
     "PackId",

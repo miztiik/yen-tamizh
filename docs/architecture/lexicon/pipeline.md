@@ -240,12 +240,31 @@ The population is the union of every observed surface and every worded fact -
 6,249,903 rows over the real sources. Each signal contributes a SQL EXPRESSION
 to a single streamed `INSERT ... SELECT` rather than running its own update pass
 over the whole table, and each prepares a small keyed temp table first so the
-expression is a primary-key probe rather than a correlated scan. The one signal
-that cannot be written in SQL at all, `orthotactic`, runs in the same statement
-as a deterministic user-defined function.
+expression is a primary-key probe rather than a correlated scan. The signals
+that cannot be written in SQL at all - `orthotactic` and `ngram` - run in the
+same statement as deterministic user-defined functions.
 
-Nothing materialises the population in Python. The measured real run is 290
-seconds end to end, of which 278 is the single population write.
+Nothing materialises the population in Python.
+
+### One signal runs after that pass, and it has to
+
+`neighbour` is the exception, and the reason is structural rather than a matter
+of cost: its query set is decided by `attested`, `knownVerbForm` and `breadth`,
+which the population pass is still computing. It therefore declares no
+expression, its column starts NULL, and it is filled afterwards - inside the
+SAME transaction, so the derived zone is still one all-or-nothing rebuild. An
+interrupted run leaves `signal` empty and `derived_epoch` behind `stage_epoch`,
+which is the state PUBLISH already refuses.
+
+The pass reads the `signal` table in primary-key PAGES rather than over one long
+cursor, because it writes to the table it is reading and SQLite leaves the
+behaviour of a cursor whose table is changing under it undefined. Paging also
+caps what the pass holds at one page, whatever the query set's size.
+
+It is the one stage that scores across processes. The deletion index is placed
+in `multiprocessing.shared_memory` so there is one physical copy however many
+workers there are, and results come back in the order the chunks went out - so
+the column cannot depend on which worker finished first.
 
 ### `--signal NAME` recomputes one column
 
@@ -261,11 +280,14 @@ current either. The stamp is right wherever it already stood.
 two disagree, so a published artifact can never carry signals from a store that
 has moved on underneath them.
 
-### A signal that has not landed yet is NULL
+### A NULL is a fact, not a gap
 
-Row 7 writes five of the eight columns; `ngram`, `neighbour` and `zipf` stay
-NULL until Row 8 appends its signals. NULL here means **not measured**, which is
-a different fact from a measured zero, and the store keeps them different.
+All eight columns are written now, but two of them are deliberately not written
+everywhere, and NULL is the answer rather than a hole: `zipf` is NULL for a
+surface nobody counted, because a word with no frequency has no rank to sit off,
+and `neighbour` is NULL for a surface its prune skipped, because nobody asked.
+A measured zero says something different in both cases -
+[word-hood.md](word-hood.md) says what.
 
 ### Configured source ids are checked before anything is computed
 

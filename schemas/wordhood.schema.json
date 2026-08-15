@@ -28,6 +28,53 @@
       "title": "ChangelogEntry",
       "type": "object"
     },
+    "NeighbourSettings": {
+      "additionalProperties": false,
+      "description": "How far the nearest-headword search looks, and what it skips (Row 8).\n\n``maxEditDistance`` is capped at two by the schema itself. It is the one\nknob here whose ceiling is not a preference: the deletion neighbourhood\ngrows two and a half times and the pass grows from minutes to hours at\nthree, so a config typo has to fail on load rather than run all afternoon.\nThe pipeline asserts the same bound again before it builds anything.\n\n``pruneBreadth`` is the number of distinct sources at which a surface stops\nbeing queried at all. The signal's only consumer is the ``suspectedTypo``\nverdict, and a surface several independent sources agree on is not one - so\nquerying it would buy nothing and cost the largest pass in the stage.",
+      "properties": {
+        "maxEditDistance": {
+          "maximum": 2,
+          "minimum": 1,
+          "title": "Maxeditdistance",
+          "type": "integer"
+        },
+        "pruneBreadth": {
+          "minimum": 1,
+          "title": "Prunebreadth",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "maxEditDistance",
+        "pruneBreadth"
+      ],
+      "title": "NeighbourSettings",
+      "type": "object"
+    },
+    "NgramSettings": {
+      "additionalProperties": false,
+      "description": "How the ezhuthu sequence model is fitted (Row 8).\n\n``order`` is how much context a prediction sees. Two is a bigram and models\nalmost nothing about Tamil's cluster rules; five over a 250-ezhuthu alphabet\nis mostly unseen contexts falling back to the smoothing mass, which measures\nthe model rather than the word. Three is the default and the range is closed\naround what is defensible.\n\n``smoothing`` is the count added to every possible continuation before the\nprobabilities are taken. It has to be positive: at zero a single ezhuthu the\ndictionary never happened to follow makes the whole word impossible, and an\nimpossible word has no comparable score.",
+      "properties": {
+        "order": {
+          "maximum": 5,
+          "minimum": 2,
+          "title": "Order",
+          "type": "integer"
+        },
+        "smoothing": {
+          "exclusiveMinimum": 0.0,
+          "maximum": 1.0,
+          "title": "Smoothing",
+          "type": "number"
+        }
+      },
+      "required": [
+        "order",
+        "smoothing"
+      ],
+      "title": "NgramSettings",
+      "type": "object"
+    },
     "OrthotacticWeights": {
       "additionalProperties": false,
       "description": "What each orthotactic defect costs the signal's score.\n\nThe score is ``1.0`` minus the weights of the rules a surface breaks, so a\nclean word scores 1 and one that breaks everything scores 0. Three weights\nrather than one, because the defects are not interchangeable: a surface that\ncannot even OPEN like a Tamil word is a loanword or a fragment, while one\nthat merely ends wrong is usually a sandhi artifact, and a classifier that\nwants to tell those apart needs them priced apart.\n\n``granthaPenalty`` defaults to zero on purpose. Grantha letters were\nborrowed to write Sanskrit and foreign sounds, so carrying one is positive\nevidence of a LOANWORD rather than a defect, and pricing it as damage would\ntell the classifier the opposite of what the fact means. It is a knob rather\nthan a constant so that judgement stays reviewable in config.",
@@ -89,6 +136,12 @@
       "title": "Nannulsources",
       "type": "array"
     },
+    "neighbour": {
+      "$ref": "#/$defs/NeighbourSettings"
+    },
+    "ngram": {
+      "$ref": "#/$defs/NgramSettings"
+    },
     "orthotactic": {
       "$ref": "#/$defs/OrthotacticWeights"
     },
@@ -111,6 +164,8 @@
     "version",
     "changelog",
     "orthotactic",
+    "ngram",
+    "neighbour",
     "nannulSources",
     "verbFormSources"
   ],
