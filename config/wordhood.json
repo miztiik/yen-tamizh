@@ -1,0 +1,18 @@
+{
+  "version": "2026-08-15",
+  "changelog": [
+    {
+      "version": "2026-08-15",
+      "change": "Initial word-hood config: the orthotactic weights and the source lists behind the nannulValid and knownVerbForm signals.",
+      "why": "Row 7 - the five exact word-hood signals need thresholds, and every threshold is config rather than a Python literal (Holy Law #6)."
+    }
+  ],
+  "orthotactic": {
+    "initialWeight": 0.5,
+    "finalWeight": 0.25,
+    "clusterWeight": 0.25,
+    "granthaPenalty": 0.0
+  },
+  "nannulSources": ["spellcheck-wordlist"],
+  "verbFormSources": ["inflected-verbs-bulk", "inflected-verbs-clean"]
+}

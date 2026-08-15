@@ -101,6 +101,12 @@ from yen_tamizh_backend.contracts.master_wordlist import (
 )
 from yen_tamizh_backend.contracts.puzzle_file import PuzzleFile, PuzzleItem
 from yen_tamizh_backend.contracts.save import Save, compute_day_key
+from yen_tamizh_backend.contracts.wordhood import (
+    WORDHOOD_CHANGELOG,
+    WORDHOOD_VERSION,
+    OrthotacticWeights,
+    Wordhood,
+)
 
 # Explicit registry (not auto-discovery) so the exporter's output set is
 # deterministic and reviewed. Export sorts by name; order here is not
@@ -108,9 +114,10 @@ from yen_tamizh_backend.contracts.save import Save, compute_day_key
 # demonstrator and the Row 10 glyph manifest; Row 8 adds the corpus layer, Row 9
 # the derived layer between the corpus and the puzzle engine, and Row 13 the
 # daily engine's own registry. The lexicon layer that supersedes the corpus one
-# registers its meta document and its source registry; ``LexiconEntry`` is NOT
-# here - a data row carries no ``version`` / ``changelog``, so it is not a
-# ``SchemaModel``, and it reaches the schema through ``Lexicon.rowSchema``.
+# registers its meta document, its source registry and the word-hood knobs its
+# enrich stage reads; ``LexiconEntry`` is NOT here - a data row carries no
+# ``version`` / ``changelog``, so it is not a ``SchemaModel``, and it reaches
+# the schema through ``Lexicon.rowSchema``.
 REGISTRY: tuple[type[SchemaModel], ...] = (
     AnagramPuzzle,
     AppConfig,
@@ -128,6 +135,7 @@ REGISTRY: tuple[type[SchemaModel], ...] = (
     MasterWordlist,
     PuzzleFile,
     Save,
+    Wordhood,
 )
 
 __all__ = [
@@ -136,6 +144,8 @@ __all__ = [
     "LEXICON_SOURCES_VERSION",
     "LEXICON_VERSION",
     "REGISTRY",
+    "WORDHOOD_CHANGELOG",
+    "WORDHOOD_VERSION",
     "AnagramPuzzle",
     "AppConfig",
     "BankDay",
@@ -183,6 +193,7 @@ __all__ = [
     "MasterWord",
     "MasterWordlist",
     "ModeId",
+    "OrthotacticWeights",
     "OutputFormat",
     "PackId",
     "PartOfSpeech",
@@ -203,5 +214,6 @@ __all__ = [
     "UiConfig",
     "WordClass",
     "WordClassEvidence",
+    "Wordhood",
     "compute_day_key",
 ]

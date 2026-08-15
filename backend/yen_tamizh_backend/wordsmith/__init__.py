@@ -16,6 +16,14 @@ derived zone from row 7, and PUBLISH renders the artifact from row 11.
 
 from __future__ import annotations
 
+from yen_tamizh_backend.wordsmith.enrich import (
+    SIGNALS,
+    EnrichRun,
+    SignalResult,
+    distribution,
+    enrich,
+    load_config,
+)
 from yen_tamizh_backend.wordsmith.extract import (
     EXTRACTOR_VERSION,
     Fact,
@@ -36,6 +44,13 @@ from yen_tamizh_backend.wordsmith.readers import (
     iter_json_array,
     iter_jsonl,
     read_elements,
+)
+from yen_tamizh_backend.wordsmith.signals_exact import (
+    ATTESTING_ROLES,
+    EXACT_SIGNALS,
+    Signal,
+    SignalContext,
+    orthotactic_score,
 )
 from yen_tamizh_backend.wordsmith.stage import (
     ApplyResult,
@@ -61,16 +76,23 @@ from yen_tamizh_backend.wordsmith.store import (
 )
 
 __all__ = [
+    "ATTESTING_ROLES",
     "DEFAULT_CHUNK",
+    "EXACT_SIGNALS",
     "EXTRACTOR_VERSION",
+    "SIGNALS",
     "SIGNAL_COLUMNS",
     "STORE_VERSION",
     "ApplyResult",
+    "EnrichRun",
     "ExtractHeader",
     "Fact",
     "FactKind",
     "Observation",
     "RemoveResult",
+    "Signal",
+    "SignalContext",
+    "SignalResult",
     "SourceResult",
     "StageRun",
     "StoreStats",
@@ -80,16 +102,20 @@ __all__ = [
     "canonical_dump",
     "derived_epoch",
     "derived_is_current",
+    "distribution",
     "emit",
     "emit_from",
+    "enrich",
     "extract",
     "extract_source",
     "iter_delimited",
     "iter_json_array",
     "iter_jsonl",
+    "load_config",
     "load_registry",
     "normalize",
     "open_store",
+    "orthotactic_score",
     "read_elements",
     "remove_source",
     "stage",
