@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-15",
+  "version": "2026-08-15T14:00",
   "changelog": [
+    {
+      "version": "2026-08-15T14:00",
+      "change": "Added the ngram section (model order and smoothing) and the neighbour section (maxEditDistance, capped at 2, and the breadth at which a surface stops being queried).",
+      "why": "Row 8 - the three inexact word-hood signals need a model order, a smoothing constant, a search radius and a prune threshold, and every one of those is a tunable judgement rather than a fact about Tamil (Holy Law #6)."
+    },
     {
       "version": "2026-08-15",
       "change": "Initial word-hood config: the orthotactic weights and the source lists behind the nannulValid and knownVerbForm signals.",
@@ -12,6 +17,14 @@
     "finalWeight": 0.25,
     "clusterWeight": 0.25,
     "granthaPenalty": 0.0
+  },
+  "ngram": {
+    "order": 3,
+    "smoothing": 0.1
+  },
+  "neighbour": {
+    "maxEditDistance": 2,
+    "pruneBreadth": 3
   },
   "nannulSources": ["spellcheck-wordlist"],
   "verbFormSources": ["inflected-verbs-bulk", "inflected-verbs-clean"]

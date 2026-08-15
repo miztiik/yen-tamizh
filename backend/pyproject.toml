@@ -16,6 +16,14 @@ dependencies = ["pydantic==2.13.4"]
 
 [project.optional-dependencies]
 dev = ["mypy>=1.13", "pytest>=8.3"]
+# Build-time only, and deliberately NOT in `[project] dependencies`, so CI's
+# `pip install -e ".[dev]"` never pulls it and the pipeline is proven to run
+# without it. Beneficiary: the word-hood `neighbour` signal's verification pass,
+# which drops from tens of minutes of pure-Python Levenshtein to about one. The
+# pure-Python path stays and returns the same number - a test asserts it - so an
+# absent rapidfuzz changes the run's speed and nothing else. ~2 MB wheel, zero
+# shipped bytes: no part of it reaches the browser (Holy Law #1, #8).
+wordsmith = ["rapidfuzz>=3.10"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["yen_tamizh_backend", "utilities"]
@@ -25,6 +33,13 @@ python_version = "3.12"
 strict = true
 files = ["yen_tamizh_backend", "utilities", "tests"]
 plugins = ["pydantic.mypy"]
+
+# The one optional dependency ships no type information and is absent from CI
+# altogether, so its import is allowed to resolve to Any. Every value crossing
+# back out of it is narrowed at the call site.
+[[tool.mypy.overrides]]
+module = ["rapidfuzz.*"]
+ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

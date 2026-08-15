@@ -17,6 +17,10 @@ export type Why = string
  * @minItems 1
  */
 export type Nannulsources = [string, ...(string)[]]
+export type Maxeditdistance = number
+export type Prunebreadth = number
+export type Order = number
+export type Smoothing = number
 export type Clusterweight = number
 export type Finalweight = number
 export type Granthapenalty = number
@@ -33,6 +37,8 @@ export type Version1 = string
 export interface Wordhood {
 changelog: Changelog
 nannulSources: Nannulsources
+neighbour: NeighbourSettings
+ngram: NgramSettings
 orthotactic: OrthotacticWeights
 verbFormSources: Verbformsources
 version: Version1
@@ -47,6 +53,42 @@ export interface ChangelogEntry {
 change: Change
 version: Version
 why: Why
+}
+/**
+ * How far the nearest-headword search looks, and what it skips (Row 8).
+ * 
+ * ``maxEditDistance`` is capped at two by the schema itself. It is the one
+ * knob here whose ceiling is not a preference: the deletion neighbourhood
+ * grows two and a half times and the pass grows from minutes to hours at
+ * three, so a config typo has to fail on load rather than run all afternoon.
+ * The pipeline asserts the same bound again before it builds anything.
+ * 
+ * ``pruneBreadth`` is the number of distinct sources at which a surface stops
+ * being queried at all. The signal's only consumer is the ``suspectedTypo``
+ * verdict, and a surface several independent sources agree on is not one - so
+ * querying it would buy nothing and cost the largest pass in the stage.
+ */
+export interface NeighbourSettings {
+maxEditDistance: Maxeditdistance
+pruneBreadth: Prunebreadth
+}
+/**
+ * How the ezhuthu sequence model is fitted (Row 8).
+ * 
+ * ``order`` is how much context a prediction sees. Two is a bigram and models
+ * almost nothing about Tamil's cluster rules; five over a 250-ezhuthu alphabet
+ * is mostly unseen contexts falling back to the smoothing mass, which measures
+ * the model rather than the word. Three is the default and the range is closed
+ * around what is defensible.
+ * 
+ * ``smoothing`` is the count added to every possible continuation before the
+ * probabilities are taken. It has to be positive: at zero a single ezhuthu the
+ * dictionary never happened to follow makes the whole word impossible, and an
+ * impossible word has no comparable score.
+ */
+export interface NgramSettings {
+order: Order
+smoothing: Smoothing
 }
 /**
  * What each orthotactic defect costs the signal's score.
