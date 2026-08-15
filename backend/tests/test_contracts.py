@@ -20,7 +20,7 @@ from pathlib import Path
 import pytest
 from pydantic import ValidationError
 
-from yen_tamizh_backend.contracts import REGISTRY, ChangelogEntry, Example
+from yen_tamizh_backend.contracts import REGISTRY, ChangelogEntry, Example, Lexicon
 from yen_tamizh_backend.contracts.export import render
 
 _REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -87,3 +87,17 @@ def test_committed_schemas_match_models() -> None:
         assert committed == render(model), (
             f"{model.schema_name()}.schema.json is stale - re-run the exporter"
         )
+
+
+def test_lexicon_row_shape_reaches_the_schema_through_the_meta_document() -> None:
+    # LexiconEntry is not a SchemaModel, so the exporter never walks it directly.
+    # Lexicon.rowSchema is the reference that carries it into $defs; without it
+    # the row shape - one line per word, 3.97M of them - would ship with no
+    # schema at all, which is a Holy Law #3 break the drift gate cannot see.
+    schema = Lexicon.json_schema()
+    entry = schema["$defs"]["LexiconEntry"]
+    assert entry["additionalProperties"] is False
+    assert "wordClass" in entry["required"]
+    # And the stamp a data row must NOT carry.
+    assert "version" not in entry["properties"]
+    assert "changelog" not in entry["properties"]

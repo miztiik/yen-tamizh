@@ -1,0 +1,547 @@
+{
+  "$defs": {
+    "ChangelogEntry": {
+      "additionalProperties": false,
+      "description": "One dated entry in a schema's in-file change log (newest first).\n\n``version`` is the date-stamp of the change; ``change`` is what changed;\n``why`` is the reason it changed (CLAUDE.md section 11).",
+      "properties": {
+        "change": {
+          "minLength": 1,
+          "title": "Change",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+          "title": "Version",
+          "type": "string"
+        },
+        "why": {
+          "minLength": 1,
+          "title": "Why",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "change",
+        "why"
+      ],
+      "title": "ChangelogEntry",
+      "type": "object"
+    },
+    "LexiconCounters": {
+      "additionalProperties": false,
+      "description": "The per-class ledger: every published row lands under exactly one class.\n\n``byClass`` carries a bucket for EVERY ``wordClass`` - a missing bucket and\na zero bucket say different things, and only one of them is a measurement.",
+      "properties": {
+        "byClass": {
+          "additionalProperties": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "propertyNames": {
+            "enum": [
+              "headword",
+              "inflected",
+              "colloquial",
+              "properNoun",
+              "loanword",
+              "boundStem",
+              "sandhiArtifact",
+              "suspectedTypo",
+              "unclassified"
+            ]
+          },
+          "title": "Byclass",
+          "type": "object"
+        },
+        "rows": {
+          "minimum": 0,
+          "title": "Rows",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "rows",
+        "byClass"
+      ],
+      "title": "LexiconCounters",
+      "type": "object"
+    },
+    "LexiconEntry": {
+      "additionalProperties": false,
+      "description": "One lexicon row: every published fact about one Tamil surface.\n\nNot a ``SchemaModel`` - see the module docstring.\n\nEvery sparse column is OPTIONAL and never a defaulted empty list.\n``model_dump(exclude_none=True)`` drops ``None`` but keeps ``[]``, so a\ndefaulted empty list writes an empty pair on every row that lacks the fact -\nroughly 200 MB of nothing across the published set.\n\n``wordhood`` and ``freqRank`` are optional for the same reason the publisher\nomits them: both are derived diagnostics rather than facts a source\nasserted, ``freqRank`` is a sort of the published ``frequency`` and\n``wordClass`` IS ``wordhood``'s verdict, so neither can cost the project a\nfact. The contract still types them, because the store-side renderings carry\nthem and an untyped diagnostic is an untyped diagnostic.",
+      "properties": {
+        "attestedBy": {
+          "anyOf": [
+            {
+              "items": {
+                "pattern": "^[a-z][a-z0-9-]*$",
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Attestedby"
+        },
+        "categories": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Categories"
+        },
+        "categorySource": {
+          "anyOf": [
+            {
+              "enum": [
+                "attested",
+                "authored",
+                "reviewed"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Categorysource"
+        },
+        "compound": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Compound"
+        },
+        "definitionTa": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Definitionta"
+        },
+        "ezhuthu": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Ezhuthu",
+          "type": "array"
+        },
+        "freqRank": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Freqrank"
+        },
+        "frequency": {
+          "minimum": 0,
+          "title": "Frequency",
+          "type": "integer"
+        },
+        "length": {
+          "minimum": 1,
+          "title": "Length",
+          "type": "integer"
+        },
+        "meaningSource": {
+          "anyOf": [
+            {
+              "enum": [
+                "attested",
+                "authored",
+                "reviewed"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Meaningsource"
+        },
+        "pos": {
+          "anyOf": [
+            {
+              "items": {
+                "enum": [
+                  "adjective",
+                  "adverb",
+                  "conjunction",
+                  "determiner",
+                  "interjection",
+                  "noun",
+                  "numeral",
+                  "particle",
+                  "postposition",
+                  "pronoun",
+                  "verb"
+                ],
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pos"
+        },
+        "spokenRatio": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Spokenratio"
+        },
+        "synonymsTa": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Synonymsta"
+        },
+        "translationEn": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Translationen"
+        },
+        "translationEnSource": {
+          "anyOf": [
+            {
+              "pattern": "^[a-z][a-z0-9-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Translationensource"
+        },
+        "word": {
+          "minLength": 1,
+          "title": "Word",
+          "type": "string"
+        },
+        "wordClass": {
+          "enum": [
+            "headword",
+            "inflected",
+            "colloquial",
+            "properNoun",
+            "loanword",
+            "boundStem",
+            "sandhiArtifact",
+            "suspectedTypo",
+            "unclassified"
+          ],
+          "title": "Wordclass",
+          "type": "string"
+        },
+        "wordhood": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "number"
+              },
+              "minProperties": 1,
+              "propertyNames": {
+                "enum": [
+                  "attested",
+                  "orthotactic",
+                  "breadth",
+                  "nannulValid",
+                  "knownVerbForm",
+                  "ngram",
+                  "neighbour",
+                  "zipf"
+                ]
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Wordhood"
+        }
+      },
+      "required": [
+        "word",
+        "ezhuthu",
+        "length",
+        "wordClass",
+        "frequency"
+      ],
+      "title": "LexiconEntry",
+      "type": "object"
+    },
+    "LexiconPartition": {
+      "additionalProperties": false,
+      "description": "One published NDJSON cell, and what it holds.\n\nThe split keys - ``wordClass``, then ezhuthu ``length``, then the word's\nBASE first ezhuthu - are all immutable per word, so a refresh INSERTS into a\ncell and never reshuffles one. Only a changed ``wordClass`` moves a row, and\nthat is a reviewable semantic event. ``firstEzhuthuHex`` renders the base\nezhuthu as lowercase 4-digit hex so every path stays ASCII; this document is\nwhat maps the hex back to the ezhuthu it stands for.",
+      "properties": {
+        "bytes": {
+          "minimum": 0,
+          "title": "Bytes",
+          "type": "integer"
+        },
+        "firstEzhuthu": {
+          "anyOf": [
+            {
+              "maxLength": 1,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Firstezhuthu"
+        },
+        "firstEzhuthuHex": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{4}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Firstezhuthuhex"
+        },
+        "length": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Length"
+        },
+        "path": {
+          "pattern": "^[A-Za-z0-9._-]+(/[A-Za-z0-9._+-]+)*$",
+          "title": "Path",
+          "type": "string"
+        },
+        "rows": {
+          "minimum": 0,
+          "title": "Rows",
+          "type": "integer"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "wordClass": {
+          "enum": [
+            "headword",
+            "inflected",
+            "colloquial",
+            "properNoun",
+            "loanword",
+            "boundStem",
+            "sandhiArtifact",
+            "suspectedTypo",
+            "unclassified"
+          ],
+          "title": "Wordclass",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "wordClass",
+        "rows",
+        "bytes",
+        "sha256"
+      ],
+      "title": "LexiconPartition",
+      "type": "object"
+    },
+    "LexiconProvenance": {
+      "additionalProperties": false,
+      "description": "One source's contribution, and the exact bytes it contributed from.\n\n``sha256`` + ``bytes`` identify the input, so a later run can prove it read\nthe same file and CI can compare the declared set against the registry with\nno network and no raw bytes on disk.",
+      "properties": {
+        "bytes": {
+          "minimum": 0,
+          "title": "Bytes",
+          "type": "integer"
+        },
+        "factsOut": {
+          "minimum": 0,
+          "title": "Factsout",
+          "type": "integer"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "origin": {
+          "minLength": 1,
+          "title": "Origin",
+          "type": "string"
+        },
+        "path": {
+          "pattern": "^[A-Za-z0-9._-]+(/[A-Za-z0-9._+-]+)*$",
+          "title": "Path",
+          "type": "string"
+        },
+        "rowsIn": {
+          "minimum": 0,
+          "title": "Rowsin",
+          "type": "integer"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "origin",
+        "path",
+        "bytes",
+        "sha256",
+        "rowsIn",
+        "factsOut"
+      ],
+      "title": "LexiconProvenance",
+      "type": "object"
+    }
+  },
+  "$id": "lexicon.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "The lexicon META document (``datasets/lexicon/lexicon.meta.json``).\n\nIt carries no ``words`` list. The lexicon is streamed NDJSON with no\nin-memory row list, so the reconciliation reads ``counters.rows`` and the\npartition table's declared counts rather than ``len(words)`` - a document\nmodel holding every row could not be constructed at this size and would\nquietly re-introduce the materialization the publisher exists to avoid.",
+  "properties": {
+    "changelog": {
+      "items": {
+        "$ref": "#/$defs/ChangelogEntry"
+      },
+      "minItems": 1,
+      "title": "Changelog",
+      "type": "array"
+    },
+    "counters": {
+      "$ref": "#/$defs/LexiconCounters"
+    },
+    "partitions": {
+      "items": {
+        "$ref": "#/$defs/LexiconPartition"
+      },
+      "minItems": 1,
+      "title": "Partitions",
+      "type": "array"
+    },
+    "provenance": {
+      "items": {
+        "$ref": "#/$defs/LexiconProvenance"
+      },
+      "minItems": 1,
+      "title": "Provenance",
+      "type": "array"
+    },
+    "rowSchema": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/LexiconEntry"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "version": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "version",
+    "changelog",
+    "provenance",
+    "counters",
+    "partitions"
+  ],
+  "title": "Lexicon",
+  "type": "object"
+}
