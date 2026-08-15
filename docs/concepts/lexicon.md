@@ -83,6 +83,7 @@ Categories are very sparse and are never an admission gate. They are also the so
 
 ## See also
 
+- [../architecture/lexicon/pipeline.md](../architecture/lexicon/pipeline.md) - the four stages that build this artifact.
 - [../architecture/contracts/schemas.md](../architecture/contracts/schemas.md) - the `lexicon` and `lexicon-sources` contracts and their shape decisions.
 - [core-loop.md](core-loop.md) - what a player does with a word.
 - [games.md](games.md) - which selection dimensions each Game uses.
