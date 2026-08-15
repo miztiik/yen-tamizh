@@ -90,6 +90,7 @@ from yen_tamizh_backend.contracts.lexicon_sources import (
     PosAlias,
     PosRejection,
     SourceRole,
+    WordClassEvidence,
 )
 from yen_tamizh_backend.contracts.master_wordlist import (
     FreqBand,
@@ -201,5 +202,6 @@ __all__ = [
     "TimeTrialConfig",
     "UiConfig",
     "WordClass",
+    "WordClassEvidence",
     "compute_day_key",
 ]

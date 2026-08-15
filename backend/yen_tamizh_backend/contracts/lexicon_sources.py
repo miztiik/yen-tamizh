@@ -42,7 +42,7 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from yen_tamizh_backend.contracts.base import ChangelogEntry, SchemaModel
 from yen_tamizh_backend.contracts.common import RelPath, SourceId
-from yen_tamizh_backend.contracts.lexicon import PartOfSpeech, WordClass
+from yen_tamizh_backend.contracts.lexicon import PartOfSpeech
 
 # The initial mint - see the note on ``LEXICON_VERSION``. The registry file that
 # carries this stamp is written in the row that adds the readers.
@@ -76,6 +76,22 @@ ElementKind = Literal["object", "string"]
 
 OutputFormat = Literal["ndjson", "csv", "sqlite"]
 
+# What a raw source tag may be EVIDENCE FOR. Narrower than ``WordClass`` on
+# purpose: ``headword`` is word-hood, which only a role=authority / authored
+# source's headword fact may assert (Row 4 decision 1), and ``unclassified`` is
+# the classifier's non-verdict, which nothing can be evidence FOR. Both are
+# reachable from ``config/lexicon-sources.json``, so a one-line config edit on
+# the wider type would let a category source assert word-hood.
+WordClassEvidence = Literal[
+    "inflected",
+    "colloquial",
+    "properNoun",
+    "loanword",
+    "boundStem",
+    "sandhiArtifact",
+    "suspectedTypo",
+]
+
 # Why a raw source POS tag yields no ``pos`` fact. Never a silent drop: the tag
 # is registered, the reason is named, and a tag with no entry at all is a hard
 # failure at publish.
@@ -88,13 +104,15 @@ OutputFormat = Literal["ndjson", "csv", "sqlite"]
 # ``noTamilCounterpart`` - an English-side label naming a category Tamil does
 #                          not have in any form, so there is nothing to map onto
 #                          and the Tamil side's part of speech is unknown.
-# ``notAPosLabel``       - the raw value is not a part-of-speech label at all: a
-#                          bare page reference, a sense number or stray
-#                          punctuation leaking out of a source that has no
-#                          structured POS column. Measured in Row 4: 175 A2 rows
-#                          carry one. Registering them keeps the hard-failure
-#                          rule intact - the reason a tag was refused is stated
-#                          rather than inferred from its absence.
+# ``notAPosLabel``       - a value that RECURS in a structured POS field and
+#                          names no part of speech, such as A7's
+#                          romanization-class entry-type labels. A row carrying
+#                          no POS prefix at all is NOT this: it is a counted
+#                          parse reject at EXTRACT, where Row 5's Oracle already
+#                          accounts for it (rows out == rows in - counted parse
+#                          rejects). Fail fast at the boundary means extract,
+#                          not publish three stages later, so parse junk is
+#                          never enumerated into the registry.
 PosRejection = Literal[
     "notAWord",
     "multiWordUnit",
@@ -124,7 +142,9 @@ class PosAlias(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     pos: list[PartOfSpeech] | None = Field(default=None, min_length=1)
-    wordClassEvidence: list[WordClass] | None = Field(default=None, min_length=1)
+    wordClassEvidence: list[WordClassEvidence] | None = Field(
+        default=None, min_length=1
+    )
     reject: PosRejection | None = None
     note: str | None = Field(default=None, min_length=1)
 

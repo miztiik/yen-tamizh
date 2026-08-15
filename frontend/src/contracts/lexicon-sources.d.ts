@@ -21,7 +21,7 @@ export type Outputs = [("ndjson" | "csv" | "sqlite"), ...(("ndjson" | "csv" | "s
 export type Note = (string | null)
 export type Pos = ([("adjective" | "adverb" | "conjunction" | "determiner" | "interjection" | "noun" | "numeral" | "particle" | "postposition" | "pronoun" | "verb"), ...(("adjective" | "adverb" | "conjunction" | "determiner" | "interjection" | "noun" | "numeral" | "particle" | "postposition" | "pronoun" | "verb"))[]] | null)
 export type Reject = (("notAWord" | "multiWordUnit" | "noTamilCounterpart" | "notAPosLabel") | null)
-export type Wordclassevidence = ([("headword" | "inflected" | "colloquial" | "properNoun" | "loanword" | "boundStem" | "sandhiArtifact" | "suspectedTypo" | "unclassified"), ...(("headword" | "inflected" | "colloquial" | "properNoun" | "loanword" | "boundStem" | "sandhiArtifact" | "suspectedTypo" | "unclassified"))[]] | null)
+export type Wordclassevidence = ([("inflected" | "colloquial" | "properNoun" | "loanword" | "boundStem" | "sandhiArtifact" | "suspectedTypo"), ...(("inflected" | "colloquial" | "properNoun" | "loanword" | "boundStem" | "sandhiArtifact" | "suspectedTypo"))[]] | null)
 /**
  * @minItems 1
  */

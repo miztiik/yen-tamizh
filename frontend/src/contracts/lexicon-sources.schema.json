@@ -315,15 +315,13 @@
             {
               "items": {
                 "enum": [
-                  "headword",
                   "inflected",
                   "colloquial",
                   "properNoun",
                   "loanword",
                   "boundStem",
                   "sandhiArtifact",
-                  "suspectedTypo",
-                  "unclassified"
+                  "suspectedTypo"
                 ],
                 "type": "string"
               },

@@ -446,9 +446,27 @@ def test_pos_alias_requires_a_destination() -> None:
                 "noun plural": {"pos": ["noun"], "wordClassEvidence": ["inflected"]},
                 "name": {"wordClassEvidence": ["properNoun"]},
                 "proverb": {"reject": "multiWordUnit"},
-                # A2 has no structured POS column, so 175 rows lead with a page
-                # reference or stray punctuation. Registered, never inferred.
-                "144": {"reject": "notAPosLabel"},
+                # A recurring value in a structured POS field that names no
+                # part of speech. A row with no POS prefix at all is NOT this -
+                # it is a counted parse reject at extract.
+                "romanization": {"reject": "notAPosLabel"},
             }
         )
+    )
+
+
+def test_word_class_evidence_cannot_assert_word_hood() -> None:
+    # wordClassEvidence is NARROWER than WordClass on purpose. posAliases is
+    # config, and C1's Nouns / Verbs / Adjectives tags route through it, so on
+    # the wider type a one-line config edit would let a category source assert
+    # word-hood - which only a role=authority / authored source's headword fact
+    # may do. `unclassified` is refused for the mirror reason: nothing can be
+    # evidence FOR the classifier's non-verdict.
+    for verdict in ("headword", "unclassified"):
+        with pytest.raises(ValidationError):
+            LexiconSources.model_validate(
+                _registry(posAliases={"Nouns": {"wordClassEvidence": [verdict]}})
+            )
+    LexiconSources.model_validate(
+        _registry(posAliases={"prefix": {"wordClassEvidence": ["boundStem"]}})
     )
