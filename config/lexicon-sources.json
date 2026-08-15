@@ -397,6 +397,21 @@
       "precedence": 19,
       "wordField": "word",
       "note": "The only source whose bytes are COMMITTED rather than acquired, and the only one whose reader validates a shape: see wordsmith/llm_enrich.py. Last precedence on purpose - an authored English translation must lose the single display slot to every attested one. No posField or categoryField is mapped: an authored row writes the closed pos and category vocabularies natively, so it has no raw orthography for posAliases or categoryAliases to translate."
+    },
+    {
+      "id": "ta-wiktionary-titles",
+      "name": "Tamil Wiktionary page titles, main namespace",
+      "origin": "https://dumps.wikimedia.org/tawiktionary/20260801/tawiktionary-20260801-all-titles-in-ns0.gz",
+      "role": "authority",
+      "kind": "delimited",
+      "path": "datasets/lexicon/sources/ta-wiktionary-titles/source.txt",
+      "bytes": 7745492,
+      "sha256": "7b4954ccad02227771354192a88bbae82939009068067b029abd073e29321cf0",
+      "precedence": 20,
+      "delimiter": "\t",
+      "hasHeader": true,
+      "wordColumn": 0,
+      "note": "A TIER-2, enumerative authority: every row is a bare page title, with no gloss, definition, part of speech, synonym or category anywhere in the dump, so it can never satisfy the entry test and cannot make a surface a headword on its own. The delimiter is a tab, which the file never contains, so each line yields the whole title as one column. It is deliberately NOT the underscore the dump uses for a space: splitting there would attest the first word of a multi-word page, and a multi-word entry attests the phrase, not the words inside it. Precedence last because a title list has no English gloss to win the single display slot with, and renumbering thirteen sources for a value that never competes would be churn."
     }
   ]
 }

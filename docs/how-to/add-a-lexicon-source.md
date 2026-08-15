@@ -26,6 +26,36 @@ with its origin, byte count and sha256, and commit a `1x` and a `10x` fixture
 slice under `datasets/fixtures/lexicon/`. A test parses that ledger, so the
 numbers in it cannot go stale silently.
 
+### If the origin is compressed, put the DECOMPRESSED file at `path`
+
+A fixture must be a byte-exact contiguous slice of the file the reader reads,
+and a truncated gzip member is not a readable gzip file, so an archive on disk
+could never have an honest `1x` fixture. Decompress it, put the plain file at
+`path`, and record BOTH digests in the ledger - the archive's and the
+decompressed file's - so the chain from what the publisher serves to what the
+pipeline reads stays verifiable. The registry's `bytes` and `sha256` always
+describe the file at `path`, because that is the file EXTRACT hashes on every
+run.
+
+### Pin a dated URL, and send a real User-Agent
+
+A `latest` URL is a moving target: the same path serves different bytes next
+month, so a recorded sha256 goes stale with nothing in the repository having
+changed. Check whether the publisher also offers a dated artifact and prefer it;
+if only `latest` exists, record the dump date beside the digest and say in the
+ledger that the URL is not stable.
+
+Some publishers refuse an anonymous fetch. `dumps.wikimedia.org` answers **HTTP
+403** to Python's default `urllib` User-Agent and 200 to a descriptive one:
+
+```
+User-Agent: yen-tamizh-lexicon/1.0 (build-time corpus tooling)
+```
+
+A fetch that must be shaped a particular way belongs in the ledger next to the
+origin, so that repopulating the sources is a documented procedure rather than a
+rediscovery.
+
 ## 2. Add an entry to `config/lexicon-sources.json`
 
 The registry is validated against
@@ -79,6 +109,14 @@ For a `word,count` (or `word count`) text file:
   "countColumn": 1
 }
 ```
+
+A one-word-per-line list is that same kind with a `delimiter` the file never
+contains - a tab, conventionally - so every line yields the whole line as one
+column. Pick that character deliberately. A separator that DOES occur splits a
+row the source meant as one thing: the Tamil Wiktionary dump writes a space as
+an underscore, and splitting there would have attested the first word of every
+multi-word page. A multi-word row is one surface, not several, and EXTRACT
+stages it whole.
 
 For a JSON document holding an array of records:
 
@@ -215,7 +253,7 @@ Two cases, and only two:
    `categoryField` and `posField` cover a flat record. A source whose
    translations live in a differently named field, or whose senses nest inside
    an array, needs an extractor in `extract.py` - subclass `SourceExtractor` and
-   override `extra_facts`. Four of the nineteen registered sources do.
+   override `extra_facts`. Four of the twenty-one registered sources do.
 
 Another frequency list, another dictionary, a different column order, a
 different root key, a source with no root key at all: all of those are the four

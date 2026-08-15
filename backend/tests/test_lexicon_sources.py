@@ -138,8 +138,8 @@ def test_every_ledger_row_is_complete_or_explicitly_not_acquired(row: LedgerRow)
 def test_the_ledger_covers_every_inventory_group() -> None:
     groups = {row.number[0] for row in LEDGER}
     assert groups == {"A", "B", "C", "D", "E"}, "group F must not be acquired"
-    assert len(LEDGER) == 20
-    assert len({row.id for row in LEDGER}) == 20
+    assert len(LEDGER) == 21
+    assert len({row.id for row in LEDGER}) == 21
 
 
 @pytest.mark.parametrize("row", ACQUIRED, ids=lambda row: row.number)
