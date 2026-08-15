@@ -16,6 +16,12 @@ a reviewable diff rather than a tuning session.
 
 Four phases, in this order, and the order is the design:
 
+0. **Is this a word at all?** A precondition, weighed before every signal and
+   before every source assertion. A statement about the STRING outranks a
+   statement about the word it is not: a scraped paragraph tagged as a name is
+   still a scraped paragraph. ``notAWord`` is a CONFIDENT NEGATIVE and is
+   deliberately a different verdict from ``unclassified``, which is an ABSENT
+   one.
 1. **What a source SAID.** ``wordClassEvidence`` facts are assertions, not
    inferences, and Row 3 built the alias map so a source tag that names no part
    of speech lands here instead of being thrown away. Inferring what is already
@@ -48,10 +54,15 @@ from dataclasses import dataclass
 from typing import Final, get_args
 
 from yen_tamizh_backend.contracts.lexicon import WordClass
-from yen_tamizh_backend.contracts.lexicon_sources import WordClassEvidence
+from yen_tamizh_backend.contracts.lexicon_sources import (
+    ATTESTING_ROLES,
+    LexiconSources,
+    WordClassEvidence,
+)
 from yen_tamizh_backend.contracts.wordhood import Wordhood
 from yen_tamizh_backend.ezhuthu import analyse
-from yen_tamizh_backend.wordsmith.signals_exact import ATTESTING_ROLES, SignalContext
+from yen_tamizh_backend.ezhuthu.word_shape import WordShape
+from yen_tamizh_backend.wordsmith.signals_exact import SignalContext
 from yen_tamizh_backend.wordsmith.store import quoted
 
 _ENTRY_TABLE: Final = "tmp_entry"
@@ -130,6 +141,32 @@ def asserted(surface: Surface, config: Wordhood) -> WordClassEvidence | None:
     return min(surface.evidence, key=priority.index)
 
 
+def is_not_a_word(shape: WordShape, config: Wordhood) -> bool:
+    """Whether the STRING disqualifies itself before any evidence is read.
+
+    Three rejections, each a threshold in config, and each with a real producer
+    measured over the store: a unit that is not an ezhuthu at all (616,175
+    surfaces), a length no Tamil word reaches (25,464 above 25 ezhuthu, the
+    longest 1,212), and one character repeated (180).
+
+    This is a CONFIDENT NEGATIVE, which is why it does not go to
+    ``unclassified``. That class is the enrichment queue - an absent verdict a
+    later pass may fill - and a queue holding 642,000 strings no amount of
+    enrichment can fix is a queue nobody can size.
+    """
+    settings = config.classifier.notAWord
+    units = shape.ezhuthu
+    if not units:
+        return True
+    if settings.rejectNonTamil and shape.hasNonTamil:
+        return True
+    if len(units) > settings.maxEzhuthu:
+        return True
+    # Only a surface of more than one ezhuthu can fail this: a one-ezhuthu word
+    # holds exactly one distinct ezhuthu and is an ordinary Tamil word.
+    return len(units) > 1 and len(set(units)) < settings.minDistinctEzhuthu
+
+
 def classify_surface(surface: Surface, config: Wordhood) -> WordClass:
     """Reach exactly one verdict about one surface.
 
@@ -146,13 +183,16 @@ def classify_surface(surface: Surface, config: Wordhood) -> WordClass:
     there; a test asserts that no value of it can change a verdict.
     """
     settings = config.classifier
+    shape = analyse(surface.word)
+
+    # ---- 0. is this a word at all? --------------------------------------
+    if is_not_a_word(shape, config):
+        return "notAWord"
 
     # ---- 1. what a source SAID ------------------------------------------
     said = asserted(surface, config)
     if said is not None:
         return said
-
-    shape = analyse(surface.word)
 
     # ---- 2. the headword gate, earned rather than defaulted -------------
     # Every clause is doing work over the real store: the ENTRY test is what
@@ -177,10 +217,11 @@ def classify_surface(surface: Surface, config: Wordhood) -> WordClass:
         # the one thing it is allowed to tell us.
         return "inflected"
     if shape.hasNonTamil:
-        # Not badly-shaped Tamil - not Tamil. A surface carrying a Latin letter,
-        # a digit or a space was rejected by orthography, which is what
-        # suspectedTypo means; routing it to the non-verdict instead would fill
-        # the enrichment queue with material no amount of enrichment can fix.
+        # Reachable only when `notAWord.rejectNonTamil` is off. With it on, a
+        # surface carrying a Latin letter, a digit or a space never gets this
+        # far - it is not badly-shaped Tamil, it is not Tamil. Left standing so
+        # the knob genuinely selects between two behaviours rather than
+        # switching one off.
         return "suspectedTypo"
     if shape.hasGrantha:
         # The five grantha consonants were borrowed to write sounds Tamil does
@@ -249,38 +290,67 @@ def is_discovery(surface: Surface, config: Wordhood) -> bool:
 # --------------------------------------------------------------------------
 
 
+def tier_one_sources(registry: LexiconSources) -> tuple[str, ...]:
+    """The registered sources whose unit is a lexicographic ENTRY.
+
+    Read off the registry rather than the store, so re-ruling a source's tier
+    is a config edit and a ``--classify`` re-run - never a re-stage of the
+    source's bytes. The tier is a JUDGEMENT the derived zone applies to
+    evidence, not part of the evidence.
+    """
+    return tuple(
+        source.id
+        for source in registry.sources
+        if source.enabled
+        and source.role in ATTESTING_ROLES
+        and source.attestationTier == "lexicographic"
+    )
+
+
 def prepare_entry(ctx: SignalContext) -> None:
-    """Collect the surfaces an authority gave an ENTRY, not merely a listing.
+    """Collect the surfaces a TIER-1 authority gave an ENTRY, not a listing.
 
     ``docs/concepts/lexicon.md`` defines an attestation as "this authority lists
     this as an ENTRY", and over the real inventory those are two different
-    events. Six sources carry ``role: authority``; three of them are bare word
-    LISTS that emit a headword fact and nothing else, and between them they make
-    589,862 surfaces attested. Among what they list: a political party, a
-    sitting politician, a bound stem that is not a word, and case-marked nouns.
-    Attestation alone would rule every one of them a headword.
+    events. Eight sources may assert word-hood; four of them are bare word LISTS
+    that emit a headword fact and nothing else, and between them they attest a
+    political party, a sitting politician, a bound stem that is not a word, and
+    a great many case-marked nouns. Attestation alone would rule every one of
+    them a headword.
 
-    The three that are dictionaries also say something ABOUT the word. So the
-    test is a headword fact AND a describing fact from THE SAME source - the
-    source that listed it is the source that has to have described it, or the
-    claim is being assembled out of two sources neither of which made it. Over
-    the real store that is 174,387 surfaces, and 163,561 under the shipping
-    default of a part-of-speech fact alone.
+    So an entry is a headword fact from a source whose declared
+    ``attestationTier`` is ``lexicographic`` - a meaning-bearing source
+    asserting a headword - and it does NOT depend on whether that source also
+    described THIS row.
+
+    Row 9 asked the question per ROW, requiring a describing fact from the same
+    source as the headword fact. That was wrong in a way only the measurement
+    showed: the largest curated dictionary's part-of-speech column was a blanket
+    ``nouns`` stamp on 99.81 percent of its rows, correctly rejected at EXTRACT,
+    so it supplied no describing fact at all and 82.6 percent of its 104,073
+    headwords were demoted to ``unclassified``. What a source's unit IS cannot
+    be recovered from one row of it, and asking per row punished a real
+    dictionary for one unusable COLUMN.
     """
     conn = ctx.conn
-    attrs = tuple(ctx.config.classifier.entryAttrs)
+    sources = tier_one_sources(ctx.registry)
+    if not sources:
+        # A store with no lexicographic authority would classify zero headwords
+        # in silence, which reads exactly like a corpus with no real words in
+        # it. The same reason ENRICH checks its configured source ids.
+        raise ValueError(
+            "no enabled source declares attestationTier 'lexicographic', so no "
+            "surface could ever be an entry - check config/lexicon-sources.json"
+        )
     name = quoted(_ENTRY_TABLE)
-    roles = ",".join("?" for _ in ATTESTING_ROLES)
-    described = ",".join("?" for _ in attrs)
+    placeholders = ",".join("?" for _ in sources)
     conn.execute(f"DROP TABLE IF EXISTS {name}")
     conn.execute(f"CREATE TEMP TABLE {name} (word TEXT PRIMARY KEY) WITHOUT ROWID")
     conn.execute(
         f"INSERT OR IGNORE INTO {name} (word) "
-        f"SELECT h.word FROM fact h JOIN source s ON s.id = h.source_id "
-        f"WHERE h.attr = 'headword' AND s.role IN ({roles}) AND EXISTS ("
-        f"SELECT 1 FROM fact d WHERE d.word = h.word "
-        f"AND d.source_id = h.source_id AND d.attr IN ({described}))",
-        (*ATTESTING_ROLES, *attrs),
+        f"SELECT word FROM fact "
+        f"WHERE attr = 'headword' AND source_id IN ({placeholders})",
+        sources,
     )
 
 

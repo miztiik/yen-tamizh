@@ -1,6 +1,6 @@
 # Word-hood
 
-**Last Updated**: 2026-08-15
+**Last Updated**: 2026-08-16
 
 How the pipeline decides what KIND of thing a Tamil surface is. The vocabulary -
 what a `wordClass` is, why observation is not attestation, why `length` counts
@@ -235,25 +235,25 @@ Over the real staged store - 6,249,903 distinct surfaces, 18 enabled sources:
 
 | Signal | Measured | Marked positive | Share of measured |
 | --- | ---: | ---: | ---: |
-| `attested` | 6,249,903 | 589,862 | 9.4% |
-| `orthotactic` > 0 | 6,249,903 | 5,600,039 | 89.6% |
-| `breadth` >= 1 | 6,249,903 | 6,249,903 | 100% |
-| `nannulValid` | 6,249,903 | 355,275 | 5.7% |
-| `knownVerbForm` | 6,249,903 | 1,428,258 | 22.9% |
-| `ngram` | 6,249,903 | 6,249,903 | 100% |
-| `neighbour` | 4,115,457 | 2,582,136 | 62.7% |
+| `attested` | 6,569,694 | 913,295 | 13.9% |
+| `orthotactic` > 0 | 6,569,694 | 5,612,420 | 85.4% |
+| `breadth` >= 1 | 6,569,694 | 6,569,694 | 100% |
+| `nannulValid` | 6,569,694 | 355,275 | 5.4% |
+| `knownVerbForm` | 6,569,694 | 1,428,258 | 21.7% |
+| `ngram` | 6,569,694 | 6,569,694 | 100% |
+| `neighbour` | 4,112,531 | 2,587,590 | 62.9% |
 | `zipf` | 4,551,338 | 1,864,878 | 41.0% |
 
 The two columns whose MEASURED count is below the population are the two that
-leave a deliberate NULL. `neighbour` was asked of 4,115,457 surfaces - the prune
-skipped 2,134,446 - and of those asked, 1,143,387 have a headword one ezhuthu
-away, 1,438,749 have one at two, and 1,533,321 have none within two. `zipf` is
+leave a deliberate NULL. `neighbour` was asked of 4,112,531 surfaces - the prune
+skipped 2,457,163 - and of those asked, 1,150,327 have a headword one ezhuthu
+away, 1,437,263 have one at two, and 1,524,941 have none within two. `zipf` is
 measured for the 4,551,338 surfaces somebody actually counted.
 
-The prune is a **1.52x** cut, not the 2.5-3x the plan predicted. The prediction
-was sized against 3,967,009 surfaces; the store holds 6,249,903, and the three
+The prune is a **1.60x** cut, not the 2.5-3x the plan predicted. The prediction
+was sized against 3,967,009 surfaces; the store holds 6,569,694, and the three
 exclusions are the same absolute sets whichever total you divide into. The
-decision still pays for itself - 2.1M queries removed at no loss - but a reader
+decision still pays for itself - 2.4M queries removed at no loss - but a reader
 sizing the `suspectedTypo` queue should size it against 4.1M.
 
 `ngram` marks every surface positive because its floor is the smoothing mass
@@ -266,74 +266,116 @@ shape of that distribution is the layer's first honest look at its own corpus:
 
 | Score | Surfaces | What broke |
 | ---: | ---: | --- |
-| 1.00 | 4,057,164 | nothing |
-| 0.75 | 1,236,084 | one of the ending or the clusters |
-| 0.50 | 224,727 | the opening, or both of the other two |
-| 0.25 | 82,064 | the opening plus one more |
-| 0.00 | 649,864 | not Tamil at all, or every rule |
+| 1.00 | 4,068,656 | nothing |
+| 0.75 | 1,236,239 | one of the ending or the clusters |
+| 0.50 | 225,404 | the opening, or both of the other two |
+| 0.25 | 82,121 | the opening plus one more |
+| 0.00 | 957,274 | not Tamil at all, or every rule |
 
 The three inexact signals cost more to compute and are worth stating with their
 own inputs, because each number is a decision someone can check:
 
 | What | Measured |
 | --- | ---: |
-| Attested headwords | 589,862 |
-| ... of which wholly Tamil, and so the dictionary | 461,214 |
-| ... dropped as not-Tamil | 128,648 (21.8%) |
-| Distinct ezhuthu in the dictionary | 307 |
-| Trigrams the model actually saw | 198,966 |
-| Deletion-index entries at `maxEditDistance` 2 | 13,248,728 |
+| Attested headwords | 913,295 |
+| ... of which wholly Tamil, and so the dictionary | 476,319 |
+| ... dropped as not-Tamil | 436,976 (47.8%) |
+| Distinct ezhuthu in the dictionary | 321 |
+| Trigrams the model actually saw | 207,758 |
+| Deletion-index entries at `maxEditDistance` 2 | 13,612,854 |
+
+Nearly half the attested headwords are now dropped from the training set, up
+from a fifth, and the cause is the title list: a Wiktionary page title is often
+a multi-word phrase or a romanization, and a space is not an ezhuthu. That is
+the filter doing its job - the model is trained on Tamil words, not on the
+inventory's packaging.
 
 ### What the classifier actually decided
 
-Over the same 6,249,903 surfaces:
+Over 6,569,694 surfaces, with the Row 9 column beside it so the two corrections
+can be read off:
 
-| `wordClass` | Surfaces | Share | Decided by |
-| --- | ---: | ---: | --- |
-| `headword` | 49,873 | 0.80% | an entry, a clean shape and no grantha |
-| `inflected` | 1,428,139 | 22.85% | the collected verb forms, plus 2,125 dictionary plural tags |
-| `colloquial` | 1 | 0.00% | the single surface any source tagged a contraction |
-| `properNoun` | 1,185 | 0.02% | the Wiktionary name tag |
-| `loanword` | 601,750 | 9.63% | grantha, an illegal opening, or a cluster Tamil does not build |
-| `boundStem` | 101 | 0.00% | the affix tags |
-| `sandhiArtifact` | 449,000 | 7.18% | an ending no Tamil word has |
-| `suspectedTypo` | 905,278 | 14.48% | not Tamil at all, or improbable and one edit from a real word |
-| `unclassified` | 2,814,576 | 45.03% | nothing decided it |
+| `wordClass` | Row 9 | Row 9a | Share | Decided by |
+| --- | ---: | ---: | ---: | --- |
+| `headword` | 49,873 | 137,991 | 2.10% | a tier-1 entry, a clean shape and no grantha |
+| `inflected` | 1,428,139 | 1,425,408 | 21.70% | the collected verb forms, plus the dictionary plural tags |
+| `colloquial` | 1 | 1 | 0.00% | the single surface any source tagged a contraction |
+| `properNoun` | 1,185 | 1,074 | 0.02% | the Wiktionary name tag |
+| `loanword` | 602,744 | 601,832 | 9.16% | grantha, an illegal opening, or a cluster Tamil does not build |
+| `boundStem` | 101 | 1 | 0.00% | the affix tags |
+| `sandhiArtifact` | 449,031 | 448,943 | 6.83% | an ending no Tamil word has |
+| `suspectedTypo` | 1,213,915 | 267,970 | 4.08% | improbable and one edit from a real word |
+| `notAWord` | - | 949,378 | 14.45% | the shape precondition |
+| `unclassified` | 2,824,705 | 2,737,096 | 41.66% | nothing decided it |
 
-Three of those numbers are the layer's honest report on itself.
+Both columns are measured over the SAME store, so every difference is one of the
+two corrections and nothing else.
 
-**`colloquial` is one row and `boundStem` is 101.** Neither has an evidence
-producer worth the name - the whole acquired inventory tags exactly one
-contraction and about a hundred affixes - and neither can be inferred from the
-eight signals, because a colloquial form is orthotactically perfect and a bound
-stem like `asura` is indistinguishable from a short rare word. They are honest
-zeroes rather than hidden ones: the classifier does not guess, and the surfaces
-sit in `unclassified` where a later row can reach them.
+**`suspectedTypo` fell by 945,945 and `notAWord` took 949,378.** Almost the whole
+of the old `suspectedTypo` bucket was surfaces that are not Tamil at all rather
+than misspellings of Tamil - an accusation the class was never meant to carry.
+What is left is the class as defined: improbable, unattested, and one ezhuthu
+from a real word.
 
-**`unclassified` is 45 percent, and most of it is inflection.** A sample drawn
-from the discovery profile was, without exception, agglutinated verb and
-participle forms that the bulk verb lists happen not to contain - not modern
-words the dictionaries missed. The enrichment queue should therefore be sized
-and read as a queue of FORMS with some discoveries in it, not the other way
-round. 83,468 surfaces meet the discovery profile exactly.
+**`boundStem` fell from 101 to 1.** All hundred were Wiktionary affix entries
+carried with their notation hyphen - `-kaL`, `-ththu` - and a hyphen is not an
+ezhuthu, so the string is not a Tamil word whatever the morpheme is. The
+`wordClassEvidence` fact is still in the store for a later row that wants to read
+affixes as affixes; what changed is that the VERDICT now describes the string.
 
-**`headword` is 49,873**, and the arithmetic behind it is worth writing down
+**`unclassified` fell by 87,609**, and every one of them is the entry-test fix:
+the curated dictionary's headwords that Row 9 demoted for want of a
+part-of-speech column.
+
+**`headword` is 137,991**, and the arithmetic behind it is worth writing down
 because every step is a decision someone can check:
 
 | Step | Surfaces |
 | --- | ---: |
-| a headword fact from any authority | 589,862 |
-| ... and a part-of-speech fact from THE SAME source - an ENTRY | 163,561 |
-| ... less entries that are not wholly Tamil | -111,783 |
-| ... less entries carrying grantha, which go to `loanword` | -581 |
-| ... less entries breaking a letter rule | -433 |
-| shape-clean entries | 50,764 |
-| ... less those carrying an asserted `wordClassEvidence` class | -891 |
-| `headword` | 49,873 |
+| a headword fact from any authority | 913,295 |
+| ... from a TIER-1 source - an ENTRY | 262,026 |
+| ... less entries the shape precondition rejects | -119,130 |
+| ... less entries carrying grantha, which go to `loanword` | -2,822 |
+| ... less entries breaking a letter rule | -572 |
+| shape-clean entries | 139,502 |
+| ... less those carrying an asserted `wordClassEvidence` class | -1,511 |
+| `headword` | 137,991 |
 
-The largest subtraction is the largest dictionary's Tamil column carrying
-multi-word glosses rather than words. Of the 50,764 shape-clean entries,
-**27,999 are 3-6 ezhuthu**, which is what the served set is drawn from.
+The largest subtraction is the two biggest dictionaries' Tamil columns carrying
+multi-word glosses and page titles rather than words. Of the 137,991 headwords,
+**85,314 are 3-6 ezhuthu**, against Row 12's floor of 6,000 served.
+
+**3,483 of the entries are also collected verb forms**, and every one of them
+stays a headword: a generated paradigm table necessarily contains the citation
+form, so phase 2 running before phase 3 is what keeps Tamil's verbs in the
+dictionary.
+
+#### The one escape, recorded rather than hidden
+
+Trusting a tier-1 source's listing is what recovers the 87,611 headwords the
+curated dictionary carries with nothing else said about them - and the same
+trust admits `asura`, the stem of `asuran`, which that dictionary also lists.
+Nothing in the store separates the two: `asura` and a real classical headword
+like `aqkaram` have the same attestation, breadth, shape and n-gram profile, and
+the morphological rule that would tell them apart ("begins with an attested
+headword and is longer") was measured in Row 9 and rejected for costing a real
+headword. The trade is 87,611 real dictionary headwords against one stem, and it
+is taken deliberately. The golden fixture pins the escape by name, so a SECOND
+one cannot arrive unnoticed, and Row 12's `requireHumanGloss` gate is the
+backstop that keeps it off a player's screen.
+
+**`colloquial` is one row and `boundStem` is one.** Neither has an evidence
+producer worth the name, and neither can be inferred from the eight signals,
+because a colloquial form is orthotactically perfect and a bound stem is
+indistinguishable from a short rare word. They are honest zeroes rather than
+hidden ones.
+
+**`unclassified` is 42 percent, and most of it is inflection.** A sample drawn
+from the discovery profile was, without exception, agglutinated verb and
+participle forms that the bulk verb lists happen not to contain - not modern
+words the dictionaries missed. The enrichment queue should therefore be sized
+and read as a queue of FORMS with some discoveries in it, not the other way
+round. 83,295 surfaces meet the discovery profile exactly.
 
 The 581 is worth stating plainly: **`granthaPenalty` is zero but grantha is
 still a verdict, so no word written with a grantha consonant can reach the served
@@ -374,14 +416,55 @@ The nine classes are in
 and are not restated here. What follows is how a surface reaches exactly one of
 them.
 
-**It is an ordered CASCADE, not a weighted score.** Nine classes are not nine
+**It is an ordered CASCADE, not a weighted score.** Ten classes are not ten
 points on a line - a proper noun and an inflected form are non-headwords for
 entirely unrelated reasons - so there is nothing for a weighted sum to be a sum
 OF. A cascade also has a property a score does not: every verdict traces to the
 ONE rule that produced it, which is what makes a misclassification a reviewable
 diff rather than a tuning session.
 
-Four phases, and the order is the design.
+Five phases, and the order is the design.
+
+### Phase 0 - is this a word at all?
+
+A PRECONDITION, weighed before every signal and before every source assertion.
+Three rejections, each a threshold in `config/wordhood.json` under
+`classifier.notAWord`, and each with a real producer measured over the store:
+
+| Rejection | Knob | Surfaces |
+| --- | --- | ---: |
+| holds a unit that is not an ezhuthu | `rejectNonTamil` | 616,175 |
+| longer than any Tamil word runs | `maxEzhuthu` (25) | 25,464 |
+| one character repeated | `minDistinctEzhuthu` (2) | 180 |
+
+Together that is **641,819 surfaces, 10.3 percent of the store**, and before
+this phase existed every one of them wore a real class: repeated aytham as
+`loanword`, leading-dot and leading-hyphen strings as `inflected` and
+`boundStem`, and a scraped paragraph of 1,212 ezhuthu as `suspectedTypo`. It
+also collapsed the (`wordClass`, `length`) cell count from **509 to 140**, which
+is the number Row 11's layout has to be decided against.
+
+**It runs before phase 1 on purpose.** A statement about the STRING outranks a
+statement about the word it is not: a scraped paragraph a source tagged as a
+name is still a scraped paragraph, and letting the tag win is precisely how junk
+comes to wear a real class.
+
+**`notAWord` is a CONFIDENT NEGATIVE and stays distinct from `unclassified`.**
+That class is the enrichment queue - a verdict ABSENT, which a later pass may
+fill - while this one is a verdict REACHED. Collapsing them would leave the
+layer with no counter for how much junk the corpus carries and no honest size
+for the work remaining, which are the only two numbers that say whether the
+classifier is working. `notAWord` is also non-servable by construction, because
+Row 12's allow-list is `["headword"]`.
+
+The three thresholds are knobs rather than constants because none of them is a
+fact about Tamil. Tamil compounds freely, so no grammar bounds a word's length -
+what is bounded is the length past which every surface inspected was a scrape
+that lost its spaces. `minDistinctEzhuthu` applies only above one ezhuthu, since
+a one-ezhuthu word obviously holds one distinct ezhuthu and is ordinary Tamil.
+And `rejectNonTamil` is the one clause a project could reasonably turn off: with
+it false the Row 9 behaviour returns and such a surface is judged by orthography
+into `suspectedTypo`, which is why that arm of phase 3 is still there.
 
 ### Phase 1 - what a source SAID
 
@@ -409,49 +492,63 @@ is a conjunction. A surface is a headword when an authority gave it an ENTRY,
 its shape breaks no rule, it carries no grantha, and its orthotactic score
 clears the configured floor.
 
-#### Attestation is not an entry
+#### Attestation is not an entry, and an entry is a property of the SOURCE
 
 `docs/concepts/lexicon.md` defines an attestation as "this authority lists this
 as an ENTRY", and over the acquired inventory those turned out to be two
-different events. Six sources carry `role: authority`. Three of them are
-DICTIONARIES that say something about each word; three are bare word LISTS that
-emit a headword fact and nothing else - and those three are the larger half:
+different events. Eight sources may assert word-hood. Four of them are
+LEXICOGRAPHIC - their unit is an entry, and somebody decided the string was a
+word before saying anything about it. Four are ENUMERATIVE - their unit is a
+bare string in a list:
 
-| Source | Rows | Emits |
+| Source | Tier | Rows | Emits |
+| --- | --- | ---: | --- |
+| `en-ta-dictionary` | lexicographic | 161,929 words | headword, pos, translation, synonym |
+| `master-dictionary` | lexicographic | 104,073 words | headword, translation (12,905), category, graphemeCount |
+| `wiktextract-ta` | lexicographic | 11,103 words | headword, pos, definitionEn, synonym |
+| `llm-authored` | lexicographic | 801 words | headword, definitionTa, translationEn, pos, synonym, category |
+| `ta-wiktionary-titles` | enumerative | 410,074 titles | headword |
+| `spellcheck-wordlist` | enumerative | 355,275 words | headword |
+| `old-wordlist` | enumerative | 36,068 words | headword |
+| `huggingface-wordlist` | enumerative | 26,485 words | headword |
+
+Among what the four lists list: a political party, a sitting politician, a bound
+stem that is not a word, and a great many case-marked nouns. **Attestation alone
+would rule every one of them a headword** - which is exactly the outcome Row 12
+decision 2 exists to prevent, arrived at by a different route.
+
+So an ENTRY is **tier-1 attestation**: a headword fact from a source whose
+declared `attestationTier` is `lexicographic`. The tier is declared per SOURCE
+in `config/lexicon-sources.json`, required on every role that may assert
+word-hood and forbidden on every role that may not, so registering the next
+authority forces the ruling rather than inheriting one silently.
+
+##### Why the first version of this test was wrong
+
+Row 9 asked the question per ROW: a headword fact AND a describing fact from the
+SAME source, with `pos` as the shipped default. It admitted every reference
+headword and none of the reference non-words, so it looked right. The
+measurement said otherwise.
+
+Only three sources emit a `pos` fact at all. `master-dictionary` - the
+predecessor project's entire curated dictionary, 104,073 headwords - emits
+**zero**, because its part-of-speech column was a blanket `nouns` stamp on
+99.81 percent of its rows, verbs included, and Row 5 correctly rejected it at
+EXTRACT as `notAPosLabel`. So the per-row rule demoted **86,249 of that
+dictionary's headwords (82.6 percent) to `unclassified`** and kept 10,300.
+
+The defect is not the threshold, it is the QUESTION. What a source's unit IS
+cannot be recovered from one row of it, and the largest lexicographic source
+describes only part of what it lists - so asking per row punished a real
+dictionary for one unusable COLUMN. Asking per source is also the honest reading
+of what the classifier needs: whether a lexicographer stood behind this string,
+not whether the particular field the classifier likes survived extraction.
+
+| Rule | Entries | On the reference rows |
 | --- | ---: | --- |
-| `en-ta-dictionary` | 161,929 words | headword, pos, translation, synonym |
-| `master-dictionary` | 104,073 words | headword, translation (12,905), category, graphemeCount |
-| `wiktextract-ta` | 11,103 words | headword, pos, definitionEn, synonym |
-| `spellcheck-wordlist` | 355,275 words | headword |
-| `old-wordlist` | 36,068 words | headword |
-| `huggingface-wordlist` | 26,485 words | headword |
-
-`attested` is therefore true for 589,862 surfaces, and among what the three
-lists list: a political party, a sitting politician, a bound stem that is not a
-word, and a great many case-marked nouns. **Attestation alone would rule every
-one of them a headword** - which is exactly the outcome Row 12 decision 2 exists
-to prevent, arrived at by a different route.
-
-So the gate reads a headword fact AND a describing fact FROM THE SAME SOURCE.
-Same source, because a claim assembled out of one source that listed it and
-another that described something is a claim neither of them made. Which
-attributes count is `entryAttrs` in config, and the shipping default is `pos`
-alone:
-
-| Rule | Surfaces | On the reference rows |
-| --- | ---: | --- |
-| a headword fact from any authority | 589,862 | admits the party, the stem and the inflections |
-| ... plus any describing fact | 174,387 | still admits `kuzhandhaigalai` |
-| ... plus a part-of-speech fact | 163,561 | admits none of them |
-
-A part of speech is the most basic lexicographic act: you cannot assign one
-without first deciding the string is a word of that class. The two real
-dictionaries both emit one, the blanket `nouns` tag that would have faked it was
-already rejected at extract in Row 5, and the 10,826 rows the wider rule admits
-and this one does not are - every sample inspected - whole gloss SENTENCES that
-arrived in a Tamil-side column. It is config rather than a constant because
-WHICH describing fact a lexicographic source happens to carry is a property of
-the inventory acquired so far, not of Tamil.
+| a headword fact from any authority | 913,297 | admits the party, the stem and the inflections |
+| ... and a describing fact from the same source (Row 9) | 163,561 | admits none of them, and drops 86,249 real dictionary headwords |
+| ... from a TIER-1 source (Row 9a) | 268,297 | admits none of them, and keeps them |
 
 ### Phase 3 - the reasons a surface is NOT a headword
 
@@ -461,7 +558,7 @@ it rather than a number the facts were collapsed into:
 | Test | Verdict | Why here |
 | --- | --- | --- |
 | `knownVerbForm` | `inflected` | Direct evidence: a collected, labelled form. Decision 2's cheapest accuracy. |
-| `hasNonTamil` | `suspectedTypo` | Not badly-shaped Tamil - not Tamil. Rejected by orthography, which is what the class means. |
+| `hasNonTamil` | `suspectedTypo` | Only reachable with `rejectNonTamil` off; with it on, phase 0 has already ruled. |
 | `hasGrantha` | `loanword` | The five grantha consonants exist to write sounds Tamil does not have. |
 | ends illegally | `sandhiArtifact` | The sandhi signature: the doubling that belonged to the NEXT word. |
 | opens illegally, or a bad cluster | `loanword` | Row 7's reconciliation found these rejections are Sanskrit clusters, English transliterations and spaceless compounds. |
@@ -533,22 +630,50 @@ that costs a real headword to catch an inflected form is trading the class Row
 
 ## Design rationale
 
-- **The verdict is an ordered cascade, not a weighted score.** Nine classes are
-  not nine points on a line, so there is nothing for a sum to be a sum of - and
+- **The verdict is an ordered cascade, not a weighted score.** Ten classes are
+  not ten points on a line, so there is nothing for a sum to be a sum of - and
   a cascade lets every verdict be traced to the one rule that produced it, which
   is what turns a misclassification into a reviewable diff. The classes that
   cost the most to get wrong are decided by the strongest evidence and decided
   first. (Fowler.)
+- **"Not a word at all" is a verdict, and it is the FIRST one.** Before it
+  existed the classifier had nowhere to put 641,819 scrape artifacts, so they
+  wore real classes and every count downstream was wrong by ten percent. It is
+  a precondition rather than a rule in phase 3 because a statement about the
+  STRING outranks a statement about the word it is not - otherwise a source tag
+  on a scraped paragraph decides the paragraph is a proper noun. It is NOT a
+  reject at EXTRACT, which would corrupt Row 5's `rowsOut + parseRejects ==
+  rowsIn` ledger where a reject means "I could not READ this record", and NOT a
+  filter at PUBLISH, which would leave the store polluted and make every future
+  consumer re-derive the same predicate. (Fowler, Row 9a.)
+- **`notAWord` stays distinct from `unclassified`.** One is a confident negative
+  and the other is an absent verdict, and they are the only two counters that
+  say whether this layer is working: how much junk came in, and how much real
+  work is left. A single "not served" bucket would answer neither, and the
+  allow-list already stops both from reaching a player. (Fowler, Row 9a.)
+- **An ENTRY is a property of the SOURCE, asked once, not of the ROW.**
+  Requiring a describing fact from the same row's source read well and measured
+  badly: the largest curated dictionary's part-of-speech column was a blanket
+  `nouns` stamp, correctly rejected at extract, so 82.6 percent of its 104,073
+  headwords were demoted to `unclassified` for want of a column that had nothing
+  to do with whether a lexicographer stood behind the word. What a source's unit
+  IS cannot be recovered from one row of it. The tier is declared in
+  `config/lexicon-sources.json` rather than in code or in a list of ids
+  somewhere else (Holy Law #6), required exactly on the roles that may assert
+  word-hood, so registering the next authority forces the ruling. (Row 9a, on
+  Row 12 decision 14's tier split.)
+- **The tier is read from the registry, never from the store.** It is a
+  JUDGEMENT the derived zone applies to evidence rather than part of the
+  evidence, so re-ruling a source costs a config edit and a `--classify` re-run
+  - not a re-stage of its bytes. Mirroring it into the `source` table beside
+  `role` was the alternative, and it would have made every re-ruling a
+  re-ingestion. (Row 9a.)
 - **Attestation is not an entry, and the gate reads the stronger of the two.**
-  Three of the six authority sources are bare word LISTS, and between them they
-  make 589,862 surfaces attested - including a political party, a bound stem and
-  a great many case-marked nouns. Requiring a describing fact from the same
-  source that listed it cuts that to 163,561, admits every one of this layer's
-  reference headwords, and admits none of its reference non-words. It is the
-  same distinction Row 12 decision 14 draws between a lexicographic and an
-  enumerative source, asked per ROW rather than per source - which matters,
-  because the largest lexicographic source also lists inflected forms. (Row 9,
-  on Rows 3 and 5's fact model.)
+  Four of the eight sources that may assert word-hood are bare word LISTS, and
+  between them they attest a political party, a bound stem and a great many
+  case-marked nouns. Requiring a lexicographic source admits every one of this
+  layer's reference headwords and none of its reference non-words. (Row 9, on
+  Rows 3 and 5's fact model; corrected by Row 9a.)
 - **The classifier recomputes the SHAPE rather than reading the score.** The
   `orthotactic` column is one number and three different defects are collapsed
   into it, while the classes they imply are different: an illegal ending is a

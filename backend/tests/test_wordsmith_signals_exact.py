@@ -34,7 +34,11 @@ from pydantic import ValidationError
 
 from _lexicon_workspace import source_bytes
 from yen_tamizh_backend.contracts.lexicon import SignalName
-from yen_tamizh_backend.contracts.lexicon_sources import LexiconSource, LexiconSources
+from yen_tamizh_backend.contracts.lexicon_sources import (
+    ATTESTING_ROLES,
+    LexiconSource,
+    LexiconSources,
+)
 from yen_tamizh_backend.contracts.wordhood import Wordhood
 from yen_tamizh_backend.ezhuthu import (
     CLUSTER_FOLLOWERS,
@@ -62,7 +66,6 @@ from yen_tamizh_backend.wordsmith.enrich import (
 )
 from yen_tamizh_backend.wordsmith.extract import extract, load_registry, sha256_of
 from yen_tamizh_backend.wordsmith.signals_exact import (
-    ATTESTING_ROLES,
     EXACT_SIGNALS,
     orthotactic_score,
 )
@@ -346,7 +349,7 @@ def enriched(tmp_path_factory: pytest.TempPathFactory) -> Enriched:
     extract(registry, root, force=True)
     db = root / "out" / "cache" / "lexicon.db"
     stage(registry, root, db)
-    enrich(CONFIG, db)
+    enrich(registry, CONFIG, db)
     return Enriched(registry=registry, root=root, db=db)
 
 
@@ -506,7 +509,7 @@ def test_a_later_stage_write_makes_the_derived_zone_stale(
     # The guard PUBLISH refuses on, driven end to end rather than asserted.
     db = tmp_path / "stale.db"
     stage(enriched.registry, enriched.root, db)
-    enrich(CONFIG, db)
+    enrich(enriched.registry, CONFIG, db)
     conn = _connect(db)
     try:
         assert derived_is_current(conn)
@@ -525,13 +528,13 @@ def test_enrich_over_an_unchanged_staged_zone_is_idempotent(
 ) -> None:
     db = tmp_path / "twice.db"
     stage(enriched.registry, enriched.root, db)
-    enrich(CONFIG, db)
+    enrich(enriched.registry, CONFIG, db)
     conn = _connect(db)
     try:
         first = canonical_dump(conn)
     finally:
         conn.close()
-    enrich(CONFIG, db)
+    enrich(enriched.registry, CONFIG, db)
     conn = _connect(db)
     try:
         assert canonical_dump(conn) == first
@@ -544,7 +547,7 @@ def test_recomputing_one_signal_reproduces_it_and_leaves_the_stamp_alone(
 ) -> None:
     db = tmp_path / "one.db"
     stage(enriched.registry, enriched.root, db)
-    enrich(CONFIG, db)
+    enrich(enriched.registry, CONFIG, db)
     conn = _connect(db)
     try:
         before = canonical_dump(conn)
@@ -552,7 +555,7 @@ def test_recomputing_one_signal_reproduces_it_and_leaves_the_stamp_alone(
     finally:
         conn.close()
     for signal in EXACT_SIGNALS:
-        enrich(CONFIG, db, signal.name)
+        enrich(enriched.registry, CONFIG, db, signal.name)
     conn = _connect(db)
     try:
         assert canonical_dump(conn) == before
@@ -569,7 +572,7 @@ def test_recomputing_a_signal_before_there_is_a_population_is_refused(
     db = tmp_path / "unenriched.db"
     stage(enriched.registry, enriched.root, db)
     with pytest.raises(ValueError, match="empty"):
-        enrich(CONFIG, db, "attested")
+        enrich(enriched.registry, CONFIG, db, "attested")
 
 
 def test_an_unknown_signal_name_is_refused() -> None:
@@ -619,7 +622,7 @@ def test_the_derived_zone_is_recomputed_whole_rather_than_merged(
     # zone is a pure function of the staged one, so it is dropped, not merged.
     db = tmp_path / "whole.db"
     stage(enriched.registry, enriched.root, db)
-    enrich(CONFIG, db)
+    enrich(enriched.registry, CONFIG, db)
     conn = _connect(db)
     try:
         conn.execute(
@@ -629,7 +632,7 @@ def test_the_derived_zone_is_recomputed_whole_rather_than_merged(
         conn.commit()
     finally:
         conn.close()
-    enrich(CONFIG, db)
+    enrich(enriched.registry, CONFIG, db)
     conn = _connect(db)
     try:
         assert _scalar(conn, "SELECT count(*) FROM signal") == _population(conn)
@@ -683,7 +686,7 @@ def test_removing_a_source_changes_the_signals_it_supported(
     # signal that IS its membership must go to zero everywhere.
     db = tmp_path / "removed.db"
     stage(enriched.registry, enriched.root, db)
-    enrich(CONFIG, db)
+    enrich(enriched.registry, CONFIG, db)
     conn = _connect(db)
     try:
         before = _scalar(conn, "SELECT count(*) FROM signal WHERE nannulValid > 0")
@@ -695,5 +698,5 @@ def test_removing_a_source_changes_the_signals_it_supported(
     # The configured source is gone, so ENRICH must refuse rather than quietly
     # report every surface as failing a grammar check nobody ran.
     with pytest.raises(ValueError, match=nannul):
-        enrich(CONFIG, db)
+        enrich(enriched.registry, CONFIG, db)
     assert _source(enriched.registry, nannul).role == "authority"

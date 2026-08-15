@@ -170,6 +170,7 @@ def _source(**overrides: object) -> dict[str, object]:
         "name": "Nannul-rules validated Tamil word list",
         "origin": "yen-tamizh_OLD src/dictionary/intermediate/ta_words_v1.json",
         "role": "authority",
+        "attestationTier": "enumerative",
         "kind": "json-array",
         "path": "datasets/lexicon/sources/spellcheck-wordlist/source.json",
         "bytes": 2048,

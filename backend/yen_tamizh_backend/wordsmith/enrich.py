@@ -43,6 +43,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 from yen_tamizh_backend.contracts.lexicon import SignalName
+from yen_tamizh_backend.contracts.lexicon_sources import LexiconSources
 from yen_tamizh_backend.contracts.wordhood import Wordhood
 from yen_tamizh_backend.wordsmith.extract import load_registry
 from yen_tamizh_backend.wordsmith.neighbours import RAPIDFUZZ, worker_count
@@ -222,7 +223,7 @@ def _rebuild(ctx: SignalContext, signals: tuple[Signal, ...], run: EnrichRun) ->
     return rows
 
 
-def reclassify(config: Wordhood, db: Path) -> EnrichRun:
+def reclassify(registry: LexiconSources, config: Wordhood, db: Path) -> EnrichRun:
     """Recompute only ``classification``, over the population the zone holds.
 
     The development path for the cascade, mirroring ``--signal`` for the columns
@@ -230,6 +231,10 @@ def reclassify(config: Wordhood, db: Path) -> EnrichRun:
     It deliberately does not touch ``derived_epoch`` either - a verdict is a pure
     function of the staged zone plus the knobs, so recomputing it can neither
     make a current zone stale nor make a stale one current.
+
+    It takes the registry because the headword gate reads each asserting
+    source's declared tier, so re-ruling a source is a config edit plus this
+    call - never a re-stage.
     """
     conn = open_store(db)
     started = time.perf_counter()
@@ -243,7 +248,9 @@ def reclassify(config: Wordhood, db: Path) -> EnrichRun:
                 "first, so there is a population to classify"
             )
         run.rows = int(row[0])
-        ctx = SignalContext(conn=conn, config=config, state=run.state)
+        ctx = SignalContext(
+            conn=conn, registry=registry, config=config, state=run.state
+        )
         with transaction(conn):
             conn.execute("DELETE FROM classification")
             _classify(ctx, run)
@@ -285,6 +292,7 @@ def _recompute(ctx: SignalContext, signal: Signal, run: EnrichRun) -> int:
 
 
 def enrich(
+    registry: LexiconSources,
     config: Wordhood,
     db: Path,
     only: str | None = None,
@@ -298,7 +306,11 @@ def enrich(
     try:
         check_configured_sources(conn, config)
         ctx = SignalContext(
-            conn=conn, config=config, workers=worker_count(workers), state=run.state
+            conn=conn,
+            registry=registry,
+            config=config,
+            workers=worker_count(workers),
+            state=run.state,
         )
         run.signals = _prepare(ctx, signals)
         write_started = time.perf_counter()
@@ -381,9 +393,9 @@ def main() -> None:
     if args.classify:
         if args.signal is not None:
             parser.error("--classify recomputes the verdicts; --signal a column")
-        run = reclassify(config, path)
+        run = reclassify(registry, config, path)
     else:
-        run = enrich(config, path, args.signal, args.workers)
+        run = enrich(registry, config, path, args.signal, args.workers)
     for note in run.notes():
         print(note)
     for measurement in (HEADWORDS, NGRAM_MODEL, NEIGHBOUR_INDEX, ZIPF_FIT):

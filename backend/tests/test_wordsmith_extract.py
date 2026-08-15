@@ -177,7 +177,7 @@ def count_records(source: LexiconSource, path: Path) -> int:
 
 
 def test_the_registry_validates_and_carries_the_row_three_stamp() -> None:
-    assert REGISTRY.version == "2026-08-14"
+    assert REGISTRY.version == "2026-08-16"
     assert REGISTRY.changelog[0].version == REGISTRY.version
     assert REGISTRY.lexiconRoot == "datasets/lexicon"
     assert REGISTRY.outputs == ["ndjson"]

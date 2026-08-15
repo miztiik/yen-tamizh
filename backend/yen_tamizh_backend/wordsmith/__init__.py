@@ -46,7 +46,6 @@ from yen_tamizh_backend.wordsmith.readers import (
     read_elements,
 )
 from yen_tamizh_backend.wordsmith.signals_exact import (
-    ATTESTING_ROLES,
     EXACT_SIGNALS,
     Signal,
     SignalContext,
@@ -76,7 +75,6 @@ from yen_tamizh_backend.wordsmith.store import (
 )
 
 __all__ = [
-    "ATTESTING_ROLES",
     "DEFAULT_CHUNK",
     "EXACT_SIGNALS",
     "EXTRACTOR_VERSION",
