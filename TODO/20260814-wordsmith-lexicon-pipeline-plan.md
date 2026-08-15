@@ -213,10 +213,10 @@ Phase-A rows MUST NOT assert anything about the real corpus - their Oracles run 
 | 3 | `lexicon` + `lexicon-sources` contracts | A | 2, 4 | - | DONE #16 | `../yen-tamizh-lex3` (removed) | #16 | worker |
 | 4 | Source acquisition + committed fixtures | B | - | A | DONE #15 | `../yen-tamizh-lex4` (removed) | #15 | worker |
 | 5 | `wordsmith/extract.py` + `config/lexicon-sources.json` | A | 3, 4 | - | DONE #17 | `../yen-tamizh-lex5` (removed) | #17 | worker |
-| 6 | `wordsmith/stage.py` - the delta store | A | 5 | - | READY | - | - | - |
-| 7 | Word-hood exact signals (attestation, orthotactics, breadth) | A | 6 | B | PENDING | - | - | - |
-| 8 | Word-hood inexact signals (n-gram, neighbour, Zipf) | A | 6 | B | PENDING | - | - | - |
-| 9 | `wordsmith/wordhood.py` - the classifier | A | 7, 8 | - | PENDING | - | - | - |
+| 6 | `wordsmith/stage.py` - the delta store | A | 5 | - | DONE #18 | `../yen-tamizh-lex6` (kept as warm-cache donor) | #18 | worker |
+| 7 | Word-hood exact signals (attestation, orthotactics, breadth) | A | 6 | B | DONE #19 | `../yen-tamizh-lex7` | #19 | worker |
+| 8 | Word-hood inexact signals (n-gram, neighbour, Zipf) | A | 6 | B | DONE #20 | `../yen-tamizh-lex8` | #20 | worker |
+| 9 | `wordsmith/wordhood.py` - the classifier | A | 7, 8 | - | IN-FLIGHT | `../yen-tamizh-lex9` | - | worker |
 | 10 | `wordsmith/llm_enrich.py` - meaning + synonym authoring | B | 9 | - | PENDING | - | - | - |
 | 11 | `wordsmith/publish.py` + `pipeline.py` | B | 10 | - | PENDING | - | - | - |
 | 12 | Cut the derived layer over; real serving gates; two-axis difficulty | B | 1, 11 | - | PENDING | - | - | - |
