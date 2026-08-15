@@ -10,7 +10,8 @@ This package runs on a developer laptop and in CI's test suite. It is never a
 runtime server (Holy Law #1) and the browser never reads anything it writes
 except the published bank the puzzle engine bakes.
 
-EXTRACT is the only stage that exists so far (Row 5).
+EXTRACT and STAGE exist so far (Rows 5 and 6); ENRICH writes the store's
+derived zone from row 7, and PUBLISH renders the artifact from row 11.
 """
 
 from __future__ import annotations
@@ -36,15 +37,49 @@ from yen_tamizh_backend.wordsmith.readers import (
     iter_jsonl,
     read_elements,
 )
+from yen_tamizh_backend.wordsmith.stage import (
+    ApplyResult,
+    ExtractHeader,
+    RemoveResult,
+    StageRun,
+    apply_extract,
+    remove_source,
+    stage,
+)
+from yen_tamizh_backend.wordsmith.store import (
+    SIGNAL_COLUMNS,
+    STORE_VERSION,
+    StoreStats,
+    canonical_digest,
+    canonical_dump,
+    derived_epoch,
+    derived_is_current,
+    open_store,
+    stage_epoch,
+    store_stats,
+    transaction,
+)
 
 __all__ = [
     "DEFAULT_CHUNK",
     "EXTRACTOR_VERSION",
+    "SIGNAL_COLUMNS",
+    "STORE_VERSION",
+    "ApplyResult",
+    "ExtractHeader",
     "Fact",
     "FactKind",
     "Observation",
+    "RemoveResult",
     "SourceResult",
+    "StageRun",
+    "StoreStats",
     "Tally",
+    "apply_extract",
+    "canonical_digest",
+    "canonical_dump",
+    "derived_epoch",
+    "derived_is_current",
     "emit",
     "emit_from",
     "extract",
@@ -54,5 +89,11 @@ __all__ = [
     "iter_jsonl",
     "load_registry",
     "normalize",
+    "open_store",
     "read_elements",
+    "remove_source",
+    "stage",
+    "stage_epoch",
+    "store_stats",
+    "transaction",
 ]

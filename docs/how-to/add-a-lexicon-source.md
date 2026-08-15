@@ -171,6 +171,37 @@ my-dictionary: rowsIn=1290 rowsOut=1290 parseRejects=0 observations=1290 facts=2
 `rowsOut + parseRejects` must equal `rowsIn`; the stage refuses to write the file
 otherwise. A run with no `--source` does every enabled source, and skips any
 whose extract already matches the source digest - pass `--force` to override.
+
+## 5. Re-run STAGE
+
+```
+python -m yen_tamizh_backend.wordsmith.stage --source my-dictionary
+```
+
+This is the step that makes adding a source a DATA change rather than a rebuild:
+the store replaces that one source's rows and touches nobody else's, so the
+other eighteen sources are not re-read.
+
+```
+my-dictionary: observations=1290->1121 surfaces facts=2580 epoch=19 0.1s
+```
+
+`observations` is what the extract held; `surfaces` is what the store holds after
+same-source duplicates are summed, so the two differ exactly when the source
+named one surface more than once.
+
+Three more things this command can do:
+
+- `--remove my-dictionary` deletes that source's whole contribution, in one
+  transaction. It is the entry point for retiring a source, and it is also how
+  you check that a source is contributing what you think it is.
+- `--rebuild` deletes the store first, so the run is a full rebuild. It should
+  never be necessary - a delta and a full rebuild produce identical rows, which
+  is the property [the pipeline doc](../architecture/lexicon/pipeline.md) calls
+  `delta == full` - but it is the fastest way to prove that on your own machine.
+- A corrected re-extraction needs no special handling. Re-running EXTRACT and
+  then STAGE for that source IS the correction, because an apply replaces.
+
 Then re-run the stages below it.
 
 ## When you DO need code

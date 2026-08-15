@@ -35,8 +35,8 @@ to be recomputable in isolation before it can be replaced or removed in
 isolation, and an addressable per-source extract file is the cheapest way to
 make it so.
 
-EXTRACT is the only stage that exists today. STAGE, ENRICH and PUBLISH document
-themselves here as they land.
+EXTRACT and STAGE exist today. ENRICH and PUBLISH document themselves here as
+they land.
 
 ## EXTRACT
 
@@ -109,6 +109,114 @@ four's output, it does not exist while stage one runs, and making stage one read
 stage four's output is a cycle. The extract is written to a `.partial` file and
 renamed only after the ledger reconciles, so a crashed run can never leave a
 truncated file that the header check would then accept as current.
+
+## STAGE
+
+STAGE accumulates every extract into one store so that a source's contribution
+can be REPLACED or REMOVED without touching another source's rows. The property
+it exists to have is a single equation:
+
+```
+delta == full
+```
+
+The staged rows built by applying nineteen extracts one at a time, in any order,
+with any source removed and re-applied along the way, are exactly the rows a
+full rebuild holds. Everything else in this stage is in service of that.
+
+### The store has two zones
+
+| Zone | Written by | Tables |
+| --- | --- | --- |
+| STAGED | STAGE | `source(id, sha256, bytes, role, precedence, kind)`, `observation(source_id, surface, count)`, `fact(source_id, word, attr, value, ordinal)` |
+| DERIVED | ENRICH | `signal(word, attested, orthotactic, breadth, nannulValid, knownVerbForm, ngram, neighbour, zipf)`, `classification(word, wordClass)` |
+
+Beside them sit two version stamps, `stage_epoch(n)` and `derived_epoch(n)`.
+
+**Without the split the `delta == full` equation is simply false.** Four of the
+eight word-hood signals are whole-corpus functions - an n-gram model trained on
+every attested headword, a nearest-neighbour search over every surface, a
+frequency residual, a breadth count. A delta-built store would carry signals
+computed over a PRE-delta fact set while a full rebuild carried signals computed
+over the complete one, and no amount of care in the merge would reconcile them.
+So the derived zone is not merged at all: it is a pure function of the staged
+zone, dropped and recomputed whole on every ENRICH run. Chasing incremental
+signal update would be chasing the wrong goal - recomputing is cheap, and it is
+provable.
+
+The derived zone carries no `source_id`, because no signal IS per-source. A
+fake one would make `DELETE WHERE source_id = ?` silently wrong.
+
+### What makes the staged zone commutative
+
+Three rules, none of them optional:
+
+1. **Nothing is resolved at merge time.** Every fact keeps the `source_id` that
+   asserted it, and two sources contradicting each other keep two rows.
+   Resolution happens at PUBLISH, where precedence is known. A merge that
+   picked a winner would depend on which source arrived first, which is exactly
+   what the equation forbids.
+2. **`observation` conflicts SUM.** A source naming one surface on two lines has
+   observed it twice, and addition does not care which line came first.
+   `REPLACE` would make merge order decide a count. Measured over the real
+   sources: 8,225,706 observations collapse to 8,089,239 rows, so 136,467 of
+   them meet this rule rather than merely passing by it.
+3. **Replace and remove are one transaction each.** Delete the source's rows,
+   insert the new ones, stamp the epoch - `BEGIN IMMEDIATE ... COMMIT`. A crash
+   leaves the store holding either the old contribution or the new one, never
+   half of each, and a corrupt extract found half-way through an apply rolls the
+   whole apply back.
+
+### The epoch guard
+
+`stage_epoch` counts STAGE's writes. ENRICH stamps `derived_epoch` with the
+staged version it computed over, and **PUBLISH refuses to run when the two
+disagree** - that is the whole guard, and it is what stops a published artifact
+carrying signals from a store that has moved on underneath them.
+
+The stamp is a COUNTER rather than a digest of the staged content, and the
+asymmetry is the reason. A counter can only ever claim the derived zone is stale
+when it is not, which costs one recompute. A digest can claim the derived zone
+is CURRENT when it is not - the extractor version is not part of the staged
+content, so re-extracting with a changed extractor and re-staging would leave
+any content digest unmoved - and that ships wrong data.
+
+Being a counter makes the epoch PATH-DEPENDENT by design: a store that was
+rebuilt, then had one source removed and re-applied, has written twice more than
+one that was only rebuilt. That is the stamp working. It is also why the
+canonical dump below covers every DATA table and neither version stamp: a
+path-independence Oracle over a deliberately path-dependent counter would be
+asserting that the guard is broken.
+
+### The canonical dump
+
+The instrument the equation is proved with. It reads every data table in both
+zones - discovered from `sqlite_schema` rather than from a list, so a table a
+later row adds is covered without anyone remembering - projects every column,
+and orders by all of them. `rowid` is never selected and never ordered on,
+because insertion order differs between a full build and a delta build BY
+CONSTRUCTION; an implicit-order dump would compare the build path rather than
+the result.
+
+### Everything still streams
+
+Rows reach `executemany` as a GENERATOR over the extract file, never a
+materialized list. The largest extract is 445 MB and 2.7M facts, and reading it
+into memory to insert it would trade away at stage two exactly the property
+stage one was built to have. The file is read TWICE - once for observations,
+once for facts - because two streaming passes cost seconds and one buffered pass
+costs 445 MB.
+
+The bulk-load pragmas are NAMED rather than defaulted: `journal_mode=WAL`,
+`synchronous=OFF`, `cache_size=-262144`, `temp_store=MEMORY`,
+`mmap_size=268435456`. Without them an 8.2M-row load runs at one to three
+thousand rows a second - 45 minutes to over two hours. With them, and with every
+secondary index created AFTER the load rather than maintained during it, the
+measured real load is 278 seconds.
+
+`synchronous=OFF` is legitimate here and only here: the store is gitignored and
+rebuildable by one command, and the reproducibility anchor is the published
+artifact, never this file.
 
 ## Design rationale
 
@@ -197,6 +305,40 @@ boundary means the stage that read the bytes, not the stage three steps later
 that has lost the context; and the fix is one line of config either way. The
 same holds for a category label in neither alias map.
 
+### SQLite is the STAGING substrate, and it is never an output
+
+The staging store needs exactly two operations - upsert a source's rows, and
+delete a source's rows - over roughly 11.5 million rows, on a laptop, with no
+new dependency. `INSERT ... ON CONFLICT DO UPDATE` and
+`DELETE WHERE source_id = ?` are that, and they are in the standard library.
+Holy Law #8 asks what a dependency buys; here the answer is nothing, because
+the mature open-source option is already installed.
+
+**The store is never an artifact.** A SQLite file is not byte-deterministic -
+page layout and free-list state depend on the order rows arrived and on what was
+deleted along the way - so it can never be the reproducibility anchor. The
+anchor is the published lexicon. Which is also why the `delta == full` Oracle
+compares a CANONICAL DUMP rather than file bytes: the equation is about rows,
+and rows are the only thing about a database file that is well defined.
+
+Committing it was rejected on the same ground the NDJSON artifact was chosen on:
+a binary blob cannot be reviewed in a diff, and every rebuild would add its
+whole weight to git history.
+
+### The signal table is WIDE, while the published shape is a map
+
+`wordhood` is published as a name-keyed map so that signals can land in separate
+rows of work without either one shipping a half-populated object. The STORE is
+the opposite shape - one row per surface, one COLUMN per signal - and the two
+are not in tension, because they are optimising different things.
+
+At the measured 6,249,903 surfaces the entity-attribute-value shape is 50 million
+rows against 6.25 million, and it turns every whole-corpus aggregation - which is
+what four of the eight signals ARE - into a `GROUP BY` over 50 million rows. The
+independence the map buys is bought instead by `ALTER TABLE ADD COLUMN`, which is
+O(1) metadata in SQLite and free in any case, because the derived zone is dropped
+and recomputed whole.
+
 ## Rejected alternatives
 
 | Option | Why rejected |
@@ -208,6 +350,13 @@ same holds for a category label in neither alias map.
 | `resource.getrusage` for the memory measurement | POSIX-only. It raises on the Windows machine that performs the real run, so the gate would be untestable exactly where the run happens. `tracemalloc` is stdlib and cross-platform. |
 | Reading the published lexicon to decide whether to skip a source | Stage one would depend on stage four's output, which does not exist the first time the pipeline runs. The extract's own header line carries the digest instead. |
 | Emitting a source-level constant part of speech for the inflected-verb lists | The registry can name a FIELD that holds a tag; it cannot name a tag the whole file implies, and inventing one in code would put a semantic knob outside `config/`. The lists emit observations, and their `role` is what the classifier reads. |
+| Committed JSONL as the staging substrate | A one-row delta rewrites a 200 MB file, git history grows by the whole file on every refresh, and there is no upsert primitive at all. |
+| Parquet as the staging substrate | A new heavy dependency with no build-time beneficiary, not git-diffable, and still no upsert. Holy Law #8 unanswered. |
+| DuckDB as the staging substrate | It buys OLAP scan speed. The required operations are OLTP upsert and delete-by-source, which SQLite does with zero new dependency. |
+| Plain Python dicts and no store at all | Every delta becomes a full re-merge of every extract - the destructive funnel with extra steps. Not restartable, not inspectable, and it breaks stage independence. |
+| One zone, with signals namespaced by `source_id` | No signal IS per-source; four are whole-corpus aggregates. A fake `source_id` on a signal row would make `DELETE WHERE source_id = ?` silently wrong. |
+| A content digest instead of a write counter for `stage_epoch` | It can report the derived zone CURRENT when it is not: the extractor version is not part of the staged content, so a re-extraction that changes every fact can leave any digest over those facts' source rows unmoved. A counter's only failure mode is one unnecessary recompute. |
+
 
 ## See also
 
