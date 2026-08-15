@@ -41,6 +41,7 @@ from typing import Any
 import pytest
 from pydantic import ValidationError
 
+from _lexicon_workspace import source_bytes
 from yen_tamizh_backend.contracts.lexicon_sources import LexiconSources
 from yen_tamizh_backend.contracts.wordhood import (
     MAX_EDIT_DISTANCE,
@@ -440,7 +441,7 @@ def enriched(tmp_path_factory: pytest.TempPathFactory) -> Enriched:
     root = tmp_path_factory.mktemp("inexact")
     entries: list[dict[str, Any]] = []
     for source in REGISTRY.sources:
-        fixture = _FIXTURES / f"{source.id}.1x{Path(source.path).suffix}"
+        fixture = source_bytes(_REPO_ROOT, _FIXTURES, source)
         staged = root / "sources" / fixture.name
         staged.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(fixture, staged)

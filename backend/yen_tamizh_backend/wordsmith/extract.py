@@ -34,9 +34,15 @@ import unicodedata
 from collections.abc import Iterator, Sequence
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Literal, TextIO
+from typing import Any, Literal, TextIO, cast
 
 from yen_tamizh_backend.contracts.lexicon_sources import LexiconSource, LexiconSources
+from yen_tamizh_backend.wordsmith.llm_enrich import (
+    AUTHORED_SOURCE_ID,
+    authored_facts,
+    parse_entry,
+    themes_of,
+)
 from yen_tamizh_backend.wordsmith.readers import DEFAULT_CHUNK, read_elements
 
 # Bumped whenever this module would produce different bytes from the same input.
@@ -500,11 +506,53 @@ def _split_a2_entry(tamil: str) -> tuple[str | None, list[str]]:
     return tag, terms
 
 
+class _AuthoredEntriesExtractor(SourceExtractor):
+    """The authored source: meanings, synonyms, translations, POS and themes.
+
+    Its bytes are written by the agent executing the pipeline rather than
+    acquired from a third party, so unlike every other reader this one may hold
+    the file to a shape: ``llm_enrich`` validates each row and raises naming the
+    line and the rule it broke. A row this reader accepts is one a reviewer
+    could have checked in the diff.
+
+    The row's ``pos`` and ``categories`` bypass ``posAliases`` and
+    ``categoryAliases`` deliberately. Those maps translate a third-party
+    source's own orthography into the closed vocabularies; an authored row
+    writes the closed vocabularies natively, and the validator - not a map - is
+    what refuses anything outside them.
+    """
+
+    def __init__(self, source: LexiconSource, registry: LexiconSources) -> None:
+        super().__init__(source, registry)
+        self._themes = themes_of(registry)
+        self._previous: str | None = None
+        self._line = 0
+
+    def feed(self, element: Any, tally: Tally) -> Iterator[Emission]:
+        self._line += 1
+        entry = parse_entry(
+            element, self._themes, f"{self.source.path}:{self._line}", self._previous
+        )
+        self._previous = entry.word
+        tally.rowsOut += 1
+        yield Observation(surface=entry.word, count=0)
+        if self.asserts_wordhood:
+            yield Fact(word=entry.word, attr="headword", value=entry.word, ordinal=0)
+        for attr, value, ordinal in authored_facts(entry):
+            yield Fact(
+                word=entry.word,
+                attr=cast(FactKind, attr),
+                value=value,
+                ordinal=ordinal,
+            )
+
+
 _EXTRACTORS: dict[str, type[SourceExtractor]] = {
     "master-dictionary": _MasterDictionaryExtractor,
     "themed-vocabulary": _ThemedVocabularyExtractor,
     "wiktextract-ta": _WiktextractExtractor,
     "en-ta-dictionary": _EnTaDictionaryExtractor,
+    AUTHORED_SOURCE_ID: _AuthoredEntriesExtractor,
 }
 
 

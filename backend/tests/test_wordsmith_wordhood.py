@@ -35,6 +35,7 @@ from typing import Any
 import pytest
 from pydantic import ValidationError
 
+from _lexicon_workspace import source_bytes
 from yen_tamizh_backend.contracts.lexicon import WordClass
 from yen_tamizh_backend.contracts.lexicon_sources import LexiconSource, LexiconSources
 from yen_tamizh_backend.contracts.wordhood import Wordhood
@@ -406,7 +407,7 @@ def _fixture_registry(root: Path) -> LexiconSources:
     entries: list[dict[str, Any]] = []
     source: LexiconSource
     for source in REGISTRY.sources:
-        fixture = _FIXTURES / f"{source.id}.1x{Path(source.path).suffix}"
+        fixture = source_bytes(_REPO_ROOT, _FIXTURES, source)
         staged = root / "sources" / fixture.name
         staged.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(fixture, staged)

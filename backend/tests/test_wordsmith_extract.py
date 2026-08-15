@@ -35,6 +35,7 @@ from typing import Any
 
 import pytest
 
+from _lexicon_workspace import source_bytes
 from yen_tamizh_backend.contracts.lexicon_sources import LexiconSource, LexiconSources
 from yen_tamizh_backend.wordsmith.extract import (
     EXTRACTOR_VERSION,
@@ -48,6 +49,7 @@ from yen_tamizh_backend.wordsmith.extract import (
     normalize,
     sha256_of,
 )
+from yen_tamizh_backend.wordsmith.llm_enrich import AUTHORED_SOURCE_ID
 from yen_tamizh_backend.wordsmith.readers import iter_json_array
 
 _REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -57,6 +59,9 @@ _FIXTURES = _REPO_ROOT / "datasets" / "fixtures" / "lexicon"
 
 REGISTRY = load_registry(_REGISTRY_PATH)
 SOURCES = list(REGISTRY.sources)
+# Every source EXCEPT the authored one, which is not acquired: its bytes are
+# committed, so it has no ledger row and no 1x / 10x fixture pair to slice.
+ACQUIRED = [source for source in SOURCES if source.id != AUTHORED_SOURCE_ID]
 
 # The chunk sizes the Oracle names. One byte forces a split inside every
 # element, which is the case a whole-document parse can never fail on.
@@ -107,6 +112,15 @@ LEDGER = _ledger_rows()
 
 
 def fixture_for(source: LexiconSource, scale: str) -> Path:
+    """The committed bytes for one source at one scale.
+
+    A fixture slice exists because a raw source is gitignored. The authored
+    source is not gitignored, so it has no slice at either scale and is only
+    ever exercised against its real file - which is why the ten-times predicate
+    below is parametrized over ACQUIRED.
+    """
+    if source.id == AUTHORED_SOURCE_ID:
+        return source_bytes(_REPO_ROOT, _FIXTURES, source)
     return _FIXTURES / f"{source.id}.{scale}{Path(source.path).suffix}"
 
 
@@ -169,7 +183,7 @@ def test_the_registry_validates_and_carries_the_row_three_stamp() -> None:
     assert REGISTRY.outputs == ["ndjson"]
 
 
-@pytest.mark.parametrize("source", SOURCES, ids=lambda source: source.id)
+@pytest.mark.parametrize("source", ACQUIRED, ids=lambda source: source.id)
 def test_every_entry_agrees_with_the_acquisition_ledger(source: LexiconSource) -> None:
     row = LEDGER[source.id]
     assert source.role == row["role"]
@@ -179,10 +193,26 @@ def test_every_entry_agrees_with_the_acquisition_ledger(source: LexiconSource) -
     assert source.origin == row["origin"]
 
 
+def test_the_authored_source_is_committed_rather_than_acquired() -> None:
+    # The ledger records ACQUISITION - where third-party bytes came from and
+    # what they hashed to when they were fetched. The authored source was not
+    # fetched from anywhere, so a ledger row would be describing an event that
+    # never happened. Its bytes are in the repository instead, which is a
+    # stronger check than a recorded digest: the digest is verified against the
+    # real file on every run.
+    entry = next(source for source in SOURCES if source.id == AUTHORED_SOURCE_ID)
+    assert entry.id not in LEDGER
+    assert entry.role == "authored"
+    path = _REPO_ROOT / entry.path
+    digest, size = sha256_of(path)
+    assert size == entry.bytes
+    assert digest == entry.sha256
+
+
 def test_every_acquired_ledger_source_is_registered_and_the_unacquired_one_is_not() -> (
     None
 ):
-    registered = {source.id for source in SOURCES}
+    registered = {source.id for source in ACQUIRED}
     acquired = {name for name, row in LEDGER.items() if row["status"] != "NOT ACQUIRED"}
     assert registered == acquired
     # A6 has no bytes, so it has no path and no digest to record. It stays in
@@ -243,7 +273,7 @@ def test_a_reader_is_byte_deterministic_across_runs(
     assert first.tally == again.tally
 
 
-@pytest.mark.parametrize("source", SOURCES, ids=lambda source: source.id)
+@pytest.mark.parametrize("source", ACQUIRED, ids=lambda source: source.id)
 @pytest.mark.parametrize("scale", ["1x", "10x"])
 def test_the_extract_is_lossless(
     source: LexiconSource, scale: str, tmp_path: Path
@@ -290,7 +320,11 @@ def test_only_an_authority_asserts_word_hood(
         for line in result.out.read_text(encoding="utf-8").splitlines()[1:-1]
         if json.loads(line).get("attr") == "headword"
     )
-    if entry.role == "authority":
+    # `authored` sits beside `authority` here and nowhere else: row 4 decision 1
+    # lets exactly those two roles assert word-hood. What keeps the authored
+    # source from being a way to smuggle one in is row 12's gate, which refuses
+    # to count an authored attestation until a human has reviewed the row.
+    if entry.role in ("authority", "authored"):
         assert headwords > 0
     else:
         assert headwords == 0
@@ -437,7 +471,7 @@ def _peak_bytes(path: Path, source: LexiconSource, registry: LexiconSources) -> 
     return peak
 
 
-@pytest.mark.parametrize("source", SOURCES, ids=lambda source: source.id)
+@pytest.mark.parametrize("source", ACQUIRED, ids=lambda source: source.id)
 def test_a_ten_times_larger_fixture_peaks_within_a_fifth_more(
     source: LexiconSource,
 ) -> None:

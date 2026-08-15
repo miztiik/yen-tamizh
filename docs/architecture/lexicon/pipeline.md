@@ -465,5 +465,6 @@ and recomputed whole.
 - [word-hood.md](word-hood.md) - the eight signals ENRICH computes and what each one catches.
 - [../contracts/schemas.md](../contracts/schemas.md) - the `lexicon` and `lexicon-sources` contracts.
 - [../../how-to/add-a-lexicon-source.md](../../how-to/add-a-lexicon-source.md) - adding a source as a data change.
+- [../../how-to/enrich-the-lexicon.md](../../how-to/enrich-the-lexicon.md) - the one source that is AUTHORED rather than acquired: its provenance fields, its evidence tiers and the human review loop.
 - [../../../datasets/lexicon/sources/README.md](../../../datasets/lexicon/sources/README.md) - the acquisition ledger: every source's origin, bytes and sha256.
 - [../../../CLAUDE.md](../../../CLAUDE.md) - Holy Law #1 (no runtime backend), #3 (contracts before logic), #6 (no hardcoding).

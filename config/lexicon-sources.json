@@ -384,6 +384,19 @@
       "wordColumn": 0,
       "countColumn": 1,
       "note": "DISABLED: the extraction that produced it stripped vowel signs and pulli, so its tokens are bare consonant skeletons - valid Tamil letters that are not Tamil words, and some of which cannot begin a Tamil word at all. Registered and explained rather than deleted, so nobody re-adds it in a year having forgotten why it went. Flip it on only if a corrected extraction replaces the bytes, which would change its sha256."
+    },
+    {
+      "id": "llm-authored",
+      "name": "Agent-authored Tamil meanings, synonyms, translations, POS and themes",
+      "origin": "authored in-session by the agent executing the pipeline; see docs/how-to/enrich-the-lexicon.md",
+      "role": "authored",
+      "kind": "jsonl",
+      "path": "datasets/lexicon/sources/llm-authored/entries.jsonl",
+      "bytes": 261899,
+      "sha256": "1cd2c445ef5dec2c59afee0d420651b8be744f7450861310e6860cc8eda2eccb",
+      "precedence": 19,
+      "wordField": "word",
+      "note": "The only source whose bytes are COMMITTED rather than acquired, and the only one whose reader validates a shape: see wordsmith/llm_enrich.py. Last precedence on purpose - an authored English translation must lose the single display slot to every attested one. No posField or categoryField is mapped: an authored row writes the closed pos and category vocabularies natively, so it has no raw orthography for posAliases or categoryAliases to translate."
     }
   ]
 }

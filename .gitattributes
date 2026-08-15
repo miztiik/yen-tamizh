@@ -25,3 +25,10 @@ datasets/fixtures/lexicon/** -text
 # wrote, so they are pinned to LF instead - the same rule the generated contract
 # artifacts above use, and for the same reason.
 datasets/fixtures/*.jsonl text eol=lf
+
+# The authored lexicon source is hand-written UTF-8 Tamil whose sha256 and byte
+# count are recorded in config/lexicon-sources.json and re-verified by EXTRACT on
+# every run. Any end-of-line conversion would change those bytes and fail the
+# run on the next contributor's machine, so LF is pinned rather than left to
+# core.autocrlf.
+datasets/lexicon/sources/llm-authored/entries.jsonl text eol=lf
