@@ -1,0 +1,413 @@
+{
+  "$defs": {
+    "ChangelogEntry": {
+      "additionalProperties": false,
+      "description": "One dated entry in a schema's in-file change log (newest first).\n\n``version`` is the date-stamp of the change; ``change`` is what changed;\n``why`` is the reason it changed (CLAUDE.md section 11).",
+      "properties": {
+        "change": {
+          "minLength": 1,
+          "title": "Change",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+          "title": "Version",
+          "type": "string"
+        },
+        "why": {
+          "minLength": 1,
+          "title": "Why",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "change",
+        "why"
+      ],
+      "title": "ChangelogEntry",
+      "type": "object"
+    },
+    "LexiconSource": {
+      "additionalProperties": false,
+      "description": "One registered source: where its bytes are, what it may assert, how to read it.",
+      "properties": {
+        "bytes": {
+          "minimum": 0,
+          "title": "Bytes",
+          "type": "integer"
+        },
+        "categoryField": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Categoryfield"
+        },
+        "countColumn": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Countcolumn"
+        },
+        "countField": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Countfield"
+        },
+        "delimiter": {
+          "anyOf": [
+            {
+              "maxLength": 1,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Delimiter"
+        },
+        "elementKind": {
+          "anyOf": [
+            {
+              "enum": [
+                "object",
+                "string"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Elementkind"
+        },
+        "enabled": {
+          "default": true,
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "hasHeader": {
+          "default": false,
+          "title": "Hasheader",
+          "type": "boolean"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "delimited",
+            "json-array",
+            "jsonl"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        },
+        "origin": {
+          "minLength": 1,
+          "title": "Origin",
+          "type": "string"
+        },
+        "path": {
+          "pattern": "^[A-Za-z0-9._-]+(/[A-Za-z0-9._+-]+)*$",
+          "title": "Path",
+          "type": "string"
+        },
+        "posField": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Posfield"
+        },
+        "precedence": {
+          "minimum": 0,
+          "title": "Precedence",
+          "type": "integer"
+        },
+        "role": {
+          "enum": [
+            "authority",
+            "formEvidence",
+            "frequency",
+            "category",
+            "authored"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "rootKey": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rootkey"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "wordColumn": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Wordcolumn"
+        },
+        "wordField": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Wordfield"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "origin",
+        "role",
+        "kind",
+        "path",
+        "bytes",
+        "sha256",
+        "precedence"
+      ],
+      "title": "LexiconSource",
+      "type": "object"
+    },
+    "PosAlias": {
+      "additionalProperties": false,
+      "description": "Where one raw source POS tag lands.\n\nThe census tags are not all parts of speech, so one destination is not\nenough. A tag routes to ``pos`` (it names a part of speech Tamil has), to\n``wordClassEvidence`` (it is a fact about what KIND of surface this is - a\nproper name, a bound morpheme, a contracted form - which is the classifier's\ninput, never its verdict), or it carries an explicit ``reject`` naming why\nit yields no part of speech. A tag may route to both of the first two: a\nplural-noun tag carries two facts and each goes to its own home.",
+      "properties": {
+        "note": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        },
+        "pos": {
+          "anyOf": [
+            {
+              "items": {
+                "enum": [
+                  "adjective",
+                  "adverb",
+                  "conjunction",
+                  "determiner",
+                  "interjection",
+                  "noun",
+                  "numeral",
+                  "particle",
+                  "postposition",
+                  "pronoun",
+                  "verb"
+                ],
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pos"
+        },
+        "reject": {
+          "anyOf": [
+            {
+              "enum": [
+                "notAWord",
+                "multiWordUnit",
+                "noTamilCounterpart",
+                "notAPosLabel"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reject"
+        },
+        "wordClassEvidence": {
+          "anyOf": [
+            {
+              "items": {
+                "enum": [
+                  "inflected",
+                  "colloquial",
+                  "properNoun",
+                  "loanword",
+                  "boundStem",
+                  "sandhiArtifact",
+                  "suspectedTypo"
+                ],
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Wordclassevidence"
+        }
+      },
+      "title": "PosAlias",
+      "type": "object"
+    }
+  },
+  "$id": "lexicon-sources.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "The declarative lexicon source registry, read by every stage.",
+  "properties": {
+    "categoryAliases": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Categoryaliases",
+      "type": "object"
+    },
+    "changelog": {
+      "items": {
+        "$ref": "#/$defs/ChangelogEntry"
+      },
+      "minItems": 1,
+      "title": "Changelog",
+      "type": "array"
+    },
+    "lexiconRoot": {
+      "pattern": "^[A-Za-z0-9._-]+(/[A-Za-z0-9._+-]+)*$",
+      "title": "Lexiconroot",
+      "type": "string"
+    },
+    "outputs": {
+      "items": {
+        "enum": [
+          "ndjson",
+          "csv",
+          "sqlite"
+        ],
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Outputs",
+      "type": "array"
+    },
+    "posAliases": {
+      "additionalProperties": {
+        "$ref": "#/$defs/PosAlias"
+      },
+      "minProperties": 1,
+      "title": "Posaliases",
+      "type": "object"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/LexiconSource"
+      },
+      "minItems": 1,
+      "title": "Sources",
+      "type": "array"
+    },
+    "version": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "version",
+    "changelog",
+    "lexiconRoot",
+    "outputs",
+    "posAliases",
+    "sources"
+  ],
+  "title": "LexiconSources",
+  "type": "object"
+}

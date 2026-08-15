@@ -66,6 +66,32 @@ from yen_tamizh_backend.contracts.game_wordlist import (
     GameWordlist,
 )
 from yen_tamizh_backend.contracts.glyph_manifest import GlyphManifest, GlyphShape
+from yen_tamizh_backend.contracts.lexicon import (
+    LEXICON_CHANGELOG,
+    LEXICON_VERSION,
+    Lexicon,
+    LexiconCounters,
+    LexiconEntry,
+    LexiconPartition,
+    LexiconProvenance,
+    PartOfSpeech,
+    ProvenanceState,
+    SignalName,
+    WordClass,
+)
+from yen_tamizh_backend.contracts.lexicon_sources import (
+    LEXICON_SOURCES_CHANGELOG,
+    LEXICON_SOURCES_VERSION,
+    ElementKind,
+    LexiconSource,
+    LexiconSourceKind,
+    LexiconSources,
+    OutputFormat,
+    PosAlias,
+    PosRejection,
+    SourceRole,
+    WordClassEvidence,
+)
 from yen_tamizh_backend.contracts.master_wordlist import (
     FreqBand,
     IngestCounters,
@@ -81,7 +107,10 @@ from yen_tamizh_backend.contracts.save import Save, compute_day_key
 # load-bearing. Row 7 adds the six core surfaces plus copy alongside the Row 5
 # demonstrator and the Row 10 glyph manifest; Row 8 adds the corpus layer, Row 9
 # the derived layer between the corpus and the puzzle engine, and Row 13 the
-# daily engine's own registry.
+# daily engine's own registry. The lexicon layer that supersedes the corpus one
+# registers its meta document and its source registry; ``LexiconEntry`` is NOT
+# here - a data row carries no ``version`` / ``changelog``, so it is not a
+# ``SchemaModel``, and it reaches the schema through ``Lexicon.rowSchema``.
 REGISTRY: tuple[type[SchemaModel], ...] = (
     AnagramPuzzle,
     AppConfig,
@@ -94,12 +123,18 @@ REGISTRY: tuple[type[SchemaModel], ...] = (
     Example,
     GameWordlist,
     GlyphManifest,
+    Lexicon,
+    LexiconSources,
     MasterWordlist,
     PuzzleFile,
     Save,
 )
 
 __all__ = [
+    "LEXICON_CHANGELOG",
+    "LEXICON_SOURCES_CHANGELOG",
+    "LEXICON_SOURCES_VERSION",
+    "LEXICON_VERSION",
     "REGISTRY",
     "AnagramPuzzle",
     "AppConfig",
@@ -121,6 +156,7 @@ __all__ = [
     "DerivedWordlists",
     "DifficultyBand",
     "DifficultyId",
+    "ElementKind",
     "EventEnvelope",
     "Example",
     "FreqBand",
@@ -136,19 +172,36 @@ __all__ = [
     "HintsConfig",
     "InfiniteConfig",
     "IngestCounters",
+    "Lexicon",
+    "LexiconCounters",
+    "LexiconEntry",
+    "LexiconPartition",
+    "LexiconProvenance",
+    "LexiconSource",
+    "LexiconSourceKind",
+    "LexiconSources",
     "MasterWord",
     "MasterWordlist",
     "ModeId",
+    "OutputFormat",
     "PackId",
+    "PartOfSpeech",
+    "PosAlias",
+    "PosRejection",
+    "ProvenanceState",
     "PuzzleFile",
     "PuzzleItem",
     "RelPath",
     "Save",
     "SchemaModel",
+    "SignalName",
     "SourceId",
     "SourceKind",
     "SourceProvenance",
+    "SourceRole",
     "TimeTrialConfig",
     "UiConfig",
+    "WordClass",
+    "WordClassEvidence",
     "compute_day_key",
 ]
