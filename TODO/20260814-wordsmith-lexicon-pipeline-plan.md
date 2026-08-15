@@ -192,19 +192,39 @@ Sparse is expected and is the point: the column exists from row 3, whatever evid
 
 ## 1. Status Reckoner
 
-### The AGENT / OPERATOR split - read this before dispatching anything
+### The AGENT / OPERATOR split - what was authored, and what actually happened
 
-The two adversarial audits (2026-08-14) converged on one structural fault: the plan mixed rows a worktree-isolated worker subagent can complete against committed fixtures with rows that require ~265 MB of gitignored raw sources, a populated SQLite store, and a paid model key - none of which exist inside a fresh worktree. That mismatch was the root cause of a large share of the findings.
+Authored 2026-08-14 on the premise that a worktree-isolated worker could not reach ~265 MB of gitignored raw sources, so the plan was split into two phases with a gate between them.
 
-The plan is therefore split into two phases with an explicit gate between them.
+**That premise was FALSE on the execution machine, and the gate is CLOSED (2026-08-15).** The orchestrator verified it before dispatching anything: the predecessor repository was present locally with every A1-A5 / B1-B2 / C1 / D1-D8 file, and all three network-only sources returned HTTP 200. The user authorized row 4 as an agent row. It ran, acquired 18 of 19 sources, and committed the fixtures. Rows 3 and 5-9 then ran against the real data.
 
-| Phase | Rows | Who runs it | Proven against |
+| Phase | Rows | Actual outcome |
+| --- | --- | --- |
+| **A - agent-executable** | 1, 2, 3, 5, 6, 7, 8, 9, 13 | Rows 1, 2, 3, 5, 6, 7, 8, 9 DONE. Row 13 waits on row 12. |
+| **GATE** | row 4 | CLOSED - premise false, run as an agent row, PR #15. A6 alone NOT ACQUIRED. |
+| **B - operator-gated** | 4, 10, 11, 12, 14, 15 | Row 4 DONE. Rows 10-12 and 14-15 remain. Rows 10 and 11 need a user go-ahead on authoring scale and repo size - NOT on data availability, which is settled. |
+
+Two obsolete clauses in the original framing are recorded here rather than silently deleted: there is NO paid model key anywhere in this plan (row 10 decision 1 makes the authoring agent the producer and `llm_enrich.py` a reader of a committed file), and the raw sources DO exist on the execution machine.
+
+Rows 7 and 8 are listed in parallel-group B but are NOT parallelizable: row 7 creates `enrich.py` and `config/wordhood.json`, and its own decision text says row 8 extends both. They were serialized.
+
+### Measured reality - these numbers SUPERSEDE the authored estimates
+
+Every figure below was measured against the real staged store during execution, and each replaces an assumption the plan was authored against. A later row citing an authored estimate instead of one of these is wrong.
+
+| Quantity | Authored estimate | MEASURED | Consequence |
 | --- | --- | --- | --- |
-| **A - agent-executable** | 1, 2, 3, 5, 6, 7, 8, 9, 13 | worktree-isolated worker subagents, autonomously | committed fixtures only |
-| **GATE** | - | the operator, on their own machine | acquires sources (row 4), runs the pipeline, commits the artifacts |
-| **B - operator-gated** | 4, 10, 11, 12, 14, 15 | operator runs the data; a worker lands the code and tests around it | the real artifacts, once they exist |
+| Distinct surfaces | 3,967,009 | **6,249,903** (+57.5%) | Row 11's artifact and every per-cell byte projection grow with it |
+| Published lexicon size | ~750-840 MB | **~1.23 GiB** | More cells cross the 50 MiB target and split; the layout itself still holds |
+| `headword` surfaces | not estimated | **49,873**, of which **27,999** are 3-6 ezhuthu | Row 12's floor is 6,000 served at 3-6 ezhuthu, so there is headroom before the four gates |
+| Word-hood authorities | 7 (A1-A7) | **6** - A6 unobtainable; A7 is 13,773 rows, not open-ended | Row 12 decision 14's tier-1 composition rule exists because of this |
+| Row 8 pruned query set | 2.5-3x cut | **1.52x** (4,115,457 of 6,249,903) | `neighbour` is NULL on 2,134,446 surfaces; NULL means "not asked", never zero |
+| ENRICH wall clock / peak RSS | under 5 min / under 1.2 GB | **~20 min / ~2.1 GiB** | Both missed, measured and reported, never lowered. Acceptable because section 0 rules the pipeline runs on a developer laptop a handful of times - Holy Law #2's budget governs the player's phone at RUNTIME, not a build-time laptop |
+| A2 synonym clique | not estimated | **445 MiB / 2,709,708 facts = 79% of all facts** | The dominant load in STAGE and PUBLISH |
 
-Phase-A rows MUST NOT assert anything about the real corpus - their Oracles run against `datasets/fixtures/`. Phase-B rows may. A worker dispatched on a phase-B row without the operator gate having been passed reports BLOCKED rather than inventing data; that is a correct outcome, not a failure.
+### The documentation-structure / author-a-plan question - RESOLVED, no amendment needed
+
+Raised during execution as a possible contradiction. It is not one (user-ruled 2026-08-15). `docs/reference/documentation-structure.md` says a plan-doc never carries rationale prose; `docs/how-to/author-a-plan.md` says every claim that drove a decision lives in a Decisions or Rejected-alternatives row. Both are correct, and they speak to different things: the plan-doc carries the trade-off as an EXECUTION instruction and is DELETED at closure, while the durable rationale lands on the living doc the decision impacts (Holy Law #4). That is exactly how this plan has been run - every row shipped its doc target in the same commit as its code. Neither doc requires an amendment; this entry exists so the question is not re-litigated.
 
 | # | Row title | Phase | Depends-on | Parallel-group | Status | Worktree | PR | Subagent |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
