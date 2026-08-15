@@ -37,7 +37,11 @@ from pydantic import ValidationError
 
 from _lexicon_workspace import source_bytes
 from yen_tamizh_backend.contracts.lexicon import WordClass
-from yen_tamizh_backend.contracts.lexicon_sources import LexiconSource, LexiconSources
+from yen_tamizh_backend.contracts.lexicon_sources import (
+    ATTESTING_ROLES,
+    LexiconSource,
+    LexiconSources,
+)
 from yen_tamizh_backend.contracts.wordhood import Wordhood
 from yen_tamizh_backend.wordsmith.enrich import enrich, load_config, reclassify
 from yen_tamizh_backend.wordsmith.extract import extract, load_registry, sha256_of
@@ -61,6 +65,7 @@ from yen_tamizh_backend.wordsmith.wordhood import (
     is_discovery,
     parse_evidence,
     tally,
+    tier_one_sources,
 )
 
 _REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -81,7 +86,28 @@ NEVER_A_HEADWORD: tuple[WordClass, ...] = (
     "suspectedTypo",
     "boundStem",
     "properNoun",
+    "notAWord",
 )
+
+# What a hand-labelled ``notAWord`` row must NOT come out as. Row 9's Oracle
+# asserted only that junk was not a headword, which is exactly why repeated
+# aytham shipped as a loanword and a leading dot as an inflection.
+NEVER_JUNK: tuple[WordClass, ...] = (
+    "headword",
+    "loanword",
+    "suspectedTypo",
+    "inflected",
+    "unclassified",
+)
+
+# The rows a hand label calls never-servable and a TIER-1 DICTIONARY calls an
+# entry. `asura` is the stem of `asuran` and `master-dictionary` lists it, with
+# nothing else said about it - exactly as it lists 87,611 real headwords that
+# Row 9's per-row entry test demoted. Trusting the dictionary recovers all of
+# them and admits this one; no signal in the store separates them, and the
+# morphological rule that would was measured and rejected in Row 9 for costing a
+# real headword. Recorded here so a SECOND escape cannot arrive unnoticed.
+SOURCE_ASSERTED_ESCAPES: tuple[str, ...] = ("\u0b85\u0b9a\u0bc1\u0bb0",)
 
 
 # --------------------------------------------------------------------------
@@ -139,22 +165,72 @@ def test_the_classifier_output_byte_equals_the_committed_expected_file() -> None
     assert _render_expected(GOLDEN) == _EXPECTED.read_bytes()
 
 
-def test_no_row_that_can_never_be_a_headword_is_classified_headword() -> None:
-    # THE ORACLE, second predicate: headword precision on the fixture is 100
-    # percent over the four classes that must never be served. Row 12 cuts the
-    # served wordlist on `wordClass == headword` and nothing else, so this is
-    # the predicate standing between a player and a proper noun.
-    escaped: list[str] = []
-    for record in GOLDEN:
-        if record["wordClass"] not in NEVER_A_HEADWORD:
-            continue
-        if classify_surface(_surface(record), CONFIG) == "headword":
-            escaped.append(record["word"])
+def test_no_row_the_classifier_INFERS_about_escapes_as_a_headword() -> None:
+    # THE ORACLE, second predicate: headword precision over the classes that
+    # must never be served. Row 12 cuts the served wordlist on
+    # `wordClass == headword` and nothing else, so this is the predicate
+    # standing between a player and a proper noun.
+    #
+    # Scoped to the rows the classifier reasons about ON ITS OWN - those no
+    # tier-1 dictionary gave an entry. Where a dictionary DID give one, the
+    # verdict is that source's claim rather than this layer's inference, and
+    # the test below pins those by name instead of hiding them here.
+    escaped = [
+        record["word"]
+        for record in GOLDEN
+        if record["wordClass"] in NEVER_A_HEADWORD
+        and not record["entry"]
+        and classify_surface(_surface(record), CONFIG) == "headword"
+    ]
     assert escaped == []
 
 
-def test_the_fixture_covers_every_class_and_is_exactly_two_hundred_rows() -> None:
-    assert len(GOLDEN) == 200
+def test_every_never_servable_row_that_does_escape_is_a_dictionary_ENTRY() -> None:
+    # The other half, and it is a ledger rather than a hole. Row 9a's entry test
+    # trusts a tier-1 source's listing, which is what recovers 87,611 real
+    # headwords the curated dictionary carries with nothing else said about
+    # them - and the same trust admits the one stem that dictionary also lists.
+    # No signal separates the two: `asura` and `aqkaram` have the same
+    # attestation, breadth, shape and n-gram profile, and the morphological rule
+    # that would tell them apart was measured and rejected in Row 9 because it
+    # costs a real headword.
+    #
+    # So the escape is pinned by NAME, with its cause asserted: the row must
+    # carry an ENTRY and no contrary source assertion. A second escape, or the
+    # same one arriving by inference instead, fails here.
+    escaped = {
+        record["word"]: record
+        for record in GOLDEN
+        if record["wordClass"] in NEVER_A_HEADWORD
+        and classify_surface(_surface(record), CONFIG) == "headword"
+    }
+    assert sorted(escaped) == sorted(SOURCE_ASSERTED_ESCAPES)
+    for record in escaped.values():
+        assert record["entry"] is True, record["word"]
+        assert record["evidence"] == [], record["word"]
+
+
+def test_every_hand_labelled_junk_row_is_classified_not_a_word() -> None:
+    # THE ORACLE, third predicate (Row 9a). Row 9's second predicate only
+    # asserted junk was not a HEADWORD, so scrape artifacts sailed through
+    # wearing loanword, suspectedTypo and inflected instead. A confident
+    # negative has to be reachable, or the class ships as decoration.
+    wrong: list[tuple[str, str]] = []
+    labelled = 0
+    for record in GOLDEN:
+        if record["wordClass"] != "notAWord":
+            continue
+        labelled += 1
+        verdict = classify_surface(_surface(record), CONFIG)
+        if verdict in NEVER_JUNK:
+            wrong.append((record["word"], verdict))
+    assert labelled > 0
+    assert wrong == []
+
+
+def test_the_fixture_covers_every_class() -> None:
+    # Every class the contract names has at least one hand-labelled row, so a
+    # newly minted verdict cannot ship with no fixture coverage.
     labelled = tally(record["wordClass"] for record in GOLDEN)
     assert all(count > 0 for count in labelled.values()), labelled
 
@@ -336,6 +412,62 @@ def test_parse_evidence_refuses_a_value_no_contract_names() -> None:
 
 
 # --------------------------------------------------------------------------
+# The precondition: is this a word at all?
+# --------------------------------------------------------------------------
+
+# Longer than `maxEzhuthu` and otherwise perfectly well-formed Tamil - the
+# shape a scrape that lost its spaces produces. Two ezhuthu per repeat.
+_OVERLONG = "\u0b95\u0ba3" * 14
+
+
+def test_the_precondition_outranks_a_source_assertion() -> None:
+    # A scraped paragraph a source tagged as a name is still a scraped
+    # paragraph. A statement about the STRING outranks a statement about the
+    # word it is not, which is why the precondition runs before phase 1.
+    tagged = replace(_PLAIN, word=_OVERLONG, evidence=("properNoun",))
+    assert classify_surface(tagged, CONFIG) == "notAWord"
+
+
+def test_a_surface_at_the_length_ceiling_is_still_a_word() -> None:
+    # The ceiling is a threshold, so the boundary is worth pinning: Tamil
+    # compounds freely and a long compound is a word.
+    ceiling = CONFIG.classifier.notAWord.maxEzhuthu
+    at_the_line = replace(_PLAIN, word="\u0b95\u0ba3" * (ceiling // 2))
+    assert classify_surface(at_the_line, CONFIG) == "headword"
+    assert classify_surface(replace(_PLAIN, word=_OVERLONG), CONFIG) == "notAWord"
+
+
+def test_one_ezhuthu_repeated_is_not_a_word_but_one_ezhuthu_alone_is() -> None:
+    # `minDistinctEzhuthu` applies only above one ezhuthu: a one-ezhuthu word is
+    # ordinary Tamil, and this test is what stops the rule eating it.
+    assert classify_surface(replace(_PLAIN, word="\u0b85" * 4), CONFIG) == "notAWord"
+    assert classify_surface(replace(_PLAIN, word="\u0b85"), CONFIG) == "headword"
+
+
+def test_turning_the_non_tamil_rejection_off_restores_the_row_9_verdict() -> None:
+    # The knob genuinely selects between two behaviours rather than switching
+    # one off, so the `suspectedTypo` arm below it stays reachable.
+    latin = replace(_PLAIN, word="\u0b95\u0ba3abc", entry=False)
+    assert classify_surface(latin, CONFIG) == "notAWord"
+    payload = _config_payload()
+    payload["classifier"]["notAWord"]["rejectNonTamil"] = False
+    assert classify_surface(latin, Wordhood.model_validate(payload)) == "suspectedTypo"
+
+
+def test_not_a_word_is_a_confident_negative_and_unclassified_an_absent_one() -> None:
+    # The two must stay distinct: collapsing them would destroy the only
+    # counters that say whether the classifier works.
+    assert "notAWord" in WORD_CLASSES
+    assert "unclassified" in WORD_CLASSES
+    junk = replace(_PLAIN, word="\u0b83" * 3, entry=False)
+    unknown = replace(
+        _PLAIN, attested=0.0, entry=False, breadth=1.0, ngram=0.5, neighbour=None
+    )
+    assert classify_surface(junk, CONFIG) == "notAWord"
+    assert classify_surface(unknown, CONFIG) == "unclassified"
+
+
+# --------------------------------------------------------------------------
 # The knobs
 # --------------------------------------------------------------------------
 
@@ -345,8 +477,18 @@ def _config_payload() -> dict[str, Any]:
     return payload
 
 
+def _source_payload(source_id: str) -> dict[str, Any]:
+    for source in REGISTRY.sources:
+        if source.id == source_id:
+            return dict(source.model_dump(exclude_none=True))
+    raise AssertionError(f"{source_id} is not registered")
+
+
 def test_the_committed_config_validates() -> None:
-    assert Wordhood.model_validate(_config_payload()).classifier.entryAttrs == ["pos"]
+    settings = Wordhood.model_validate(_config_payload()).classifier
+    assert settings.notAWord.maxEzhuthu == 25
+    assert settings.notAWord.minDistinctEzhuthu == 2
+    assert settings.notAWord.rejectNonTamil is True
 
 
 def test_a_partial_evidence_priority_is_refused() -> None:
@@ -366,27 +508,87 @@ def test_a_repeated_evidence_priority_is_refused() -> None:
         Wordhood.model_validate(payload)
 
 
-def test_an_empty_entry_attribute_list_is_refused() -> None:
+def test_the_retired_entry_attribute_knob_is_refused() -> None:
+    # Row 9a replaced the per-row entry test with the source's declared tier, so
+    # entryAttrs has no reader. `extra="forbid"` is what stops it lingering in a
+    # config file as a knob that reads like a claim and changes nothing.
     payload = _config_payload()
-    payload["classifier"]["entryAttrs"] = []
+    payload["classifier"]["entryAttrs"] = ["pos"]
     with pytest.raises(ValidationError):
         Wordhood.model_validate(payload)
 
 
-def test_the_listing_attribute_cannot_be_an_entry_attribute() -> None:
-    # ``headword`` IS the listing. Admitting it here would collapse the one
-    # distinction the gate is made of, with a one-line config edit.
+@pytest.mark.parametrize("knob", ["maxEzhuthu", "minDistinctEzhuthu"])
+def test_a_non_positive_not_a_word_threshold_is_refused(knob: str) -> None:
     payload = _config_payload()
-    payload["classifier"]["entryAttrs"] = ["headword"]
-    with pytest.raises(ValidationError):
+    payload["classifier"]["notAWord"][knob] = 0
+    with pytest.raises(ValidationError, match=knob):
         Wordhood.model_validate(payload)
 
 
-def test_a_repeated_entry_attribute_is_refused() -> None:
+def test_the_not_a_word_profile_is_required() -> None:
+    # A missing precondition would classify junk as a real class in silence,
+    # which is the defect this row exists to close.
     payload = _config_payload()
-    payload["classifier"]["entryAttrs"] = ["pos", "pos"]
-    with pytest.raises(ValidationError, match="entryAttrs"):
+    del payload["classifier"]["notAWord"]
+    with pytest.raises(ValidationError, match="notAWord"):
         Wordhood.model_validate(payload)
+
+
+# --------------------------------------------------------------------------
+# The source tier, which is what an ENTRY now means
+# --------------------------------------------------------------------------
+
+
+def test_every_source_that_may_assert_word_hood_declares_a_tier() -> None:
+    for source in REGISTRY.sources:
+        if source.role in ATTESTING_ROLES:
+            assert source.attestationTier is not None, source.id
+        else:
+            assert source.attestationTier is None, source.id
+
+
+def test_the_registry_names_a_lexicographic_and_an_enumerative_authority() -> None:
+    # Both halves of the split have a real producer. A registry that was all one
+    # tier would make the gate either vacuous or impossible.
+    tiers = {
+        source.attestationTier
+        for source in REGISTRY.sources
+        if source.role in ATTESTING_ROLES and source.enabled
+    }
+    assert tiers == {"lexicographic", "enumerative"}
+
+
+def test_an_attesting_source_without_a_tier_is_refused() -> None:
+    payload = _source_payload("master-dictionary")
+    del payload["attestationTier"]
+    with pytest.raises(ValidationError, match="lexicographic entry"):
+        LexiconSource.model_validate(payload)
+
+
+def test_a_tier_on_a_source_that_cannot_assert_word_hood_is_refused() -> None:
+    # A field set where nothing reads it is a claim the config cannot keep.
+    payload = _source_payload("opensubtitles-ta")
+    payload["attestationTier"] = "lexicographic"
+    with pytest.raises(ValidationError, match="nothing reads"):
+        LexiconSource.model_validate(payload)
+
+
+def test_the_bare_word_lists_are_the_enumerative_tier() -> None:
+    # The four sources that emit a headword fact and nothing else. Between them
+    # they attest a political party, a sitting politician and a bound stem, and
+    # the whole point of the tier is that none of that can be a headword.
+    listings = {
+        source.id
+        for source in REGISTRY.sources
+        if source.attestationTier == "enumerative"
+    }
+    assert listings == {
+        "spellcheck-wordlist",
+        "huggingface-wordlist",
+        "old-wordlist",
+        "ta-wiktionary-titles",
+    }
 
 
 # --------------------------------------------------------------------------
@@ -434,7 +636,7 @@ def enriched(tmp_path_factory: pytest.TempPathFactory) -> Enriched:
     extract(registry, root, force=True)
     db = root / "out" / "cache" / "lexicon.db"
     stage(registry, root, db)
-    enrich(CONFIG, db)
+    enrich(registry, CONFIG, db)
     return Enriched(registry=registry, root=root, db=db)
 
 
@@ -493,13 +695,13 @@ def test_enrich_over_an_unchanged_staged_zone_is_idempotent(enriched: Enriched) 
     # the staged one, so running it twice writes the same bytes.
     db = enriched.root / "idempotent.db"
     stage(enriched.registry, enriched.root, db)
-    enrich(CONFIG, db)
+    enrich(enriched.registry, CONFIG, db)
     conn = open_store(db)
     try:
         first = canonical_dump(conn)
     finally:
         conn.close()
-    enrich(CONFIG, db)
+    enrich(enriched.registry, CONFIG, db)
     conn = open_store(db)
     try:
         assert canonical_dump(conn) == first
@@ -516,7 +718,7 @@ def test_enrich_after_a_delta_equals_enrich_after_a_full_rebuild(
     # covered the moment this row started writing it.
     full = enriched.root / "full.db"
     stage(enriched.registry, enriched.root, full)
-    enrich(CONFIG, full)
+    enrich(enriched.registry, CONFIG, full)
 
     delta = enriched.root / "delta.db"
     for source in enriched.registry.sources:
@@ -524,7 +726,7 @@ def test_enrich_after_a_delta_equals_enrich_after_a_full_rebuild(
     victim = enriched.registry.sources[0].id
     stage(enriched.registry, enriched.root, delta, remove=victim)
     stage(enriched.registry, enriched.root, delta, only=victim)
-    enrich(CONFIG, delta)
+    enrich(enriched.registry, CONFIG, delta)
 
     conn = open_store(full)
     try:
@@ -546,7 +748,7 @@ def test_reclassifying_reproduces_what_the_full_rebuild_wrote(
     # leave a store nobody can trust.
     db = enriched.root / "reclassify.db"
     stage(enriched.registry, enriched.root, db)
-    enrich(CONFIG, db)
+    enrich(enriched.registry, CONFIG, db)
     conn = open_store(db)
     try:
         before = _verdicts(conn)
@@ -554,7 +756,7 @@ def test_reclassifying_reproduces_what_the_full_rebuild_wrote(
     finally:
         conn.close()
 
-    run = reclassify(CONFIG, db)
+    run = reclassify(enriched.registry, CONFIG, db)
     assert run.classified == len(before)
     conn = open_store(db)
     try:
@@ -571,7 +773,7 @@ def test_reclassifying_an_empty_derived_zone_is_refused(enriched: Enriched) -> N
     db = enriched.root / "empty.db"
     stage(enriched.registry, enriched.root, db)
     with pytest.raises(ValueError, match="derived zone is empty"):
-        reclassify(CONFIG, db)
+        reclassify(enriched.registry, CONFIG, db)
 
 
 def _verdicts(conn: sqlite3.Connection) -> dict[str, str]:
@@ -584,6 +786,8 @@ def _verdicts(conn: sqlite3.Connection) -> dict[str, str]:
 def test_the_stored_verdicts_agree_with_the_pure_function(enriched: Enriched) -> None:
     # The store path and the fixture path must be one classifier, or the Oracle
     # guards something the pipeline does not run.
+    sources = tier_one_sources(enriched.registry)
+    tier_one = ",".join(f"'{source_id}'" for source_id in sources)
     conn = open_store(enriched.db)
     try:
         rows = conn.execute(
@@ -591,11 +795,8 @@ def test_the_stored_verdicts_agree_with_the_pure_function(enriched: Enriched) ->
             's."nannulValid", s."knownVerbForm", s."ngram", s."neighbour", s."zipf", '
             "CASE WHEN t.word IS NULL THEN 0 ELSE 1 END, e.evidence, c.wordClass "
             "FROM signal s JOIN classification c ON c.word = s.word "
-            "LEFT JOIN (SELECT DISTINCT h.word FROM fact h JOIN source src "
-            "ON src.id = h.source_id WHERE h.attr = 'headword' "
-            "AND src.role IN ('authority','authored') AND EXISTS (SELECT 1 FROM fact d "
-            "WHERE d.word = h.word AND d.source_id = h.source_id AND d.attr = 'pos')) t "
-            "ON t.word = s.word "
+            f"LEFT JOIN (SELECT DISTINCT word FROM fact WHERE attr = 'headword' "
+            f"AND source_id IN ({tier_one})) t ON t.word = s.word "
             "LEFT JOIN (SELECT word, group_concat(DISTINCT value) AS evidence FROM fact "
             "WHERE attr = 'wordClassEvidence' GROUP BY word) e ON e.word = s.word"
         ).fetchall()
@@ -621,25 +822,24 @@ def test_the_stored_verdicts_agree_with_the_pure_function(enriched: Enriched) ->
 
 def test_a_bare_word_list_never_supplies_an_entry(enriched: Enriched) -> None:
     # The measurement the headword gate rests on, asserted rather than assumed.
-    # The fixture store holds authority sources that emit only headword facts,
-    # and not one surface reaches `headword` on their say-so.
+    # The fixture store holds four enumerative authorities, and not one surface
+    # reaches `headword` on their say-so alone.
+    sources = tier_one_sources(enriched.registry)
+    assert sources
+    listings = [
+        source.id
+        for source in enriched.registry.sources
+        if source.attestationTier == "enumerative"
+    ]
+    assert listings, "the fixture store holds no bare word list to test against"
+    tier_one = ",".join(f"'{source_id}'" for source_id in sources)
     conn = open_store(enriched.db)
     try:
-        listing_only = [
-            str(row[0])
-            for row in conn.execute(
-                "SELECT s.id FROM source s WHERE s.role IN ('authority','authored') "
-                "AND NOT EXISTS (SELECT 1 FROM fact f WHERE f.source_id = s.id "
-                "AND f.attr = 'pos')"
-            )
-        ]
-        assert listing_only, "the fixture store holds no bare word list to test against"
         unearned = _scalar(
             conn,
-            "SELECT count(*) FROM classification c WHERE c.wordClass = 'headword' "
-            "AND NOT EXISTS (SELECT 1 FROM fact f JOIN source s ON s.id = f.source_id "
-            "WHERE f.word = c.word AND f.attr = 'pos' "
-            "AND s.role IN ('authority','authored'))",
+            f"SELECT count(*) FROM classification c WHERE c.wordClass = 'headword' "
+            f"AND NOT EXISTS (SELECT 1 FROM fact f WHERE f.word = c.word "
+            f"AND f.attr = 'headword' AND f.source_id IN ({tier_one}))",
         )
         assert unearned == 0
     finally:

@@ -38,16 +38,10 @@ from dataclasses import dataclass, field
 from typing import Final
 
 from yen_tamizh_backend.contracts.lexicon import SignalName
-from yen_tamizh_backend.contracts.lexicon_sources import SourceRole
+from yen_tamizh_backend.contracts.lexicon_sources import ATTESTING_ROLES, LexiconSources
 from yen_tamizh_backend.contracts.wordhood import OrthotacticWeights, Wordhood
 from yen_tamizh_backend.ezhuthu import analyse
 from yen_tamizh_backend.wordsmith.store import quoted
-
-# The roles that may assert word-hood. A frequency list observing a surface a
-# million times still cannot say it is a word, and ``formEvidence`` can only
-# ever assert the NEGATIVE (docs/concepts/lexicon.md). This is a fact about what
-# the roles MEAN, so it is a constant here rather than a knob in config.
-ATTESTING_ROLES: Final[tuple[SourceRole, ...]] = ("authority", "authored")
 
 _ATTESTED_TABLE: Final = "tmp_attested"
 _BREADTH_TABLE: Final = "tmp_breadth"
@@ -77,6 +71,13 @@ NOT_MEASURED: Final = "NULL"
 class SignalContext:
     """What a signal's preparation is allowed to see: the store and the knobs.
 
+    ``registry`` is the source registry the staged zone was built from. The
+    derived zone is a function of the staged EVIDENCE and of the JUDGEMENTS the
+    registry records about the sources that supplied it - which source may
+    assert word-hood, and whether its unit is a lexicographic entry or a bare
+    listing. Passed in rather than read back off the store on purpose: re-ruling
+    a source must cost a re-classify, never a re-stage of its bytes.
+
     ``workers`` is how many processes the one signal with a search of its own
     may score across. It is a property of the machine rather than a tunable
     judgement, so it arrives as an argument and not from config - the same line
@@ -88,6 +89,7 @@ class SignalContext:
     """
 
     conn: sqlite3.Connection
+    registry: LexiconSources
     config: Wordhood
     workers: int = 1
     state: dict[str, object] = field(default_factory=dict)

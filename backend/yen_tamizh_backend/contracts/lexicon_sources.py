@@ -53,10 +53,25 @@ from yen_tamizh_backend.contracts.lexicon import PartOfSpeech
 
 # The initial mint - see the note on ``LEXICON_VERSION``. The registry file that
 # carries this stamp is written in the row that adds the readers.
-LEXICON_SOURCES_VERSION = "2026-08-14"
+LEXICON_SOURCES_VERSION = "2026-08-16"
 LEXICON_SOURCES_CHANGELOG = (
     ChangelogEntry(
         version=LEXICON_SOURCES_VERSION,
+        change=(
+            "Added attestationTier, required on every source whose role may "
+            "assert word-hood and forbidden on every other."
+        ),
+        why=(
+            "Row 9a - whether a source's UNIT is a lexicographic ENTRY or a "
+            "bare listing is a property of the SOURCE, and the classifier's "
+            "headword gate needs it per source rather than re-derived per row. "
+            "It is a declared field rather than a Python literal or a hardcoded "
+            "id list (Holy Law #6) so registering the next authority forces the "
+            "ruling instead of silently inheriting one."
+        ),
+    ),
+    ChangelogEntry(
+        version="2026-08-14",
         change=(
             "Initial lexicon source registry: per-source role, precedence, "
             "sha256 and reader mapping across the delimited / json-array / "
@@ -75,6 +90,30 @@ LEXICON_SOURCES_CHANGELOG = (
 # assert word-hood; ``formEvidence`` can only assert that a surface is NOT a
 # headword; ``frequency`` and ``category`` assert neither.
 SourceRole = Literal["authority", "formEvidence", "frequency", "category", "authored"]
+
+# The two roles that sentence names, stated once so the pipeline joins on the
+# same tuple the registry validates against. A frequency list observing a
+# surface a million times still cannot say it is a word.
+ATTESTING_ROLES: tuple[SourceRole, ...] = ("authority", "authored")
+
+# What a source's UNIT is, and so what its headword assertion is WORTH.
+#
+# ``lexicographic`` - the unit is an ENTRY. Somebody decided the string is a
+#                     word and then said something about it - a gloss, a
+#                     definition, a part of speech, a synonym, a theme. The
+#                     bytes carry that description.
+# ``enumerative``   - the unit is a bare string in a list. The source vouches
+#                     that the string belongs in the list and says nothing
+#                     else about it.
+#
+# The tier is a property of the SOURCE rather than of the row, which is the
+# whole reason it is declared here: what a source's unit IS cannot be recovered
+# from a single row of it, and a row-level test asks the wrong question - the
+# largest lexicographic source describes only part of what it lists, and
+# demoting the rest of its entries because one COLUMN was unusable is exactly
+# the defect Row 9a exists to fix. It is the same split Row 12 decision 14
+# draws over the attestation composition, asked one stage earlier.
+AttestationTier = Literal["lexicographic", "enumerative"]
 
 LexiconSourceKind = Literal["delimited", "json-array", "jsonl"]
 
@@ -187,6 +226,11 @@ class LexiconSource(BaseModel):
     name: str = Field(min_length=1)
     origin: str = Field(min_length=1)
     role: SourceRole
+    # Required exactly where it is READ - on the roles that may assert
+    # word-hood - and forbidden everywhere else, on the same rule elementKind
+    # follows: a field set on a source nothing consults is a knob that reads as
+    # a claim and changes nothing.
+    attestationTier: AttestationTier | None = None
     kind: LexiconSourceKind
     path: RelPath
     bytes: int = Field(ge=0)
@@ -214,6 +258,26 @@ class LexiconSource(BaseModel):
     countField: str | None = Field(default=None, min_length=1)
     categoryField: str | None = Field(default=None, min_length=1)
     posField: str | None = Field(default=None, min_length=1)
+
+    @model_validator(mode="after")
+    def _the_tier_is_declared_exactly_where_it_is_read(self) -> Self:
+        # The headword gate reads the tier off the source that asserted the
+        # headword fact, so an attesting source without one would silently
+        # never make an entry - the "column of zeros wearing a name" failure,
+        # arrived at through an omission rather than a typo.
+        attesting = self.role in ATTESTING_ROLES
+        if attesting and self.attestationTier is None:
+            raise ValueError(
+                f"source {self.id!r}: role {self.role!r} may assert word-hood, so "
+                f"it must declare whether its unit is a lexicographic entry or "
+                f"a bare listing"
+            )
+        if not attesting and self.attestationTier is not None:
+            raise ValueError(
+                f"source {self.id!r}: role {self.role!r} cannot assert word-hood, "
+                f"so an attestationTier on it is a claim nothing reads"
+            )
+        return self
 
     @model_validator(mode="after")
     def _fields_match_the_kind(self) -> Self:

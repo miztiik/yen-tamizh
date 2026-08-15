@@ -461,7 +461,7 @@ def enriched(tmp_path_factory: pytest.TempPathFactory) -> Enriched:
     extract(registry, root, force=True)
     db = root / "out" / "cache" / "lexicon.db"
     stage(registry, root, db)
-    enrich(CONFIG, db, workers=1)
+    enrich(registry, CONFIG, db, workers=1)
     return Enriched(registry=registry, root=root, db=db)
 
 
@@ -584,7 +584,7 @@ def test_the_dictionary_is_the_attested_headwords_that_are_wholly_tamil(
     # measured that a fifth of them are not Tamil at all. The training set is
     # the intersection, and both counts are reported rather than only the one
     # that survives.
-    run = enrich(CONFIG, enriched.db, workers=1)
+    run = enrich(enriched.registry, CONFIG, enriched.db, workers=1)
     census = run.state[HEADWORDS]
     assert isinstance(census, HeadwordCensus)
     assert 0 < census.tamil <= census.attested
@@ -600,7 +600,7 @@ def test_the_dictionary_is_the_attested_headwords_that_are_wholly_tamil(
 
 
 def test_the_model_and_the_index_read_the_same_dictionary(enriched: Enriched) -> None:
-    run = enrich(CONFIG, enriched.db, workers=1)
+    run = enrich(enriched.registry, CONFIG, enriched.db, workers=1)
     census = run.state[HEADWORDS]
     index = run.state[NEIGHBOUR_INDEX]
     model = run.state[NGRAM_MODEL]
@@ -614,7 +614,7 @@ def test_the_model_and_the_index_read_the_same_dictionary(enriched: Enriched) ->
 
 
 def test_the_fitted_line_is_reported_with_the_run(enriched: Enriched) -> None:
-    run = enrich(CONFIG, enriched.db, workers=1)
+    run = enrich(enriched.registry, CONFIG, enriched.db, workers=1)
     fit = run.state[ZIPF_FIT]
     assert fit is not None
     assert getattr(fit, "surfaces", 0) > 0
@@ -628,7 +628,7 @@ def test_two_runs_over_one_staged_zone_write_the_same_column(
     # run is a completely independent computation over the same staged rows -
     # and it has to land on the same bytes.
     first = _column_digest(enriched.db, column)
-    enrich(CONFIG, enriched.db, workers=1)
+    enrich(enriched.registry, CONFIG, enriched.db, workers=1)
     assert _column_digest(enriched.db, column) == first
 
 
@@ -637,7 +637,7 @@ def test_scoring_across_processes_writes_the_same_column(enriched: Enriched) -> 
     # chunks went out and a word's score is a pure function of the word and the
     # index, so the column cannot depend on which worker finished first.
     single = _column_digest(enriched.db, "neighbour")
-    enrich(CONFIG, enriched.db, workers=3)
+    enrich(enriched.registry, CONFIG, enriched.db, workers=3)
     assert _column_digest(enriched.db, "neighbour") == single
 
 
@@ -651,7 +651,7 @@ def test_recomputing_one_inexact_signal_reproduces_what_a_rebuild_wrote(
         stamp = derived_epoch(conn)
     finally:
         conn.close()
-    enrich(CONFIG, enriched.db, name, workers=1)
+    enrich(enriched.registry, CONFIG, enriched.db, name, workers=1)
     conn = open_store(enriched.db)
     try:
         assert derived_epoch(conn) == stamp
@@ -684,4 +684,4 @@ def test_a_config_naming_a_wider_search_is_refused_before_anything_is_built(
         }
     )
     with pytest.raises(ValueError, match="maxEditDistance"):
-        enrich(broken, enriched.db, "neighbour", workers=1)
+        enrich(enriched.registry, broken, enriched.db, "neighbour", workers=1)

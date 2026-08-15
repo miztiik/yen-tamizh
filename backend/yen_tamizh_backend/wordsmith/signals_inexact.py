@@ -45,11 +45,11 @@ from collections.abc import Iterator
 from dataclasses import dataclass
 from typing import Final
 
+from yen_tamizh_backend.contracts.lexicon_sources import ATTESTING_ROLES
 from yen_tamizh_backend.wordsmith import ngram as ngram_model
 from yen_tamizh_backend.wordsmith import neighbours
 from yen_tamizh_backend.wordsmith.signals_exact import (
     ATTESTED_WORDS_SQL,
-    ATTESTING_ROLES,
     NOT_MEASURED,
     Signal,
     SignalContext,

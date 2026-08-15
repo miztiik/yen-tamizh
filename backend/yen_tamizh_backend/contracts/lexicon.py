@@ -44,10 +44,25 @@ from yen_tamizh_backend.contracts.common import RelPath, SourceId
 # Migration class is build-time rewrite-in-place - a later change appends an
 # entry and moves the stamp, and needs no read-side migration, because the only
 # reader is the backend and every artifact regenerates in the same commit.
-LEXICON_VERSION = "2026-08-14"
+LEXICON_VERSION = "2026-08-16"
 LEXICON_CHANGELOG = (
     ChangelogEntry(
         version=LEXICON_VERSION,
+        change="Added notAWord to the WordClass vocabulary.",
+        why=(
+            "Row 9a - the classifier had no verdict for a surface that is not a "
+            "word at all, so 641,819 scrape artifacts wore real classes: "
+            "repeated aytham as loanword, leading-dot strings as inflected, a "
+            "1,212-ezhuthu paragraph as suspectedTypo. notAWord is a CONFIDENT "
+            "NEGATIVE and is deliberately distinct from unclassified, which is "
+            "an ABSENT verdict - collapsing them would destroy the only "
+            "counters that say whether the classifier works. Additive: every "
+            "existing row still validates, and selection stays an allow-list "
+            "so nothing reaches a player by omission."
+        ),
+    ),
+    ChangelogEntry(
+        version="2026-08-14",
         change=(
             "Initial lexicon contracts: the LexiconEntry row shape and the "
             "Lexicon meta document (provenance, per-class counters, partition "
@@ -66,6 +81,13 @@ LEXICON_CHANGELOG = (
 # open set means an unreviewed value reaches a player through a selection that
 # never named it. Selection is an allow-list of these values, so a word the
 # classifier could not place (``unclassified``) can never be served by omission.
+#
+# ``notAWord`` and ``unclassified`` are the two ends of the same axis and are
+# kept apart on purpose. ``notAWord`` is a CONFIDENT NEGATIVE - the shape pass
+# looked at the string and ruled it is not a Tamil word at all - while
+# ``unclassified`` is an ABSENT verdict, the enrichment queue, where a later
+# pass may still find a real word. Collapsing them would hide both the size of
+# the junk the corpus carries and the size of the work left to do.
 WordClass = Literal[
     "headword",
     "inflected",
@@ -75,6 +97,7 @@ WordClass = Literal[
     "boundStem",
     "sandhiArtifact",
     "suspectedTypo",
+    "notAWord",
     "unclassified",
 ]
 

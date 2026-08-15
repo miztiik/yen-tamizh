@@ -25,7 +25,7 @@ export type Length = (number | null)
 export type Path = string
 export type Rows1 = number
 export type Sha256 = string
-export type Wordclass = ("headword" | "inflected" | "colloquial" | "properNoun" | "loanword" | "boundStem" | "sandhiArtifact" | "suspectedTypo" | "unclassified")
+export type Wordclass = ("headword" | "inflected" | "colloquial" | "properNoun" | "loanword" | "boundStem" | "sandhiArtifact" | "suspectedTypo" | "notAWord" | "unclassified")
 /**
  * @minItems 1
  */
@@ -57,7 +57,7 @@ export type Synonymsta = ([string, ...(string)[]] | null)
 export type Translationen = (string | null)
 export type Translationensource = (string | null)
 export type Word = string
-export type Wordclass1 = ("headword" | "inflected" | "colloquial" | "properNoun" | "loanword" | "boundStem" | "sandhiArtifact" | "suspectedTypo" | "unclassified")
+export type Wordclass1 = ("headword" | "inflected" | "colloquial" | "properNoun" | "loanword" | "boundStem" | "sandhiArtifact" | "suspectedTypo" | "notAWord" | "unclassified")
 export type Wordhood = ({
 [k: string]: number
 } | null)

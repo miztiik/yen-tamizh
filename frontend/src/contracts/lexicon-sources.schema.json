@@ -32,6 +32,22 @@
       "additionalProperties": false,
       "description": "One registered source: where its bytes are, what it may assert, how to read it.",
       "properties": {
+        "attestationTier": {
+          "anyOf": [
+            {
+              "enum": [
+                "lexicographic",
+                "enumerative"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Attestationtier"
+        },
         "bytes": {
           "minimum": 0,
           "title": "Bytes",
