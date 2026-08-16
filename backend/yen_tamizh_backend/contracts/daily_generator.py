@@ -5,9 +5,9 @@ It is deliberately a SEPARATE surface from ``config/app-config.json``: the app
 config is runtime framing the browser ships with (how many items a day holds,
 which Modes are enabled), while this file holds the knobs that decide how a word
 becomes a puzzle - attempts, time limit, revealed head start, hint costs, and
-which ezhuthu lengths count as which difficulty.
+which ezhuthu lengths at which familiarity count as which difficulty.
 
-That split is the corpus-versus-puzzle boundary drawn one layer lower: the
+That split is the lexicon-versus-puzzle boundary drawn one layer lower: the
 generator CONSUMES a derived wordlist (Row 9) and PRODUCES puzzle files, and it
 must be tunable without touching either the words above it or the runtime below
 it. Adding a second Game's generator is a DATA change here (another ``games``
@@ -21,16 +21,34 @@ from typing import Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from yen_tamizh_backend.contracts.base import SchemaModel
-from yen_tamizh_backend.contracts.common import DifficultyId, GameId, PackId, RelPath
+from yen_tamizh_backend.contracts.common import (
+    QUARTILES,
+    DifficultyId,
+    GameId,
+    PackId,
+    RelPath,
+)
 
 
 class DifficultyBand(BaseModel):
-    """One difficulty bucket: the ezhuthu lengths it covers and its id.
+    """One difficulty bucket: the ezhuthu lengths and the familiarity it covers.
 
-    Difficulty is derived from the word's ezhuthu count because that is the only
-    honest difficulty signal the derived set carries; a 3-ezhuthu scramble has 6
-    arrangements and a 6-ezhuthu one has 720. Where the cuts fall is a
-    game-balance number, so it lives here rather than in Python (Holy Law #6).
+    Difficulty is TWO-AXIS - length and familiarity - because length alone is
+    anti-correlated at both tails. A long Tamil headword is usually a compound
+    that decomposes into recognisable chunks and is EASIER than its ezhuthu
+    count suggests, while a short rare word is brutal; a length-only easy bucket
+    therefore forces the generator into the shortest words, which are
+    disproportionately literary. A 3-ezhuthu answer also has only six
+    arrangements against three attempts, so it is brute-forceable by shuffling
+    without the player ever recognising the word.
+
+    ``maxStratum`` is the coarsest frequency quarter the band admits, 1 being
+    the most familiar quarter of the SERVED set. Bands deliberately OVERLAP on
+    length and tile on familiarity: what separates easy from hard is mostly how
+    well the player knows the word, not how many tiles it has.
+
+    Where the cuts fall is a game-balance number, so it lives here rather than
+    in Python (Holy Law #6).
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -38,6 +56,7 @@ class DifficultyBand(BaseModel):
     id: DifficultyId
     minLength: int = Field(ge=1)
     maxLength: int = Field(ge=1)
+    maxStratum: int = Field(ge=1, le=QUARTILES)
 
     @model_validator(mode="after")
     def _band_is_coherent(self) -> Self:

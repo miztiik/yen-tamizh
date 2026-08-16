@@ -70,7 +70,7 @@ they generalise:
   are legal openings. A surface opening on a bare mei, on the aytham, or on one
   of the other eight consonants is a loanword or a fragment;
 - **which ezhuthu may END a word** - a vowel-bearing ezhuthu, or one of eight
-  mei. This is where the derived layer's `requireValidWordFinal` rule goes: a
+  mei. This is where the derived layer's old `requireValidWordFinal` rule went: a
   fact about Tamil asked ONCE here, rather than a preference each Game re-asks;
 - **which mei may be followed by which consonant** - a cluster table stated over
   the three consonant classes (vallinam, mellinam, idaiyinam) the way the

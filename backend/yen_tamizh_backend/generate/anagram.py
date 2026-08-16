@@ -12,6 +12,9 @@ Two guarantees this module owns:
 - **A tile is an ezhuthu.** Tiles come from the row's ``ezhuthu`` array (Row 6
   segmentation), never from a code-point split, so they rejoin to exactly the
   answer word.
+
+Difficulty lives here too, and it reads TWO axes: how many tiles a word has and
+how familiar it is. Length alone is anti-correlated at both tails.
 """
 
 from __future__ import annotations
@@ -83,14 +86,27 @@ def build_puzzle(
     )
 
 
-def difficulty_of(row: GameWord, spec: GameGeneration) -> str:
-    """The configured difficulty bucket for a word's ezhuthu count.
+def difficulty_of(row: GameWord, spec: GameGeneration) -> str | None:
+    """The first configured band that covers the word's LENGTH and its FAMILIARITY.
 
-    Falls back to the widest band's id rather than inventing one, so a word
-    outside every configured range still ships with a real difficulty slug.
+    Two axes, because length alone is anti-correlated at both tails: a long
+    headword is usually a compound that decomposes and is easier than its tile
+    count suggests, while a short rare word is brutal and a 3-ezhuthu one is
+    brute-forceable by shuffling. Bands overlap on length and tile on
+    familiarity, so which band claims a word is mostly a question of how well the
+    player knows it.
+
+    ``None`` when no band claims the row - typically a short word outside the
+    familiar quarters. That is a real answer, not a failure: the wordlist says
+    what is SERVABLE and the bands say what is DRAWABLE, and inventing a
+    difficulty for a row no band wants would put exactly the museum piece on the
+    board that the second axis exists to keep off it.
     """
     length = len(row.ezhuthu)
     for band in spec.difficulties:
-        if band.minLength <= length <= band.maxLength:
+        if (
+            band.minLength <= length <= band.maxLength
+            and row.frequencyStratum <= band.maxStratum
+        ):
             return band.id
-    return spec.difficulties[-1].id
+    return None

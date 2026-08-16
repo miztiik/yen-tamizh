@@ -1,11 +1,15 @@
-"""How a committed corpus artifact is rendered and fingerprinted.
+"""How a committed row-per-line artifact is rendered and fingerprinted.
 
-Both artifacts the corpus layer commits - the ranked master wordlist (Row 8) and
-the per-Game derived sets (Row 9) - are large documents of small uniform rows,
-and both are reviewed as git diffs. They therefore share one rendering rule and
-one fingerprinting rule, defined here once rather than copied per writer: a
-duplicated byte-determinism rule is exactly the kind that drifts silently, and a
-drifted one turns every regeneration into a whole-file diff.
+The large committed documents of small uniform rows - the ranked master wordlist
+(Row 8) and the per-Game derived sets (Row 9) - are reviewed as git diffs. They
+therefore share one rendering rule and one fingerprinting rule, defined here once
+rather than copied per writer: a duplicated byte-determinism rule is exactly the
+kind that drifts silently, and a drifted one turns every regeneration into a
+whole-file diff.
+
+It lives in ``wordsmith`` rather than in ``corpus`` because ``corpus`` is retired
+in row 13 while the derived layer that reads the lexicon keeps writing through
+this renderer; the retiring package imports it on its way out, never the reverse.
 """
 
 from __future__ import annotations

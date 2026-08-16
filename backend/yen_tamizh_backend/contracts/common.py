@@ -13,14 +13,24 @@ the drift the pipeline exists to prevent.
 ``SourceId`` and ``RelPath`` are shared FIELD vocabulary on the same terms: a
 source slug and a repo-relative path are spoken by several build-time contracts,
 so they live here with the other shared types rather than inside whichever
-contract happened to declare them first.
+contract happened to declare them first. ``QUARTILES`` joins them for the same
+reason: the derived wordlist writes a frequency stratum onto every row and the
+daily generator bounds each difficulty band by one, so both need the same number
+of strata and neither may own it.
 """
 
 from __future__ import annotations
 
-from typing import Annotated
+from typing import Annotated, Final
 
 from pydantic import BaseModel, ConfigDict, Field, StringConstraints
+
+# How many frequency strata a served wordlist is cut into. Four, because the
+# unit the difficulty design speaks in is a QUARTILE - not a tunable knob but
+# the meaning of the word, the same way an ezhuthu is the unit of length. A
+# different number would not be a re-tuning; it would be a different statistic
+# wearing the same name.
+QUARTILES: Final = 4
 
 # A stable identifier slug: lower-case, digit- and hyphen-joined ("anagram",
 # "word-ladder", "ta-core", "time-trial", "daily").

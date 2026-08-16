@@ -2,10 +2,13 @@
 
 The rules this module enforces:
 
-- **A day is a pure function of its date.** Selection is a seeded shuffle over a
-  stable-sorted candidate list, so re-running any date reproduces it byte for
-  byte - the Row 13 Oracle. Nothing here reads a clock; the caller supplies the
-  dates.
+- **A day is a pure function of its date.** Selection is a seeded, frequency-
+  stratified draw over a stable-sorted candidate list, so re-running any date
+  reproduces it byte for byte - the Row 13 Oracle. Nothing here reads a clock;
+  the caller supplies the dates.
+- **A day is a curve.** Its slots are dealt round-robin across the configured
+  difficulty bands, and the easiest band admits only the most familiar quarter of
+  the served set, so a day can never be three words nobody knows.
 - **A word does not come back.** Words already used on OTHER days present in the
   bank are skipped, so a player does not meet the same scramble twice. The
   target date's own file is ignored while collecting them, which is exactly what
@@ -23,6 +26,7 @@ its own bundle and it works offline (Holy Law #1).
 from __future__ import annotations
 
 import json
+from collections import defaultdict
 from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
 from datetime import date, timedelta
@@ -35,7 +39,7 @@ from yen_tamizh_backend.contracts.daily_generator import DailyGenerator, GameGen
 from yen_tamizh_backend.contracts.game_wordlist import GameWord, GameWordlist
 from yen_tamizh_backend.contracts.puzzle_file import PuzzleFile, PuzzleItem
 from yen_tamizh_backend.generate import anagram
-from yen_tamizh_backend.generate.seed import seeded_shuffle
+from yen_tamizh_backend.generate.seed import seeded_index, seeded_shuffle
 
 _PUZZLE_FILE_VERSION = "2026-08-13"
 _PUZZLE_FILE_CHANGELOG = [
@@ -106,33 +110,104 @@ def words_used_before(bank_dir: Path, exclude_day: str) -> set[str]:
     return used
 
 
+def bucket_candidates(
+    candidates: Iterable[GameWord], spec: GameGeneration
+) -> dict[str, list[GameWord]]:
+    """Split a Game's words into its configured difficulty buckets.
+
+    A word no band claims is DROPPED rather than filed under the nearest one.
+    The wordlist says what is servable; the bands say what is drawable, and a
+    3-ezhuthu word outside the familiar quarters is neither an easy word nor a
+    fair hard one.
+    """
+    buckets: dict[str, list[GameWord]] = {band.id: [] for band in spec.difficulties}
+    for row in candidates:
+        bucket = anagram.difficulty_of(row, spec)
+        if bucket is not None:
+            buckets[bucket].append(row)
+    return buckets
+
+
+def stratified_order(rows: Sequence[GameWord], seed_text: str) -> list[GameWord]:
+    """Order one bucket so any prefix of it is a proportional frequency sample.
+
+    Each frequency stratum is shuffled on its own and the strata are then
+    interleaved, so every window of four picks holds one word from each quarter
+    rather than four from whichever quarter happens to be largest. That is the
+    whole difference between a stratified draw and a uniform shuffle here: the
+    uniform one has the right mix on average and still hands out three unfamiliar
+    words on a bad day, which is the day a player stops.
+
+    Which stratum LEADS is seeded by the day, so a bucket's first pick is not
+    permanently its most common word.
+    """
+    by_stratum: dict[int, list[GameWord]] = defaultdict(list)
+    for row in rows:
+        by_stratum[row.frequencyStratum].append(row)
+    strata = sorted(by_stratum)
+    shuffled = {
+        stratum: seeded_shuffle(by_stratum[stratum], f"{seed_text}|{stratum}")
+        for stratum in strata
+    }
+    start = seeded_index(len(strata), seed_text)
+
+    order: list[GameWord] = []
+    depth = 0
+    while len(order) < len(rows):
+        for offset in range(len(strata)):
+            group = shuffled[strata[(start + offset) % len(strata)]]
+            if depth < len(group):
+                order.append(group[depth])
+        depth += 1
+    return order
+
+
 def pick_words(
     candidates: Sequence[GameWord],
+    spec: GameGeneration,
     day: str,
-    game_id: str,
     count: int,
     used: Iterable[str],
-) -> list[GameWord]:
-    """Choose one day's words: seeded by the date, skipping words already served.
+) -> list[tuple[GameWord, str]]:
+    """Choose one day's words and their difficulties, skipping words already served.
 
-    If the bank has served so much of the wordlist that fewer than ``count``
-    fresh words remain, the day is filled from the same seeded order anyway
-    rather than shipping short - a repeat is a much smaller failure than a
-    playlist that does not add up.
+    Slots are dealt round-robin across the configured bands, so a three-item day
+    is a curve rather than three rolls of the same dice - and because the easiest
+    band admits only the most familiar quarter, a day can never be three
+    unfamiliar words.
+
+    Within a band the draw is stratified (see ``stratified_order``), seeded by
+    the date so the day stays a pure function of its date. If the bank has served
+    a band's whole bucket, the day repeats from that same order rather than
+    shipping short: a repeat is a much smaller failure than a playlist that does
+    not add up.
     """
     if not candidates:
-        raise ValueError(f"no candidate words for {game_id!r} on {day}")
+        raise ValueError(f"no candidate words for {spec.gameId!r} on {day}")
+    buckets = bucket_candidates(candidates, spec)
+    bands = [band.id for band in spec.difficulties]
     seen = set(used)
-    order = seeded_shuffle(candidates, f"{day}|{game_id}")
-    fresh = [row for row in order if row.word not in seen]
-    chosen = fresh[:count]
-    if len(chosen) < count:
-        chosen += [row for row in order if row not in chosen][: count - len(chosen)]
+    chosen: list[tuple[GameWord, str]] = []
+    for slot in range(count):
+        band_id = bands[slot % len(bands)]
+        pool = buckets[band_id]
+        if not pool:
+            raise ValueError(
+                f"no candidate words for {spec.gameId!r} in the {band_id!r} bucket"
+            )
+        order = stratified_order(pool, f"{day}|{spec.gameId}|{band_id}")
+        picked = {row.word for row, _ in chosen}
+        row = next(
+            (row for row in order if row.word not in seen),
+            next((row for row in order if row.word not in picked), order[0]),
+        )
+        seen.add(row.word)
+        chosen.append((row, band_id))
     return chosen
 
 
 def build_item(
-    row: GameWord, spec: GameGeneration, day: str, hint_limit: int
+    row: GameWord, spec: GameGeneration, day: str, hint_limit: int, difficulty: str
 ) -> PuzzleItem:
     """One playlist entry: the Game's validated payload plus its framing.
 
@@ -148,7 +223,7 @@ def build_item(
     return PuzzleItem(
         gameId=spec.gameId,
         packId=spec.packId,
-        difficulty=anagram.difficulty_of(row, spec),
+        difficulty=difficulty,
         payload=payload,
     )
 
@@ -182,9 +257,9 @@ def build_day(
             app_config.hints.perGame.get(game_id, 0) if app_config.hints.enabled else 0
         )
         wordlist = wordlists[game_id]
-        for row in pick_words(wordlist.words, day, game_id, count, seen):
+        for row, difficulty in pick_words(wordlist.words, spec, day, count, seen):
             seen.add(row.word)
-            items.append(build_item(row, spec, day, hint_limit))
+            items.append(build_item(row, spec, day, hint_limit, difficulty))
     return PuzzleFile(
         version=_PUZZLE_FILE_VERSION,
         changelog=_PUZZLE_FILE_CHANGELOG,

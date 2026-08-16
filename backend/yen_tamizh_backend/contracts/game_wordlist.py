@@ -1,22 +1,30 @@
-"""The per-Game derived wordlist contract (Row 9).
+"""The per-Game derived wordlist contract (Row 9; cut over to the lexicon in row 12).
 
 A ``game-wordlist`` is what one Game's generator draws its words from: the
-subset of the ranked master (Row 8) that the Game's selection knobs keep. It is
-a BUILD ARTIFACT - regenerated in full by ``rebuild_wordlists``, never hand
+subset of the published lexicon (row 11) that the Game's serving gates keep. It
+is a BUILD ARTIFACT - regenerated in full by ``rebuild_wordlists``, never hand
 edited - and it is not served: the game downloads the puzzles the daily engine
 bakes (Row 13), not the wordlist they were baked from.
 
 The document is a pure function of its inputs. There is deliberately no
-wall-clock ``generatedAt`` field: a timestamp would make two runs over the same
-master produce different bytes, which is the opposite of what a reproducible
-derived artifact means. ``source`` pins the exact master the rows came from -
-its path, its schema version, its own ``generatedAt``, its sha256, and its row
-count - and git history records when the file changed (CLAUDE.md section 5).
+wall-clock ``generatedAt`` field anywhere in it - not on the document and not on
+``source`` either: a timestamp would make two runs over the same lexicon produce
+different bytes, which is the opposite of what a reproducible derived artifact
+means. ``source`` pins the exact lexicon the rows came from by CONTENT - the
+meta document's path, its schema version, its sha256 and its published row count
+- and git history records when the file changed (CLAUDE.md section 5). One
+digest still pins a partitioned input, because ``lexicon.meta.json`` itself
+carries the sha256 of every published file.
 
-``counters`` is the integrity Oracle, enforced by the model itself:
-``masterRows - outsideLength - outsideBand - invalidWordFinal - capped ==
-rowsKept == len(words)``. Every master row is accounted for by exactly one
-outcome, so a selection bug cannot quietly drop words.
+``counters`` is the integrity Oracle, enforced by the model itself, with one
+bucket per serving gate::
+
+    lexiconRows - outsideLength - outsideClass - belowAttestations
+                - belowFrequency - withoutMeaning - capped == rowsKept
+                == len(words)
+
+Every published lexicon row is accounted for by exactly one outcome, so a
+selection bug cannot quietly drop words and a gate cannot quietly do nothing.
 """
 
 from __future__ import annotations
@@ -26,11 +34,9 @@ from typing import Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from yen_tamizh_backend.contracts.base import SchemaModel
-from yen_tamizh_backend.contracts.common import GameId, RelPath
+from yen_tamizh_backend.contracts.common import QUARTILES, GameId, RelPath
 from yen_tamizh_backend.contracts.derived_wordlists import DerivedSelection
-from yen_tamizh_backend.contracts.master_wordlist import FreqBand
 
-_ISO_INSTANT = r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$"
 _SHA256 = r"^[0-9a-f]{64}$"
 _DATESTAMP = r"^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}(:\d{2})?)?$"
 
@@ -39,13 +45,12 @@ class GameWordHints(BaseModel):
     """The honest, derivable hint material for one word.
 
     Both fields are recomputed from ``ezhuthu`` on every rebuild and validated
-    against it, so precomputing them cannot drift - the same bargain
-    ``MasterWord.length`` makes in the master list.
+    against it, so precomputing them cannot drift.
 
-    A category hint is deliberately absent. The master's category tags are
-    English source labels, and a Tamil category name is player-facing COPY,
-    which lives in ``config/copy.json`` and never inside a dataset. Inventing
-    Tamil category strings here would be a dishonest field.
+    A category hint is deliberately absent. Only about 1,290 lexicon rows carry
+    a category at all, and a Tamil category name is player-facing COPY, which
+    lives in ``config/copy.json`` and never inside a dataset. Inventing Tamil
+    category strings here would be a dishonest field.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -56,6 +61,20 @@ class GameWordHints(BaseModel):
 
 class GameWord(BaseModel):
     """One word a Game may build a puzzle from.
+
+    ``frequency`` is the lexicon's raw count, carried through unchanged. It is
+    what ``minFrequency`` gates on and what the difficulty curve reads, and it
+    replaces the old rank-relative band: a band computed over a population where
+    thousands of rows appear zero times is a different filter wearing the same
+    name.
+
+    ``frequencyStratum`` is which quarter of THIS SET the row's frequency puts
+    it in, 1 being the most familiar. It is computed over the SERVED rows and
+    nothing wider - a quartile taken over millions of lexicon surfaces would say
+    nothing about the words a player is actually offered. It is the second axis
+    of difficulty: length alone is anti-correlated at both tails, because long
+    Tamil headwords are mostly compounds that decompose while short rare words
+    are brutal.
 
     ``anagramFanOut`` counts how many SERVED rows share this row's ezhuthu
     multiset, including the row itself - so a word whose tiles spell nothing
@@ -70,7 +89,8 @@ class GameWord(BaseModel):
 
     word: str = Field(min_length=1)
     ezhuthu: list[str] = Field(min_length=1)
-    freqBand: FreqBand
+    frequency: int = Field(ge=0)
+    frequencyStratum: int = Field(ge=1, le=QUARTILES)
     anagramFanOut: int = Field(ge=1)
     hints: GameWordHints | None = None
 
@@ -96,26 +116,42 @@ class GameWord(BaseModel):
 
 
 class DerivedSource(BaseModel):
-    """The exact master wordlist a derived set was cut from."""
+    """The exact lexicon a derived set was cut from, pinned by content.
+
+    ``metaPath`` names ``lexicon.meta.json`` rather than the directory of
+    published files, and ``sha256`` digests that one document - which itself
+    carries the sha256 of every partition, so a single digest still pins a
+    partitioned input. ``rows`` is the lexicon's PUBLISHED row count, which is
+    what the ledger reconciles against.
+    """
 
     model_config = ConfigDict(extra="forbid")
 
-    path: RelPath
+    metaPath: RelPath
     version: str = Field(pattern=_DATESTAMP)
-    generatedAt: str = Field(pattern=_ISO_INSTANT)
     sha256: str = Field(pattern=_SHA256)
     rows: int = Field(ge=1)
 
 
 class DerivedCounters(BaseModel):
-    """The reconciliation ledger for one derive run (no silent drops)."""
+    """The reconciliation ledger for one derive run - one bucket per gate.
+
+    The buckets are listed in the order the identity is read, and a row that
+    fails more than one gate is counted under the first one that stopped it.
+    ``outsideClass`` comes off the lexicon's own partition table rather than
+    from reading those files: selection is an allow-list, so the derived layer
+    opens only the classes it serves, and the classes it will not serve are
+    counted from what the meta document declares about them.
+    """
 
     model_config = ConfigDict(extra="forbid")
 
-    masterRows: int = Field(ge=0)
+    lexiconRows: int = Field(ge=0)
     outsideLength: int = Field(ge=0)
-    outsideBand: int = Field(ge=0)
-    invalidWordFinal: int = Field(default=0, ge=0)
+    outsideClass: int = Field(ge=0)
+    belowAttestations: int = Field(ge=0)
+    belowFrequency: int = Field(ge=0)
+    withoutMeaning: int = Field(ge=0)
     capped: int = Field(ge=0)
     rowsKept: int = Field(ge=0)
 
@@ -123,23 +159,26 @@ class DerivedCounters(BaseModel):
     def _counters_reconcile(self) -> Self:
         accounted = (
             self.outsideLength
-            + self.outsideBand
-            + self.invalidWordFinal
+            + self.outsideClass
+            + self.belowAttestations
+            + self.belowFrequency
+            + self.withoutMeaning
             + self.capped
             + self.rowsKept
         )
-        if accounted != self.masterRows:
+        if accounted != self.lexiconRows:
             raise ValueError(
-                f"outsideLength {self.outsideLength} + outsideBand "
-                f"{self.outsideBand} + invalidWordFinal {self.invalidWordFinal} + "
-                f"capped {self.capped} + rowsKept {self.rowsKept} != masterRows "
-                f"{self.masterRows}"
+                f"outsideLength {self.outsideLength} + outsideClass "
+                f"{self.outsideClass} + belowAttestations {self.belowAttestations} "
+                f"+ belowFrequency {self.belowFrequency} + withoutMeaning "
+                f"{self.withoutMeaning} + capped {self.capped} + rowsKept "
+                f"{self.rowsKept} != lexiconRows {self.lexiconRows}"
             )
         return self
 
 
 class GameWordlist(SchemaModel):
-    """One Game's derived wordlist, with the master and selection that made it."""
+    """One Game's derived wordlist, with the lexicon and selection that made it."""
 
     gameId: GameId
     source: DerivedSource
@@ -153,11 +192,31 @@ class GameWordlist(SchemaModel):
             raise ValueError(
                 f"counters.rowsKept {self.counters.rowsKept} != {len(self.words)} words"
             )
-        if self.counters.masterRows != self.source.rows:
+        if self.counters.lexiconRows != self.source.rows:
             raise ValueError(
-                f"counters.masterRows {self.counters.masterRows} != source.rows "
+                f"counters.lexiconRows {self.counters.lexiconRows} != source.rows "
                 f"{self.source.rows}"
             )
+        return self
+
+    @model_validator(mode="after")
+    def _strata_are_the_quartiles_of_this_set(self) -> Self:
+        # Recomputed rather than trusted, like every other derived field here.
+        # The order is frequency descending with the word as the tie-break, so
+        # it is total and the strata are reproducible; a value-based cut would
+        # collapse whenever a frequency repeats, which on the rare tail it does
+        # thousands of times.
+        total = len(self.words)
+        if total == 0:
+            return self
+        order = sorted(self.words, key=lambda row: (-row.frequency, row.word))
+        for position, row in enumerate(order):
+            expected = position * QUARTILES // total + 1
+            if row.frequencyStratum != expected:
+                raise ValueError(
+                    f"frequencyStratum {row.frequencyStratum} != {expected} for "
+                    f"{row.word!r} at position {position} of {total} served rows"
+                )
         return self
 
     @model_validator(mode="after")

@@ -14,9 +14,10 @@ Five things are proven:
    payload against ``anagram-puzzle``, and the index against ``bank-index``.
 3. **Playability.** The tiles rejoin to the answer word (ezhuthu integrity, Row
    6), the scramble is never the solved order, and no word repeats across days.
-4. **The knobs.** Difficulty comes from the configured length bands, hints are
-   capped by the app config's per-Game allowance, and a mix that does not add up
-   to the playlist length is an error rather than a short day.
+4. **The knobs.** Difficulty reads BOTH configured axes - ezhuthu length and
+   frequency stratum - hints are capped by the app config's per-Game allowance,
+   and a mix that does not add up to the playlist length is an error rather than
+   a short day.
 5. **The seam.** The engine reads the derived wordlist and nothing above it, and
    a published day survives a changed wordlist untouched.
 """
@@ -38,8 +39,9 @@ from yen_tamizh_backend.contracts.game_wordlist import GameWordlist
 from yen_tamizh_backend.contracts.puzzle_file import PuzzleFile
 from yen_tamizh_backend.ezhuthu import segment
 from yen_tamizh_backend.generate import anagram, daily
-from yen_tamizh_backend.generate.seed import hash_seed, seeded_shuffle
+from yen_tamizh_backend.generate.seed import hash_seed, seeded_index, seeded_shuffle
 from yen_tamizh_backend.scripts.generate_today import generate, load_wordlists
+from yen_tamizh_backend.wordsmith import derive
 
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 _APP_CONFIG = _REPO_ROOT / "config" / "app-config.json"
@@ -48,6 +50,10 @@ _GENERATOR = _REPO_ROOT / "config" / "daily-generator.json"
 # The first day the bank was baked (Row 13). Used as a fixed date so the tests
 # assert over a real, committed day rather than whatever today happens to be.
 FIRST_DAY = "2026-08-13"
+
+# The first day baked from the lexicon-gated wordlist (row 12). Days before it
+# were baked from the pre-cutover set and the re-bake guard leaves them alone.
+CUTOVER_DAY = "2026-08-23"
 
 
 @pytest.fixture(scope="module")
@@ -180,6 +186,41 @@ def test_the_seeded_shuffle_is_stable_and_permutes(tmp_path: Path) -> None:
     assert seeded_shuffle(items, "2026-08-14|anagram") != once
     assert hash_seed("2026-08-13") == hash_seed("2026-08-13")
     assert hash_seed("2026-08-13") != hash_seed("2026-08-14")
+
+
+def test_seeded_index_is_stable_and_covers_its_whole_range() -> None:
+    seeds = [f"2026-08-{day:02d}|anagram|hard" for day in range(1, 32)]
+    picks = [seeded_index(4, seed) for seed in seeds]
+    assert picks == [seeded_index(4, seed) for seed in seeds]
+    assert set(picks) == {0, 1, 2, 3}
+    assert seeded_index(1, "anything") == 0
+    with pytest.raises(ValueError, match="count must be positive"):
+        seeded_index(0, "anything")
+
+
+def test_seeded_index_does_not_inherit_the_low_bit_correlation() -> None:
+    """FNV-1a's low bit is the XOR of its inputs' low bits - so it cannot pick.
+
+    The two band seeds below share that parity, so ``hash_seed(...) % n`` gave
+    the medium and hard buckets the SAME stratum rotation on every single date -
+    two \"random\" choices that were one choice wearing two names. The regression
+    this pins is that the digest is mixed before it is reduced.
+    """
+    days = [f"2026-09-{day:02d}" for day in range(1, 31)]
+    raw = {
+        hash_seed(f"{day}|anagram|medium") % 2 == hash_seed(f"{day}|anagram|hard") % 2
+        for day in days
+    }
+    assert raw == {True}, "the trap this test exists for has changed shape"
+
+    mixed = [
+        (
+            seeded_index(2, f"{day}|anagram|medium"),
+            seeded_index(4, f"{day}|anagram|hard") % 2,
+        )
+        for day in days
+    ]
+    assert any(medium != hard for medium, hard in mixed)
 
 
 # --------------------------------------------------------------------------
@@ -366,12 +407,45 @@ def test_no_word_is_served_twice_across_the_bank(bank_dir: Path) -> None:
 def test_every_served_word_comes_from_the_derived_wordlist(
     bank_dir: Path, wordlists: dict[str, GameWordlist]
 ) -> None:
-    """The engine consumes the derived layer; it never invents a word."""
+    """The engine consumes the derived layer; it never invents a word.
+
+    Scoped to the days baked from the CURRENT wordlist. A published day is a
+    pure function of its date AND of the wordlist it drew from, so once that
+    wordlist moves the earlier days stop being checkable against it - they are
+    history the re-bake guard deliberately preserves, not a rebuildable
+    artifact.
+    """
     allowed = {row.word for row in wordlists["anagram"].words}
+    checked = 0
     for path in _committed_days(bank_dir):
+        if path.stem < CUTOVER_DAY:
+            continue
+        checked += 1
         puzzle_file = PuzzleFile.model_validate_json(path.read_text(encoding="utf-8"))
         for item in puzzle_file.items:
             assert str(item.payload["word"]) in allowed
+    assert checked, "no day was baked from the current wordlist"
+
+
+def test_no_day_baked_since_the_cutover_serves_a_proper_noun(bank_dir: Path) -> None:
+    """The goal of the cutover, asserted over the committed bank.
+
+    Scoped to the days the cutover reaches: the earlier days are history the
+    re-bake guard deliberately leaves alone, and rewriting a day a player has
+    already played buys nothing (row 12 decision 7).
+    """
+    meta = derive.load_meta(_REPO_ROOT / "datasets" / "lexicon" / "lexicon.meta.json")
+    proper_nouns = {
+        row.word for row in derive.read_rows(meta, _REPO_ROOT, ["properNoun"])
+    }
+    assert proper_nouns, "the lexicon publishes no proper nouns to guard against"
+    for path in _committed_days(bank_dir):
+        if path.stem < CUTOVER_DAY:
+            continue
+        puzzle_file = PuzzleFile.model_validate_json(path.read_text(encoding="utf-8"))
+        for item in puzzle_file.items:
+            word = str(item.payload["word"])
+            assert word not in proper_nouns, f"{path.stem} serves {word}"
 
 
 def test_a_day_holds_exactly_the_configured_playlist(
@@ -389,15 +463,49 @@ def test_a_day_holds_exactly_the_configured_playlist(
 # --------------------------------------------------------------------------
 
 
-def test_difficulty_comes_from_the_configured_length_bands(
+def test_difficulty_reads_both_length_and_familiarity(
     generator: DailyGenerator, wordlists: dict[str, GameWordlist]
 ) -> None:
     spec = generator.games[0]
-    bands = {band.id: (band.minLength, band.maxLength) for band in spec.difficulties}
+    bands = {
+        band.id: (band.minLength, band.maxLength, band.maxStratum)
+        for band in spec.difficulties
+    }
+    claimed = 0
     for row in wordlists["anagram"].words:
         bucket = anagram.difficulty_of(row, spec)
-        low, high = bands[bucket]
+        if bucket is None:
+            # No band claims it, so no slot can draw it - see bucket_candidates.
+            continue
+        claimed += 1
+        low, high, top = bands[bucket]
         assert low <= len(row.ezhuthu) <= high
+        assert row.frequencyStratum <= top
+    assert claimed, "no served word lands in any difficulty band"
+
+
+def test_the_easiest_band_admits_only_the_most_familiar_quarter(
+    generator: DailyGenerator,
+) -> None:
+    """This is what makes a day of three unfamiliar words structurally impossible."""
+    assert generator.games[0].difficulties[0].maxStratum == 1
+
+
+def test_a_word_no_band_claims_is_dropped_rather_than_relabelled(
+    generator: DailyGenerator, wordlists: dict[str, GameWordlist]
+) -> None:
+    spec = generator.games[0]
+    buckets = daily.bucket_candidates(wordlists["anagram"].words, spec)
+    assert set(buckets) == {band.id for band in spec.difficulties}
+    bucketed = sum(len(rows) for rows in buckets.values())
+    unclaimed = [
+        row
+        for row in wordlists["anagram"].words
+        if anagram.difficulty_of(row, spec) is None
+    ]
+    assert bucketed + len(unclaimed) == len(wordlists["anagram"].words)
+    for row in unclaimed:
+        assert row not in buckets[spec.difficulties[-1].id]
 
 
 def test_hints_are_capped_by_the_app_config_allowance(
@@ -475,36 +583,92 @@ def test_a_hint_template_naming_an_unknown_field_fails_loudly(
 
 
 def test_selection_skips_words_already_served(
-    wordlists: dict[str, GameWordlist],
+    generator: DailyGenerator, wordlists: dict[str, GameWordlist]
 ) -> None:
+    spec = generator.games[0]
     candidates = wordlists["anagram"].words
-    plain = daily.pick_words(candidates, FIRST_DAY, "anagram", 3, used=())
+    plain = daily.pick_words(candidates, spec, FIRST_DAY, 3, used=())
     assert len(plain) == 3
     avoided = daily.pick_words(
-        candidates, FIRST_DAY, "anagram", 3, used={row.word for row in plain}
+        candidates, spec, FIRST_DAY, 3, used={row.word for row, _ in plain}
     )
-    assert {row.word for row in avoided}.isdisjoint({row.word for row in plain})
+    assert {row.word for row, _ in avoided}.isdisjoint({row.word for row, _ in plain})
+
+
+def test_a_day_is_dealt_round_robin_across_the_difficulty_bands(
+    generator: DailyGenerator, wordlists: dict[str, GameWordlist]
+) -> None:
+    """A day is a curve, not three rolls of the same dice."""
+    spec = generator.games[0]
+    picked = daily.pick_words(wordlists["anagram"].words, spec, FIRST_DAY, 3, used=())
+    assert [difficulty for _, difficulty in picked] == [
+        band.id for band in spec.difficulties
+    ]
+    for row, difficulty in picked:
+        assert anagram.difficulty_of(row, spec) == difficulty
+
+
+def test_the_draw_within_a_band_is_stratified_not_uniform(
+    generator: DailyGenerator, wordlists: dict[str, GameWordlist]
+) -> None:
+    """Every window of four holds one word from each quarter, by construction."""
+    spec = generator.games[0]
+    pool = daily.bucket_candidates(wordlists["anagram"].words, spec)[
+        spec.difficulties[-1].id
+    ]
+    order = daily.stratified_order(pool, f"{FIRST_DAY}|anagram|hard")
+
+    assert len(order) == len(pool)
+    assert {row.word for row in order} == {row.word for row in pool}
+    strata = sorted({row.frequencyStratum for row in pool})
+    window = [row.frequencyStratum for row in order[: len(strata)]]
+    assert sorted(window) == strata
+
+
+def test_the_stratified_order_is_a_pure_function_of_its_seed(
+    generator: DailyGenerator, wordlists: dict[str, GameWordlist]
+) -> None:
+    spec = generator.games[0]
+    pool = daily.bucket_candidates(wordlists["anagram"].words, spec)["easy"]
+    first = [row.word for row in daily.stratified_order(pool, "seed")]
+    assert [row.word for row in daily.stratified_order(pool, "seed")] == first
+    assert [row.word for row in daily.stratified_order(pool, "other")] != first
 
 
 def test_selection_fills_the_day_even_when_everything_was_served(
-    wordlists: dict[str, GameWordlist],
+    generator: DailyGenerator, wordlists: dict[str, GameWordlist]
 ) -> None:
     """A repeat is a smaller failure than a playlist that does not add up."""
+    spec = generator.games[0]
     candidates = wordlists["anagram"].words
     filled = daily.pick_words(
-        candidates, FIRST_DAY, "anagram", 3, used={row.word for row in candidates}
+        candidates, spec, FIRST_DAY, 3, used={row.word for row in candidates}
     )
     assert len(filled) == 3
 
 
-def test_selection_with_no_candidates_is_an_error() -> None:
+def test_selection_with_no_candidates_is_an_error(generator: DailyGenerator) -> None:
     with pytest.raises(ValueError, match="no candidate words"):
-        daily.pick_words([], FIRST_DAY, "anagram", 1, used=())
+        daily.pick_words([], generator.games[0], FIRST_DAY, 1, used=())
+
+
+def test_a_band_with_an_empty_bucket_is_an_error(
+    generator: DailyGenerator, wordlists: dict[str, GameWordlist]
+) -> None:
+    """A day short of a band must fail loudly, never silently pick from another."""
+    spec = generator.games[0]
+    only_hard = [
+        row
+        for row in wordlists["anagram"].words
+        if anagram.difficulty_of(row, spec) == "hard"
+    ]
+    with pytest.raises(ValueError, match="easy"):
+        daily.pick_words(only_hard, spec, FIRST_DAY, 3, used=())
 
 
 def test_the_engine_reads_only_the_derived_layer() -> None:
-    """The corpus and the daily puzzle are different layers (user directive)."""
-    forbidden = ("corpus.ingest", "corpus.rank", "corpus.derive")
+    """The lexicon and the daily puzzle are different layers (user directive)."""
+    forbidden = ("yen_tamizh_backend.corpus", "yen_tamizh_backend.wordsmith")
     for module in ("daily.py", "anagram.py", "seed.py", "__init__.py"):
         source = (
             _REPO_ROOT / "backend" / "yen_tamizh_backend" / "generate" / module

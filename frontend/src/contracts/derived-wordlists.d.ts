@@ -13,7 +13,7 @@ export type Changelog = [ChangelogEntry, ...(ChangelogEntry)[]]
 export type Change = string
 export type Version = string
 export type Why = string
-export type Masterpath = string
+export type Lexiconpath = string
 /**
  * @minItems 1
  */
@@ -21,22 +21,25 @@ export type Sets = [DerivedSet, ...(DerivedSet)[]]
 export type Gameid = string
 export type Note = (string | null)
 export type Out = string
+export type Maxlength = number
+export type Maxwords = (number | null)
+export type Minattestations = number
+export type Minfrequency = number
+export type Minlength = number
+export type Mintier1Attestations = number
+export type Requiremeaning = boolean
 /**
  * @minItems 1
  */
-export type Bands = [("common" | "mid" | "rare"), ...(("common" | "mid" | "rare"))[]]
-export type Maxlength = number
-export type Maxwords = (number | null)
-export type Minlength = number
-export type Requirevalidwordfinal = boolean
+export type Wordclasses = [("headword" | "colloquial"), ...(("headword" | "colloquial"))[]]
 export type Version1 = string
 
 /**
- * The registry: one master in, one derived set out per registered Game.
+ * The registry: one lexicon in, one derived set out per registered Game.
  */
 export interface DerivedWordlists {
 changelog: Changelog
-masterPath: Masterpath
+lexiconPath: Lexiconpath
 sets: Sets
 version: Version1
 }
@@ -61,16 +64,26 @@ out: Out
 selection: DerivedSelection
 }
 /**
- * Which master words a derived set keeps. Every knob is tunable data.
+ * Which lexicon rows a derived set SERVES. Every knob is tunable data.
  * 
- * ``minLength`` / ``maxLength`` count EZHUTHU, not code points - the unit every
- * Game plays in (Row 6). ``bands`` names the ``freqBand`` values a player is
- * expected to know. ``requireValidWordFinal`` drops tokens that do not END the
- * way a Tamil word ends (the corpus is scraped, so it carries sandhi artifacts
- * and transliterated loanwords that no Tamil speaker would accept as an
- * ANSWER). ``maxWords`` caps the committed artifact (``null`` means uncapped);
- * a derived set is a build artifact in git, so an uncapped one is an unbounded
- * commit.
+ * The lexicon is everything the pipeline knows; this is the far smaller set a
+ * player is actually asked to spell. PRESENT and SERVED are different
+ * populations on purpose, and these knobs are the whole difference.
+ * 
+ * ``wordClasses`` is an ALLOW-LIST, never a deny-list, so a word the
+ * classifier could not place cannot reach a player by omission.
+ * ``minLength`` / ``maxLength`` count EZHUTHU, not code points - the unit
+ * every Game plays in (Row 6). ``minAttestations`` together with
+ * ``minTier1Attestations`` is the composition rule: how many word-hood
+ * authorities called this a word, and how many of those were dictionaries
+ * rather than bare listings. Two bare wordlists agreeing is not evidence - a
+ * spellchecker list is several times the size of the largest dictionary and
+ * co-occurs with nearly any orthographically legal string. ``minFrequency`` is
+ * the absolute floor that keeps a museum piece off the board.
+ * ``requireMeaning`` keeps out words the game could not explain once the
+ * player had solved them. ``maxWords`` caps the committed artifact (``null``
+ * means uncapped); a derived set is a build artifact in git, so an uncapped one
+ * is an unbounded commit.
  * 
  * There is deliberately no anagram knob. Whether a word's tiles also spell
  * something else is RECORDED on the emitted row as ``anagramFanOut``, never
@@ -79,14 +92,23 @@ selection: DerivedSelection
  * two orders of magnitude while selecting for bound stems, because fragments
  * are what collide with real words.
  * 
+ * There is no ``categories`` knob either. Only about 1,290 words carry a
+ * category, so gating admission on one would cut the served set to roughly a
+ * thousand rows and re-create the scarcity the lexicon exists to remove.
+ * Categories are a selection DIMENSION for a themed round, never an admission
+ * test.
+ * 
  * This model is shared: the registry declares it and the emitted wordlist
  * echoes back the selection that produced it, so a reviewer reading a diff can
  * see which knob moved. Defining it once is why the two cannot disagree.
  */
 export interface DerivedSelection {
-bands: Bands
 maxLength: Maxlength
 maxWords?: Maxwords
+minAttestations: Minattestations
+minFrequency: Minfrequency
 minLength: Minlength
-requireValidWordFinal?: Requirevalidwordfinal
+minTier1Attestations: Mintier1Attestations
+requireMeaning: Requiremeaning
+wordClasses: Wordclasses
 }

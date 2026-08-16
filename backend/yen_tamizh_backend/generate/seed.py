@@ -67,3 +67,23 @@ def seeded_shuffle(items: Sequence[T], seed_text: str) -> list[T]:
         j = int(rand.next_float() * (i + 1))
         out[i], out[j] = out[j], out[i]
     return out
+
+
+def seeded_index(count: int, seed_text: str) -> int:
+    """Pick one of ``count`` positions from a seed - mixed, never truncated.
+
+    ``hash_seed(text) % count`` will not do, and the reason is worth stating
+    because it is invisible until it bites: FNV-1a multiplies by an ODD prime,
+    so the low bit of its digest is simply the XOR of the low bits of its
+    inputs. Two seeds whose texts share that parity therefore share the parity
+    of their digest, and any caller taking the digest modulo a power of two gets
+    two perfectly correlated "random" choices. That is exactly what happened to
+    the daily draw: ``|medium`` and ``|hard`` have the same low-bit parity, so
+    the two bands rotated their frequency strata in lockstep on every date.
+    Running the digest through the generator mixes it.
+    """
+    if count <= 0:
+        raise ValueError(f"count must be positive, not {count}")
+    # next_float() is in [0, 1), so the product is below count - the clamp is a
+    # guard against a float rounding up at the very top of the range.
+    return min(int(Mulberry32(hash_seed(seed_text)).next_float() * count), count - 1)

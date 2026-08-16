@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-13",
+  "version": "2026-08-16T23:30",
   "changelog": [
+    {
+      "version": "2026-08-16T23:30",
+      "change": "Gave every difficulty band a maxStratum bound alongside its length bounds, and moved the length bounds to 3-4 easy, 4-5 medium, 5-6 hard.",
+      "why": "Row 12 of the lexicon pipeline - difficulty is two-axis, because length alone is anti-correlated at both tails: a long Tamil headword is usually a compound that decomposes and is easier than its tile count suggests, while a short rare word is brutal. The old easy band was minLength 3 / maxLength 3, which forced the generator into the shortest words - disproportionately literary, and brute-forceable at six arrangements against three attempts. Bounding easy to the most familiar quarter is also what makes it impossible for a day to be three words nobody knows."
+    },
     {
       "version": "2026-08-13",
       "change": "Initial daily-engine registry: the anagram generator, its difficulty bands, and its hint wording.",
@@ -18,9 +23,9 @@
       "timeLimitSec": 0,
       "reveal": 0,
       "difficulties": [
-        { "id": "easy", "minLength": 3, "maxLength": 3 },
-        { "id": "medium", "minLength": 4, "maxLength": 4 },
-        { "id": "hard", "minLength": 5, "maxLength": 6 }
+        { "id": "easy", "minLength": 3, "maxLength": 4, "maxStratum": 1 },
+        { "id": "medium", "minLength": 4, "maxLength": 5, "maxStratum": 2 },
+        { "id": "hard", "minLength": 5, "maxLength": 6, "maxStratum": 4 }
       ],
       "hints": [
         {

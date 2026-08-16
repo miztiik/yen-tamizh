@@ -42,7 +42,7 @@ from yen_tamizh_backend.contracts.master_wordlist import (
     SourceProvenance,
 )
 from yen_tamizh_backend.corpus import rank
-from yen_tamizh_backend.corpus.artifact import render_document, sha256_of, write_artifact
+from yen_tamizh_backend.wordsmith.artifact import render_document, sha256_of, write_artifact
 from yen_tamizh_backend.ezhuthu import classify, segment
 
 # 64 KB keeps the JSON reader's working set small while still swallowing any

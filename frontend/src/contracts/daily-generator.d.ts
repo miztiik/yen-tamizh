@@ -26,6 +26,7 @@ export type Attempts = number
 export type Difficulties = [DifficultyBand, ...(DifficultyBand)[]]
 export type Id = string
 export type Maxlength = number
+export type Maxstratum = number
 export type Minlength = number
 export type Gameid = string
 export type Cost = number
@@ -73,16 +74,29 @@ timeLimitSec: Timelimitsec
 wordlist: Wordlist
 }
 /**
- * One difficulty bucket: the ezhuthu lengths it covers and its id.
+ * One difficulty bucket: the ezhuthu lengths and the familiarity it covers.
  * 
- * Difficulty is derived from the word's ezhuthu count because that is the only
- * honest difficulty signal the derived set carries; a 3-ezhuthu scramble has 6
- * arrangements and a 6-ezhuthu one has 720. Where the cuts fall is a
- * game-balance number, so it lives here rather than in Python (Holy Law #6).
+ * Difficulty is TWO-AXIS - length and familiarity - because length alone is
+ * anti-correlated at both tails. A long Tamil headword is usually a compound
+ * that decomposes into recognisable chunks and is EASIER than its ezhuthu
+ * count suggests, while a short rare word is brutal; a length-only easy bucket
+ * therefore forces the generator into the shortest words, which are
+ * disproportionately literary. A 3-ezhuthu answer also has only six
+ * arrangements against three attempts, so it is brute-forceable by shuffling
+ * without the player ever recognising the word.
+ * 
+ * ``maxStratum`` is the coarsest frequency quarter the band admits, 1 being
+ * the most familiar quarter of the SERVED set. Bands deliberately OVERLAP on
+ * length and tile on familiarity: what separates easy from hard is mostly how
+ * well the player knows the word, not how many tiles it has.
+ * 
+ * Where the cuts fall is a game-balance number, so it lives here rather than
+ * in Python (Holy Law #6).
  */
 export interface DifficultyBand {
 id: Id
 maxLength: Maxlength
+maxStratum: Maxstratum
 minLength: Minlength
 }
 /**
