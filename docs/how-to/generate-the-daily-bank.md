@@ -7,9 +7,9 @@ back-fill a day. The generator is the DAILY PUZZLE ENGINE: it consumes a per-Gam
 derived wordlist and produces committed puzzle files.
 
 ```
-datasets/corpus/**  ->  master wordlist  ->  per-Game sets  ->  daily puzzles
-   (raw sources)         (add-a-corpus-      (add-a-derived-     (this page)
-                          source.md)          wordlist.md)
+datasets/lexicon/**  ->  published lexicon  ->  per-Game sets  ->  daily puzzles
+  (raw sources in)       (add-a-lexicon-       (add-a-derived-     (this page)
+                          source.md)            wordlist.md)
 ```
 
 The engine never re-ingests, re-ranks, or re-derives. Refreshing the words is the

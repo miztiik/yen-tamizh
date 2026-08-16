@@ -330,9 +330,9 @@ Recorded here rather than closed, because each is measured and none is fixed. Ro
 | 11 | `wordsmith/publish.py` + `pipeline.py` | B | 9b | - | DONE #29 | `../yen-tamizh-pub` | #29 | worker |
 | 12 | Cut the derived layer over; real serving gates; two-axis difficulty | B | 1, 11 | - | DONE #30 | `../yen-tamizh-r12` | #30 | worker |
 | 12a | Publish every sense; human-first field order; collapse to one file per BASE letter | B | 12 | - | DONE #31 | `../yen-tamizh-fix` | #31 | worker + orchestrator |
-| 13 | Retire the corpus layer; purge the retired `master` identifiers | A | 12a | - | READY - next | - | - | - |
+| 13 | Retire the corpus layer; purge the retired `master` identifiers | A | 12a | - | DONE #32 | `../yen-tamizh-r13` | #32 | worker |
 | 14 | Rebuild the hint ladder; show a solved word's meaning | B | 13, 15 | - | PENDING | - | - | - |
-| 15 | Themed selection: `categories` + `pos` | B | 13 | - | PENDING | - | - | - |
+| 15 | Themed selection: `categories` + `pos` | B | 13 | - | READY - next | - | - | - |
 
 PR #26 was a first publish attempt (53 files, full-ezhuthu address, single-sense) CLOSED as stale rather than merged; #29 supersedes it.
 
@@ -837,6 +837,18 @@ Rows 3 and 13 change `REGISTRY` in `backend/yen_tamizh_backend/contracts/__init_
 - **Acceptance gates:** Full backend and frontend gates green with the deletions applied; no dangling doc link in `docs/`, `README.md`, `AGENTS.md`.
 
 - **Oracle:** A repo-wide search returns zero hits for each retired identifier - `masterPath`, `masterRows`, `load_master`, `MasterWord`, `MasterWordlist`, `master-wordlist`, `master_dictionary`, `_MASTER`, `datasets/wordlists/master/`, `corpus-sources`, `CorpusSources` - outside `.git`.
+
+- **CORRECTIONS found in execution (2026-08-17).** The authored scope was written before rows 11 and 12 landed and three of its instructions were stale by the time this row ran:
+
+  | # | The plan said | What was true |
+  | --- | --- | --- |
+  | 1 | Delete `scripts/rebuild_wordlists.py` | Row 12 REPURPOSED it to cut the derived sets from the published lexicon. It is the live rebuild entry point and deleting it would have broken the derive pipeline. KEPT. |
+  | 2 | Move `corpus/artifact.py` -> `wordsmith/artifact.py` | Row 12 already moved it, along with `corpus/derive.py`. Nothing left to move; the `corpus/` package was down to `__init__.py`, `ingest.py` and `rank.py`. |
+  | 3 | The Oracle includes `master_dictionary` | It COLLIDES with a live source. Row 4 registered the predecessor's curated dictionary as the lexicon source `master-dictionary`, whose provenance path is `yen-tamizh_OLD/src/dictionary/master_dictionary.json`. That is tier-1 authority A1, the largest headword source in the inventory. The token is struck from the Oracle: it names a LIVE source, not a retired identifier. |
+
+  Two hits survive in live files and are correct: `config/derived-wordlists.json` and `wordsmith/derive.py` each carry a CHANGELOG line naming `masterPath` / `masterRows` as the field the rename replaced. A changelog that cannot name the old field is useless, so these stay. Every other hit is in a plan-doc, which is deleted at closure.
+
+  One test was deleted with the artifact it read: `test_the_ledger_agrees_with_the_committed_master_wordlist` cross-checked eleven ledger sha256 values against `words_ranked.json`'s provenance block. Its coverage is not lost - `config/lexicon-sources.json` carries `sha256` and `bytes` for every source and EXTRACT re-verifies both on every run, which is a stronger check made against a live file rather than a frozen one.
 
 - **Decisions:**
 

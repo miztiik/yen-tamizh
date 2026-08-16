@@ -25,6 +25,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          # The generator reads the per-Game derived sets, never the 52 MB
+          # published lexicon they were cut from. Excluded paths stay in the
+          # index, so the bank commit below cannot delete them.
+          sparse-checkout: |
+            /*
+            !/datasets/lexicon
+          sparse-checkout-cone-mode: false
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"

@@ -10,8 +10,7 @@ schema, the types, and the validators can never drift from the models.
 
 ``REGISTRY`` is the explicit list of models the exporter walks. Later rows
 append their models here (Row 7: app-config, event-envelope, save, puzzle-file,
-bank-index, anagram-puzzle; Row 8: corpus-sources, master-wordlist; Row 9:
-derived-wordlists, game-wordlist).
+bank-index, anagram-puzzle; Row 9: derived-wordlists, game-wordlist).
 """
 
 from __future__ import annotations
@@ -38,13 +37,6 @@ from yen_tamizh_backend.contracts.common import (
     SourceId,
 )
 from yen_tamizh_backend.contracts.copy import Copy
-from yen_tamizh_backend.contracts.corpus_sources import (
-    CorpusBands,
-    CorpusFilters,
-    CorpusSource,
-    CorpusSources,
-    SourceKind,
-)
 from yen_tamizh_backend.contracts.daily_generator import (
     DailyGenerator,
     DifficultyBand,
@@ -96,13 +88,6 @@ from yen_tamizh_backend.contracts.lexicon_sources import (
     SourceRole,
     WordClassEvidence,
 )
-from yen_tamizh_backend.contracts.master_wordlist import (
-    FreqBand,
-    IngestCounters,
-    MasterWord,
-    MasterWordlist,
-    SourceProvenance,
-)
 from yen_tamizh_backend.contracts.puzzle_file import PuzzleFile, PuzzleItem
 from yen_tamizh_backend.contracts.save import Save, compute_day_key
 from yen_tamizh_backend.contracts.wordhood import (
@@ -121,9 +106,9 @@ from yen_tamizh_backend.contracts.wordhood import (
 # Explicit registry (not auto-discovery) so the exporter's output set is
 # deterministic and reviewed. Export sorts by name; order here is not
 # load-bearing. Row 7 adds the six core surfaces plus copy alongside the Row 5
-# demonstrator and the Row 10 glyph manifest; Row 8 adds the corpus layer, Row 9
-# the derived layer between the corpus and the puzzle engine, and Row 13 the
-# daily engine's own registry. The lexicon layer that supersedes the corpus one
+# demonstrator and the Row 10 glyph manifest; Row 9 adds the derived layer
+# between the word inventory and the puzzle engine, and Row 13 the daily
+# engine's own registry. The lexicon layer that replaced the retired corpus one
 # registers its meta document, its source registry and the word-hood knobs its
 # enrich stage reads; ``LexiconEntry`` is NOT here - a data row carries no
 # ``version`` / ``changelog``, so it is not a ``SchemaModel``, and it reaches
@@ -133,7 +118,6 @@ REGISTRY: tuple[type[SchemaModel], ...] = (
     AppConfig,
     BankIndex,
     Copy,
-    CorpusSources,
     DailyGenerator,
     DerivedWordlists,
     EventEnvelope,
@@ -142,7 +126,6 @@ REGISTRY: tuple[type[SchemaModel], ...] = (
     GlyphManifest,
     Lexicon,
     LexiconSources,
-    MasterWordlist,
     PuzzleFile,
     Save,
     Wordhood,
@@ -166,10 +149,6 @@ __all__ = [
     "ClassifierSettings",
     "Copy",
     "CopySlug",
-    "CorpusBands",
-    "CorpusFilters",
-    "CorpusSource",
-    "CorpusSources",
     "DailyConfig",
     "DailyGenerator",
     "DerivedCounters",
@@ -184,7 +163,6 @@ __all__ = [
     "EventEnvelope",
     "Example",
     "EzhuthuIndexEntry",
-    "FreqBand",
     "GameGeneration",
     "GameId",
     "GameWord",
@@ -196,7 +174,6 @@ __all__ = [
     "HintSpec",
     "HintsConfig",
     "InfiniteConfig",
-    "IngestCounters",
     "Lexicon",
     "LexiconCensus",
     "LexiconCounters",
@@ -206,8 +183,6 @@ __all__ = [
     "LexiconSource",
     "LexiconSourceKind",
     "LexiconSources",
-    "MasterWord",
-    "MasterWordlist",
     "ModeId",
     "NeighbourSettings",
     "NgramSettings",
@@ -226,8 +201,6 @@ __all__ = [
     "SchemaModel",
     "SignalName",
     "SourceId",
-    "SourceKind",
-    "SourceProvenance",
     "SourceRole",
     "TimeTrialConfig",
     "TypoProfile",

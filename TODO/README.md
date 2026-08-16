@@ -213,7 +213,7 @@ Each gets a typed schema in `schemas/` (a single file `schemas/<name>.schema.jso
 - `puzzle-file` - the Daily playlist file (array of `{ gameId, packId, difficulty, payload, hints? }`).
 - `journey` - a Journey definition (ordered nodes, theme, unlock rule).
 - One payload schema per Game: `word-ladder-puzzle`, `anagram-puzzle`, `missing-letters-puzzle`, `wordle-puzzle`, `word-search-puzzle`, `crossword-puzzle`.
-- `game-wordlist` / `master-wordlist` - the curated data the generators consume.
+- `game-wordlist` / `lexicon` - the curated data the generators consume. (The proposal's `master-wordlist` was retired in the wordsmith plan's row 13; the lexicon layer replaced it.)
 - `progress-record` / `save` - the browser-owned save format (the one migrating surface).
 - `event-envelope` - the telemetry shape (section 3.7).
 - `asset-manifest` / `glyph-manifest` - the baked glyph + asset index.
