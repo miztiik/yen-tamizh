@@ -66,7 +66,9 @@ from yen_tamizh_backend.wordsmith.signals_exact import SignalContext
 from yen_tamizh_backend.wordsmith.store import quoted
 
 _ENTRY_TABLE: Final = "tmp_entry"
-_EVIDENCE_TABLE: Final = "tmp_evidence"
+# The temp table the evidence collector fills. Exported so a test can read the
+# collector's own output rather than a second copy of its query.
+EVIDENCE_TABLE: Final = "tmp_evidence"
 
 CLASSIFY_UDF: Final = "word_class"
 
@@ -74,6 +76,11 @@ CLASSIFY_UDF: Final = "word_class"
 # them in. A separator that cannot occur inside a value, because every value is
 # a member of a closed Literal.
 EVIDENCE_SEPARATOR: Final = ","
+
+# The one evidence value that is a DENIAL rather than a description, named once
+# because both the SQL that collects it and the cascade that weighs it have to
+# mean the same string.
+NOT_A_WORD: Final[WordClassEvidence] = "notAWord"
 
 # The nine verdicts and the seven a source may assert, taken from the contracts
 # rather than restated. A second copy of a closed vocabulary is a second place
@@ -141,30 +148,42 @@ def asserted(surface: Surface, config: Wordhood) -> WordClassEvidence | None:
     return min(surface.evidence, key=priority.index)
 
 
-def is_not_a_word(shape: WordShape, config: Wordhood) -> bool:
-    """Whether the STRING disqualifies itself before any evidence is read.
+def not_a_word_reason(shape: WordShape, config: Wordhood) -> str | None:
+    """Which precondition the STRING fails, or ``None`` when it fails none.
+
+    One implementation of the rule, read two ways: the cascade only needs to
+    know THAT a surface failed, and the review dump needs to know WHICH clause
+    it failed on. Deriving the reason a second time somewhere else would let the
+    published verdict and the reviewed reason disagree.
 
     Three rejections, each a threshold in config, and each with a real producer
-    measured over the store: a unit that is not an ezhuthu at all (616,175
-    surfaces), a length no Tamil word reaches (25,464 above 25 ezhuthu, the
-    longest 1,212), and one character repeated (180).
+    measured over the store: a unit that is not an ezhuthu at all, a length no
+    Tamil word reaches, and one character repeated.
+    """
+    settings = config.classifier.notAWord
+    units = shape.ezhuthu
+    if not units:
+        return "empty"
+    if settings.rejectNonTamil and shape.hasNonTamil:
+        return "nonTamil"
+    if len(units) > settings.maxEzhuthu:
+        return "tooLong"
+    # Only a surface of more than one ezhuthu can fail this: a one-ezhuthu word
+    # holds exactly one distinct ezhuthu and is an ordinary Tamil word.
+    if len(units) > 1 and len(set(units)) < settings.minDistinctEzhuthu:
+        return "repeatedEzhuthu"
+    return None
+
+
+def is_not_a_word(shape: WordShape, config: Wordhood) -> bool:
+    """Whether the STRING disqualifies itself before any evidence is read.
 
     This is a CONFIDENT NEGATIVE, which is why it does not go to
     ``unclassified``. That class is the enrichment queue - an absent verdict a
     later pass may fill - and a queue holding 642,000 strings no amount of
     enrichment can fix is a queue nobody can size.
     """
-    settings = config.classifier.notAWord
-    units = shape.ezhuthu
-    if not units:
-        return True
-    if settings.rejectNonTamil and shape.hasNonTamil:
-        return True
-    if len(units) > settings.maxEzhuthu:
-        return True
-    # Only a surface of more than one ezhuthu can fail this: a one-ezhuthu word
-    # holds exactly one distinct ezhuthu and is an ordinary Tamil word.
-    return len(units) > 1 and len(set(units)) < settings.minDistinctEzhuthu
+    return not_a_word_reason(shape, config) is not None
 
 
 def classify_surface(surface: Surface, config: Wordhood) -> WordClass:
@@ -190,6 +209,11 @@ def classify_surface(surface: Surface, config: Wordhood) -> WordClass:
         return "notAWord"
 
     # ---- 1. what a source SAID ------------------------------------------
+    # Including a source saying the unit is NOT a word. That denial is ranked
+    # first in `evidencePriority`, so it outranks every other assertion and
+    # vetoes the headword gate below - which is the point: another authority
+    # merely LISTING the same single letter is not an answer to the dictionary
+    # that looked at it and called it a character.
     said = asserted(surface, config)
     if said is not None:
         return said
@@ -362,9 +386,21 @@ def prepare_evidence(ctx: SignalContext) -> None:
     whatever SQLite produced and is deliberately not relied on - the cascade
     resolves them by the configured priority, so the verdict is a function of
     the SET.
+
+    One value is filtered rather than collected as written, and the word ONLY
+    in Row 9b's ruling is what it implements. ``notAWord`` reaches the store
+    when a source's part-of-speech tag routes to ``reject: notAWord`` - a
+    lexicographer saying the unit is a script character or a symbol. That is a
+    DENIAL of word-hood, and it stands only when it is everything that source
+    said about the surface: the Wiktionary extract files the vowel AA as both a
+    character and a noun, in two separate rows, and the noun has to win. So a
+    ``notAWord`` row is dropped when the SAME source also asserted a part of
+    speech for the SAME word. Asking per source is what makes that possible -
+    one source's denial is not answered by another source's bare listing, which
+    is exactly the case the veto exists for.
     """
     conn = ctx.conn
-    name = quoted(_EVIDENCE_TABLE)
+    name = quoted(EVIDENCE_TABLE)
     conn.execute(f"DROP TABLE IF EXISTS {name}")
     conn.execute(
         f"CREATE TEMP TABLE {name} "
@@ -372,8 +408,15 @@ def prepare_evidence(ctx: SignalContext) -> None:
     )
     conn.execute(
         f"INSERT INTO {name} (word, evidence) "
-        f"SELECT word, group_concat(DISTINCT value) FROM fact "
-        f"WHERE attr = 'wordClassEvidence' GROUP BY word"
+        f"SELECT word, group_concat(DISTINCT value) FROM fact AS said "
+        f"WHERE attr = 'wordClassEvidence' AND ("
+        f"  value <> '{NOT_A_WORD}' OR NOT EXISTS ("
+        f"    SELECT 1 FROM fact AS described "
+        f"    WHERE described.word = said.word "
+        f"      AND described.source_id = said.source_id "
+        f"      AND described.attr = 'pos'"
+        f"  )"
+        f") GROUP BY word"
     )
 
 
@@ -464,7 +507,7 @@ def classify_population(ctx: SignalContext) -> int:
         f"CASE WHEN t.word IS NULL THEN 0 ELSE 1 END, e.evidence) "
         f"FROM signal s "
         f"LEFT JOIN {quoted(_ENTRY_TABLE)} t ON t.word = s.word "
-        f"LEFT JOIN {quoted(_EVIDENCE_TABLE)} e ON e.word = s.word"
+        f"LEFT JOIN {quoted(EVIDENCE_TABLE)} e ON e.word = s.word"
     )
     return int(cursor.rowcount)
 

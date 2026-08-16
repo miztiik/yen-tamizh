@@ -44,10 +44,25 @@ from yen_tamizh_backend.contracts.lexicon_sources import WordClassEvidence
 # the date-stamp and its first changelog entry live here: two writers of one
 # schema picking their own dates is the drift CLAUDE.md section 11 exists to
 # stop. Migration class is build-time rewrite-in-place.
-WORDHOOD_VERSION = "2026-08-16"
+WORDHOOD_VERSION = "2026-08-16T22:00"
 WORDHOOD_CHANGELOG = (
     ChangelogEntry(
         version=WORDHOOD_VERSION,
+        change="Ranked notAWord first in classifier.evidencePriority.",
+        why=(
+            "Row 9b - a lexicographic source routing a surface's only "
+            "part-of-speech verdict to reject notAWord has DENIED that the "
+            "unit is a word, and the priority list must rank every evidence "
+            "value exactly once. First, because it is the only value that "
+            "answers whether this is a word at all rather than what KIND of "
+            "word it is: a letter of the alphabet is not a proper noun with an "
+            "unusual shape, and no other source's bare headword listing "
+            "outweighs the dictionary that looked at it and said it is a "
+            "character."
+        ),
+    ),
+    ChangelogEntry(
+        version="2026-08-16",
         change=(
             "Replaced classifier.entryAttrs with classifier.notAWord - the "
             "maximum ezhuthu length, the minimum distinct ezhuthu, and whether "

@@ -55,6 +55,12 @@ changed. Check whether the publisher also offers a dated artifact and prefer it;
 if only `latest` exists, record the dump date beside the digest and say in the
 ledger that the URL is not stable.
 
+A GitHub-hosted file has the same problem with a different name. A
+`raw.githubusercontent.com` URL naming a BRANCH serves whatever that branch
+holds today, so pin the COMMIT SHA instead - `.../IWN-En/e48e64b.../data/...`
+rather than `.../IWN-En/main/data/...`. It is the same rule as the dated dump
+and it costs one API call to resolve.
+
 Some publishers refuse an anonymous fetch. `dumps.wikimedia.org` answers **HTTP
 403** to Python's default `urllib` User-Agent and 200 to a descriptive one:
 
@@ -126,7 +132,30 @@ column. Pick that character deliberately. A separator that DOES occur splits a
 row the source meant as one thing: the Tamil Wiktionary dump writes a space as
 an underscore, and splitting there would have attested the first word of every
 multi-word page. A multi-word row is one surface, not several, and EXTRACT
-stages it whole.
+stages it whole. (That underscore is also CANONICALIZED back to a space, because
+it is MediaWiki's stored spelling of the same title the content dump writes with
+a space - see `docs/architecture/lexicon/pipeline.md`.)
+
+For a delimited file whose fields are RFC-4180 QUOTED - IndoWordNet's linked
+release is one - the kind is `delimited-quoted` and the knobs are the same four:
+
+```json
+{
+  "id": "my-quoted-table",
+  "kind": "delimited-quoted",
+  "delimiter": "\t",
+  "hasHeader": true,
+  "wordColumn": 8
+}
+```
+
+Choose it whenever a field may be wrapped in double quotes, because then a field
+may legally hold the delimiter, a doubled quote, or a NEWLINE - which means a
+record is not a line. Three of IndoWordNet's 16,640 records span two physical
+lines, and the plain `delimited` reader turns those two records into four
+malformed rows rather than failing, which is the worst of both. If you are not
+sure, count logical rows with `csv.reader` and compare against the line count:
+if they differ, the file is quoted.
 
 For a JSON document holding an array of records:
 
@@ -290,7 +319,17 @@ Two cases, and only two:
    `categoryField` and `posField` cover a flat record. A source whose
    translations live in a differently named field, or whose senses nest inside
    an array, needs an extractor in `extract.py` - subclass `SourceExtractor` and
-   override `extra_facts`. Five of the twenty-two registered sources do.
+   override `extra_facts`. Seven of the twenty-three registered sources do.
+
+IndoWordNet needed both, and it is the worked example for each. Its file is an
+RFC-4180 quoted TSV, which no existing reader could see, so it added the
+`delimited-quoted` kind. And its record is a SYNSET - a concept, the Tamil words
+that express it, a Tamil gloss, a part of speech and a Princeton WordNet link -
+which is five meanings across five columns where the registry names one column
+per mapping, so it overrides `feed` outright. `wordColumn` is still read from
+the registry, because that is the column the surfaces come from; the other four
+column indexes live in the extractor, exactly as the English-Tamil dictionary's
+marker grammar does.
 
 A source whose bytes are MARKUP needs both, and they stay separate: the reader
 knows the file format, the extractor knows what a record asserts, and a third

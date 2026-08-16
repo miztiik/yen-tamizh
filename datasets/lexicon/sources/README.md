@@ -33,7 +33,7 @@ allowed to assert:
 
 | role | May assert | Sources |
 | --- | --- | --- |
-| `authority` | that a surface IS a word (a headword), plus whatever else it carries | A1-A8 |
+| `authority` | that a surface IS a word (a headword), plus whatever else it carries | A1-A10 |
 | `formEvidence` | only that a surface is NOT a headword - an inflected form | B1, B2 |
 | `category` | semantic metadata; never word-hood | C1 |
 | `frequency` | counts; never word-hood | D1-D9, E1 |
@@ -43,27 +43,40 @@ allowed to assert:
 
 There is no licence gate on this directory, and that is a deliberate ruling, not
 an oversight. Tamil words, their meanings and their synonyms are public-domain
-facts about a language; a particular dictionary's edited prose is not. The
+facts about a language. The language predates corporate law and digitisation by
+two millennia, so no modern party owns a Tamil word or what it means, and
+asserting such ownership is misappropriation rather than a licence. A source
+whose terms are restrictive is simply superseded by the next authority rather
+than argued with.
+
+The ruling was widened on 2026-08-16 (plan row 4 decision 2a) and the earlier
+narrower clause is recorded here rather than silently replaced. It read that the
 pipeline extracts the FACT - headword, part of speech, synonym set, category -
-into the store, and never republishes a source's definition sentence verbatim.
-A source whose terms are restrictive is simply superseded by the next authority
-rather than argued with.
+and never republishes a source's definition SENTENCE verbatim. That clause was
+written when no Tamil-definition source existed anywhere in the inventory and an
+authored meaning was the only route to one; A9 then supplied 146,527 attested
+Tamil meanings and the clause blocked the best data on the list for no benefit.
+A Tamil definition now publishes verbatim as `meaningSource: attested`, ranked
+above `authored`, and the authoring pass fills only what no source attests.
 
 ## The ledger
 
 `bytes`, `records` and `sha256` describe the file at `path` exactly as acquired -
 on 2026-08-14 for A1-A7 and B1 through E1, on 2026-08-15 for A8, and on
-2026-08-16 for A9. `records` counts physical lines for the line-based formats
-(so D1's count includes its `word,frequency` header line, and A8's includes its
-`page_title` one), root-array elements for the JSON formats, and MAIN-NAMESPACE
-pages for the MediaWiki export - which is what its reader treats as a record,
-and is 410,074 of the export's 415,705 pages.
+2026-08-16 for A9 and A10. `records` counts physical lines for the line-based
+formats (so D1's count includes its `word,frequency` header line, and A8's
+includes its `page_title` one), root-array elements for the JSON formats,
+MAIN-NAMESPACE pages for the MediaWiki export - which is what its reader treats
+as a record, and is 410,074 of the export's 415,705 pages - and LOGICAL rows for
+the quoted TSV, where three records hold an embedded newline and so span two
+physical lines each (16,640 records over 16,642 lines).
 
 A8 and A9 are the two sources whose origin is an ARCHIVE rather than the file
 itself, so their rows describe the decompressed bytes and each archive's own
 digest is recorded in its section below
 ([A8](#a8---acquired-from-a-gzip-archive),
-[A9](#a9---the-wiktionary-content-itself)).
+[A9](#a9---the-wiktionary-content-itself)). A10's origin is a COMMIT-pinned raw
+URL rather than a branch one, for the reason [A10](#a10---indowordnet) gives.
 
 | # | id | role | origin | path | bytes | records | sha256 | status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -76,6 +89,7 @@ digest is recorded in its section below
 | A7 | wiktextract-ta | authority | https://kaikki.org/dictionary/Tamil/kaikki.org-dictionary-Tamil.jsonl | datasets/lexicon/sources/wiktextract-ta/source.jsonl | 86701341 | 13773 | `56c3063941fe4fe8004efbd51e6a57173b25f5d86c68fff648e27be5a15fc723` | acquired |
 | A8 | ta-wiktionary-titles | authority | https://dumps.wikimedia.org/tawiktionary/20260801/tawiktionary-20260801-all-titles-in-ns0.gz | datasets/lexicon/sources/ta-wiktionary-titles/source.txt | 7745492 | 410075 | `7b4954ccad02227771354192a88bbae82939009068067b029abd073e29321cf0` | acquired |
 | A9 | ta-wiktionary-content | authority | https://dumps.wikimedia.org/tawiktionary/20260801/tawiktionary-20260801-pages-articles.xml.bz2 | datasets/lexicon/sources/ta-wiktionary-content/source.xml | 647116289 | 410074 | `a33493a73bcb3d03302b8501814d80f16344d0e3cf651f41cce7bf323cf6e4d5` | acquired |
+| A10 | indowordnet-ta | authority | https://raw.githubusercontent.com/cfiltnlp/IWN-En/e48e64b5757d465b31a8339fb003e2ed6931327b/data/english-hindi-tamil-linked.tsv | datasets/lexicon/sources/indowordnet-ta/source.tsv | 13711270 | 16640 | `fe61e17a3dcbb891ea4ffb9c7d0f47eb7775eff2b84f0454f1d012f3f9fe7bb4` | acquired |
 | B1 | inflected-verbs-bulk | formEvidence | yen-tamizh_OLD/src/dictionary/raw/Simple-verbs-01022021.txt | datasets/lexicon/sources/inflected-verbs-bulk/source.txt | 69572318 | 1461494 | `3baf32b9662c248b81273be0446c4f8fbfcb812c0ea6675ee47485293a9fb3b5` | acquired |
 | B2 | inflected-verbs-clean | formEvidence | yen-tamizh_OLD/src/dictionary/intermediate/verbs.txt | datasets/lexicon/sources/inflected-verbs-clean/source.txt | 727814 | 19249 | `0e1913e15f1ebc7413b50f8b738a933ab7f6ecd48c3db09e9a6f4ef107226d1e` | acquired |
 | C1 | themed-vocabulary | category | yen-tamizh_OLD/src/dictionary/intermediate/ta_vocabulary_clean.json | datasets/lexicon/sources/themed-vocabulary/source.json | 144240 | 1290 | `91a78edadca357690975066c6d00815060f79e6a679f07e9a63cd8758f26ed6c` | acquired |
@@ -245,6 +259,39 @@ could not read instead of dropping it. Over the whole dump it skipped 40,946
 lines inside blocks it was harvesting, and every run prints that number and the
 pages-without-facts one beside the seven-field tally.
 
+### A10 - IndoWordNet
+
+The SECOND sense-scoped meaning source, and the reason it was chosen over four
+other candidates is in the evaluation table below. One record is a SYNSET: a
+concept, the Tamil words that express it, a Tamil gloss, a part of speech, and
+the Princeton WordNet synset the concept was linked to. 16,639 records over
+23,296 distinct Tamil words, with a synset of 1 in 9,932 records and of 73 at
+the widest.
+
+**Pinned by COMMIT SHA, not by branch.** A branch URL serves whatever the branch
+holds today, so a recorded `sha256` would go stale with nothing in this
+repository changing - the same failure the dated dump URLs avoid for A8 and A9.
+The origin above names commit `e48e64b`, which is the repository head as of
+2026-08-16.
+
+**Its file is a QUOTED TSV, which is why it needed a new reader kind.** The
+glosses are RFC-4180 quoted and three of them hold an embedded newline, so the
+16,640 logical records occupy 16,642 physical lines. A line-splitting reader
+sees four malformed rows where there are two records - which is not a rounding
+error, it is two records read as garbage - so the registry's `kind` is
+`delimited-quoted` and the reader is the standard library's own `csv` module.
+
+**Its English column is a translation only on a `Direct` link.** The
+`type_link` column says how the Tamil synset was joined to the Princeton one:
+`Direct` on 13,766 records and `Hypernymy` on 2,873. On a hypernym link the
+English words name a BROADER concept, so publishing them as the translation
+would assert an equivalence the source declined to assert. The extractor emits
+none for those records and counts them.
+
+| artifact | bytes | sha256 |
+| --- | --- | --- |
+| at `path` | 13711270 | `fe61e17a3dcbb891ea4ffb9c7d0f47eb7775eff2b84f0454f1d012f3f9fe7bb4` |
+
 ### E1 - acquired, disabled The extraction that produced it stripped
 vowel signs and pulli, so its tokens are bare consonant skeletons - valid Tamil
 letters that are not Tamil words, and some of which cannot begin a Tamil word at
@@ -271,6 +318,10 @@ does not have to re-litigate whether something was missed. In short:
 | `frontend/wireframe_screens/` | Design reference, not data |
 
 ### Candidates evaluated for a SECOND meaning source, 2026-08-16
+
+**A10 was acquired from this evaluation - see [A10](#a10---indowordnet).** The
+rest of this section is the evidence that led there, kept so the four rejected
+candidates are not re-litigated.
 
 The Tamil Wiktionary content dump gives most headwords a meaning, but one
 source asserting a meaning is a claim rather than a confidence. Five candidates
@@ -312,6 +363,12 @@ membership and the part of speech; the Tamil gloss SENTENCE is prose and stays
 store-only evidence like every other source's. And the artifact must be pinned
 by commit sha, not by `master`, for the same reason A8 and A9 pin a dated dump
 rather than `latest`.
+
+Row 9b settled both. The pin is the commit sha, and the gloss ruling was
+SUPERSEDED before the row ran: plan row 4 decision 2a rules that a Tamil
+definition publishes verbatim, so the Tamil gloss is a first-class
+`definitionTa` rather than store-only evidence. See the Licence section above
+for the ruling itself.
 
 **What was rejected, and why, in the candidates' own terms:**
 

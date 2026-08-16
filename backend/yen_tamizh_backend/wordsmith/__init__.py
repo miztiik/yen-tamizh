@@ -2,7 +2,8 @@
 
 Four stages, each independently runnable, each reading the previous stage's
 on-disk artifact rather than an in-process value: EXTRACT, STAGE, ENRICH,
-PUBLISH. Why it is four stages and not one pass is
+PUBLISH. REVIEW sits beside them as a REPORT over the derived zone, writing
+nothing back. Why it is four stages and not one pass is
 ``docs/architecture/lexicon/pipeline.md``; what the words mean is
 ``docs/concepts/lexicon.md``.
 
@@ -11,7 +12,8 @@ runtime server (Holy Law #1) and the browser never reads anything it writes
 except the published bank the puzzle engine bakes.
 
 EXTRACT and STAGE exist so far (Rows 5 and 6); ENRICH writes the store's
-derived zone from row 7, and PUBLISH renders the artifact from row 11.
+derived zone from row 7, REVIEW dumps it for a human from row 9b, and PUBLISH
+renders the artifact from row 11.
 """
 
 from __future__ import annotations
@@ -41,10 +43,12 @@ from yen_tamizh_backend.wordsmith.extract import (
 from yen_tamizh_backend.wordsmith.readers import (
     DEFAULT_CHUNK,
     iter_delimited,
+    iter_delimited_quoted,
     iter_json_array,
     iter_jsonl,
     read_elements,
 )
+from yen_tamizh_backend.wordsmith.review import ReviewRun, review
 from yen_tamizh_backend.wordsmith.signals_exact import (
     EXACT_SIGNALS,
     Signal,
@@ -88,6 +92,7 @@ __all__ = [
     "FactKind",
     "Observation",
     "RemoveResult",
+    "ReviewRun",
     "Signal",
     "SignalContext",
     "SignalResult",
@@ -107,6 +112,7 @@ __all__ = [
     "extract",
     "extract_source",
     "iter_delimited",
+    "iter_delimited_quoted",
     "iter_json_array",
     "iter_jsonl",
     "load_config",
@@ -116,6 +122,7 @@ __all__ = [
     "orthotactic_score",
     "read_elements",
     "remove_source",
+    "review",
     "stage",
     "stage_epoch",
     "store_stats",

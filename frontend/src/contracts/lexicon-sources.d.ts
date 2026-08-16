@@ -21,7 +21,7 @@ export type Outputs = [("ndjson" | "csv" | "sqlite"), ...(("ndjson" | "csv" | "s
 export type Note = (string | null)
 export type Pos = ([("adjective" | "adverb" | "conjunction" | "determiner" | "interjection" | "noun" | "numeral" | "particle" | "postposition" | "pronoun" | "verb"), ...(("adjective" | "adverb" | "conjunction" | "determiner" | "interjection" | "noun" | "numeral" | "particle" | "postposition" | "pronoun" | "verb"))[]] | null)
 export type Reject = (("notAWord" | "multiWordUnit" | "noTamilCounterpart" | "notAPosLabel") | null)
-export type Wordclassevidence = ([("inflected" | "colloquial" | "properNoun" | "loanword" | "boundStem" | "sandhiArtifact" | "suspectedTypo"), ...(("inflected" | "colloquial" | "properNoun" | "loanword" | "boundStem" | "sandhiArtifact" | "suspectedTypo"))[]] | null)
+export type Wordclassevidence = ([("inflected" | "colloquial" | "properNoun" | "loanword" | "boundStem" | "sandhiArtifact" | "suspectedTypo" | "notAWord"), ...(("inflected" | "colloquial" | "properNoun" | "loanword" | "boundStem" | "sandhiArtifact" | "suspectedTypo" | "notAWord"))[]] | null)
 /**
  * @minItems 1
  */
@@ -36,7 +36,7 @@ export type Elementkind = (("object" | "string") | null)
 export type Enabled = boolean
 export type Hasheader = boolean
 export type Id = string
-export type Kind = ("delimited" | "json-array" | "jsonl" | "mediawiki-xml")
+export type Kind = ("delimited" | "delimited-quoted" | "json-array" | "jsonl" | "mediawiki-xml")
 export type Name = string
 export type Note1 = (string | null)
 export type Origin = string
