@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-16",
+  "version": "2026-08-16T18:00",
   "changelog": [
+    {
+      "version": "2026-08-16T18:00",
+      "change": "Added the mediawiki-xml reader kind and its pageNamespace knob, required on that kind and forbidden on every other.",
+      "why": "Row 4b - the Tamil Wiktionary CONTENT dump is a MediaWiki export, a format none of the three existing readers can stream. Which namespace holds the records is a property of the export rather than of the format (a dump interleaves articles with talk, template and project pages), so it is declared per source like hasHeader rather than assumed in the reader."
+    },
     {
       "version": "2026-08-16",
       "change": "Added attestationTier, required on every source whose role may assert word-hood and forbidden on every other.",
@@ -66,7 +71,16 @@
     "suffix": { "wordClassEvidence": ["boundStem"] },
     "symbol": { "reject": "notAWord" },
     "v": { "pos": ["verb"] },
-    "verb": { "pos": ["verb"] }
+    "verb": { "pos": ["verb"] },
+    "\u0b87\u0b9f\u0bc8\u0b9a\u0bcd\u0b9a\u0bca\u0bb2\u0bcd": {
+      "pos": ["particle"],
+      "note": "idaicchol. The six Tamil-script tags below are the Tamil Wiktionary's own grammatical vocabulary, written as escapes so a decomposed literal cannot silently match nothing. Its abbreviations and plurals are folded onto these six by the reader that knows that source, exactly as the English-Tamil dictionary's fourteen prefix spellings fold onto twelve tags."
+    },
+    "\u0b89\u0bb0\u0bbf\u0b9a\u0bcd\u0b9a\u0bca\u0bb2\u0bcd": { "pos": ["adjective"] },
+    "\u0b8e\u0ba3\u0bcd": { "pos": ["numeral"] },
+    "\u0baa\u0bc6\u0baf\u0bb0\u0bcd\u0b9a\u0bcd\u0b9a\u0bca\u0bb2\u0bcd": { "pos": ["noun"] },
+    "\u0bb5\u0bbf\u0ba9\u0bc8\u0b9a\u0bcd\u0b9a\u0bca\u0bb2\u0bcd": { "pos": ["verb"] },
+    "\u0bb5\u0bbf\u0ba9\u0bc8\u0baf\u0bc1\u0bb0\u0bbf\u0b9a\u0bcd\u0b9a\u0bca\u0bb2\u0bcd": { "pos": ["adverb"] }
   },
   "categoryAliases": {
     "Amphibians": "amphibians",
@@ -425,6 +439,20 @@
       "hasHeader": true,
       "wordColumn": 0,
       "note": "A TIER-2, enumerative authority: every row is a bare page title, with no gloss, definition, part of speech, synonym or category anywhere in the dump, so it can never satisfy the entry test and cannot make a surface a headword on its own. The delimiter is a tab, which the file never contains, so each line yields the whole title as one column. It is deliberately NOT the underscore the dump uses for a space: splitting there would attest the first word of a multi-word page, and a multi-word entry attests the phrase, not the words inside it. Precedence last because a title list has no English gloss to win the single display slot with, and renumbering thirteen sources for a value that never competes would be churn."
+    },
+    {
+      "id": "ta-wiktionary-content",
+      "name": "Tamil Wiktionary articles, main namespace",
+      "origin": "https://dumps.wikimedia.org/tawiktionary/20260801/tawiktionary-20260801-pages-articles.xml.bz2",
+      "role": "authority",
+      "attestationTier": "lexicographic",
+      "kind": "mediawiki-xml",
+      "path": "datasets/lexicon/sources/ta-wiktionary-content/source.xml",
+      "bytes": 647116289,
+      "sha256": "a33493a73bcb3d03302b8501814d80f16344d0e3cf651f41cce7bf323cf6e4d5",
+      "precedence": 21,
+      "pageNamespace": 0,
+      "note": "The same wiki as ta-wiktionary-titles, and the opposite tier, because the CONTENT is what the title list does not carry: a Tamil sense, a synonym set, a part of speech, an English gloss. That description IS the editorial act attestationTier names, so this source is lexicographic where the bare title list is enumerative. Its headword fact is emitted only for a page that carries at least one of those facts - a stub with nothing said about it is observed, never attested, so the tier-1 claim is true row by row and not merely on average. Precedence last: the wiki's translation column is a free-text list one editor at a time, and it must lose the single English display slot to every curated dictionary."
     }
   ]
 }

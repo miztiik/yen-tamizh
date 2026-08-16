@@ -6,11 +6,26 @@ How the Tamil meanings, synonyms, English translations, parts of speech and them
 
 ## The model is a source, not a stage
 
-No source in the inventory supplies an attested Tamil definition. A dictionary's Tamil sense text is a lexicographer's prose, and prose is retained as build-time evidence and never republished ([../concepts/lexicon.md](../concepts/lexicon.md)). So every published `definitionTa` is **authored** - written by the agent executing the pipeline, from the evidence the store already holds - and the result is committed as an ordinary lexicon source at `datasets/lexicon/sources/llm-authored/entries.jsonl`.
+A dictionary's Tamil sense text is a lexicographer's prose, and prose is retained as build-time evidence and never republished ([../concepts/lexicon.md](../concepts/lexicon.md)). So every published `definitionTa` is **authored** - written by the agent executing the pipeline, from the evidence the store already holds - and the result is committed as an ordinary lexicon source at `datasets/lexicon/sources/llm-authored/entries.jsonl`.
 
 There is no API client anywhere in the pipeline, no key, and no new dependency. `wordsmith/llm_enrich.py` reads and validates that committed file; it never calls a model. This is not squeamishness about network access - it is what makes the pipeline reproducible at all. A model asked the same question twice may answer differently, so it can never sit inside a stage whose Oracle is byte-identity. A committed file can: the same bytes produce the same facts on every run, on every machine, forever, and a bad batch is visible in a per-line diff and revertible by one commit.
 
-The file is therefore raw INPUT, exactly like the nineteen acquired sources, which is why it has no generated JSON Schema. What makes a source trustworthy here is its reader failing loudly at the boundary, and `llm_enrich.py` is that reader. It is the ONE source whose bytes are committed rather than gitignored, so it also has no acquisition ledger row and no fixture slice - the real file is always on disk and is what the tests exercise.
+The file is therefore raw INPUT, exactly like the twenty-one acquired sources, which is why it has no generated JSON Schema. What makes a source trustworthy here is its reader failing loudly at the boundary, and `llm_enrich.py` is that reader. It is the ONE source whose bytes are committed rather than gitignored, so it also has no acquisition ledger row and no fixture slice - the real file is always on disk and is what the tests exercise.
+
+## Attested Tamil sense evidence now exists, and it changes the INPUT rather than the rule
+
+Until row 4b no acquired source supplied a Tamil definition at all, so authoring worked from an English gloss and a part of speech and reasoned back into Tamil. The Tamil Wiktionary content dump (`ta-wiktionary-content`) ends that: 92,731 of its 98,107 wholly Tamil single-token titles carry a Tamil sense, and 77,558 of the 137,991 headwords now have a `definitionTa` fact in the store against 6,269 before - a factor of twelve.
+
+The no-verbatim rule is not weakened by it. A wiki sense line is still a person's sentence, so it is retained as evidence and an authored meaning is written FROM it; what changed is that the evidence is now in the language the meaning has to be written in. Concretely:
+
+| Fact | What it is | Where it goes |
+| --- | --- | --- |
+| `definitionTa` from a wiki page | one editor's sentence about the word | store-only evidence, the best authoring input the project has |
+| `synonym` from a wiki page | a Tamil equivalent - a fact about the language, not a sentence | publishable, and SENSE-SCOPED by the page it came from |
+| `pos` from a wiki page | a part of speech | publishable; 67,232 headwords gained one |
+| `translation` from a wiki page | a free-text English list, one editor at a time | last in precedence, so it loses the single display slot to every curated dictionary |
+
+The synonym line is the one worth dwelling on, because the column it feeds was the weakest thing in the lexicon. The English-Tamil dictionary is read SIDEWAYS - every Tamil term filed under one English headword becomes an equivalent of every other - which groups by an English word and therefore mixes senses freely; it produced up to a thousand "synonyms" for one entry. A wiki synonym is scoped to the PAGE, which is scoped to the word, so it is the first sense-scoped synonym evidence in the inventory. Where the two disagree, the sideways read is the one to distrust.
 
 ## Running it
 
@@ -55,7 +70,7 @@ Authoring is bounded to the rows that can actually be SERVED: `wordClass == head
 
 | Tier | Evidence the store holds |
 | --- | --- |
-| E1 | An English definition, or Tamil sense prose |
+| E1 | A Tamil sense from the wiki, an English definition, or a dictionary's Tamil sense prose |
 | E2 | An English translation AND a part of speech |
 | E3 | An English translation only |
 | E4 | Only a synonym group, read sideways out of the English-Tamil dictionary |
@@ -63,7 +78,7 @@ Authoring is bounded to the rows that can actually be SERVED: `wordClass == head
 
 **E5 rows are not authored.** No translation, no part of speech, no synonym set and no sense prose means there is nothing to author FROM, and writing a meaning anyway is guessing from orthography. The lexicon already forbids that for themes, where a wrong guess costs a player one paid hint; it must bind harder on the meaning, which is both the summary line and the most expensive rung on the ladder.
 
-Measured over the current bounded set, E3, E4 and E5 are all EMPTY, and that is structural rather than lucky. The word-hood classifier only calls a surface a headword when a tier-1 authority listed it as an entry, and those authorities each also supply either a definition or a translation. So today every authorable row is E1 or E2, and the E5 rule has nothing to exclude. That will change the moment a bare-word-list source is promoted, which is exactly when the rule earns its place.
+Measured over the bounded set before row 4b, E3, E4 and E5 were all EMPTY, and that was structural rather than lucky: the word-hood classifier only calls a surface a headword when a tier-1 authority listed it as an entry, and those authorities each also supply either a definition or a translation. Row 4b moves the distribution rather than the rule - a wiki sense is E1 evidence, so tens of thousands of rows that would have been authored from an English gloss alone can now be authored from a Tamil one.
 
 ## Cross-validate before you author
 
@@ -73,10 +88,11 @@ So authoring reads the store PER WORD and PER SOURCE, not per attribute. Every c
 
 | Evidence | Where it comes from |
 | --- | --- |
-| `translation` | the English-Tamil dictionary read forward, and the curated dictionary's own English column |
-| `synonym` | the same bilingual dictionary read SIDEWAYS - every Tamil term sharing an English headword and part-of-speech prefix |
+| `definitionTa` | the Tamil Wiktionary's own sense lines and explanation sections |
+| `translation` | the English-Tamil dictionary read forward, the curated dictionary's own English column, and the wiki's translation arm |
+| `synonym` | the bilingual dictionary read SIDEWAYS - every Tamil term sharing an English headword and part-of-speech prefix - and the wiki's own synonym sections, which are sense-scoped and therefore the more trustworthy of the two |
 | `definitionEn` | Wiktextract's sense prose |
-| `pos` | any of the three lexicographic authorities |
+| `pos` | any of the lexicographic authorities |
 | `category` | the themed vocabulary |
 | `frequency`, `spokenRatio` | the nine frequency corpora, summed and split |
 

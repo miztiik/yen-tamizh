@@ -32,6 +32,7 @@ import shutil
 import tracemalloc
 from pathlib import Path
 from typing import Any
+from xml.etree import ElementTree
 
 import pytest
 
@@ -166,6 +167,15 @@ def count_records(source: LexiconSource, path: Path) -> int:
         return max(len(lines) - 1, 0) if source.hasHeader else len(lines)
     if source.kind == "jsonl":
         return len([line for line in raw.splitlines() if line.strip()])
+    if source.kind == "mediawiki-xml":
+        root = ElementTree.fromstring(raw)
+        return len(
+            [
+                page
+                for page in root.findall("{*}page")
+                if page.findtext("{*}ns") == str(source.pageNamespace)
+            ]
+        )
     document: Any = json.loads(raw)
     array = document if source.rootKey is None else document[source.rootKey]
     return len(array)
@@ -177,7 +187,7 @@ def count_records(source: LexiconSource, path: Path) -> int:
 
 
 def test_the_registry_validates_and_carries_the_row_three_stamp() -> None:
-    assert REGISTRY.version == "2026-08-16"
+    assert REGISTRY.version == "2026-08-16T18:00"
     assert REGISTRY.changelog[0].version == REGISTRY.version
     assert REGISTRY.lexiconRoot == "datasets/lexicon"
     assert REGISTRY.outputs == ["ndjson"]
@@ -379,10 +389,16 @@ def test_a_disabled_source_is_never_read(tmp_path: Path) -> None:
 # --------------------------------------------------------------------------
 
 JSON_ARRAY_SOURCES = [source for source in SOURCES if source.kind == "json-array"]
+# Every reader that takes a buffer size, not only the JSON ones: the property
+# is the reader's, and a new streaming reader inherits the predicate rather
+# than being trusted.
+BUFFERED_SOURCES = [
+    source for source in SOURCES if source.kind in ("json-array", "mediawiki-xml")
+]
 
 
 @pytest.mark.parametrize(
-    "source", JSON_ARRAY_SOURCES, ids=lambda source: source.id
+    "source", BUFFERED_SOURCES, ids=lambda source: source.id
 )
 def test_the_yielded_sequence_is_identical_at_every_buffer_size(
     source: LexiconSource, tmp_path: Path
@@ -647,6 +663,63 @@ def test_normalization_is_nfc_and_nothing_else() -> None:
     decomposed = "\u0b95\u0bcd\u0bb7"
     assert normalize(f"  {decomposed}  ") == decomposed
     assert normalize("\u0b85\u0bc8") == "\u0b85\u0bc8"
+
+
+def test_the_wiktionary_dump_reads_only_its_declared_namespace(
+    tmp_path: Path,
+) -> None:
+    source = next(entry for entry in SOURCES if entry.id == "ta-wiktionary-content")
+    entry, registry, staged = probe(source, "1x", tmp_path)
+    # The 1x fixture holds 200 physical pages and 50 in the main namespace. The
+    # tally counts the records, so the other 150 are not rejects - they are not
+    # this source's records at all, which is what pageNamespace declares.
+    assert staged.read_text(encoding="utf-8").count("<page>") == 200
+    result = extract_source(entry, registry, tmp_path, force=True)
+    assert result.tally.rowsIn == 50
+    assert result.tally.rowsOut == 50
+    assert result.tally.parseRejects == 0
+
+
+def test_the_wiktionary_dump_emits_senses_synonyms_and_parts_of_speech(
+    tmp_path: Path,
+) -> None:
+    source = next(entry for entry in SOURCES if entry.id == "ta-wiktionary-content")
+    entry, registry, _ = probe(source, "1x", tmp_path)
+    result = extract_source(entry, registry, tmp_path, force=True)
+    text = result.out.read_text(encoding="utf-8")
+    for attr in ("definitionTa", "synonym", "translation", "pos"):
+        assert _facts(text, attr), f"no {attr} fact from the 1x fixture"
+    # The counted miss: a markup reader reports what it could not read.
+    assert "unreadableLines=" in result.extra
+    assert "pagesWithoutFacts=" in result.extra
+
+
+def test_a_wiktionary_page_that_says_nothing_is_observed_but_not_attested(
+    tmp_path: Path,
+) -> None:
+    # The row-by-row half of the tier-1 claim. `lexicographic` says the bytes
+    # carry an editorial act; a page with no sense, synonym, gloss or part of
+    # speech carries none, so it must not attest word-hood.
+    source = next(entry for entry in SOURCES if entry.id == "ta-wiktionary-content")
+    entry, registry, _ = probe(source, "1x", tmp_path)
+    result = extract_source(entry, registry, tmp_path, force=True)
+    records = [
+        json.loads(line)
+        for line in result.out.read_text(encoding="utf-8").splitlines()[1:-1]
+    ]
+    observed = {
+        record["surface"] for record in records if record["record"] == "observation"
+    }
+    attested = {
+        record["word"] for record in records if record.get("attr") == "headword"
+    }
+    described = {
+        record["word"]
+        for record in records
+        if record.get("attr") in ("definitionTa", "synonym", "translation", "pos")
+    }
+    assert attested == described
+    assert attested < observed, "every page attested itself, so the gate does nothing"
 
 
 # --------------------------------------------------------------------------

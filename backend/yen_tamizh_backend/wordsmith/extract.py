@@ -44,12 +44,13 @@ from yen_tamizh_backend.wordsmith.llm_enrich import (
     themes_of,
 )
 from yen_tamizh_backend.wordsmith.readers import DEFAULT_CHUNK, read_elements
+from yen_tamizh_backend.wordsmith.wikitext import parse_page
 
 # Bumped whenever this module would produce different bytes from the same input.
 # It sits in every extract's header line beside the source digest, so the skip
 # check answers "is this cache still current?" rather than merely "does a file
 # exist?".
-EXTRACTOR_VERSION = "2026-08-15"
+EXTRACTOR_VERSION = "2026-08-16"
 
 # The typed facts a source can assert about a surface. ``definitionTa`` has no
 # producer on disk - no acquired source carries one - and is named here because
@@ -159,6 +160,11 @@ class SourceResult:
     out: Path
     tally: Tally = field(default_factory=Tally)
     skipped: bool = False
+    # Counters only one source's SHAPE has. The seven-field tally is what every
+    # source reconciles against; a markup source additionally has to say how
+    # much of the markup it could not read, and a number nobody prints is a
+    # silent drop wearing a variable name.
+    extra: str = ""
 
     def note(self) -> str:
         if self.skipped:
@@ -168,7 +174,7 @@ class SourceResult:
             f"{self.id}: rowsIn={tally.rowsIn} rowsOut={tally.rowsOut} "
             f"parseRejects={tally.parseRejects} observations={tally.observations} "
             f"facts={tally.facts} posUnparsed={tally.posUnparsed} "
-            f"posRejected={tally.posRejected}"
+            f"posRejected={tally.posRejected}" + (f" {self.extra}" if self.extra else "")
         )
 
 
@@ -266,6 +272,10 @@ class SourceExtractor:
     def flush(self, tally: Tally) -> Iterator[Emission]:
         """Emissions that only exist once a run of related elements has ended."""
         return iter(())
+
+    def extra_note(self) -> str:
+        """Counters this shape has and the seven-field tally does not. None by default."""
+        return ""
 
     def extra_facts(self, element: Any, word: str) -> Iterator[Fact]:
         """Facts the four registry field mappings cannot name. None by default."""
@@ -547,11 +557,68 @@ class _AuthoredEntriesExtractor(SourceExtractor):
             )
 
 
+class _TaWiktionaryContentExtractor(SourceExtractor):
+    """A8b: the Tamil Wiktionary itself - Tamil senses, synonyms, POS, glosses.
+
+    The page is ABOUT its title, so every fact this reader emits is a fact
+    about the title. What the markup holds is ``wikitext.py``'s subject; what
+    the page is ALLOWED to assert is this class's.
+
+    The headword fact is CONDITIONAL, and that is the whole reason this source
+    can be tier 1 while the bare title list is tier 2. An ``attestationTier``
+    of ``lexicographic`` claims that somebody decided the string is a word and
+    then said something about it, and Row 9a's entry test reads that claim off
+    the source. A page carrying no sense, no synonym, no gloss and no part of
+    speech carries no such editorial act in its bytes - it is a title with a
+    stub around it - so it is OBSERVED like any other surface and attested by
+    nobody. The surface is not lost: the title list already enumerates it.
+    """
+
+    def __init__(self, source: LexiconSource, registry: LexiconSources) -> None:
+        super().__init__(source, registry)
+        self._skipped = 0
+        self._silent = 0
+
+    def feed(self, element: Any, tally: Tally) -> Iterator[Emission]:
+        if not isinstance(element, dict):
+            tally.parseRejects += 1
+            return
+        word = normalize(str(element.get("title", "")))
+        if not word:
+            tally.parseRejects += 1
+            return
+        tally.rowsOut += 1
+        yield Observation(surface=word, count=0)
+        facts = parse_page(word, str(element.get("text", "")))
+        self._skipped += facts.skipped
+        if facts.is_empty():
+            self._silent += 1
+            return
+        if self.asserts_wordhood:
+            yield Fact(word=word, attr="headword", value=word, ordinal=0)
+        for ordinal, definition in enumerate(facts.definitions):
+            yield Fact(
+                word=word, attr="definitionTa", value=definition, ordinal=ordinal
+            )
+        for ordinal, synonym in enumerate(facts.synonyms):
+            yield Fact(word=word, attr="synonym", value=synonym, ordinal=ordinal)
+        for ordinal, translation in enumerate(facts.translations):
+            yield Fact(
+                word=word, attr="translation", value=translation, ordinal=ordinal
+            )
+        for tag in facts.pos:
+            yield from _route_pos(tag, word, self.registry, self.source.id, tally)
+
+    def extra_note(self) -> str:
+        return f"unreadableLines={self._skipped} pagesWithoutFacts={self._silent}"
+
+
 _EXTRACTORS: dict[str, type[SourceExtractor]] = {
     "master-dictionary": _MasterDictionaryExtractor,
     "themed-vocabulary": _ThemedVocabularyExtractor,
     "wiktextract-ta": _WiktextractExtractor,
     "en-ta-dictionary": _EnTaDictionaryExtractor,
+    "ta-wiktionary-content": _TaWiktionaryContentExtractor,
     AUTHORED_SOURCE_ID: _AuthoredEntriesExtractor,
 }
 
@@ -572,6 +639,7 @@ def emit_from(
     registry: LexiconSources,
     tally: Tally,
     chunk: int = DEFAULT_CHUNK,
+    extractor: SourceExtractor | None = None,
 ) -> Iterator[Emission]:
     """Stream one open source's emissions, filling ``tally`` as it goes.
 
@@ -579,8 +647,12 @@ def emit_from(
     an already-loaded document: CPython's own text-I/O layer allocates a 64 KiB
     decode block of its own, which at fixture scale is larger than everything
     this stage holds and would otherwise be the thing being measured.
+
+    The caller may pass the ``extractor`` in when it needs to read counters off
+    it afterwards; otherwise this builds the one the source's shape names.
     """
-    extractor = extractor_for(source, registry)
+    if extractor is None:
+        extractor = extractor_for(source, registry)
     for element in read_elements(handle, source, chunk):
         tally.rowsIn += 1
         yield from extractor.feed(element, tally)
@@ -593,10 +665,11 @@ def emit(
     registry: LexiconSources,
     tally: Tally,
     chunk: int = DEFAULT_CHUNK,
+    extractor: SourceExtractor | None = None,
 ) -> Iterator[Emission]:
     """Stream one source file's emissions."""
     with path.open("r", encoding="utf-8", errors="replace") as handle:
-        yield from emit_from(handle, source, registry, tally, chunk)
+        yield from emit_from(handle, source, registry, tally, chunk, extractor)
 
 
 def sha256_of(path: Path) -> tuple[str, int]:
@@ -693,9 +766,10 @@ def extract_source(
     # that the header check would then accept as current.
     staging = out.with_name(out.name + ".partial")
     tally = result.tally
+    extractor = extractor_for(source, registry)
     with staging.open("w", encoding="utf-8", newline="\n") as handle:
         handle.write(render(header_of(source, digest, size)))
-        for emission in emit(path, source, registry, tally, chunk):
+        for emission in emit(path, source, registry, tally, chunk, extractor):
             if isinstance(emission, Observation):
                 tally.observations += 1
                 handle.write(
@@ -741,6 +815,7 @@ def extract_source(
             f"{tally.parseRejects} parse rejects is not {tally.rowsIn} rows in"
         )
     os.replace(staging, out)
+    result.extra = extractor.extra_note()
     return result
 
 

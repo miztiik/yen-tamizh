@@ -378,11 +378,19 @@ def test_element_kind_is_forbidden_on_every_other_kind() -> None:
     for kind, extra in (
         ("delimited", {"delimiter": " ", "wordColumn": 0}),
         ("jsonl", {"wordField": "word"}),
+        ("mediawiki-xml", {"pageNamespace": 0}),
     ):
         LexiconSources.model_validate(
             _registry(
                 sources=[
-                    _source(kind=kind, rootKey=None, elementKind=None, **extra)
+                    _source(
+                        **{
+                            "kind": kind,
+                            "rootKey": None,
+                            "elementKind": None,
+                            **extra,
+                        }
+                    )
                 ]
             )
         )
@@ -391,7 +399,76 @@ def test_element_kind_is_forbidden_on_every_other_kind() -> None:
                 _registry(
                     sources=[
                         _source(
-                            kind=kind, rootKey=None, elementKind="object", **extra
+                            **{
+                                "kind": kind,
+                                "rootKey": None,
+                                "elementKind": "object",
+                                **extra,
+                            }
+                        )
+                    ]
+                )
+            )
+
+
+def _mediawiki(**overrides: object) -> dict[str, object]:
+    return _source(
+        **{
+            "kind": "mediawiki-xml",
+            "rootKey": None,
+            "elementKind": None,
+            "pageNamespace": 0,
+            **overrides,
+        }
+    )
+
+
+def test_a_mediawiki_source_must_declare_which_namespace_holds_its_records() -> None:
+    LexiconSources.model_validate(_registry(sources=[_mediawiki()]))
+    # No default: an export interleaves articles with talk, template and project
+    # pages, and guessing which of them are records is a claim about somebody
+    # else's dump.
+    with pytest.raises(ValidationError):
+        LexiconSources.model_validate(_registry(sources=[_mediawiki(pageNamespace=None)]))
+
+
+def test_a_mediawiki_source_rejects_every_field_mapping() -> None:
+    # The record IS the page, so the reader knows the export's element names and
+    # a field mapping on it is a knob that silently does nothing.
+    for stray, value in (
+        ("wordField", "title"),
+        ("countField", "count"),
+        ("categoryField", "category"),
+        ("posField", "pos"),
+        ("delimiter", ","),
+        ("wordColumn", 0),
+        ("rootKey", "data"),
+        ("hasHeader", True),
+    ):
+        with pytest.raises(ValidationError):
+            LexiconSources.model_validate(
+                _registry(sources=[_mediawiki(**{stray: value})])
+            )
+
+
+def test_page_namespace_is_forbidden_on_every_other_kind() -> None:
+    for kind, extra in (
+        ("delimited", {"delimiter": " ", "wordColumn": 0}),
+        ("jsonl", {"wordField": "word"}),
+        ("json-array", {"elementKind": "string"}),
+    ):
+        with pytest.raises(ValidationError):
+            LexiconSources.model_validate(
+                _registry(
+                    sources=[
+                        _source(
+                            **{
+                                "kind": kind,
+                                "rootKey": None,
+                                "elementKind": None,
+                                "pageNamespace": 0,
+                                **extra,
+                            }
                         )
                     ]
                 )

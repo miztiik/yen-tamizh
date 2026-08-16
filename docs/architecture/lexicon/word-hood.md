@@ -496,21 +496,30 @@ clears the configured floor.
 
 `docs/concepts/lexicon.md` defines an attestation as "this authority lists this
 as an ENTRY", and over the acquired inventory those turned out to be two
-different events. Eight sources may assert word-hood. Four of them are
+different events. Nine sources may assert word-hood. Five of them are
 LEXICOGRAPHIC - their unit is an entry, and somebody decided the string was a
 word before saying anything about it. Four are ENUMERATIVE - their unit is a
 bare string in a list:
 
 | Source | Tier | Rows | Emits |
 | --- | --- | ---: | --- |
+| `ta-wiktionary-content` | lexicographic | 265,020 described pages | headword, definitionTa, synonym, pos, translation |
 | `en-ta-dictionary` | lexicographic | 161,929 words | headword, pos, translation, synonym |
 | `master-dictionary` | lexicographic | 104,073 words | headword, translation (12,905), category, graphemeCount |
 | `wiktextract-ta` | lexicographic | 11,103 words | headword, pos, definitionEn, synonym |
-| `llm-authored` | lexicographic | 801 words | headword, definitionTa, translationEn, pos, synonym, category |
+| `llm-authored` | lexicographic | 6,269 words | headword, definitionTa, translationEn, pos, synonym, category |
 | `ta-wiktionary-titles` | enumerative | 410,074 titles | headword |
 | `spellcheck-wordlist` | enumerative | 355,275 words | headword |
 | `old-wordlist` | enumerative | 36,068 words | headword |
 | `huggingface-wordlist` | enumerative | 26,485 words | headword |
+
+The two Wiktionary sources are the same wiki and the opposite tiers, which is
+the clearest statement of what the tier means. The title list ships the string;
+the content dump ships what somebody said about the string. Because the
+difference is in the BYTES rather than in the provenance, the content source
+enforces its own tier row by row: it emits a `headword` fact only for a page
+that carries a sense, a synonym, a gloss or a part of speech, so 145,054 of its
+410,074 pages are observed and attested by nobody.
 
 Among what the four lists list: a political party, a sitting politician, a bound
 stem that is not a word, and a great many case-marked nouns. **Attestation alone

@@ -1,6 +1,6 @@
 # Lexicon sources (raw, not committed)
 
-**Last Updated**: 2026-08-15
+**Last Updated**: 2026-08-16
 
 This directory holds the raw dictionaries, word lists and frequency tables the
 `wordsmith` pipeline streams. The bytes are **gitignored** - roughly 450 MB of
@@ -52,14 +52,18 @@ rather than argued with.
 ## The ledger
 
 `bytes`, `records` and `sha256` describe the file at `path` exactly as acquired -
-on 2026-08-14 for A1-A7 and B1 through E1, and on 2026-08-15 for A8. `records`
-counts physical lines for the line-based formats (so D1's count includes its
-`word,frequency` header line, and A8's includes its `page_title` one) and
-root-array elements for the JSON formats.
+on 2026-08-14 for A1-A7 and B1 through E1, on 2026-08-15 for A8, and on
+2026-08-16 for A9. `records` counts physical lines for the line-based formats
+(so D1's count includes its `word,frequency` header line, and A8's includes its
+`page_title` one), root-array elements for the JSON formats, and MAIN-NAMESPACE
+pages for the MediaWiki export - which is what its reader treats as a record,
+and is 410,074 of the export's 415,705 pages.
 
-A8 is the one source whose origin is an ARCHIVE rather than the file itself, so
-its row describes the decompressed bytes and the archive's own digest is
-recorded in [its section below](#a8---acquired-from-a-gzip-archive).
+A8 and A9 are the two sources whose origin is an ARCHIVE rather than the file
+itself, so their rows describe the decompressed bytes and each archive's own
+digest is recorded in its section below
+([A8](#a8---acquired-from-a-gzip-archive),
+[A9](#a9---the-wiktionary-content-itself)).
 
 | # | id | role | origin | path | bytes | records | sha256 | status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -71,6 +75,7 @@ recorded in [its section below](#a8---acquired-from-a-gzip-archive).
 | A6 | madras-lexicon | authority | https://dsal.uchicago.edu/dictionaries/tamil-lex/ | - | - | - | - | NOT ACQUIRED |
 | A7 | wiktextract-ta | authority | https://kaikki.org/dictionary/Tamil/kaikki.org-dictionary-Tamil.jsonl | datasets/lexicon/sources/wiktextract-ta/source.jsonl | 86701341 | 13773 | `56c3063941fe4fe8004efbd51e6a57173b25f5d86c68fff648e27be5a15fc723` | acquired |
 | A8 | ta-wiktionary-titles | authority | https://dumps.wikimedia.org/tawiktionary/20260801/tawiktionary-20260801-all-titles-in-ns0.gz | datasets/lexicon/sources/ta-wiktionary-titles/source.txt | 7745492 | 410075 | `7b4954ccad02227771354192a88bbae82939009068067b029abd073e29321cf0` | acquired |
+| A9 | ta-wiktionary-content | authority | https://dumps.wikimedia.org/tawiktionary/20260801/tawiktionary-20260801-pages-articles.xml.bz2 | datasets/lexicon/sources/ta-wiktionary-content/source.xml | 647116289 | 410074 | `a33493a73bcb3d03302b8501814d80f16344d0e3cf651f41cce7bf323cf6e4d5` | acquired |
 | B1 | inflected-verbs-bulk | formEvidence | yen-tamizh_OLD/src/dictionary/raw/Simple-verbs-01022021.txt | datasets/lexicon/sources/inflected-verbs-bulk/source.txt | 69572318 | 1461494 | `3baf32b9662c248b81273be0446c4f8fbfcb812c0ea6675ee47485293a9fb3b5` | acquired |
 | B2 | inflected-verbs-clean | formEvidence | yen-tamizh_OLD/src/dictionary/intermediate/verbs.txt | datasets/lexicon/sources/inflected-verbs-clean/source.txt | 727814 | 19249 | `0e1913e15f1ebc7413b50f8b738a933ab7f6ecd48c3db09e9a6f4ef107226d1e` | acquired |
 | C1 | themed-vocabulary | category | yen-tamizh_OLD/src/dictionary/intermediate/ta_vocabulary_clean.json | datasets/lexicon/sources/themed-vocabulary/source.json | 144240 | 1290 | `91a78edadca357690975066c6d00815060f79e6a679f07e9a63cd8758f26ed6c` | acquired |
@@ -187,9 +192,60 @@ single-token, wholly Tamil titles of 25 ezhuthu or fewer, 12,383 are surfaces th
 lexicon had never seen and 2,722 are surfaces it had seen but no authority had
 vouched for. 83,701 fall in the 1-7 ezhuthu band the games draw from.
 
-### E1 - acquired, disabled
+### A9 - the Wiktionary CONTENT itself
 
-E1 stays registered and stays off. The extraction that produced it stripped
+A8 acquired the Tamil Wiktionary's TITLES. A9 acquires what the titles are
+titles OF, and it is a different source in every way that matters: the same
+410,074 main-namespace pages, but carrying the Tamil sense, the synonym set, the
+part of speech and the English gloss that a title list has none of.
+
+The two are not even the same STRINGS. A8's dump writes a page title's spaces as
+underscores and A9's writes them as spaces, so 187,234 multi-word titles are
+staged twice, once under each spelling. Neither is wrong - each is what its own
+publisher shipped - and neither is a Tamil word, so both are classified the same
+way.
+
+The same two acquisition rules as A8 apply and are not restated: the descriptive
+User-Agent, and the DATED URL rather than `latest`. On 2026-08-16 the `20260801`
+run and `latest` returned byte-identical files - 39,766,454 bytes, the same
+digest - so the dated URL is pinned and the moving one is not.
+
+The archive is bzip2 rather than gzip, and the same rule sends the decompressed
+file to `path`: a truncated bzip2 stream is not a readable bzip2 file, so an
+archive on disk could never have an honest `1x` fixture. Both digests are on
+record.
+
+| artifact | bytes | sha256 |
+| --- | --- | --- |
+| the published archive | 39766454 | `6aaad55e0d3baa9448ff326561eb973b23f4e8d299b95fcf18beb8a48017b180` |
+| decompressed, at `path` | 647116289 | `a33493a73bcb3d03302b8501814d80f16344d0e3cf651f41cce7bf323cf6e4d5` |
+
+At 647 MB it is by a factor of three the largest file the pipeline reads, which
+is why its reader is written against expat's handler interface rather than an
+element tree: peak memory tracks the largest RECORD, not the file, and not even
+the largest PAGE. The three biggest pages in the first two thousand are a
+template listing and a village-pump archive at 226 KB, 346 KB and 1,035 KB,
+against a largest ARTICLE of 23 KB - so declining to accumulate the text of a
+page outside the declared namespace is worth a factor of 45.
+
+**It is a TIER-1, lexicographic authority, and A8 is not.** The two rulings are
+the same rule applied to different bytes. A8 is tier 2 because the editorial act
+is not in the bytes it ships; A9 ships exactly that act - somebody decided the
+string is a word and then said what it means. Measured over the whole dump:
+92,731 of the 98,107 wholly Tamil single-token titles carry a Tamil sense,
+94,929 carry a part of speech and 46,180 carry a synonym set. The claim is
+enforced ROW BY ROW rather than on average: the reader emits a `headword` fact
+only for a page that carries at least one of those facts, so 145,054 of the
+410,074 pages - stubs, redirects and appendix listings - are observed and
+attested by nobody, and none of those surfaces is lost, because A8 already
+enumerates every one of them.
+
+Wikitext has conventions rather than a grammar, so the reader COUNTS what it
+could not read instead of dropping it. Over the whole dump it skipped 40,946
+lines inside blocks it was harvesting, and every run prints that number and the
+pages-without-facts one beside the seven-field tally.
+
+### E1 - acquired, disabled The extraction that produced it stripped
 vowel signs and pulli, so its tokens are bare consonant skeletons - valid Tamil
 letters that are not Tamil words, and some of which cannot begin a Tamil word at
 all. A known-bad source is kept and explained rather than deleted, so that nobody
@@ -214,6 +270,73 @@ does not have to re-litigate whether something was missed. In short:
 | `src/utils/`, `scripts/` | Legacy pipeline code this plan replaces |
 | `frontend/wireframe_screens/` | Design reference, not data |
 
+### Candidates evaluated for a SECOND meaning source, 2026-08-16
+
+The Tamil Wiktionary content dump gives most headwords a meaning, but one
+source asserting a meaning is a claim rather than a confidence. Five candidates
+were evaluated for corroboration; nothing below was acquired, and each verdict
+is a live probe rather than a recollection.
+
+The bar every candidate has to clear first is REPRODUCIBILITY. This registry
+pins every source by `sha256` and `bytes`, and a zero-network drift check reads
+those. A producer that answers differently on each call cannot sit inside a
+stage whose Oracle is byte-identity - the same ruling that made the model an
+input FILE rather than a stage. A live service is admissible only in the shape
+that ruling allows: a human runs it once, the output is committed, and a digest
+is recorded.
+
+| Candidate | Bulk artifact | Reproducible | What it would add | Verdict |
+| --- | --- | --- | --- | --- |
+| IndoWordNet, English-linked | `cfiltnlp/IWN-En` `data/english-hindi-tamil-linked.tsv`, 13,711,270 B | yes, if the URL pins a COMMIT rather than a branch | Tamil SYNSETS and Tamil glosses, sense-disambiguated by a Princeton WordNet synset id | **RECOMMENDED** |
+| `ta.wikipedia` titles | `tawiki-20260801-all-titles-in-ns0.gz`, 2,021,059 B | yes, dated URL resolves | proper-noun evidence, which the serving gate needs to exclude reliably | accept as a cheap follow-on |
+| Wikidata lexemes | `latest-lexemes.json.bz2`, 442,289,093 B | yes | **904** Tamil lexical entries, counted live at the SPARQL endpoint | reject on value against cost |
+| Google Translate | none | no | a gloss per word | reject - see below |
+| agarathi.com | none; `/download` is 404 and the site is a query interface | no | unknown | reject - scrape-only |
+
+**IndoWordNet is the recommendation, and the reason is the shape of the data
+rather than its size.** Its Tamil column is a SYNSET - a set of Tamil words that
+share one sense - keyed to an English WordNet synset with an English gloss
+beside it. That is precisely the field the lexicon is weakest in: the synonym
+column it has today comes from reading a bilingual dictionary sideways, which
+groups by an ENGLISH headword and therefore mixes senses. A synset does not.
+Being linked to English WordNet also makes it independently checkable against
+the English glosses the store already holds, which is what makes it a
+CORROBORATING source rather than a second opinion nobody can adjudicate.
+
+Two things a follow-up row must settle before registering it. Its licence is
+**CC BY-NC-SA 4.0** (both CFILT repositories state it; GitHub's own detector
+reports `NOASSERTION` because the file is not a verbatim SPDX text). The
+project's licence ruling for this directory - facts about a language are
+extracted, a source's edited prose is never republished - covers the synset
+membership and the part of speech; the Tamil gloss SENTENCE is prose and stays
+store-only evidence like every other source's. And the artifact must be pinned
+by commit sha, not by `master`, for the same reason A8 and A9 pin a dated dump
+rather than `latest`.
+
+**What was rejected, and why, in the candidates' own terms:**
+
+- **Google Translate has no bulk artifact at all.** The only programmatic access
+  is the Cloud Translation REST API, which needs a billing-enabled key - a
+  dependency this repository will not take on - and whose terms do not permit
+  redistributing its output as a dictionary. The committed-file shape would
+  make the REPRODUCIBILITY problem go away; it does not make the terms problem
+  go away, and the terms are the blocker. Machine translation is also the wrong
+  instrument for the job: it produces a translation of a string, where what the
+  lexicon needs is a lexicographer's claim that a string is a word with a sense.
+  Nothing was scraped and no scraper was written.
+- **The Open Multilingual Wordnet does not carry Tamil.** Its v2.0 release
+  publishes forty-one per-language archives and none of them is Tamil, so the
+  `wn` package route yields nothing. The AU-KBC Tamil WordNet host no longer
+  resolves in DNS, and the one open-source "Tamil WordNet" repository on GitHub
+  contains a licence file and a README and no data.
+- **Wikidata lexemes are bulk and reproducible and nearly empty for Tamil.** 904
+  lexical entries is four hundred thousand times less than the wiki dump for a
+  file four hundred times larger.
+- **agarathi.com publishes no bulk artifact.** Its `robots.txt` disallows only
+  its asset directories, so a crawl would not be forbidden by the file, but a
+  crawl is not a source: there would be no digest to record, no way to re-obtain
+  the same bytes, and no way for a reviewer to check what was taken.
+
 ## Fixtures
 
 Every acquired source has two committed fixtures under
@@ -224,7 +347,7 @@ datasets/fixtures/lexicon/<source-id>.1x.<ext>
 datasets/fixtures/lexicon/<source-id>.10x.<ext>
 ```
 
-40 files, 3,127,902 bytes in total. Three rules govern them:
+42 files, 6,759,161 bytes in total. Three rules govern them:
 
 1. **A fixture keeps its source's extension.** A byte-exact slice of a CSV is a
    CSV and a slice of a JSON array is JSON, so each reader is exercised against
@@ -233,14 +356,20 @@ datasets/fixtures/lexicon/<source-id>.10x.<ext>
    plus, for the framed formats, the source's own closing bytes. For the
    line-based formats `m` is zero and the fixture is a pure byte prefix. For a
    JSON array the first N elements are copied unchanged and the source's own
-   `]` and `}` are appended, so the fixture is valid JSON while every record byte
-   is the source's. Nothing is normalized, hand-edited or cherry-picked.
+   `]` and `}` are appended, and for the MediaWiki export the source's own
+   `</mediawiki>` is, so the fixture parses while every record byte is the
+   source's. Nothing is normalized, hand-edited or cherry-picked.
 3. **The 10x fixture holds exactly ten times the records of the 1x fixture**, so
    the reader memory predicate has both of its inputs. N is 2,000 records at 10x,
    reduced where 2,000 records would exceed a one-mebibyte fixture (A7, whose
    records are 6 KB each) or where the source is smaller (C1 has 1,290 rows).
    For a source with a header line the count is of physical LINES, header
    included, which is what keeps the ten-times ratio exact (A8: 200 and 2,000).
+   A9 counts what its reader counts - MAIN-NAMESPACE pages, 50 and 500 - so its
+   slices run to 200 and 690 physical pages. Counting raw pages instead would
+   have put the export's largest page, a 1 MB village-pump archive, in the 10x
+   and not the 1x, and the memory predicate would then have been measuring a
+   discussion page.
 
 Because a fixture is a head slice it is not a representative SAMPLE. Never infer
 a distribution from one - the part-of-speech census in this row's pull request was
@@ -250,10 +379,11 @@ counted over the whole of every source, not over a fixture.
 
 Fetch each `origin` back to its `path`. Sources whose origin is a
 `yen-tamizh_OLD/...` path come from the predecessor repository; sources whose
-origin is a URL can be fetched directly. A8 needs two extra steps and is the
-only one that does: its `dumps.wikimedia.org` URL answers 403 without a
-descriptive User-Agent, and its origin is a gzip archive, so decompress it into
-`path` rather than saving the archive there. Then confirm the bytes:
+origin is a URL can be fetched directly. A8 and A9 need two extra steps and are
+the only ones that do: their `dumps.wikimedia.org` URLs answer 403 without a
+descriptive User-Agent, and their origins are archives - gzip for A8, bzip2 for
+A9 - so decompress each into `path` rather than saving the archive there. Then
+confirm the bytes:
 
 ```
 python -c "import hashlib,pathlib;print(hashlib.sha256(pathlib.Path('<path>').read_bytes()).hexdigest())"
