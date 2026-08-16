@@ -1,7 +1,11 @@
-{"attestations": 1, "frequency": 3, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஹக்காசியா", "wordClass": "properNoun"}
-{"attestations": 1, "frequency": 383, "length": 4, "spokenRatio": 0.002611, "tier1Attestations": 1, "word": "ஹங்கேரி", "wordClass": "properNoun"}
-{"attestations": 1, "frequency": 1, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஹநுமான்", "wordClass": "properNoun"}
-{"attestations": 1, "frequency": 0, "length": 6, "tier1Attestations": 1, "word": "ஹனுமந்தன்", "wordClass": "properNoun"}
-{"attestations": 1, "frequency": 168, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஹனுமான்", "wordClass": "properNoun"}
-{"attestations": 1, "frequency": 5, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஹயக்ரீவன்", "wordClass": "properNoun"}
-{"attestations": 1, "frequency": 21, "length": 8, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஹரிச்சந்திரன்", "wordClass": "properNoun"}
+{"word": "ஹக்காசியா", "frequency": 3, "length": 5, "wordClass": "properNoun", "attestations": 1, "tier1Attestations": 1, "spokenRatio": 0.0}
+{"word": "ஹங்கேரி", "frequency": 383, "length": 4, "wordClass": "properNoun", "attestations": 1, "tier1Attestations": 1, "spokenRatio": 0.002611}
+{"word": "ஹநுமான்", "frequency": 1, "length": 4, "wordClass": "properNoun", "attestations": 1, "tier1Attestations": 1, "spokenRatio": 0.0}
+{"word": "ஹனுமந்தன்", "frequency": 0, "length": 6, "wordClass": "properNoun", "attestations": 1, "tier1Attestations": 1}
+{"word": "ஹனுமான்", "frequency": 168, "length": 4, "wordClass": "properNoun", "attestations": 1, "tier1Attestations": 1, "spokenRatio": 0.0}
+{"word": "ஹயக்ரீவன்", "frequency": 5, "length": 6, "wordClass": "properNoun", "attestations": 1, "tier1Attestations": 1, "spokenRatio": 0.0}
+{"word": "ஹரிச்சந்திரன்", "pos": ["noun"], "frequency": 21, "length": 8, "wordClass": "properNoun", "attestations": 1, "tier1Attestations": 1, "spokenRatio": 0.0}
+{"word": "ஹிஜ்ரி", "frequency": 301, "length": 3, "wordClass": "properNoun", "attestations": 1, "tier1Attestations": 1, "spokenRatio": 0.0}
+{"word": "ஹிந்தி", "definitionTa": ["இந்தி என்று தமிழில் அழைக்கப்படும் மொழி; இது இந்திய ஐரோப்பிய மொழிகள் குடும்பத்தில் உள்ள ஒரு மொழி. இது இந்தியாவின் வட மாநிலங்களில் பெருவாரியாகப் பேசப்படுகின்றது. இது இந்தியாவின் ஆட்சி மொழிகளில் ஒன்று", "தமிழில்"], "translationEn": "hindi", "synonymsTa": ["தமிழில்"], "pos": ["adjective", "noun"], "frequency": 2694, "length": 3, "wordClass": "properNoun", "attestations": 5, "tier1Attestations": 2, "spokenRatio": 0.000742}
+{"word": "ஹைதராபாத்", "definitionTa": ["ஆந்திர பிரதேசத்தின் தலைநகரம்"], "translationEn": "Hyderabad", "pos": ["noun"], "frequency": 3344, "length": 5, "wordClass": "properNoun", "attestations": 4, "tier1Attestations": 2, "spokenRatio": 0.0}
+{"word": "ஹொங்கொங்", "frequency": 635, "length": 4, "wordClass": "properNoun", "attestations": 1, "tier1Attestations": 1, "spokenRatio": 0.0}

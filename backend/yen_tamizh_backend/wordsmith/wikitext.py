@@ -209,6 +209,11 @@ _WHITESPACE = re.compile(r"\s+")
 # as plain text rather than as a template. A line that is nothing but those
 # says what KIND of word this is, never what it means.
 _PARENTHETICAL = re.compile(r"\([^()]*\)")
+# The last comma- or semicolon-delimited fragment of a line, and what precedes
+# it. A meaning line often closes on the wiki's own cross-reference apparatus -
+# vaakai's first sense ends "... malar. (Albizia lebbeck) ; siris", where siris
+# is a link to the English common name rather than part of the Tamil meaning.
+_LAST_FRAGMENT = re.compile(r"^(.*)[,;]([^,;]*)$", re.S)
 _CATEGORY_LINK = re.compile(
     r"\[\[\s*(?:"
     + "|".join(re.escape(prefix) for prefix in _CATEGORY_PREFIXES)
@@ -361,7 +366,32 @@ def _tamil_terms(text: str, title: str) -> list[str]:
     return [part for part in parts if part != title]
 
 
+def _strip_trailing_apparatus(text: str) -> str:
+    """Drop trailing list fragments that carry no Tamil at all.
+
+    A Tamil meaning ends on Tamil. What a page often puts after it is the wiki's
+    own cross-reference - a link to the English common name, a bare Latin word -
+    delimited from the sense by the same comma or semicolon that separates two
+    Tamil clauses, so the cleaner cannot see it as apparatus and it lands on the
+    end of a published definition.
+
+    Only a WHOLLY non-Tamil trailing fragment goes, and only from the end. A
+    botanical binomial inside the sense's own clause stays, because a reader
+    looking up a tree wants it; and the head is never emptied, so a line that is
+    entirely non-Tamil is left for the harvester's own Tamil test to refuse.
+    """
+    while True:
+        split = _LAST_FRAGMENT.match(text)
+        if split is None:
+            return text
+        head, tail = split.group(1), split.group(2)
+        if _HAS_TAMIL.search(tail) or not head.strip():
+            return text
+        text = _TRAILING.sub("", head.rstrip())
+
+
 def _harvest_meaning(text: str, title: str, facts: PageFacts) -> None:
+    text = _strip_trailing_apparatus(text)
     if not _HAS_TAMIL.search(text) or not _PARENTHETICAL.sub("", text).strip(" .,;:-"):
         facts.skipped += 1
         return

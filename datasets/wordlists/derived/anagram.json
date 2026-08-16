@@ -46,8 +46,8 @@
   "source": {
     "metaPath": "datasets/lexicon/lexicon.meta.json",
     "rows": 163437,
-    "sha256": "20b4363e18b8652f323d898e7427a14a778da7494dbec0f74cc4687183aee11c",
-    "version": "2026-08-16T23:00"
+    "sha256": "b4b869df61da02261c8736df8f1f8daf8b7cbe504e34b87db541066d2932d1be",
+    "version": "2026-08-17"
   },
   "version": "2026-08-16T23:30",
   "words": [

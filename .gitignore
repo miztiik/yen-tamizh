@@ -4,6 +4,7 @@ dist/
 dev-dist/
 *.tsbuildinfo
 .vite/
+.npm-cache/
 
 # Playwright
 test-results/

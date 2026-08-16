@@ -33,7 +33,6 @@ publish policy withholds is still counted in the repository at its real size, so
 
 from __future__ import annotations
 
-import unicodedata
 from typing import Annotated, Final, Literal, Self, get_args
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
@@ -44,10 +43,11 @@ from yen_tamizh_backend.ezhuthu import EzhuthuKind, segment
 
 # The address of a published file, declared IN the artifact so a consumer learns
 # it from the document rather than from the code that wrote it. Both keys are
-# immutable per word - the class is the classifier's verdict and the first
-# ezhuthu is the word's own opening letter - so a refresh INSERTS a line into a
-# file that already exists, and only a changed verdict moves a row between them.
-PARTITION_KEYS: Final[tuple[str, ...]] = ("wordClass", "firstEzhuthu")
+# immutable per word - the class is the classifier's verdict and the base
+# ezhuthu is the word's own opening consonant or vowel - so a refresh INSERTS a
+# line into a file that already exists, and only a changed verdict moves a row
+# between them.
+PARTITION_KEYS: Final[tuple[str, ...]] = ("wordClass", "baseEzhuthu")
 
 # The initial mint. The lexicon has no writer yet, so the date-stamp and its
 # first changelog entry live here rather than in a data file: two writers of one
@@ -55,10 +55,34 @@ PARTITION_KEYS: Final[tuple[str, ...]] = ("wordClass", "firstEzhuthu")
 # Migration class is build-time rewrite-in-place - a later change appends an
 # entry and moves the stamp, and needs no read-side migration, because the only
 # reader is the backend and every artifact regenerates in the same commit.
-LEXICON_VERSION = "2026-08-16T23:00"
+LEXICON_VERSION = "2026-08-17"
 LEXICON_CHANGELOG = (
     ChangelogEntry(
         version=LEXICON_VERSION,
+        change=(
+            "definitionTa became a LIST of senses; the row serializes in an "
+            "explicit human-first field order instead of sorted keys; the "
+            "second partition key became baseEzhuthu, one file per BASE "
+            "letter, so a partition key is always four hex digits."
+        ),
+        why=(
+            "Row 12a. A Tamil Wiktionary page carries every sense of its word "
+            "under one meaning block and the resolver kept the first, so the "
+            "row for vaakai published the tree and dropped the garland and the "
+            "victory - while its own translationEn described the two it "
+            "dropped. A single display slot is still what a hint spends, and "
+            "it is element zero, so nothing about what a player sees changes "
+            "and no sense is discarded. The order is the reader's: a row now "
+            "opens on the word and its meaning and closes on the counts a gate "
+            "reads, and it is the CONTRACT's field order rather than a sort, "
+            "so the bytes stay reproducible. One file per FULL ezhuthu split "
+            "one letter across up to thirteen files, which is 115 files for "
+            "the headword class and no reader wanting ka without kaa; the base "
+            "letter is the unit a person looks a word up under."
+        ),
+    ),
+    ChangelogEntry(
+        version="2026-08-16T23:00",
         change=(
             "Split counters into a classified and a published census; made "
             "firstEzhuthu the second and final partition key and dropped "
@@ -190,13 +214,14 @@ ProvenanceState = Literal["attested", "authored", "reviewed"]
 
 _SHA256 = r"^[0-9a-f]{64}$"
 
-# A partition key is the code points of ONE ezhuthu, each as lowercase 4-digit
-# hex. An NFC ezhuthu is a base character plus at most one combining mark, so
-# the key is 4 or 8 digits and never more; zero-padded groups make ASCII
-# filename order equal code-point order, so a directory listing is the row
-# order. Anything wider would break that alignment, which is why the writer
-# asserts NFC and the Basic Multilingual Plane rather than assuming them.
-_EZHUTHU_HEX = r"^(?:[0-9a-f]{4}){1,2}$"
+# A partition key is the code point of ONE BASE ezhuthu - the uyir, the
+# consonant or the aytham a word opens on - as lowercase 4-digit hex. Always
+# four digits, because a base character is always one code point: a vowel sign
+# or a pulli is a combining mark that attaches to it, and a word does not change
+# what CONSONANT it starts with when it changes which vowel rides on it. The
+# fixed width is what makes ASCII filename order equal code-point order, so a
+# directory listing is the row order.
+_EZHUTHU_HEX = r"^[0-9a-f]{4}$"
 
 _RowCount = Annotated[int, Field(ge=0)]
 
@@ -230,15 +255,36 @@ class LexiconEntry(BaseModel):
     published column, so storing it would mint a drift surface as well as spend
     bytes; ``length`` stays because selection reads it, and it is checked
     against the live segmentation on every row.
+
+    THE FIELD ORDER IS THE SERIALIZED ORDER, and that is why it is worth
+    reading. ``model_dump`` returns fields in declaration order, so the writer
+    dumps this dict as it stands rather than sorting the keys - which is just as
+    deterministic and puts the row in the order a person reads it: the word,
+    what it MEANS, then the machine columns a selection gate gets its answer
+    from. Sorted keys opened every row on ``attestations`` and buried ``word``
+    eight fields in.
     """
 
     model_config = ConfigDict(extra="forbid")
 
     word: str = Field(min_length=1)
-    wordClass: WordClass
-    length: int = Field(ge=1)
+
+    # Every sense the inventory holds, most authoritative source first and that
+    # source's own sense order within it. A LIST because a Tamil word has more
+    # than one meaning and a dictionary page says so: one display slot is still
+    # one display slot - it is element zero, which is exactly the value the
+    # single-slot precedence rule used to publish - but the senses that slot
+    # does not show are no longer thrown away at the last stage of the pipeline.
+    definitionTa: list[str] | None = Field(default=None, min_length=1)
+    translationEn: str | None = Field(default=None, min_length=1)
+    synonymsTa: list[str] | None = Field(default=None, min_length=1)
+
+    pos: list[PartOfSpeech] | None = Field(default=None, min_length=1)
+    categories: list[str] | None = Field(default=None, min_length=1)
 
     frequency: int = Field(ge=0)
+    length: int = Field(ge=1)
+    wordClass: WordClass
     # How many sources allowed to assert word-hood said this surface is a word,
     # and how many of those were lexicographic rather than a bare listing. Two
     # integers rather than one integer plus a flag: a boolean costs the same
@@ -247,13 +293,6 @@ class LexiconEntry(BaseModel):
     attestations: int = Field(ge=0)
     tier1Attestations: int = Field(ge=0)
     spokenRatio: float | None = Field(default=None, ge=0.0, le=1.0)
-
-    translationEn: str | None = Field(default=None, min_length=1)
-    definitionTa: str | None = Field(default=None, min_length=1)
-    synonymsTa: list[str] | None = Field(default=None, min_length=1)
-
-    pos: list[PartOfSpeech] | None = Field(default=None, min_length=1)
-    categories: list[str] | None = Field(default=None, min_length=1)
 
     @model_validator(mode="after")
     def _length_is_the_word_own_ezhuthu_count(self) -> Self:
@@ -288,6 +327,23 @@ class LexiconEntry(BaseModel):
             _sorted_unique(self.synonymsTa, "synonymsTa", self.word)
         if self.categories is not None:
             _sorted_unique(self.categories, "categories", self.word)
+        return self
+
+    @model_validator(mode="after")
+    def _the_senses_are_ordered_and_distinct(self) -> Self:
+        # Deliberately NOT sorted. Order IS information here: element zero is
+        # the sense the single display slot shows, and it is chosen by the same
+        # precedence rule that used to choose the only sense - most
+        # authoritative source first, that source's own sense order within it.
+        # Sorting would put whichever sense happens to start with the earliest
+        # code point in front of a player.
+        if self.definitionTa is not None and len(set(self.definitionTa)) != len(
+            self.definitionTa
+        ):
+            raise ValueError(
+                f"definitionTa repeats a sense for {self.word!r}: "
+                f"{self.definitionTa}"
+            )
         return self
 
 
@@ -384,34 +440,27 @@ class EzhuthuIndexEntry(BaseModel):
     romanization is a judgement call, and correcting one must not rename a
     published file.
 
-    ``ezhuthu`` is a WHOLE letter, not the base character it is built from - one
-    code point for an uyir or a bare consonant, two once a vowel sign or a pulli
-    attaches. ``kind`` classifies that whole letter, so a consonant carrying a
-    pulli reads ``mei`` and a bare one reads ``uyirmei`` (the inherent /a/).
+    ``ezhuthu`` is a BASE letter - the uyir, the consonant or the aytham a word
+    opens on, one code point. It is deliberately not the whole opening ezhuthu:
+    a vowel sign rides on the consonant and does not change which letter the
+    word is filed under, exactly as a dictionary files ka, kaa and ki together.
+    ``kind`` classifies that base letter, so a bare consonant reads ``uyirmei``
+    (the inherent /a/).
     """
 
     model_config = ConfigDict(extra="forbid")
 
-    ezhuthu: str = Field(min_length=1)
+    ezhuthu: str = Field(min_length=1, max_length=1)
     roman: str = Field(min_length=1, pattern=r"^[A-Za-z]+$")
     kind: EzhuthuKind
 
     @model_validator(mode="after")
-    def _the_value_is_exactly_one_normalized_ezhuthu(self) -> Self:
-        # Checked in this order on purpose. A decomposed letter is THREE code
-        # points and still segments as one ezhuthu, so only the NFC test catches
-        # it - and it is the one that matters, because a decomposed letter would
-        # mint a SECOND key for a letter that already has one. Refused here as
-        # well as at the writer, because this is the document a later reader
-        # trusts.
-        if unicodedata.normalize("NFC", self.ezhuthu) != self.ezhuthu:
-            raise ValueError(f"ezhuthu {self.ezhuthu!r} is not NFC-normalized")
-        if len(self.ezhuthu) > 2:
-            raise ValueError(
-                f"ezhuthu {self.ezhuthu!r} is {len(self.ezhuthu)} code points; a "
-                f"normalized Tamil letter is one or two, and the key that "
-                f"addresses it is four or eight hex digits"
-            )
+    def _the_value_is_exactly_one_base_letter(self) -> Self:
+        # A base letter is one code point by construction, so the length bound
+        # above is the whole shape check. What is left to prove is that the code
+        # point is a letter rather than a combining mark that happened to lead a
+        # string: a mark segments as its own unit, and a file addressed by one
+        # would decode to something no reader could pronounce.
         units = segment(self.ezhuthu)
         if units != [self.ezhuthu]:
             raise ValueError(
@@ -423,19 +472,19 @@ class EzhuthuIndexEntry(BaseModel):
 class LexiconPartition(BaseModel):
     """One published NDJSON file, and what it holds.
 
-    Addressed by ``wordClass`` then ``firstEzhuthu`` - the word's opening letter
-    as the lowercase 4-digit hex of each of its code points. Both keys are
-    immutable per word, so a refresh INSERTS into a file and never reshuffles
-    one; only a changed ``wordClass`` moves a row, and that is a reviewable
-    semantic event. Hex keeps every path ASCII; ``ezhuthuIndex`` on the meta
-    document is what maps it back to the letter.
+    Addressed by ``wordClass`` then ``baseEzhuthu`` - the code point of the
+    letter the word opens on, as lowercase 4-digit hex. Both keys are immutable
+    per word, so a refresh INSERTS into a file and never reshuffles one; only a
+    changed ``wordClass`` moves a row, and that is a reviewable semantic event.
+    Hex keeps every path ASCII; ``ezhuthuIndex`` on the meta document is what
+    maps it back to the letter.
     """
 
     model_config = ConfigDict(extra="forbid")
 
     path: RelPath
     wordClass: WordClass
-    firstEzhuthu: str = Field(pattern=_EZHUTHU_HEX)
+    baseEzhuthu: str = Field(pattern=_EZHUTHU_HEX)
     rows: int = Field(ge=0)
     bytes: int = Field(ge=0)
     sha256: str = Field(pattern=_SHA256)
@@ -490,7 +539,7 @@ class Lexicon(SchemaModel):
                     f"ezhuthuIndex key {hex_key!r} != {expected!r} for "
                     f"{entry.ezhuthu!r}"
                 )
-        used = {cell.firstEzhuthu for cell in self.partitions}
+        used = {cell.baseEzhuthu for cell in self.partitions}
         undeclared = sorted(used - set(self.ezhuthuIndex))
         if undeclared:
             raise ValueError(

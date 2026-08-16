@@ -12,16 +12,26 @@ Two shapes of rule, and the difference is not arbitrary:
   ``synonymsTa``, ``categories``. A Tamil verbal noun genuinely is both a noun
   and a verb, and resolving those by precedence would delete whichever a
   lower-ranked source held.
-- **PRECEDENCE** for a fact that occupies ONE display slot - ``translationEn``,
-  ``definitionTa``. Exactly one can be shown, so exactly one source wins, and
-  the winner is decided by an explicit per-source integer rather than by the
-  order the registry array happens to be written in - with ATTESTED ahead of
-  AUTHORED, because a source that recorded the meaning outranks a pass that
-  wrote one (Row 4 decision 2a).
+- **PRECEDENCE** for a fact that occupies ONE display slot - ``translationEn``.
+  Exactly one can be shown, so exactly one source wins, and the winner is
+  decided by an explicit per-source integer rather than by the order the
+  registry array happens to be written in - with ATTESTED ahead of AUTHORED,
+  because a source that recorded the meaning outranks a pass that wrote one
+  (Row 4 decision 2a).
 
-``frequency`` is neither: it SUMS over the frequency corpora, because a count is
-evidence that adds up rather than a claim that competes. ``spokenRatio`` is the
-declared spoken corpora's share of that sum.
+``definitionTa`` is a THIRD shape, and Row 12a is why. A word has more than one
+meaning, and a dictionary page says so: the Tamil Wiktionary lists three senses
+of ``vaakai`` - the tree, the garland a victor wears, and victory itself - under
+one meaning block. Resolving it as a single slot published the tree and threw
+the other two away, on a row whose own English translation described them. So it
+is an ORDERED UNION: every sense any source asserted, ordered by exactly the
+rule that used to pick the winner, deduplicated on the text. Element zero is
+therefore the value the single-slot rule produced, so the one meaning a hint
+spends is unchanged and nothing is discarded.
+
+``frequency`` is none of the three: it SUMS over the frequency corpora, because
+a count is evidence that adds up rather than a claim that competes.
+``spokenRatio`` is the declared spoken corpora's share of that sum.
 
 Attestation resolves to two COUNTS rather than to the list of names. Selection
 gates on how many sources listed a surface and how many of those were
@@ -63,8 +73,19 @@ UNION_ATTRS: Final[dict[str, str]] = {
     "category": "categories",
 }
 
-# The single-slot fact attributes, resolved by precedence.
-SINGLE_ATTRS: Final[tuple[str, ...]] = ("translation", "definitionTa")
+# The single-slot fact attribute, resolved by precedence.
+SINGLE_ATTRS: Final[tuple[str, ...]] = ("translation",)
+
+# The ordered-union fact attribute: every value, in the single-slot order.
+SENSE_ATTR: Final = "definitionTa"
+
+# How many digits the rank prefix that carries sense order through SQLite's
+# concatenation is written in. SQLite does not promise an aggregate's
+# concatenation order, and the order IS the information here, so each value
+# carries its own rank and Python sorts on it. Five digits is four more than any
+# real row needs and is the same width whatever the count, so it never changes
+# the sort.
+_RANK_DIGITS: Final = 5
 
 _PARTS_OF_SPEECH: Final[frozenset[str]] = frozenset(get_args(PartOfSpeech))
 
@@ -90,7 +111,7 @@ _TEMP_SCHEMA: Final[tuple[str, ...]] = (
     CREATE TEMP TABLE publish_row (
         word         TEXT NOT NULL,
         wordClass    TEXT NOT NULL,
-        firstEzhuthu TEXT NOT NULL,
+        baseEzhuthu  TEXT NOT NULL,
         PRIMARY KEY (word)
     ) WITHOUT ROWID
     """,
@@ -126,6 +147,13 @@ _TEMP_SCHEMA: Final[tuple[str, ...]] = (
         PRIMARY KEY (word, attr)
     ) WITHOUT ROWID
     """,
+    """
+    CREATE TEMP TABLE publish_sense (
+        word   TEXT NOT NULL,
+        joined TEXT NOT NULL,
+        PRIMARY KEY (word)
+    ) WITHOUT ROWID
+    """,
 )
 
 _STREAM = """
@@ -142,12 +170,11 @@ SELECT p.word,
          WHERE u.word = p.word AND u.attr = 'category'),
        (SELECT value FROM publish_single g
          WHERE g.word = p.word AND g.attr = 'translation'),
-       (SELECT value FROM publish_single g
-         WHERE g.word = p.word AND g.attr = 'definitionTa')
+       (SELECT joined FROM publish_sense d WHERE d.word = p.word)
   FROM publish_row p
   LEFT JOIN publish_frequency f ON f.word = p.word
   LEFT JOIN publish_attestation a ON a.word = p.word
- ORDER BY p.wordClass, p.firstEzhuthu, p.word
+ ORDER BY p.wordClass, p.baseEzhuthu, p.word
 """
 
 
@@ -155,8 +182,13 @@ class ResolutionError(ValueError):
     """A fact the closed vocabulary cannot hold, named with its row count."""
 
 
-def first_ezhuthu(word: str) -> str:
-    """The word's opening letter - the second half of a published row's address.
+def base_ezhuthu(word: str) -> str:
+    """The BASE letter the word opens on - the second half of a row's address.
+
+    One code point: the uyir, the consonant or the aytham. A vowel sign or a
+    pulli is a combining mark that rides on that letter, so ``ka``, ``kaa`` and
+    ``ki`` share an address exactly as a dictionary files them together, and the
+    key is always four hex digits.
 
     Deliberately pure and total: it is registered as a SQL function so the
     stream is ORDERED by the same value the writer names a file after, and a
@@ -164,7 +196,7 @@ def first_ezhuthu(word: str) -> str:
     checks that CAN fail belong to the writer, which knows the file it was about
     to name.
     """
-    return segment(word)[0]
+    return segment(word)[0][0]
 
 
 @dataclass(frozen=True, slots=True)
@@ -187,6 +219,24 @@ def _values(joined: str | None, drop: str | None = None) -> list[str] | None:
         return None
     unique = {value for value in joined.split(SEPARATOR) if value and value != drop}
     return sorted(unique) or None
+
+
+def _senses(joined: str | None) -> list[str] | None:
+    """Split the sense column back into an ORDERED, deduplicated list.
+
+    Each value arrives carrying its own zero-padded rank, because SQLite does
+    not promise an aggregate's concatenation order and here the order is the
+    information: element zero is the sense the single display slot shows. So the
+    rank is sorted on and then stripped, and a repeated sense keeps its first
+    (most authoritative) position.
+    """
+    if joined is None:
+        return None
+    ranked = sorted(piece for piece in joined.split(SEPARATOR) if piece)
+    senses: dict[str, None] = {}
+    for piece in ranked:
+        senses.setdefault(piece[_RANK_DIGITS:], None)
+    return list(senses) or None
 
 
 def check_the_closed_vocabularies(
@@ -244,7 +294,7 @@ def prepare(conn: sqlite3.Connection, registry: LexiconSources) -> int:
     is a config edit plus a re-publish, never a re-stage.
     """
     spoken = frozenset(registry.spokenSources)
-    conn.create_function("first_ezhuthu", 1, first_ezhuthu, deterministic=True)
+    conn.create_function("base_ezhuthu", 1, base_ezhuthu, deterministic=True)
     for statement in _TEMP_SCHEMA:
         conn.execute(statement)
     conn.executemany(
@@ -275,8 +325,8 @@ def prepare(conn: sqlite3.Connection, registry: LexiconSources) -> int:
     conn.execute(
         # The address is stored beside the row rather than recomputed at stream
         # time, so the ORDER BY the writer depends on is a plain column read.
-        f"INSERT INTO publish_row (word, wordClass, firstEzhuthu) "
-        f"SELECT word, wordClass, first_ezhuthu(word) FROM classification "
+        f"INSERT INTO publish_row (word, wordClass, baseEzhuthu) "
+        f"SELECT word, wordClass, base_ezhuthu(word) FROM classification "
         f"WHERE wordClass IN ({marks})",
         classes,
     )
@@ -343,6 +393,26 @@ def prepare(conn: sqlite3.Connection, registry: LexiconSources) -> int:
         f") WHERE rn = 1",
         list(SINGLE_ATTRS),
     )
+    conn.execute(
+        # The SAME total order as the single slot, kept whole instead of cut to
+        # its first row: element zero is what precedence would have published,
+        # and the senses behind it are no longer dropped. The rank travels with
+        # each value because group_concat's own order is unspecified, and the
+        # reader sorts on it.
+        f"INSERT INTO publish_sense (word, joined) "
+        f"SELECT word, group_concat(printf('%0{_RANK_DIGITS}d', rn) || value, "
+        f"       char(31)) FROM ( "
+        f"  SELECT f.word AS word, f.value AS value, "
+        f"         row_number() OVER ( "
+        f"           PARTITION BY f.word "
+        f"           ORDER BY s.authored, s.precedence, f.ordinal, f.value) AS rn "
+        f"    FROM publish_row p "
+        f"    JOIN fact f ON f.word = p.word "
+        f"    JOIN publish_source s ON s.id = f.source_id "
+        f"   WHERE f.attr = ? "
+        f") GROUP BY word",
+        (SENSE_ATTR,),
+    )
     counted = conn.execute("SELECT count(*) FROM publish_row").fetchone()
     return 0 if counted is None else int(counted[0])
 
@@ -364,7 +434,7 @@ def stream(conn: sqlite3.Connection) -> Iterator[LexiconEntry]:
         synonyms,
         categories,
         translation,
-        definition,
+        senses,
     ) in conn.execute(_STREAM):
         frequency = int(total)
         # A NULL numerator means no spoken corpus is declared, and a word no
@@ -377,15 +447,15 @@ def stream(conn: sqlite3.Connection) -> Iterator[LexiconEntry]:
         )
         yield LexiconEntry(
             word=word,
-            wordClass=word_class,
-            length=len(segment(word)),
-            frequency=frequency,
-            attestations=int(attestations),
-            tier1Attestations=int(tier1),
-            spokenRatio=ratio,
+            definitionTa=_senses(senses),
             translationEn=translation,
-            definitionTa=definition,
             synonymsTa=_values(synonyms, drop=word),
             pos=_values(parts),
             categories=_values(categories),
+            frequency=frequency,
+            length=len(segment(word)),
+            wordClass=word_class,
+            attestations=int(attestations),
+            tier1Attestations=int(tier1),
+            spokenRatio=ratio,
         )

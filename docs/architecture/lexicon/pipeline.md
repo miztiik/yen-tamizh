@@ -1,6 +1,6 @@
 # The lexicon pipeline
 
-**Last Updated**: 2026-08-16
+**Last Updated**: 2026-08-17
 
 How the Tamil lexicon is built: four stages, each runnable on its own, that turn
 raw third-party dictionaries and frequency tables into the all-words artifact.
@@ -463,39 +463,46 @@ classes are servable is a policy that can change without any code changing.
 
 ### The address is a pure function of the word
 
-`partitionKeys` is `["wordClass", "firstEzhuthu"]`, declared IN the meta
+`partitionKeys` is `["wordClass", "baseEzhuthu"]`, declared IN the meta
 document so a consumer learns the address from the artifact rather than from the
 code that wrote it. Both keys are immutable per word:
 
 - `wordClass` is the classifier's verdict, so only a re-classification moves a
   row between files - which is a reviewable semantic event, two line changes;
-- the first ezhuthu is the word's own opening letter, and a word does not change
-  what it starts with.
+- the base ezhuthu is the letter the word's opening cluster is built on, and a
+  word does not change what letter it starts with.
 
 So a refresh INSERTS a line into a file that already exists. Nothing in PUBLISH
 reads a previous artifact to decide where a row goes, which is what makes "a
 clean checkout produces the same layout as a refresh" true.
 
-### The file name is hex, and the hex is padded
+### The file name is hex, and the hex is the BASE letter
 
-A file is named for its letter's Unicode code points, each as lowercase 4-digit
-hex: `0b85.ndjson` is `அ`, `0b95.ndjson` is `க`, `0b950bbe.ndjson` is `கா`. Four
-digits for a bare letter, eight once a vowel sign or a pulli attaches.
+A file is named for the code point of the letter its words OPEN on, as lowercase
+4-digit hex: `0b85.ndjson` is `அ`, `0b95.ndjson` is `க`. A vowel sign or a pulli
+is a combining mark riding on that letter, so `க`, `கா` and `கி` share one file -
+exactly as a dictionary files them under one heading, and exactly as a reader
+looking a word up expects.
 
-The padding is the point. Zero-padded 4-digit groups make ASCII filename order
-equal code-point order, so a directory listing is in the same order as the rows
+Addressing the WHOLE opening ezhuthu instead was tried and withdrawn. It split
+one letter across as many as thirteen files, put the `headword` class at 115 of
+them, and served nobody: no consumer wants `ka` without `kaa`, and a word is not
+filed under a different heading because its first vowel changed. The base letter
+collapses those 115 to 22 and the artifact as a whole from 238 files to 53.
+
+The padding is the point. A base character is ONE code point by construction, so
+the key is a fixed four digits, and a fixed width makes ASCII filename order
+equal code-point order - a directory listing is in the same order as the rows
 inside the files, and a file's neighbours in `ls` are its neighbours in the sort.
-Two things have to hold for that alignment and PUBLISH ASSERTS both rather than
-assuming them:
+One thing has to hold for that and PUBLISH ASSERTS it rather than assuming it:
+every code point is in the **Basic Multilingual Plane**, because a five-digit
+group would break the padding. Tamil satisfies it everywhere, which is exactly
+why it is an assertion - an invariant nothing checks is a comment.
 
-- the letter is **NFC**. A decomposed letter still segments as one ezhuthu, so
-  without this check the artifact would carry two files for one letter and the
-  index would describe both as if they were different;
-- every code point is in the **Basic Multilingual Plane**. A five-digit group
-  would break the padding and the order with it.
-
-Tamil satisfies both everywhere, which is exactly why they are assertions: an
-invariant nothing checks is a comment.
+The NFC assertion the full-ezhuthu address needed is GONE, and its absence is
+the measure of the simplification. A decomposed letter carries the same base
+code point as a composed one, so the two now address the same file and there is
+nothing left to refuse.
 
 Hex rather than Tamil script or a romanization, and the rule underneath is **put
 the IMMUTABLE identifier in the path and the CORRECTABLE label in data.** A code
@@ -505,9 +512,8 @@ a path is also less legible than hex on the operator's own machine, because
 git's default `core.quotepath` renders non-ASCII paths as octal escapes.
 
 `ezhuthuIndex` on the meta document is where the letter is spelled out: each hex
-key decodes ONCE to `{ezhuthu, roman, kind}`. `roman` is composed rather than
-tabulated - the base character's ASCII label plus the vowel the sign writes - so
-`க` is `ka`, `கா` is `kaa` and `க்` is `k`. All 247 ezhuthu spell uniquely.
+key decodes ONCE to `{ezhuthu, roman, kind}`. `roman` is the base character's
+ASCII label, so `0b95` is `ka` and `0b85` is `a`.
 
 `maxPartitionBytes` (33 MiB, a third of GitHub's 100 MiB hard blob wall) is a
 HARD BUILD ASSERTION, not a partition threshold. The layout is decided by the
@@ -517,12 +523,11 @@ decision rather than a larger number.
 
 ### Row order, and what a refresh diff looks like
 
-Rows sort by `word` ASC within a file. Because the first ezhuthu is that sort's
-own leading key, the partition cut is a RANGE cut on an order that already
-exists: concatenating a class's files in name order reproduces the sorted class
-exactly.
+Rows sort by `word` ASC within a file. Because the base letter is that sort's own
+leading key, the partition cut is a RANGE cut on an order that already exists:
+concatenating a class's files in name order reproduces the sorted class exactly.
 
-The stream is ordered by `(wordClass, first ezhuthu, word)` using the SAME
+The stream is ordered by `(wordClass, base ezhuthu, word)` using the SAME
 function that names the file, so each address arrives as one contiguous run and
 the writer holds ONE open handle at a time. Ordering by `word` alone would very
 nearly do it and would be wrong in a case nobody would notice for years: a
@@ -549,12 +554,48 @@ settled, once, with the registry's precedence in hand.
 | `synonymsTa` | UNION of ASSERTED synonymy only, excluding the word itself |
 | `categories` | UNION, normalized through `categoryAliases` so `Birds` and `birds` collapse |
 | `translationEn` | the winner of ONE display slot, by precedence, attested ahead of authored |
-| `definitionTa` | the same, and see below |
+| `definitionTa` | an ORDERED UNION of every sense, in that same precedence order |
 
 UNION for a set-valued fact with no display slot; PRECEDENCE for a fact that
 occupies one. A Tamil verbal noun genuinely is both a noun and a verb, so
 resolving `pos` by precedence would delete whichever a lower-ranked source held.
 A translation can only be shown once, so exactly one source has to win it.
+
+### A word has more than one meaning, and the row now says so
+
+`definitionTa` is the third shape, and it exists because the second one was
+losing data. A Tamil Wiktionary page lists every sense of its word under one
+meaning block: `வாகை` carries three - the Albizia lebbeck tree, the garland a
+victor wears, and victory itself. Resolving that as a single display slot
+published the tree and threw the other two away, on a row whose own
+`translationEn` was "crown" and whose `synonymsTa` already held `வெற்றி` - so
+the Tamil and the English halves of one row described different senses.
+
+Measured over the Tamil Wiktionary extract: 234,853 pages assert a sense,
+350,398 senses in all, and **58,193 of those pages (24.8 percent) carry more than
+one**. The single slot was discarding **115,545 senses**, and the widest pages
+run to the extractor's own per-page bound of 24.
+
+So the column is a LIST, ordered by exactly the rule that used to pick the
+winner - attested ahead of authored, then precedence, then the source's own
+sense order - and deduplicated on the text. Two consequences are worth stating:
+
+- **element zero is what the single-slot rule published**, so the one meaning a
+  hint spends is unchanged and no consumer has to be taught a new preference;
+- **nothing is discarded**, so a later row that wants sense two can have it
+  without a re-publish over 6.5 million surfaces.
+
+It is the only list the row does NOT sort. Order is information here, and
+sorting would put whichever sense happens to begin with the earliest code point
+in front of a player. The contract enforces distinctness instead.
+
+A sense also stops at the last Tamil it carries. The wiki closes a meaning line
+with its own cross-reference apparatus - `வாகை`'s first sense ended `... (Albizia
+lebbeck) ; siris`, where `siris` is a link to the English common name - delimited
+from the sense by the same semicolon that separates two Tamil clauses, so the
+cleaner could not see it as apparatus. A trailing fragment carrying no Tamil at
+all is dropped; a binomial inside the sense's own clause stays, because a reader
+looking up a tree wants it.
 
 `synonymsTa` is the ASSERTED synonymy only. A2's sideways read - the words that
 share an English gloss - is staged as `glossPeer` rather than `synonym` (Row 9b)
@@ -584,12 +625,21 @@ row to a config file. The rule cannot be broken that way.
 
 ### The row carries facts and counts, and nothing else
 
-`word`, `wordClass`, `length`, `frequency`, `attestations`, `tier1Attestations`,
-`spokenRatio`, `translationEn`, `definitionTa`, `synonymsTa`, `pos`,
-`categories`. Every sparse column is OMITTED when absent - never an empty list,
-never a null - because `model_dump(exclude_none=True)` drops `None` but keeps
-`[]`, so a defaulted empty list would write an empty pair on every row lacking
-the fact.
+`word`, `definitionTa`, `translationEn`, `synonymsTa`, `pos`, `categories`,
+`frequency`, `length`, `wordClass`, `attestations`, `tier1Attestations`,
+`spokenRatio` - in that order, which is the order they serialize in. Every
+sparse column is OMITTED when absent - never an empty list, never a null -
+because `model_dump(exclude_none=True)` drops `None` but keeps `[]`, so a
+defaulted empty list would write an empty pair on every row lacking the fact.
+
+**The order is the contract's field order, not a sort.** A row opens on the word
+and what it MEANS and closes on the machine columns a selection gate answers
+from; `attestations` and `tier1Attestations` are last because Row 12's serving
+gate is their only consumer and it runs against the published artifact, so they
+have to be there and nobody reads them by eye. Sorting the keys was just as
+deterministic and opened every row on `attestations` with `word` buried eight
+fields in. Pydantic returns fields in declaration order, so the contract IS the
+order and a test pins the list.
 
 What is NOT there, and why:
 
@@ -614,9 +664,9 @@ What is NOT there, and why:
 
 ### Everything streams, and the newline is named
 
-One `json.dumps(row, ensure_ascii=False, sort_keys=True)` per line, written
-straight from a `sqlite3` cursor to a temp handle, then `os.replace`. Peak Python
-memory is one row whatever the population is.
+One `json.dumps(row, ensure_ascii=False)` per line in the contract's own field
+order, written straight from a `sqlite3` cursor to a temp handle, then
+`os.replace`. Peak Python memory is one row whatever the population is.
 
 The handle is opened with `newline="\n"` and `encoding="utf-8"` EXPLICITLY. The
 operator runs Windows, where Python's default text mode translates `\n` to
@@ -632,7 +682,7 @@ write.
 
 A consumer resolves a file through `partitions[]` in `lexicon.meta.json`: no
 globbing, no probe-and-fallback. Each entry carries `path`, `wordClass`,
-`firstEzhuthu`, `rows`, `bytes` and `sha256`, and the model checks that the
+`baseEzhuthu`, `rows`, `bytes` and `sha256`, and the model checks that the
 declared population reconciles with `counters.published` class by class.
 
 A file the previous publish wrote and this one no longer addresses is DELETED,
@@ -793,12 +843,16 @@ and recomputed whole.
 | One zone, with signals namespaced by `source_id` | No signal IS per-source; four are whole-corpus aggregates. A fake `source_id` on a signal row would make `DELETE WHERE source_id = ?` silently wrong. |
 | A content digest instead of a write counter for `stage_epoch` | It can report the derived zone CURRENT when it is not: the extractor version is not part of the staged content, so a re-extraction that changes every fact can leave any digest over those facts' source rows unmoved. A counter's only failure mode is one unnecessary recompute. |
 | Publishing every class at full fidelity | Roughly 900 MB of committed NDJSON, of which the six unpublished classes are the bulk, and git history is append-only so it would be carried forever. Retention is what the store is for; `counters.classified` is what keeps the withheld classes provable in the repository. |
-| One file per class | `headword` alone would be a single large file, so "what changed in headwords?" spans one enormous blob and any growth walks toward the 100 MiB wall with no address to split on. The first ezhuthu is free: it is already the sort's leading key. |
-| A `length` component in the address | It makes a word's ADDRESS depend on the SIZE OF ITS CLASS the moment it is applied conditionally, and unconditionally it multiplies the file count for a key no consumer resolves on. `wordClass` plus the first ezhuthu is the whole address. |
-| The BASE first ezhuthu rather than the whole letter | It collapses `க`, `கா`, `கி` and the other eleven into one file, which is the merge the padded hex was chosen to avoid, and the resulting files are 12x larger for no gain. The whole letter costs a second 4-digit group. |
+| One file per class | `headword` alone would be a single large file, so "what changed in headwords?" spans one enormous blob and any growth walks toward the 100 MiB wall with no address to split on. The opening letter is free: it is already the sort's leading key. |
+| A `length` component in the address | It makes a word's ADDRESS depend on the SIZE OF ITS CLASS the moment it is applied conditionally, and unconditionally it multiplies the file count for a key no consumer resolves on. `wordClass` plus the opening letter is the whole address. |
+| The WHOLE first ezhuthu rather than its base letter (Row 11, withdrawn in Row 12a) | It was chosen to avoid "merging" `க` with `கா`, but that merge is what a dictionary does and what a reader wants: no consumer asks for `ka` without `kaa`. Measured, it split one letter across up to thirteen files - 115 for the `headword` class, 238 in the artifact - against 22 and 53 for the base letter, and it cost an NFC assertion that the base letter does not need. |
 | Romanized or Tamil-script file names | A romanization is a judgement call and correcting one would RENAME published files; it is also case-significant in every ASCII scheme (`N`/`n`, `L`/`l`), which collides on NTFS and APFS. Tamil script in a path renders as octal escapes under git's default `core.quotepath`. The letter lives in `ezhuthuIndex` as correctable data instead. |
 | Publishing `attestedBy` as the list of source names | Every row pays for a list of slugs so that selection can take its length. The two counts are the gate; the names are provenance, and provenance answers a question about ONE word, which is what the store is for. |
 | Resolving `definitionTa` by precedence alone | `llm-authored` sits at precedence 19 and two later rows appended sources at 21 and 22 - the two biggest Tamil-definition sources in the inventory. Precedence alone would have published an authored gloss over a dictionary's as a side effect of appending a config row. Attested-before-authored is a rule, so it cannot be broken by ordering. |
+| Keeping `definitionTa` a single display slot (Row 11, withdrawn in Row 12a) | It discarded 115,545 senses across the 234,853 ta.wiktionary pages that assert one, of which 24.8 percent assert more than one; 80,356 of those fall on rows the artifact actually publishes, taking it from 102,307 senses to 182,663. A dictionary page lists every sense of its word, and a slot that keeps the first published the tree and dropped the victory. |
+| Joining the senses into one string | It fits the single slot but destroys the sense BOUNDARY, so no consumer can pick one - and the paid meaning hint would spend a player's attempt on a three-sense dump. |
+| Keeping sense one in `definitionTa` and the rest in a new field | Two fields describing the same thing, with the first sense either duplicated in both or absent from one. A list says it once. |
+| Sorting `definitionTa` like every other list | Order is information here: element zero is the sense a hint spends. Sorting would put whichever sense begins with the earliest code point in front of a player. |
 | Splitting a file pre-emptively at a size threshold | The address is a pure function of the word; a threshold makes it a function of the artifact's own history, so a clean checkout could produce a different layout from a refresh and the byte-identity Oracle would hold only when a prior artifact is present. The 33 MiB figure survives as a build ASSERTION instead. |
 | A wall-clock stamp in the generated README | The artifact has no `generatedAt` precisely so a rebuild byte-compares; a date in a file the same run generates would defeat that on the first re-run. Git records when. |
 

@@ -62,20 +62,21 @@ above `authored`, and the authoring pass fills only what no source attests.
 ## The ledger
 
 `bytes`, `records` and `sha256` describe the file at `path` exactly as acquired -
-on 2026-08-14 for A1-A7 and B1 through E1, on 2026-08-15 for A8, and on
-2026-08-16 for A9 and A10. `records` counts physical lines for the line-based
-formats (so D1's count includes its `word,frequency` header line, and A8's
-includes its `page_title` one), root-array elements for the JSON formats,
-MAIN-NAMESPACE pages for the MediaWiki export - which is what its reader treats
-as a record, and is 410,074 of the export's 415,705 pages - and LOGICAL rows for
-the quoted TSV, where three records hold an embedded newline and so span two
-physical lines each (16,640 records over 16,642 lines).
+on 2026-08-14 for A1-A7 and B1 through E1, on 2026-08-15 for A8, on 2026-08-16
+for A9 and A10, and on 2026-08-17 for A11. `records` counts physical lines for
+the line-based formats (so D1's count includes its `word,frequency` header line,
+and A8's and A11's include their `page_title` one), root-array elements for the
+JSON formats, MAIN-NAMESPACE pages for the MediaWiki export - which is what its
+reader treats as a record, and is 410,074 of the export's 415,705 pages - and
+LOGICAL rows for the quoted TSV, where three records hold an embedded newline
+and so span two physical lines each (16,640 records over 16,642 lines).
 
-A8 and A9 are the two sources whose origin is an ARCHIVE rather than the file
+A8, A9 and A11 are the sources whose origin is an ARCHIVE rather than the file
 itself, so their rows describe the decompressed bytes and each archive's own
 digest is recorded in its section below
 ([A8](#a8---acquired-from-a-gzip-archive),
-[A9](#a9---the-wiktionary-content-itself)). A10's origin is a COMMIT-pinned raw
+[A9](#a9---the-wiktionary-content-itself),
+[A11](#a11---the-tamil-wikipedia-titles)). A10's origin is a COMMIT-pinned raw
 URL rather than a branch one, for the reason [A10](#a10---indowordnet) gives.
 
 | # | id | role | origin | path | bytes | records | sha256 | status |
@@ -90,6 +91,7 @@ URL rather than a branch one, for the reason [A10](#a10---indowordnet) gives.
 | A8 | ta-wiktionary-titles | authority | https://dumps.wikimedia.org/tawiktionary/20260801/tawiktionary-20260801-all-titles-in-ns0.gz | datasets/lexicon/sources/ta-wiktionary-titles/source.txt | 7745492 | 410075 | `7b4954ccad02227771354192a88bbae82939009068067b029abd073e29321cf0` | acquired |
 | A9 | ta-wiktionary-content | authority | https://dumps.wikimedia.org/tawiktionary/20260801/tawiktionary-20260801-pages-articles.xml.bz2 | datasets/lexicon/sources/ta-wiktionary-content/source.xml | 647116289 | 410074 | `a33493a73bcb3d03302b8501814d80f16344d0e3cf651f41cce7bf323cf6e4d5` | acquired |
 | A10 | indowordnet-ta | authority | https://raw.githubusercontent.com/cfiltnlp/IWN-En/e48e64b5757d465b31a8339fb003e2ed6931327b/data/english-hindi-tamil-linked.tsv | datasets/lexicon/sources/indowordnet-ta/source.tsv | 13711270 | 16640 | `fe61e17a3dcbb891ea4ffb9c7d0f47eb7775eff2b84f0454f1d012f3f9fe7bb4` | acquired |
+| A11 | ta-wikipedia-titles | encyclopedic | https://dumps.wikimedia.org/tawiki/20260801/tawiki-20260801-all-titles-in-ns0.gz | datasets/lexicon/sources/ta-wikipedia-titles/source.txt | 13308981 | 237542 | `c2bcd4d2a03b41cca2ca66069199ed3a8e3a40c06e74547ee0425223563a709f` | acquired |
 | B1 | inflected-verbs-bulk | formEvidence | yen-tamizh_OLD/src/dictionary/raw/Simple-verbs-01022021.txt | datasets/lexicon/sources/inflected-verbs-bulk/source.txt | 69572318 | 1461494 | `3baf32b9662c248b81273be0446c4f8fbfcb812c0ea6675ee47485293a9fb3b5` | acquired |
 | B2 | inflected-verbs-clean | formEvidence | yen-tamizh_OLD/src/dictionary/intermediate/verbs.txt | datasets/lexicon/sources/inflected-verbs-clean/source.txt | 727814 | 19249 | `0e1913e15f1ebc7413b50f8b738a933ab7f6ecd48c3db09e9a6f4ef107226d1e` | acquired |
 | C1 | themed-vocabulary | category | yen-tamizh_OLD/src/dictionary/intermediate/ta_vocabulary_clean.json | datasets/lexicon/sources/themed-vocabulary/source.json | 144240 | 1290 | `91a78edadca357690975066c6d00815060f79e6a679f07e9a63cd8758f26ed6c` | acquired |
@@ -292,6 +294,43 @@ none for those records and counts them.
 | --- | --- | --- |
 | at `path` | 13711270 | `fe61e17a3dcbb891ea4ffb9c7d0f47eb7775eff2b84f0454f1d012f3f9fe7bb4` |
 
+### A11 - the Tamil Wikipedia titles
+
+The first `encyclopedic` source, and the only one whose claim is about the WORLD
+rather than about the language: 237,541 titles of articles somebody wrote. It is
+acquired to answer one question no other source in the inventory can - does this
+string name an entity? - because most Tamil personal names ARE meaningful words,
+and the classifier had no evidence to tell a name from the word it is made of.
+
+**It is EVIDENCE, never a veto.** An encyclopedia has an article on fire and on
+mathematics as readily as on a person or a district, so membership alone
+separates nothing; what it can do is combine with the lexicographic evidence
+already in the store. [`../../../docs/architecture/lexicon/word-hood.md`](../../../docs/architecture/lexicon/word-hood.md)
+carries the measurement and the rule that came out of it.
+
+**Its role is neither `authority` nor `frequency`.** Registering it as an
+authority would have emitted a `headword` fact for every one of its titles and
+so added one to the `attestations` count the serving gate reads, for every place
+name in Tamil Nadu - the exact opposite of what the source is for. It observes
+its surfaces and asserts nothing, which is what the sixth role says out loud.
+
+Acquired the same way A8 was, and with the same two hazards: Wikimedia refuses
+the default Python User-Agent with **HTTP 403** unless a descriptive one is
+sent, and the URL is the DATED run rather than `latest`, so a recorded digest
+cannot go stale under a moving target. The row above describes the DECOMPRESSED
+file; both digests are on record, so the chain from the published archive to the
+file the pipeline reads is verifiable end to end:
+
+| artifact | bytes | sha256 |
+| --- | --- | --- |
+| the published archive | 2021059 | `60cc8bf9614016b97ca71f55cce039d7479832552bc1bc8b7fe6eaee06da252f` |
+| decompressed, at `path` | 13308981 | `c2bcd4d2a03b41cca2ca66069199ed3a8e3a40c06e74547ee0425223563a709f` |
+
+The file is LF-only (zero carriage returns), ends with a newline, holds no blank
+line and no tab, and its first line is the header `page_title` - which is why
+the registry entry sets `hasHeader` and why a tab is a safe delimiter for a
+one-column file.
+
 ### E1 - acquired, disabled The extraction that produced it stripped
 vowel signs and pulli, so its tokens are bare consonant skeletons - valid Tamil
 letters that are not Tamil words, and some of which cannot begin a Tamil word at
@@ -404,7 +443,7 @@ datasets/fixtures/lexicon/<source-id>.1x.<ext>
 datasets/fixtures/lexicon/<source-id>.10x.<ext>
 ```
 
-42 files, 6,759,161 bytes in total. Three rules govern them:
+46 files, 7,341,682 bytes in total. Three rules govern them:
 
 1. **A fixture keeps its source's extension.** A byte-exact slice of a CSV is a
    CSV and a slice of a JSON array is JSON, so each reader is exercised against
@@ -421,11 +460,11 @@ datasets/fixtures/lexicon/<source-id>.10x.<ext>
    reduced where 2,000 records would exceed a one-mebibyte fixture (A7, whose
    records are 6 KB each) or where the source is smaller (C1 has 1,290 rows).
    For a source with a header line the count is of physical LINES, header
-   included, which is what keeps the ten-times ratio exact (A8: 200 and 2,000).
-   A9 counts what its reader counts - MAIN-NAMESPACE pages, 50 and 500 - so its
-   slices run to 200 and 690 physical pages. Counting raw pages instead would
-   have put the export's largest page, a 1 MB village-pump archive, in the 10x
-   and not the 1x, and the memory predicate would then have been measuring a
+   included, which is what keeps the ten-times ratio exact (A8 and A11: 200 and
+   2,000). A9 counts what its reader counts - MAIN-NAMESPACE pages, 50 and 500 -
+   so its slices run to 200 and 690 physical pages. Counting raw pages instead
+   would have put the export's largest page, a 1 MB village-pump archive, in the
+   10x and not the 1x, and the memory predicate would then have been measuring a
    discussion page.
 
 Because a fixture is a head slice it is not a representative SAMPLE. Never infer
@@ -436,11 +475,11 @@ counted over the whole of every source, not over a fixture.
 
 Fetch each `origin` back to its `path`. Sources whose origin is a
 `yen-tamizh_OLD/...` path come from the predecessor repository; sources whose
-origin is a URL can be fetched directly. A8 and A9 need two extra steps and are
-the only ones that do: their `dumps.wikimedia.org` URLs answer 403 without a
-descriptive User-Agent, and their origins are archives - gzip for A8, bzip2 for
-A9 - so decompress each into `path` rather than saving the archive there. Then
-confirm the bytes:
+origin is a URL can be fetched directly. A8, A9 and A11 need two extra steps and
+are the only ones that do: their `dumps.wikimedia.org` URLs answer 403 without a
+descriptive User-Agent, and their origins are archives - gzip for A8 and A11,
+bzip2 for A9 - so decompress each into `path` rather than saving the archive
+there. Then confirm the bytes:
 
 ```
 python -c "import hashlib,pathlib;print(hashlib.sha256(pathlib.Path('<path>').read_bytes()).hexdigest())"

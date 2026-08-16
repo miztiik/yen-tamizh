@@ -1,2 +1,2 @@
-{"attestations": 5, "definitionTa": "ஔ' என்னும் எழுத்து", "frequency": 48, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "word": "ஔகாரம்", "wordClass": "properNoun"}
-{"attestations": 5, "definitionTa": "அம்மா, வயதான பெண்", "frequency": 227, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "matron", "word": "ஔவை", "wordClass": "properNoun"}
+{"word": "ஔகாரம்", "definitionTa": ["ஔ' என்னும் எழுத்து"], "pos": ["noun"], "frequency": 48, "length": 4, "wordClass": "properNoun", "attestations": 5, "tier1Attestations": 3, "spokenRatio": 0.0}
+{"word": "ஔவை", "definitionTa": ["அம்மா, வயதான பெண்", "பெண்பாற் புலவர் - ஆத்திச்சூடியை இயற்றியது, ஔவையார் ஆவார்"], "translationEn": "matron", "pos": ["noun"], "frequency": 227, "length": 2, "wordClass": "properNoun", "attestations": 5, "tier1Attestations": 3, "spokenRatio": 0.0}

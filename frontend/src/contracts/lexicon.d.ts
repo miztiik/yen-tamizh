@@ -25,8 +25,8 @@ export type Partitionkeys = [string, ...(string)[]]
  * @minItems 1
  */
 export type Partitions = [LexiconPartition, ...(LexiconPartition)[]]
+export type Baseezhuthu = string
 export type Bytes = number
-export type Firstezhuthu = string
 export type Path = string
 export type Rows1 = number
 export type Sha256 = string
@@ -45,7 +45,7 @@ export type Path1 = string
 export type Sha2561 = string
 export type Attestations = number
 export type Categories = ([string, ...(string)[]] | null)
-export type Definitionta = (string | null)
+export type Definitionta = ([string, ...(string)[]] | null)
 export type Frequency = number
 export type Length = number
 export type Pos = ([("adjective" | "adverb" | "conjunction" | "determiner" | "interjection" | "noun" | "numeral" | "particle" | "postposition" | "pronoun" | "verb"), ...(("adjective" | "adverb" | "conjunction" | "determiner" | "interjection" | "noun" | "numeral" | "particle" | "postposition" | "pronoun" | "verb"))[]] | null)
@@ -132,10 +132,12 @@ export interface Ezhuthuindex {
  * romanization is a judgement call, and correcting one must not rename a
  * published file.
  * 
- * ``ezhuthu`` is a WHOLE letter, not the base character it is built from - one
- * code point for an uyir or a bare consonant, two once a vowel sign or a pulli
- * attaches. ``kind`` classifies that whole letter, so a consonant carrying a
- * pulli reads ``mei`` and a bare one reads ``uyirmei`` (the inherent /a/).
+ * ``ezhuthu`` is a BASE letter - the uyir, the consonant or the aytham a word
+ * opens on, one code point. It is deliberately not the whole opening ezhuthu:
+ * a vowel sign rides on the consonant and does not change which letter the
+ * word is filed under, exactly as a dictionary files ka, kaa and ki together.
+ * ``kind`` classifies that base letter, so a bare consonant reads ``uyirmei``
+ * (the inherent /a/).
  */
 export interface EzhuthuIndexEntry {
 ezhuthu: Ezhuthu
@@ -145,16 +147,16 @@ roman: Roman
 /**
  * One published NDJSON file, and what it holds.
  * 
- * Addressed by ``wordClass`` then ``firstEzhuthu`` - the word's opening letter
- * as the lowercase 4-digit hex of each of its code points. Both keys are
- * immutable per word, so a refresh INSERTS into a file and never reshuffles
- * one; only a changed ``wordClass`` moves a row, and that is a reviewable
- * semantic event. Hex keeps every path ASCII; ``ezhuthuIndex`` on the meta
- * document is what maps it back to the letter.
+ * Addressed by ``wordClass`` then ``baseEzhuthu`` - the code point of the
+ * letter the word opens on, as lowercase 4-digit hex. Both keys are immutable
+ * per word, so a refresh INSERTS into a file and never reshuffles one; only a
+ * changed ``wordClass`` moves a row, and that is a reviewable semantic event.
+ * Hex keeps every path ASCII; ``ezhuthuIndex`` on the meta document is what
+ * maps it back to the letter.
  */
 export interface LexiconPartition {
+baseEzhuthu: Baseezhuthu
 bytes: Bytes
-firstEzhuthu: Firstezhuthu
 path: Path
 rows: Rows1
 sha256: Sha256
@@ -203,6 +205,14 @@ sha256: Sha2561
  * published column, so storing it would mint a drift surface as well as spend
  * bytes; ``length`` stays because selection reads it, and it is checked
  * against the live segmentation on every row.
+ * 
+ * THE FIELD ORDER IS THE SERIALIZED ORDER, and that is why it is worth
+ * reading. ``model_dump`` returns fields in declaration order, so the writer
+ * dumps this dict as it stands rather than sorting the keys - which is just as
+ * deterministic and puts the row in the order a person reads it: the word,
+ * what it MEANS, then the machine columns a selection gate gets its answer
+ * from. Sorted keys opened every row on ``attestations`` and buried ``word``
+ * eight fields in.
  */
 export interface LexiconEntry {
 attestations: Attestations

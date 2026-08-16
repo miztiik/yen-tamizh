@@ -1,4 +1,13 @@
-{"attestations": 4, "definitionTa": "கண்ணபிரானை வளர்த்த தாய்", "frequency": 233, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "word": "யசோதை", "wordClass": "properNoun"}
-{"attestations": 8, "definitionTa": "இந்து மதப்படி இறப்புகளை நிருவகிக்கும் கடவுள்", "frequency": 529, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["காலன்", "கூற்றன்", "தென்னவன்"], "tier1Attestations": 4, "translationEn": "According to the Hindu purana", "word": "யமன்", "wordClass": "properNoun"}
-{"attestations": 5, "definitionTa": "பிரயாகையிற் கங்கையோடு சங்கமமாகும் ஒரு நதி", "frequency": 743, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["காளிந்தி"], "tier1Attestations": 3, "word": "யமுனை", "wordClass": "properNoun"}
-{"attestations": 1, "frequency": 63, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "யஹ்யா", "wordClass": "properNoun"}
+{"word": "யசோதை", "definitionTa": ["கண்ணபிரானை வளர்த்த தாய்"], "pos": ["noun"], "frequency": 233, "length": 3, "wordClass": "properNoun", "attestations": 4, "tier1Attestations": 3, "spokenRatio": 0.0}
+{"word": "யமன்", "definitionTa": ["இந்து மதப்படி இறப்புகளை நிருவகிக்கும் கடவுள்", "அரபி தீவில் அமைந்துள்ள ஒரு தேசம்"], "translationEn": "According to the Hindu purana", "synonymsTa": ["காலன்", "கூற்றன்", "தென்னவன்"], "pos": ["noun"], "frequency": 529, "length": 3, "wordClass": "properNoun", "attestations": 8, "tier1Attestations": 4, "spokenRatio": 0.0}
+{"word": "யமுனை", "definitionTa": ["பிரயாகையிற் கங்கையோடு சங்கமமாகும் ஒரு நதி"], "synonymsTa": ["காளிந்தி"], "pos": ["noun"], "frequency": 743, "length": 3, "wordClass": "properNoun", "attestations": 5, "tier1Attestations": 3, "spokenRatio": 0.0}
+{"word": "யஹ்யா", "frequency": 63, "length": 3, "wordClass": "properNoun", "attestations": 1, "tier1Attestations": 1, "spokenRatio": 0.0}
+{"word": "யாகுவம்", "definitionTa": ["சாவகத்தீவு ( )"], "pos": ["noun"], "frequency": 0, "length": 4, "wordClass": "properNoun", "attestations": 4, "tier1Attestations": 3}
+{"word": "யாழ்ப்பாணம்", "definitionTa": ["இலங்கையின் வடபாலுள்ளதும் தமிழராற் குடியேறப்பெற்றதுமான நாடு"], "pos": ["noun"], "frequency": 5919, "length": 6, "wordClass": "properNoun", "attestations": 5, "tier1Attestations": 3, "spokenRatio": 0.0}
+{"word": "யுரேனசு", "frequency": 66, "length": 4, "wordClass": "properNoun", "attestations": 1, "tier1Attestations": 1, "spokenRatio": 0.0}
+{"word": "யூதம்", "definitionTa": ["விலங்கின் கூட்டம், சந்தை, மந்தை", "பெரும்படை, சேனை", "யூத மதம்"], "translationEn": "herd as of elephants", "synonymsTa": ["சேனை", "பெரும்படை"], "pos": ["noun"], "frequency": 166, "length": 3, "wordClass": "properNoun", "attestations": 5, "tier1Attestations": 3, "spokenRatio": 0.0}
+{"word": "யேசு", "frequency": 345, "length": 2, "wordClass": "properNoun", "attestations": 2, "tier1Attestations": 1, "spokenRatio": 0.0}
+{"word": "யோசுவா", "frequency": 365, "length": 3, "wordClass": "properNoun", "attestations": 1, "tier1Attestations": 1, "spokenRatio": 0.0}
+{"word": "யோசேப்பு", "synonymsTa": ["புனித சூசையப்பர்", "புனித யோசேப்பு"], "frequency": 567, "length": 4, "wordClass": "properNoun", "attestations": 2, "tier1Attestations": 1, "spokenRatio": 0.0}
+{"word": "யோவான்", "frequency": 2280, "length": 3, "wordClass": "properNoun", "attestations": 2, "tier1Attestations": 1, "spokenRatio": 0.0}
+{"word": "யோவேல்", "frequency": 89, "length": 3, "wordClass": "properNoun", "attestations": 1, "tier1Attestations": 1, "spokenRatio": 0.0}

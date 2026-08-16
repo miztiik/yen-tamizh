@@ -1,6 +1,6 @@
 # The Lexicon
 
-**Last Updated**: 2026-08-14
+**Last Updated**: 2026-08-17
 
 The vocabulary of the word layer, defined once. Every other doc links here rather than restating a term. What the words are FOR is [core-loop.md](core-loop.md) and [games.md](games.md); how they are SELECTED is [difficulty-and-scoring.md](difficulty-and-scoring.md); the persisted shapes are in [../architecture/contracts/schemas.md](../architecture/contracts/schemas.md).
 
@@ -69,7 +69,7 @@ There is deliberately no frequency BAND on the lexicon. A rank-relative band com
 A single "gloss" collapsed three different facts with three different consumers, so there are three named fields and each name states both its language and its kind:
 
 - **`translationEn`** - one English equivalent. A fact, publishable verbatim.
-- **`definitionTa`** - an explanatory Tamil phrase.
+- **`definitionTa`** - every sense the inventory holds, in order of authority. One display slot is element zero.
 - **`synonymsTa`** - a same-language Tamil equivalent set (ஒருபொருட் பன்மொழி, *orupporut panmozhi*). A Tamil meaning is preferred over an English one everywhere a player can see it.
 
 An English DEFINITION is never a published column. A one-word translation, a synonym and a Tamil definition are what a Tamil speaker can read; an English definition is a lexicographer's prose in the wrong language for this game. It is retained as build-time evidence for the authoring pass and never republished.
@@ -88,7 +88,7 @@ Categories are very sparse and are never an admission gate.
 
 ## What is committed, and what is only retained
 
-The store keeps every surface and every fact. The REPOSITORY commits the classes a player can be served - `headword`, `properNoun`, `boundStem` and `colloquial` - one file per (`wordClass`, first ezhuthu) under `datasets/lexicon/by-class/`, indexed by `lexicon.meta.json`.
+The store keeps every surface and every fact. The REPOSITORY commits the classes a player can be served - `headword`, `properNoun`, `boundStem` and `colloquial` - one file per (`wordClass`, base ezhuthu) under `datasets/lexicon/by-class/`, indexed by `lexicon.meta.json`. The base ezhuthu is the letter the word opens on, so `க`, `கா` and `கி` share a file exactly as a dictionary files them under one heading.
 
 Retention is not publication, and the meta document is what keeps the difference honest: `counters.classified` is a per-class census of the WHOLE population, committed beside the files, so a withheld class is on the record in the repository at its real size. `counters.published` counts what the files carry, and a class is published whole or withheld whole - a partial count would mean rows lost rather than rows withheld.
 

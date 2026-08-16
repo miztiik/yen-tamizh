@@ -1,3 +1,3 @@
-{"attestations": 1, "definitionTa": "இச்சொல் 'மருந்து' என்று பொருள் படும்", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "medicine", "word": "ஔடதம்", "wordClass": "headword"}
-{"attestations": 1, "frequency": 0, "length": 6, "pos": ["adverb"], "tier1Attestations": 1, "translationEn": "abloom", "word": "ஔதநிறைந்து", "wordClass": "headword"}
-{"attestations": 1, "categories": ["emotions"], "definitionTa": "பிறர் நலம் காணப் பொறுக்காமை", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "envy", "word": "ஔவியம்", "wordClass": "headword"}
+{"word": "ஔடதம்", "definitionTa": ["இச்சொல் 'மருந்து' என்று பொருள் படும்"], "translationEn": "medicine", "pos": ["noun"], "frequency": 0, "length": 4, "wordClass": "headword", "attestations": 1, "tier1Attestations": 1}
+{"word": "ஔதநிறைந்து", "translationEn": "abloom", "pos": ["adverb"], "frequency": 0, "length": 6, "wordClass": "headword", "attestations": 1, "tier1Attestations": 1}
+{"word": "ஔவியம்", "definitionTa": ["பிறர் நலம் காணப் பொறுக்காமை"], "translationEn": "envy", "pos": ["noun"], "categories": ["emotions"], "frequency": 0, "length": 4, "wordClass": "headword", "attestations": 1, "tier1Attestations": 1}

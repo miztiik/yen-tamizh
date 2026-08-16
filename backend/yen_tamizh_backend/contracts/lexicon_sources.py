@@ -62,10 +62,24 @@ from yen_tamizh_backend.contracts.lexicon import PartOfSpeech, WordClass
 
 # The initial mint - see the note on ``LEXICON_VERSION``. The registry file that
 # carries this stamp is written in the row that adds the readers.
-LEXICON_SOURCES_VERSION = "2026-08-16T23:00"
+LEXICON_SOURCES_VERSION = "2026-08-17"
 LEXICON_SOURCES_CHANGELOG = (
     ChangelogEntry(
         version=LEXICON_SOURCES_VERSION,
+        change="Added the encyclopedic source role.",
+        why=(
+            "Row 12a - a Tamil Wikipedia title list enumerates ENTITIES that "
+            "have an article, which is neither word-hood nor a count, and none "
+            "of the five existing roles is true of it. Registering it as an "
+            "authority would have emitted a headword fact for every one of its "
+            "237,541 titles and so added one to the attestation count the "
+            "serving gate reads, which is the opposite of what the source is "
+            "for. It asserts no headword, so attestationTier stays forbidden "
+            "on it and it can never make a surface a word."
+        ),
+    ),
+    ChangelogEntry(
+        version="2026-08-16T23:00",
         change=(
             "Added the three PUBLISH knobs: publishedClasses, spokenSources "
             "and maxPartitionBytes."
@@ -148,8 +162,24 @@ LEXICON_SOURCES_CHANGELOG = (
 
 # What a source is allowed to assert. Only ``authority`` and ``authored`` can
 # assert word-hood; ``formEvidence`` can only assert that a surface is NOT a
-# headword; ``frequency`` and ``category`` assert neither.
-SourceRole = Literal["authority", "formEvidence", "frequency", "category", "authored"]
+# headword; ``frequency``, ``category`` and ``encyclopedic`` assert neither.
+#
+# ``encyclopedic`` is an ENTITY inventory - the titles of an encyclopedia's
+# articles. It says a string names something somebody wrote an article about,
+# which is a claim about the WORLD rather than about the language: an
+# encyclopedia has an article on fire and on mathematics as readily as on a
+# person or a district. So it attests nothing and counts nothing. It is STAGED
+# and no rule in the cascade reads it: every threshold measured removed about
+# two ordinary Tamil words for each entity it caught, and word-hood.md keeps
+# that measurement as the baseline a later rule has to beat.
+SourceRole = Literal[
+    "authority",
+    "formEvidence",
+    "frequency",
+    "category",
+    "authored",
+    "encyclopedic",
+]
 
 # The two roles that sentence names, stated once so the pipeline joins on the
 # same tuple the registry validates against. A frequency list observing a

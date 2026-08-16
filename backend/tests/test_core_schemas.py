@@ -166,16 +166,16 @@ def _meta(**overrides: object) -> dict[str, object]:
         "counters": _counters(),
         "partitions": [
             {
-                "path": "datasets/lexicon/by-class/headword/0bb50bbe.ndjson",
+                "path": "datasets/lexicon/by-class/headword/0bb5.ndjson",
                 "wordClass": "headword",
-                "firstEzhuthu": "0bb50bbe",
+                "baseEzhuthu": "0bb5",
                 "rows": 1,
                 "bytes": 256,
                 "sha256": _SHA,
             }
         ],
         "ezhuthuIndex": {
-            "0bb50bbe": {"ezhuthu": _EZHUTHU[0], "roman": "vaa", "kind": "uyirmei"}
+            "0bb5": {"ezhuthu": _EZHUTHU[0][0], "roman": "va", "kind": "uyirmei"}
         },
     }
     doc.update(overrides)
@@ -263,6 +263,21 @@ def test_lexicon_entry_rejects_an_unsorted_or_duplicated_union() -> None:
         LexiconEntry.model_validate(_entry(pos=["noun", "noun"]))
 
 
+def test_the_senses_keep_their_order_and_may_not_repeat() -> None:
+    # definitionTa is the ONE list the contract does not sort. Order is
+    # information: element zero is the sense the single display slot shows, and
+    # it is chosen by precedence - sorting would put whichever sense happens to
+    # start with the earliest code point in front of a player.
+    unsorted = ["\u0bb5\u0bc6\u0bb1\u0bcd\u0bb1\u0bbf", "\u0bae\u0bb0\u0bae\u0bcd"]
+    assert unsorted != sorted(unsorted)
+    row = LexiconEntry.model_validate(_entry(definitionTa=unsorted))
+    assert row.definitionTa == unsorted
+    with pytest.raises(ValidationError, match="repeats a sense"):
+        LexiconEntry.model_validate(_entry(definitionTa=["\u0bae\u0bb0\u0bae\u0bcd"] * 2))
+    with pytest.raises(ValidationError):
+        LexiconEntry.model_validate(_entry(definitionTa=[]))
+
+
 def test_lexicon_entry_carries_facts_and_counts_but_no_provenance_stamps() -> None:
     # attestedBy was a list of source slugs on every row and what selection
     # gates on is the COUNT; the three *Source stamps and compound had no
@@ -271,17 +286,17 @@ def test_lexicon_entry_carries_facts_and_counts_but_no_provenance_stamps() -> No
     fields = set(LexiconEntry.model_fields)
     assert fields == {
         "word",
-        "wordClass",
-        "length",
-        "frequency",
-        "attestations",
-        "tier1Attestations",
-        "spokenRatio",
-        "translationEn",
         "definitionTa",
+        "translationEn",
         "synonymsTa",
         "pos",
         "categories",
+        "frequency",
+        "length",
+        "wordClass",
+        "attestations",
+        "tier1Attestations",
+        "spokenRatio",
     }
 
 
@@ -377,12 +392,12 @@ def test_every_partition_key_decodes_through_the_ezhuthu_index() -> None:
     # No probe-and-fallback and no globbing: a reader resolves a file from this
     # table alone, so a hex it cannot decode - or an index entry no file uses -
     # is a document describing something other than itself.
-    letter = _EZHUTHU[0]
-    good = {"0bb50bbe": {"ezhuthu": letter, "roman": "vaa", "kind": "uyirmei"}}
+    letter = _EZHUTHU[0][0]
+    good = {"0bb5": {"ezhuthu": letter, "roman": "va", "kind": "uyirmei"}}
     Lexicon.model_validate(_meta(ezhuthuIndex=good))
     with pytest.raises(ValidationError, match="ezhuthuIndex key"):
         Lexicon.model_validate(
-            _meta(ezhuthuIndex={"0bb5": good["0bb50bbe"]})
+            _meta(ezhuthuIndex={"0b95": good["0bb5"]})
         )
     with pytest.raises(ValidationError, match="no ezhuthuIndex entry"):
         Lexicon.model_validate(
@@ -401,16 +416,17 @@ def test_every_partition_key_decodes_through_the_ezhuthu_index() -> None:
         )
 
 
-def test_an_ezhuthu_index_entry_holds_exactly_one_normalized_letter() -> None:
-    # A decomposed letter would address a SECOND file for a letter that already
-    # has one; two letters in one entry would describe a prefix, not a key.
-    with pytest.raises(ValidationError, match="NFC"):
+def test_an_ezhuthu_index_entry_holds_exactly_one_base_letter() -> None:
+    # A key is the code point of ONE base letter, so a whole ezhuthu carrying a
+    # vowel sign describes a narrower population than the file it names, and a
+    # combining mark on its own names no letter at all.
+    with pytest.raises(ValidationError):
         Lexicon.model_validate(
             _meta(
                 ezhuthuIndex={
-                    "0b950bc60bbe": {
-                        "ezhuthu": "\u0b95\u0bc6\u0bbe",
-                        "roman": "ko",
+                    "0b950bbe": {
+                        "ezhuthu": "\u0b95\u0bbe",
+                        "roman": "kaa",
                         "kind": "uyirmei",
                     }
                 }
@@ -420,10 +436,10 @@ def test_an_ezhuthu_index_entry_holds_exactly_one_normalized_letter() -> None:
         Lexicon.model_validate(
             _meta(
                 ezhuthuIndex={
-                    "0b950b95": {
-                        "ezhuthu": "\u0b95\u0b95",
-                        "roman": "kaka",
-                        "kind": "uyirmei",
+                    "0bbe": {
+                        "ezhuthu": "\u0bbe",
+                        "roman": "aa",
+                        "kind": "other",
                     }
                 }
             )

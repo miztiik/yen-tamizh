@@ -222,6 +222,18 @@ Every figure below was measured against the real staged store during execution, 
 | ENRICH wall clock / peak RSS | under 5 min / under 1.2 GB | **~20 min / ~2.1 GiB** | Both missed, measured and reported, never lowered. Acceptable because section 0 rules the pipeline runs on a developer laptop a handful of times - Holy Law #2's budget governs the player's phone at RUNTIME, not a build-time laptop |
 | A2 synonym clique | not estimated | **445 MiB / 2,709,708 facts = 79% of all facts** | The dominant load in STAGE and PUBLISH |
 
+**Final measured state, 2026-08-17, after rows 4a / 4b / 9a / 9b / 10a / 11 / 12 / 12a.** These are the numbers rows 13-15 reason against; every figure above them is superseded.
+
+| Quantity | Value |
+| --- | --- |
+| Registered sources | 21 |
+| Distinct surfaces classified | 6,776,631 |
+| `headword` | 162,361 |
+| `properNoun` / `boundStem` / `colloquial` | 1,074 / 1 / 1 |
+| Rows PUBLISHED (the four servable classes) | 163,437 in 53 files |
+| Rows carrying a Tamil meaning | 102,307 |
+| Senses those rows carry (`definitionTa` is a list) | 182,663 across 35,558 multi-sense rows - **80,356 senses row 11 was discarding** || Words SERVED to the anagram game | 32,310 against a floor of 6,000 |
+
 ### The documentation-structure / author-a-plan question - RESOLVED, no amendment needed
 
 Raised during execution as a possible contradiction. It is not one (user-ruled 2026-08-15). `docs/reference/documentation-structure.md` says a plan-doc never carries rationale prose; `docs/how-to/author-a-plan.md` says every claim that drove a decision lives in a Decisions or Rejected-alternatives row. Both are correct, and they speak to different things: the plan-doc carries the trade-off as an EXECUTION instruction and is DELETED at closure, while the durable rationale lands on the living doc the decision impacts (Holy Law #4). That is exactly how this plan has been run - every row shipped its doc target in the same commit as its code. Neither doc requires an amendment; this entry exists so the question is not re-litigated.
@@ -267,6 +279,20 @@ The remeasure (post 4a / 9a / 10a, 6,569,694 surfaces, real per-class row widths
 
 User approval supersedes every agent (CLAUDE.md section 0). Recorded so the reversal is not silent: Carmack's 2026-08-15 ruling deleted the third partition key and argued that MORE FILES MAKE A LINE-ORIENTED GIT DIFF WORSE, which cuts against 241 files; and Fowler's ruling made the raw-source archive a MERGE CONDITION on row 11, which still stands and is still unmet. What SURVIVES of the user's original "full fidelity, nothing discarded" directive: every PUBLISHED row keeps every fact, the store retains all 6,569,694 surfaces, and `counters.classified` commits a per-class census of the FULL population so the unpublished classes are provable in the repo. What CHANGES: 6,569,694 rows published -> 139,067.
 
+#### AMENDED 2026-08-17 by row 12a: the second key is the BASE letter, and the address is a DIRECTORY per class
+
+The 241-file projection above assumed one file per FULL ezhuthu. Shipped that way (#29) it produced **238 files and 115 of them for `headword` alone**, because a full ezhuthu splits one consonant across up to thirteen files - `ka`, `kaa`, `ki`, `kee` and the rest each got their own - and no reader looks up `ka` without `kaa`. The base letter is the unit a person looks a word up under, and it is what a Tamil dictionary files by.
+
+| | shipped #29 | shipped #31 (row 12a) |
+| --- | --- | --- |
+| second partition key | `firstEzhuthu` (whole letter, 4 or 8 hex) | **`baseEzhuthu`** (base letter, always 4 hex) |
+| address | `by-class/<wordClass>-<hex>.ndjson` | **`by-class/<wordClass>/<hex>.ndjson`** - a directory per class |
+| files | 238 | **53** (headword 22, properNoun 29, boundStem 1, colloquial 1) |
+| largest file | 2.2 MiB | 7.0 MiB - still an order of magnitude under the 100 MiB wall |
+| published rows | 163,437 | 163,437 - unchanged, only the address changed |
+
+The directory-per-class form was chosen over the flat `<wordClass>-<hex>.ndjson` pattern because with 53 files the class is the first thing a reader wants to narrow by, and a directory does that in the file browser the user is actually looking at.
+
 | # | Row title | Phase | Depends-on | Parallel-group | Status | Worktree | PR | Subagent |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Delete `requireCoAnagram`; retain the multiset index; add the re-bake guard | A | - | A | DONE #13 | `../yen-tamizh-row1` (removed) | #13 | worker |
@@ -279,15 +305,20 @@ User approval supersedes every agent (CLAUDE.md section 0). Recorded so the reve
 | 8 | Word-hood inexact signals (n-gram, neighbour, Zipf) | A | 6 | B | DONE #20 | `../yen-tamizh-lex8` | #20 | worker |
 | 9 | `wordsmith/wordhood.py` - the classifier | A | 7, 8 | - | DONE #21 | `../yen-tamizh-lex9` | #21 | worker |
 | 10 | `wordsmith/llm_enrich.py` - meaning + synonym authoring | B | 9 | - | DONE #22 | `../yen-tamizh-lex10` (removed) | #22 | worker |
-| 4a | Acquire `ta.wiktionary` titles (408,721) as an authority | C | 4 | - | READY | - | - | - |
-| 9a | Fix the entry test + mint `notAWord` (Level 4) | C | 4a | - | BLOCKED on 4a | - | - | - |
-| 10a | Enrichment loop - frequency-ordered, 1-10 ezhuthu, cross-validated | C | 9a | - | BLOCKED on 9a | - | - | - |
-| - | **REMEASURE + re-decide the layout with the personas** | C | 10a | - | BLOCKED | - | - | - |
-| 11 | `wordsmith/publish.py` + `pipeline.py` | B | 10 | - | BLOCKED on the remeasure | - | - | - |
-| 12 | Cut the derived layer over; real serving gates; two-axis difficulty | B | 1, 11 | - | PENDING | - | - | - |
-| 13 | Retire the corpus layer; purge the retired `master` identifiers | A | 12 | - | PENDING | - | - | - |
+| 4a | Acquire `ta.wiktionary` titles (410,074) as an authority | C | 4 | - | DONE #23 | `../yen-tamizh-lex4a` | #23 | worker |
+| 9a | Fix the entry test + mint `notAWord` (Level 4) | C | 4a | - | DONE #24 | `../yen-tamizh-lex9a` | #24 | worker |
+| 10a | Enrichment loop - frequency-ordered, 1-10 ezhuthu, cross-validated | C | 9a | - | DONE #25 | `../yen-tamizh-lex10a` | #25 | worker |
+| 4b | Acquire the `ta.wiktionary` CONTENT dump; parse wikitext for meaning | C | 4a | - | DONE #27 | `../yen-tamizh-lex4b` | #27 | worker |
+| 9b | Dedup A8/A9 titles; split `glossPeer` off `synonymsTa`; IndoWordNet; wire the `notAWord` veto | C | 4b | - | DONE #28 | `../yen-tamizh-lex9b` | #28 | worker |
+| - | **REMEASURE + re-decide the layout with the personas** | C | 9b | - | DONE - see the SETTLED block above | - | - | orchestrator |
+| 11 | `wordsmith/publish.py` + `pipeline.py` | B | 9b | - | DONE #29 | `../yen-tamizh-pub` | #29 | worker |
+| 12 | Cut the derived layer over; real serving gates; two-axis difficulty | B | 1, 11 | - | DONE #30 | `../yen-tamizh-r12` | #30 | worker |
+| 12a | Publish every sense; human-first field order; collapse to one file per BASE letter | B | 12 | - | DONE #31 | `../yen-tamizh-fix` | #31 | worker + orchestrator |
+| 13 | Retire the corpus layer; purge the retired `master` identifiers | A | 12a | - | READY - next | - | - | - |
 | 14 | Rebuild the hint ladder; show a solved word's meaning | B | 13, 15 | - | PENDING | - | - | - |
 | 15 | Themed selection: `categories` + `pos` | B | 13 | - | PENDING | - | - | - |
+
+PR #26 was a first publish attempt (53 files, full-ezhuthu address, single-sense) CLOSED as stale rather than merged; #29 supersedes it.
 
 Rows 3 and 13 change `REGISTRY` in `backend/yen_tamizh_backend/contracts/__init__.py`; rows 1, 2, 12, 14 and 15 edit registered models and regenerate `schemas/` + `frontend/src/contracts/`. All seven hit the drift gate, so none is dispatched concurrently with another schema row.
 

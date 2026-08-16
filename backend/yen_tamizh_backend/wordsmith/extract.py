@@ -51,7 +51,7 @@ from yen_tamizh_backend.wordsmith.wikitext import page_title, parse_page
 # It sits in every extract's header line beside the source digest, so the skip
 # check answers "is this cache still current?" rather than merely "does a file
 # exist?".
-EXTRACTOR_VERSION = "2026-08-16T22:00"
+EXTRACTOR_VERSION = "2026-08-17"
 
 # The typed facts a source can assert about a surface.
 #
@@ -632,13 +632,18 @@ class _AuthoredEntriesExtractor(SourceExtractor):
             )
 
 
-class _TaWiktionaryTitlesExtractor(SourceExtractor):
-    """A8: the Tamil Wiktionary's main-namespace title list.
+class _MediaWikiTitlesExtractor(SourceExtractor):
+    """A8 and A11: a MediaWiki main-namespace title list.
 
     A bare listing in every respect but one - the export writes the title in
     MediaWiki's stored spelling, with underscores where the page's displayed
     title has spaces. ``wikitext.page_title`` maps that onto the spelling the
     content dump of the same wiki uses, so one page is one surface.
+
+    WHAT a title list asserts is its registry ROLE's business, not this class's.
+    The Wiktionary one is an ``authority`` and attests every title as a
+    headword; the Wikipedia one is ``encyclopedic`` and attests nothing, because
+    an article title names a topic rather than a word.
     """
 
     def _surface(self, element: Any) -> str:
@@ -812,7 +817,8 @@ _EXTRACTORS: dict[str, type[SourceExtractor]] = {
     "themed-vocabulary": _ThemedVocabularyExtractor,
     "wiktextract-ta": _WiktextractExtractor,
     "en-ta-dictionary": _EnTaDictionaryExtractor,
-    "ta-wiktionary-titles": _TaWiktionaryTitlesExtractor,
+    "ta-wiktionary-titles": _MediaWikiTitlesExtractor,
+    "ta-wikipedia-titles": _MediaWikiTitlesExtractor,
     "ta-wiktionary-content": _TaWiktionaryContentExtractor,
     "indowordnet-ta": _IndoWordNetExtractor,
     AUTHORED_SOURCE_ID: _AuthoredEntriesExtractor,

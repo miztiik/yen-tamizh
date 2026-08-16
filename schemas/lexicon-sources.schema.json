@@ -213,7 +213,8 @@
             "formEvidence",
             "frequency",
             "category",
-            "authored"
+            "authored",
+            "encyclopedic"
           ],
           "title": "Role",
           "type": "string"
