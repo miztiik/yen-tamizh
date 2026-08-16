@@ -16,14 +16,14 @@ parses the ledger table below, so the numbers in it cannot go stale silently.
 ## Layout
 
 One directory per source id. The nine frequency sources and the two authorities
-that the corpus layer already registered keep their existing
-[`../../corpus/`](../../corpus/) paths - the wordsmith plan moves the registry,
-not the files - so the ledger's `path` column is the single place that says where
-a source lives:
+that the retired corpus layer had already registered keep their existing
+[`../../corpus/`](../../corpus/) paths - this plan moved the registry, not the
+files - so the ledger's `path` column is the single place that says where a
+source lives:
 
 ```
 datasets/lexicon/sources/<source-id>/source.<ext>     new to this plan
-datasets/corpus/<source-id>/source.<ext>              already registered in config/corpus-sources.json
+datasets/corpus/<source-id>/source.<ext>              carried over from the retired corpus layer
 ```
 
 ## Roles
@@ -107,18 +107,16 @@ URL rather than a branch one, for the reason [A10](#a10---indowordnet) gives.
 | E1 | azhiyasudargal | frequency | yen-tamizh_OLD/words_and_frequency/words_and_frequency/frequency+words_in_azhiyasudargal.html | datasets/corpus/azhiyasudargal/source.csv | 46839 | 2678 | `7d90827fa2671be46ab27490e5b136f0cec69a9f707ecfe36dc7842cc33b2014` | acquired (disabled) |
 
 Eleven of these sha256 values - A1, A5 and D1-D9 - are not new. The corpus ingest
-recorded them in the `provenance` block of
-[`../../wordlists/master/words_ranked.json`](../../wordlists/master/words_ranked.json)
-in August 2026, and every one of them matches the bytes re-acquired today,
-including D9, which was re-downloaded from its URL rather than copied. A test
-asserts that agreement, which is what makes the committed master wordlist
-provably a function of these exact files.
+that this pipeline retired had recorded them for the same bytes in August 2026,
+and every one of them matches the bytes re-acquired today, including D9, which
+was re-downloaded from its URL rather than copied.
 
 The origins recorded above are the corrected ones. The nine frequency sources
 live under a **doubled** directory in the predecessor repository -
-`words_and_frequency/words_and_frequency/` - which the `origin` values already in
-`config/corpus-sources.json` omit. When row 5 ports those entries it should carry
-the corrected origins, not the ones on file.
+`words_and_frequency/words_and_frequency/` - which the `origin` values the corpus
+registry carried omitted. The entries ported into
+[`../../../config/lexicon-sources.json`](../../../config/lexicon-sources.json)
+carry the corrected origins.
 
 ### A6 - NOT ACQUIRED
 

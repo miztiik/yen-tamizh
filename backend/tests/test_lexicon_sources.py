@@ -3,12 +3,11 @@
 Real files throughout, no mocks (Holy Law #7).
 
 The raw sources are gitignored, so this module is split in two. Everything that
-reads a COMMITTED file - the ledger table, the fixtures, and the sha256 values the
-corpus ingest already recorded in the master wordlist - runs everywhere, CI
+reads a COMMITTED file - the ledger table and the fixtures - runs everywhere, CI
 included. The checks that need the raw bytes SKIP when the source is absent,
 because a gate that cannot pass in CI is a broken gate rather than a finding.
 
-Four things are proven:
+Three things are proven:
 
 1. **The ledger is well formed** - one row per source, a closed set of roles, and
    either a complete record or an explicit NOT ACQUIRED marker.
@@ -17,8 +16,6 @@ Four things are proven:
    holds exactly ten times the records of the 1x.
 3. **The slices are byte-exact** - a fixture is always ``raw[:k] + raw[len - m:]``,
    proven against the 10x fixture in CI and against the raw source locally.
-4. **The ledger agrees with the committed master wordlist** - the ten sha256
-   values the corpus ingest recorded in August 2026 still describe these bytes.
 """
 
 from __future__ import annotations
@@ -37,7 +34,6 @@ import pytest
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 _LEDGER = _REPO_ROOT / "datasets" / "lexicon" / "sources" / "README.md"
 _FIXTURES = _REPO_ROOT / "datasets" / "fixtures" / "lexicon"
-_MASTER = _REPO_ROOT / "datasets" / "wordlists" / "master" / "words_ranked.json"
 
 _ROLES = frozenset(
     {"authority", "formEvidence", "frequency", "category", "authored", "encyclopedic"}
@@ -220,21 +216,3 @@ def test_each_fixture_is_a_byte_exact_slice_of_its_raw_source(row: LedgerRow) ->
     raw = source.read_bytes()
     for scale in ("1x", "10x"):
         _decompose(row.fixture(scale).read_bytes(), raw)
-
-
-def test_the_ledger_agrees_with_the_committed_master_wordlist() -> None:
-    """The corpus ingest recorded ten of these hashes; they must still hold."""
-    provenance: list[dict[str, Any]] = json.loads(_MASTER.read_text(encoding="utf-8"))[
-        "provenance"
-    ]
-    ledger = {row.id: row for row in ACQUIRED}
-    compared = 0
-    for entry in provenance:
-        row = ledger.get(str(entry["id"]))
-        if row is None:
-            continue
-        compared += 1
-        assert row.sha256 == entry["sha256"], f"{row.id} drifted from the ingested bytes"
-        assert int(row.raw_bytes) == int(entry["bytes"]), f"{row.id} byte count drifted"
-        assert row.path == entry["path"], f"{row.id} moved away from its ingested path"
-    assert compared == 11, f"expected 11 shared sources, compared {compared}"

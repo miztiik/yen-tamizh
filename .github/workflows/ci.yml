@@ -15,6 +15,13 @@ jobs:
         working-directory: frontend
     steps:
       - uses: actions/checkout@v7
+        with:
+          # No step here reads datasets/lexicon (52 MB of published NDJSON), so
+          # it is excluded. Non-cone mode is what allows a negative pattern.
+          sparse-checkout: |
+            /*
+            !/datasets/lexicon
+          sparse-checkout-cone-mode: false
       - uses: actions/setup-node@v6
         with:
           node-version: "22"
@@ -43,6 +50,7 @@ jobs:
         working-directory: backend
     steps:
       - uses: actions/checkout@v7
+      # NOT sparse: pytest asserts its Oracles over the committed lexicon.
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
@@ -59,6 +67,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          # Regenerating schemas + types never opens the published lexicon.
+          sparse-checkout: |
+            /*
+            !/datasets/lexicon
+          sparse-checkout-cone-mode: false
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"

@@ -668,7 +668,7 @@ def test_a_band_with_an_empty_bucket_is_an_error(
 
 def test_the_engine_reads_only_the_derived_layer() -> None:
     """The lexicon and the daily puzzle are different layers (user directive)."""
-    forbidden = ("yen_tamizh_backend.corpus", "yen_tamizh_backend.wordsmith")
+    forbidden = ("yen_tamizh_backend.wordsmith",)
     for module in ("daily.py", "anagram.py", "seed.py", "__init__.py"):
         source = (
             _REPO_ROOT / "backend" / "yen_tamizh_backend" / "generate" / module

@@ -39,6 +39,12 @@ jobs:
         with:
           # Build the exact commit CI validated (falls back to the dispatched ref).
           ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          # The bundle is built from frontend/ alone; the published lexicon is
+          # 52 MB the build never opens.
+          sparse-checkout: |
+            /*
+            !/datasets/lexicon
+          sparse-checkout-cone-mode: false
       - uses: actions/setup-node@v6
         with:
           node-version: "22"
