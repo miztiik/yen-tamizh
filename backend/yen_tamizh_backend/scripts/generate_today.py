@@ -31,7 +31,7 @@ from typing import Any, TextIO
 from yen_tamizh_backend.contracts.app_config import AppConfig
 from yen_tamizh_backend.contracts.daily_generator import DailyGenerator
 from yen_tamizh_backend.contracts.game_wordlist import GameWordlist
-from yen_tamizh_backend.corpus.artifact import render_document, write_artifact
+from yen_tamizh_backend.wordsmith.artifact import render_document, write_artifact
 from yen_tamizh_backend.generate import daily
 
 

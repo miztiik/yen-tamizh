@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-14",
+  "version": "2026-08-16T23:30",
   "changelog": [
+    {
+      "version": "2026-08-16T23:30",
+      "change": "Replaced masterPath with lexiconPath and the bands / requireValidWordFinal knobs with the four serving gates: wordClasses, minAttestations with minTier1Attestations, minFrequency and requireMeaning.",
+      "why": "Row 12 of the lexicon pipeline - the set is now cut from the published lexicon, so what a word IS can gate what a player is asked to spell. The old knobs could only ask where a token ranked in a scraped corpus, which is why the committed set served a political party and a sitting politician. wordClasses is an allow-list so nothing reaches a player by omission; the tier-1 leg exists because a spellchecker wordlist agreeing with another bare list is not evidence."
+    },
     {
       "version": "2026-08-14",
       "change": "Dropped the requireCoAnagram knob from the anagram set's selection.",
@@ -17,17 +22,20 @@
       "why": "Row 9 - adding another Game's wordlist must be a data change plus a re-run, never a code rewrite (the corpus and the daily puzzle are different layers)."
     }
   ],
-  "masterPath": "datasets/wordlists/master/words_ranked.json",
+  "lexiconPath": "datasets/lexicon/lexicon.meta.json",
   "sets": [
     {
       "gameId": "anagram",
       "out": "datasets/wordlists/derived/anagram.json",
-      "note": "3-6 ezhuthu keeps a scramble solvable on a phone in a 2-minute burst (2 tiles has one wrong arrangement, which is a coin flip and not a puzzle). common+mid are the ranks a Tamil speaker actually knows; the rare band is a dictionary lookup, not a guess. requireValidWordFinal drops tokens that do not end the way a Tamil word ends - sandhi artifacts (atharkuk) and transliterated loanwords (ticket). Whether the tiles also spell something else is RECORDED per row as anagramFanOut rather than required: it is what lets a Game answer 'that is a word, but not today's', and as an admission test it threw away 106 words out of every 107.",
+      "note": "headword only, because the anagram asks the player to PRODUCE an exact ezhuthu sequence: a word whose spelling is unsettled hands out tiles encoding one dialect and punishes every other, and a proper noun is a person or a party rather than a puzzle answer. 3-6 ezhuthu keeps a scramble solvable on a phone in a 2-minute burst (2 tiles has one wrong arrangement, which is a coin flip). Two attestations with at least one from a dictionary rather than a bare list: a spellchecker wordlist is several times the size of the largest dictionary and co-occurs with nearly any orthographically legal string, so two bare lists agreeing says nothing. minFrequency 1 keeps out the museum piece that no living Tamil text contains, and requireMeaning keeps out the word the game could not explain once the player had solved it. Whether the tiles also spell something else is RECORDED per row as anagramFanOut rather than required: it is what lets a Game answer 'that is a word, but not today's', and as an admission test it threw away 106 words out of every 107.",
       "selection": {
+        "wordClasses": ["headword"],
         "minLength": 3,
         "maxLength": 6,
-        "bands": ["common", "mid"],
-        "requireValidWordFinal": true,
+        "minAttestations": 2,
+        "minTier1Attestations": 1,
+        "minFrequency": 1,
+        "requireMeaning": true,
         "maxWords": null
       }
     }

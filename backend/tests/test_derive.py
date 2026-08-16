@@ -1,27 +1,33 @@
-"""Tests for the Row 9 derived layer: ranked master -> per-Game wordlists.
+"""Tests for the derived layer after the row 12 cutover: lexicon -> served wordlists.
 
 Real files and real fixtures throughout, no mocks (Holy Law #7). Tamil is written
 with ``\\uXXXX`` escapes so this source stays ASCII (CLAUDE.md section 5) and so
-the composed form of every test word is unambiguous. The escaped words are REAL
-corpus words with their real ranks noted, so the selection tests exercise the
-same shapes the committed artifact does.
+the composed form of every test word is unambiguous. The synthetic lexicons the
+unit tests read are written by the REAL publisher's own address and render
+functions, so a test lexicon is addressed exactly the way the committed one is.
 
-Five things are proven:
+Six things are proven:
 
-1. **Selection** - length, band, and the word-final rule each reject for their
-   own reason, and the counters reconcile against the master with no silent
-   drops.
-2. **Determinism** - ``rebuild`` writes byte-identical output from identical
+1. **The four serving gates** - class, attestation with its tier-1 leg,
+   frequency and meaning each reject for their own reason, and the counters
+   reconcile against the lexicon's published row count with no silent drops.
+2. **Resolution by the meta document** - the derived layer opens the files the
+   partition table names and NOTHING else, so a stray file in the published
+   directory cannot reach a player and a class the lexicon does not publish is a
+   loud error rather than an empty set.
+3. **Determinism** - ``rebuild`` writes byte-identical output from identical
    input, and the COMMITTED ``anagram.json`` is exactly what a fresh rebuild from
-   the committed master produces. That second assertion is the hand-edit gate: a
+   the committed lexicon produces. That second assertion is the hand-edit gate: a
    derived set is a build artifact, so any hand edit fails here.
-3. **The Oracle** - over the REAL committed artifact: every row's
-   ``anagramFanOut`` equals the number of SERVED rows sharing its ezhuthu
-   multiset, so a word whose tiles spell nothing else carries 1, never 0.
-4. **Coverage + schema** - the committed set is non-empty at every target ezhuthu
-   length and validates row-by-row against the contract.
-5. **Rejection** - a malformed row, an incoherent selection, and a colliding
-   registry all fail validation rather than being silently accepted.
+4. **The Oracles over the REAL committed artifact** - every row satisfies all
+   four gates; the three words this cutover exists to remove are absent; every
+   ``anagramFanOut`` equals the number of served rows sharing its ezhuthu
+   multiset; and every ``frequencyStratum`` is the quartile of THIS set.
+5. **Coverage + schema** - the committed set is non-empty at every target ezhuthu
+   length, clears the served-set floor, and validates row by row.
+6. **Rejection** - a malformed row, an incoherent selection, a colliding
+   registry, and a class no Game may ever serve all fail validation rather than
+   being silently accepted.
 """
 
 from __future__ import annotations
@@ -29,121 +35,227 @@ from __future__ import annotations
 import json
 import shutil
 from pathlib import Path
-from typing import Any
+from typing import Any, get_args
 
 import pytest
 from pydantic import ValidationError
 
-from yen_tamizh_backend.contracts import DerivedWordlists, GameWordlist, MasterWordlist
-from yen_tamizh_backend.contracts.derived_wordlists import DerivedSelection, DerivedSet
+from yen_tamizh_backend.contracts import DerivedWordlists, GameWordlist
+from yen_tamizh_backend.contracts.common import QUARTILES
+from yen_tamizh_backend.contracts.derived_wordlists import (
+    DerivedSelection,
+    DerivedSet,
+    ServableWordClass,
+)
 from yen_tamizh_backend.contracts.game_wordlist import (
     DerivedCounters,
     GameWord,
     GameWordHints,
 )
-from yen_tamizh_backend.contracts.master_wordlist import MasterWord
-from yen_tamizh_backend.corpus import derive
-from yen_tamizh_backend.corpus.ingest import render as render_master
+from yen_tamizh_backend.contracts.lexicon import (
+    PARTITION_KEYS,
+    Lexicon,
+    LexiconEntry,
+    WordClass,
+)
+from yen_tamizh_backend.ezhuthu import classify, ezhuthu_roman, segment
 from yen_tamizh_backend.scripts.rebuild_wordlists import rebuild
+from yen_tamizh_backend.wordsmith import derive
+from yen_tamizh_backend.wordsmith.artifact import sha256_of
+from yen_tamizh_backend.wordsmith.publish import (
+    BY_CLASS,
+    META_NAME,
+    partition_hex,
+    partition_path,
+)
+from yen_tamizh_backend.wordsmith.publish import render as render_row
 
 _REPO_ROOT = Path(__file__).resolve().parents[2]
-_MASTER = _REPO_ROOT / "datasets" / "wordlists" / "master" / "words_ranked.json"
+_META = _REPO_ROOT / "datasets" / "lexicon" / "lexicon.meta.json"
 _REGISTRY = _REPO_ROOT / "config" / "derived-wordlists.json"
 _ANAGRAM = _REPO_ROOT / "datasets" / "wordlists" / "derived" / "anagram.json"
 
-# A real anagram pair: vaasal (doorway, rank 421) and savaal (challenge, rank
-# 3385) are the same three ezhuthu in a different order. Both common band.
+# A real anagram pair: vaasal (doorway) and savaal (challenge) are the same three
+# ezhuthu in a different order.
 VAASAL = "\u0bb5\u0bbe\u0b9a\u0bb2\u0bcd"
 SAVAAL = "\u0b9a\u0bb5\u0bbe\u0bb2\u0bcd"
 
-# A real SOLITARY word: ithazh (petal, rank 1) has no anagram anywhere in the
-# master, so it must be SERVED and must carry a fan-out of exactly 1.
+# A real SOLITARY word: ithazh (petal) has no anagram, so it must be SERVED and
+# must carry a fan-out of exactly 1.
 ITHAZH = "\u0b87\u0ba4\u0bb4\u0bcd"
 
-# A real 2-ezhuthu word (oru, rank 2) - inside the bands, outside the lengths.
+# A real 2-ezhuthu word (oru) - inside every other gate, outside the lengths.
 ORU = "\u0b92\u0bb0\u0bc1"
+
+# The three words this cutover exists to stop serving. asura is a bound stem the
+# dictionary lists as an entry; the other two are a political party and a sitting
+# politician, and the committed set served both.
+ASURA = "\u0b85\u0b9a\u0bc1\u0bb0"
+DMK = "\u0ba4\u0bbf\u0bae\u0bc1\u0b95"
+STALIN = "\u0bb8\u0bcd\u0b9f\u0bbe\u0bb2\u0bbf\u0ba9\u0bcd"
+
+# A Tamil meaning, so a row can satisfy requireMeaning without inventing English.
+MEANING = "\u0b92\u0bb0\u0bc1 \u0baa\u0bca\u0bb0\u0bc1\u0bb3\u0bcd"
 
 _SHA = "0" * 64
 
-
-def _master_word(word: str, rank_position: int, band: str) -> dict[str, Any]:
-    """One master row, segmented the way the ingest segments (Row 6)."""
-    from yen_tamizh_backend.ezhuthu import segment
-
-    ezhuthu = segment(word)
-    return {
-        "word": word,
-        "ezhuthu": ezhuthu,
-        "length": len(ezhuthu),
-        "freqRank": rank_position,
-        "freqBand": band,
-        "sources": ["test-source"],
-    }
+# Row 12 decision 15's floor, in the units it was stated in.
+_SERVED_FLOOR = 6000
 
 
-def _master(rows: list[dict[str, Any]]) -> MasterWordlist:
-    """A valid master wordlist around the given rows (counters reconcile)."""
-    total = len(rows)
-    return MasterWordlist.model_validate(
-        {
-            "version": "2026-08-13",
-            "changelog": [
-                {"version": "2026-08-13", "change": "test master", "why": "test"}
-            ],
-            "generatedAt": "2026-08-13T00:00:00Z",
-            "provenance": [
-                {
-                    "id": "test-source",
-                    "name": "test source",
-                    "origin": "test",
-                    "path": "datasets/corpus/test-source/source.txt",
-                    "bytes": 1,
-                    "sha256": _SHA,
-                    "rowsIn": total,
-                    "rowsKept": total,
-                }
-            ],
-            "counters": {
-                "rowsIn": total,
-                "rejected": 0,
-                "duplicates": 0,
-                "distinct": total,
-                "belowFrequencyFloor": 0,
-                "capped": 0,
-                "rowsKept": total,
-            },
-            "words": rows,
+def _entry(
+    word: str,
+    *,
+    wordClass: WordClass = "headword",
+    frequency: int = 100,
+    attestations: int = 3,
+    tier1Attestations: int = 2,
+    definitionTa: str | None = MEANING,
+) -> LexiconEntry:
+    """One lexicon row, with every gate satisfied unless a test moves a knob."""
+    return LexiconEntry(
+        word=word,
+        wordClass=wordClass,
+        length=len(segment(word)),
+        frequency=frequency,
+        attestations=attestations,
+        tier1Attestations=tier1Attestations,
+        definitionTa=definitionTa,
+    )
+
+
+def _write_lexicon(repo_root: Path, rows: list[LexiconEntry]) -> Path:
+    """Write a real published lexicon - partition files plus the meta document.
+
+    Addressed through the publisher's own ``partition_hex`` / ``partition_path``,
+    so a fixture lexicon is laid out exactly the way the committed one is and a
+    change to the address breaks both together.
+    """
+    directory = repo_root / "datasets" / "lexicon"
+    cells: dict[tuple[str, str], list[LexiconEntry]] = {}
+    for row in rows:
+        key = (row.wordClass, partition_hex(segment(row.word)[0]))
+        cells.setdefault(key, []).append(row)
+
+    partitions: list[dict[str, Any]] = []
+    index: dict[str, dict[str, str]] = {}
+    for (word_class, hex_key), cell_rows in sorted(cells.items()):
+        path = partition_path(directory / BY_CLASS, word_class, hex_key)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        body = "".join(
+            render_row(row) for row in sorted(cell_rows, key=lambda r: r.word)
+        )
+        path.write_text(body, encoding="utf-8", newline="\n")
+        digest, size = sha256_of(path)
+        partitions.append(
+            {
+                "path": path.relative_to(repo_root).as_posix(),
+                "wordClass": word_class,
+                "firstEzhuthu": hex_key,
+                "rows": len(cell_rows),
+                "bytes": size,
+                "sha256": digest,
+            }
+        )
+        letter = segment(cell_rows[0].word)[0]
+        index[hex_key] = {
+            "ezhuthu": letter,
+            "roman": ezhuthu_roman(letter),
+            "kind": classify(letter),
         }
+
+    census = {
+        "rows": len(rows),
+        "byClass": {
+            name: sum(1 for row in rows if row.wordClass == name)
+            for name in get_args(WordClass)
+        },
+    }
+    meta_path = directory / META_NAME
+    meta_path.write_text(
+        json.dumps(
+            {
+                "version": "2026-08-16T23:00",
+                "changelog": [
+                    {"version": "2026-08-16T23:00", "change": "test", "why": "test"}
+                ],
+                "partitionKeys": list(PARTITION_KEYS),
+                "provenance": [
+                    {
+                        "id": "test-source",
+                        "name": "test source",
+                        "origin": "test",
+                        "path": "datasets/lexicon/sources/test-source/source.txt",
+                        "bytes": 1,
+                        "sha256": _SHA,
+                        "observations": len(rows),
+                        "facts": len(rows),
+                    }
+                ],
+                "counters": {"classified": census, "published": census},
+                "partitions": partitions,
+                "ezhuthuIndex": index,
+            }
+        ),
+        encoding="utf-8",
+        newline="\n",
     )
+    return meta_path
 
 
-def _sample_master() -> MasterWordlist:
-    """A master holding one anagram pair, one solitary word, one short word."""
-    return _master(
-        [
-            _master_word(VAASAL, 1, "common"),
-            _master_word(ITHAZH, 2, "common"),
-            _master_word(ORU, 3, "common"),
-            _master_word(SAVAAL, 4, "rare"),
-        ]
-    )
+def _sample_rows() -> list[LexiconEntry]:
+    """A lexicon holding one anagram pair, one solitary word, one short word."""
+    return [
+        _entry(VAASAL, frequency=400),
+        _entry(ITHAZH, frequency=300),
+        _entry(ORU, frequency=200),
+        _entry(SAVAAL, frequency=100),
+    ]
 
 
-def _spec(out: str, **selection: Any) -> dict[str, Any]:
+def _selection(**overrides: Any) -> DerivedSelection:
     base: dict[str, Any] = {
+        "wordClasses": ["headword"],
         "minLength": 3,
         "maxLength": 6,
-        "bands": ["common", "mid"],
+        "minAttestations": 2,
+        "minTier1Attestations": 1,
+        "minFrequency": 1,
+        "requireMeaning": True,
         "maxWords": None,
     }
-    base.update(selection)
-    return {"gameId": "anagram", "out": out, "selection": base}
+    base.update(overrides)
+    return DerivedSelection.model_validate(base)
+
+
+def _spec(out: str, **overrides: Any) -> dict[str, Any]:
+    return {
+        "gameId": "anagram",
+        "out": out,
+        "selection": _selection(**overrides).model_dump(),
+    }
+
+
+def _cut(
+    repo_root: Path, rows: list[LexiconEntry], **overrides: Any
+) -> GameWordlist:
+    """Publish a fixture lexicon and cut one set out of it, end to end."""
+    meta_path = _write_lexicon(repo_root, rows)
+    meta = derive.load_meta(meta_path)
+    spec = DerivedSet.model_validate(
+        _spec("datasets/wordlists/derived/anagram.json", **overrides)
+    )
+    source = derive.describe_source(
+        meta, meta_path, "datasets/lexicon/lexicon.meta.json"
+    )
+    streamed = derive.read_rows(meta, repo_root, spec.selection.wordClasses)
+    return derive.derive(meta, streamed, source, spec)
 
 
 @pytest.fixture(scope="module")
-def committed_master() -> MasterWordlist:
-    """The REAL committed master, parsed once for every Oracle in this module."""
-    return derive.load_master(_MASTER)
+def committed_meta() -> Lexicon:
+    """The REAL committed lexicon meta document, parsed once for every Oracle."""
+    return derive.load_meta(_META)
 
 
 @pytest.fixture(scope="module")
@@ -153,159 +265,217 @@ def committed_anagram() -> GameWordlist:
 
 
 # --------------------------------------------------------------------------
-# 1. Selection
+# 1. The four serving gates
 # --------------------------------------------------------------------------
 
 
 def test_multiset_key_is_order_free_over_ezhuthu() -> None:
-    from yen_tamizh_backend.ezhuthu import segment
-
     assert derive.multiset_key(segment(VAASAL)) == derive.multiset_key(segment(SAVAAL))
     assert derive.multiset_key(segment(VAASAL)) != derive.multiset_key(segment(ITHAZH))
 
 
 def test_group_by_multiset_puts_anagrams_together() -> None:
-    from yen_tamizh_backend.ezhuthu import segment
-
-    groups = derive.group_by_multiset(_sample_master().words)
-    assert sorted(
-        row.word for row in groups[derive.multiset_key(segment(VAASAL))]
-    ) == sorted([VAASAL, SAVAAL])
-    assert [row.word for row in groups[derive.multiset_key(segment(ITHAZH))]] == [ITHAZH]
+    groups = derive.group_by_multiset([VAASAL, ITHAZH, SAVAAL])
+    assert sorted(groups[derive.multiset_key(segment(VAASAL))]) == sorted(
+        [VAASAL, SAVAAL]
+    )
+    assert groups[derive.multiset_key(segment(ITHAZH))] == [ITHAZH]
 
 
-def test_selection_rejects_by_length_and_band() -> None:
-    master = _sample_master()
-    selection = DerivedSelection(minLength=3, maxLength=6, bands=["common", "mid"])
+def test_the_class_gate_is_an_allow_list_and_counts_from_the_partition_table(
+    tmp_path: Path,
+) -> None:
+    """A class the selection does not name is counted, never opened, never served."""
+    rows = [
+        _entry(VAASAL),
+        _entry(DMK, wordClass="properNoun"),
+        _entry(STALIN, wordClass="properNoun"),
+    ]
+    wordlist = _cut(tmp_path, rows)
 
-    kept, counters = derive.select(master, selection)
+    assert [row.word for row in wordlist.words] == [VAASAL]
+    assert wordlist.counters.outsideClass == 2
+    assert wordlist.counters.lexiconRows == 3
 
-    # oru is too short and savaal is out of band; the solitary ithazh SURVIVES -
-    # a scramble with one arrangement is an ordinary puzzle, not a reject.
-    assert [row.word for row in kept] == [VAASAL, ITHAZH]
+
+def test_each_gate_rejects_for_its_own_reason(tmp_path: Path) -> None:
+    rows = [
+        _entry(VAASAL),
+        _entry(ORU),  # 2 ezhuthu - outside the length band
+        _entry(ITHAZH, attestations=1, tier1Attestations=1),  # too thin
+        _entry(SAVAAL, frequency=0),  # never occurs
+        _entry(ASURA, definitionTa=None),  # nobody can say what it means
+        _entry(DMK, wordClass="properNoun"),
+    ]
+    wordlist = _cut(tmp_path, rows)
+    counters = wordlist.counters
+
+    assert [row.word for row in wordlist.words] == [VAASAL]
     assert counters.outsideLength == 1
-    assert counters.outsideBand == 1
-    assert counters.rowsKept == 2
-    assert counters.masterRows == 4
+    assert counters.outsideClass == 1
+    assert counters.belowAttestations == 1
+    assert counters.belowFrequency == 1
+    assert counters.withoutMeaning == 1
+    assert counters.rowsKept == 1
+    assert counters.lexiconRows == 6
 
 
-def test_a_solitary_word_is_served_with_a_fan_out_of_one() -> None:
+def test_two_bare_attestations_without_a_dictionary_are_not_enough(
+    tmp_path: Path,
+) -> None:
+    """The composition rule: a spellchecker agreeing with a wordlist says nothing."""
+    rows = [
+        _entry(VAASAL, attestations=2, tier1Attestations=1),
+        _entry(ITHAZH, attestations=5, tier1Attestations=0),
+    ]
+    wordlist = _cut(tmp_path, rows)
+
+    assert [row.word for row in wordlist.words] == [VAASAL]
+    assert wordlist.counters.belowAttestations == 1
+
+
+def test_rows_come_out_most_frequent_first(tmp_path: Path) -> None:
+    wordlist = _cut(tmp_path, _sample_rows())
+    frequencies = [row.frequency for row in wordlist.words]
+    assert frequencies == sorted(frequencies, reverse=True)
+    assert [row.word for row in wordlist.words] == [VAASAL, ITHAZH, SAVAAL]
+
+
+def test_the_cap_trims_the_rarest_and_reports_what_it_cut(tmp_path: Path) -> None:
+    wordlist = _cut(tmp_path, _sample_rows(), maxWords=2)
+
+    assert [row.word for row in wordlist.words] == [VAASAL, ITHAZH]
+    assert wordlist.counters.capped == 1
+    assert wordlist.counters.rowsKept == 2
+
+
+def test_the_cap_is_applied_before_the_signals_are_counted(tmp_path: Path) -> None:
+    """Fan-out and strata count SERVED rows, and a capped row is not served."""
+    wordlist = _cut(tmp_path, [_entry(VAASAL), _entry(SAVAAL, frequency=50)], maxWords=1)
+
+    assert [(row.word, row.anagramFanOut) for row in wordlist.words] == [(VAASAL, 1)]
+
+
+def test_a_solitary_word_is_served_with_a_fan_out_of_one(tmp_path: Path) -> None:
     """The number the Oracle names: a word counts ITSELF, so 1 means unique."""
-    master = _sample_master()
-    source = derive.describe_source(master, _MASTER, "datasets/x.json")
-    spec = DerivedSet.model_validate(_spec("datasets/wordlists/derived/anagram.json"))
+    wordlist = _cut(tmp_path, [_entry(ITHAZH), _entry(VAASAL)])
 
-    wordlist = derive.derive(master, source, spec)
-
-    fan_out = {row.word: row.anagramFanOut for row in wordlist.words}
-    assert fan_out == {VAASAL: 1, ITHAZH: 1}
+    assert {row.word: row.anagramFanOut for row in wordlist.words} == {
+        ITHAZH: 1,
+        VAASAL: 1,
+    }
 
 
-def test_fan_out_counts_the_served_rows_that_share_a_multiset() -> None:
-    """savaal is in band here, so both halves of the pair are served and see 2."""
-    master = _sample_master()
-    source = derive.describe_source(master, _MASTER, "datasets/x.json")
-    spec = DerivedSet.model_validate(
-        _spec("datasets/wordlists/derived/anagram.json", bands=["common", "rare"])
-    )
+def test_fan_out_counts_the_served_rows_that_share_a_multiset(tmp_path: Path) -> None:
+    wordlist = _cut(tmp_path, _sample_rows())
 
-    wordlist = derive.derive(master, source, spec)
-
-    fan_out = {row.word: row.anagramFanOut for row in wordlist.words}
-    assert fan_out == {VAASAL: 2, ITHAZH: 1, SAVAAL: 2}
+    assert {row.word: row.anagramFanOut for row in wordlist.words} == {
+        VAASAL: 2,
+        ITHAZH: 1,
+        SAVAAL: 2,
+    }
 
 
-def test_fan_out_ignores_master_words_the_selection_dropped() -> None:
+def test_fan_out_ignores_rows_a_gate_dropped(tmp_path: Path) -> None:
     """A partner nobody is served cannot be the answer a Game offers back."""
-    master = _sample_master()
-    source = derive.describe_source(master, _MASTER, "datasets/x.json")
-    spec = DerivedSet.model_validate(
-        _spec("datasets/wordlists/derived/anagram.json", bands=["common"])
-    )
+    rows = [_entry(VAASAL), _entry(ITHAZH), _entry(SAVAAL, frequency=0)]
+    wordlist = _cut(tmp_path, rows)
 
-    wordlist = derive.derive(master, source, spec)
-
-    # savaal is rare and never reaches the output, so vaasal is alone in the set.
     assert {row.word: row.anagramFanOut for row in wordlist.words} == {
         VAASAL: 1,
         ITHAZH: 1,
     }
 
 
-def test_cap_trims_the_lowest_ranked_and_reports_what_it_cut() -> None:
-    master = _master(
+def test_strata_are_the_quartiles_of_the_served_set(tmp_path: Path) -> None:
+    """Four served rows, one per quarter - and the quarters are of THIS set."""
+    wordlist = _cut(
+        tmp_path,
         [
-            _master_word(VAASAL, 1, "common"),
-            _master_word(SAVAAL, 2, "common"),
-        ]
-    )
-    kept, counters = derive.select(
-        master,
-        DerivedSelection(
-            minLength=3,
-            maxLength=6,
-            bands=["common"],
-            maxWords=1,
-        ),
-    )
-    assert [row.word for row in kept] == [VAASAL]
-    assert counters.capped == 1
-    assert counters.rowsKept == 1
-
-
-def test_the_cap_is_applied_before_fan_out_is_counted() -> None:
-    """Fan-out counts SERVED rows, and a capped row is not served."""
-    master = _master(
-        [
-            _master_word(VAASAL, 1, "common"),
-            _master_word(SAVAAL, 2, "common"),
-        ]
-    )
-    source = derive.describe_source(master, _MASTER, "datasets/x.json")
-    spec = DerivedSet.model_validate(
-        _spec("datasets/wordlists/derived/anagram.json", bands=["common"], maxWords=1)
+            _entry(VAASAL, frequency=400),
+            _entry(ITHAZH, frequency=300),
+            _entry(SAVAAL, frequency=200),
+            _entry(ASURA, frequency=100),
+        ],
     )
 
-    wordlist = derive.derive(master, source, spec)
-
-    assert [(row.word, row.anagramFanOut) for row in wordlist.words] == [(VAASAL, 1)]
-
-
-def test_rows_stay_in_master_rank_order() -> None:
-    master = _master(
-        [
-            _master_word(SAVAAL, 1, "common"),
-            _master_word(VAASAL, 2, "common"),
-        ]
-    )
-    kept, _ = derive.select(
-        master,
-        DerivedSelection(minLength=3, maxLength=6, bands=["common"]),
-    )
-    assert [row.word for row in kept] == [SAVAAL, VAASAL]
+    assert [(row.word, row.frequencyStratum) for row in wordlist.words] == [
+        (VAASAL, 1),
+        (ITHAZH, 2),
+        (SAVAAL, 3),
+        (ASURA, 4),
+    ]
 
 
 # --------------------------------------------------------------------------
-# 2. Determinism
+# 2. Resolution by the meta document, never by globbing
+# --------------------------------------------------------------------------
+
+
+def test_a_stray_file_the_meta_document_does_not_declare_is_never_read(
+    tmp_path: Path,
+) -> None:
+    """The anti-glob Oracle: a file nothing vouches for cannot reach a player."""
+    meta_path = _write_lexicon(tmp_path, [_entry(VAASAL)])
+    stray = tmp_path / "datasets" / "lexicon" / BY_CLASS / "headword"
+    (stray / "ffff.ndjson").write_text(
+        render_row(_entry(STALIN)), encoding="utf-8", newline="\n"
+    )
+
+    meta = derive.load_meta(meta_path)
+    served = [row.word for row in derive.read_rows(meta, tmp_path, ["headword"])]
+
+    assert served == [VAASAL]
+
+
+def test_a_class_the_lexicon_does_not_publish_is_a_loud_error(tmp_path: Path) -> None:
+    """A selection that silently serves nothing looks identical to one that works."""
+    meta_path = _write_lexicon(tmp_path, [_entry(VAASAL)])
+    meta = derive.load_meta(meta_path)
+
+    with pytest.raises(derive.DeriveError, match="colloquial"):
+        list(derive.read_rows(meta, tmp_path, ["headword", "colloquial"]))
+
+
+def test_rows_arrive_in_partition_table_order(tmp_path: Path) -> None:
+    meta_path = _write_lexicon(tmp_path, _sample_rows())
+    meta = derive.load_meta(meta_path)
+
+    served = [row.word for row in derive.read_rows(meta, tmp_path, ["headword"])]
+
+    assert served == [row.word for row in sorted(_sample_rows(), key=_address)]
+
+
+def _address(row: LexiconEntry) -> tuple[str, str, str]:
+    return (
+        row.wordClass,
+        partition_hex(segment(row.word)[0]),
+        row.word,
+    )
+
+
+# --------------------------------------------------------------------------
+# 3. Determinism
 # --------------------------------------------------------------------------
 
 
 def _tmp_repo(tmp_path: Path, sets: list[dict[str, Any]]) -> Path:
-    """A miniature repo root: a real master file plus a real registry file."""
-    master_rel = "datasets/wordlists/master/words_ranked.json"
-    master_path = tmp_path / master_rel
-    master_path.parent.mkdir(parents=True)
-    master_path.write_text(render_master(_sample_master()), encoding="utf-8", newline="\n")
+    """A miniature repo root: a real published lexicon plus a real registry file."""
+    _write_lexicon(tmp_path, _sample_rows())
     registry = tmp_path / "config" / "derived-wordlists.json"
     registry.parent.mkdir(parents=True)
     registry.write_text(
         json.dumps(
             {
-                "version": "2026-08-13",
+                "version": "2026-08-16T23:30",
                 "changelog": [
-                    {"version": "2026-08-13", "change": "test registry", "why": "test"}
+                    {
+                        "version": "2026-08-16T23:30",
+                        "change": "test registry",
+                        "why": "test",
+                    }
                 ],
-                "masterPath": master_rel,
+                "lexiconPath": "datasets/lexicon/lexicon.meta.json",
                 "sets": sets,
             }
         ),
@@ -341,45 +511,79 @@ def test_rebuild_is_byte_identical_across_runs(tmp_path: Path) -> None:
 
 
 def test_artifacts_carry_no_wall_clock(committed_anagram: GameWordlist) -> None:
-    """A timestamp would make two runs over one master differ - that is the point."""
+    """A timestamp would make two runs over one lexicon differ - that is the point."""
     raw = json.loads(_ANAGRAM.read_text(encoding="utf-8"))
     assert "generatedAt" not in raw
-    # The master's own instant is pinned instead, so the input is still traceable.
-    assert committed_anagram.source.generatedAt.endswith("Z")
+    assert "generatedAt" not in raw["source"]
 
 
 def test_committed_anagram_set_is_exactly_what_a_rebuild_produces(
-    committed_master: MasterWordlist,
+    committed_meta: Lexicon,
 ) -> None:
     """The hand-edit gate: a derived set is a build artifact, never edited."""
     registry = derive.load_registry(_REGISTRY)
     spec = next(entry for entry in registry.sets if entry.gameId == "anagram")
-    source = derive.describe_source(committed_master, _MASTER, registry.masterPath)
+    source = derive.describe_source(committed_meta, _META, registry.lexiconPath)
+    rows = derive.read_rows(committed_meta, _REPO_ROOT, spec.selection.wordClasses)
 
-    rebuilt = derive.render(derive.derive(committed_master, source, spec))
+    rebuilt = derive.render(derive.derive(committed_meta, rows, source, spec))
 
     assert rebuilt == _ANAGRAM.read_text(encoding="utf-8")
 
 
-def test_committed_set_pins_the_master_it_was_cut_from(
+def test_committed_set_pins_the_lexicon_it_was_cut_from(
+    committed_anagram: GameWordlist, committed_meta: Lexicon
+) -> None:
+    digest, _ = sha256_of(_META)
+    assert committed_anagram.source.sha256 == digest
+    assert committed_anagram.source.metaPath == "datasets/lexicon/lexicon.meta.json"
+    assert committed_anagram.source.version == committed_meta.version
+    assert committed_anagram.source.rows == committed_meta.counters.published.rows
+
+
+# --------------------------------------------------------------------------
+# 4. The Oracles over the real committed artifact
+# --------------------------------------------------------------------------
+
+
+def test_no_committed_row_fails_any_of_the_four_gates(
     committed_anagram: GameWordlist,
 ) -> None:
-    from yen_tamizh_backend.corpus.artifact import sha256_of
+    selection = committed_anagram.selection
+    allowed = set(selection.wordClasses)
+    assert allowed == {"headword"}
+    words = {row.word for row in committed_anagram.words}
 
-    digest, _ = sha256_of(_MASTER)
-    assert committed_anagram.source.sha256 == digest
+    published = {
+        row.word: row
+        for row in derive.read_rows(
+            derive.load_meta(_META), _REPO_ROOT, selection.wordClasses
+        )
+        if row.word in words
+    }
+    assert len(published) == len(words), "a served word is not a published headword"
+    for row in published.values():
+        assert selection.minLength <= row.length <= selection.maxLength
+        assert row.attestations >= selection.minAttestations
+        assert row.tier1Attestations >= selection.minTier1Attestations
+        assert row.frequency >= selection.minFrequency
+        assert row.definitionTa is not None
 
 
-def test_master_render_survives_the_shared_renderer(
-    committed_master: MasterWordlist,
+def test_the_three_words_this_cutover_removes_are_absent(
+    committed_anagram: GameWordlist,
 ) -> None:
-    """The Row 8 artifact still renders byte-for-byte after the renderer moved."""
-    assert render_master(committed_master) == _MASTER.read_text(encoding="utf-8")
+    """A bound stem, a political party, and a sitting politician. Named, not sampled."""
+    served = {row.word for row in committed_anagram.words}
+    for word in (ASURA, DMK, STALIN):
+        assert word not in served, f"{word} is still served"
 
 
-# --------------------------------------------------------------------------
-# 3. The Oracle: every committed row records how many served rows share its tiles
-# --------------------------------------------------------------------------
+def test_no_committed_row_carries_a_zero_frequency(
+    committed_anagram: GameWordlist,
+) -> None:
+    """minFrequency is the gate doing the most work; a zero would mean it slipped."""
+    assert min(row.frequency for row in committed_anagram.words) >= 1
 
 
 def test_every_committed_row_records_its_served_fan_out(
@@ -409,14 +613,27 @@ def test_the_committed_set_serves_both_solitary_and_shared_words(
     assert any(count > 1 for count in fan_out)
 
 
-def test_committed_counters_account_for_every_master_row(
+def test_every_committed_stratum_is_a_quarter_of_the_committed_set(
+    committed_anagram: GameWordlist,
+) -> None:
+    total = len(committed_anagram.words)
+    order = sorted(committed_anagram.words, key=lambda row: (-row.frequency, row.word))
+    for position, row in enumerate(order):
+        assert row.frequencyStratum == position * QUARTILES // total + 1, row.word
+    # Every quarter is occupied, or the difficulty bands have nothing to draw on.
+    assert {row.frequencyStratum for row in committed_anagram.words} == {1, 2, 3, 4}
+
+
+def test_committed_counters_account_for_every_published_lexicon_row(
     committed_anagram: GameWordlist,
 ) -> None:
     counters = committed_anagram.counters
-    assert counters.masterRows == (
+    assert counters.lexiconRows == (
         counters.outsideLength
-        + counters.outsideBand
-        + counters.invalidWordFinal
+        + counters.outsideClass
+        + counters.belowAttestations
+        + counters.belowFrequency
+        + counters.withoutMeaning
         + counters.capped
         + counters.rowsKept
     )
@@ -424,8 +641,17 @@ def test_committed_counters_account_for_every_master_row(
 
 
 # --------------------------------------------------------------------------
-# 4. Coverage + schema over the real artifact
+# 5. Coverage + schema over the real artifact
 # --------------------------------------------------------------------------
+
+
+def test_the_committed_set_clears_the_served_floor(
+    committed_anagram: GameWordlist,
+) -> None:
+    """Row 12 decision 15, in the units it was stated in: 6,000 rows at 3-6 ezhuthu."""
+    in_band = [row for row in committed_anagram.words if 3 <= len(row.ezhuthu) <= 6]
+    assert len(in_band) == len(committed_anagram.words)
+    assert len(in_band) >= _SERVED_FLOOR
 
 
 def test_committed_set_is_non_empty_at_every_target_length(
@@ -440,15 +666,11 @@ def test_committed_set_is_non_empty_at_every_target_length(
 def test_every_committed_row_validates_against_the_contract(
     committed_anagram: GameWordlist,
 ) -> None:
-    from yen_tamizh_backend.ezhuthu import segment
-
-    bands = set(committed_anagram.selection.bands)
     for row in committed_anagram.words:
         # Re-validating each row proves the file's rows are the contract's rows,
         # not merely that the envelope parsed.
         GameWord.model_validate(row.model_dump())
         assert row.ezhuthu == segment(row.word)
-        assert row.freqBand in bands
         assert row.hints is not None
         assert row.hints.firstEzhuthu == row.ezhuthu[0]
         assert row.hints.length == len(row.ezhuthu)
@@ -459,55 +681,100 @@ def test_committed_rows_are_unique(committed_anagram: GameWordlist) -> None:
     assert len(set(words)) == len(words)
 
 
-def test_committed_set_omits_an_invented_category(committed_anagram: GameWordlist) -> None:
+def test_committed_set_omits_an_invented_category(
+    committed_anagram: GameWordlist,
+) -> None:
     """A Tamil category name is player-facing copy, so no row may invent one."""
     raw = json.loads(_ANAGRAM.read_text(encoding="utf-8"))
     for row in raw["words"]:
         assert set(row["hints"]) == {"firstEzhuthu", "length"}
 
 
-def test_registered_output_paths_are_relative_and_posix() -> None:
+def test_registered_paths_are_relative_and_posix() -> None:
     registry = derive.load_registry(_REGISTRY)
     for spec in registry.sets:
         assert not spec.out.startswith("/")
         assert "\\" not in spec.out
-    assert not registry.masterPath.startswith("/")
+    assert not registry.lexiconPath.startswith("/")
+
+
+def test_the_committed_registry_validates() -> None:
+    registry = derive.load_registry(_REGISTRY)
+    assert [spec.gameId for spec in registry.sets] == ["anagram"]
+    assert registry.lexiconPath == "datasets/lexicon/lexicon.meta.json"
+    assert registry.sets[0].selection.wordClasses == ["headword"]
 
 
 # --------------------------------------------------------------------------
-# 5. Rejection
+# 6. Rejection
 # --------------------------------------------------------------------------
+
+
+def test_no_game_may_ever_be_configured_to_serve_a_proper_noun() -> None:
+    """The narrowing is the point: this cannot become a one-line config edit."""
+    servable = set(get_args(ServableWordClass))
+    assert servable <= set(get_args(WordClass))
+    assert servable.isdisjoint(
+        {
+            "properNoun",
+            "unclassified",
+            "notAWord",
+            "suspectedTypo",
+            "sandhiArtifact",
+            "boundStem",
+            "inflected",
+            "loanword",
+        }
+    )
+    with pytest.raises(ValidationError):
+        _selection(wordClasses=["properNoun"])
+    with pytest.raises(ValidationError):
+        _selection(wordClasses=["unclassified"])
 
 
 def test_a_row_whose_ezhuthu_do_not_rejoin_is_rejected() -> None:
     with pytest.raises(ValidationError, match="does not rejoin"):
         GameWord(
-            word=VAASAL, ezhuthu=["\u0b95"], freqBand="common", anagramFanOut=1
+            word=VAASAL,
+            ezhuthu=["\u0b95"],
+            frequency=1,
+            frequencyStratum=1,
+            anagramFanOut=1,
         )
 
 
 def test_a_row_claiming_a_fan_out_below_one_is_rejected() -> None:
     """A served row always shares its tiles with at least itself."""
-    from yen_tamizh_backend.ezhuthu import segment
-
     with pytest.raises(ValidationError):
         GameWord(
             word=VAASAL,
             ezhuthu=segment(VAASAL),
-            freqBand="common",
+            frequency=1,
+            frequencyStratum=1,
             anagramFanOut=0,
         )
 
 
-def test_a_row_whose_hints_disagree_with_its_ezhuthu_is_rejected() -> None:
-    from yen_tamizh_backend.ezhuthu import segment
+def test_a_row_claiming_a_stratum_outside_the_quartiles_is_rejected() -> None:
+    for stratum in (0, QUARTILES + 1):
+        with pytest.raises(ValidationError):
+            GameWord(
+                word=VAASAL,
+                ezhuthu=segment(VAASAL),
+                frequency=1,
+                frequencyStratum=stratum,
+                anagramFanOut=1,
+            )
 
+
+def test_a_row_whose_hints_disagree_with_its_ezhuthu_is_rejected() -> None:
     ezhuthu = segment(VAASAL)
     with pytest.raises(ValidationError, match="firstEzhuthu"):
         GameWord(
             word=VAASAL,
             ezhuthu=ezhuthu,
-            freqBand="common",
+            frequency=1,
+            frequencyStratum=1,
             anagramFanOut=1,
             hints=GameWordHints(firstEzhuthu=ezhuthu[1], length=len(ezhuthu)),
         )
@@ -515,137 +782,143 @@ def test_a_row_whose_hints_disagree_with_its_ezhuthu_is_rejected() -> None:
         GameWord(
             word=VAASAL,
             ezhuthu=ezhuthu,
-            freqBand="common",
+            frequency=1,
+            frequencyStratum=1,
             anagramFanOut=1,
             hints=GameWordHints(firstEzhuthu=ezhuthu[0], length=len(ezhuthu) + 1),
         )
 
 
 def test_an_unknown_row_field_is_rejected() -> None:
-    from yen_tamizh_backend.ezhuthu import segment
-
     with pytest.raises(ValidationError):
         GameWord.model_validate(
             {
                 "word": VAASAL,
                 "ezhuthu": segment(VAASAL),
-                "freqBand": "common",
+                "frequency": 1,
+                "frequencyStratum": 1,
                 "anagramFanOut": 1,
-                "category_ta": "\u0bae\u0bb0\u0bae\u0bcd",
+                "freqBand": "common",
             }
         )
 
 
 def test_counters_that_do_not_reconcile_are_rejected() -> None:
-    with pytest.raises(ValidationError, match="masterRows"):
+    with pytest.raises(ValidationError, match="lexiconRows"):
         DerivedCounters(
-            masterRows=10,
+            lexiconRows=10,
             outsideLength=1,
-            outsideBand=1,
+            outsideClass=1,
+            belowAttestations=1,
+            belowFrequency=1,
+            withoutMeaning=1,
             capped=0,
             rowsKept=1,
         )
 
 
-def test_a_wordlist_whose_count_disagrees_with_its_rows_is_rejected() -> None:
-    from yen_tamizh_backend.ezhuthu import segment
-
-    with pytest.raises(ValidationError, match="rowsKept"):
-        GameWordlist.model_validate(
+def _wordlist_payload(**overrides: Any) -> dict[str, Any]:
+    payload: dict[str, Any] = {
+        "version": "2026-08-16T23:30",
+        "changelog": [
+            {"version": "2026-08-16T23:30", "change": "test", "why": "test"}
+        ],
+        "gameId": "anagram",
+        "source": {
+            "metaPath": "datasets/lexicon/lexicon.meta.json",
+            "version": "2026-08-16T23:00",
+            "sha256": _SHA,
+            "rows": 1,
+        },
+        "selection": _selection().model_dump(),
+        "counters": {
+            "lexiconRows": 1,
+            "outsideLength": 0,
+            "outsideClass": 0,
+            "belowAttestations": 0,
+            "belowFrequency": 0,
+            "withoutMeaning": 0,
+            "capped": 0,
+            "rowsKept": 1,
+        },
+        "words": [
             {
-                "version": "2026-08-13",
-                "changelog": [
-                    {"version": "2026-08-13", "change": "test", "why": "test"}
-                ],
-                "gameId": "anagram",
-                "source": {
-                    "path": "datasets/wordlists/master/words_ranked.json",
-                    "version": "2026-08-13",
-                    "generatedAt": "2026-08-13T00:00:00Z",
-                    "sha256": _SHA,
-                    "rows": 2,
-                },
-                "selection": {
-                    "minLength": 3,
-                    "maxLength": 6,
-                    "bands": ["common"],
-                },
-                "counters": {
-                    "masterRows": 2,
-                    "outsideLength": 0,
-                    "outsideBand": 0,
-                    "capped": 0,
-                    "rowsKept": 2,
-                },
-                "words": [
-                    {
-                        "word": VAASAL,
-                        "ezhuthu": segment(VAASAL),
-                        "freqBand": "common",
-                        "anagramFanOut": 1,
-                    }
-                ],
+                "word": VAASAL,
+                "ezhuthu": segment(VAASAL),
+                "frequency": 1,
+                "frequencyStratum": 1,
+                "anagramFanOut": 1,
             }
-        )
+        ],
+    }
+    payload.update(overrides)
+    return payload
+
+
+def test_a_wordlist_whose_count_disagrees_with_its_rows_is_rejected() -> None:
+    payload = _wordlist_payload()
+    payload["counters"]["rowsKept"] = 2
+    payload["counters"]["lexiconRows"] = 2
+    payload["source"]["rows"] = 2
+    with pytest.raises(ValidationError, match="rowsKept"):
+        GameWordlist.model_validate(payload)
 
 
 def test_a_wordlist_whose_fan_out_disagrees_with_its_rows_is_rejected() -> None:
     """The signal is recomputed on read, so a hand-edited count cannot survive."""
-    from yen_tamizh_backend.ezhuthu import segment
-
+    payload = _wordlist_payload()
+    payload["words"][0]["anagramFanOut"] = 2
     with pytest.raises(ValidationError, match="anagramFanOut"):
-        GameWordlist.model_validate(
-            {
-                "version": "2026-08-13",
-                "changelog": [
-                    {"version": "2026-08-13", "change": "test", "why": "test"}
-                ],
-                "gameId": "anagram",
-                "source": {
-                    "path": "datasets/wordlists/master/words_ranked.json",
-                    "version": "2026-08-13",
-                    "generatedAt": "2026-08-13T00:00:00Z",
-                    "sha256": _SHA,
-                    "rows": 1,
-                },
-                "selection": {
-                    "minLength": 3,
-                    "maxLength": 6,
-                    "bands": ["common"],
-                },
-                "counters": {
-                    "masterRows": 1,
-                    "outsideLength": 0,
-                    "outsideBand": 0,
-                    "capped": 0,
-                    "rowsKept": 1,
-                },
-                "words": [
-                    {
-                        "word": VAASAL,
-                        "ezhuthu": segment(VAASAL),
-                        "freqBand": "common",
-                        "anagramFanOut": 2,
-                    }
-                ],
-            }
-        )
+        GameWordlist.model_validate(payload)
+
+
+def test_a_wordlist_whose_strata_are_not_its_own_quartiles_is_rejected() -> None:
+    payload = _wordlist_payload()
+    payload["words"][0]["frequencyStratum"] = 2
+    with pytest.raises(ValidationError, match="frequencyStratum"):
+        GameWordlist.model_validate(payload)
+
+
+def test_a_wordlist_disagreeing_with_the_lexicon_it_names_is_rejected() -> None:
+    payload = _wordlist_payload()
+    payload["source"]["rows"] = 99
+    with pytest.raises(ValidationError, match="lexiconRows"):
+        GameWordlist.model_validate(payload)
 
 
 def test_an_incoherent_selection_is_rejected() -> None:
     with pytest.raises(ValidationError, match="minLength"):
-        DerivedSelection(minLength=7, maxLength=3, bands=["common"])
+        _selection(minLength=7, maxLength=3)
     with pytest.raises(ValidationError, match="repeated"):
-        DerivedSelection(minLength=3, maxLength=6, bands=["common", "common"])
+        _selection(wordClasses=["headword", "headword"])
     with pytest.raises(ValidationError):
-        DerivedSelection(minLength=3, maxLength=6, bands=[])
+        _selection(wordClasses=[])
+    with pytest.raises(ValidationError, match="minTier1Attestations"):
+        _selection(minAttestations=1, minTier1Attestations=2)
+
+
+def test_a_selection_knob_that_is_simply_missing_is_rejected() -> None:
+    """The defaults ARE the design decision; a knob landing unset is the failure."""
+    for knob in (
+        "wordClasses",
+        "minAttestations",
+        "minTier1Attestations",
+        "minFrequency",
+        "requireMeaning",
+    ):
+        payload = _selection().model_dump()
+        del payload[knob]
+        with pytest.raises(ValidationError, match=knob):
+            DerivedSelection.model_validate(payload)
 
 
 def test_two_sets_writing_to_one_path_are_rejected() -> None:
     base = {
-        "version": "2026-08-13",
-        "changelog": [{"version": "2026-08-13", "change": "test", "why": "test"}],
-        "masterPath": "datasets/wordlists/master/words_ranked.json",
+        "version": "2026-08-16T23:30",
+        "changelog": [
+            {"version": "2026-08-16T23:30", "change": "test", "why": "test"}
+        ],
+        "lexiconPath": "datasets/lexicon/lexicon.meta.json",
     }
     with pytest.raises(ValidationError, match="repeated out"):
         DerivedWordlists.model_validate(
@@ -676,23 +949,17 @@ def test_an_absolute_output_path_is_rejected() -> None:
     with pytest.raises(ValidationError):
         DerivedWordlists.model_validate(
             {
-                "version": "2026-08-13",
+                "version": "2026-08-16T23:30",
                 "changelog": [
-                    {"version": "2026-08-13", "change": "test", "why": "test"}
+                    {"version": "2026-08-16T23:30", "change": "test", "why": "test"}
                 ],
-                "masterPath": "datasets/wordlists/master/words_ranked.json",
+                "lexiconPath": "datasets/lexicon/lexicon.meta.json",
                 "sets": [_spec("/tmp/anagram.json")],
             }
         )
 
 
-def test_the_committed_registry_validates() -> None:
-    registry = derive.load_registry(_REGISTRY)
-    assert [spec.gameId for spec in registry.sets] == ["anagram"]
-    assert registry.masterPath == "datasets/wordlists/master/words_ranked.json"
-
-
-def test_a_missing_master_fails_loudly(tmp_path: Path) -> None:
+def test_a_missing_lexicon_fails_loudly(tmp_path: Path) -> None:
     registry = _tmp_repo(tmp_path, [_spec("datasets/wordlists/derived/anagram.json")])
     shutil.rmtree(tmp_path / "datasets")
     with pytest.raises(FileNotFoundError):

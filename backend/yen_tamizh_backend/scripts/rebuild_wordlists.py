@@ -1,14 +1,15 @@
-"""Regenerate every per-Game derived wordlist from the ranked master (Row 9).
+"""Regenerate every per-Game derived wordlist from the published lexicon (Row 9).
 
     python -m yen_tamizh_backend.scripts.rebuild_wordlists
 
 ONE command rebuilds ALL of them. Derived sets are build artifacts: never hand
 edited, always reproducible, and always regenerated together so no Game's set is
-left cut from a stale master. Run it after a corpus refresh, or after tuning a
+left cut from a stale lexicon. Run it after a lexicon refresh, or after tuning a
 selection in ``config/derived-wordlists.json``, and commit what it writes.
 
-The master is loaded ONCE and every registered set is cut from that one in-memory
-copy, so adding the fifth Game costs a filter pass, not a fifth 12 MB parse.
+The lexicon META document is read ONCE and every registered set streams the
+partitions its own selection allows, so a set that serves one class never opens
+the files of another.
 """
 
 from __future__ import annotations
@@ -18,8 +19,8 @@ from collections import Counter
 from pathlib import Path
 
 from yen_tamizh_backend.contracts.game_wordlist import GameWordlist
-from yen_tamizh_backend.corpus import derive
-from yen_tamizh_backend.corpus.artifact import write_artifact
+from yen_tamizh_backend.wordsmith import derive
+from yen_tamizh_backend.wordsmith.artifact import write_artifact
 
 
 def _repo_root() -> Path:
@@ -30,13 +31,14 @@ def _repo_root() -> Path:
 def rebuild(registry_path: Path, repo_root: Path) -> list[tuple[Path, GameWordlist]]:
     """Rebuild every registered derived set; return each output path and payload."""
     registry = derive.load_registry(registry_path)
-    master_path = repo_root / registry.masterPath
-    master = derive.load_master(master_path)
-    source = derive.describe_source(master, master_path, registry.masterPath)
+    meta_path = repo_root / registry.lexiconPath
+    meta = derive.load_meta(meta_path)
+    source = derive.describe_source(meta, meta_path, registry.lexiconPath)
 
     written: list[tuple[Path, GameWordlist]] = []
     for spec in registry.sets:
-        wordlist = derive.derive(master, source, spec)
+        rows = derive.read_rows(meta, repo_root, spec.selection.wordClasses)
+        wordlist = derive.derive(meta, rows, source, spec)
         out_path = repo_root / spec.out
         write_artifact(out_path, derive.render(wordlist))
         written.append((out_path, wordlist))
@@ -44,16 +46,21 @@ def rebuild(registry_path: Path, repo_root: Path) -> list[tuple[Path, GameWordli
 
 
 def _report(wordlist: GameWordlist, rel_out: str) -> str:
-    """One line per set: what it kept, why the rest went, and its length spread."""
+    """One line per set: what it kept, which gate stopped the rest, and its spread."""
     counters = wordlist.counters
     lengths = Counter(len(row.ezhuthu) for row in wordlist.words)
     spread = " ".join(f"{n}:{lengths[n]}" for n in sorted(lengths))
+    strata = Counter(row.frequencyStratum for row in wordlist.words)
+    quarters = " ".join(f"q{n}:{strata[n]}" for n in sorted(strata))
     shared = sum(1 for row in wordlist.words if row.anagramFanOut > 1)
     return (
         f"{wordlist.gameId}: rowsKept={counters.rowsKept} "
-        f"outsideLength={counters.outsideLength} outsideBand={counters.outsideBand} "
-        f"invalidWordFinal={counters.invalidWordFinal} capped={counters.capped} "
-        f"sharedFanOut={shared} lengths[{spread}] -> {rel_out}"
+        f"outsideLength={counters.outsideLength} "
+        f"outsideClass={counters.outsideClass} "
+        f"belowAttestations={counters.belowAttestations} "
+        f"belowFrequency={counters.belowFrequency} "
+        f"withoutMeaning={counters.withoutMeaning} capped={counters.capped} "
+        f"sharedFanOut={shared} lengths[{spread}] strata[{quarters}] -> {rel_out}"
     )
 
 

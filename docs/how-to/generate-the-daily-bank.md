@@ -113,7 +113,7 @@ Two more consequences:
 | `games[].attempts` | Tries before a puzzle ends honestly (no purchase, no timer). |
 | `games[].timeLimitSec` | `0` means untimed; time pressure belongs to a Mode, not to the mechanic. |
 | `games[].reveal` | How many leading ezhuthu start already placed. `0` keeps the scramble whole. |
-| `games[].difficulties` | Ezhuthu-length bands mapped to difficulty slugs. |
+| `games[].difficulties` | The difficulty bands, each bounding TWO axes: an ezhuthu-length range and a `maxStratum` familiarity ceiling. A day's slots are dealt round-robin across them and drawn frequency-stratified within one; a word no band claims is never drawn. See [`../concepts/difficulty-and-scoring.md`](../concepts/difficulty-and-scoring.md). |
 | `games[].hints` | Each offered hint's `kind`, `cost`, and Tamil `template` over the row's honest fields (`{firstEzhuthu}`, `{length}`). |
 
 How many items a day holds and which Games fill them are NOT here - they are

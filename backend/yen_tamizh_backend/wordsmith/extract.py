@@ -871,8 +871,10 @@ def emit(
 def sha256_of(path: Path) -> tuple[str, int]:
     """A file's digest and size, read in chunks.
 
-    Local rather than borrowed from ``corpus/artifact.py``: the corpus layer is
-    retired in row 13 and a new package must not be wired to it on the way out.
+    The pipeline's own, kept apart from ``wordsmith/artifact.py``'s identical
+    helper: this one fingerprints a SOURCE the extractor is about to read, that
+    one fingerprints an ARTIFACT a writer has just committed, and the two are
+    read by different Oracles.
     """
     digest = hashlib.sha256()
     size = 0

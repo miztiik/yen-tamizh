@@ -16,7 +16,14 @@
     {"date": "2026-08-19", "itemCount": 3},
     {"date": "2026-08-20", "itemCount": 3},
     {"date": "2026-08-21", "itemCount": 3},
-    {"date": "2026-08-22", "itemCount": 3}
+    {"date": "2026-08-22", "itemCount": 3},
+    {"date": "2026-08-23", "itemCount": 3},
+    {"date": "2026-08-24", "itemCount": 3},
+    {"date": "2026-08-25", "itemCount": 3},
+    {"date": "2026-08-26", "itemCount": 3},
+    {"date": "2026-08-27", "itemCount": 3},
+    {"date": "2026-08-28", "itemCount": 3},
+    {"date": "2026-08-29", "itemCount": 3}
   ],
   "version": "2026-08-13"
 }
