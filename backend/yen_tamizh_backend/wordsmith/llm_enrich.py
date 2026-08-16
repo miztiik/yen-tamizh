@@ -57,7 +57,7 @@ AUTHORED_SOURCE_PATH: Final = "datasets/lexicon/sources/llm-authored/entries.jso
 # docs/how-to/enrich-the-lexicon.md. A row records the version it was written
 # under, so a later batch authored under revised instructions is distinguishable
 # from an earlier one without re-reading either.
-PROMPT_VERSION: Final = "2026-08-15"
+PROMPT_VERSION: Final = "2026-08-16"
 
 # The closed part-of-speech vocabulary, taken from the contract rather than
 # restated. An authored row writes these canonical names directly and does NOT
