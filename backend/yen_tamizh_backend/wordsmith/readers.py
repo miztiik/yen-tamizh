@@ -2,11 +2,12 @@
 
 Turns a registered source's raw bytes into elements, and nothing more: an
 element is whatever the source's own format holds - a split line, a JSON object,
-a bare JSON string. What an element MEANS is ``extract.py``'s job.
+a bare JSON string, one page of a MediaWiki export. What an element MEANS is
+``extract.py``'s job.
 
 Every reader here is a GENERATOR over a bounded buffer. No reader calls
 ``json.load``, ``read()`` or ``readlines()`` on a source file, because the
-largest registered source is 188 MB and peak memory must not track file size.
+largest registered source is 647 MB and peak memory must not track file size.
 The buffer size is a PARAMETER rather than a constant so the chunk-invariance
 predicate in ``backend/tests/test_wordsmith_extract.py`` can drive a split
 through the middle of every element.
@@ -24,6 +25,7 @@ import json
 import re
 from collections.abc import Iterator
 from typing import Any, TextIO
+from xml.parsers import expat
 
 from yen_tamizh_backend.contracts.lexicon_sources import ElementKind, LexiconSource
 
@@ -160,6 +162,94 @@ def iter_json_array(
         buffer += piece
 
 
+def iter_mediawiki_pages(
+    handle: TextIO, namespace: int, chunk: int = DEFAULT_CHUNK
+) -> Iterator[dict[str, str]]:
+    """Yield one ``{title, ns, text}`` record per page in ``namespace``.
+
+    A MediaWiki export interleaves articles with talk, template, category and
+    project pages, so which pages are RECORDS is declared per source
+    (``pageNamespace``) exactly as ``hasHeader`` declares that a delimited
+    file's first line is not one.
+
+    Written against ``xml.parsers.expat`` rather than ``ElementTree`` for one
+    measured reason: a tree builder materializes every page it is handed, and
+    the three largest pages in the first two thousand of the Tamil Wiktionary
+    dump are a template listing and a village-pump archive - 226 KB, 346 KB and
+    1,035 KB against a 23 KB largest ARTICLE. ``<ns>`` arrives before
+    ``<revision>``, so a handler-driven parse can decline to accumulate the
+    text of a page that is not a record at all, which is what keeps peak memory
+    proportional to the largest RECORD instead of to the largest page. Expat is
+    the parser either way; this is the incremental entry point to it, not a
+    parser written here.
+    """
+    if chunk < 1:
+        raise ValueError(f"chunk must be at least 1 byte, got {chunk}")
+    wanted = str(namespace)
+    parser = expat.ParserCreate()
+    parser.buffer_text = True
+    ready: list[dict[str, str]] = []
+    page: dict[str, str] | None = None
+    field: str | None = None
+    buffer: list[str] = []
+    capture_text = True
+
+    def start(name: str, attributes: dict[str, str]) -> None:
+        nonlocal page, field, buffer, capture_text
+        if name == "page":
+            page = {"title": "", "ns": "", "text": ""}
+            field = None
+            capture_text = True
+            return
+        if page is None:
+            return
+        if name in ("title", "ns") or (name == "text" and capture_text):
+            field = name
+            buffer = []
+
+    def data(piece: str) -> None:
+        if field is not None:
+            buffer.append(piece)
+
+    def end(name: str) -> None:
+        nonlocal page, field, buffer, capture_text
+        if page is None:
+            return
+        if name == "page":
+            if page["ns"] == wanted:
+                ready.append(page)
+            page = None
+            field = None
+            buffer = []
+            return
+        if name != field:
+            return
+        page[name] = "".join(buffer)
+        field = None
+        buffer = []
+        if name == "ns":
+            capture_text = page["ns"] == wanted
+
+    parser.StartElementHandler = start
+    parser.CharacterDataHandler = data
+    parser.EndElementHandler = end
+
+    while True:
+        piece = handle.read(chunk)
+        try:
+            parser.Parse(piece, not piece)
+        except expat.ExpatError as error:
+            raise ValueError(
+                f"the MediaWiki export is not well formed at line {error.lineno}, "
+                f"column {error.offset}: {expat.ErrorString(error.code)}"
+            ) from error
+        if ready:
+            yield from ready
+            ready.clear()
+        if not piece:
+            return
+
+
 def read_elements(
     handle: TextIO, source: LexiconSource, chunk: int = DEFAULT_CHUNK
 ) -> Iterator[Any]:
@@ -168,6 +258,12 @@ def read_elements(
         yield from iter_delimited(handle, source)
     elif source.kind == "jsonl":
         yield from iter_jsonl(handle, source)
+    elif source.kind == "mediawiki-xml":
+        if source.pageNamespace is None:
+            raise ValueError(
+                f"source {source.id!r}: kind 'mediawiki-xml' needs a pageNamespace"
+            )
+        yield from iter_mediawiki_pages(handle, source.pageNamespace, chunk)
     else:
         if source.elementKind is None:
             raise ValueError(f"source {source.id!r}: json-array needs an elementKind")

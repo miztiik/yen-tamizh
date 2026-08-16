@@ -36,10 +36,11 @@ export type Elementkind = (("object" | "string") | null)
 export type Enabled = boolean
 export type Hasheader = boolean
 export type Id = string
-export type Kind = ("delimited" | "json-array" | "jsonl")
+export type Kind = ("delimited" | "json-array" | "jsonl" | "mediawiki-xml")
 export type Name = string
 export type Note1 = (string | null)
 export type Origin = string
+export type Pagenamespace = (number | null)
 export type Path = string
 export type Posfield = (string | null)
 export type Precedence = number
@@ -114,6 +115,7 @@ kind: Kind
 name: Name
 note?: Note1
 origin: Origin
+pageNamespace?: Pagenamespace
 path: Path
 posField?: Posfield
 precedence: Precedence

@@ -28,6 +28,7 @@ import json
 import re
 from pathlib import Path
 from typing import Any
+from xml.etree import ElementTree
 
 import pytest
 
@@ -41,6 +42,10 @@ _NOT_ACQUIRED = "NOT ACQUIRED"
 _ABSENT = "-"
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
 _LINE_FORMATS = frozenset({".csv", ".txt", ".jsonl"})
+# A MediaWiki export's record is a page in the namespace the registry declares,
+# not a physical page: an export interleaves articles with talk, template and
+# project pages. Counted here from the bytes, independently of the reader.
+_MEDIAWIKI_RECORD = b"<ns>0</ns>"
 
 
 class LedgerRow:
@@ -94,6 +99,8 @@ ACQUIRED = [row for row in LEDGER if row.acquired]
 def _count_records(data: bytes, suffix: str) -> int:
     if suffix in _LINE_FORMATS:
         return data.count(b"\n") + (0 if data.endswith(b"\n") else 1)
+    if suffix == ".xml":
+        return data.count(_MEDIAWIKI_RECORD)
     document: Any = json.loads(data.decode("utf-8"))
     if isinstance(document, list):
         return len(document)
@@ -138,8 +145,8 @@ def test_every_ledger_row_is_complete_or_explicitly_not_acquired(row: LedgerRow)
 def test_the_ledger_covers_every_inventory_group() -> None:
     groups = {row.number[0] for row in LEDGER}
     assert groups == {"A", "B", "C", "D", "E"}, "group F must not be acquired"
-    assert len(LEDGER) == 21
-    assert len({row.id for row in LEDGER}) == 21
+    assert len(LEDGER) == 22
+    assert len({row.id for row in LEDGER}) == 22
 
 
 @pytest.mark.parametrize("row", ACQUIRED, ids=lambda row: row.number)
@@ -150,6 +157,10 @@ def test_both_fixture_scales_exist_and_decode(row: LedgerRow) -> None:
         data = fixture.read_bytes()
         assert data, f"{fixture.name} is empty"
         data.decode("utf-8")
+        if row.suffix == ".xml":
+            # A slice of an XML document is only a fixture if it still parses,
+            # which is what appending the source's own closing tag buys.
+            ElementTree.fromstring(data.decode("utf-8"))
 
 
 @pytest.mark.parametrize("row", ACQUIRED, ids=lambda row: row.number)

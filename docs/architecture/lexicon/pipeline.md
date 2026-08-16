@@ -1,6 +1,6 @@
 # The lexicon pipeline
 
-**Last Updated**: 2026-08-15
+**Last Updated**: 2026-08-16
 
 How the Tamil lexicon is built: four stages, each runnable on its own, that turn
 raw third-party dictionaries and frequency tables into the all-words artifact.
@@ -25,10 +25,10 @@ and nothing else.
 Each stage reads the previous stage's ON-DISK artifact rather than an in-process
 value, and `pipeline.py` only sequences them. That is what makes a stage
 independently runnable, independently debuggable, and restartable after a crash
-without redoing the stage before it. A single pass over 450 MB of sources would
+without redoing the stage before it. A single pass over 1.1 GB of sources would
 have none of those properties: one bad row in the last source would cost the
 whole run, and there would be no way to re-read ONE source without re-reading
-all nineteen.
+all twenty-one.
 
 The seam is also what makes DELTA ingest possible. A source's contribution has
 to be recomputable in isolation before it can be replaced or removed in
@@ -82,12 +82,23 @@ filtering, and this stage does not filter.
 
 ### Everything streams
 
-Peak memory must not track file size - the largest registered source is 188 MB
-and the whole set is about 450 MB - so every reader is a generator over a
+Peak memory must not track file size - the largest registered source is 647 MB
+and the whole set is about 1.1 GB - so every reader is a generator over a
 bounded buffer. No reader calls `json.load`, `read()` or `readlines()` on a
 source file. Delimited sources are read a line at a time, JSONL a line at a
-time, and a JSON array one element at a time through the standard library's own
-incremental entry point, `JSONDecoder.raw_decode`, over a sliding buffer.
+time, a JSON array one element at a time through the standard library's own
+incremental entry point, `JSONDecoder.raw_decode`, over a sliding buffer, and a
+MediaWiki export one page at a time through expat's handler interface.
+
+The MediaWiki reader is the one place where a tree builder was refused rather
+than simply not used. `ElementTree` materializes every page it is handed, and an
+export's largest pages are not its articles: in the Tamil Wiktionary dump the
+three biggest of the first two thousand are a template listing and a
+village-pump archive, at 226 KB, 346 KB and 1,035 KB against a largest ARTICLE
+of 23 KB. `<ns>` arrives before `<revision>`, so a handler-driven parse can
+decline to accumulate the text of a page that is not a record at all - which is
+what makes peak memory proportional to the largest RECORD rather than to the
+largest page, and is worth a factor of forty-five here.
 
 The buffer size is a PARAMETER, default 64 KiB, not a constant. That is what
 lets the test suite drive a one-byte buffer through the readers and prove the
@@ -120,7 +131,7 @@ it exists to have is a single equation:
 delta == full
 ```
 
-The staged rows built by applying nineteen extracts one at a time, in any order,
+The staged rows built by applying twenty-one extracts one at a time, in any order,
 with any source removed and re-applied along the way, are exactly the rows a
 full rebuild holds. Everything else in this stage is in service of that.
 

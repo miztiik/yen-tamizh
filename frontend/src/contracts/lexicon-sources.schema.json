@@ -141,7 +141,8 @@
           "enum": [
             "delimited",
             "json-array",
-            "jsonl"
+            "jsonl",
+            "mediawiki-xml"
           ],
           "title": "Kind",
           "type": "string"
@@ -168,6 +169,19 @@
           "minLength": 1,
           "title": "Origin",
           "type": "string"
+        },
+        "pageNamespace": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pagenamespace"
         },
         "path": {
           "pattern": "^[A-Za-z0-9._-]+(/[A-Za-z0-9._+-]+)*$",

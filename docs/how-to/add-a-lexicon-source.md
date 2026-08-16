@@ -1,6 +1,6 @@
 # How to add a lexicon source
 
-**Last Updated**: 2026-08-15
+**Last Updated**: 2026-08-16
 
 Adding another Tamil dictionary, word list or frequency table is a **data change
 plus a re-run** - a registry entry and a command, never a code rewrite. Only an
@@ -36,6 +36,16 @@ decompressed file's - so the chain from what the publisher serves to what the
 pipeline reads stays verifiable. The registry's `bytes` and `sha256` always
 describe the file at `path`, because that is the file EXTRACT hashes on every
 run.
+
+### Cut the fixture in RECORDS, not in lines
+
+The `10x` fixture holds exactly ten times the RECORDS of the `1x`, and a record
+is whatever the source's reader counts. For a line format that is a line; for a
+MediaWiki export it is a page in the declared namespace, not a physical page.
+The distinction is not pedantry: counting physical pages in the Tamil Wiktionary
+dump would have put its largest page - a one-megabyte village-pump archive - in
+the `10x` slice and not the `1x`, and the reader's memory predicate would then
+have been measuring a discussion page rather than a dictionary entry.
 
 ### Pin a dated URL, and send a real User-Agent
 
@@ -138,6 +148,33 @@ For one JSON object per line:
 ```json
 { "id": "my-dump", "kind": "jsonl", "wordField": "word", "posField": "pos" }
 ```
+
+For a MediaWiki export - a wiki's own XML dump of its pages:
+
+```json
+{ "id": "my-wiki", "kind": "mediawiki-xml", "pageNamespace": 0 }
+```
+
+### `pageNamespace`, and why there is no default
+
+`pageNamespace` is REQUIRED on every `mediawiki-xml` source and forbidden on
+every other. A dump interleaves articles with talk pages, templates, categories
+and project discussion, and which of them are this source's RECORDS is a fact
+about the export rather than about the format - the same thing `hasHeader` says
+about a delimited file's first line. A default of `0` would be a guess about
+somebody else's dump, so there is none.
+
+The record is the PAGE, so no field mapping applies and setting one is rejected:
+the reader already knows the export's own element names. What it yields is
+`{title, ns, text}`, and what the markup MEANS is an extractor's job - the Tamil
+Wiktionary's conventions live in `wordsmith/wikitext.py`, beside the reader
+rather than inside it.
+
+A page outside the declared namespace is not counted as a parse reject, because
+it is not a record that failed to parse - it is not a record. Its text is never
+even accumulated, which is what keeps peak memory proportional to the largest
+ARTICLE rather than to the largest page: in the Tamil Wiktionary dump those
+differ by a factor of 45.
 
 ### Which `elementKind` to write
 
@@ -246,14 +283,21 @@ Then re-run the stages below it.
 
 Two cases, and only two:
 
-1. **An unseen FORMAT** - a fixed-width table, XML, a spreadsheet. Add a reader
+1. **An unseen FORMAT** - a fixed-width table, a spreadsheet. Add a reader
    to `backend/yen_tamizh_backend/wordsmith/readers.py` and a member to
    `LexiconSourceKind` in the contract.
 2. **Facts the four field mappings cannot name.** `wordField`, `countField`,
    `categoryField` and `posField` cover a flat record. A source whose
    translations live in a differently named field, or whose senses nest inside
    an array, needs an extractor in `extract.py` - subclass `SourceExtractor` and
-   override `extra_facts`. Four of the twenty-one registered sources do.
+   override `extra_facts`. Five of the twenty-two registered sources do.
+
+A source whose bytes are MARKUP needs both, and they stay separate: the reader
+knows the file format, the extractor knows what a record asserts, and a third
+module knows the markup's own conventions. `wikitext.py` is that third module
+for the Tamil Wiktionary, and its rule is that an unrecognised convention costs
+a COUNTED miss rather than an invented fact - the stage prints how many lines it
+could not read beside its seven-field tally.
 
 Another frequency list, another dictionary, a different column order, a
 different root key, a source with no root key at all: all of those are the four

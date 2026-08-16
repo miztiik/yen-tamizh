@@ -6,16 +6,19 @@ it supersedes: adding another Tamil source is a DATA change here plus a re-run,
 never a code rewrite. Only an unseen source FORMAT costs code - a reader plus a
 member of ``LexiconSourceKind``.
 
-Three reader families cover every source in the inventory:
+Four reader families cover every source in the inventory:
 
-- ``delimited``  - one record per line (``delimiter``, ``hasHeader``,
+- ``delimited``     - one record per line (``delimiter``, ``hasHeader``,
   ``wordColumn``, ``countColumn``).
-- ``json-array`` - a JSON document holding an array, read with
+- ``json-array``    - a JSON document holding an array, read with
   ``JSONDecoder.raw_decode`` over a sliding buffer. ``rootKey`` names the key the
   array hangs under, and is ABSENT when the document ROOT is the array itself.
   ``elementKind`` says what one element IS.
-- ``jsonl``      - one JSON object per line (``wordField`` and the other field
-  mappings).
+- ``jsonl``         - one JSON object per line (``wordField`` and the other
+  field mappings).
+- ``mediawiki-xml`` - a MediaWiki export, one record per ``<page>`` in the
+  namespace ``pageNamespace`` names. The record is the page, so no field mapping
+  applies: the reader knows the export's own element names.
 
 ``rootKey`` is optional rather than required because a real acquired source has
 no key: ``en-ta-dictionary`` is 56,856 elements inside a bare top-level ``[``.
@@ -53,10 +56,25 @@ from yen_tamizh_backend.contracts.lexicon import PartOfSpeech
 
 # The initial mint - see the note on ``LEXICON_VERSION``. The registry file that
 # carries this stamp is written in the row that adds the readers.
-LEXICON_SOURCES_VERSION = "2026-08-16"
+LEXICON_SOURCES_VERSION = "2026-08-16T18:00"
 LEXICON_SOURCES_CHANGELOG = (
     ChangelogEntry(
         version=LEXICON_SOURCES_VERSION,
+        change=(
+            "Added the mediawiki-xml reader kind and its pageNamespace knob, "
+            "required on that kind and forbidden on every other."
+        ),
+        why=(
+            "Row 4b - the Tamil Wiktionary CONTENT dump is a MediaWiki export, "
+            "a format none of the three existing readers can stream. Which "
+            "namespace holds the records is a property of the export rather "
+            "than of the format (a dump interleaves articles with talk, "
+            "template and project pages), so it is declared per source like "
+            "hasHeader rather than assumed in the reader."
+        ),
+    ),
+    ChangelogEntry(
+        version="2026-08-16",
         change=(
             "Added attestationTier, required on every source whose role may "
             "assert word-hood and forbidden on every other."
@@ -115,7 +133,7 @@ ATTESTING_ROLES: tuple[SourceRole, ...] = ("authority", "authored")
 # draws over the attestation composition, asked one stage earlier.
 AttestationTier = Literal["lexicographic", "enumerative"]
 
-LexiconSourceKind = Literal["delimited", "json-array", "jsonl"]
+LexiconSourceKind = Literal["delimited", "json-array", "jsonl", "mediawiki-xml"]
 
 # The self-terminating element grammars: ``{`` and ``"``.
 ElementKind = Literal["object", "string"]
@@ -171,6 +189,7 @@ _SHA256 = r"^[0-9a-f]{64}$"
 _DELIMITED_ONLY = ("delimiter", "hasHeader", "wordColumn", "countColumn")
 _ARRAY_ONLY = ("rootKey", "elementKind")
 _FIELD_MAPPINGS = ("wordField", "countField", "categoryField", "posField")
+_MEDIAWIKI_ONLY = ("pageNamespace",)
 
 
 class PosAlias(BaseModel):
@@ -259,6 +278,12 @@ class LexiconSource(BaseModel):
     categoryField: str | None = Field(default=None, min_length=1)
     posField: str | None = Field(default=None, min_length=1)
 
+    # kind == "mediawiki-xml". Which MediaWiki namespace holds this source's
+    # records; every other page in the export is not a record of it, on the same
+    # rule hasHeader states for a delimited file's first line. There is no
+    # default, because "0" would be a guess about somebody else's export.
+    pageNamespace: int | None = Field(default=None, ge=0)
+
     @model_validator(mode="after")
     def _the_tier_is_declared_exactly_where_it_is_read(self) -> Self:
         # The headword gate reads the tier off the source that asserted the
@@ -293,11 +318,22 @@ class LexiconSource(BaseModel):
                 raise ValueError(
                     f"source {self.id!r}: kind 'delimited' needs delimiter + wordColumn"
                 )
-            stray = self._set_among(_ARRAY_ONLY + _FIELD_MAPPINGS)
+            stray = self._set_among(_ARRAY_ONLY + _FIELD_MAPPINGS + _MEDIAWIKI_ONLY)
         elif self.kind == "jsonl":
             if self.wordField is None:
                 raise ValueError(f"source {self.id!r}: kind 'jsonl' needs wordField")
-            stray = self._set_among(_DELIMITED_ONLY + _ARRAY_ONLY)
+            stray = self._set_among(_DELIMITED_ONLY + _ARRAY_ONLY + _MEDIAWIKI_ONLY)
+        elif self.kind == "mediawiki-xml":
+            if self.pageNamespace is None:
+                raise ValueError(
+                    f"source {self.id!r}: kind 'mediawiki-xml' needs pageNamespace - "
+                    f"an export interleaves articles with talk, template and "
+                    f"project pages, and which of them are records is a fact "
+                    f"about the export rather than about the format"
+                )
+            # The record IS the page, so every field mapping is meaningless on
+            # it: the reader knows the export's own element names.
+            stray = self._set_among(_DELIMITED_ONLY + _ARRAY_ONLY + _FIELD_MAPPINGS)
         elif self.elementKind is None:
             raise ValueError(
                 f"source {self.id!r}: kind 'json-array' needs an explicit "
@@ -309,11 +345,13 @@ class LexiconSource(BaseModel):
                 raise ValueError(
                     f"source {self.id!r}: json-array of objects needs wordField"
                 )
-            stray = self._set_among(_DELIMITED_ONLY)
+            stray = self._set_among(_DELIMITED_ONLY + _MEDIAWIKI_ONLY)
         else:
             # A bare string element has no fields at all, so every field mapping
             # is meaningless on it - not merely the three the decision listed.
-            stray = self._set_among(_DELIMITED_ONLY + _FIELD_MAPPINGS)
+            stray = self._set_among(
+                _DELIMITED_ONLY + _FIELD_MAPPINGS + _MEDIAWIKI_ONLY
+            )
         if self.kind != "delimited" and self.hasHeader:
             # hasHeader defaults to False, so only a True value is an assertion -
             # and on a JSON kind it is one nothing reads.
