@@ -293,6 +293,22 @@ The 241-file projection above assumed one file per FULL ezhuthu. Shipped that wa
 
 The directory-per-class form was chosen over the flat `<wordClass>-<hex>.ndjson` pattern because with 53 files the class is the first thing a reader wants to narrow by, and a directory does that in the file browser the user is actually looking at.
 
+### OPEN DEFECTS carried past row 12a - what is still wrong with what a player sees
+
+Recorded here rather than closed, because each is measured and none is fixed. Rows 13-15 do not address them.
+
+**1. Proper nouns are still served, and row 12's stated goal is NOT achieved.** The cutover cleared the named cases, but the general problem stands: `properNoun` holds only 1,074 members and days baked after row 12 still served `சபாபதி`, `மணிமொழி` and `அஞ்சனா`. The reason it is hard is that most Tamil personal names ARE ordinary Tamil words - `அஞ்சனா` is kohl, `மணிமொழி` is gem-like speech - so every signal that describes the STRING is answering a different question from the one the screen asks. Tamil Wikipedia titles were acquired in row 12a and MEASURED INSUFFICIENT: the full table is in [`../docs/architecture/lexicon/word-hood.md`](../docs/architecture/lexicon/word-hood.md), and the summary is ~32% precision - two ordinary words deleted per entity caught - with two of the three named names having no article at all. Do not retry that source alone. Untried, in rough order of promise: (a) Wikidata `instance of: human` / `given name`, an entity-type assertion rather than mere article existence; (b) a name-suffix signal - `-வேல்`, `-ராஜ்`, `-லிங்கம்`, `-நாத்`; (c) a curated deny-list of public figures as data in `config/`, small and honest and instantly effective for the political-name case that started this; (d) a bounded one-time LLM review of the 32,310 served words. Consult Palm and Player before choosing - this is about what a player is served.
+
+**2. Participial adjectives are served as headwords.** 2026-08-22 deals `மொழியான`, `மிகுதியான`, `தவறில்லாத` - inflected forms the classifier still admits. Row 10a hit the same wall from the other side, declining roughly 65% of its top-frequency candidates on exactly these grounds. A cascade pass that demotes participles would raise the quality of every future bake.
+
+**3. `spokenRatio` is 0.0 on 91.9% of served rows** and separates nothing. It needs a second spoken-register source or it should be dropped.
+
+**4. `compound` was never published**, so row 12 decision 5's claim that long headwords are mostly compounds is unmeasured.
+
+**5. Row 14 has an unresolved dependency.** `meaningSource` and `categorySource` were dropped from the published row at the user's instruction, so nothing carries `reviewed`. Row 14's rule - an unreviewed meaning may render free but may not be SOLD as a paid hint - has no field to check. Row 14 must name a mechanism before it can honour it.
+
+**6. No off-repo archive exists** for the ~819 MB of raw sources. They live only on this machine, and `yen-tamizh_OLD` is NOT a git repository. Fowler made this a MERGE CONDITION on row 11 and it was never met - recorded so the debt is visible rather than forgotten.
+
 | # | Row title | Phase | Depends-on | Parallel-group | Status | Worktree | PR | Subagent |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Delete `requireCoAnagram`; retain the multiset index; add the re-bake guard | A | - | A | DONE #13 | `../yen-tamizh-row1` (removed) | #13 | worker |
