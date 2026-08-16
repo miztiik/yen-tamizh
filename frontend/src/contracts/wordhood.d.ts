@@ -20,6 +20,7 @@ export type Evidencepriority = ("inflected" | "colloquial" | "properNoun" | "loa
 export type Headwordminorthotactic = number
 export type Maxezhuthu = number
 export type Mindistinctezhuthu = number
+export type Rejectmalformedezhuthu = boolean
 export type Rejectnontamil = boolean
 export type Maxngram = number
 export type Minneighbour = number
@@ -108,7 +109,7 @@ minOrthotactic: Minorthotactic
  * the word it is not: a scraped paragraph tagged as a name is still a scraped
  * paragraph, and letting the tag win is how junk comes to wear a real class.
  * 
- * All three are thresholds rather than facts about Tamil, so all three are
+ * All four are thresholds rather than facts about Tamil, so all four are
  * config (Holy Law #6). The letter rules that say which shapes Tamil BUILDS
  * stay in ``ezhuthu/word_shape.py``; these say when a string is not a
  * candidate for those rules to judge.
@@ -129,10 +130,21 @@ minOrthotactic: Minorthotactic
  * that wanted to keep transliterations as their own class would set it false
  * and get the Row 9 behaviour back, where such a surface is judged by
  * orthography and lands in ``suspectedTypo``.
+ * 
+ * ``rejectMalformedEzhuthu`` closes the gap between a CLUSTER and a LETTER.
+ * Segmentation is non-destructive and total, so it attaches every combining
+ * mark to whatever precedes it and a legacy-encoding artifact - an independent
+ * vowel wearing a vowel sign and a pulli, a consonant carrying two signs -
+ * comes back as one unit made entirely of Tamil code points. Every other
+ * clause here counts units; this one asks whether each unit is a letter Tamil
+ * actually has. It is the clause ``docs/concepts/lexicon.md`` always described
+ * ("a string carrying something that is not an ezhuthu") and that
+ * ``rejectNonTamil`` alone only half implemented.
  */
 export interface NotAWordProfile {
 maxEzhuthu: Maxezhuthu
 minDistinctEzhuthu: Mindistinctezhuthu
+rejectMalformedEzhuthu: Rejectmalformedezhuthu
 rejectNonTamil: Rejectnontamil
 }
 /**

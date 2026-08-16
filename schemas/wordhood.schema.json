@@ -154,7 +154,7 @@
     },
     "NotAWordProfile": {
       "additionalProperties": false,
-      "description": "What makes a surface not a Tamil word at all (Row 9a).\n\nThe classifier's PRECONDITION, weighed before any signal and before any\nsource assertion. A statement about the STRING outranks a statement about\nthe word it is not: a scraped paragraph tagged as a name is still a scraped\nparagraph, and letting the tag win is how junk comes to wear a real class.\n\nAll three are thresholds rather than facts about Tamil, so all three are\nconfig (Holy Law #6). The letter rules that say which shapes Tamil BUILDS\nstay in ``ezhuthu/word_shape.py``; these say when a string is not a\ncandidate for those rules to judge.\n\n``maxEzhuthu`` is a length ceiling. Tamil compounds freely, so there is no\ngrammatical bound to appeal to - what is bounded is the length beyond which\nevery surface inspected was a scrape that lost its spaces, and the longest\nin the real store runs to 1,212 ezhuthu.\n\n``minDistinctEzhuthu`` applies only to a surface of more than one ezhuthu:\na one-ezhuthu word obviously holds one distinct ezhuthu and is a perfectly\nordinary Tamil word. What it rejects is the same character repeated - a\nkeyboard artifact or a run of the aytham, never a word.\n\n``rejectNonTamil`` is what a unit that is not an ezhuthu at all - Latin, a\ndigit, a space, punctuation - costs. It is a knob rather than a constant\nbecause it is the one clause that could reasonably be turned off: a project\nthat wanted to keep transliterations as their own class would set it false\nand get the Row 9 behaviour back, where such a surface is judged by\northography and lands in ``suspectedTypo``.",
+      "description": "What makes a surface not a Tamil word at all (Row 9a).\n\nThe classifier's PRECONDITION, weighed before any signal and before any\nsource assertion. A statement about the STRING outranks a statement about\nthe word it is not: a scraped paragraph tagged as a name is still a scraped\nparagraph, and letting the tag win is how junk comes to wear a real class.\n\nAll four are thresholds rather than facts about Tamil, so all four are\nconfig (Holy Law #6). The letter rules that say which shapes Tamil BUILDS\nstay in ``ezhuthu/word_shape.py``; these say when a string is not a\ncandidate for those rules to judge.\n\n``maxEzhuthu`` is a length ceiling. Tamil compounds freely, so there is no\ngrammatical bound to appeal to - what is bounded is the length beyond which\nevery surface inspected was a scrape that lost its spaces, and the longest\nin the real store runs to 1,212 ezhuthu.\n\n``minDistinctEzhuthu`` applies only to a surface of more than one ezhuthu:\na one-ezhuthu word obviously holds one distinct ezhuthu and is a perfectly\nordinary Tamil word. What it rejects is the same character repeated - a\nkeyboard artifact or a run of the aytham, never a word.\n\n``rejectNonTamil`` is what a unit that is not an ezhuthu at all - Latin, a\ndigit, a space, punctuation - costs. It is a knob rather than a constant\nbecause it is the one clause that could reasonably be turned off: a project\nthat wanted to keep transliterations as their own class would set it false\nand get the Row 9 behaviour back, where such a surface is judged by\northography and lands in ``suspectedTypo``.\n\n``rejectMalformedEzhuthu`` closes the gap between a CLUSTER and a LETTER.\nSegmentation is non-destructive and total, so it attaches every combining\nmark to whatever precedes it and a legacy-encoding artifact - an independent\nvowel wearing a vowel sign and a pulli, a consonant carrying two signs -\ncomes back as one unit made entirely of Tamil code points. Every other\nclause here counts units; this one asks whether each unit is a letter Tamil\nactually has. It is the clause ``docs/concepts/lexicon.md`` always described\n(\"a string carrying something that is not an ezhuthu\") and that\n``rejectNonTamil`` alone only half implemented.",
       "properties": {
         "maxEzhuthu": {
           "minimum": 1,
@@ -166,6 +166,10 @@
           "title": "Mindistinctezhuthu",
           "type": "integer"
         },
+        "rejectMalformedEzhuthu": {
+          "title": "Rejectmalformedezhuthu",
+          "type": "boolean"
+        },
         "rejectNonTamil": {
           "title": "Rejectnontamil",
           "type": "boolean"
@@ -174,7 +178,8 @@
       "required": [
         "maxEzhuthu",
         "minDistinctEzhuthu",
-        "rejectNonTamil"
+        "rejectNonTamil",
+        "rejectMalformedEzhuthu"
       ],
       "title": "NotAWordProfile",
       "type": "object"

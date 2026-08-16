@@ -3,10 +3,16 @@
 ENRICH's verdicts live in a 2 GB gitignored SQLite file. That is the right home
 for them and a useless one for a person: nobody opens a store to find out why a
 word was refused, or how long the queue of work an enrichment pass still has in
-front of it is. This stage writes that state out as three files under
-``<lexiconRoot>/cache/review/``, in the same gitignored cache the extracts
-already live in, one JSON object per line so a shell, an editor and a diff all
-read them.
+front of it is. This stage writes that state out as four files under
+``<lexiconRoot>/review/``, one JSON object per line so a shell, an editor and a
+diff all read them.
+
+They are gitignored, but they are NOT build cache. ``<lexiconRoot>/cache/`` is
+machine state one stage hands to the next; these are WORKING MATERIAL a person
+reads and works through, and a reader who finds them under ``cache/`` reasonably
+concludes they are safe to delete and uninteresting to open. Their own directory
+carries a committed README saying what each file is and that the pipeline
+regenerates them.
 
 It is DERIVED and it is a REPORT. It writes nothing back to the store, so a
 review dump can never change a verdict, and it is a pure function of the derived
@@ -225,9 +231,11 @@ def headwords_without_a_meaning(conn: sqlite3.Connection) -> Iterator[dict[str, 
         yield row
 
 
-def review(registry: LexiconSources, config: Wordhood, db: Path) -> ReviewRun:
-    """Write all four reports beside the store they describe."""
-    root = db.parent / REVIEW_DIRECTORY
+def review(
+    registry: LexiconSources, config: Wordhood, db: Path, repo_root: Path
+) -> ReviewRun:
+    """Write all four reports under the lexicon root the registry declares."""
+    root = repo_root / registry.lexiconRoot / REVIEW_DIRECTORY
     root.mkdir(parents=True, exist_ok=True)
     run = ReviewRun(root=root)
     conn = open_store(db)
@@ -275,11 +283,14 @@ def main() -> None:
         help="the word-hood knobs the refusal reasons are read from",
     )
     parser.add_argument("--db", type=Path, default=None, help="the store to read")
+    parser.add_argument(
+        "--root", type=Path, default=root, help="the repository root to write under"
+    )
     args = parser.parse_args()
 
     registry = load_registry(args.registry)
-    path = store_path(registry, root) if args.db is None else args.db
-    run = review(registry, load_config(args.config), path)
+    path = store_path(registry, args.root) if args.db is None else args.db
+    run = review(registry, load_config(args.config), path, args.root)
     for name, rows in run.files:
         print(f"{(run.root / name).as_posix()}: {rows} rows")
 

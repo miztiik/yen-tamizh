@@ -397,6 +397,11 @@
       "title": "Lexiconroot",
       "type": "string"
     },
+    "maxPartitionBytes": {
+      "exclusiveMinimum": 0,
+      "title": "Maxpartitionbytes",
+      "type": "integer"
+    },
     "outputs": {
       "items": {
         "enum": [
@@ -418,12 +423,40 @@
       "title": "Posaliases",
       "type": "object"
     },
+    "publishedClasses": {
+      "items": {
+        "enum": [
+          "headword",
+          "inflected",
+          "colloquial",
+          "properNoun",
+          "loanword",
+          "boundStem",
+          "sandhiArtifact",
+          "suspectedTypo",
+          "notAWord",
+          "unclassified"
+        ],
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Publishedclasses",
+      "type": "array"
+    },
     "sources": {
       "items": {
         "$ref": "#/$defs/LexiconSource"
       },
       "minItems": 1,
       "title": "Sources",
+      "type": "array"
+    },
+    "spokenSources": {
+      "items": {
+        "pattern": "^[a-z][a-z0-9-]*$",
+        "type": "string"
+      },
+      "title": "Spokensources",
       "type": "array"
     },
     "version": {
@@ -437,6 +470,8 @@
     "changelog",
     "lexiconRoot",
     "outputs",
+    "publishedClasses",
+    "maxPartitionBytes",
     "posAliases",
     "sources"
   ],

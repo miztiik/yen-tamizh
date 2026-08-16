@@ -44,6 +44,7 @@ from yen_tamizh_backend.contracts.lexicon_sources import (
     WordClassEvidence,
 )
 from yen_tamizh_backend.contracts.wordhood import Wordhood
+from yen_tamizh_backend.ezhuthu import analyse
 from yen_tamizh_backend.wordsmith.enrich import enrich, load_config, reclassify
 from yen_tamizh_backend.wordsmith.extract import extract, load_registry, sha256_of
 from yen_tamizh_backend.wordsmith.signals_exact import SignalContext, orthotactic_score
@@ -65,6 +66,7 @@ from yen_tamizh_backend.wordsmith.wordhood import (
     discoveries,
     distribution,
     is_discovery,
+    not_a_word_reason,
     parse_evidence,
     prepare_evidence,
     tally,
@@ -461,6 +463,34 @@ def test_turning_the_non_tamil_rejection_off_restores_the_row_9_verdict() -> Non
     assert classify_surface(latin, Wordhood.model_validate(payload)) == "suspectedTypo"
 
 
+def test_a_cluster_no_tamil_letter_has_is_not_a_word() -> None:
+    # Segmentation is non-destructive, so a legacy-encoding artifact - here an
+    # independent vowel wearing a vowel sign AND a pulli - comes back as ONE
+    # unit made entirely of Tamil code points. Every clause that COUNTS units
+    # passes it; this is the clause that asks whether the unit is a letter.
+    artifact = replace(_PLAIN, word="\u0b93\u0bbe\u0bcd\u0b95")
+    assert len(analyse(artifact.word).ezhuthu) == 2
+    assert not_a_word_reason(analyse(artifact.word), CONFIG) == "malformedEzhuthu"
+    assert classify_surface(artifact, CONFIG) == "notAWord"
+
+
+def test_the_malformed_clause_is_disjoint_from_the_non_tamil_one() -> None:
+    # Two knobs where one dominates is a knob that does nothing, so the
+    # malformed clause looks only at strings the non-Tamil clause found clean.
+    payload = _config_payload()
+    payload["classifier"]["notAWord"]["rejectNonTamil"] = False
+    relaxed = Wordhood.model_validate(payload)
+    latin = replace(_PLAIN, word="\u0b95\u0ba3abc", entry=False)
+    assert not_a_word_reason(analyse(latin.word), relaxed) is None
+
+    payload = _config_payload()
+    payload["classifier"]["notAWord"]["rejectMalformedEzhuthu"] = False
+    kept = Wordhood.model_validate(payload)
+    artifact = replace(_PLAIN, word="\u0b93\u0bbe\u0bcd\u0b95")
+    assert not_a_word_reason(analyse(artifact.word), kept) is None
+    assert classify_surface(artifact, kept) != "notAWord"
+
+
 def test_not_a_word_is_a_confident_negative_and_unclassified_an_absent_one() -> None:
     # The two must stay distinct: collapsing them would destroy the only
     # counters that say whether the classifier works.
@@ -720,7 +750,7 @@ def _fixture_registry(root: Path) -> LexiconSources:
     entries: list[dict[str, Any]] = []
     source: LexiconSource
     for source in REGISTRY.sources:
-        fixture = source_bytes(_REPO_ROOT, _FIXTURES, source)
+        fixture = source_bytes(_REPO_ROOT, source)
         staged = root / "sources" / fixture.name
         staged.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(fixture, staged)

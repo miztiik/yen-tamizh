@@ -44,10 +44,28 @@ from yen_tamizh_backend.contracts.lexicon_sources import WordClassEvidence
 # the date-stamp and its first changelog entry live here: two writers of one
 # schema picking their own dates is the drift CLAUDE.md section 11 exists to
 # stop. Migration class is build-time rewrite-in-place.
-WORDHOOD_VERSION = "2026-08-16T22:00"
+WORDHOOD_VERSION = "2026-08-16T23:00"
 WORDHOOD_CHANGELOG = (
     ChangelogEntry(
         version=WORDHOOD_VERSION,
+        change="Added classifier.notAWord.rejectMalformedEzhuthu.",
+        why=(
+            "Row 11 - PUBLISH refused to address eight headwords whose first "
+            "unit is a cluster no Tamil letter has: an independent vowel "
+            "wearing a vowel sign and a pulli, a consonant carrying two vowel "
+            "signs. They are legacy-encoding artifacts, every code point in "
+            "them is Tamil, and segmentation is non-destructive - so they came "
+            "back as one unit and every clause that counts units passed them. "
+            "docs/concepts/lexicon.md has always defined notAWord as 'a string "
+            "carrying something that is not an ezhuthu'; rejectNonTamil "
+            "implemented half of that, and this implements the other half. A "
+            "knob rather than a constant on the same terms as rejectNonTamil: "
+            "a project that wanted to keep the artifacts as their own class "
+            "would set it false."
+        ),
+    ),
+    ChangelogEntry(
+        version="2026-08-16T22:00",
         change="Ranked notAWord first in classifier.evidencePriority.",
         why=(
             "Row 9b - a lexicographic source routing a surface's only "
@@ -260,7 +278,7 @@ class NotAWordProfile(BaseModel):
     the word it is not: a scraped paragraph tagged as a name is still a scraped
     paragraph, and letting the tag win is how junk comes to wear a real class.
 
-    All three are thresholds rather than facts about Tamil, so all three are
+    All four are thresholds rather than facts about Tamil, so all four are
     config (Holy Law #6). The letter rules that say which shapes Tamil BUILDS
     stay in ``ezhuthu/word_shape.py``; these say when a string is not a
     candidate for those rules to judge.
@@ -281,6 +299,16 @@ class NotAWordProfile(BaseModel):
     that wanted to keep transliterations as their own class would set it false
     and get the Row 9 behaviour back, where such a surface is judged by
     orthography and lands in ``suspectedTypo``.
+
+    ``rejectMalformedEzhuthu`` closes the gap between a CLUSTER and a LETTER.
+    Segmentation is non-destructive and total, so it attaches every combining
+    mark to whatever precedes it and a legacy-encoding artifact - an independent
+    vowel wearing a vowel sign and a pulli, a consonant carrying two signs -
+    comes back as one unit made entirely of Tamil code points. Every other
+    clause here counts units; this one asks whether each unit is a letter Tamil
+    actually has. It is the clause ``docs/concepts/lexicon.md`` always described
+    ("a string carrying something that is not an ezhuthu") and that
+    ``rejectNonTamil`` alone only half implemented.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -288,6 +316,7 @@ class NotAWordProfile(BaseModel):
     maxEzhuthu: int = Field(ge=1)
     minDistinctEzhuthu: int = Field(ge=1)
     rejectNonTamil: bool
+    rejectMalformedEzhuthu: bool
 
 
 class ClassifierSettings(BaseModel):

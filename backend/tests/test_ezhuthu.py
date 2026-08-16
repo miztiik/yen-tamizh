@@ -15,10 +15,15 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import pytest
+
 from yen_tamizh_backend.ezhuthu import (
+    EZHUTHU_INVENTORY,
     FINAL_MEI,
     classify,
     ends_like_a_word,
+    ezhuthu_roman,
+    is_a_letter,
     is_word_final,
     segment,
 )
@@ -141,3 +146,35 @@ def test_ends_like_a_word_rejects_the_corpus_noise_it_was_written_for() -> None:
 
 def test_an_empty_segmentation_is_not_a_word() -> None:
     assert not ends_like_a_word([])
+
+
+def test_every_ezhuthu_spells_uniquely_in_ascii() -> None:
+    # The romanization is COMPOSED - the base letter plus the vowel its sign
+    # writes - rather than tabulated, so 247 spellings need no 247 entries. A
+    # collision would make two letters indistinguishable in the published index.
+    spelled = [ezhuthu_roman(unit) for unit in EZHUTHU_INVENTORY]
+    assert len(spelled) == 247
+    assert len(set(spelled)) == 247
+    assert all(label.isascii() and label.isalpha() for label in spelled)
+    assert ezhuthu_roman("\u0b85") == "a"
+    assert ezhuthu_roman("\u0b95") == "ka"  # the inherent vowel
+    assert ezhuthu_roman("\u0b95\u0bbe") == "kaa"
+    assert ezhuthu_roman("\u0b95\u0bcd") == "k"  # a mei writes no vowel
+    assert ezhuthu_roman("\u0b83") == "aytham"  # a name, not a sound
+
+
+def test_a_cluster_is_not_always_a_letter() -> None:
+    # Segmentation is non-destructive and TOTAL: it attaches every combining
+    # mark to whatever precedes it, so a legacy-encoding artifact comes back as
+    # one cluster. This is the predicate that says it is not a letter.
+    assert all(is_a_letter(unit) for unit in EZHUTHU_INVENTORY)
+    for artifact in (
+        "\u0b93\u0bbe\u0bcd",  # an independent vowel wearing a sign and a pulli
+        "\u0b95\u0bbe\u0bbf",  # a consonant carrying two vowel signs
+        "\u0b95\u0bcd\u0bbf",  # a mei with a vowel sign stuck on it
+        "a",
+    ):
+        assert segment(artifact) == [artifact]
+        assert not is_a_letter(artifact)
+        with pytest.raises(ValueError):
+            ezhuthu_roman(artifact)

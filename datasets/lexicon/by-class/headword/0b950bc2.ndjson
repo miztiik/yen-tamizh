@@ -1,0 +1,981 @@
+{"attestations": 5, "definitionTa": "1) 9, 2) இரகசியம், 3) பூமி, 4) கூவு, 5) ஒலிக்குறிப்பு, 6)கூழ்", "frequency": 537, "length": 1, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "fit", "word": "கூ", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூப்பிடு தூரத்திலுள்ளது", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "at a calling distance", "word": "கூஉங்கண்ணது", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மாய்மாலம்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["மாய்மாலம்"], "tier1Attestations": 2, "translationEn": "pretence", "word": "கூகனம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மறைபொருள்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["மறைபொருள்"], "tier1Attestations": 2, "word": "கூகமானம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கோட்டான்; ஆந்தை; மறைவு", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["ஆந்தை", "கோட்டான்", "மறைவு"], "tier1Attestations": 2, "word": "கூகம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒரு வித மந்திர வித்தை", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "a kind of magic", "word": "கூகளம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கமுகு பாக்குமரம்", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "கூகாகம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "காகம்", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["காகம்"], "tier1Attestations": 2, "translationEn": "crow", "word": "கூகாரி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பேரொலிக் குறிப்பு", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "கூகாவெனல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "எட்டாண்டுப் பெண்", "frequency": 0, "length": 2, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "an eight year old girl", "word": "கூகு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூகாவெனல்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["கூகாவெனல்"], "tier1Attestations": 2, "word": "கூகூவெனல்", "wordClass": "headword"}
+{"attestations": 9, "categories": ["birds"], "definitionTa": "ஆந்தை, கோட்டான்", "frequency": 110, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அரக்கி", "ஆந்தை", "இராக்கத ஸ்திரீ", "இராட்சசி", "கூவுதல்", "கோட்டான்", "நிசாசரி", "நிருதி", "பிதுங்குதல்", "ராட்சசி"], "tier1Attestations": 5, "translationEn": "howlet", "word": "கூகை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 6, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூகைகளும்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூகைபோல முகத்தை வீங்கச் செய்வதான பொன்னுக்குவீங்கி என்னும் அம்மைக்கட்டு", "frequency": 12, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூகைக்கட்டு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒரு மருந்து", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "கூகைநீறு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "brabble", "word": "கூக்குரலிடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["adjective", "noun"], "tier1Attestations": 1, "translationEn": "brawling", "word": "கூக்குரலிடுகிற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "cry", "word": "கூக்குரலிட்டழு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 45, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூக்குரலிட்டு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 5, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூக்குரலுக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 5, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "hooping-cough", "word": "கூக்குரலுடன்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 19, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூக்குரலை", "wordClass": "headword"}
+{"attestations": 7, "definitionTa": "ஓலம்", "frequency": 311, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஓலம்"], "tier1Attestations": 5, "translationEn": "blatancy", "word": "கூக்குரல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூக்குரல்களின்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 62, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூக்குரல்கள்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஏவல் கேட்கை", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "கூக்கேட்டல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "யானை", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["யானை"], "tier1Attestations": 2, "translationEn": "elephant", "word": "கூங்கைமா", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சொல்லத்தகாத சொல்; இடக்கர்ச் சொல்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["உதாசீனம்"], "tier1Attestations": 2, "translationEn": "vulgar", "word": "கூசனம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "முலை, குறிப்பாக மணமாகாத இளம்பெண்ணின் முலை", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["கூச்சம்"], "tier1Attestations": 2, "translationEn": "breast", "word": "கூசம்", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "கூச்சம்", "frequency": 1, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அச்சக்குறிப்பு", "கூக்குரல்", "கூச்சம்", "மனங்குலைகை"], "tier1Attestations": 2, "word": "கூசல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 3, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "flash", "word": "கூசவை", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "கழுத்து நீண்டு வயிறு பருத்த நீர்க் கலம்", "frequency": 19, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "jug", "word": "கூசா", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "sharp", "word": "கூசாத்திறமுடைய", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பறவையினொலி", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["பறவையினொலி"], "tier1Attestations": 2, "word": "கூசிதம்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "கண் கூச்சத்துடன் நோக்குதல்", "frequency": 0, "length": 8, "pos": ["verb"], "tier1Attestations": 1, "word": "கூசிப்பார்த்தல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "கண் கூச்சத்துடன் நோக்குதல்", "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "word": "கூசிவிழித்தல்", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "சூரிய வெயில் அல்லது ஒளியினால் எரிவது", "frequency": 17, "length": 2, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["கூச்சமடை", "கூச்சமுண்டாகு"], "tier1Attestations": 3, "translationEn": "flinch", "word": "கூசு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மெய்க்கூச்ச உணர்ச்சி", "frequency": 6, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "autophoby", "word": "கூசுதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பூசணி", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["பூசணி"], "tier1Attestations": 2, "word": "கூசுமாண்டம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "glare", "word": "கூசொளி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "வெட்கப்படுபவன்", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["உடற்கூச்சமுள்ளவன்", "வெட்கப்படுபவன்"], "tier1Attestations": 2, "word": "கூச்சக்காரன்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "shrink", "word": "கூச்சங்கொள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூச்சத்தினாலும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 41, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூச்சத்தில்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 88, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூச்சத்துடன்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 58, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூச்சத்தை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 12, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூச்சத்தையும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 4, "length": 8, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "nervous", "word": "கூச்சப்படுகிற", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "சூரிய வெயில் அல்லது ஒளியினால் எரிவது", "frequency": 0, "length": 5, "pos": ["verb"], "synonymsTa": ["கூசு", "கூச்சமுண்டாகு"], "tier1Attestations": 1, "translationEn": "sunburn", "word": "கூச்சமடை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "பிறர் முன்னிலையில் இயல்பாக இருக்க முடியாத அல்லது தன் விருப்பத்தைத் தெரிவிக்க முடியாத தயக்க உணர்வு.", "frequency": 4, "length": 5, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["சங்கோஜம்.", "நாணமான", "வெட்கமான"], "tier1Attestations": 1, "translationEn": "shy", "word": "கூச்சமான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "sans-gene", "word": "கூச்சமின்மை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 6, "pos": ["adjective", "noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "bashful", "word": "கூச்சமுடைய", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "sheep", "word": "கூச்சமுடையவர்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "சூரிய வெயில் அல்லது ஒளியினால் எரிவது", "frequency": 0, "length": 7, "pos": ["verb"], "synonymsTa": ["கூசு", "கூச்சமடை"], "tier1Attestations": 1, "translationEn": "sunburn", "word": "கூச்சமுண்டாகு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "tickler", "word": "கூச்சமுண்டாக்குவது", "wordClass": "headword"}
+{"attestations": 2, "frequency": 112, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூச்சமும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 2, "length": 6, "pos": ["adjective", "noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "coy", "word": "கூச்சமுள்ள", "wordClass": "headword"}
+{"attestations": 10, "categories": ["emotions"], "definitionTa": "ஒரு வித தயக்கம்", "frequency": 451, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கூசல்", "நாணம்", "பற்கூச்சம்", "வெட்கம்"], "tier1Attestations": 6, "translationEn": "Shy", "word": "கூச்சம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 5, "pos": ["adjective", "noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "loud", "word": "கூச்சலான", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "சத்தம் போடுகிற", "frequency": 0, "length": 9, "pos": ["adjective"], "synonymsTa": ["ஆரவாரம் செய்யக்கூடிய", "ஆரவாரம் செய்யும்", "கூச்சலிடும்", "கூச்சல் போடும்", "சத்தம் போடுகிற", "சத்தம் போடும்", "பூசல் செய்யக்கூடிய", "பூசல் செய்யும்", "மிக்கொலி செய்யக்கூடிய", "மிக்கொலி செய்யும்", "மிக்கொலிக்கும்"], "tier1Attestations": 1, "translationEn": "noisy", "word": "கூச்சலிடக்கூடிய", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "சத்தமிடு", "frequency": 0, "length": 5, "pos": ["noun", "verb"], "synonymsTa": ["சத்தமிடு"], "tier1Attestations": 2, "translationEn": "bawl", "word": "கூச்சலிடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["adjective", "noun"], "tier1Attestations": 1, "translationEn": "clamorous", "word": "கூச்சலிடுகிற", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இரைதல்", "frequency": 3, "length": 7, "pos": ["verb"], "spokenRatio": 0.0, "synonymsTa": ["இரைதல்", "கூக்குரலிடுதல்"], "tier1Attestations": 1, "word": "கூச்சலிடுதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "crier", "word": "கூச்சலிடுபவர்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "சத்தம் போடுகிற", "frequency": 77, "length": 6, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["ஆரவாரம் செய்யக்கூடிய", "ஆரவாரம் செய்யும்", "கூச்சலிடக்கூடிய", "கூச்சல் போடும்", "சத்தம் போடுகிற", "சத்தம் போடும்", "பூசல் செய்யக்கூடிய", "பூசல் செய்யும்", "மிக்கொலி செய்யக்கூடிய", "மிக்கொலி செய்யும்", "மிக்கொலிக்கும்"], "tier1Attestations": 1, "translationEn": "noisy", "word": "கூச்சலிடும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "boohoo", "word": "கூச்சலிட்டழு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 5, "length": 10, "pos": ["adverb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "slap-bang", "word": "கூச்சலிட்டுக்கொண்டு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 19, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "deafen", "word": "கூச்சலினால்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 9, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூச்சலிலும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 70, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூச்சலில்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 220, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூச்சலும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 31, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூச்சலை", "wordClass": "headword"}
+{"attestations": 10, "definitionTa": "ஆரவாரம், பெரும் சத்தம்", "frequency": 1528, "length": 4, "pos": ["noun"], "spokenRatio": 0.000654, "synonymsTa": ["இரைச்சல்", "கூக்குரல்", "சத்தம்", "சப்தம்", "வாந்திபேதி"], "tier1Attestations": 6, "translationEn": "cry", "word": "கூச்சல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 9, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூச்சல்களை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 6, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூச்சல்களையும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 76, "length": 6, "spokenRatio": 0.223684, "tier1Attestations": 1, "word": "கூச்சல்கள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 11, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "obstreperous", "word": "கூச்சாலிட்டெதிர்க்கிற", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "விளாம்பழத்தின் சதை", "frequency": 53, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூச்சி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வெண்கடம்பு", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["வெண்கடம்பு"], "tier1Attestations": 2, "word": "கூச்சிதம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வெண்கடம்பு", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["வெண்கடம்பு"], "tier1Attestations": 2, "word": "கூச்சிரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூரிய முனை", "frequency": 1, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["புளகம்"], "tier1Attestations": 2, "word": "கூச்சு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "குளிரினாலோ அச்சத்தினாலோ மயிர் விரைத்து நிற்பது, புளகம்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "gooseflesh", "word": "கூச்செறிதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "tremor", "word": "கூச்செறிவு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 12, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "unchancy", "word": "கூச்செறிவுண்டுபண்ணுகிற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "miserable", "word": "கூஞ்சத்தனமான", "wordClass": "headword"}
+{"attestations": 8, "definitionTa": "உம்,கூட", "frequency": 92560, "length": 2, "pos": ["adverb", "noun", "postposition", "verb"], "spokenRatio": 0.001923, "synonymsTa": ["உம்", "மேலும்"], "tier1Attestations": 4, "translationEn": "also", "word": "கூட", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "attend", "word": "கூடஇரு", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "வஞ்சகம்", "frequency": 16, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["வஞ்சகம்"], "tier1Attestations": 2, "word": "கூடகம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வஞ்சகன்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["வஞ்சகன்"], "tier1Attestations": 2, "word": "கூடகாரகன்", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "கூடகாரகன்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["கூடகாரகன்"], "tier1Attestations": 2, "word": "கூடகாரன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேன்மாடம்", "frequency": 12, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கூடம்", "மேன்மாடம்"], "tier1Attestations": 2, "word": "கூடகாரம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 9, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூடகோபுரங்களும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "tier1Attestations": 1, "word": "கூடகோபுரங்களை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 338, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "locker", "word": "கூடங்களில்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 156, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூடங்களை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 42, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூடங்களையும்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நான்காமடியிலுள்ள எழுத்துகள் யாவும் ஏனை மூன்றடிகளுள்ளும் மறைந்து நிற்குமாறு பாடப்பெறுஞ் சித்திரகவி", "frequency": 3, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூடசதுக்கம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நான்காமடியிலுள்ள எழுத்துகள் யாவும் ஏனை மூன்றடிகளுள்ளும் மறைந்து நிற்குமாறு பாடப்பெறுஞ் சித்திரகவி", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "கூடசதுர்த்தம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கணவனல்லாதார்க்குப் பிறந்த மகன் தந்தை இன்னானென்று அறியப்படாத புதல்வன்", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "கூடசன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "முன்னிலவு நிரம்பிய நரகவகை", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "கூடசன்மலி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அந்தரங்க தூதன்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "கூடசாரன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஏழு நரகத்துள் ஒன்று", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "கூடசாலம்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 5, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "consort", "word": "கூடச்செல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "entirety", "word": "கூடடுமொத்தம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மயிற்றோகைக் கண்", "frequency": 0, "length": 3, "pos": ["noun"], "tier1Attestations": 2, "word": "கூடணை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பரப்பிரமம்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["ஆன்மா", "பரப்பிரமம்", "முதன்மையானவன்"], "tier1Attestations": 2, "word": "கூடத்தன்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 2031, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "in vitro", "word": "கூடத்தில்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 230, "length": 6, "spokenRatio": 0.008696, "tier1Attestations": 1, "word": "கூடத்துக்கு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூடசன்", "frequency": 14, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கூடசன்"], "tier1Attestations": 2, "word": "கூடன்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "பாம்பின் மிகச்சிறிய குட்டி", "frequency": 0, "length": 8, "pos": ["noun"], "synonymsTa": ["அகடூரிக்குஞ்சு", "அகிக்குஞ்சு", "அங்கதக்குஞ்சு", "அண்டசக்குஞ்சு", "அனுக்கக்குஞ்சு", "அரவக்குஞ்சு நாகக்குஞ்சு", "அரவுக்குஞ்சு", "அராக்குஞ்சு", "அரிக்குஞ்சு", "அறுகால்குஞ்சு", "கஞ்சுகிகுஞ்சு", "கட்செவிக்குஞ்சு", "காகோதரக்குஞ்சு", "சக்கிரிகுஞ்சு", "சர்பகுஞ்சு", "சர்பம்", "தந்தசூகக்குஞ்சு", "பணிக்குஞ்சு", "பவனாசக்குஞ்சு", "பாந்தள்குஞ்சு", "பாம்புக்குஞ்சு", "புயங்கக்குஞ்சு", "மண்டலிக்குஞ்சு", "மரானக்குஞ்சு", "மராளக்குஞ்சு", "மாசுனக்குஞ்சு", "மிருதக்குஞ்சு", "வாதாசனக்குஞ்சு", "விடதரக்குஞ்சு", "வியாளக்குஞ்சு"], "tier1Attestations": 1, "word": "கூடபதக்குஞ்சு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பாம்பு", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["பாம்பு"], "tier1Attestations": 2, "word": "கூடபதம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "யானைக்கு வரும் ஒருவகைக் கடுஞ் சுரநோய்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "கூடபாகலம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பாம்பு", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["பாம்பு"], "tier1Attestations": 2, "word": "கூடபாதம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "பள்ளியிலோ கல்லூரியிலோ ஒரே வகுப்பில் உடன்படிப்பவன்", "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "schoolmate", "word": "கூடப்படிப்பவன்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 65, "length": 7, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["உடன்பிறந்த"], "tier1Attestations": 1, "word": "கூடப்பிறந்த", "wordClass": "headword"}
+{"attestations": 10, "categories": ["house"], "definitionTa": "வீடுகளின் மையப் பகுதி, குடும்பத்தினர் அனைவரும் ஒன்றுகூடும் அறை", "frequency": 1992, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அண்டகோளகை", "அறை", "கோபுரம்", "சம்மட்டி", "தாழ்வாரம்", "திரள்", "பொய்", "மறைவு", "மலையினுச்சி", "மேலிடம்", "யானைச்சாலை", "வகுப்பறை", "வகுப்பு", "வஞ்சகம்"], "tier1Attestations": 6, "translationEn": "Hall", "word": "கூடம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சுரைக்கொடி", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["சுரைக்கொடி"], "tier1Attestations": 2, "word": "கூடம்பில்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பொறி", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["பொறி", "வலை"], "tier1Attestations": 2, "word": "கூடயந்திரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "திரிபுரம்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["திரிபுரம்"], "tier1Attestations": 2, "word": "கூடரணம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூடர்களின்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பாண்டியன்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["பாண்டியன்"], "tier1Attestations": 2, "word": "கூடற்கோமான்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 4, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "seathless", "word": "கூடற்ற", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூடற்சுழிக்குரிய தேவதை", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "கூடற்றெய்வம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூடார் பகைவர்", "frequency": 3, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூடலர்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "கிளர்ந்து வளைதல்", "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "word": "கூடலித்தல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "geomancy", "word": "கூடலிபு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "தலைவனைப் பிரிந்த தலைவி அவன் வரும் நிமித்தம் அறியத் தரையில் சுழி வரைதல்", "frequency": 2, "length": 7, "pos": ["verb"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூடலிழைத்தல்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "!பொருளுக்குரிய இலக்கியம்", "frequency": 638, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "confluence", "word": "கூடல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 1, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "ridge", "word": "கூடல்வாய்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தவளை", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["தவளை"], "tier1Attestations": 2, "word": "கூடவற்சை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அத்துடன் சேர்ந்தே", "frequency": 7171, "length": 3, "pos": ["adverb"], "spokenRatio": 0.0, "synonymsTa": ["உடனேயே"], "tier1Attestations": 2, "translationEn": "too", "word": "கூடவே", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேல்வீடு", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["கூடம்", "நிலவறை", "மேல்வீடு"], "tier1Attestations": 2, "word": "கூடாகாரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "புகையிலை", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["புகையிலை"], "tier1Attestations": 2, "word": "கூடாக்கு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஆமை", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["ஆமை"], "tier1Attestations": 2, "word": "கூடாங்கம்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 717, "length": 3, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "unlikely", "word": "கூடாத", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பகைவர்; கூடார்", "frequency": 1, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கூடார்", "பகைவர்"], "tier1Attestations": 2, "translationEn": "enemies", "word": "கூடாதார்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 43376, "length": 3, "pos": ["verb"], "spokenRatio": 0.002605, "tier1Attestations": 1, "word": "கூடாது", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அகத்தால் கூடாது புறத்தால் கூடியொழுகும் நட்பு; கூடாத நட்பு; கெட்ட சகவாசம்", "frequency": 182, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "insincere and unreal friendship", "word": "கூடாநட்பு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "காண்க: கூடசாஸனம் (கலைமகள், x, 126.)", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "கூடாம்பரம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "camp-fever", "word": "கூடாரக்காய்ச்சல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "pole", "word": "கூடாரக்கால்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 181, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூடாரங்கள்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 133, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூடாரத்தின்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 22, "length": 9, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூடாரத்திலிருந்து", "wordClass": "headword"}
+{"attestations": 2, "frequency": 4, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூடாரத்திலே", "wordClass": "headword"}
+{"attestations": 3, "frequency": 312, "length": 6, "pos": ["noun"], "spokenRatio": 0.003205, "tier1Attestations": 2, "translationEn": "encampment", "word": "கூடாரத்தில்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 46, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூடாரத்துக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "castral", "word": "கூடாரத்துக்குரிய", "wordClass": "headword"}
+{"attestations": 2, "frequency": 41, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூடாரத்துக்குள்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "சில வேலைகளுக்காக குறிப்பிட்ட இடத்தில் தங்குவதற்காக அமைக்கப்பட்ட ஓர் இடம்.", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "tent", "word": "கூடாரமண்டபம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "tabernacle", "word": "கூடாரமனை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "tent", "word": "கூடாரமிடு", "wordClass": "headword"}
+{"attestations": 10, "categories": ["garden"], "definitionTa": "சீலைவீடு , துணியால் அமைக்கும் வீடு ; வண்டிக்கூடு ; நெற்கூடு ; பெருங்காயம் . http://www.tamilvu.org/slet/pmdictionary/ldttamtse.jsp?editor= கூடாரம்", "frequency": 599, "length": 4, "pos": ["noun"], "spokenRatio": 0.003339, "synonymsTa": ["இருப்பிடம்", "தங்குமிடம்", "வசிப்பிடம்"], "tier1Attestations": 6, "translationEn": "Tent", "word": "கூடாரம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மேற்கூடுள்ள வண்டி", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "கூடாரவண்டி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "camp", "word": "கூடாரவாசிகள்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "எதிரி", "frequency": 3, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["எதிரி", "பகைவர்"], "tier1Attestations": 2, "translationEn": "enemies", "word": "கூடார்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தகாத ஒழுக்கம்", "frequency": 7, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூடாவொழுக்கம்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 6234, "length": 2, "pos": ["adverb"], "spokenRatio": 0.00016, "tier1Attestations": 1, "translationEn": "together", "word": "கூடி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "interflow", "word": "கூடிக்கல", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "coalescence", "word": "கூடிக்கலப்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "coalesce", "word": "கூடிக்கல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "sociality", "word": "கூடிக்களிப்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 30, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூடிக்கூடி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "company", "word": "கூடிச்செல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "throng", "word": "கூடிநெருக்கு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "பகையரசர்களைத் தம்முட் பிளவுண்டாக்கிப் பிரிக்கை", "frequency": 0, "length": 10, "pos": ["verb"], "tier1Attestations": 1, "word": "கூடினரைப்பிரித்தல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "assort", "word": "கூடிப்பழகு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 5, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "collogue", "word": "கூடிப்பேசு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "unsociality", "word": "கூடிமகிழாமை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "social", "word": "கூடிமகிழ்கிற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "bed", "word": "கூடிமுயங்கு", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "எது நடக்கக்கூடியதோ", "frequency": 30437, "length": 3, "pos": ["adjective", "adverb", "verb"], "spokenRatio": 9.9e-05, "tier1Attestations": 3, "translationEn": "capable", "word": "கூடிய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "tier1Attestations": 1, "word": "கூடியசீக்கிரம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "far", "word": "கூடியதல்லாமல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 1564, "length": 5, "pos": ["adverb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "potentially", "word": "கூடியதாக", "wordClass": "headword"}
+{"attestations": 2, "frequency": 4565, "length": 4, "pos": ["verb"], "spokenRatio": 0.000657, "tier1Attestations": 1, "translationEn": "may", "word": "கூடியது", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "make", "word": "கூடியமைவுறு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூட்டத்தைக் குறிக்கும் பெயர்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "கூடியற்பெயர்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஆனமட்டும்", "frequency": 115, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஆனமட்டும்"], "tier1Attestations": 2, "translationEn": "minimize", "word": "கூடியவரை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 37, "length": 7, "pos": ["adverb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "possibly", "word": "கூடியவரையில்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 1192, "length": 4, "spokenRatio": 0.000839, "tier1Attestations": 1, "word": "கூடியவை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "united", "word": "கூடியிணைந்த", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒன்றில் கூடியிருப்பது", "frequency": 1, "length": 10, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["குழுமியிருகும்", "குழுமியிருக்கக்கூடிய", "குழுமியுள்ள", "கூடியிருக்கும்", "கூடியுள்ள"], "tier1Attestations": 1, "translationEn": "concentrated", "word": "கூடியிருக்கக்கூடிய", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒன்றில் கூடியிருப்பது", "frequency": 237, "length": 7, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["குழுமியிருகும்", "குழுமியிருக்கக்கூடிய", "குழுமியுள்ள", "கூடியிருக்கக்கூடிய", "கூடியுள்ள"], "tier1Attestations": 1, "translationEn": "concentrated", "word": "கூடியிருக்கும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 12, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "sociable", "word": "கூடியிருப்பதற்குகந்த", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "co-meddle", "word": "கூடியுறவாடு", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "ஒன்றில் கூடியிருப்பது", "frequency": 115, "length": 5, "pos": ["adjective", "noun"], "spokenRatio": 0.0, "synonymsTa": ["குழுமியிருகும்", "குழுமியிருக்கக்கூடிய", "குழுமியுள்ள", "கூடியிருக்கக்கூடிய", "கூடியிருக்கும்"], "tier1Attestations": 2, "translationEn": "sitting", "word": "கூடியுள்ள", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "bee", "word": "கூடியுழைப்பவர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "புலால் உண்போன்", "frequency": 0, "length": 3, "pos": ["noun"], "tier1Attestations": 2, "word": "கூடிலி", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "சேர்ந்துவருதல்", "frequency": 1, "length": 6, "pos": ["verb"], "spokenRatio": 0.0, "synonymsTa": ["கைகூடிவருதல்", "சேர்ந்துவருதல்", "மிகுதியாதல்"], "tier1Attestations": 1, "word": "கூடிவருதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "company", "word": "கூடிவாழ்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "social", "word": "கூடிவாழ்கிற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "co-operate", "word": "கூடிவிளைவி", "wordClass": "headword"}
+{"attestations": 9, "categories": ["nature"], "definitionTa": "பறவைகள் வாழும் வீடு", "frequency": 3486, "length": 2, "pos": ["noun", "verb"], "spokenRatio": 0.001721, "synonymsTa": ["உறை", "ஒன்றுகூடு", "ஒன்றுசேர்", "கூண்டு", "கூறை", "திரள்", "புணர்", "மீன்பறி"], "tier1Attestations": 5, "translationEn": "Nest", "word": "கூடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "build", "word": "கூடுகட்டு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூடுகளிலே", "wordClass": "headword"}
+{"attestations": 2, "frequency": 36, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூடுகளும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 184, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூடுகளை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 38, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "convergence", "word": "கூடுகை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கொம்பின் முனைப்பாகம் தம்முட் கூடிய மாடு", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "கூடுகொம்பன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேலும் சேர்த்து", "frequency": 10902, "length": 5, "pos": ["adverb", "noun"], "spokenRatio": 0.000275, "synonymsTa": ["அன்றியும்", "மேலும்"], "tier1Attestations": 2, "translationEn": "Additional", "word": "கூடுதலாக", "wordClass": "headword"}
+{"attestations": 4, "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "enhance", "word": "கூடுதலாக்கு", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "அதிகப்படியின் தொடர்பான அல்லது அதிகளவில் இருப்பது", "frequency": 2216, "length": 5, "pos": ["adjective", "noun"], "spokenRatio": 0.0, "synonymsTa": ["அதிகப்படியான", "அதிகமான", "நிறைய", "மிகுதியான"], "tier1Attestations": 3, "translationEn": "additional", "word": "கூடுதலான", "wordClass": "headword"}
+{"attestations": 9, "definitionTa": "அதிகமாக = நிறைய = ஜாஸ்தி = மிகை", "frequency": 26149, "length": 4, "pos": ["noun"], "spokenRatio": 0.000229, "synonymsTa": ["[supernumerary", "extra]", "spear carrier", "சேர்க்கை", "துணைநடிகர்", "மிகுதி"], "tier1Attestations": 5, "translationEn": "Additional", "word": "கூடுதல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "அடிப்படையாக கொடுக்கப்பட்ட இலாபம்.", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["அதிகலாபம்"], "tier1Attestations": 1, "translationEn": "bonus", "word": "கூடுதல்லாபம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "அரசு நிர்வாகத்திற்காகவும் மக்கள் நலத்திட்டங்களுக்காகவும் செலவிட வேண்டியிருப்பதால் அதற்கு ஆகும் செலவை ஈடுகட்டக் குடிமக்களிடமிருந்து அரசு வசூலிக்கும் அதிமான கட்டணம்", "frequency": 3, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அதிககட்டணம்", "அதிகவரி", "மிகுந்தகட்டணம்"], "tier1Attestations": 1, "translationEn": "surcharge", "word": "கூடுதல்வரி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "chance", "word": "கூடுதிறம்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "நிரப்புதல்", "frequency": 0, "length": 7, "pos": ["verb"], "synonymsTa": ["நிரப்புதல்"], "tier1Attestations": 1, "word": "கூடுபூரித்தல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 300, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூடுமானவரை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 14, "length": 5, "pos": ["adverb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "possibly", "word": "கூடுமாயின்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 28, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "confluence", "word": "கூடுமிடம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "vanishing-point", "word": "கூடுமுனை", "wordClass": "headword"}
+{"attestations": 3, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "cod", "word": "கூடுமுரிச்சான்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நிகழக்கூடும் என்பதைக் காட்டும் வினை வடிவம்", "frequency": 13495, "length": 3, "pos": ["verb"], "spokenRatio": 0.000741, "synonymsTa": ["ஆகலாம்"], "tier1Attestations": 2, "translationEn": "may", "word": "கூடும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "vanishing-line", "word": "கூடுவரை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேற்கூரை இணையும் மூலை", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "கூடுவாய்மூலை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 3, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "converge", "word": "கூடுவி", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "இறத்தல்", "frequency": 0, "length": 6, "pos": ["verb"], "synonymsTa": ["இறத்தல்"], "tier1Attestations": 1, "word": "கூடுவிடுதல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "சாதல்", "frequency": 0, "length": 6, "pos": ["verb"], "synonymsTa": ["சாதல்"], "tier1Attestations": 1, "word": "கூடுவிழுதல்", "wordClass": "headword"}
+{"attestations": 9, "categories": ["kitchen"], "definitionTa": "பிரம்பு, ஓலை போன்றவற்றால் வேயப்பட்ட கொள்கலன், பொதுவாக மேல்பக்கம் திறந்துக்காணப்படும்", "frequency": 1351, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["பை"], "tier1Attestations": 5, "translationEn": "Basket", "word": "கூடை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 63, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூடைகளில்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கூடை விற்போன்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "கூடைக்காரன்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "காய்கறிகளை கூடையில் சுமந்து விற்கும் பெண்", "frequency": 27, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "a woman vendor selling vegetables in a big basket", "word": "கூடைக்காரி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒன்றை வலையின் மேலேயிருந்து கையினால் தாக்கி மற்றொரு குழுவில் விழவைக்கும் ஒரு வகை பந்து", "frequency": 136, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["வாலிபால்"], "tier1Attestations": 1, "translationEn": "volleyball", "word": "கூடைபந்து", "wordClass": "headword"}
+{"attestations": 1, "frequency": 57, "length": 9, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "basket-ball", "word": "கூடைப்பந்தாட்டம்", "wordClass": "headword"}
+{"attestations": 6, "categories": ["games"], "definitionTa": "கூடையில் பந்தைப் போடும், உலக அளவில் ஆடப்படும் ஒரு விளையாட்டு", "frequency": 1266, "length": 6, "pos": ["noun"], "spokenRatio": 0.00079, "synonymsTa": ["கூடைப்பந்தாட்டம்"], "tier1Attestations": 4, "translationEn": "Basketball", "word": "கூடைப்பந்து", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சொற்செறிவும் இசைச்செறிவும் உடைய பாடல்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "கூடைப்பாடல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "splint", "word": "கூடைமுடைவதற்குரிய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "cooper", "word": "கூடைமுனைபவர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உடல் பருத்தவன்", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "fat fellow", "word": "கூடையன்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 64, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூடையுடன்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 293, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூடையை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "Corporation", "word": "கூட்டகம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒற்றுமையோடு உதவக்கூடிய சுற்றத்தாரின் கட்டுப்பாடு", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "கூட்டக்கட்டு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மக்கள் ஒன்றுகூடி விளைக்கும் சண்டை", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "கூட்டக்கலகம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூட்டமாகச் சேர்ந்தடிக்கும் கொள்ளை", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "கூட்டக்கொள்ளை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 127, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டங்களின்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 140, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டங்களும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 601, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டங்களை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1544, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டங்கள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "congregate", "word": "கூட்டங்கூடு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இருபக்கமும் மரங்கள் நிறைந்த பாதை", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "கூட்டச்சாலை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உப்புக்குவியற்களம்", "frequency": 10, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["உப்புக்குவியற்களம்"], "tier1Attestations": 2, "translationEn": "Place in a salt-pan where salt is heaped up", "word": "கூட்டடி", "wordClass": "headword"}
+{"attestations": 10, "definitionTa": "கூட்டிணைவு", "frequency": 24016, "length": 4, "pos": ["noun"], "spokenRatio": 4.2e-05, "synonymsTa": ["அணி", "கூட்டிணைவு"], "tier1Attestations": 6, "translationEn": "bloc", "word": "கூட்டணி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டதாருக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 4, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டதினிடையே", "wordClass": "headword"}
+{"attestations": 1, "frequency": 28, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டதில்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 3, "length": 8, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "chairman, n. pl. chairmen", "word": "கூட்டத்தலைவர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 16, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டத்தாரிடம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 33, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டத்தாரின்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 18, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டத்தாருக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 5, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டத்தாருடன்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 31, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டத்தாரும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 34, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டத்தாரை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 5, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டத்தாரையும்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "ஒரு வகுப்பினர்", "frequency": 157, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "party", "word": "கூட்டத்தார்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 11, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டத்திடையே", "wordClass": "headword"}
+{"attestations": 1, "frequency": 73, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டத்தினரை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 342, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "phansigar", "word": "கூட்டத்தினர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 9, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டத்தினிடையில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 22, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டத்தினிடையே", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1649, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "debacle", "word": "கூட்டத்தின்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1644, "length": 7, "spokenRatio": 0.000608, "tier1Attestations": 1, "translationEn": "convoke v.", "word": "கூட்டத்திற்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 90, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டத்திற்குள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 6, "length": 14, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டத்திலிருந்தவர்களில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 13, "length": 13, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டத்திலிருந்தவர்கள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 258, "length": 9, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டத்திலிருந்து", "wordClass": "headword"}
+{"attestations": 1, "frequency": 561, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டத்திலும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 122, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டத்திலே", "wordClass": "headword"}
+{"attestations": 1, "frequency": 22851, "length": 6, "spokenRatio": 0.000481, "tier1Attestations": 1, "translationEn": "amendment", "word": "கூட்டத்தில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 35, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டத்து", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 9, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டத்துக்கிடையே", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1630, "length": 7, "spokenRatio": 0.003681, "tier1Attestations": 1, "word": "கூட்டத்துக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 64, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டத்துக்கும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 13, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டத்துக்குள்ளேயிருந்து", "wordClass": "headword"}
+{"attestations": 1, "frequency": 163, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டத்துடன்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3899, "length": 5, "spokenRatio": 0.000256, "tier1Attestations": 1, "translationEn": "corvette", "word": "கூட்டத்தை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 9, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டத்தைப்பற்றி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "சில நாட்களுக்கு மட்டும் நடக்கும் மாநாடு ,இதில் அனைவரும் அமர்ந்து பேசுவார்கள்.", "frequency": 1171, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["குழு", "சபை"], "tier1Attestations": 1, "translationEn": "session", "word": "கூட்டத்தொடர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "session", "word": "கூட்டத்தொடர்வு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 341, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டத்தோடு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பொதுமக்கள் கூடும் நிலைமை", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "கூட்டநாட்டம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "squeeze", "word": "கூட்டநெருக்கடி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 14, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டந்தான்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "வேலைக்காரன் - பணியாளர் மற்றும் சேவகர்கள் முதலியோர்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["குழுபலம்"], "tier1Attestations": 1, "translationEn": "team", "word": "கூட்டபலம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 8, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "additive", "word": "கூட்டப்படுகிற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 260, "length": 7, "pos": ["adjective", "noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "additional", "word": "கூட்டப்பட்ட", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "house", "word": "கூட்டமண்டபம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 18, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "sessional", "word": "கூட்டமர்விருக்கைக்காலத்திற்குரிய", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒன்றிணைந்து இருக்கும் நிலை.", "frequency": 2197, "length": 5, "pos": ["adverb"], "spokenRatio": 0.0, "synonymsTa": ["குழுவாக"], "tier1Attestations": 1, "translationEn": "jointly", "word": "கூட்டமாக", "wordClass": "headword"}
+{"attestations": 1, "frequency": 90, "length": 5, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "frequent", "word": "கூட்டமான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 64, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டமானது", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "resolution", "word": "கூட்டமுடிவு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "resolution", "word": "கூட்டமுடிவெடுப்பு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "காய்களையும், பருப்பையும் கூட்டிச் செய்யப்படும் உணவு", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "கூட்டமுது", "wordClass": "headword"}
+{"attestations": 1, "frequency": 985, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டமும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 497, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டமே", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கறிவகை", "frequency": 16, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கறிவகை"], "tier1Attestations": 2, "word": "கூட்டமை", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "பலவகை உறுப்புகளும் சேர்ந்து அமைதல்", "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "word": "கூட்டமைதல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "அமைப்பினால் தொடர்புடையது அல்லது அதன் உதவியோடுபல்வேறு கூறுகள் இணைந்து நிற்பது", "frequency": 220, "length": 7, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["அமைப்பான", "குழுவான", "சங்க"], "tier1Attestations": 1, "translationEn": "structural", "word": "கூட்டமைப்பான", "wordClass": "headword"}
+{"attestations": 10, "definitionTa": "பல இணைந்தியங்கும் ஓரமைப்பு", "frequency": 7836, "length": 6, "pos": ["noun"], "spokenRatio": 0.000128, "synonymsTa": ["அமைப்பு", "குழு", "சங்கம்"], "tier1Attestations": 6, "translationEn": "Federation", "word": "கூட்டமைப்பு", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "கூடியிருக்கை", "frequency": 59, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கூடியிருக்கை"], "tier1Attestations": 4, "translationEn": "composition", "word": "கூட்டமைவு", "wordClass": "headword"}
+{"attestations": 10, "definitionTa": "எண்ணிக்கையில் அதிகமான மக்கள் அல்லது விலங்கினங்கள் ஓரிடத்தில் கூடியிருப்பது", "frequency": 37043, "length": 4, "pos": ["noun"], "spokenRatio": 0.000459, "synonymsTa": ["அகவை", "கட்சி", "கும்பல்", "குழாம்", "குழு", "கோட்டம்", "சபை", "சமுதாயம்", "சமூகம்", "சார்பு", "ததுமல்", "தரப்பு", "திரட்சி", "திரளை", "திரள்", "தொகுதி", "தொகை", "நிரை", "நிவகம்", "பட்டமளிப்பு", "பட்டம்அளிப்பு", "பரிவாரம்", "மந்தை", "விததி"], "tier1Attestations": 6, "translationEn": "Crowd", "word": "கூட்டம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "செவ்வரக்கு", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["செவ்வரக்கு"], "tier1Attestations": 2, "word": "கூட்டரக்கு", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "முந்தைய அரசியல் கட்சி சாராத அமைப்பு முறை", "frequency": 279, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஐக்கிய நாடுகள்"], "tier1Attestations": 3, "translationEn": "federation", "word": "கூட்டரசு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "bund", "word": "கூட்டரசுக்குழு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கூடுகை", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["கூடுகை", "சேர்க்கை", "நட்பு", "பொருட்கூட்டம்"], "tier1Attestations": 3, "word": "கூட்டரவு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "social", "word": "கூட்டருந்குழுமம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "தோழர்", "frequency": 5, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["இனத்தார்", "தோழர்"], "tier1Attestations": 3, "word": "கூட்டர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 144, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டறிக்கை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சேரத்தகாதவன்", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["சாதிவிலக்குண்டவன்", "சேரத்தகாதவன்"], "tier1Attestations": 2, "word": "கூட்டற்றவன்", "wordClass": "headword"}
+{"attestations": 10, "categories": ["school", "symbols-shapes"], "definitionTa": "எண்ணோடு எண்ணைச் சேர்த்து மொத்தமாக்கும் முறை.", "frequency": 877, "length": 4, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["இணைப்பு", "சேர்ப்பு"], "tier1Attestations": 6, "translationEn": "Addition", "word": "கூட்டல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "single", "word": "கூட்டல்லாத", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "disintegrate", "word": "கூட்டழி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "disintegrate", "word": "கூட்டழிவுறு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒரு காலத்திலுண்டாகும் பல தொழில்களின் கூட்டத்தைக் கூறுவதாகவேனும் தனித் தனியே தொழிலை விளைத்தற்குரிய பல காரணங்கள ஒன்றுகூடியதல் ஒரு தொழில் பிறப்பதாகக் கூறுவதாகவேனும் வரும் ஓர் அணி", "frequency": 8, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூட்டவணி", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "hodge-podge", "word": "கூட்டவியல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "convocation", "word": "கூட்டவை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1933, "length": 4, "pos": ["adverb"], "spokenRatio": 0.000517, "tier1Attestations": 1, "translationEn": "conjunctly", "word": "கூட்டாக", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "coalesce", "word": "கூட்டாகச்சேர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "aggregate", "word": "கூட்டாகவாழ்கிற", "wordClass": "headword"}
+{"attestations": 6, "categories": ["food"], "definitionTa": "கறிவகைகள் சேர்த்துப் பொங்கிய சோறு", "frequency": 91, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 5, "translationEn": "picnic", "word": "கூட்டாஞ்சோறு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டாஞ்சோறும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1045, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கூட்டரசு"], "tier1Attestations": 1, "word": "கூட்டாட்சி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 156, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "collectivism", "word": "கூட்டாண்மை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 16, "length": 9, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "corporate", "word": "கூட்டாண்மைக்குரிய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "collectivise", "word": "கூட்டாண்மையாக்கு", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "பலரும் சேர்ந்த", "frequency": 46, "length": 4, "pos": ["adjective", "noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "collective", "word": "கூட்டான", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூட்டாளி", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["கூட்டாளி"], "tier1Attestations": 2, "word": "கூட்டாளன்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "கூட்டாண்மை உறுப்பினராக இருக்கும் ஒரு நபர்", "frequency": 22, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "Partner", "word": "கூட்டாளர்", "wordClass": "headword"}
+{"attestations": 10, "definitionTa": "(தீய செயல் நிகழ) ஒருவருக்குத் துணையாக ஈடுபடுபவர்", "frequency": 644, "length": 4, "pos": ["noun"], "spokenRatio": 0.020186, "synonymsTa": ["உடனொத்தவன்", "சிநேகிதன்", "சிநேகிதம்", "சினேகிதம்", "சேக்காளி", "தோழன்", "தோழமை", "நட்பு", "நண்பன்", "பங்காளி"], "tier1Attestations": 6, "translationEn": "Associates", "word": "கூட்டாளி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 209, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டாளிகளும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 167, "length": 6, "pos": ["adjective", "noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "conjoint", "word": "கூட்டாளியான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "pal", "word": "கூட்டாளியாயிரு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "கூட்டம் முதலியவற்றில் சேர்த்துக்கொள்ளுதல்", "frequency": 3, "length": 9, "pos": ["verb"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டிக்கொள்ளுதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "chime", "word": "கூட்டிசைப்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "coherent", "word": "கூட்டிசைவான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "beauty", "word": "கூட்டிசைவு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "simple", "word": "கூட்டிணைப்பற்ற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "organizer", "word": "கூட்டிணைப்பவர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "unite", "word": "கூட்டிணைப்பாக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 11, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "fusionist", "word": "கூட்டிணைப்பாதரவாளர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "synthetic", "word": "கூட்டிணைப்பாலான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "synthetic", "word": "கூட்டிணைப்பிற்குரிய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 44, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "consort", "word": "கூட்டிணைப்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "fellowship", "word": "கூட்டிணைப்புக்குழு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "synthetic", "word": "கூட்டிணைப்புட்கொண்ட", "wordClass": "headword"}
+{"attestations": 1, "frequency": 13, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "Corporation", "word": "கூட்டிணையம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "conjunct", "word": "கூட்டிணையான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "organism", "word": "கூட்டிணைவமைப்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "uncompunded", "word": "கூட்டிணைவற்ற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 7, "length": 6, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "made", "word": "கூட்டிணைவான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 4, "length": 9, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "segregate", "word": "கூட்டிணைவிலிருந்து", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பலர் சேர்ந்து அமைக்கும் கூட்டு", "frequency": 230, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "coalition", "word": "கூட்டிணைவு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "monogram", "word": "கூட்டிணைவெழுத்துரு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 192, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "collective", "word": "கூட்டின்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "சேர்த்துப் பற்றுதல்", "frequency": 0, "length": 9, "pos": ["verb"], "tier1Attestations": 1, "word": "கூட்டிப்பிடித்தல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "கூட அழைத்துக்கொண்டு போதல்", "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "word": "கூட்டிப்போதல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "கூந்தல் முதலியவற்றைச் சேர்த்துக் கட்டுதல்", "frequency": 0, "length": 8, "pos": ["verb"], "synonymsTa": ["முற்றுவித்தல்"], "tier1Attestations": 1, "word": "கூட்டிமுடித்தல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "set", "word": "கூட்டியிணை", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஒரு சொல்லை மற்றோரிடத்தும் சேர்த்துப் பொருள் கூறுதல்", "frequency": 0, "length": 8, "pos": ["verb"], "tier1Attestations": 1, "word": "கூட்டியுரைத்தல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "textureless", "word": "கூட்டியைபல்லாத", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "society", "word": "கூட்டிருக்கை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "babeldom", "word": "கூட்டிரைச்சல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "caging", "word": "கூட்டிலடைத்தல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "caged", "word": "கூட்டிலடைப்பட்ட", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "கூட்டியனுப்புதல்", "frequency": 0, "length": 7, "pos": ["verb"], "synonymsTa": ["கூட்டிக்கொடுத்தல்", "கூட்டியனுப்புதல்", "சேர்த்துவைத்தல்"], "tier1Attestations": 1, "word": "கூட்டிவிடுதல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "வேண்டுவன புரிந்து நலஞ் செய்தல்", "frequency": 0, "length": 7, "pos": ["verb"], "synonymsTa": ["சேர்த்துவைத்தல்"], "tier1Attestations": 1, "word": "கூட்டிவைத்தல்", "wordClass": "headword"}
+{"attestations": 10, "definitionTa": "எண்களை கூட்டல் மூலம் ஒன்றாக சேர்", "frequency": 10062, "length": 3, "pos": ["adjective", "noun", "verb"], "spokenRatio": 0.00159, "synonymsTa": ["அதிகப்படுத்து", "அதிகரி", "இணை", "உதவி", "உயர்த்து", "உறவு", "எண்ணு", "ஏற்று", "ஒப்புமை", "கல", "கலப்பு", "சதி", "சூழ்ச்சி", "சேர்", "சேர்க்கை", "சேர்ப்பு", "பெருக்கு"], "tier1Attestations": 6, "translationEn": "Add", "word": "கூட்டு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "<!---# குறியீட்டிற்கு அடுத்து, தமிழில் விளக்கம் எழுதி", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "கூட்டுஇலை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "வங்கியில் இரண்டுக்கு மேற்பட்டோர் இயக்கும் ஒரு கணக்கு", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 3, "word": "கூட்டுக்கணக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "symphysis", "word": "கூட்டுக்கணு", "wordClass": "headword"}
+{"attestations": 3, "frequency": 7, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "sorosis", "word": "கூட்டுக்கனி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கூட்டமுது காய்கறியும் பருப்புங் கலந்து செய்த கறியுணவு", "frequency": 4, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூட்டுக்கறி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 8, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "immixture", "word": "கூட்டுக்கலப்பு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 37, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "ad mixture", "word": "கூட்டுக்கலவை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 10, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "pudding-stone", "word": "கூட்டுக்கலவைப்பாறை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "separation", "word": "கூட்டுக்கலைவு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஆண்களும் பெண்களும் ஒன்றாகச் சேர்ந்து படிக்கும் கல்வி", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "coeducation", "word": "கூட்டுக்கல்வி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "fusion", "word": "கூட்டுக்களவை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "society", "word": "கூட்டுக்கழகம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூட்டாளி", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["கூட்டாளி"], "tier1Attestations": 2, "word": "கூட்டுக்காரன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பாய்ந்தோடுகை", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["பாய்ந்தோடுகை"], "tier1Attestations": 2, "word": "கூட்டுக்கால்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 83, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டுக்கு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "தாய்வழி அல்லது தந்தைவழி குடும்பங்கள் பல சேர்ந்து வாழ்வது", "frequency": 68, "length": 9, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூட்டுக்குடும்பம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "hotchpot, hotchpotch", "word": "கூட்டுக்குறி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 253, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "chapter", "word": "கூட்டுக்குழு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வழிமாற்று கூட்டுங் கரணம்", "frequency": 0, "length": 7, "tier1Attestations": 2, "word": "கூட்டுங்கருவி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூட்டுசேகரம் என்பது இணையத்தில் பல நபர்கள் அல்லது குழுக்கள் ஒன்றாக இனணந்து கருத்துக்களையோ, தகவல்களையோ, சேவைகளையோ, ஆய்வுகளையோ சேகரிக்கும் செயல்பாடு", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "crowdsource", "word": "கூட்டுசேகரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பலர் சேர்ந்து சூழ்ச்சி செய்தல்", "frequency": 64, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "collusion", "word": "கூட்டுச்சதி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "fixture", "word": "கூட்டுச்சந்திப்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "compound", "word": "கூட்டுச்சரக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "interdependence, interdependency", "word": "கூட்டுச்சார்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "intertanglement", "word": "கூட்டுச்சிக்கல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "<!---# குறியீட்டிற்கு அடுத்து, தமிழில் விளக்கம் எழுதி", "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 2, "word": "கூட்டுச்சூழலியல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "concurrencer concurrency", "word": "கூட்டுச்செயல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "company", "word": "கூட்டுச்சேர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "olio", "word": "கூட்டுச்சோறு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒரு கூட்டத்திற்கு சொந்தமான சொத்து", "frequency": 2, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூட்டுடைமை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "joint", "word": "கூட்டுடைமையான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "joint", "word": "கூட்டுடைமையாளரான", "wordClass": "headword"}
+{"attestations": 3, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "கூட்டுடைமையாளர்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "வழிமாற்று கூட்டுடைமையாளர்", "frequency": 0, "length": 6, "tier1Attestations": 1, "word": "கூட்டுடையர்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "கூடி உண்ணுதல்", "frequency": 0, "length": 7, "pos": ["verb"], "synonymsTa": ["திறைகொள்ளுதல்"], "tier1Attestations": 1, "word": "கூட்டுண்ணுதல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "இணைத்தல்", "frequency": 87, "length": 5, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["இணைத்தல்"], "tier1Attestations": 2, "translationEn": "summation", "word": "கூட்டுதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 393, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "sum", "word": "கூட்டுத்தொகை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "ballet", "word": "கூட்டுநடனம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "slate-club", "word": "கூட்டுநலக்குழாய்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பிறருடன் சேர்ந்து செய்யும் சாகுபடி; கூட்டுச்சாகுபடி", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "joint cultivation", "word": "கூட்டுப்பயிர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 9, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "partnership", "word": "கூட்டுப்பாங்காண்மை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun", "verb"], "tier1Attestations": 1, "translationEn": "disunite", "word": "கூட்டுப்பிரி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "separation", "word": "கூட்டுப்பிரிதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "severance", "word": "கூட்டுப்பிரிவீடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "uncombine", "word": "கூட்டுப்பிரிவுற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "uncombine", "word": "கூட்டுப்பிரிவுறுத்து", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒன்றின் வளர்ச்சி செயலற்ற நிலையில் இருக்கும் மேலும் லார்வா மேலும் வளர்ச்சியடைந்த பருவத்திற்கு இடையில் உள்ள நிலையிலுள்ள ஒரு புழு", "frequency": 90, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "pupa", "word": "கூட்டுப்புழு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "federation", "word": "கூட்டுப்பேராட்சி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஏதாவது சில காய்கறி, உணவுப்பொருள் முதலியவற்றினை கொண்டு உருவாக்குவது", "frequency": 15, "length": 9, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "filling", "word": "கூட்டுப்பொருட்கள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "coherence", "word": "கூட்டுப்பொருத்தம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒரு தேர்வில் மதிப்பெண்ணின் மொத்த எண்ணிக்கையின் அடிப்படையில் மாணவர்கள் பெறும் மதிப்பெண்கள்", "frequency": 0, "length": 8, "pos": ["noun"], "synonymsTa": ["முழுமதிப்பெண்", "மொத்தமதிப்பெண்"], "tier1Attestations": 1, "word": "கூட்டுமதிப்பெண்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கறியற் சேர்க்கும் மா", "frequency": 7, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூட்டுமா", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வீட்டில் தரையில் உள்ள அழுக்குகளையும் குப்பைகளையும் வாரிக் கூட்ட உதவும் விளக்குமாறு அல்லது துடைப்பம்", "frequency": 112, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "broom", "word": "கூட்டுமாறு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பலரும் கூடுகை", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["பழிப்புரை"], "tier1Attestations": 2, "word": "கூட்டுமூட்டு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "totality", "word": "கூட்டுமொத்தம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 8, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "corporate", "word": "கூட்டுரிமையுடைய", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சாலைகள் கூடும் இடம்", "frequency": 30, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூட்டுரோடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "dissocialize", "word": "கூட்டுறவற்றதாக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 16, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "co-operator", "word": "கூட்டுறவாளர்", "wordClass": "headword"}
+{"attestations": 10, "definitionTa": "இருவரோ, ஒரு கூட்டமோ ஒத்து உதவி ஒரு பணியைச் செய்தல்", "frequency": 5978, "length": 5, "pos": ["noun"], "spokenRatio": 0.000167, "synonymsTa": ["ஒத்துழைப்பு"], "tier1Attestations": 6, "translationEn": "co-operation", "word": "கூட்டுறவு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "co-operative", "word": "கூட்டுறவுக்குகந்த", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "society", "word": "கூட்டுறவுக்குழு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 4, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டுறவுதான்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "sociality", "word": "கூட்டுறவுப்பான்மை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 9, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூட்டுறவும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 73, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "part", "word": "கூட்டுறவை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "simple", "word": "கூட்டுவட்டியில்லாத", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பலர் கூடிச் செய்யும் வணிகம்", "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 2, "word": "கூட்டுவர்த்தகம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 11, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "co-insurance", "word": "கூட்டுவாழ்வுக்காப்பீடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "society", "word": "கூட்டுவாழ்வுக்குழு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பெயர்ச்சொல்", "frequency": 39, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["பெயர்ச்சொல்"], "tier1Attestations": 1, "word": "கூட்டுவினை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பலர் கூடிச் செய்யும் வணிகம்", "frequency": 1, "length": 8, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூட்டுவியாபாரம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "tier1Attestations": 1, "translationEn": "Buffet", "word": "கூட்டூண்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஏரில் உடன் பூட்டப் பட்டிருக்கும் எருது", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "fellow ox in a yoke", "word": "கூட்டெருது", "wordClass": "headword"}
+{"attestations": 8, "definitionTa": "பல எழுத்துக்களைச் சேர்த்தெழுதும் எழுத்து", "frequency": 10, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 4, "translationEn": "ligature", "word": "கூட்டெழுத்து", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒரு கூத்துவகை", "frequency": 391, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "brancher", "word": "கூட்டை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "nest", "word": "கூட்டைப்பறித்தெடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "co-signatory", "word": "கூட்டொப்பக்காரர்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "solidarity", "word": "கூட்டொருமை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "team-spir-it", "word": "கூட்டொருமையுணர்வு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அடியோடு", "frequency": 15, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அடியோடு"], "tier1Attestations": 2, "word": "கூட்டோடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "extravagance", "word": "கூணழிவு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வீணையின் ஓர் உறுப்பு", "frequency": 0, "length": 3, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "a part of veena", "word": "கூணிகை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வளைவினுள் அமைந்த அனலடுப்பு", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "கூண்டடுப்பு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "மயிர் சிக்குப்படுதல்", "frequency": 0, "length": 5, "pos": ["verb"], "tier1Attestations": 1, "word": "கூண்டாதல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 47, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "uncage", "word": "கூண்டிலிருந்து", "wordClass": "headword"}
+{"attestations": 2, "frequency": 934, "length": 4, "spokenRatio": 0.002141, "tier1Attestations": 1, "translationEn": "budgerigar", "word": "கூண்டில்", "wordClass": "headword"}
+{"attestations": 10, "definitionTa": "பறவையையோ விலங்கையோ அடைத்துவைக்க கம்பிகளால் ஏற்படுத்தப்பட்ட அமைப்பு.", "frequency": 1185, "length": 3, "pos": ["noun"], "spokenRatio": 0.000844, "synonymsTa": ["கூடு", "சிறை"], "tier1Attestations": 6, "translationEn": "cage", "word": "கூண்டு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 129, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "siskin", "word": "கூண்டுகளில்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 8, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூண்டுகளுக்கு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 11, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூண்டுகளும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 34, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூண்டுகளை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 145, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூண்டுகள்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 273, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூண்டுக்குள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "scaffold", "word": "கூண்டுச்சட்டம்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "கூடுதல்", "frequency": 0, "length": 5, "pos": ["verb"], "synonymsTa": ["கூடுதல்"], "tier1Attestations": 1, "word": "கூண்டுதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 120, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "cageling", "word": "கூண்டுப்பறவை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "turret-clock.", "word": "கூண்டுமணி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "van", "word": "கூண்டுவண்டி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "lamp", "word": "கூண்டுவிளக்கு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 101, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூண்டை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 5, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூண்டையும்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சொல்லத்தகாத சொல்; இடக்கர்ச் சொல்", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "vulgar", "word": "கூதனம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இழிந்தது", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["இழிந்தது", "கிழியல்"], "tier1Attestations": 2, "translationEn": "That which is mean", "word": "கூதறை", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "கூதற்காய் = கூதல் + காய்", "frequency": 0, "length": 5, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "warm oneself", "word": "கூதற்காய்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "குளிர்", "frequency": 20, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["காய்ச்சற்குளிர்", "குளிர்"], "tier1Attestations": 2, "translationEn": "sensation of cold", "word": "கூதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூதாளி", "frequency": 3, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கூதாளி", "தூதுளை"], "tier1Attestations": 2, "translationEn": "convolvulus", "word": "கூதளம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வெள்ளரிக்கொடி", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["வெள்ளரிக்கொடி"], "tier1Attestations": 2, "word": "கூதாரி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "செடிவகை", "frequency": 1, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["செடிவகை", "தூதுளை"], "tier1Attestations": 2, "translationEn": "convolvulus", "word": "கூதாளம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தூதுளைக்கொடி", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["செடிவகை", "தூதுளைக்கொடி"], "tier1Attestations": 2, "word": "கூதாளி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "இனப்பெருக்க உறுப்பு, குறிப்பாக பெண்களுடையது (வன்சொல்)", "frequency": 591, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["படம்", "புண்டை", "பெண்குறி"], "tier1Attestations": 3, "translationEn": "vagina", "word": "கூதி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "சரற்காலம் எனப்படும் ஐப்பசி, கார்த்திகை மாதங்கள்", "frequency": 49, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["காற்று", "குளிர்", "கூதல்", "பனிக்காற்று"], "tier1Attestations": 2, "translationEn": "autumn", "word": "கூதிர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 13, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "autumnal", "word": "கூதிர்ப்பருவக்கனிவுடைய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 8, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "autumn", "word": "கூதிர்ப்பருவம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "போர் மேற்சென்ற அரசன் கூதிர்காலத்துத் தங்கும் படைவீடு", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "winter camp of a king waging war", "word": "கூதிர்ப்பாசறை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூதாளம்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["கூதாளம்"], "tier1Attestations": 2, "word": "கூதுளம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "காற்று", "frequency": 1, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["காற்று", "பனிக்காற்று"], "tier1Attestations": 2, "word": "கூதை", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "காதை மூளியாக்குதல்", "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "word": "கூதைசெய்தல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "riot", "word": "கூத்தடி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மூக்கொற்றிப்பூண்டு", "frequency": 0, "length": 8, "pos": ["noun"], "synonymsTa": ["மூக்கொற்றிப்பூண்டு"], "tier1Attestations": 2, "word": "கூத்தன்குதம்பை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அரண்மனையைச் சார்ந்த நாடக அரங்கு", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "கூத்தப்பள்ளி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கூத்தாடுதற்குரிய கோயிலரங்கு", "frequency": 4, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூத்தம்பலம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "தலைவனைக் கண்டு மீண்ட இரவலன் கூத்தாடுபவரைத் தலைவனிடம் செலுத்தும் புறத்துறை", "frequency": 9, "length": 9, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மலைபடுகடாம்"], "tier1Attestations": 2, "word": "கூத்தராற்றுப்படை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "குற்றிவிற்கும் அரிசி", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "கூத்தரிசி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அரிசி குற்றி விற்பவள்", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "கூத்தரிசிக்காரி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "நாடகம் நடிப்போர்", "frequency": 203, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூத்தர்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 7, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூத்தர்கள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 34, "length": 4, "pos": ["verb"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூத்தாட", "wordClass": "headword"}
+{"attestations": 8, "categories": ["profession"], "definitionTa": "கூத்தில் பங்குபெறும் கலைஞர்; கூத்து ஆடுபவர்", "frequency": 209, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 4, "translationEn": "Bacchanal", "word": "கூத்தாடி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூத்தாடிகளுடன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூத்து நடிப்பவள்", "frequency": 3, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூத்தாடிச்சி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 8, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "antic", "word": "கூத்தாடித்தனம்", "wordClass": "headword"}
+{"attestations": 7, "definitionTa": "நடனம் ஆடு; நடி", "frequency": 6, "length": 4, "pos": ["verb"], "spokenRatio": 0.0, "synonymsTa": ["ஆடு", "நடனமாடு", "நாட்டியமாடு", "மகிழ்ச்சிமிகுதல்"], "tier1Attestations": 3, "translationEn": "dance", "word": "கூத்தாடு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நடித்தல்", "frequency": 6, "length": 6, "pos": ["verb"], "spokenRatio": 0.0, "synonymsTa": ["செழித்திருத்தல்", "நடனம்", "நடித்தல்"], "tier1Attestations": 1, "word": "கூத்தாடுதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நடிப்பு நடனம்", "frequency": 16, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூத்தாட்டு", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "நடன் மங்கை", "frequency": 12, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["நடிகை", "பரத்தை", "விபச்சாரி", "வேசி", "வேசை", "வைப்பாட்டி"], "tier1Attestations": 3, "translationEn": "mistress", "word": "கூத்தி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூத்திகளோடு மிகவும் உறவாடுபவன்", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "whoremonger", "word": "கூத்திக்கள்ளன்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 80, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூத்தின்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வைப்பாட்டி", "frequency": 3, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["வைப்பாட்டி"], "tier1Attestations": 2, "translationEn": "kept mistress", "word": "கூத்தியார்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "நடன் மங்கை", "frequency": 2, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கூத்தி", "விபச்சாரி", "வேசை", "வைப்பாட்டி"], "tier1Attestations": 2, "translationEn": "mistress", "word": "கூத்தியாள்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 16, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூத்திலும்", "wordClass": "headword"}
+{"attestations": 7, "categories": ["arts"], "definitionTa": "ஒருவரோ பலரோ சேர்ந்து, பெரும்பாலும் இசையுடனும், தாளத்துடனும், கைகளையும், கால்களையும், தலையையும் உடலையும் காண்பவர் கண்டு களிக்குமாறு அழகுநேர்த்தியுடன் அசைத்து நிகழ்த்தும் செயல்", "frequency": 2167, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 5, "translationEn": "Bacchanal", "word": "கூத்து", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "நடனசாலை", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["நடனசாலை"], "tier1Attestations": 2, "word": "கூத்துக்களரி", "wordClass": "headword"}
+{"attestations": 2, "frequency": 13, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூத்துக்களும்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கூத்தாடுவோன்", "frequency": 4, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கூத்தாடுவோன்", "கூத்தாட்டுவோன்", "விகடக்காரன்"], "tier1Attestations": 2, "word": "கூத்துக்காரன்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 51, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூத்துக்கு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 9, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூத்துக்கும்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "வேடிக்கை பண்ணுதல்", "frequency": 0, "length": 9, "pos": ["verb"], "synonymsTa": ["குழப்பஞ்செய்தல்"], "tier1Attestations": 1, "word": "கூத்துப்பண்ணுதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நாடகப் பாடல்", "frequency": 12, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூத்துப்பாட்டு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 126, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூத்தும்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஆடல் ஆசிரியன்", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "கூத்துள்படுவோன்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 139, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூத்தை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "குதிரை", "frequency": 1, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["குதிரை"], "tier1Attestations": 2, "translationEn": "horse", "word": "கூந்தன்மா", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒருவகைக் கமுகு", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["தாளிப்பனை"], "tier1Attestations": 2, "word": "கூந்தற்கமுகு", "wordClass": "headword"}
+{"attestations": 4, "frequency": 6, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "toddy palm", "word": "கூந்தற்பனை", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஈரமயிரைக் கோதி உலர்த்துதல்", "frequency": 0, "length": 8, "pos": ["verb"], "tier1Attestations": 1, "word": "கூந்தலாற்றுதல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 259, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூந்தலில்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 627, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூந்தலை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 57, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூந்தலையும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 5, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூந்தலோ", "wordClass": "headword"}
+{"attestations": 9, "definitionTa": "உடம்பில் குறிப்பாக தலையில் கருமை நிறத்தில் வளரும் தொடு உணர்வு இல்லாத மெல்லிய பகுதி.", "frequency": 1648, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கார்குழல்", "கேசம்", "சிகை", "மயிர்", "முடி"], "tier1Attestations": 5, "translationEn": "brilliantine", "word": "கூந்தல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 4, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூந்தல்களில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூந்தல்களை", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "மகளிரைத் தழுவுதல்", "frequency": 0, "length": 9, "pos": ["verb"], "tier1Attestations": 1, "word": "கூந்தல்கொள்ளுதல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "மகளிரைத் தழுவுதல்", "frequency": 0, "length": 8, "pos": ["verb"], "tier1Attestations": 1, "word": "கூந்தல்தொடுதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பூவகை", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["பூவகை"], "tier1Attestations": 2, "word": "கூந்தளம்பாவை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கடப்பாரை", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["கடப்பாரை"], "tier1Attestations": 2, "word": "கூந்தாலம்", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "கடப்பாரை", "frequency": 2, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கடப்பாரை"], "tier1Attestations": 2, "word": "கூந்தாலி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உளுந்து வகை", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "a kind of black gram", "word": "கூந்தியாவுழுந்து", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கூந்தல்", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["கூந்தல்"], "tier1Attestations": 2, "word": "கூந்து", "wordClass": "headword"}
+{"attestations": 8, "definitionTa": "உடற்கூனல் உள்ளவர்; கோணன்; குடக்கியன்; நெளியலன்", "frequency": 22, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["முதுகு வளைந்தவன்", "வளைந்தவன்"], "tier1Attestations": 4, "translationEn": "humpback", "word": "கூனன்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 3, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "sound", "word": "கூனற", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உடல் வளைந்த முதியோன்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "கூனற்கிழவன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "புளியங்காய்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["புளியங்காய்"], "tier1Attestations": 2, "word": "கூனலங்காய்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 4, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "crookbacked", "word": "கூனலான", "wordClass": "headword"}
+{"attestations": 9, "categories": ["hospital"], "definitionTa": "வளைவு கோணல்", "frequency": 64, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கூனன்", "கூனல்முதுகு", "கூன்"], "tier1Attestations": 5, "translationEn": "crookback", "word": "கூனல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "slouch", "word": "கூனல்தோற்றம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "முதுகுத்தண்டின் முன்னோக்கிய வளைவு.", "frequency": 1, "length": 3, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "crookback", "word": "கூனான", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூனி", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["கூனி"], "tier1Attestations": 2, "word": "கூனாள்", "wordClass": "headword"}
+{"attestations": 8, "definitionTa": "உடற்கூனல் உள்ள பெண்", "frequency": 231, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 4, "translationEn": "humpback", "word": "கூனி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூனிரும்பு அறுவாள்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "கூனிக்குயம்", "wordClass": "headword"}
+{"attestations": 3, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "கூனிக்குய்யம்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 6, "pos": ["noun", "verb"], "tier1Attestations": 1, "translationEn": "couch", "word": "கூனிக்குறுகு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "slouch", "word": "கூனிநட", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "மூப்பு முதலியவற்றால் உடல் வளைதல்", "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "word": "கூனிப்போதல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 11, "length": 3, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "bow-backed", "word": "கூனிய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 15, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூனியின்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அறுவாள்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["அறுவாள்"], "tier1Attestations": 2, "word": "கூனிரும்பு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 6, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "shrimp", "word": "கூனிறால்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 4, "length": 2, "pos": ["verb"], "spokenRatio": 0.0, "synonymsTa": ["குனி", "கோணு"], "tier1Attestations": 1, "word": "கூனு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "humped", "word": "கூனுடைய", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "humpback", "word": "கூனுடையவர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வளைதல்", "frequency": 0, "length": 4, "pos": ["verb"], "synonymsTa": ["வளைதல்"], "tier1Attestations": 1, "word": "கூனுதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மிடா", "frequency": 6, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["சால்", "செம்பு", "சொம்பு", "மிடா"], "tier1Attestations": 2, "translationEn": "large earthen boiler", "word": "கூனை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "உலகம் கூனைப்பூ", "frequency": 9, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "word": "கூனைப்பூ", "wordClass": "headword"}
+{"attestations": 8, "definitionTa": "உடற்கூனல்", "frequency": 371, "length": 2, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["ஆந்தை", "உடற்கூனல்", "குனி", "கூனன்", "கூனல்", "நத்தை", "வளைவு"], "tier1Attestations": 4, "translationEn": "crook", "word": "கூன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஐவகை மெய்க்குற்றங்களுள் ஒன்றாகிய உடல் கூனிக்கிடக்கை", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "கூன்கிடை", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "கூனலானமுதுகு", "frequency": 6, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஆமையோடு", "கூனலானமுதுகு"], "tier1Attestations": 3, "translationEn": "crookback", "word": "கூன்முதுகு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "crookbacked", "word": "கூன்முதுகுள்ள", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "razor", "word": "கூன்மென்கத்தி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இடுப்பிலுள்ள குழிவிடம்", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "கூபகம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கிணறு", "frequency": 30, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கிணறு"], "tier1Attestations": 2, "word": "கூபம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தேரின் பகுதிகளை இணைக்கும் கால்", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "கூபரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தேர்", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["தேர்"], "tier1Attestations": 2, "word": "கூபரி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கடல்", "frequency": 1, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கடல்"], "tier1Attestations": 2, "word": "கூபாரம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "குறிப்பிட்ட பொருளை ஒவ்வொரு அளவில் பெறுவதற்காக அச்சடிக்கப்பட்ட காகிதத்துண்டு", "frequency": 224, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["சீட்டு"], "tier1Attestations": 1, "translationEn": "coupon", "word": "கூப்பன்", "wordClass": "headword"}
+{"attestations": 7, "definitionTa": "கூப்பிடுகை", "frequency": 404, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கூச்சல்", "கூப்பிடு", "கூப்பிடுகை", "கூப்பீடு", "பேரொலி"], "tier1Attestations": 5, "translationEn": "call", "word": "கூப்பாடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["interjection", "noun"], "tier1Attestations": 1, "translationEn": "boo", "word": "கூப்பாடுபோடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 5, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூப்பாட்டுடன்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒர் இடத்துக்கு கூட்டிக்கொண்டு வராதநிலை.", "frequency": 8, "length": 5, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["அழைக்காத"], "tier1Attestations": 1, "translationEn": "uninvited", "word": "கூப்பிடாத", "wordClass": "headword"}
+{"attestations": 8, "definitionTa": "1.தூரத்தில் இருப்பவரை, அருகில் வருமாறு கூறவும். (அல்லது) தொடர்பு கொள்ளுதல்", "frequency": 490, "length": 4, "pos": ["noun", "verb"], "spokenRatio": 0.004082, "synonymsTa": ["அழை", "கூவு", "வரவழை"], "tier1Attestations": 4, "translationEn": "call", "word": "கூப்பிடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "cry", "word": "கூப்பிடுகை", "wordClass": "headword"}
+{"attestations": 7, "definitionTa": "அழைத்தல்", "frequency": 3, "length": 6, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["அழைத்தல்", "அழைப்பு", "வரவழைத்தல்"], "tier1Attestations": 3, "translationEn": "bidding", "word": "கூப்பிடுதல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கூப்பிட்ட சத்தம் கேட்குமெல்லை குரோசம்", "frequency": 1, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூப்பிடுதூரம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "caller", "word": "கூப்பிடுபவர்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "பேச்சுவழக்கில் அதிகமாக பயன்படுத்துவது", "frequency": 278, "length": 5, "pos": ["adjective"], "spokenRatio": 0.003597, "synonymsTa": ["அழைக்கக்கூடிய", "அழைக்கும்"], "tier1Attestations": 1, "translationEn": "called", "word": "கூப்பிடும்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூப்பிடுதல்", "frequency": 1, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கூப்பிடுதல்", "முறையீடு"], "tier1Attestations": 2, "word": "கூப்பீடு", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "குவியச்செய்கை", "frequency": 3, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["குவியச்செய்கை"], "tier1Attestations": 3, "translationEn": "stack", "word": "கூப்பு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கைகுவித்தல்", "frequency": 3, "length": 5, "pos": ["verb"], "spokenRatio": 0.0, "synonymsTa": ["குவித்தல்", "கைகுவித்தல்", "சுருக்குதல்"], "tier1Attestations": 1, "word": "கூப்புதல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "முட்டாள், கேனை, எதற்கும் உதவாதது", "frequency": 40, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அசடன்", "அசடு", "அம்மாஞ்சி", "அறிவிலான்", "அறிவிலி", "அறிவில்லான்", "அறிவீனன்", "ஈவிழுங்கி", "எட்டன்", "கழுதை", "காமாட்டி", "குப்பான்", "கேனன்", "கேனப்பயல்", "கேனவாயன்", "கேனை", "கேனையன்", "சடன்", "சாம்பிராணி", "தட்டை", "பன்னாடை", "புங்கன்", "புத்திகெட்டவன்", "பேதை", "பேவகூப்", "போளி", "மக்காயன்", "மக்கு", "மசை", "மடையன்", "மட்டன்", "மட்டி", "மட்டை", "மண்டு", "மண்டூகம்", "மண்ணன்", "மண்ணை", "மதிகேடன்", "மரமண்டை", "மழுங்கல்", "மழுமட்டை", "மாடன்", "மானன்", "முகோன்", "முட்டாள்", "முட்டுற்றவன்", "முண்டம்", "முத்தன்", "முரடன்", "முருடன்", "முழுமகன்", "மூடன்", "மூடாத்துமா", "மூடு", "மூர்க்கன்", "மூளையில்லாதவன்", "மோடன்", "வடுகன்", "வெறுங்கோது", "வெள்ளைமகன்"], "tier1Attestations": 3, "translationEn": "fool", "word": "கூமுட்டை", "wordClass": "headword"}
+{"attestations": 3, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "rose finch", "word": "கூம்பலகுச்சில்லை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "குமிழமரம்", "frequency": 9, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["குமிழமரம்", "குமுதை", "பெருங்குமிழ்"], "tier1Attestations": 3, "translationEn": "tusk", "word": "கூம்பல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 14, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "involute", "word": "கூம்பி", "wordClass": "headword"}
+{"attestations": 2, "frequency": 31, "length": 4, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "narrow", "word": "கூம்பிய", "wordClass": "headword"}
+{"attestations": 9, "categories": ["symbols-shapes"], "definitionTa": "ஒரு முனை வட்டமாகவும் மறுமுனை கூராகவும் உள்ள பம்பரம் போன்ற வடிவம்", "frequency": 580, "length": 3, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["அரும்பு", "ஒடுங்கு", "குவி", "கூம்பு வடிவம்", "கொக்குள்", "சிற்றரும்பு", "தேர்மொட்டு", "பாய்மரம்", "பூமொட்டு", "முகிழ்", "மொக்கு", "மொட்டு"], "tier1Attestations": 5, "translationEn": "angle", "word": "கூம்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "snout", "word": "கூம்புகூறு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "(பெ) - - கூவைக்கிழங்கு", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "கூம்புக்கிழங்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "conic", "word": "கூம்புக்குரிய", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "குவிதல்", "frequency": 1, "length": 5, "pos": ["verb"], "spokenRatio": 0.0, "synonymsTa": ["ஒடுங்குதல்", "குவிதல்"], "tier1Attestations": 1, "word": "கூம்புதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "<!---# குறியீட்டிற்கு அடுத்து, தமிழில் விளக்கம் எழுதி", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "கூம்புத்தாவர", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "tope", "word": "கூம்புமாடம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "pyramid", "word": "கூம்புவடிவப்பொருள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 7, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "steepled", "word": "கூம்புவடிவான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "shut", "word": "கூம்புவி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தளையவிழ்தல்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["தளையவிழ்தல்"], "tier1Attestations": 2, "word": "கூம்புவிடல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "step-ladder", "word": "கூம்பேணி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கோடகசாலைப்பூண்டு", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["கோடகசாலைப்பூண்டு", "பாகல்"], "tier1Attestations": 2, "word": "கூரணம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "நெல் வகை", "frequency": 5, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["நாய்"], "tier1Attestations": 2, "translationEn": "a bearded kind of paddy", "word": "கூரன்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "பாகற்கொடி", "frequency": 43, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கோடகசாலைப்பூண்டு", "பாகற்கொடி", "யாழ்"], "tier1Attestations": 2, "word": "கூரம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "blear-eyed", "word": "கூரறிவற்ற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "unwisdom", "word": "கூரறிவின்மை", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "நுண்ணறிவு", "frequency": 6, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["நுண்ணறிவு", "நுண்புலன்"], "tier1Attestations": 3, "translationEn": "brilliancy", "word": "கூரறிவு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 5, "length": 6, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "cute", "word": "கூரறிவுடைய", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இரம்பவகை", "frequency": 0, "length": 8, "pos": ["noun"], "synonymsTa": ["இரம்பவகை"], "tier1Attestations": 2, "word": "கூரறுக்கும்வாள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 4, "length": 4, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "blunt a.", "word": "கூரற்ற", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கூந்தல்", "frequency": 21, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["இறகு", "கூந்தல்"], "tier1Attestations": 3, "word": "கூரல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "humdrum", "word": "கூரவற்ற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "eager", "word": "கூரவாவுடைய", "wordClass": "headword"}
+{"attestations": 2, "frequency": 36, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "sharp", "word": "கூராக", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 3, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "sharpen", "word": "கூராகு", "wordClass": "headword"}
+{"attestations": 4, "frequency": 0, "length": 4, "pos": ["adjective", "noun"], "tier1Attestations": 1, "translationEn": "acuminate", "word": "கூராக்கு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 1, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "whet", "word": "கூராக்குதல்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "கூர்மையுடைய, கூரிய", "frequency": 229, "length": 3, "pos": ["adjective"], "spokenRatio": 0.004367, "synonymsTa": ["கூரிய", "கூர்மையுடைய"], "tier1Attestations": 1, "translationEn": "sharp", "word": "கூரான", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மண்கொத்தும் மரக்கருவி", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "கூராம்பிளாச்சு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 25, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "examination", "word": "கூராய்வு", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "கூர்மையுடைய, கூரான", "frequency": 1156, "length": 3, "pos": ["adjective", "noun"], "spokenRatio": 0.0, "synonymsTa": ["கூரான", "கூர்மையுடைய"], "tier1Attestations": 3, "translationEn": "aculeate, aculeated", "word": "கூரிய", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "புத்திக்கூர்மையுள்ளவன்", "frequency": 2, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["புதன்", "புத்திக்கூர்மையுள்ளவன்"], "tier1Attestations": 2, "word": "கூரியன்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "fang", "word": "கூரியபல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூர்மை", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["கூர்மை"], "tier1Attestations": 2, "translationEn": "sharpness", "word": "கூரியம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "midnight", "word": "கூரிருட்டு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அமரியுப்பு", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["அமரியுப்பு"], "tier1Attestations": 2, "word": "கூரிலவணம்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "paw", "word": "கூருகிர்க்காலடி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 6, "pos": ["verb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "sensitize", "word": "கூருணர்ச்சி", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 10, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "quickness", "word": "கூருணர்ச்சித்திறம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 13, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "sensitizer", "word": "கூருணர்ச்சிபடுத்துபவர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 11, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "sensitize", "word": "கூருணர்ச்சிப்படுத்து", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 9, "pos": ["adjective", "noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "feeling", "word": "கூருணர்ச்சியுடைய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "blind", "word": "கூருணர்வற்ற", "wordClass": "headword"}
+{"attestations": 2, "frequency": 9, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "sense", "word": "கூருணர்வு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 7, "pos": ["adverb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "subtly", "word": "கூருணர்வுடன்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 7, "pos": ["adjective", "noun"], "tier1Attestations": 1, "translationEn": "delicate", "word": "கூருணர்வுடைய", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "sensitiveness", "word": "கூருணர்வுத்திறம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "edginess", "word": "கூருணர்வுநிலை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உமிமூக்கு", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["உமிமூக்கு"], "tier1Attestations": 2, "word": "கூருமி", "wordClass": "headword"}
+{"attestations": 9, "definitionTa": "வீடு, கட்டிடம் முதலியவற்றின் மோடு", "frequency": 1513, "length": 2, "pos": ["noun"], "spokenRatio": 0.005288, "synonymsTa": ["இறப்பு", "உச்சிப்பகுதி", "குடில்", "சிற்றில்", "மேற்கூரை"], "tier1Attestations": 5, "translationEn": "roof", "word": "கூரை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 62, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூரைகளின்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 55, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூரைகளை", "wordClass": "headword"}
+{"attestations": 3, "frequency": 314, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "Roofings", "word": "கூரைகள்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூரைவீடு", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["கூரைவீடு"], "tier1Attestations": 2, "word": "கூரைக்கட்டு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மணப் பந்தலில் வைக்கும் தண்ணீர்ச்சால்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "water pot placed on a marriage dais", "word": "கூரைச்சால்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஆண்பிள்ளைப் பிறப்புக்கு மகிழ்ச்சிக்குறியாகக் கூரையைத் தட்டுதல்", "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "word": "கூரைதட்டுதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "thatch", "word": "கூரைப்புல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 24, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "houseleek", "word": "கூரைமீது", "wordClass": "headword"}
+{"attestations": 1, "frequency": 21, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூரைமேல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 4, "length": 5, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "hypaethral", "word": "கூரையற்ற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "roof", "word": "கூரையிடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 13, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "roof", "word": "கூரையிட்டு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 214, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "roof-tree", "word": "கூரையின்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒன்றில் கூரையிருக்கக்கூடிய", "frequency": 0, "length": 10, "pos": ["adjective"], "synonymsTa": ["கூரையிருக்கும்", "கூரையுள்ள"], "tier1Attestations": 1, "translationEn": "curtained", "word": "கூரையிருக்கக்கூடிய", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒன்றில் கூரையிருக்கக்கூடிய", "frequency": 0, "length": 7, "pos": ["adjective"], "synonymsTa": ["கூரையிருக்கக்கூடிய", "கூரையுள்ள"], "tier1Attestations": 1, "translationEn": "curtained", "word": "கூரையிருக்கும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 48, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "gaselier", "word": "கூரையிலிருந்து", "wordClass": "headword"}
+{"attestations": 2, "frequency": 375, "length": 4, "spokenRatio": 0.005333, "tier1Attestations": 1, "word": "கூரையில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "tier1Attestations": 1, "translationEn": "Roofings", "word": "கூரையீடுகள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 74, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூரையும்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒன்றில் கூரையிருக்கக்கூடிய", "frequency": 4, "length": 5, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["கூரையிருக்கக்கூடிய", "கூரையிருக்கும்"], "tier1Attestations": 1, "translationEn": "curtained", "word": "கூரையுள்ள", "wordClass": "headword"}
+{"attestations": 1, "frequency": 10, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூரையே", "wordClass": "headword"}
+{"attestations": 2, "frequency": 182, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூரையை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 4, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூரையோ", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "drip", "word": "கூரைவிளிம்பு", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "ஓலையாலேனும் புல்லாலேனும் வேய்ந்த வீடு", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 3, "translationEn": "thatched building", "word": "கூரைவீடு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "thatch", "word": "கூரைவேய்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "reeder", "word": "கூரைவேய்பவர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "straw", "word": "கூரைவேய்புல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "brilliancy", "word": "கூரொளி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "flare", "word": "கூரொளிவீசு", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "மிகுதி", "frequency": 525, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கதிர்க்கூர்", "காரம்", "கூர்நுனி", "கூர்மை", "சிறந்த", "மிகுதி", "மிக்க"], "tier1Attestations": 3, "translationEn": "beard", "word": "கூர்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "நுனி மழுங்குதல்", "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "word": "கூர்கெடுதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வெண்கடுகு", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["வெண்கடுகு"], "tier1Attestations": 2, "word": "கூர்கேவு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒருவகை உயர்ந்த நெல்", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "கூர்க்கறுப்பன்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "பொறியியல்’’ கூர்க்குந்தம்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "word": "கூர்க்குந்தம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஊடுருவிப் பார்க்குங் கண்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "கூர்ங்கண்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "prod", "word": "கூர்ங்கருவி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "pile", "word": "கூர்ங்கழி", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "nose", "word": "கூர்ங்குவடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "cacuminous", "word": "கூர்ங்குவடுள்ள", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "oblique", "word": "கூர்ங்கோணமான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "diamond-point", "word": "கூர்ங்கோணமுனை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "tier1Attestations": 1, "translationEn": "acute angle.", "word": "கூர்ங்கோணம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "pike", "word": "கூர்ங்கோல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "கூராக்குதல்", "frequency": 0, "length": 6, "pos": ["verb"], "synonymsTa": ["கூராக்குதல்", "சீவுதல்"], "tier1Attestations": 1, "word": "கூர்சீவுதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "squeamish", "word": "கூர்சுவையுடைய", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நெய்வோன்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["நெய்வோன்"], "tier1Attestations": 2, "word": "கூர்ச்சகன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கட்டடத்திற்கு உதவுஞ் சிறுகால்", "frequency": 11, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["தருப்பை", "தருப்பைக்கொத்து"], "tier1Attestations": 2, "word": "கூர்ச்சம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒரு பண்வகை", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "கூர்ச்சரி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூர்மை", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["கூர்மை"], "tier1Attestations": 2, "word": "கூர்ச்சி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "எழுதுகோல்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["எழுதுகோல்"], "tier1Attestations": 2, "word": "கூர்ச்சிகை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூறுசீட்டு", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["கூறுசீட்டு", "பாகபத்திரம்"], "tier1Attestations": 2, "word": "கூர்ச்சீட்டு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கூர்மை", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["கூர்மை"], "tier1Attestations": 3, "translationEn": "stake", "word": "கூர்ச்சு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தென்னைமரம்", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["தென்னைமரம்"], "tier1Attestations": 2, "word": "கூர்ச்சேகரம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "needle", "word": "கூர்ஞ்சிமையம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "sharp", "word": "கூர்ஞ்சுவையுடைய", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "மிகுதல்", "frequency": 13, "length": 4, "pos": ["verb"], "spokenRatio": 0.0, "synonymsTa": ["மிகுதல்", "வனைதல்", "விரும்புதல்"], "tier1Attestations": 1, "word": "கூர்தல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "மிகுதல்", "frequency": 0, "length": 5, "pos": ["verb"], "synonymsTa": ["கூர்மையாதல்", "மிகுதல்"], "tier1Attestations": 1, "word": "கூர்த்தல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மட்டிப் படைக்கலம்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["ஆயுதப்பொது"], "tier1Attestations": 2, "word": "கூர்த்திகை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "mercurial", "word": "கூர்நுட்படைய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "barb", "word": "கூர்நுதியமைவி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "pick", "word": "கூர்நுனிக்கருவி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 141, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "obnservation", "word": "கூர்நோக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["adverb"], "tier1Attestations": 1, "translationEn": "fixedly", "word": "கூர்நோக்குடன்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "prick", "word": "கூர்நோவுண்டாக்கு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மருத யாழ்த்திறவகை", "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 2, "word": "கூர்ந்தபஞ்சமம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 5, "pos": ["verb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "scrutinize", "word": "கூர்ந்தாய்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தகவலைக் கண்டறிய மிகவும் கவனமாக ஆராய்வது", "frequency": 0, "length": 6, "pos": ["noun", "verb"], "tier1Attestations": 2, "translationEn": "examine", "word": "கூர்ந்தாராய்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கவனமாக நோக்கும் செயல்", "frequency": 0, "length": 10, "pos": ["noun"], "synonymsTa": ["உற்றுபார்த்தல்", "கூர்ந்துநோக்குதல்"], "tier1Attestations": 1, "translationEn": "notice", "word": "கூர்ந்துகவனித்தல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "mark", "word": "கூர்ந்துகாண்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "eagle-eyed", "word": "கூர்ந்துணர்கிற", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கவனமாக நோக்கும் செயல்", "frequency": 0, "length": 9, "pos": ["noun"], "synonymsTa": ["உற்றுபார்த்தல்", "கூர்ந்துகவனித்தல்"], "tier1Attestations": 1, "translationEn": "notice", "word": "கூர்ந்துநோக்குதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun", "verb"], "tier1Attestations": 1, "translationEn": "heed", "word": "கூர்ந்துபார்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "உள்ளது சிறத்தல்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["உறைப்பு", "கூர்மை", "மிகுதி"], "tier1Attestations": 1, "word": "கூர்ப்பது", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "புருவமத்தி", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["புருவமத்தி"], "tier1Attestations": 2, "word": "கூர்ப்பம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "முழங்கை", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["முழங்கை"], "tier1Attestations": 2, "word": "கூர்ப்பரம்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "தீட்டிக் கூர்மையாக்குதல்", "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "word": "கூர்ப்பிடுதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உள்ளது சிறத்தல்", "frequency": 97, "length": 4, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "addition", "word": "கூர்ப்பு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 141, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூர்ம", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "(நாட்டியம்) பெருவிரலை நீட்டி மற்ற விரல்களை வளைத்துக் கீழ்நோக்கிப் பிடிக்கும் அபிநயக் கை", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "கூர்மக்கை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 16, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "astuteness", "word": "கூர்மதி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "unintelligent", "word": "கூர்மதியற்ற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "astucity", "word": "கூர்மதியுடைமை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 7, "pos": ["adjective", "noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "astute", "word": "கூர்மதியுடைய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 7, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "witted", "word": "கூர்மதியுள்ள", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 8, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "shrewd", "word": "கூர்மதிவாய்ந்த", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஆனி மாதத்துத் துவாதசியில் அனுஷ்டிக்கும் ஒரு விரதம்", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "கூர்மத்துவாதசி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தசவாயுக்களுள் இமைத்தல், விழித்தல்களைச் செய்யும் வாயு", "frequency": 17, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூர்மன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பதினெண்புராணங்களுள் திருமால் கூர்மாவதாரம் எடுத்தபொழுது உபதேசித்த புராணம்", "frequency": 8, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "in His incarnation as tortoise", "word": "கூர்மபுராணம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒருவன் பிறக்குங் காலத்து அவனுக்கு உயர்ந்த நிலையைக் 'கொடுக்குமாறு கிரகங்கள் சேர்ந்த ஒரு யோகம்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "கூர்மயோகம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஆதிகூர்மம்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["அகூபாரன்", "ஆதிகூர்மம்"], "tier1Attestations": 2, "word": "கூர்மராசன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓர் உருத்திரர்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "Rudra or manifestation of Siva", "word": "கூர்மாண்டர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கால் மடித்து உட்காருகை", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "squatting on the floor with the legs crossed", "word": "கூர்மாதனம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "திருமாலின் பத்து அவதாரங்களில் இரண்டாவதான ஆமை அவதாரம்; கூர்மம்", "frequency": 21, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "the second incarnation of Vishnu", "word": "கூர்மாவதாரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வீணை வகை", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "a kind of lute", "word": "கூர்மிகை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "snouted", "word": "கூர்முகறையுடைய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "snout", "word": "கூர்முகவாய்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "கூர்மையான நுனி", "frequency": 53, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "needle-point", "word": "கூர்முனை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "sharpen", "word": "கூர்முனைப்படுத்து", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "stick", "word": "கூர்முனைப்பாய்ச்சு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "sharp", "word": "கூர்முனைப்புடைய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 7, "pos": ["adjective", "noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "sharp", "word": "கூர்முனையுடைய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "spire", "word": "கூர்முளை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கூரிய முள்", "frequency": 2, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "pricker", "word": "கூர்முள்", "wordClass": "headword"}
+{"attestations": 9, "definitionTa": "கூர்மை", "frequency": 513, "length": 3, "pos": ["noun"], "spokenRatio": 0.001949, "synonymsTa": ["கல்லுப்பு", "சிறப்பு", "நுண்மை", "வெடியுப்பு"], "tier1Attestations": 5, "translationEn": "Sharp", "word": "கூர்மை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சவர்க்காரம்", "frequency": 0, "length": 8, "pos": ["noun"], "synonymsTa": ["சவர்க்காரம்"], "tier1Attestations": 2, "word": "கூர்மைக்கரிவாள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 8, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூர்மைக்கு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஆயுதக் கூர்மை சோதித்தல்", "frequency": 0, "length": 9, "pos": ["verb"], "tier1Attestations": 1, "word": "கூர்மைப்பார்த்தல்", "wordClass": "headword"}
+{"attestations": 4, "frequency": 3, "length": 6, "pos": ["noun", "verb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "point", "word": "கூர்மையாக்கு", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "எதில் கூர்மை உள்ளதோ", "frequency": 1225, "length": 5, "pos": ["adjective", "noun"], "spokenRatio": 0.002449, "synonymsTa": ["கூர்மையுள்ள"], "tier1Attestations": 3, "translationEn": "acute", "word": "கூர்மையான", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மந்தன்", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["மந்தன்"], "tier1Attestations": 2, "word": "கூர்மையில்லோன்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒன்றில் கூர்மை இருப்பது", "frequency": 26, "length": 6, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["கூர்மையான"], "tier1Attestations": 1, "translationEn": "sharp", "word": "கூர்மையுள்ள", "wordClass": "headword"}
+{"attestations": 1, "frequency": 8, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூர்மையே", "wordClass": "headword"}
+{"attestations": 2, "frequency": 64, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூர்மையை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூர்மையைத்தான்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "ridge", "word": "கூர்வரை", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "இது முப்பட்டையரம் போன்றதே. ஆனால் வடிவத்தில் முப்பட்டையரம் போல் அல்லாமல் இதன் விளிம்புகள் இணைகோடுகளில் அமைந்திருக்கும். அரம்பத்தின் பற்களைக் கூர்மை செய்ய இதைப் பயன்படுத்துவதால் கூர்வாங்கரம் என்று பெயர்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "word": "கூர்வாங்கரம்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "கருவியைக் கூர்மையாக்குதல்", "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "word": "கூர்வாங்குதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அரிவாள்மணை", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["அரிவாள்மணை"], "tier1Attestations": 2, "word": "கூர்வாயிரும்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "tier1Attestations": 1, "translationEn": "obtruse,", "word": "கூர்விளிம்பற்ற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "tazor-edge", "word": "கூர்விளிம்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["adjective", "noun"], "tier1Attestations": 1, "translationEn": "edgy", "word": "கூர்விளிம்புடைய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "tier1Attestations": 1, "translationEn": "edgeways, edgewise", "word": "கூர்விளிம்புமுன்னாக", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "sharp", "word": "கூர்விழிப்புடைய", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கப்பலின் குறுக்குக்கட்டை", "frequency": 3, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூர்வை", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "சொல்லக்கூடிய, கூறக்கூடிய, பேசக்கூடிய", "frequency": 64, "length": 6, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["சொல்லக்கூடிய", "பேசக்கூடிய"], "tier1Attestations": 2, "translationEn": "tellable", "word": "கூறக்கூடிய", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "பகுதியாகப் பிரித்தல்", "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "word": "கூறடைத்தல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 46, "length": 6, "pos": ["adjective"], "spokenRatio": 0.021739, "tier1Attestations": 1, "translationEn": "tellable", "word": "கூறத்தக்க", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "venture", "word": "கூறத்துணி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சொல்லப்படாத", "frequency": 41, "length": 6, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "unexpressed", "word": "கூறப்படாத", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "பேசுவது அல்லது பேசப்பட்ட", "frequency": 1436, "length": 6, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["சொல்லப்பட்ட"], "tier1Attestations": 1, "translationEn": "pronounced", "word": "கூறப்பட்ட", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சொல்ல இயலாத", "frequency": 62, "length": 6, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "unutterable", "word": "கூறமுடியாத", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "composition", "word": "கூறமைதி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "rig", "word": "கூறமைவு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 403, "length": 3, "spokenRatio": 0.004963, "tier1Attestations": 1, "translationEn": "reiteration, n.,", "word": "கூறல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "severable", "word": "கூறாக்கத்தக்க", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "segmentary", "word": "கூறாக்கமுடைய", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "தன்னுடைய பாகங்களை பிரிக்கும் செயல்முறை", "frequency": 7, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "segmentation", "word": "கூறாக்கம்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "கூறு + ஆக்கு, கூறுகளாகப் பிரி", "frequency": 0, "length": 4, "pos": ["verb"], "tier1Attestations": 1, "word": "கூறாக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "dissection", "word": "கூறாக்குதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "dissemble", "word": "கூறாதடக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "forbear", "word": "கூறாதிரு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "drop", "word": "கூறாதுவிடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "belong", "word": "கூறாயிரு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "decompose", "word": "கூறாய்வுசெய்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பங்கிடுதல்", "frequency": 0, "length": 5, "pos": ["verb"], "synonymsTa": ["துண்டாக்குதல்", "பங்கிடுதல்"], "tier1Attestations": 1, "word": "கூறிடுதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "synthesis", "word": "கூறிணைவாசகம்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "எது சொல்லப்பட்டதோ.", "frequency": 11219, "length": 3, "pos": ["adjective"], "spokenRatio": 0.000267, "synonymsTa": ["சொன்ன", "சொல்லப்பட்ட"], "tier1Attestations": 1, "translationEn": "aforesaid(a)", "word": "கூறிய", "wordClass": "headword"}
+{"attestations": 2, "frequency": 7583, "length": 4, "spokenRatio": 0.000923, "tier1Attestations": 1, "translationEn": "reiteration, n.,", "word": "கூறியது", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "echo", "word": "கூறியதுகூறல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 2, "length": 5, "pos": ["adverb", "noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "accordingly", "word": "கூறியாங்கு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அறிவில்லாதவன், பேதை", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["அறிவில்லாதவன்", "பேதை"], "tier1Attestations": 2, "translationEn": "fool", "word": "கூறிலான்", "wordClass": "headword"}
+{"attestations": 9, "definitionTa": "புத்தி", "frequency": 1736, "length": 2, "pos": ["noun", "verb"], "spokenRatio": 0.00288, "synonymsTa": ["அசை", "அச்சு", "அடையாளம்", "அதிர்", "அம்சம்", "அறிகுறி", "அறை", "அலப்பு", "அளி", "அழை", "ஆடு", "இயம்பு", "இலச்சினை", "உரை", "உரையாடு", "என் (eṉ)", "ஏவு", "ஒலி", "ஓது", "கதி", "கதை", "கரை", "கழறு", "குயில்", "குறி", "கோள்", "செப்பு", "சொல்", "சொல்லாடு", "சொல்லு", "தன்மை", "நவில்", "நாவசை", "நுதல்", "நொடி", "பகுதி", "பங்கு", "பன்னு", "பறை", "பிரிவு", "புத்தி", "பேசு", "மொழி", "லச்சினை", "விளம்பு"], "tier1Attestations": 5, "translationEn": "arm", "word": "கூறு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "allot", "word": "கூறுகளாக்பபிரி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 6, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "segmental", "word": "கூறுகளாலான", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கூறு என்பதன் பன்மை வடிவம்", "frequency": 58610, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "charmful", "word": "கூறுகள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூறுகிறவனை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["adverb"], "tier1Attestations": 1, "translationEn": "seriatim", "word": "கூறுகூறாக", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun", "verb"], "tier1Attestations": 1, "translationEn": "distribute", "word": "கூறுகூறாக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "segmentary", "word": "கூறுகூறான", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அறிவில்லாதவன், பேதை", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["அறிவில்லாதவன்", "பேதை"], "tier1Attestations": 2, "translationEn": "fool", "word": "கூறுகெட்டவன்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "வாயில் திணித்துக்கொள்ளுதல்", "frequency": 0, "length": 7, "pos": ["verb"], "synonymsTa": ["உரிமையாக்கிக்கொள்ளுதல்"], "tier1Attestations": 1, "word": "கூறுகொள்ளுதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பாகப்பிரிவினை ஆவணம்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "கூறுசீட்டு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "துண்டாக்குதல்", "frequency": 0, "length": 6, "pos": ["verb"], "synonymsTa": ["துண்டாக்குதல்", "பங்கிடுதல்"], "tier1Attestations": 1, "word": "கூறுசெய்தல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மணியக்காரன்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["மணியக்காரன்"], "tier1Attestations": 2, "word": "கூறுசெய்வான்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பாகப்பிரிவினை ஆவணம்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "கூறுச்சீட்டு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 1, "length": 7, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "statable", "word": "கூறுதற்குரிய", "wordClass": "headword"}
+{"attestations": 7, "definitionTa": "சொல்லுதல்", "frequency": 517, "length": 4, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["அறிவித்தல்", "சொல்லுதல்", "தெரிவித்தல்", "விலைகூறுதல்"], "tier1Attestations": 3, "translationEn": "statement", "word": "கூறுதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "tier1Attestations": 1, "translationEn": "eutectic, a.,", "word": "கூறுநிலையமைதியுடைய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "whole", "word": "கூறுபடாத", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "integrity", "word": "கூறுபடாநிலை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "divide", "word": "கூறுபடு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "பிரிவுபடுதல்", "frequency": 0, "length": 6, "pos": ["verb"], "synonymsTa": ["பிரிவுபடுதல்"], "tier1Attestations": 1, "word": "கூறுபடுதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "analysable", "word": "கூறுபடுத்தக்கூடிய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 7, "length": 10, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "unsegmented", "word": "கூறுபடுத்தப்படாத", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 6, "pos": ["noun", "verb"], "tier1Attestations": 1, "translationEn": "anatomise", "word": "கூறுபடுத்து", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "பிரித்தல்", "frequency": 0, "length": 8, "pos": ["noun", "verb"], "synonymsTa": ["பிரித்தல்"], "tier1Attestations": 2, "translationEn": "anatoomy", "word": "கூறுபடுத்துதல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 131, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "teller", "word": "கூறுபவர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வாய்ப்பாட்டு", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["வாய்ப்பாட்டு"], "tier1Attestations": 2, "word": "கூறுபாடல்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "அம்சம், கூறு", "frequency": 25, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அம்சம்", "கூறு", "தன்மை", "பகுதி", "பங்கு", "பாகுபாடு", "பிரிவு"], "tier1Attestations": 3, "translationEn": "analysis", "word": "கூறுபாடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 14, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "segmented", "word": "கூறுபாட்டடையாளங்களையுடைய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "tier1Attestations": 1, "translationEn": "autopsia, autopsy", "word": "கூறுபாட்டாய்வு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "analysis", "word": "கூறுபாட்டாராய்ச்சி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "segmentary", "word": "கூறுபோன்ற", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "கூறு, கூறுவாயாக, கூறுக", "frequency": 0, "length": 4, "pos": ["verb"], "synonymsTa": ["கூறு", "கூறுக", "கூறுவாயாக"], "tier1Attestations": 1, "translationEn": "tell me", "word": "கூறுமதி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "counterchange", "word": "கூறுமாற்று", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கூறும்,காட்டும்,குறிக்கும்", "frequency": 12285, "length": 3, "pos": ["adjective"], "spokenRatio": 0.000326, "synonymsTa": ["காட்டும்", "குறிக்கும்"], "tier1Attestations": 1, "translationEn": "indicative", "word": "கூறும்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "பிறரைக்கொண்டு சொல்லுவித்தல்", "frequency": 0, "length": 8, "pos": ["verb"], "tier1Attestations": 1, "word": "கூறுவிக்குறுதல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 61, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூறுவோரும்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "ஆடை", "frequency": 78, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஆடை"], "tier1Attestations": 3, "translationEn": "finial", "word": "கூறை", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஆடையைப் பறிகொடுத்தல்", "frequency": 0, "length": 8, "pos": ["verb"], "tier1Attestations": 1, "word": "கூறைகோட்படுதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தாலி கட்டும் சமயத்திற்குமுன் மணமகளுக்கு மணமகன் வீட்டார் கொடுக்கும் சேலை", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "கூறைச்சீலை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோணிப்பாய்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["தோணிப்பாய்"], "tier1Attestations": 2, "word": "கூறைப்பாய்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "இந்து சமயத் திருமனகளில் தாலி கட்டிக்கொள்ளும் போது மணப்பெண் அணிந்திருக்கும் புடவை", "frequency": 3, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "an article of trousseau", "word": "கூறைப்புடவை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தாலி கட்டும் சமயத்திற்குமுன் மணமகளுக்கு மணமகன் வீட்டார் கொடுக்கும் சேலை", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "கூறைப்புடைவை", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "நாத்தனார் மணமகளுக்குக் கூறைப்புடைவை உடுத்துகை", "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "word": "கூறையுடுத்தல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "similarity", "word": "கூறொப்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 8, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூற்ற", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "யமன்", "frequency": 12, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["யமன்"], "tier1Attestations": 2, "word": "கூற்றன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தலைமதகு", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["தலைமதகு"], "tier1Attestations": 2, "word": "கூற்றன்வாய்", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "சாவு", "frequency": 133, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["எமன்", "சாவு", "யமன்"], "tier1Attestations": 4, "translationEn": "death", "word": "கூற்றம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "குற்றலரிசி", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["குற்றலரிசி"], "tier1Attestations": 2, "word": "கூற்றரிசி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூற்றாக்கம் - parse fragment என்பதை குறிக்கிறது", "frequency": 1, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூற்றாக்கம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "யமனைக் காலால் உதைத்த சிவன்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "கூற்றுதைத்தான்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "tale", "word": "கூற்றுமுறை", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "எமன், யமன்", "frequency": 50, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["எமன்", "யமன்"], "tier1Attestations": 4, "translationEn": "yama", "word": "கூற்றுவன்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 635, "length": 3, "spokenRatio": 0.00315, "tier1Attestations": 1, "translationEn": "bureaucrat, bureaucratist", "word": "கூற்றை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கரை", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["கரை", "குவியல்"], "tier1Attestations": 2, "word": "கூலகம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பலதானியக்கடை", "frequency": 1, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["பலதானியக்கடை"], "tier1Attestations": 2, "word": "கூலக்கடை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "arista", "word": "கூலக்கதிர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "gallimaufry", "word": "கூலக்கலவை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "granary", "word": "கூலக்களஞ்சியம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "bran", "word": "கூலக்குப்பை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "(இரண்டு கரையும் உராய்ந்து கொண்டு) முழுதும்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "கூலங்கசம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கடல்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["கடல்"], "tier1Attestations": 2, "word": "கூலங்கடம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "corn", "word": "கூலத்திற்கான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "corny", "word": "கூலத்திற்குரிய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "corn", "word": "கூலத்துக்குரிய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "corn", "word": "கூலத்தொகுதி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "எட்டிமரம்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["எட்டிமரம்"], "tier1Attestations": 2, "word": "கூலபிந்து", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "corn-bin", "word": "கூலப்பத்தாயம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "harvest", "word": "கூலப்பயிர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "crib", "word": "கூலப்பெட்டி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "berry", "word": "கூலமணி", "wordClass": "headword"}
+{"attestations": 2, "frequency": 4, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "meal", "word": "கூலமா", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "corn-flour", "word": "கூலமாவு", "wordClass": "headword"}
+{"attestations": 9, "categories": ["food"], "definitionTa": "தானியம்", "frequency": 42, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["காராமணி", "குரங்கு", "குவியல்", "தானியம்", "நீர்க்கரை", "பசு", "பண்ணிகாரம்", "பாகல்", "மரை", "முறை", "வரம்பு"], "tier1Attestations": 5, "translationEn": "cereal", "word": "கூலம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "யாறு", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["யாறு"], "tier1Attestations": 2, "word": "கூலவதி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "crop", "word": "கூலவளைவு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "தானியம் விற்பவன்", "frequency": 20, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூலவாணிகன்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "corn-dealer", "word": "கூலவாணிகர்", "wordClass": "headword"}
+{"attestations": 9, "definitionTa": "ஒருவருக்கு செய்த பணிக்கு/வேலைக்கு தரப்படும் பணம் அல்லது பணி செய்தவர் பெற விரும்பும் பொருள்", "frequency": 4425, "length": 2, "pos": ["noun"], "spokenRatio": 0.000226, "tier1Attestations": 5, "translationEn": "compensation", "word": "கூலி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கூலிக்கு வேலைசெய்பவன்", "frequency": 145, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூலிக்காரன்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "மனமின்றி வேலைசெய்தல்", "frequency": 0, "length": 10, "pos": ["verb"], "tier1Attestations": 1, "word": "கூலிக்குமாரடித்தல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "bravo", "word": "கூலிக்கொலையாளி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "பணத்துக்காக தீய செயல்களைச் செய்யும் கூட்டம்", "frequency": 182, "length": 5, "pos": ["noun"], "spokenRatio": 0.005495, "tier1Attestations": 2, "translationEn": "mercenary", "word": "கூலிப்படை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நாட்கூலி பெற்றுச் செய்யும் வாழ்க்கை", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "கூலிப்பாடு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நாட்கூலி பெற்றுச் செய்யும் வாழ்க்கை", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "கூலிப்பிழைப்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 63, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "work-people", "word": "கூலியாட்கள்", "wordClass": "headword"}
+{"attestations": 8, "definitionTa": "கூலிக்காரன்", "frequency": 14, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கூலிக்காரன்"], "tier1Attestations": 4, "translationEn": "journeyman", "word": "கூலியாள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "garreteer", "word": "கூலியெழுத்தாளர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "rise", "word": "கூலியேற்றம்", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "பயிர்த்தொழில், கட்டடவேலை, சுமைத்தூக்குதல் முதலிய அன்றாட பணம் பெறும் வேலை.", "frequency": 56, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "job", "word": "கூலிவேலை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பயனற்றவன்", "frequency": 1, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["பயனற்றவன்"], "tier1Attestations": 2, "word": "கூளன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பலவகையினர் கலந்த கூட்டுப்படை", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "கூளப்படை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 3, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "lumber", "word": "கூளம", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "ஆண் பேய்", "frequency": 16, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["உறவு", "எருது", "கற்பில்லாதவள்", "குடும்பம்", "குற்றம்", "குள்ளம்", "சாத்தான்", "படைத்தலைவன்", "பெருங்கழுகு"], "tier1Attestations": 4, "translationEn": "Devil", "word": "கூளி", "wordClass": "headword"}
+{"attestations": 7, "definitionTa": "வணங்கி நிற்பவர்", "frequency": 28, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஆறலைக்கள்வர்", "கொள்ளையர்", "படைவீரர்", "வழித்திருடன்", "வழிப்பறிக்கொள்ளையர்", "வேட்டுவர்"], "tier1Attestations": 3, "translationEn": "looting", "word": "கூளியர்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "bull-beggar", "word": "கூளிவகை", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "திரளுதல்", "frequency": 0, "length": 4, "pos": ["verb"], "synonymsTa": ["திரளுதல்"], "tier1Attestations": 1, "word": "கூளுதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "திரளுதல்", "frequency": 0, "length": 2, "pos": ["noun"], "synonymsTa": ["திரளுதல்", "வெள்ளச்சொதி"], "tier1Attestations": 2, "translationEn": "To crowd together", "word": "கூள்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "திரளுதல்", "frequency": 0, "length": 4, "pos": ["verb"], "synonymsTa": ["திரளுதல்"], "tier1Attestations": 1, "word": "கூள்தல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கோழக்கெளுத்தி", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["கோழக்கெளுத்தி"], "tier1Attestations": 2, "word": "கூழக்கெளுத்தி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "முடமான கை", "frequency": 6, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூழங்கை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "mess", "word": "கூழணவு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒருவகைப் பலா", "frequency": 2, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கண்டகிக்கல்"], "tier1Attestations": 2, "word": "கூழன்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒருவகைப் பலாமரம்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "கூழன்பலா", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "எள்ளு", "frequency": 2, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["எள்ளு"], "tier1Attestations": 2, "word": "கூழம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நறுவிலி மரம்", "frequency": 5, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூழா", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "pulp", "word": "கூழாகச்செய்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 3, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "agglutinate", "word": "கூழாகு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 4, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "agglutinate", "word": "கூழாக்கு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "நீர் கலந்து நைந்து  மாவாக்குதல் அல்லது கூழாக்குதல்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["அரைத்தல்", "மசித்தல்", "மாவாக்குதல்"], "tier1Attestations": 1, "translationEn": "friction", "word": "கூழாக்குதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "shingle", "word": "கூழாங்கற்கரை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 107, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "beachy", "word": "கூழாங்கற்கள்", "wordClass": "headword"}
+{"attestations": 7, "definitionTa": "வழுவழுப்பான சிறு கல்", "frequency": 80, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கொழிமாங்கால்", "கோளாங்கல்"], "tier1Attestations": 5, "translationEn": "chesil", "word": "கூழாங்கல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 20, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "கூழாங்கல்லை", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "சோறு குழைதல்", "frequency": 0, "length": 4, "pos": ["verb"], "tier1Attestations": 1, "word": "கூழாதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 3, "pos": ["adjective", "noun"], "tier1Attestations": 1, "translationEn": "colloid", "word": "கூழான", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கண்டகிக்கல்", "frequency": 15, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கண்டகிக்கல்"], "tier1Attestations": 2, "word": "கூழான்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அறிவிலான்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["அறிவிலான்"], "tier1Attestations": 2, "word": "கூழாமட்டி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சருக்கரை கரைந்து கூழ் போலுள்ள நீர்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "கூழாம்பாணி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "(பெ) - = 1) மந்தம், 2) பெண்ணின் தலைமயிர், 3) வால், 4)இறகு. 5) குட்டை", "frequency": 110, "length": 2, "spokenRatio": 0.0, "synonymsTa": ["குட்டையான"], "tier1Attestations": 1, "word": "கூழை", "wordClass": "headword"}
+{"attestations": 3, "categories": ["birds"], "definitionTa": "கால் குட்டையாகவும், பின்புற வால் குட்டையாகவும், பெரிய உடலுடன், அலகில் ஒரு பை போன்ற அமைப்பைக் கொண்ட ஒரு நீர்ப் பறவை இனம்", "frequency": 111, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "ornithol.pelican", "word": "கூழைக்கடா", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நீர்வாழ் பறவையுள் ஒன்று", "frequency": 5, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூழைக்கிடா", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "tier1Attestations": 1, "translationEn": "tit(1),.", "word": "கூழைக்குதிரை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பொய்யான, மனமற்ற கும்பிடு", "frequency": 14, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "false and defective respect", "word": "கூழைக்கும்பிடு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "பிறர் அறியாமற் செய்யும் குறும்புச் செயல்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "கூழைக்குறும்பு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "குறைபட்டகை", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["குறைபட்டகை"], "tier1Attestations": 2, "word": "கூழைக்கை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "போலியாகக் குழைந்து காட்டுகை", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "கூழைத்தனம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அளவடியில் இறுதிச்சீர் ஒழிந்த மூன்று சீர்க்கண்ணும் மோனை முதலாயின வரத் தொடுப்பது", "frequency": 1, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூழைத்தொடை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வால் குட்டையான நரி", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "கூழைநரி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "rear", "word": "கூழைப்படை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தலைக்கும் உடலுக்கும் இடையில் கழுத்தின்றி ஒன்றுபோல் தடித்துள்ள குள்ளவகைப் பாம்பு", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "கூழைப்பாம்பு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வஞ்சகப் பார்வை", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "கூழைப்பார்வை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒரு மாட்டு வகை", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "a bovine having short or no tail", "word": "கூழைமாடு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கூழ்முட்டை", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["கூழ்முட்டை"], "tier1Attestations": 2, "word": "கூழைமுட்டை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கடைச்சீரொழிந்த மற்றெல்லாச் சீர்க்கண்ணும் முரண்வரத் தொடுப்பது", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "கூழைமுரண்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கடமை", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["கடமை"], "tier1Attestations": 2, "word": "கூழைமை", "wordClass": "headword"}
+{"attestations": 4, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "கூழையன்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "truncate", "word": "கூழையாக்கப்பட்ட", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "dwarfed", "word": "கூழையான", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "உணவு, பொதுவாக கேழ்வரகு, கம்பு போன்றவற்றை அரைத்து நீரோடு கொதிக்க வைத்து செய்யப்படும் உணவு", "frequency": 1133, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 4, "translationEn": "berry", "word": "கூழ்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஐயப்படுதல்", "frequency": 0, "length": 5, "pos": ["verb"], "synonymsTa": ["ஐயப்படுதல்"], "tier1Attestations": 1, "word": "கூழ்த்தல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "colloid", "word": "கூழ்நிலைப்பொருள்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "கலக்கமுண்டாதல்", "frequency": 0, "length": 6, "pos": ["verb"], "synonymsTa": ["கலக்கமுண்டாதல்"], "tier1Attestations": 1, "word": "கூழ்படுதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கஞ்சிப்பசை", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["கஞ்சிப்பசை", "மாப்பசை"], "tier1Attestations": 2, "word": "கூழ்ப்பசை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "syrup", "word": "கூழ்ப்பதநீர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஐயம்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["ஐயம்"], "tier1Attestations": 2, "word": "கூழ்ப்பு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கெட்டுப்போன முட்டை", "frequency": 4, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூழ்முட்டை", "wordClass": "headword"}
+{"attestations": 3, "categories": ["trees"], "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "கூழ்முன்னை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "<!---# குறியீட்டிற்கு அடுத்து, தமிழில் விளக்கம் எழுதி", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "கூழ்மைத்தடிப்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "dough", "word": "கூழ்மொத்தை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அரிசிமாக் கூழாற் செய்யப்படும் வற்றல்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "கூழ்வடகம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அரிசிமாக் கூழாற் செய்யப்படும் வற்றல்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "கூழ்வடாம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கேழ்வரகு", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["கேழ்வரகு"], "tier1Attestations": 2, "word": "கூழ்வரகு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "treacle", "word": "கூழ்வெல்லம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "water-diviner", "word": "கூவநுலோர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூவனூலில் வல்லோர்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "கூவநூலோர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கிணறு வெட்டுதற்குரிய இடம் முதலியவற்றை உணர்த்தும் நூல்", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "கூவநூல்", "wordClass": "headword"}
+{"attestations": 4, "frequency": 889, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூவம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "well-hole", "word": "கூவற்குழி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஆழமற்ற கிணறு போன்ற பள்ளம்", "frequency": 137, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "clock", "word": "கூவல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூப்பிடுதூரம்", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["கூப்பிடுதூரம்"], "tier1Attestations": 2, "word": "கூவிடை", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "வினைச்சொல்", "frequency": 0, "length": 3, "synonymsTa": ["வினைச்சொல்"], "tier1Attestations": 1, "translationEn": "negative action", "word": "கூவினை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "உணவு சமைப்போர்", "frequency": 1, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அப்பவாணிகர்"], "tier1Attestations": 2, "word": "கூவியர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "call", "word": "கூவியழை", "wordClass": "headword"}
+{"attestations": 4, "categories": ["flowers"], "definitionTa": "குறிஞ்சிப்பாட்டில் குறிப்பிடப்பட்டுள்ள ஒரு மலைமர வகை / அதன் பூ", "frequency": 7, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூவிரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தேர்", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["தேர்"], "tier1Attestations": 2, "word": "கூவிரி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "நேர்நிரைநிரை குறிக்கும் வாய்பாடு", "frequency": 3, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["வில்வப்பழம்"], "tier1Attestations": 2, "word": "கூவிளங்கனி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நேர்நிரைநேர் குறிக்கும் வாய்ப்பாடு", "frequency": 3, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "கூவிளங்காய்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நேர்நிரைநிரைநிரை குறிக்கும் நாலசைச்சீர் வாய்ப்பாடு", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "கூவிளநறுநிழல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நேர்நிரைநிரைநேர் குறிக்கும் நாலசைச்சீர் வாய்ப்பாடு", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "கூவிளநறும்பூ", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நேர்நிரைநேர்நிரை குறிக்கும் நாலசைச்சீர் வாய்ப்பாடு", "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 2, "word": "கூவிளந்தண்ணிழல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "நேர்நிரைநேர்நேர் குறிக்கும் நாலசைச்சீர் வாய்ப்பாடு", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "கூவிளந்தண்பூ", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "bael", "word": "கூவிளமரம்", "wordClass": "headword"}
+{"attestations": 5, "categories": ["flowers"], "definitionTa": "வில்வம்.; வெளிர்ப்பச்சை நிறத்தில் சிறு இலைகளை உடைய முட்கள் நிறைந்த மரம் / அதன் பூ", "frequency": 20, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அலுவீகம்", "இயல்பூதி", "கருவிளா", "வில்வம்"], "tier1Attestations": 3, "word": "கூவிளம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கூப்பிடும் ஓசை", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["கூப்பிடுதொலைவு"], "tier1Attestations": 3, "translationEn": "cry", "word": "கூவிளி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வில்வமரம்", "frequency": 1, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கோளகபாடாணம்", "வில்வமரம்"], "tier1Attestations": 2, "word": "கூவிளை", "wordClass": "headword"}
+{"attestations": 8, "definitionTa": "குயில் என்னும் பறவை எழுப்பும் ஒலி", "frequency": 22, "length": 2, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["அழை", "கூப்பிடு", "கொக்கரி"], "tier1Attestations": 4, "translationEn": "call", "word": "கூவு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "பறவை கூவுதல்", "frequency": 9, "length": 4, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["அழைத்தல்", "ஓலமிடுதல்", "சத்தமிடுதல்"], "tier1Attestations": 2, "translationEn": "calling", "word": "கூவுதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "coo", "word": "கூவுமொலி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சேவல்", "frequency": 13, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["சேவல்"], "tier1Attestations": 2, "word": "கூவுவான்", "wordClass": "headword"}
+{"attestations": 3, "frequency": 3, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "East Indian arrowroot", "word": "கூவை", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "(பெ) - - கூம்புக்கிழங்கு", "frequency": 1, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "arrow-root", "word": "கூவைக்கிழங்கு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "cassava", "word": "கூவைக்கிழங்குவகை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூகைநீறு கூவைமா", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "கூவைநீறு", "wordClass": "headword"}

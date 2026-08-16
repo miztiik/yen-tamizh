@@ -1,0 +1,4 @@
+{"attestations": 4, "definitionTa": "வட கிழக்கு ஐரோப்பாவிலுள்ள ஒரு தேசம்", "frequency": 156, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "Luxembourg", "word": "லக்சம்பர்க்", "wordClass": "properNoun"}
+{"attestations": 1, "frequency": 510, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "லடாக்", "wordClass": "properNoun"}
+{"attestations": 3, "definitionTa": "ஆண்குறி", "frequency": 7629, "length": 4, "pos": ["noun"], "spokenRatio": 0.000262, "synonymsTa": ["ஆண்குறி"], "tier1Attestations": 2, "word": "லண்டன்", "wordClass": "properNoun"}
+{"attestations": 5, "definitionTa": "லத்தீன் மொழியை பேசக்கூடிய மக்கள்", "frequency": 817, "length": 4, "pos": ["adjective", "noun"], "spokenRatio": 0.004896, "tier1Attestations": 3, "translationEn": "deponent", "word": "லத்தீன்", "wordClass": "properNoun"}

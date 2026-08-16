@@ -37,7 +37,7 @@ from xml.etree import ElementTree
 
 import pytest
 
-from _lexicon_workspace import source_bytes
+from _lexicon_workspace import narrowed, source_bytes
 from yen_tamizh_backend.contracts.lexicon_sources import LexiconSource, LexiconSources
 from yen_tamizh_backend.wordsmith.extract import (
     EXTRACTOR_VERSION,
@@ -122,7 +122,7 @@ def fixture_for(source: LexiconSource, scale: str) -> Path:
     below is parametrized over ACQUIRED.
     """
     if source.id == AUTHORED_SOURCE_ID:
-        return source_bytes(_REPO_ROOT, _FIXTURES, source)
+        return source_bytes(_REPO_ROOT, source)
     return _FIXTURES / f"{source.id}.{scale}{Path(source.path).suffix}"
 
 
@@ -149,10 +149,7 @@ def probe(
             "enabled": True,
         }
     )
-    registry = LexiconSources.model_validate(
-        REGISTRY.model_dump(exclude_none=True)
-        | {"lexiconRoot": "out", "sources": [entry.model_dump(exclude_none=True)]}
-    )
+    registry = narrowed(REGISTRY, [entry], lexiconRoot="out")
     return entry, registry, staged
 
 
@@ -198,7 +195,7 @@ def count_records(source: LexiconSource, path: Path) -> int:
 
 
 def test_the_registry_validates_and_carries_the_row_three_stamp() -> None:
-    assert REGISTRY.version == "2026-08-16T22:00"
+    assert REGISTRY.version == "2026-08-16T23:00"
     assert REGISTRY.changelog[0].version == REGISTRY.version
     assert REGISTRY.lexiconRoot == "datasets/lexicon"
     assert REGISTRY.outputs == ["ndjson"]
@@ -387,10 +384,7 @@ def test_a_disabled_source_is_never_read(tmp_path: Path) -> None:
     off = LexiconSource.model_validate(
         entry.model_dump(exclude_none=True) | {"enabled": False}
     )
-    registry = LexiconSources.model_validate(
-        registry.model_dump(exclude_none=True)
-        | {"sources": [off.model_dump(exclude_none=True)]}
-    )
+    registry = narrowed(registry, [off])
     with pytest.raises(ValueError, match="no enabled source"):
         extract(registry, tmp_path)
 
@@ -575,10 +569,7 @@ def test_the_synonym_key_is_the_headword_AND_the_part_of_speech(
         source.model_dump(exclude_none=True)
         | {"path": "sources/split.json", "sha256": digest, "bytes": size}
     )
-    registry = LexiconSources.model_validate(
-        REGISTRY.model_dump(exclude_none=True)
-        | {"lexiconRoot": "out", "sources": [entry.model_dump(exclude_none=True)]}
-    )
+    registry = narrowed(REGISTRY, [entry], lexiconRoot="out")
     text = extract_source(entry, registry, tmp_path, force=True).out.read_text(
         encoding="utf-8"
     )
@@ -611,10 +602,7 @@ def test_a_group_flush_is_not_credited_to_the_row_that_ended_it(
         source.model_dump(exclude_none=True)
         | {"path": "sources/boundary.json", "sha256": digest, "bytes": size}
     )
-    registry = LexiconSources.model_validate(
-        REGISTRY.model_dump(exclude_none=True)
-        | {"lexiconRoot": "out", "sources": [entry.model_dump(exclude_none=True)]}
-    )
+    registry = narrowed(REGISTRY, [entry], lexiconRoot="out")
     result = extract_source(entry, registry, tmp_path, force=True)
     assert result.tally.rowsIn == 2
     assert result.tally.rowsOut == 1
@@ -668,10 +656,7 @@ def test_an_unregistered_raw_tag_fails_at_extract_not_at_publish(
         source.model_dump(exclude_none=True)
         | {"path": "sources/unknown.jsonl", "sha256": digest, "bytes": size}
     )
-    registry = LexiconSources.model_validate(
-        REGISTRY.model_dump(exclude_none=True)
-        | {"lexiconRoot": "out", "sources": [entry.model_dump(exclude_none=True)]}
-    )
+    registry = narrowed(REGISTRY, [entry], lexiconRoot="out")
     with pytest.raises(ValueError, match="no entry in posAliases"):
         extract_source(entry, registry, tmp_path, force=True)
 
@@ -765,10 +750,7 @@ def test_a_mediawiki_title_is_read_in_one_spelling_whichever_the_export_ships(
         source.model_dump(exclude_none=True)
         | {"path": "sources/titles.txt", "sha256": digest, "bytes": size}
     )
-    registry = LexiconSources.model_validate(
-        REGISTRY.model_dump(exclude_none=True)
-        | {"lexiconRoot": "out", "sources": [entry.model_dump(exclude_none=True)]}
-    )
+    registry = narrowed(REGISTRY, [entry], lexiconRoot="out")
     text = extract_source(entry, registry, tmp_path, force=True).out.read_text(
         encoding="utf-8"
     )
@@ -804,10 +786,7 @@ def test_a_bracketed_marker_is_stripped_from_a_tamil_term_and_counted(
         source.model_dump(exclude_none=True)
         | {"path": "sources/brackets.json", "sha256": digest, "bytes": size}
     )
-    registry = LexiconSources.model_validate(
-        REGISTRY.model_dump(exclude_none=True)
-        | {"lexiconRoot": "out", "sources": [entry.model_dump(exclude_none=True)]}
-    )
+    registry = narrowed(REGISTRY, [entry], lexiconRoot="out")
     result = extract_source(entry, registry, tmp_path, force=True)
     text = result.out.read_text(encoding="utf-8")
     surfaces = {
@@ -835,10 +814,7 @@ def test_an_unbalanced_bracket_is_left_alone(tmp_path: Path) -> None:
         source.model_dump(exclude_none=True)
         | {"path": "sources/unbalanced.json", "sha256": digest, "bytes": size}
     )
-    registry = LexiconSources.model_validate(
-        REGISTRY.model_dump(exclude_none=True)
-        | {"lexiconRoot": "out", "sources": [entry.model_dump(exclude_none=True)]}
-    )
+    registry = narrowed(REGISTRY, [entry], lexiconRoot="out")
     result = extract_source(entry, registry, tmp_path, force=True)
     text = result.out.read_text(encoding="utf-8")
     surfaces = {
@@ -868,10 +844,7 @@ def test_a_rejected_not_a_word_tag_emits_the_source_s_denial(tmp_path: Path) -> 
         source.model_dump(exclude_none=True)
         | {"path": "sources/letters.jsonl", "sha256": digest, "bytes": size}
     )
-    registry = LexiconSources.model_validate(
-        REGISTRY.model_dump(exclude_none=True)
-        | {"lexiconRoot": "out", "sources": [entry.model_dump(exclude_none=True)]}
-    )
+    registry = narrowed(REGISTRY, [entry], lexiconRoot="out")
     result = extract_source(entry, registry, tmp_path, force=True)
     text = result.out.read_text(encoding="utf-8")
     assert [record["value"] for record in _facts(text, "wordClassEvidence")] == [
@@ -952,10 +925,7 @@ def _iwn_extract(records: list[str], tmp_path: Path) -> str:
         _IWN.model_dump(exclude_none=True)
         | {"path": "sources/synsets.tsv", "sha256": digest, "bytes": size}
     )
-    registry = LexiconSources.model_validate(
-        REGISTRY.model_dump(exclude_none=True)
-        | {"lexiconRoot": "out", "sources": [entry.model_dump(exclude_none=True)]}
-    )
+    registry = narrowed(REGISTRY, [entry], lexiconRoot="out")
     return extract_source(entry, registry, tmp_path, force=True).out.read_text(
         encoding="utf-8"
     )

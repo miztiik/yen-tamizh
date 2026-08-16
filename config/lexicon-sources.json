@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-16T22:00",
+  "version": "2026-08-16T23:00",
   "changelog": [
+    {
+      "version": "2026-08-16T23:00",
+      "change": "Added the three PUBLISH knobs: publishedClasses, spokenSources and maxPartitionBytes.",
+      "why": "Row 11. Which classes are committed is a POLICY, the spoken share of a frequency sum needs to know which corpora are spoken, and the file-size ceiling is a threshold - all three are knobs, so Holy Law #6 puts them in config, and they join lexiconRoot and outputs, the publish knobs this registry already carried. Naming the spoken corpora here rather than tagging every frequency source keeps the declaration where something reads it: 'written' on ten sources would be the complement of this list restated ten times, and a field nothing consults reads as a claim and changes nothing."
+    },
     {
       "version": "2026-08-16T22:00",
       "change": "Added the delimited-quoted reader kind, and added notAWord to WordClassEvidence.",
@@ -24,6 +29,9 @@
   ],
   "lexiconRoot": "datasets/lexicon",
   "outputs": ["ndjson"],
+  "publishedClasses": ["boundStem", "colloquial", "headword", "properNoun"],
+  "spokenSources": ["opensubtitles-ta"],
+  "maxPartitionBytes": 34603008,
   "posAliases": {
     "ADJECTIVE": {
       "pos": ["adjective"],

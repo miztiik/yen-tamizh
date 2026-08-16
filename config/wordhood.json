@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-16T22:00",
+  "version": "2026-08-16T23:00",
   "changelog": [
+    {
+      "version": "2026-08-16T23:00",
+      "change": "Added classifier.notAWord.rejectMalformedEzhuthu.",
+      "why": "Row 11 - PUBLISH refused to address eight headwords whose first unit is a cluster no Tamil letter has: an independent vowel wearing a vowel sign and a pulli, a consonant carrying two vowel signs. They are legacy-encoding artifacts, every code point in them is Tamil, and segmentation is non-destructive - so they came back as one unit and every clause that counts units passed them. docs/concepts/lexicon.md has always defined notAWord as 'a string carrying something that is not an ezhuthu'; rejectNonTamil implemented half of that, and this implements the other half. A knob rather than a constant on the same terms as rejectNonTamil: a project that wanted to keep the artifacts as their own class would set it false."
+    },
     {
       "version": "2026-08-16T22:00",
       "change": "Ranked notAWord first in classifier.evidencePriority.",
@@ -56,7 +61,8 @@
     "notAWord": {
       "maxEzhuthu": 25,
       "minDistinctEzhuthu": 2,
-      "rejectNonTamil": true
+      "rejectNonTamil": true,
+      "rejectMalformedEzhuthu": true
     },
     "discovery": {
       "minOrthotactic": 1.0,

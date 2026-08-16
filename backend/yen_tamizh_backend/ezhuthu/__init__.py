@@ -12,6 +12,7 @@ from __future__ import annotations
 from yen_tamizh_backend.ezhuthu.classify import EzhuthuKind, classify
 from yen_tamizh_backend.ezhuthu.segment import segment
 from yen_tamizh_backend.ezhuthu.word_shape import (
+    BASE_ROMAN,
     CLUSTER_FOLLOWERS,
     CONSONANTS,
     EZHUTHU_INVENTORY,
@@ -19,6 +20,7 @@ from yen_tamizh_backend.ezhuthu.word_shape import (
     GRANTHA,
     IDAIYINAM,
     INITIAL_CONSONANTS,
+    MATRA_ROMAN,
     MELLINAM,
     UYIR,
     VALLINAM,
@@ -27,10 +29,14 @@ from yen_tamizh_backend.ezhuthu.word_shape import (
     begins_like_a_word,
     cluster_is_legal,
     ends_like_a_word,
+    ezhuthu_roman,
+    is_a_letter,
     is_word_final,
+    letter_defect,
 )
 
 __all__ = [
+    "BASE_ROMAN",
     "CLUSTER_FOLLOWERS",
     "CONSONANTS",
     "EZHUTHU_INVENTORY",
@@ -38,6 +44,7 @@ __all__ = [
     "GRANTHA",
     "IDAIYINAM",
     "INITIAL_CONSONANTS",
+    "MATRA_ROMAN",
     "MELLINAM",
     "UYIR",
     "VALLINAM",
@@ -48,6 +55,9 @@ __all__ = [
     "classify",
     "cluster_is_legal",
     "ends_like_a_word",
+    "ezhuthu_roman",
+    "is_a_letter",
     "is_word_final",
+    "letter_defect",
     "segment",
 ]

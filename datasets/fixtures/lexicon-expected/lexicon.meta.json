@@ -1,0 +1,1540 @@
+{
+  "version": "2026-08-16T23:00",
+  "changelog": [
+    {
+      "version": "2026-08-16T23:00",
+      "change": "Split counters into a classified and a published census; made firstEzhuthu the second and final partition key and dropped length from the partition table; added partitionKeys and ezhuthuIndex; cut the row to word, wordClass, length, frequency, attestations, tier1Attestations, spokenRatio, translationEn, definitionTa, synonymsTa, pos and categories; renamed provenance rowsIn / factsOut to observations / facts.",
+      "why": "Row 11, the first writer. The publish policy commits four servable classes of ten, so a single counter would have made the withheld classes unprovable - classified counts the whole population and published counts the files, and publication is all-or-nothing per class, so a partial count is rows lost rather than rows withheld. The address is one file per (wordClass, first ezhuthu), so the length key it was authored with addresses nothing and a partition key that is sometimes absent is worse than one that is always there. The row carries what a consumer reads and nothing else: attestedBy became the count row 12 actually gates on, the three provenance stamps and compound had no reader, and ezhuthu is segment(word) - a stored copy of a derived value is a drift surface as well as 66.5 B a row. observations / facts are what the store can prove about a source; no stage keeps a raw row count, so rowsIn could only ever have been one of them misnamed."
+    },
+    {
+      "version": "2026-08-16",
+      "change": "Added notAWord to the WordClass vocabulary.",
+      "why": "Row 9a - the classifier had no verdict for a surface that is not a word at all, so 641,819 scrape artifacts wore real classes: repeated aytham as loanword, leading-dot strings as inflected, a 1,212-ezhuthu paragraph as suspectedTypo. notAWord is a CONFIDENT NEGATIVE and is deliberately distinct from unclassified, which is an ABSENT verdict - collapsing them would destroy the only counters that say whether the classifier works. Additive: every existing row still validates, and selection stays an allow-list so nothing reaches a player by omission."
+    },
+    {
+      "version": "2026-08-14",
+      "change": "Initial lexicon contracts: the LexiconEntry row shape and the Lexicon meta document (provenance, per-class counters, partition table).",
+      "why": "Row 3 - contracts before logic (Holy Law #3): the all-words artifact that replaces the corpus funnel gets its typed shape before any stage reads or writes it."
+    }
+  ],
+  "partitionKeys": [
+    "wordClass",
+    "firstEzhuthu"
+  ],
+  "provenance": [
+    {
+      "id": "azhiyasudargal",
+      "name": "azhiyasudargal.com word frequency",
+      "origin": "yen-tamizh_OLD/words_and_frequency/words_and_frequency/frequency+words_in_azhiyasudargal.html",
+      "path": "sources/azhiyasudargal.1x.csv",
+      "bytes": 2576,
+      "sha256": "217453acc7bc213e8659e233556f729220b5507aa6405c38b839cce63dc888b4",
+      "observations": 200,
+      "facts": 0
+    },
+    {
+      "id": "dinamalar",
+      "name": "Dinamalar news archive 2009-2019 word frequency",
+      "origin": "yen-tamizh_OLD/words_and_frequency/words_and_frequency/frequency+words_in_Dinamalar_dataset_2009_2019.csv",
+      "path": "sources/dinamalar.1x.csv",
+      "bytes": 4829,
+      "sha256": "75e3be07eb8e1dd4fc33e6265f27fc7588873fdac083cc621cf0317f301ac5bf",
+      "observations": 200,
+      "facts": 0
+    },
+    {
+      "id": "en-ta-dictionary",
+      "name": "English-Tamil dictionary with part-of-speech prefixes (t1)",
+      "origin": "yen-tamizh_OLD/src/dictionary/raw/t1.json",
+      "path": "sources/en-ta-dictionary.1x.json",
+      "bytes": 28968,
+      "sha256": "e5100f7b0ee573a564afc300e3d7d9e3b755b83629ba7775a3d833ea82254bba",
+      "observations": 453,
+      "facts": 2464
+    },
+    {
+      "id": "gurunithya",
+      "name": "gurunithya.wordpress.com word frequency",
+      "origin": "yen-tamizh_OLD/words_and_frequency/words_and_frequency/frequency+words_in_gurunithya.wordpress.com.html",
+      "path": "sources/gurunithya.1x.csv",
+      "bytes": 4761,
+      "sha256": "a185eb24fabff6aeae4b754302b44a838bfeab9182c448fc32fca20ed892296f",
+      "observations": 200,
+      "facts": 0
+    },
+    {
+      "id": "huggingface-wordlist",
+      "name": "Clean Tamil word list (HuggingFace derived)",
+      "origin": "yen-tamizh_OLD/src/dictionary/intermediate/ta_words_huggingface.json",
+      "path": "sources/huggingface-wordlist.1x.json",
+      "bytes": 8342,
+      "sha256": "1d860b0dd011e0329ff509900a60e03625dff2289698c8a498b66f4f0320f97d",
+      "observations": 200,
+      "facts": 200
+    },
+    {
+      "id": "indowordnet-ta",
+      "name": "IndoWordNet Tamil synsets, linked to Princeton WordNet",
+      "origin": "https://raw.githubusercontent.com/cfiltnlp/IWN-En/e48e64b5757d465b31a8339fb003e2ed6931327b/data/english-hindi-tamil-linked.tsv",
+      "path": "sources/indowordnet-ta.1x.tsv",
+      "bytes": 46654,
+      "sha256": "ec188b54af98001b94da5eb63242234ef03eeb5fd8003a619e0ce320ff81c1d0",
+      "observations": 85,
+      "facts": 662
+    },
+    {
+      "id": "inflected-verbs-bulk",
+      "name": "Bulk Tamil inflected verb forms",
+      "origin": "yen-tamizh_OLD/src/dictionary/raw/Simple-verbs-01022021.txt",
+      "path": "sources/inflected-verbs-bulk.1x.txt",
+      "bytes": 9431,
+      "sha256": "5d84bbf9a535932e7b17251b429c4f603673703a1c625ec2c61cccac5c9c0060",
+      "observations": 197,
+      "facts": 0
+    },
+    {
+      "id": "inflected-verbs-clean",
+      "name": "Cleaned Tamil inflected verb forms",
+      "origin": "yen-tamizh_OLD/src/dictionary/intermediate/verbs.txt",
+      "path": "sources/inflected-verbs-clean.1x.txt",
+      "bytes": 6961,
+      "sha256": "f5452d4819ffbceb7de8141e36cd639907721970373bff73a40e6dc8512bb341",
+      "observations": 200,
+      "facts": 0
+    },
+    {
+      "id": "llm-authored",
+      "name": "Agent-authored Tamil meanings, synonyms, translations, POS and themes",
+      "origin": "authored in-session by the agent executing the pipeline; see docs/how-to/enrich-the-lexicon.md",
+      "path": "sources/entries.jsonl",
+      "bytes": 1767398,
+      "sha256": "5e236b960ea674183cd6f93c81a20f0cd3d5632ea398adb46f7e6785adf5385b",
+      "observations": 6269,
+      "facts": 28644
+    },
+    {
+      "id": "master-dictionary",
+      "name": "yen-tamizh_OLD curated Tamil master dictionary",
+      "origin": "yen-tamizh_OLD/src/dictionary/master_dictionary.json",
+      "path": "sources/master-dictionary.1x.json",
+      "bytes": 36899,
+      "sha256": "aa2dd43591867498f30aec7f2476c092a902dc4ee27b4348cf22491762c17b80",
+      "observations": 200,
+      "facts": 564
+    },
+    {
+      "id": "old-wordlist",
+      "name": "yen-tamizh_OLD raw Tamil word list (t2)",
+      "origin": "yen-tamizh_OLD/src/dictionary/raw/t2.json",
+      "path": "sources/old-wordlist.1x.json",
+      "bytes": 9174,
+      "sha256": "625ff900f1c42b38e72c52acd62f5fab21b3398bd3f26812b419869597ea6994",
+      "observations": 200,
+      "facts": 200
+    },
+    {
+      "id": "opensubtitles-ta",
+      "name": "OpenSubtitles 2018 Tamil frequency list (hermitdave/FrequencyWords)",
+      "origin": "https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/ta/ta_full.txt",
+      "path": "sources/opensubtitles-ta.1x.txt",
+      "bytes": 4413,
+      "sha256": "1d973d6b0ca5310089eb59e8bf4b2614e55810c1fcf5d07cb7f248b3f2a57eed",
+      "observations": 200,
+      "facts": 0
+    },
+    {
+      "id": "sirukathaigal",
+      "name": "sirukathaigal.com short-story archive word frequency",
+      "origin": "yen-tamizh_OLD/words_and_frequency/words_and_frequency/frequency+words_in_sirukathaigal.com.html",
+      "path": "sources/sirukathaigal.1x.csv",
+      "bytes": 5566,
+      "sha256": "109464647220f5afe93664ada16aba082cc8cd00fcf24e843245e90ca3945345",
+      "observations": 200,
+      "facts": 0
+    },
+    {
+      "id": "solvanam",
+      "name": "solvanam.com literary magazine word frequency",
+      "origin": "yen-tamizh_OLD/words_and_frequency/words_and_frequency/frequency+words_in_solvanam.html",
+      "path": "sources/solvanam.1x.csv",
+      "bytes": 5476,
+      "sha256": "8dc8b0d9873466edb4c42279b04521e143017c042e2de6b3f4783e8a22ce5a97",
+      "observations": 200,
+      "facts": 0
+    },
+    {
+      "id": "spellcheck-wordlist",
+      "name": "Tamil word list validated by a Nannul-rules spellchecker",
+      "origin": "yen-tamizh_OLD/src/dictionary/intermediate/ta_words_v1.json",
+      "path": "sources/spellcheck-wordlist.1x.json",
+      "bytes": 8848,
+      "sha256": "38d986c8b3716762c1249028b2a5111660af6bed6a7a33f960b8f9032ebc7e28",
+      "observations": 200,
+      "facts": 200
+    },
+    {
+      "id": "ta-dedup",
+      "name": "Deduplicated Tamil web corpus word frequency",
+      "origin": "yen-tamizh_OLD/words_and_frequency/words_and_frequency/frequency+words_in_ta_dedup.txt",
+      "path": "sources/ta-dedup.1x.csv",
+      "bytes": 4421,
+      "sha256": "e637b900ebe6ce45fe223fe9efb4d092441771022c736f65ca02672786699c9f",
+      "observations": 200,
+      "facts": 0
+    },
+    {
+      "id": "ta-wiktionary-content",
+      "name": "Tamil Wiktionary articles, main namespace",
+      "origin": "https://dumps.wikimedia.org/tawiktionary/20260801/tawiktionary-20260801-pages-articles.xml.bz2",
+      "path": "sources/ta-wiktionary-content.1x.xml",
+      "bytes": 888235,
+      "sha256": "08a0ad7664ec0e2536e9de7dbb639b74b00e7693ed2778e25fc5584ec10eeeea",
+      "observations": 50,
+      "facts": 176
+    },
+    {
+      "id": "ta-wiktionary-titles",
+      "name": "Tamil Wiktionary page titles, main namespace",
+      "origin": "https://dumps.wikimedia.org/tawiktionary/20260801/tawiktionary-20260801-all-titles-in-ns0.gz",
+      "path": "sources/ta-wiktionary-titles.1x.txt",
+      "bytes": 1557,
+      "sha256": "622d052221883f5a63ffb411d407c28cbf4fd45017f418597881e32a11fc73f4",
+      "observations": 199,
+      "facts": 199
+    },
+    {
+      "id": "tamil-words-frequency",
+      "name": "Aggregated Tamil web and news word frequency",
+      "origin": "yen-tamizh_OLD/src/dictionary/raw/tamil-words-frequency.csv",
+      "path": "sources/tamil-words-frequency.1x.csv",
+      "bytes": 5053,
+      "sha256": "43bfecb9faac61bb2f4e08ef1f1d3b17fb411048da1b49e8a406452c97101e25",
+      "observations": 199,
+      "facts": 0
+    },
+    {
+      "id": "tamilmurasu",
+      "name": "Tamil Murasu news archive 2011-2020 word frequency",
+      "origin": "yen-tamizh_OLD/words_and_frequency/words_and_frequency/frequency+words_in_Tamilmurasu_dataset_06_Jan_2011_06_Jan_2020.csv",
+      "path": "sources/tamilmurasu.1x.csv",
+      "bytes": 4969,
+      "sha256": "91357fe367d26cea7d2e175c3c72db7aa42eab171b8fd9b9468befbea8f4f6ae",
+      "observations": 200,
+      "facts": 0
+    },
+    {
+      "id": "themed-vocabulary",
+      "name": "Curated themed Tamil vocabulary with English pairings",
+      "origin": "yen-tamizh_OLD/src/dictionary/intermediate/ta_vocabulary_clean.json",
+      "path": "sources/themed-vocabulary.1x.json",
+      "bytes": 15444,
+      "sha256": "d4b91f5f21e813412e8ab3539169893619530f1e1a1f810066b4f502fc8b3440",
+      "observations": 128,
+      "facts": 258
+    },
+    {
+      "id": "wiki",
+      "name": "Tamil Wikipedia word frequency",
+      "origin": "yen-tamizh_OLD/words_and_frequency/words_and_frequency/frequency+words_in_wiki.txt",
+      "path": "sources/wiki.1x.csv",
+      "bytes": 5286,
+      "sha256": "ca5edab867d2c45142897038ccdcd56dfc7e9dc89472d7863fc91788355b91f6",
+      "observations": 200,
+      "facts": 0
+    },
+    {
+      "id": "wiktextract-ta",
+      "name": "Tamil Wiktionary via Wiktextract (kaikki.org)",
+      "origin": "https://kaikki.org/dictionary/Tamil/kaikki.org-dictionary-Tamil.jsonl",
+      "path": "sources/wiktextract-ta.1x.jsonl",
+      "bytes": 109346,
+      "sha256": "83ec0fc1f3dee6e6ced60f030cb7c8c132331e9d9d0ae38151b71bd98d6abf4e",
+      "observations": 8,
+      "facts": 178
+    }
+  ],
+  "counters": {
+    "classified": {
+      "rows": 8966,
+      "byClass": {
+        "headword": 6656,
+        "inflected": 393,
+        "colloquial": 0,
+        "properNoun": 0,
+        "loanword": 211,
+        "boundStem": 0,
+        "sandhiArtifact": 46,
+        "suspectedTypo": 269,
+        "notAWord": 456,
+        "unclassified": 935
+      }
+    },
+    "published": {
+      "rows": 6656,
+      "byClass": {
+        "headword": 6656,
+        "inflected": 0,
+        "colloquial": 0,
+        "properNoun": 0,
+        "loanword": 0,
+        "boundStem": 0,
+        "sandhiArtifact": 0,
+        "suspectedTypo": 0,
+        "notAWord": 0,
+        "unclassified": 0
+      }
+    }
+  },
+  "partitions": [
+    {
+      "path": "out/by-class/headword/0b85.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b85",
+      "rows": 504,
+      "bytes": 147760,
+      "sha256": "83278f6962b82de46518c820a36919ff3c873c5166f9ce7612d935c4888918aa"
+    },
+    {
+      "path": "out/by-class/headword/0b86.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b86",
+      "rows": 146,
+      "bytes": 43216,
+      "sha256": "cc2468996962cc1b5c84f3149c387b133a2b109b6598cd55443551aac66060d9"
+    },
+    {
+      "path": "out/by-class/headword/0b87.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b87",
+      "rows": 274,
+      "bytes": 78321,
+      "sha256": "6349e2968cb904897e506ff0a1f375dbda95a5a39ff43e0539265dfed5c28c41"
+    },
+    {
+      "path": "out/by-class/headword/0b88.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b88",
+      "rows": 17,
+      "bytes": 4614,
+      "sha256": "9303289609aec38b5d34be99cbb8356d0af817142f01629eacb49346c985937d"
+    },
+    {
+      "path": "out/by-class/headword/0b89.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b89",
+      "rows": 251,
+      "bytes": 71342,
+      "sha256": "8496a16f7e48d375c10a0b03c8f90173b44c91406e954b8516a228a2ced7d464"
+    },
+    {
+      "path": "out/by-class/headword/0b8a.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b8a",
+      "rows": 37,
+      "bytes": 10269,
+      "sha256": "e4303c4931c84f575cccbb3985f015552752d3adbb9a24feb02a68984e76d666"
+    },
+    {
+      "path": "out/by-class/headword/0b8e.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b8e",
+      "rows": 124,
+      "bytes": 37855,
+      "sha256": "c8aec2dfa3a240fe36e1af7dc4dc3d0cad87f532557b45fcaadd3d9aed52bfd3"
+    },
+    {
+      "path": "out/by-class/headword/0b8f.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b8f",
+      "rows": 43,
+      "bytes": 12639,
+      "sha256": "d4ebdbc24b3ab62e3fd135f4d09a90e3e36ac496c8c3a180afe278e79217feb1"
+    },
+    {
+      "path": "out/by-class/headword/0b90.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b90",
+      "rows": 16,
+      "bytes": 4428,
+      "sha256": "0ad55853dada1564ede1ab5a18b11d36508e3093e72189b86e0c9ab4cdeae5ed"
+    },
+    {
+      "path": "out/by-class/headword/0b92.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b92",
+      "rows": 106,
+      "bytes": 30092,
+      "sha256": "494afb075c43e0265220eb6f7aee544dcf541e6058194179277b166c7625c5c5"
+    },
+    {
+      "path": "out/by-class/headword/0b93.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b93",
+      "rows": 35,
+      "bytes": 10012,
+      "sha256": "3d0e0ef7de12d8a78206f6345fbcd32cc2352292f836f41c4a95a4ffefd95e7a"
+    },
+    {
+      "path": "out/by-class/headword/0b94.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b94",
+      "rows": 3,
+      "bytes": 766,
+      "sha256": "c280ea055a5e8be8d92aa60cd5f105146054ee694b9a83c9737b36323bf03e53"
+    },
+    {
+      "path": "out/by-class/headword/0b95.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b95",
+      "rows": 397,
+      "bytes": 117805,
+      "sha256": "f48ad813e069efc4c854fe2241972731381178ad9b649c139d905d9d5e6b55b1"
+    },
+    {
+      "path": "out/by-class/headword/0b950bbe.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b950bbe",
+      "rows": 100,
+      "bytes": 29639,
+      "sha256": "ae3cc452111fce5099d41071f098bff3cd90a7ead054fcfd7a7cf4855e9304f2"
+    },
+    {
+      "path": "out/by-class/headword/0b950bbf.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b950bbf",
+      "rows": 50,
+      "bytes": 14168,
+      "sha256": "f6434477e3373eda38e9ccecd021e8abe9383107b095f66f4afa11de990a983c"
+    },
+    {
+      "path": "out/by-class/headword/0b950bc0.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b950bc0",
+      "rows": 11,
+      "bytes": 2664,
+      "sha256": "074b93265710113bd3107f0b4bb2ecd7a9c25b61fa9fc30242a133baf06e6251"
+    },
+    {
+      "path": "out/by-class/headword/0b950bc1.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b950bc1",
+      "rows": 192,
+      "bytes": 56338,
+      "sha256": "57890750cfd15cdf74fc8c815044135c6558a3871a2e7a00a981d70937eb9487"
+    },
+    {
+      "path": "out/by-class/headword/0b950bc2.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b950bc2",
+      "rows": 43,
+      "bytes": 12479,
+      "sha256": "8e0ddd3fba5bb125c2821e939a40b5f03f2d3dd254c22f91e4982992a4a470c0"
+    },
+    {
+      "path": "out/by-class/headword/0b950bc6.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b950bc6",
+      "rows": 14,
+      "bytes": 3601,
+      "sha256": "65202f1a7791eac7d0668b33a133b6efc6a6136d5aab3520ecd2f9b799494b6a"
+    },
+    {
+      "path": "out/by-class/headword/0b950bc7.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b950bc7",
+      "rows": 17,
+      "bytes": 4724,
+      "sha256": "4e4de4ac164da85bcb9307f7014135e9b3a2d62a9ceb37b87aacecd49abd73d1"
+    },
+    {
+      "path": "out/by-class/headword/0b950bc8.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b950bc8",
+      "rows": 38,
+      "bytes": 10460,
+      "sha256": "5394c3684828c387597bcfdd4bbe103a46e04c0bd4b58d2eb0fc44c2fc8f39cf"
+    },
+    {
+      "path": "out/by-class/headword/0b950bca.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b950bca",
+      "rows": 76,
+      "bytes": 22134,
+      "sha256": "306ac68576d506ffaef4cc5a98ad5c6745ec88fe4559d8bdd26d39956a4be4c7"
+    },
+    {
+      "path": "out/by-class/headword/0b950bcb.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b950bcb",
+      "rows": 42,
+      "bytes": 12327,
+      "sha256": "63ba831febc0f6ae4ea6603acfee10196270b9b52d13462c318888d011272ab8"
+    },
+    {
+      "path": "out/by-class/headword/0b950bcc.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b950bcc",
+      "rows": 1,
+      "bytes": 291,
+      "sha256": "9775ccd065f2f683ef4aaa5402042b1a86292467f8794894d2c88ab39ea580c3"
+    },
+    {
+      "path": "out/by-class/headword/0b9a.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b9a",
+      "rows": 145,
+      "bytes": 42849,
+      "sha256": "f151c8fa8fb4553527caad52ae4e408892731fcb5082092dbb9a5610b16633e1"
+    },
+    {
+      "path": "out/by-class/headword/0b9a0bbe.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b9a0bbe",
+      "rows": 62,
+      "bytes": 17958,
+      "sha256": "628018cbd60e622aabdf4f6e21de7e823ab46cd2f85587f1d66b8b351609c92f"
+    },
+    {
+      "path": "out/by-class/headword/0b9a0bbf.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b9a0bbf",
+      "rows": 115,
+      "bytes": 34457,
+      "sha256": "6bdcab6778e4404784dfcd3374b91549465d08fc28087b2f76c3fe9dd227d8d4"
+    },
+    {
+      "path": "out/by-class/headword/0b9a0bc0.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b9a0bc0",
+      "rows": 28,
+      "bytes": 7697,
+      "sha256": "cf99a99ea6b4b5035331663e5571af2dcf05fbc6ced3191c38923d494fd10955"
+    },
+    {
+      "path": "out/by-class/headword/0b9a0bc1.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b9a0bc1",
+      "rows": 94,
+      "bytes": 28386,
+      "sha256": "2b0a99be2620d897c55e3ba6b4acb2948e3efc8cf9e400c4b2f824aa577882b4"
+    },
+    {
+      "path": "out/by-class/headword/0b9a0bc2.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b9a0bc2",
+      "rows": 21,
+      "bytes": 6273,
+      "sha256": "b1c89de44b7e1c1fc12c7c2b1da2906a51f43e0c729f3e153e3986966b714d31"
+    },
+    {
+      "path": "out/by-class/headword/0b9a0bc6.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b9a0bc6",
+      "rows": 81,
+      "bytes": 23223,
+      "sha256": "92387335d629bf4c83f9a908fc10082dff140b7383d89e63b161e762983006d4"
+    },
+    {
+      "path": "out/by-class/headword/0b9a0bc7.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b9a0bc7",
+      "rows": 18,
+      "bytes": 4675,
+      "sha256": "ddc8d2a9814a4374cb4dfafb7c4f38631025e2d04888458e113560f15f67530f"
+    },
+    {
+      "path": "out/by-class/headword/0b9a0bc8.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b9a0bc8",
+      "rows": 1,
+      "bytes": 366,
+      "sha256": "8ec18d628da5b89bfed24c05379b656845c3753134bb49665add4537e818024b"
+    },
+    {
+      "path": "out/by-class/headword/0b9a0bca.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b9a0bca",
+      "rows": 22,
+      "bytes": 6100,
+      "sha256": "44d77266aa70d1467923006ffe15c95cf4cc275c1f4ef61d849ecb6ecab0bfc7"
+    },
+    {
+      "path": "out/by-class/headword/0b9a0bcb.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b9a0bcb",
+      "rows": 15,
+      "bytes": 4344,
+      "sha256": "eebf17503102a7030f10658013d6638f96de91a846ed2e935a8a00ee069e2621"
+    },
+    {
+      "path": "out/by-class/headword/0b9a0bcc.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b9a0bcc",
+      "rows": 2,
+      "bytes": 521,
+      "sha256": "a59094d8028f73d3422fb7e3ffa8f25997a34c9a2595addcb4a08421cb7a9a13"
+    },
+    {
+      "path": "out/by-class/headword/0b9e.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b9e",
+      "rows": 1,
+      "bytes": 151,
+      "sha256": "a84255656a10d2ced5343ae8ccd5c6751823807e899c2dd5c175722f009925c2"
+    },
+    {
+      "path": "out/by-class/headword/0b9e0bbe.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0b9e0bbe",
+      "rows": 5,
+      "bytes": 1539,
+      "sha256": "8eaabd48f375627cde1adb58e41a1e01bc710b48022ca190709b78e34bbe98c8"
+    },
+    {
+      "path": "out/by-class/headword/0ba4.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0ba4",
+      "rows": 243,
+      "bytes": 70330,
+      "sha256": "6786c2298b5e55a41473db2d80875a5e7437c81b5b779c4aa15ff9c1e63f86c8"
+    },
+    {
+      "path": "out/by-class/headword/0ba40bbe.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0ba40bbe",
+      "rows": 56,
+      "bytes": 16085,
+      "sha256": "d3581f007e4c40c8523fde0c859cad5d23c88f77bcaf04d64e1b14c74c018eca"
+    },
+    {
+      "path": "out/by-class/headword/0ba40bbf.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0ba40bbf",
+      "rows": 119,
+      "bytes": 34366,
+      "sha256": "7d6dcbe92b88854cf640a6c572a64b58ad326173d781bff9c4d0733e494ddeda"
+    },
+    {
+      "path": "out/by-class/headword/0ba40bc0.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0ba40bc0",
+      "rows": 26,
+      "bytes": 7389,
+      "sha256": "1d1e547ae31b15f36383c61100498c06b03074312ad69564f347bda74903af9f"
+    },
+    {
+      "path": "out/by-class/headword/0ba40bc1.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0ba40bc1",
+      "rows": 81,
+      "bytes": 22236,
+      "sha256": "72b4202151e94374de72cb229449e3a623aaef4f1bfaba78de80006ad3dee0e8"
+    },
+    {
+      "path": "out/by-class/headword/0ba40bc2.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0ba40bc2",
+      "rows": 27,
+      "bytes": 7473,
+      "sha256": "a42e60e0edb9f53809f01c1ff00689420d5205e89e694ed819f227c73471ac93"
+    },
+    {
+      "path": "out/by-class/headword/0ba40bc6.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0ba40bc6",
+      "rows": 24,
+      "bytes": 8009,
+      "sha256": "cc802450ef4c3b175bca39087921d6c2d113fc7f6543d6e5895852605c3c82e3"
+    },
+    {
+      "path": "out/by-class/headword/0ba40bc7.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0ba40bc7",
+      "rows": 43,
+      "bytes": 12551,
+      "sha256": "0d9f4e86be20a1f7ad02f2777bb69b54003d0f768234037a8c6cfcd32e25aa93"
+    },
+    {
+      "path": "out/by-class/headword/0ba40bc8.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0ba40bc8",
+      "rows": 4,
+      "bytes": 1313,
+      "sha256": "22764ab5a71f1f87021840d064ea11699a8df2385e583716babf8e1168d388d3"
+    },
+    {
+      "path": "out/by-class/headword/0ba40bca.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0ba40bca",
+      "rows": 72,
+      "bytes": 21483,
+      "sha256": "09757417115ee7355ca6f1220864443b2547bc4a72c9540446ce626ca9591234"
+    },
+    {
+      "path": "out/by-class/headword/0ba40bcb.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0ba40bcb",
+      "rows": 18,
+      "bytes": 5072,
+      "sha256": "1db56d739947a7353ce2acf505467be189f36f44832a05ec6a1863fc017f953c"
+    },
+    {
+      "path": "out/by-class/headword/0ba8.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0ba8",
+      "rows": 113,
+      "bytes": 33501,
+      "sha256": "83b16699dc41aff046d3981b47ac225091328a3129adbfe8a9b40e8d305d899d"
+    },
+    {
+      "path": "out/by-class/headword/0ba80bbe.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0ba80bbe",
+      "rows": 74,
+      "bytes": 21375,
+      "sha256": "c6ce4ffa268512a2d6419964b84510facf3a158024c763528803f7798071da82"
+    },
+    {
+      "path": "out/by-class/headword/0ba80bbf.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0ba80bbf",
+      "rows": 97,
+      "bytes": 29227,
+      "sha256": "1779d63750d3a14df3975b82721f3a30f5571f19e152f89d3ff274b3c6dd09aa"
+    },
+    {
+      "path": "out/by-class/headword/0ba80bc0.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0ba80bc0",
+      "rows": 39,
+      "bytes": 11311,
+      "sha256": "881509ce70740fbe222687d9a29439329f5f6ae48184c2388f8432bab3e9a003"
+    },
+    {
+      "path": "out/by-class/headword/0ba80bc1.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0ba80bc1",
+      "rows": 24,
+      "bytes": 7179,
+      "sha256": "9d8f644d4d6b6fd9bd18c898a95bf7a8b981dc3ecdd1100bddc09eeb2f849bcd"
+    },
+    {
+      "path": "out/by-class/headword/0ba80bc2.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0ba80bc2",
+      "rows": 7,
+      "bytes": 2146,
+      "sha256": "525258a41322666d313dfe0e73cf5f9e35319c5fd5805637504aca8e87defb72"
+    },
+    {
+      "path": "out/by-class/headword/0ba80bc6.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0ba80bc6",
+      "rows": 37,
+      "bytes": 10723,
+      "sha256": "ce0fcb4a68b0e10b73113b12641c9ab243d4dfa08866b816a589a5d5c732e0fe"
+    },
+    {
+      "path": "out/by-class/headword/0ba80bc7.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0ba80bc7",
+      "rows": 26,
+      "bytes": 7208,
+      "sha256": "2135ca87b31adb83a9741a9fcd9b5888b7b78ac66b9da38a0965c4ca9687a616"
+    },
+    {
+      "path": "out/by-class/headword/0ba80bc8.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0ba80bc8",
+      "rows": 2,
+      "bytes": 568,
+      "sha256": "0af07232c76bb02d000652baef1660b906f47dc1a87c389765ee9db885a13284"
+    },
+    {
+      "path": "out/by-class/headword/0ba80bca.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0ba80bca",
+      "rows": 2,
+      "bytes": 505,
+      "sha256": "ed8b117760b39c2fae2f34fa08e8acfa1c742c372cc9f6072abee962df3cc637"
+    },
+    {
+      "path": "out/by-class/headword/0ba80bcb.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0ba80bcb",
+      "rows": 14,
+      "bytes": 4119,
+      "sha256": "8886704a0883b9975584305bb637f30709b40239e11966701cea73da07b9ca7a"
+    },
+    {
+      "path": "out/by-class/headword/0baa.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0baa",
+      "rows": 358,
+      "bytes": 104322,
+      "sha256": "3511fb407f8417e3d06f3f7ad0f1c475a0b179b804276e90787b9a1991198e4b"
+    },
+    {
+      "path": "out/by-class/headword/0baa0bbe.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0baa0bbe",
+      "rows": 88,
+      "bytes": 26030,
+      "sha256": "c3f73408aa95bac7cb74e874344cf2d5dac67c698265c3da29c7871c7d8df41e"
+    },
+    {
+      "path": "out/by-class/headword/0baa0bbf.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0baa0bbf",
+      "rows": 139,
+      "bytes": 38991,
+      "sha256": "d26e1a3730deaa1fa3d50b8a19d4597131d1e97b21d4dfc8a2c817af8d6995f1"
+    },
+    {
+      "path": "out/by-class/headword/0baa0bc0.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0baa0bc0",
+      "rows": 6,
+      "bytes": 1679,
+      "sha256": "890398b8cdc7ed2dfde966c2f0056e7c210c02cfdbafb6d8daf653ac6926fbf8"
+    },
+    {
+      "path": "out/by-class/headword/0baa0bc1.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0baa0bc1",
+      "rows": 109,
+      "bytes": 33195,
+      "sha256": "da60b95c477ca7b652656677edf75acdc5fb0e63a849c86d701f51f0e6ed2baf"
+    },
+    {
+      "path": "out/by-class/headword/0baa0bc2.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0baa0bc2",
+      "rows": 35,
+      "bytes": 10533,
+      "sha256": "3be7a5126cfba278e9038e38b8f548282d35645c79e3e3a8cb73d931746d15c2"
+    },
+    {
+      "path": "out/by-class/headword/0baa0bc6.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0baa0bc6",
+      "rows": 64,
+      "bytes": 18805,
+      "sha256": "e602ae088a62d00607dd2b9fb22b76c30a31ef4c949d83bcbd40fa9ac6ecd70e"
+    },
+    {
+      "path": "out/by-class/headword/0baa0bc7.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0baa0bc7",
+      "rows": 47,
+      "bytes": 13903,
+      "sha256": "101a9e73cc768ebd2ded3075bc2b36883a2fc174afbe04fc85fb70d4172d97e6"
+    },
+    {
+      "path": "out/by-class/headword/0baa0bc8.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0baa0bc8",
+      "rows": 3,
+      "bytes": 956,
+      "sha256": "f9751a9f1473873f3bb90ed863b3847ffac63e30d96d827c40d51a8d7730c110"
+    },
+    {
+      "path": "out/by-class/headword/0baa0bca.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0baa0bca",
+      "rows": 80,
+      "bytes": 22736,
+      "sha256": "f8abb6af11b9fa03b068ee84511ea46f919b8310d7fd451bf57612c3c8e82305"
+    },
+    {
+      "path": "out/by-class/headword/0baa0bcb.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0baa0bcb",
+      "rows": 28,
+      "bytes": 8382,
+      "sha256": "447a9cc6a91e34e65f0783cb2bf428d606572000f7bd8b32adf1e702dcb3c7b4"
+    },
+    {
+      "path": "out/by-class/headword/0baa0bcc.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0baa0bcc",
+      "rows": 2,
+      "bytes": 582,
+      "sha256": "dd5ab0fac3ba14678b715d67344dc4f4c96855e9689b42f97920b5937388629d"
+    },
+    {
+      "path": "out/by-class/headword/0bae.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0bae",
+      "rows": 252,
+      "bytes": 72874,
+      "sha256": "04042dafa312cd9a3dcd8b624dd8635af3edbaa2490e4667ad195a217a1ba076"
+    },
+    {
+      "path": "out/by-class/headword/0bae0bbe.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0bae0bbe",
+      "rows": 87,
+      "bytes": 25549,
+      "sha256": "bba207b0afad776ee1d2b07802cf112b68f38febb0c39f7ee88ccfc64464a8dd"
+    },
+    {
+      "path": "out/by-class/headword/0bae0bbf.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0bae0bbf",
+      "rows": 44,
+      "bytes": 12563,
+      "sha256": "2d38ad1d0271358e3bb7b5bfb0a7a079a7d2e7a63a3bbc6f0e3822da1f396919"
+    },
+    {
+      "path": "out/by-class/headword/0bae0bc0.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0bae0bc0",
+      "rows": 13,
+      "bytes": 3723,
+      "sha256": "1832803dd0bb4210e3e168bc548d4bd0cba9394c6320b9f018b96455c9595d86"
+    },
+    {
+      "path": "out/by-class/headword/0bae0bc1.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0bae0bc1",
+      "rows": 203,
+      "bytes": 59047,
+      "sha256": "4330aaa949eb95f97685f0638d63889896b84251f7b482acc87eb7b706d31cf0"
+    },
+    {
+      "path": "out/by-class/headword/0bae0bc2.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0bae0bc2",
+      "rows": 45,
+      "bytes": 13202,
+      "sha256": "bc6c072433977bee8e9f3e50311dd2ed9597f035809d4b218defd141b02d42b7"
+    },
+    {
+      "path": "out/by-class/headword/0bae0bc6.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0bae0bc6",
+      "rows": 32,
+      "bytes": 8962,
+      "sha256": "820862f501fd4051c1f22bb71032f2c63d91272d1b2e3038e30235e334f15203"
+    },
+    {
+      "path": "out/by-class/headword/0bae0bc7.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0bae0bc7",
+      "rows": 40,
+      "bytes": 11739,
+      "sha256": "941bc9382d1feb16c6461f32b1cf5fc06bb942699be9b2e8b5468e6b761291b6"
+    },
+    {
+      "path": "out/by-class/headword/0bae0bc8.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0bae0bc8",
+      "rows": 9,
+      "bytes": 2709,
+      "sha256": "58616e247ae959812b90832180c6b4caede96b8f8366341144eb5af14becfea3"
+    },
+    {
+      "path": "out/by-class/headword/0bae0bca.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0bae0bca",
+      "rows": 8,
+      "bytes": 2418,
+      "sha256": "43bbfcad54d0d28c6fa4ec8f45485217e1406954f7cdc98b007cce2747199bd9"
+    },
+    {
+      "path": "out/by-class/headword/0bae0bcb.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0bae0bcb",
+      "rows": 11,
+      "bytes": 3262,
+      "sha256": "d7a63d93e53aef038f39dc701d50252a6dd0a62164692149d283f60b005d80d6"
+    },
+    {
+      "path": "out/by-class/headword/0bae0bcc.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0bae0bcc",
+      "rows": 3,
+      "bytes": 877,
+      "sha256": "f54df92146b786e0f9ba292efc7c90666a491677e7431811a23c2818a01586b6"
+    },
+    {
+      "path": "out/by-class/headword/0baf0bbe.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0baf0bbe",
+      "rows": 13,
+      "bytes": 3743,
+      "sha256": "ef7d675528f2dd62dbc6ac86a3be7703a34b34dbe1eb239d254fdacb70885b02"
+    },
+    {
+      "path": "out/by-class/headword/0baf0bc1.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0baf0bc1",
+      "rows": 3,
+      "bytes": 853,
+      "sha256": "79477d21edecd28438ed39142b4094942ec2d0c624177f2fe280ef5e0dd82e98"
+    },
+    {
+      "path": "out/by-class/headword/0baf0bc2.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0baf0bc2",
+      "rows": 1,
+      "bytes": 254,
+      "sha256": "1d40d3d4997412b221a00d69b6481cb9bae2dbbf58331f0bf46d92ab36d47d66"
+    },
+    {
+      "path": "out/by-class/headword/0baf0bcb.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0baf0bcb",
+      "rows": 2,
+      "bytes": 624,
+      "sha256": "c4cb641f218d77d7a94831f198c310ae7ab601a4655cd3d335b958d87285314f"
+    },
+    {
+      "path": "out/by-class/headword/0bb5.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0bb5",
+      "rows": 203,
+      "bytes": 58890,
+      "sha256": "7c398f300328f3fa8cbda4686dfa08692ed6940829087275195d7b02a4863782"
+    },
+    {
+      "path": "out/by-class/headword/0bb50bbe.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0bb50bbe",
+      "rows": 90,
+      "bytes": 28951,
+      "sha256": "6a0ce0e2f992b3cea8cfa1f38208a4fbf4cd852295e2a565bc0422feccd634a5"
+    },
+    {
+      "path": "out/by-class/headword/0bb50bbf.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0bb50bbf",
+      "rows": 182,
+      "bytes": 52810,
+      "sha256": "fa105415524c0ee51a9f03e5ef17c903fe8d3ab9ed0fd85bb22ae43de81d3ebf"
+    },
+    {
+      "path": "out/by-class/headword/0bb50bc0.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0bb50bc0",
+      "rows": 16,
+      "bytes": 4383,
+      "sha256": "67e5c78de51eff02ad33b825e44c3e1aaf38b15d3c7e732dcb5294cad90f103b"
+    },
+    {
+      "path": "out/by-class/headword/0bb50bc6.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0bb50bc6",
+      "rows": 70,
+      "bytes": 19984,
+      "sha256": "c189dcc21d9085fb25115cfdc419b39a72c7dd1b0321f99e81d1ce967dff7a1a"
+    },
+    {
+      "path": "out/by-class/headword/0bb50bc7.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0bb50bc7",
+      "rows": 57,
+      "bytes": 17249,
+      "sha256": "d981ddf56e8c41129335e9e8fcd0cd11ce143b5bd717a8a7efec4e8137091a18"
+    },
+    {
+      "path": "out/by-class/headword/0bb50bc8.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0bb50bc8",
+      "rows": 14,
+      "bytes": 4068,
+      "sha256": "334cfb2f92b5c0c848671bf11f2d2882d4ad415328b04d817e5ff9fd9ed81057"
+    },
+    {
+      "path": "out/by-class/headword/0bb50bcc.ndjson",
+      "wordClass": "headword",
+      "firstEzhuthu": "0bb50bcc",
+      "rows": 4,
+      "bytes": 895,
+      "sha256": "ea2856efc46fbadcf57d97d488f936210fe81293727a0f1570b271cba506283a"
+    }
+  ],
+  "ezhuthuIndex": {
+    "0b85": {
+      "ezhuthu": "அ",
+      "roman": "a",
+      "kind": "uyir"
+    },
+    "0b86": {
+      "ezhuthu": "ஆ",
+      "roman": "aa",
+      "kind": "uyir"
+    },
+    "0b87": {
+      "ezhuthu": "இ",
+      "roman": "i",
+      "kind": "uyir"
+    },
+    "0b88": {
+      "ezhuthu": "ஈ",
+      "roman": "ii",
+      "kind": "uyir"
+    },
+    "0b89": {
+      "ezhuthu": "உ",
+      "roman": "u",
+      "kind": "uyir"
+    },
+    "0b8a": {
+      "ezhuthu": "ஊ",
+      "roman": "uu",
+      "kind": "uyir"
+    },
+    "0b8e": {
+      "ezhuthu": "எ",
+      "roman": "e",
+      "kind": "uyir"
+    },
+    "0b8f": {
+      "ezhuthu": "ஏ",
+      "roman": "ee",
+      "kind": "uyir"
+    },
+    "0b90": {
+      "ezhuthu": "ஐ",
+      "roman": "ai",
+      "kind": "uyir"
+    },
+    "0b92": {
+      "ezhuthu": "ஒ",
+      "roman": "o",
+      "kind": "uyir"
+    },
+    "0b93": {
+      "ezhuthu": "ஓ",
+      "roman": "oo",
+      "kind": "uyir"
+    },
+    "0b94": {
+      "ezhuthu": "ஔ",
+      "roman": "au",
+      "kind": "uyir"
+    },
+    "0b95": {
+      "ezhuthu": "க",
+      "roman": "ka",
+      "kind": "uyirmei"
+    },
+    "0b950bbe": {
+      "ezhuthu": "கா",
+      "roman": "kaa",
+      "kind": "uyirmei"
+    },
+    "0b950bbf": {
+      "ezhuthu": "கி",
+      "roman": "ki",
+      "kind": "uyirmei"
+    },
+    "0b950bc0": {
+      "ezhuthu": "கீ",
+      "roman": "kii",
+      "kind": "uyirmei"
+    },
+    "0b950bc1": {
+      "ezhuthu": "கு",
+      "roman": "ku",
+      "kind": "uyirmei"
+    },
+    "0b950bc2": {
+      "ezhuthu": "கூ",
+      "roman": "kuu",
+      "kind": "uyirmei"
+    },
+    "0b950bc6": {
+      "ezhuthu": "கெ",
+      "roman": "ke",
+      "kind": "uyirmei"
+    },
+    "0b950bc7": {
+      "ezhuthu": "கே",
+      "roman": "kee",
+      "kind": "uyirmei"
+    },
+    "0b950bc8": {
+      "ezhuthu": "கை",
+      "roman": "kai",
+      "kind": "uyirmei"
+    },
+    "0b950bca": {
+      "ezhuthu": "கொ",
+      "roman": "ko",
+      "kind": "uyirmei"
+    },
+    "0b950bcb": {
+      "ezhuthu": "கோ",
+      "roman": "koo",
+      "kind": "uyirmei"
+    },
+    "0b950bcc": {
+      "ezhuthu": "கௌ",
+      "roman": "kau",
+      "kind": "uyirmei"
+    },
+    "0b9a": {
+      "ezhuthu": "ச",
+      "roman": "cha",
+      "kind": "uyirmei"
+    },
+    "0b9a0bbe": {
+      "ezhuthu": "சா",
+      "roman": "chaa",
+      "kind": "uyirmei"
+    },
+    "0b9a0bbf": {
+      "ezhuthu": "சி",
+      "roman": "chi",
+      "kind": "uyirmei"
+    },
+    "0b9a0bc0": {
+      "ezhuthu": "சீ",
+      "roman": "chii",
+      "kind": "uyirmei"
+    },
+    "0b9a0bc1": {
+      "ezhuthu": "சு",
+      "roman": "chu",
+      "kind": "uyirmei"
+    },
+    "0b9a0bc2": {
+      "ezhuthu": "சூ",
+      "roman": "chuu",
+      "kind": "uyirmei"
+    },
+    "0b9a0bc6": {
+      "ezhuthu": "செ",
+      "roman": "che",
+      "kind": "uyirmei"
+    },
+    "0b9a0bc7": {
+      "ezhuthu": "சே",
+      "roman": "chee",
+      "kind": "uyirmei"
+    },
+    "0b9a0bc8": {
+      "ezhuthu": "சை",
+      "roman": "chai",
+      "kind": "uyirmei"
+    },
+    "0b9a0bca": {
+      "ezhuthu": "சொ",
+      "roman": "cho",
+      "kind": "uyirmei"
+    },
+    "0b9a0bcb": {
+      "ezhuthu": "சோ",
+      "roman": "choo",
+      "kind": "uyirmei"
+    },
+    "0b9a0bcc": {
+      "ezhuthu": "சௌ",
+      "roman": "chau",
+      "kind": "uyirmei"
+    },
+    "0b9e": {
+      "ezhuthu": "ஞ",
+      "roman": "nja",
+      "kind": "uyirmei"
+    },
+    "0b9e0bbe": {
+      "ezhuthu": "ஞா",
+      "roman": "njaa",
+      "kind": "uyirmei"
+    },
+    "0ba4": {
+      "ezhuthu": "த",
+      "roman": "tha",
+      "kind": "uyirmei"
+    },
+    "0ba40bbe": {
+      "ezhuthu": "தா",
+      "roman": "thaa",
+      "kind": "uyirmei"
+    },
+    "0ba40bbf": {
+      "ezhuthu": "தி",
+      "roman": "thi",
+      "kind": "uyirmei"
+    },
+    "0ba40bc0": {
+      "ezhuthu": "தீ",
+      "roman": "thii",
+      "kind": "uyirmei"
+    },
+    "0ba40bc1": {
+      "ezhuthu": "து",
+      "roman": "thu",
+      "kind": "uyirmei"
+    },
+    "0ba40bc2": {
+      "ezhuthu": "தூ",
+      "roman": "thuu",
+      "kind": "uyirmei"
+    },
+    "0ba40bc6": {
+      "ezhuthu": "தெ",
+      "roman": "the",
+      "kind": "uyirmei"
+    },
+    "0ba40bc7": {
+      "ezhuthu": "தே",
+      "roman": "thee",
+      "kind": "uyirmei"
+    },
+    "0ba40bc8": {
+      "ezhuthu": "தை",
+      "roman": "thai",
+      "kind": "uyirmei"
+    },
+    "0ba40bca": {
+      "ezhuthu": "தொ",
+      "roman": "tho",
+      "kind": "uyirmei"
+    },
+    "0ba40bcb": {
+      "ezhuthu": "தோ",
+      "roman": "thoo",
+      "kind": "uyirmei"
+    },
+    "0ba8": {
+      "ezhuthu": "ந",
+      "roman": "nha",
+      "kind": "uyirmei"
+    },
+    "0ba80bbe": {
+      "ezhuthu": "நா",
+      "roman": "nhaa",
+      "kind": "uyirmei"
+    },
+    "0ba80bbf": {
+      "ezhuthu": "நி",
+      "roman": "nhi",
+      "kind": "uyirmei"
+    },
+    "0ba80bc0": {
+      "ezhuthu": "நீ",
+      "roman": "nhii",
+      "kind": "uyirmei"
+    },
+    "0ba80bc1": {
+      "ezhuthu": "நு",
+      "roman": "nhu",
+      "kind": "uyirmei"
+    },
+    "0ba80bc2": {
+      "ezhuthu": "நூ",
+      "roman": "nhuu",
+      "kind": "uyirmei"
+    },
+    "0ba80bc6": {
+      "ezhuthu": "நெ",
+      "roman": "nhe",
+      "kind": "uyirmei"
+    },
+    "0ba80bc7": {
+      "ezhuthu": "நே",
+      "roman": "nhee",
+      "kind": "uyirmei"
+    },
+    "0ba80bc8": {
+      "ezhuthu": "நை",
+      "roman": "nhai",
+      "kind": "uyirmei"
+    },
+    "0ba80bca": {
+      "ezhuthu": "நொ",
+      "roman": "nho",
+      "kind": "uyirmei"
+    },
+    "0ba80bcb": {
+      "ezhuthu": "நோ",
+      "roman": "nhoo",
+      "kind": "uyirmei"
+    },
+    "0baa": {
+      "ezhuthu": "ப",
+      "roman": "pa",
+      "kind": "uyirmei"
+    },
+    "0baa0bbe": {
+      "ezhuthu": "பா",
+      "roman": "paa",
+      "kind": "uyirmei"
+    },
+    "0baa0bbf": {
+      "ezhuthu": "பி",
+      "roman": "pi",
+      "kind": "uyirmei"
+    },
+    "0baa0bc0": {
+      "ezhuthu": "பீ",
+      "roman": "pii",
+      "kind": "uyirmei"
+    },
+    "0baa0bc1": {
+      "ezhuthu": "பு",
+      "roman": "pu",
+      "kind": "uyirmei"
+    },
+    "0baa0bc2": {
+      "ezhuthu": "பூ",
+      "roman": "puu",
+      "kind": "uyirmei"
+    },
+    "0baa0bc6": {
+      "ezhuthu": "பெ",
+      "roman": "pe",
+      "kind": "uyirmei"
+    },
+    "0baa0bc7": {
+      "ezhuthu": "பே",
+      "roman": "pee",
+      "kind": "uyirmei"
+    },
+    "0baa0bc8": {
+      "ezhuthu": "பை",
+      "roman": "pai",
+      "kind": "uyirmei"
+    },
+    "0baa0bca": {
+      "ezhuthu": "பொ",
+      "roman": "po",
+      "kind": "uyirmei"
+    },
+    "0baa0bcb": {
+      "ezhuthu": "போ",
+      "roman": "poo",
+      "kind": "uyirmei"
+    },
+    "0baa0bcc": {
+      "ezhuthu": "பௌ",
+      "roman": "pau",
+      "kind": "uyirmei"
+    },
+    "0bae": {
+      "ezhuthu": "ம",
+      "roman": "ma",
+      "kind": "uyirmei"
+    },
+    "0bae0bbe": {
+      "ezhuthu": "மா",
+      "roman": "maa",
+      "kind": "uyirmei"
+    },
+    "0bae0bbf": {
+      "ezhuthu": "மி",
+      "roman": "mi",
+      "kind": "uyirmei"
+    },
+    "0bae0bc0": {
+      "ezhuthu": "மீ",
+      "roman": "mii",
+      "kind": "uyirmei"
+    },
+    "0bae0bc1": {
+      "ezhuthu": "மு",
+      "roman": "mu",
+      "kind": "uyirmei"
+    },
+    "0bae0bc2": {
+      "ezhuthu": "மூ",
+      "roman": "muu",
+      "kind": "uyirmei"
+    },
+    "0bae0bc6": {
+      "ezhuthu": "மெ",
+      "roman": "me",
+      "kind": "uyirmei"
+    },
+    "0bae0bc7": {
+      "ezhuthu": "மே",
+      "roman": "mee",
+      "kind": "uyirmei"
+    },
+    "0bae0bc8": {
+      "ezhuthu": "மை",
+      "roman": "mai",
+      "kind": "uyirmei"
+    },
+    "0bae0bca": {
+      "ezhuthu": "மொ",
+      "roman": "mo",
+      "kind": "uyirmei"
+    },
+    "0bae0bcb": {
+      "ezhuthu": "மோ",
+      "roman": "moo",
+      "kind": "uyirmei"
+    },
+    "0bae0bcc": {
+      "ezhuthu": "மௌ",
+      "roman": "mau",
+      "kind": "uyirmei"
+    },
+    "0baf0bbe": {
+      "ezhuthu": "யா",
+      "roman": "yaa",
+      "kind": "uyirmei"
+    },
+    "0baf0bc1": {
+      "ezhuthu": "யு",
+      "roman": "yu",
+      "kind": "uyirmei"
+    },
+    "0baf0bc2": {
+      "ezhuthu": "யூ",
+      "roman": "yuu",
+      "kind": "uyirmei"
+    },
+    "0baf0bcb": {
+      "ezhuthu": "யோ",
+      "roman": "yoo",
+      "kind": "uyirmei"
+    },
+    "0bb5": {
+      "ezhuthu": "வ",
+      "roman": "va",
+      "kind": "uyirmei"
+    },
+    "0bb50bbe": {
+      "ezhuthu": "வா",
+      "roman": "vaa",
+      "kind": "uyirmei"
+    },
+    "0bb50bbf": {
+      "ezhuthu": "வி",
+      "roman": "vi",
+      "kind": "uyirmei"
+    },
+    "0bb50bc0": {
+      "ezhuthu": "வீ",
+      "roman": "vii",
+      "kind": "uyirmei"
+    },
+    "0bb50bc6": {
+      "ezhuthu": "வெ",
+      "roman": "ve",
+      "kind": "uyirmei"
+    },
+    "0bb50bc7": {
+      "ezhuthu": "வே",
+      "roman": "vee",
+      "kind": "uyirmei"
+    },
+    "0bb50bc8": {
+      "ezhuthu": "வை",
+      "roman": "vai",
+      "kind": "uyirmei"
+    },
+    "0bb50bcc": {
+      "ezhuthu": "வௌ",
+      "roman": "vau",
+      "kind": "uyirmei"
+    }
+  }
+}

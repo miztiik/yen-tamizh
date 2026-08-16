@@ -16,7 +16,7 @@ Because nothing is discarded, the artifact needs an integrity ledger that proves
 
 A word's `length` is its count of **ezhuthu** (எழுத்து) - Tamil grapheme clusters, the unit a player sees on a tile - never code points and never bytes. A mei (a consonant carrying the pulli, புள்ளி, Unicode U+0BCD) counts as ONE full ezhuthu.
 
-**`mathirai` (மாத்திரை) is not length.** Mathirai is a mora, a PROSODIC unit from Tamil prosody, and using it for length would silently change what a "four-letter word" means. The segmentation itself is the shared ezhuthu library (`backend/yen_tamizh_backend/ezhuthu/`, mirrored in `frontend/src/tamil/ezhuthu.ts`), never re-implemented, and every lexicon row is validated against it: a row whose `ezhuthu` list does not rejoin to exactly its `word` is rejected by the contract.
+**`mathirai` (மாத்திரை) is not length.** Mathirai is a mora, a PROSODIC unit from Tamil prosody, and using it for length would silently change what a "four-letter word" means. The segmentation itself is the shared ezhuthu library (`backend/yen_tamizh_backend/ezhuthu/`, mirrored in `frontend/src/tamil/ezhuthu.ts`), never re-implemented, and every lexicon row is validated against it: a row whose declared `length` is not what `segment(word)` counts is rejected by the contract. The published row carries the COUNT and not the list of ezhuthu - the list is a pure function of the word, and a stored copy of a derived value is a place for the two to disagree.
 
 ## Attestation is not observation
 
@@ -25,7 +25,7 @@ Two different things a source can tell us, and only one of them is evidence of w
 - An **observation** is "this scraper saw this surface, this many times". A frequency list observes. Observing a surface says nothing about whether it is a word - a misspelling in five news corpora is observed five times and is still a misspelling.
 - An **attestation** is "this authority lists this as an entry". A dictionary attests.
 
-Only sources with `role: authority` or `role: authored` can assert word-hood. `attestedBy` on a published row names exactly those - the authorities that carried a headword fact for it, sorted. Which scraper merely observed a surface decides nothing and never reaches the published row; it stays in the build-time store.
+Only sources with `role: authority` or `role: authored` can assert word-hood. A published row carries `attestations` - how many of them listed it - and `tier1Attestations`, how many of those were LEXICOGRAPHIC rather than a bare listing. Two counts rather than the list of names: what selection gates on is how many and how good, and WHICH source said it is a question about one word, which the build-time store answers. A scraper that merely observed a surface decides nothing and is counted in neither.
 
 `role: formEvidence` is the third case and it can only assert a NEGATIVE: a bulk list of inflected verb forms proves a surface is not a headword, never that it is one.
 
@@ -52,9 +52,9 @@ Selection is an ALLOW-LIST over these values, never a deny-list, so `unclassifie
 
 ## `wordhood` - the signals behind the verdict
 
-`wordhood` is the classifier's evidence, a NAME-KEYED MAP from a signal name to its value - not a fixed-arity struct, so signals can land in separate rows of work without either shipping a half-populated object. The eight names are `attested`, `orthotactic`, `breadth`, `nannulValid`, `knownVerbForm`, `ngram`, `neighbour` and `zipf`. What each one catches, and how they combine into the verdict, belongs to the classifier's own doc and is not restated here.
+`wordhood` is the classifier's evidence: eight named signals, `attested`, `orthotactic`, `breadth`, `nannulValid`, `knownVerbForm`, `ngram`, `neighbour` and `zipf`. What each one catches, and how they combine into the verdict, belongs to the classifier's own doc and is not restated here.
 
-The published artifact omits `wordhood`, because `wordClass` IS its verdict and the verdict is what every consumer reads. The contract still types it, because the build-time store carries it.
+The published artifact carries none of them, because `wordClass` IS their verdict and the verdict is what every consumer reads. They live in the build-time store, where the review reports expose them for a human to sort the residue by.
 
 ## Frequency, and the register it hides
 
@@ -72,9 +72,11 @@ A single "gloss" collapsed three different facts with three different consumers,
 - **`definitionTa`** - an explanatory Tamil phrase.
 - **`synonymsTa`** - a same-language Tamil equivalent set (ஒருபொருட் பன்மொழி, *orupporut panmozhi*). A Tamil meaning is preferred over an English one everywhere a player can see it.
 
-An English DEFINITION is never a published column. A one-word translation and a synonym are single-term language facts; a definition is a lexicographer's prose. It is retained as build-time evidence and never republished.
+An English DEFINITION is never a published column. A one-word translation, a synonym and a Tamil definition are what a Tamil speaker can read; an English definition is a lexicographer's prose in the wrong language for this game. It is retained as build-time evidence for the authoring pass and never republished.
 
-`meaningSource`, `translationEnSource` and `categorySource` record how each of those got there - `attested` (a source asserted it), `authored` (written from retained evidence) or `reviewed` (a human checked it). All three are build-time provenance and are NEVER rendered to a player: an "AI-written" badge on some meanings makes a player distrust all of them.
+A Tamil definition publishes VERBATIM from whichever attesting source carried it, and the authoring pass fills only what no source attests - so an ATTESTED meaning always outranks an AUTHORED one. That ranking is a rule in the resolver rather than a precedence number, because appending a source to the registry must not be able to promote the authoring pass over a dictionary by accident.
+
+The published row carries no provenance STAMP on any of those. Which source a meaning came from is a question about one word, and the store is where a per-fact `source_id` answers it; a stamp on 139,000 rows would be a column every row pays for and nothing spends. None of it was ever going to be rendered to a player anyway: an "AI-written" badge on some meanings makes a player distrust all of them.
 
 ## `pos` and `categories` are different questions
 
@@ -82,7 +84,13 @@ An English DEFINITION is never a published column. A one-word translation and a 
 
 A source label naming a part of speech routes to `pos`, never to `categories`, however the source filed it. The one curated themed source files `Nouns`, `Verbs` and `Adjectives` as "categories", and they are 64 percent of its rows; leaving them there would make `Nouns` the largest theme in the lexicon.
 
-Categories are very sparse and are never an admission gate. They are also the source of a PAID hint, which is why `categorySource` is required wherever `categories` is present.
+Categories are very sparse and are never an admission gate.
+
+## What is committed, and what is only retained
+
+The store keeps every surface and every fact. The REPOSITORY commits the classes a player can be served - `headword`, `properNoun`, `boundStem` and `colloquial` - one file per (`wordClass`, first ezhuthu) under `datasets/lexicon/by-class/`, indexed by `lexicon.meta.json`.
+
+Retention is not publication, and the meta document is what keeps the difference honest: `counters.classified` is a per-class census of the WHOLE population, committed beside the files, so a withheld class is on the record in the repository at its real size. `counters.published` counts what the files carry, and a class is published whole or withheld whole - a partial count would mean rows lost rather than rows withheld.
 
 ## See also
 

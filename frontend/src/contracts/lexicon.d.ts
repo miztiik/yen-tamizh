@@ -14,14 +14,19 @@ export type Change = string
 export type Version = string
 export type Why = string
 export type Rows = number
+export type Ezhuthu = string
+export type Kind = ("uyir" | "mei" | "uyirmei" | "aytham" | "other")
+export type Roman = string
+/**
+ * @minItems 1
+ */
+export type Partitionkeys = [string, ...(string)[]]
 /**
  * @minItems 1
  */
 export type Partitions = [LexiconPartition, ...(LexiconPartition)[]]
 export type Bytes = number
-export type Firstezhuthu = (string | null)
-export type Firstezhuthuhex = (string | null)
-export type Length = (number | null)
+export type Firstezhuthu = string
 export type Path = string
 export type Rows1 = number
 export type Sha256 = string
@@ -31,50 +36,42 @@ export type Wordclass = ("headword" | "inflected" | "colloquial" | "properNoun" 
  */
 export type Provenance = [LexiconProvenance, ...(LexiconProvenance)[]]
 export type Bytes1 = number
-export type Factsout = number
+export type Facts = number
 export type Id = string
 export type Name = string
+export type Observations = number
 export type Origin = string
 export type Path1 = string
-export type Rowsin = number
 export type Sha2561 = string
-export type Attestedby = ([string, ...(string)[]] | null)
+export type Attestations = number
 export type Categories = ([string, ...(string)[]] | null)
-export type Categorysource = (("attested" | "authored" | "reviewed") | null)
-export type Compound = (boolean | null)
 export type Definitionta = (string | null)
-/**
- * @minItems 1
- */
-export type Ezhuthu = [string, ...(string)[]]
-export type Freqrank = (number | null)
 export type Frequency = number
-export type Length1 = number
-export type Meaningsource = (("attested" | "authored" | "reviewed") | null)
+export type Length = number
 export type Pos = ([("adjective" | "adverb" | "conjunction" | "determiner" | "interjection" | "noun" | "numeral" | "particle" | "postposition" | "pronoun" | "verb"), ...(("adjective" | "adverb" | "conjunction" | "determiner" | "interjection" | "noun" | "numeral" | "particle" | "postposition" | "pronoun" | "verb"))[]] | null)
 export type Spokenratio = (number | null)
 export type Synonymsta = ([string, ...(string)[]] | null)
+export type Tier1Attestations = number
 export type Translationen = (string | null)
-export type Translationensource = (string | null)
 export type Word = string
 export type Wordclass1 = ("headword" | "inflected" | "colloquial" | "properNoun" | "loanword" | "boundStem" | "sandhiArtifact" | "suspectedTypo" | "notAWord" | "unclassified")
-export type Wordhood = ({
-[k: string]: number
-} | null)
 export type Version1 = string
 
 /**
  * The lexicon META document (``datasets/lexicon/lexicon.meta.json``).
  * 
  * It carries no ``words`` list. The lexicon is streamed NDJSON with no
- * in-memory row list, so the reconciliation reads ``counters.rows`` and the
- * partition table's declared counts rather than ``len(words)`` - a document
- * model holding every row could not be constructed at this size and would
- * quietly re-introduce the materialization the publisher exists to avoid.
+ * in-memory row list, so the reconciliation reads ``counters.published.rows``
+ * and the partition table's declared counts rather than ``len(words)`` - a
+ * document model holding every row could not be constructed at this size and
+ * would quietly re-introduce the materialization the publisher exists to
+ * avoid.
  */
 export interface Lexicon {
 changelog: Changelog
 counters: LexiconCounters
+ezhuthuIndex: Ezhuthuindex
+partitionKeys: Partitionkeys
 partitions: Partitions
 provenance: Provenance
 rowSchema?: (LexiconEntry | null)
@@ -92,33 +89,72 @@ version: Version
 why: Why
 }
 /**
- * The per-class ledger: every published row lands under exactly one class.
+ * The two censuses, and the rule that binds them.
+ * 
+ * ``classified`` counts the WHOLE population the store holds, class by class,
+ * including every class the publish policy withholds. ``published`` counts
+ * what the committed files carry. Committing both is what makes "nothing was
+ * discarded" a checkable statement rather than a claim: a withheld class is
+ * still on the record here, at its real size, in the repository.
+ * 
+ * Publication is ALL-OR-NOTHING per class, and that is the rule the model
+ * enforces. A class is published whole or not at all, so a published count
+ * that is neither zero nor the classified count means rows went missing
+ * between the classifier and the writer - the one failure a per-class policy
+ * would otherwise hide.
+ */
+export interface LexiconCounters {
+classified: LexiconCensus
+published: LexiconCensus
+}
+/**
+ * A per-class ledger: every counted row lands under exactly one class.
  * 
  * ``byClass`` carries a bucket for EVERY ``wordClass`` - a missing bucket and
  * a zero bucket say different things, and only one of them is a measurement.
  */
-export interface LexiconCounters {
+export interface LexiconCensus {
 byClass: Byclass
 rows: Rows
 }
 export interface Byclass {
 [k: string]: number
 }
+export interface Ezhuthuindex {
+[k: string]: EzhuthuIndexEntry
+}
 /**
- * One published NDJSON cell, and what it holds.
+ * What one partition's hex key stands for, spelled out for a human.
  * 
- * The split keys - ``wordClass``, then ezhuthu ``length``, then the word's
- * BASE first ezhuthu - are all immutable per word, so a refresh INSERTS into a
- * cell and never reshuffles one. Only a changed ``wordClass`` moves a row, and
- * that is a reviewable semantic event. ``firstEzhuthuHex`` renders the base
- * ezhuthu as lowercase 4-digit hex so every path stays ASCII; this document is
- * what maps the hex back to the ezhuthu it stands for.
+ * This is where the Tamil letter and its ASCII spelling live: as correctable
+ * DATA in a document a reviewer already opens, never as a path component. A
+ * code point is fixed by an external standard, so it can carry an address; a
+ * romanization is a judgement call, and correcting one must not rename a
+ * published file.
+ * 
+ * ``ezhuthu`` is a WHOLE letter, not the base character it is built from - one
+ * code point for an uyir or a bare consonant, two once a vowel sign or a pulli
+ * attaches. ``kind`` classifies that whole letter, so a consonant carrying a
+ * pulli reads ``mei`` and a bare one reads ``uyirmei`` (the inherent /a/).
+ */
+export interface EzhuthuIndexEntry {
+ezhuthu: Ezhuthu
+kind: Kind
+roman: Roman
+}
+/**
+ * One published NDJSON file, and what it holds.
+ * 
+ * Addressed by ``wordClass`` then ``firstEzhuthu`` - the word's opening letter
+ * as the lowercase 4-digit hex of each of its code points. Both keys are
+ * immutable per word, so a refresh INSERTS into a file and never reshuffles
+ * one; only a changed ``wordClass`` moves a row, and that is a reviewable
+ * semantic event. Hex keeps every path ASCII; ``ezhuthuIndex`` on the meta
+ * document is what maps it back to the letter.
  */
 export interface LexiconPartition {
 bytes: Bytes
-firstEzhuthu?: Firstezhuthu
-firstEzhuthuHex?: Firstezhuthuhex
-length?: Length
+firstEzhuthu: Firstezhuthu
 path: Path
 rows: Rows1
 sha256: Sha256
@@ -130,51 +166,55 @@ wordClass: Wordclass
  * ``sha256`` + ``bytes`` identify the input, so a later run can prove it read
  * the same file and CI can compare the declared set against the registry with
  * no network and no raw bytes on disk.
+ * 
+ * ``observations`` and ``facts`` are what the STORE can prove about the
+ * source - the surfaces it contributed and the typed assertions it made. They
+ * are named for what they are: no stage retains a raw input row count once the
+ * extract is written, so a field called ``rowsIn`` could only ever have been
+ * filled with one of these two wearing the wrong name.
  */
 export interface LexiconProvenance {
 bytes: Bytes1
-factsOut: Factsout
+facts: Facts
 id: Id
 name: Name
+observations: Observations
 origin: Origin
 path: Path1
-rowsIn: Rowsin
 sha256: Sha2561
 }
 /**
- * One lexicon row: every published fact about one Tamil surface.
+ * One lexicon row: what a consumer of the lexicon reads about one surface.
  * 
  * Not a ``SchemaModel`` - see the module docstring.
  * 
  * Every sparse column is OPTIONAL and never a defaulted empty list.
  * ``model_dump(exclude_none=True)`` drops ``None`` but keeps ``[]``, so a
- * defaulted empty list writes an empty pair on every row that lacks the fact -
- * roughly 200 MB of nothing across the published set.
+ * defaulted empty list would write an empty pair on every row that lacks the
+ * fact.
  * 
- * ``wordhood`` and ``freqRank`` are optional for the same reason the publisher
- * omits them: both are derived diagnostics rather than facts a source
- * asserted, ``freqRank`` is a sort of the published ``frequency`` and
- * ``wordClass`` IS ``wordhood``'s verdict, so neither can cost the project a
- * fact. The contract still types them, because the store-side renderings carry
- * them and an untyped diagnostic is an untyped diagnostic.
+ * The row carries facts and counts, not provenance. ``attestedBy`` was a list
+ * of source slugs on every row and what selection actually gates on is the
+ * COUNT, so it is published as one; the three ``*Source`` stamps and
+ * ``compound`` had no reader at all. ``wordhood`` and ``freqRank`` are gone on
+ * the same principle they were always going to be omitted under - a derived
+ * diagnostic whose verdict (``wordClass``) or whose input (``frequency``) is
+ * itself published. ``ezhuthu`` is ``segment(word)``, a pure function of a
+ * published column, so storing it would mint a drift surface as well as spend
+ * bytes; ``length`` stays because selection reads it, and it is checked
+ * against the live segmentation on every row.
  */
 export interface LexiconEntry {
-attestedBy?: Attestedby
+attestations: Attestations
 categories?: Categories
-categorySource?: Categorysource
-compound?: Compound
 definitionTa?: Definitionta
-ezhuthu: Ezhuthu
-freqRank?: Freqrank
 frequency: Frequency
-length: Length1
-meaningSource?: Meaningsource
+length: Length
 pos?: Pos
 spokenRatio?: Spokenratio
 synonymsTa?: Synonymsta
+tier1Attestations: Tier1Attestations
 translationEn?: Translationen
-translationEnSource?: Translationensource
 word: Word
 wordClass: Wordclass1
-wordhood?: Wordhood
 }

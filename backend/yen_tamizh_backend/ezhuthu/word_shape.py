@@ -38,6 +38,7 @@ from __future__ import annotations
 
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
+from types import MappingProxyType
 from typing import Final
 
 from yen_tamizh_backend.ezhuthu.classify import classify
@@ -134,6 +135,149 @@ EZHUTHU_INVENTORY: Final[tuple[str, ...]] = (
     *(f"{base}{matra}" for base in CONSONANTS for matra in ("", *MATRA)),
     AYTHAM,
 )
+
+# This repo's ASCII spelling of each BASE character - the one already carried as
+# a comment beside every letter above, lifted into data so a reader can be told
+# which letter a thing stands for without reading this file. A consonant maps to
+# its CONSONANT alone; the inherent /a/ that makes a bare consonant a full
+# ezhuthu is added by ``ezhuthu_roman`` along with every other vowel, so one
+# rule spells all twelve forms of a consonant rather than twelve exceptions.
+#
+# It is a LABEL, and it is deliberately not a transliteration standard. ISO
+# 15919 is diacritic-based and so not ASCII at all; ITRANS is CASE-SIGNIFICANT,
+# and this very table shows why that matters - N and n are different letters
+# here, as are L and l. That collision is exactly why the published lexicon
+# addresses a file by the letter's HEX code points and spells the letter out in
+# the meta document instead: a code point is fixed by an external standard,
+# whereas a spelling is a judgement call, and correcting a judgement call must
+# never rename a published file.
+#
+# The aytham carries its NAME rather than a sound. It has none of its own - it
+# modifies what follows it - so inventing a phonetic spelling for it would be
+# inventing a fact.
+BASE_ROMAN: Final[Mapping[str, str]] = MappingProxyType(
+    {
+        "\u0b85": "a",
+        "\u0b86": "aa",
+        "\u0b87": "i",
+        "\u0b88": "ii",
+        "\u0b89": "u",
+        "\u0b8a": "uu",
+        "\u0b8e": "e",
+        "\u0b8f": "ee",
+        "\u0b90": "ai",
+        "\u0b92": "o",
+        "\u0b93": "oo",
+        "\u0b94": "au",
+        "\u0b95": "k",
+        "\u0b99": "ng",
+        "\u0b9a": "ch",
+        "\u0b9e": "nj",
+        "\u0b9f": "d",
+        "\u0ba3": "N",
+        "\u0ba4": "th",
+        "\u0ba8": "nh",
+        "\u0baa": "p",
+        "\u0bae": "m",
+        "\u0baf": "y",
+        "\u0bb0": "r",
+        "\u0bb2": "l",
+        "\u0bb5": "v",
+        "\u0bb4": "zh",
+        "\u0bb3": "L",
+        "\u0bb1": "tr",
+        "\u0ba9": "n",
+        "\u0b9c": "j",
+        "\u0bb6": "sh",
+        "\u0bb7": "ss",
+        "\u0bb8": "s",
+        "\u0bb9": "h",
+        AYTHAM: "aytham",
+    }
+)
+
+# The vowel each sign writes, plus the pulli - which writes no vowel at all and
+# so contributes an EMPTY string, leaving a mei spelled as its bare consonant.
+MATRA_ROMAN: Final[Mapping[str, str]] = MappingProxyType(
+    {
+        "\u0bbe": "aa",
+        "\u0bbf": "i",
+        "\u0bc0": "ii",
+        "\u0bc1": "u",
+        "\u0bc2": "uu",
+        "\u0bc6": "e",
+        "\u0bc7": "ee",
+        "\u0bc8": "ai",
+        "\u0bca": "o",
+        "\u0bcb": "oo",
+        "\u0bcc": "au",
+        PULLI: "",
+    }
+)
+
+# The bases that stand alone: an uyir writes its own vowel and the aytham has no
+# vowel to take, so neither ever carries a sign.
+_STANDALONE_BASES: Final[frozenset[str]] = frozenset({*UYIR, AYTHAM})
+
+
+def letter_defect(unit: str) -> str | None:
+    """Why this cluster is not a well-formed Tamil letter, or ``None``.
+
+    A cluster and a LETTER are not the same thing. Segmentation is
+    non-destructive and total: it attaches every combining mark to whatever
+    precedes it, so a legacy-encoding artifact like an independent vowel wearing
+    a vowel sign and a pulli comes back as ONE cluster and looks like a letter
+    to anything that only counts units. This is the predicate that says it is
+    not one.
+
+    One implementation read two ways, on the same pattern the word-hood
+    precondition uses: the caller that only needs a yes or no asks
+    ``is_a_letter``, and the caller that has to explain itself - a romanization
+    that refuses to guess, a classifier reason a reviewer reads - gets the
+    clause it failed on.
+    """
+    if not unit:
+        return "an ezhuthu cannot be empty"
+    base, marks = unit[0], unit[1:]
+    if base not in BASE_ROMAN:
+        return f"U+{ord(base):04X} is not a base character Tamil is written in"
+    if base in _STANDALONE_BASES:
+        if marks:
+            return f"{unit!r} attaches a sign to a vowel or the aytham"
+        return None
+    if not marks:
+        return None
+    if len(marks) != 1:
+        return f"{unit!r} carries {len(marks)} signs; a Tamil letter has one"
+    if marks not in MATRA_ROMAN:
+        return f"U+{ord(marks):04X} is not a vowel sign or the pulli"
+    return None
+
+
+def is_a_letter(unit: str) -> bool:
+    """Whether one cluster is a well-formed Tamil letter."""
+    return letter_defect(unit) is None
+
+
+def ezhuthu_roman(unit: str) -> str:
+    """The ASCII label for ONE whole ezhuthu, built from its parts.
+
+    ``ka`` is the consonant plus the inherent /a/, ``kaa`` is the consonant plus
+    the aa sign, ``k`` is the consonant plus a pulli. Composed rather than
+    tabulated: 247 hand-written spellings would be 247 places for a typo, and
+    this way a grantha consonant no table anticipated spells correctly too.
+
+    Refuses anything it cannot spell rather than guessing - the label is
+    published, and a wrong one is worse than a missing one.
+    """
+    defect = letter_defect(unit)
+    if defect is not None:
+        raise ValueError(defect)
+    base, marks = unit[0], unit[1:]
+    root = BASE_ROMAN[base]
+    if base in _STANDALONE_BASES:
+        return root
+    return f"{root}a" if not marks else f"{root}{MATRA_ROMAN[marks]}"
 
 # The ten consonants a Tamil word may open on. The other eight never begin a
 # native word; a surface opening on one is a loanword or a fragment, which is

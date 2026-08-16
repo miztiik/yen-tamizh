@@ -52,22 +52,33 @@ REGISTRY = load_registry(_REGISTRY_PATH)
 CONFIG: Wordhood = load_config(_CONFIG_PATH)
 
 # The reasons `not_a_word_reason` can produce, plus the one no threshold does.
-REASONS = frozenset({"empty", "nonTamil", "tooLong", "repeatedEzhuthu", "sourceDenied"})
+REASONS = frozenset(
+    {
+        "empty",
+        "nonTamil",
+        "malformedEzhuthu",
+        "tooLong",
+        "repeatedEzhuthu",
+        "sourceDenied",
+    }
+)
 
 
 @dataclass(frozen=True, slots=True)
 class Reviewed:
-    """An enriched store and the reports written beside it."""
+    """An enriched store and the reports written from it."""
 
     db: Path
     root: Path
+    registry: LexiconSources
+    workspace: Path
 
 
 def _fixture_registry(root: Path) -> LexiconSources:
     entries: list[dict[str, Any]] = []
     source: LexiconSource
     for source in REGISTRY.sources:
-        fixture = source_bytes(_REPO_ROOT, _FIXTURES, source)
+        fixture = source_bytes(_REPO_ROOT, source)
         staged = root / "sources" / fixture.name
         staged.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(fixture, staged)
@@ -95,9 +106,11 @@ def reviewed(tmp_path_factory: pytest.TempPathFactory) -> Reviewed:
     db = root / "out" / "cache" / "lexicon.db"
     stage(registry, root, db)
     enrich(registry, CONFIG, db)
-    run = review(registry, CONFIG, db)
-    assert run.root == db.parent / REVIEW_DIRECTORY
-    return Reviewed(db=db, root=run.root)
+    run = review(registry, CONFIG, db, root)
+    # Under the lexicon root, NOT under the build cache: these reports are
+    # working material a person reads, not machine state one stage hands on.
+    assert run.root == root / registry.lexiconRoot / REVIEW_DIRECTORY
+    return Reviewed(db=db, root=run.root, registry=registry, workspace=root)
 
 
 def _rows(path: Path) -> list[dict[str, Any]]:
@@ -308,7 +321,7 @@ def test_reviewing_twice_writes_the_same_bytes(reviewed: Reviewed) -> None:
         digest_before = conn.execute("SELECT count(*) FROM classification").fetchone()
     finally:
         conn.close()
-    review(REGISTRY, CONFIG, reviewed.db)
+    review(reviewed.registry, CONFIG, reviewed.db, reviewed.workspace)
     for name, data in before.items():
         assert (reviewed.root / name).read_bytes() == data, name
     conn = open_store(reviewed.db)
