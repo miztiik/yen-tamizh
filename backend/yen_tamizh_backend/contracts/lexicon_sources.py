@@ -49,14 +49,32 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from yen_tamizh_backend.contracts.base import ChangelogEntry, SchemaModel
 from yen_tamizh_backend.contracts.common import RelPath, SourceId
-from yen_tamizh_backend.contracts.lexicon import PartOfSpeech
+from yen_tamizh_backend.contracts.lexicon import PartOfSpeech, WordClass
 
 # The initial mint - see the note on ``LEXICON_VERSION``. The registry file that
 # carries this stamp is written in the row that adds the readers.
-LEXICON_SOURCES_VERSION = "2026-08-16"
+LEXICON_SOURCES_VERSION = "2026-08-16T10:00"
 LEXICON_SOURCES_CHANGELOG = (
     ChangelogEntry(
         version=LEXICON_SOURCES_VERSION,
+        change=(
+            "Added the three PUBLISH knobs: publishedClasses, spokenSources "
+            "and maxPartitionBytes."
+        ),
+        why=(
+            "Row 11. Which classes are committed is a POLICY, the spoken share "
+            "of a frequency sum needs to know which corpora are spoken, and the "
+            "file-size ceiling is a threshold - all three are knobs, so Holy "
+            "Law #6 puts them in config, and they join lexiconRoot and outputs, "
+            "the publish knobs this registry already carried. Naming the spoken "
+            "corpora here rather than tagging every frequency source keeps the "
+            "declaration where something reads it: 'written' on ten sources "
+            "would be the complement of this list restated ten times, and a "
+            "field nothing consults reads as a claim and changes nothing."
+        ),
+    ),
+    ChangelogEntry(
+        version="2026-08-16",
         change=(
             "Added attestationTier, required on every source whose role may "
             "assert word-hood and forbidden on every other."
@@ -339,6 +357,23 @@ class LexiconSources(SchemaModel):
 
     lexiconRoot: RelPath
     outputs: list[OutputFormat] = Field(min_length=1)
+    # WHAT GETS COMMITTED. The store retains every surface; this is the far
+    # smaller set the repository carries, and it is a policy rather than a
+    # property of the data - which is why it is declared here and why the
+    # withheld classes still get a census in the published meta document.
+    publishedClasses: list[WordClass] = Field(min_length=1)
+    # The frequency corpora that are SPOKEN Tamil. Their share of a word's
+    # summed frequency is the register signal: frequent in subtitles and rare in
+    # news is everyday spoken Tamil, and the reverse is written or formal. Empty
+    # is a legal state - it says this registry names no spoken corpus, and then
+    # no row carries a spoken share at all, which is honest where a zero would
+    # be a lie.
+    spokenSources: list[SourceId] = Field(default_factory=list)
+    # The ceiling one published file may not cross. Headroom against GitHub's
+    # 100 MiB hard blob wall, not a partition threshold - the layout is decided
+    # by the address, and this is the assertion that says so out loud if a class
+    # ever grows past what one file should carry.
+    maxPartitionBytes: int = Field(gt=0)
     # Every raw POS tag any source emits gets an entry. A tag with no entry is a
     # hard publish failure naming the tag and its row count - never dropped, and
     # never passed through, which would defeat the closed vocabulary.
@@ -351,6 +386,39 @@ class LexiconSources(SchemaModel):
     def _outputs_are_deduped(self) -> Self:
         if len(set(self.outputs)) != len(self.outputs):
             raise ValueError(f"duplicate output format in {list(self.outputs)}")
+        return self
+
+    @model_validator(mode="after")
+    def _published_classes_are_sorted_and_deduped(self) -> Self:
+        # A set written as a list, so the order it is written in must not be
+        # information - otherwise reordering it for readability changes nothing
+        # and yet looks as though it might.
+        if list(self.publishedClasses) != sorted(set(self.publishedClasses)):
+            raise ValueError(
+                f"publishedClasses must be sorted and deduped: "
+                f"{list(self.publishedClasses)}"
+            )
+        return self
+
+    @model_validator(mode="after")
+    def _spoken_sources_are_registered_frequency_corpora(self) -> Self:
+        if list(self.spokenSources) != sorted(set(self.spokenSources)):
+            raise ValueError(
+                f"spokenSources must be sorted and deduped: {list(self.spokenSources)}"
+            )
+        by_id = {source.id: source for source in self.sources}
+        for name in self.spokenSources:
+            source = by_id.get(name)
+            if source is None:
+                raise ValueError(f"spokenSources names unregistered source {name!r}")
+            if source.role != "frequency":
+                # A spoken share is a share OF the frequency sum, so a source
+                # outside that sum would put its counts in the numerator and
+                # nowhere in the denominator - a ratio over 1.
+                raise ValueError(
+                    f"spokenSources names {name!r}, whose role is "
+                    f"{source.role!r} rather than 'frequency'"
+                )
         return self
 
     @model_validator(mode="after")

@@ -1,6 +1,6 @@
 # The Lexicon
 
-**Last Updated**: 2026-08-14
+**Last Updated**: 2026-08-16
 
 The vocabulary of the word layer, defined once. Every other doc links here rather than restating a term. What the words are FOR is [core-loop.md](core-loop.md) and [games.md](games.md); how they are SELECTED is [difficulty-and-scoring.md](difficulty-and-scoring.md); the persisted shapes are in [../architecture/contracts/schemas.md](../architecture/contracts/schemas.md).
 
@@ -10,13 +10,15 @@ The **lexicon** is the all-words artifact: every Tamil surface any registered so
 
 That is a deliberate reversal of the corpus layer it supersedes. The corpus ingest was a destructive funnel - millions of distinct surfaces in, fifty thousand words out - and every surface it rejected became unrecoverable without re-reading hundreds of megabytes of gitignored source bytes. The lexicon inverts the responsibility: **ingest ENRICHES, selection FILTERS**. Nothing is discarded, so recovering a word that was wrongly excluded is a change to a selection knob rather than a re-ingest.
 
-Because nothing is discarded, the artifact needs an integrity ledger that proves it. Its per-class counters reconcile: every published row lands under exactly one `wordClass`, the buckets sum to the declared row count, and the files on disk declare the same population class by class. A row lost between the classifier and the writer cannot validate.
+Because nothing is discarded, the artifact needs an integrity ledger that proves it. Its counters come in TWO families and reconcile against each other: `classified` counts the WHOLE population the store holds, class by class, and `published` counts what the committed files carry. Every counted row lands under exactly one `wordClass`, each family's buckets sum to its own declared row count, the files on disk declare the published population class by class, and publication is all-or-nothing per class - so a class is either committed whole or withheld whole, and a partial count is rows LOST rather than rows withheld. A row lost between the classifier and the writer cannot validate.
+
+**Retention is not publication.** The store keeps every surface; the REPOSITORY commits the classes a player can be served, because git history is append-only and a byte committed once is carried forever. The withheld classes are not gone - they are counted, named and committed in `classified`, at their real size, which is what makes "nothing was discarded" a check rather than a claim.
 
 ## Length is measured in ezhuthu
 
 A word's `length` is its count of **ezhuthu** (எழுத்து) - Tamil grapheme clusters, the unit a player sees on a tile - never code points and never bytes. A mei (a consonant carrying the pulli, புள்ளி, Unicode U+0BCD) counts as ONE full ezhuthu.
 
-**`mathirai` (மாத்திரை) is not length.** Mathirai is a mora, a PROSODIC unit from Tamil prosody, and using it for length would silently change what a "four-letter word" means. The segmentation itself is the shared ezhuthu library (`backend/yen_tamizh_backend/ezhuthu/`, mirrored in `frontend/src/tamil/ezhuthu.ts`), never re-implemented, and every lexicon row is validated against it: a row whose `ezhuthu` list does not rejoin to exactly its `word` is rejected by the contract.
+**`mathirai` (மாத்திரை) is not length.** Mathirai is a mora, a PROSODIC unit from Tamil prosody, and using it for length would silently change what a "four-letter word" means. The segmentation itself is the shared ezhuthu library (`backend/yen_tamizh_backend/ezhuthu/`, mirrored in `frontend/src/tamil/ezhuthu.ts`), never re-implemented, and every lexicon row is validated against it: the published row carries `length` but not the segmentation, and the contract recomputes `segment(word)` on read and rejects any row whose declared length is not its word's own ezhuthu count.
 
 ## Attestation is not observation
 
@@ -54,7 +56,7 @@ Selection is an ALLOW-LIST over these values, never a deny-list, so `unclassifie
 
 `wordhood` is the classifier's evidence, a NAME-KEYED MAP from a signal name to its value - not a fixed-arity struct, so signals can land in separate rows of work without either shipping a half-populated object. The eight names are `attested`, `orthotactic`, `breadth`, `nannulValid`, `knownVerbForm`, `ngram`, `neighbour` and `zipf`. What each one catches, and how they combine into the verdict, belongs to the classifier's own doc and is not restated here.
 
-The published artifact omits `wordhood`, because `wordClass` IS its verdict and the verdict is what every consumer reads. The contract still types it, because the build-time store carries it.
+The published artifact omits `wordhood`, because `wordClass` IS its verdict and the verdict is what every consumer reads. The contract still types it, because the build-time store carries it. It omits `ezhuthu` on the same principle: the segmentation is a pure function of the published `word`, so storing it would only add a second copy that can disagree with the first.
 
 ## Frequency, and the register it hides
 
@@ -87,6 +89,7 @@ Categories are very sparse and are never an admission gate. They are also the so
 ## See also
 
 - [../architecture/lexicon/pipeline.md](../architecture/lexicon/pipeline.md) - the four stages that build this artifact.
+- [../how-to/rebuild-the-lexicon.md](../how-to/rebuild-the-lexicon.md) - running those stages, and what a refresh commit contains.
 - [../architecture/lexicon/word-hood.md](../architecture/lexicon/word-hood.md) - the eight signals, what each catches, and how a `wordClass` is reached.
 - [../architecture/contracts/schemas.md](../architecture/contracts/schemas.md) - the `lexicon` and `lexicon-sources` contracts and their shape decisions.
 - [core-loop.md](core-loop.md) - what a player does with a word.

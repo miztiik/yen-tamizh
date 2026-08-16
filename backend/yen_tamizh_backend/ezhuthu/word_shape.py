@@ -38,6 +38,7 @@ from __future__ import annotations
 
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
+from types import MappingProxyType
 from typing import Final
 
 from yen_tamizh_backend.ezhuthu.classify import classify
@@ -133,6 +134,63 @@ EZHUTHU_INVENTORY: Final[tuple[str, ...]] = (
     *(f"{base}{PULLI}" for base in CONSONANTS),
     *(f"{base}{matra}" for base in CONSONANTS for matra in ("", *MATRA)),
     AYTHAM,
+)
+
+# This repo's ASCII spelling of each BASE character - the one already carried as
+# a comment beside every letter above, lifted into data so a reader can be told
+# which letter a thing stands for without reading this file.
+#
+# It is a LABEL, and it is deliberately not a transliteration standard. ISO
+# 15919 is diacritic-based and so not ASCII at all; ITRANS is CASE-SIGNIFICANT,
+# and this very table shows why that matters - N and n are different letters
+# here, as are L and l. That collision is exactly why the published lexicon
+# addresses a file by the base character's HEX code point and spells the letter
+# out in the meta document instead: a code point is fixed by an external
+# standard, whereas a spelling is a judgement call, and correcting a judgement
+# call must never rename a published file.
+#
+# The aytham carries its NAME rather than a sound. It has none of its own - it
+# modifies what follows it - so inventing a phonetic spelling for it would be
+# inventing a fact.
+BASE_ROMAN: Final[Mapping[str, str]] = MappingProxyType(
+    {
+        "\u0b85": "a",
+        "\u0b86": "aa",
+        "\u0b87": "i",
+        "\u0b88": "ii",
+        "\u0b89": "u",
+        "\u0b8a": "uu",
+        "\u0b8e": "e",
+        "\u0b8f": "ee",
+        "\u0b90": "ai",
+        "\u0b92": "o",
+        "\u0b93": "oo",
+        "\u0b94": "au",
+        "\u0b95": "k",
+        "\u0b99": "ng",
+        "\u0b9a": "ch",
+        "\u0b9e": "nj",
+        "\u0b9f": "d",
+        "\u0ba3": "N",
+        "\u0ba4": "th",
+        "\u0ba8": "nh",
+        "\u0baa": "p",
+        "\u0bae": "m",
+        "\u0baf": "y",
+        "\u0bb0": "r",
+        "\u0bb2": "l",
+        "\u0bb5": "v",
+        "\u0bb4": "zh",
+        "\u0bb3": "L",
+        "\u0bb1": "tr",
+        "\u0ba9": "n",
+        "\u0b9c": "ja",
+        "\u0bb6": "sha",
+        "\u0bb7": "ssa",
+        "\u0bb8": "sa",
+        "\u0bb9": "ha",
+        AYTHAM: "aytham",
+    }
 )
 
 # The ten consonants a Tamil word may open on. The other eight never begin a

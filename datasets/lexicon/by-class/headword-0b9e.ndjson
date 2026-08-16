@@ -1,0 +1,193 @@
+{"attestedBy": ["ta-wiktionary-titles", "wiktextract-ta"], "frequency": 87, "length": 1, "spokenRatio": 0.0, "word": "ஞ", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "ஞஃகான்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 3, "word": "ஞஞ்சை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 3, "word": "ஞஞ்ஞை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞஞ்ஞையெனல்", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 0, "length": 3, "word": "ஞண்டு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 3, "word": "ஞத்தி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "ஞத்துவம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞமகண்டன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 34, "length": 3, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அக்கன்", "அலிபகம்", "உரோகதி", "எகினன்", "எகினம்", "கள்", "குக்கன்", "குக்கல்", "குரைமுகன்", "கூரன்", "சகுடம்", "சாரமேயன்", "சுனகன்", "சுவானம்", "ஞாளி", "ஞிமிறு", "பைரவன்", "மயில்", "மயூரம்", "முடுவல்"], "translationEn": "retriver", "translationEnSource": "master-dictionary", "word": "ஞமலி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 3, "word": "ஞயம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 3, "word": "ஞரல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "ஞரிவாளை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 2, "word": "ஞறா", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "ஞலவல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 3, "word": "ஞவல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 22634, "length": 1, "spokenRatio": 0.0, "word": "ஞா", "wordClass": "headword"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 0, "length": 3, "meaningSource": "attested", "pos": ["pronoun"], "synonymsTa": ["நாங்கள்"], "word": "ஞாங்க", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 4, "length": 4, "spokenRatio": 0.0, "word": "ஞாங்கர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 0, "length": 4, "meaningSource": "attested", "pos": ["noun"], "synonymsTa": ["ஏர்", "கலப்பை"], "word": "ஞாஞ்சில்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 2, "word": "ஞாடு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 3, "length": 3, "spokenRatio": 0.0, "word": "ஞாட்பு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 11, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "word": "ஞாண்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 3, "word": "ஞாதம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞாதவ்வியம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 1, "length": 2, "spokenRatio": 0.0, "word": "ஞாதா", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 0, "length": 2, "meaningSource": "attested", "pos": ["noun"], "synonymsTa": ["(பெ.) தந்தைவழி உறவுடைய", "ஆண்வழி உறவினர்", "ஆண்வழி உறவுடைய", "ஆண்வழித்தொடர்புடைய", "உறவினர்", "ஒருகுலஞ் சார்ந்த", "ஒருகுலத்தவர்", "ஒரே குலமுதல்வன் வழிவந்த", "பங்காளி"], "translationEn": "agnate", "translationEnSource": "en-ta-dictionary", "word": "ஞாதி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 3, "word": "ஞாதிரு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 1, "length": 3, "spokenRatio": 0.0, "word": "ஞாதுரு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "ஞாதுருத்துவம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "ஞாதேயம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 2787, "length": 2, "spokenRatio": 0.0, "translationEn": "guru", "translationEnSource": "master-dictionary", "word": "ஞான", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞானகிருதம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 33, "length": 5, "spokenRatio": 0.0, "word": "ஞானக்கண்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "ஞானக்கந்தம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞானக்காட்சி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 22511, "length": 7, "spokenRatio": 0.0, "word": "ஞானக்கூத்தன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "ஞானக்கை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "ஞானசத்தி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 31, "length": 4, "spokenRatio": 0.0, "word": "ஞானசபை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "ஞானசமாதி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 11, "length": 9, "spokenRatio": 0.0, "word": "ஞானசம்பந்தரும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 1, "length": 8, "spokenRatio": 0.0, "word": "ஞானசம்பந்தரே", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 167, "length": 8, "spokenRatio": 0.0, "word": "ஞானசம்பந்தர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞானசரிதன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞானசரீரம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞானசாதகன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞானசாதனம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "ஞானசாதனை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞானசித்தன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "ஞானசுகம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 1, "length": 6, "spokenRatio": 0.0, "word": "ஞானசூனியன்", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 17, "length": 6, "spokenRatio": 0.0, "word": "ஞானசூனியம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "ஞானதிகாரி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "ஞானதிட்டி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞானதிருட்டி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "ஞானதீட்சை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞானத்தாளன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 32, "length": 6, "spokenRatio": 0.0, "word": "ஞானத்தினால்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞானத்திறைவி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 89, "length": 5, "spokenRatio": 0.0, "word": "ஞானத்தில்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 8, "word": "ஞானத்தில்யோகம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 31, "length": 6, "spokenRatio": 0.0, "word": "ஞானத்துக்கு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 4, "length": 6, "spokenRatio": 0.0, "word": "ஞானநாயகன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 3, "length": 5, "spokenRatio": 0.0, "word": "ஞானநிட்டை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 9, "length": 4, "spokenRatio": 0.0, "word": "ஞானநிலை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 4, "length": 3, "spokenRatio": 0.0, "word": "ஞானன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "ஞானபரன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 2, "length": 5, "spokenRatio": 0.0, "word": "ஞானபாதம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞானபாரகன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞானபாரமிதை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "ஞானபுத்திரன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 3, "length": 4, "spokenRatio": 0.0, "word": "ஞானபூசை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞானபூரணன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 9, "length": 5, "spokenRatio": 0.0, "word": "ஞானப்பல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 8, "word": "ஞானப்புதல்வன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 3, "length": 7, "spokenRatio": 0.0, "word": "ஞானப்பூங்கோதை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 3, "length": 8, "spokenRatio": 0.0, "word": "ஞானப்பைத்தியம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 17, "length": 7, "spokenRatio": 0.0, "word": "ஞானமார்க்கம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 62, "length": 6, "spokenRatio": 0.0, "word": "ஞானமூர்த்தி", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "llm-authored", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "definitionTa": "ஆழ்ந்த அறிவும் தெளிவும்", "frequency": 5093, "length": 3, "meaningSource": "authored", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அறிவு", "தத்துவம்", "திறமை", "வேதாந்தம்"], "translationEn": "gnosis", "translationEnSource": "master-dictionary", "word": "ஞானம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "ஞானவல்லியம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞானவாக்கினை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 7, "length": 4, "spokenRatio": 0.0, "word": "ஞானவான்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "ஞானவிரல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "ஞானவிருத்தன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "ஞானவீரன்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 0, "length": 4, "meaningSource": "attested", "pos": ["noun"], "synonymsTa": ["திப்பியம்", "தெய்வமேறிய ஆவேசம்", "பேய்கொண்ட நிலை"], "translationEn": "phrensy", "translationEnSource": "en-ta-dictionary", "word": "ஞானவெறி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "ஞானாகரன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "ஞானாகாசம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "ஞானாசத்தி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "ஞானாசாரம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 4, "length": 6, "spokenRatio": 0.0, "word": "ஞானாசாரியன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 4, "length": 6, "spokenRatio": 0.0, "word": "ஞானானந்தன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞானானந்தம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞானாரணியம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 1, "length": 6, "spokenRatio": 0.0, "word": "ஞானார்த்தம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 2207, "length": 2, "spokenRatio": 0.0, "translationEn": "theosoph, theosopher", "translationEnSource": "master-dictionary", "word": "ஞானி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 161, "length": 5, "spokenRatio": 0.0, "word": "ஞானிகளும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 43, "length": 4, "spokenRatio": 0.0, "word": "ஞானியும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 6, "length": 7, "spokenRatio": 0.0, "word": "ஞானேந்திரியம்", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 726, "length": 5, "spokenRatio": 0.0, "word": "ஞானோதயம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 179, "length": 6, "spokenRatio": 0.0, "word": "ஞானோபதேசம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞானோபதேயம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞான்றஞாயிறு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 83, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "word": "ஞான்று", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 5, "length": 3, "spokenRatio": 0.0, "word": "ஞான்றை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 1030, "length": 3, "spokenRatio": 0.000971, "word": "ஞாபக", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "ஞாபகக்கருவி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞாபகக்குறி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 1, "length": 8, "spokenRatio": 0.0, "word": "ஞாபகக்குறிப்பு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞாபகக்குறை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 20, "length": 7, "spokenRatio": 0.0, "word": "ஞாபகங்களில்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 41, "length": 6, "spokenRatio": 0.0, "word": "ஞாபகங்களை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 7, "length": 8, "spokenRatio": 0.0, "word": "ஞாபகங்களையும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 149, "length": 6, "spokenRatio": 0.006711, "word": "ஞாபகங்கள்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "ஞாபகங்கூறல்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "huggingface-wordlist", "llm-authored", "old-wordlist", "ta-wiktionary-titles"], "definitionTa": "நினைவில் வைத்திருக்கும் திறன்", "frequency": 107, "length": 6, "meaningSource": "authored", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கருத்தமைதி", "கருத்து ஒருநிலைப்பாடு", "நினைத்துப் பார்க்கும் ஆற்றல்", "நினைத்துப்பார்த்தல்", "நினைவாற்றல்", "நினைவாற்றல் சென்றெட்டுங் காலம்", "நினைவெல்லை", "பழைய நினைவு", "முன்னினைவுச் செய்தி"], "translationEn": "recollection", "translationEnSource": "en-ta-dictionary", "word": "ஞாபகசக்தி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 339, "length": 7, "spokenRatio": 0.0, "word": "ஞாபகத்திற்கு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 555, "length": 6, "spokenRatio": 0.0, "word": "ஞாபகத்தில்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 750, "length": 7, "spokenRatio": 0.001333, "word": "ஞாபகத்துக்கு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 46, "length": 5, "spokenRatio": 0.0, "word": "ஞாபகத்தை", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 4, "length": 11, "meaningSource": "attested", "pos": ["verb"], "spokenRatio": 0.0, "synonymsTa": ["உள்ளு", "ஒருவர் உசாவினை வேறொருவருக்குத் தெரிவி", "கொடுத்துச் சரிபண்ணு", "சிறு கைக்கூலிகொடு", "நினைவில் வைத்துக்கொள்", "பரிசுகொடு", "மனப்பாடமாகத் தெரிந்து வைத்திரு", "மறவாதிரு", "வழிபாட்டு வேண்டுகோளிற் குறிப்பிடு"], "translationEn": "remember", "translationEnSource": "en-ta-dictionary", "word": "ஞாபகப்படுத்திக்கொள்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 7, "length": 8, "meaningSource": "attested", "pos": ["verb"], "spokenRatio": 0.0, "synonymsTa": ["நினைப்பூட்டு"], "translationEn": "remind", "translationEnSource": "en-ta-dictionary", "word": "ஞாபகப்படுத்து", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 67, "length": 6, "spokenRatio": 0.0, "word": "ஞாபகமறதி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 65, "length": 5, "spokenRatio": 0.015385, "word": "ஞாபகமும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 9, "length": 7, "spokenRatio": 0.0, "word": "ஞாபகமெல்லாம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 85, "length": 4, "spokenRatio": 0.0, "word": "ஞாபகமே", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "llm-authored", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "definitionTa": "மனத்தில் தங்கியிருக்கும் நினைவு", "frequency": 7663, "length": 4, "meaningSource": "authored", "pos": ["noun"], "spokenRatio": 0.005742, "synonymsTa": ["சுமரணம்", "நினைவு"], "translationEn": "memory", "translationEnSource": "llm-authored", "word": "ஞாபகம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "ஞாபகவேது", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 3, "word": "ஞாபகி", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 0, "length": 12, "meaningSource": "attested", "pos": ["verb"], "synonymsTa": ["உணர்ச்சிகளை ஒருநிலைகப்படுத்து", "கருத்துக்களை ஒருமுகப்படுத்துவி", "சூழல்மீது கவனந் திருப்பு", "நினைத்துப்பார்", "நினைவுபடுத்திப்பார்", "மீண்டும் நினைவுக்குக் கொண்டுவர் நினைவில் வைத்டதுக்கொள்"], "translationEn": "recollect", "translationEnSource": "en-ta-dictionary", "word": "ஞாபபகப்படுத்திக்கொள்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 90, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "word": "ஞாயம்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "huggingface-wordlist", "llm-authored", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "categories": ["days"], "categorySource": "authored", "definitionTa": "வாரத்தின் முதல் நாள்", "frequency": 4679, "length": 3, "meaningSource": "authored", "pos": ["noun"], "spokenRatio": 0.000214, "synonymsTa": ["(உள்.) கண்விழி உருளை", "(செய். ) பகல்", "(செய்.) ஆண்டு", "(வினை) உருண்டை வடிவமாக்கு", "(வினை.) வெயில் காய்வி", "அனலி", "அரசுச்சின்னமாகிய பென் உருண்டை", "அருணன்", "ஆதவன்", "ஆதித்தியன்", "இரவி", "உதயன்", "உருண்டை வடிவக் கண்ணாடியாலாக விளக்கமூடி", "உருண்டை வடிவக் கண்ணாடியாலான கிண்ணம்", "உருண்டை வடிவப்பொருள்", "என்று", "என்றூழ்", "எல்", "எல்லி", "ஒளி", "கதிரவனொளி", "கதிரவனொளிபட வை", "கதிரவன்", "கதிரவன் வெப்பம்", "கதிரோன்", "கதிர்க்கடவுள்", "கனலி", "கோமாகு", "கோள்", "கோள்மண்டல மையம்", "சுற்றுக்கோள்களையுடைய நிலை விண்மீன்", "சூரியன்", "ஞாயிற்றுக்கிழமை", "நிலவுலகம்", "பகலவன்", "பகலோன்", "பானு", "புகழ்ப்பேரொளி", "போரொளி விளக்கம்", "முகட்டுப் பல்தொகை ஔதவிளக்கம்", "மேம்பட்ட பொருள்", "வான் கோளகை வடிவ விளக்கப்படம்", "வான் கோளம்", "வான்கோளகை", "வான்கோளங்களின் மண்டல மையம்", "வாரத்தின் தலைநாள்", "விஞ்சு பண்பு", "விஞ்சு முதன்மைப் பண்பாளர்", "விண்மீன்", "வெயில்", "வெயில்  காய்", "வெய்யவன்", "வெய்யோன்"], "translationEn": "Sunday", "translationEnSource": "themed-vocabulary", "word": "ஞாயிறு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "ஞாயிறுதிரும்பி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "ஞாயிறுபோது", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 0, "length": 6, "meaningSource": "attested", "pos": ["adjective"], "synonymsTa": ["கதிரவன் போன்ற"], "translationEn": "sunlike", "translationEnSource": "en-ta-dictionary", "word": "ஞாயிறுபோன்ற", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "ஞாயிறுவணங்கி", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 0, "length": 7, "translationEn": "Sunday market", "translationEnSource": "en-ta-dictionary", "word": "ஞாயிற்றங்காடி", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 0, "length": 5, "meaningSource": "attested", "pos": ["noun"], "synonymsTa": ["செங்கதிர்த்  தேவன்"], "translationEn": "sun-god", "translationEnSource": "en-ta-dictionary", "word": "ஞாயிற்றிறை", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 0, "length": 6, "meaningSource": "attested", "pos": ["adjective"], "synonymsTa": ["கதிரவனுடைய", "ஞாயிற்றுக் கணிப்புமுறையான", "பகலவன் தொடர்புடைய"], "translationEn": "solar", "translationEnSource": "en-ta-dictionary", "word": "ஞாயிற்றிலான", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "spellcheck-wordlist"], "frequency": 0, "length": 8, "meaningSource": "attested", "pos": ["noun"], "synonymsTa": ["பகலொளிக் கதிர்"], "translationEn": "sunbeam", "translationEnSource": "en-ta-dictionary", "word": "ஞாயிற்றுக்கதிர்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 8229, "length": 8, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஞாயிறு", "வார ஓய்வுநாள்", "வார வழிபாட்டு நாள்", "வாரத்தின் முதுல்நாள்"], "translationEn": "Sunday", "translationEnSource": "en-ta-dictionary", "word": "ஞாயிற்றுக்கிழமை", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "spellcheck-wordlist"], "frequency": 0, "length": 5, "meaningSource": "attested", "pos": ["noun"], "synonymsTa": ["இனிய வானிலை", "இன்னொளி வளம்", "இன்ப வேளை", "இயன்மகிழ்ச்சி", "கதிரவன் ஔத", "கதிரொளி படர்ந்த பரப்பு", "கதிரொளிப் பரப்பு", "செல்வ நிலை", "செல்வ வளம்"], "translationEn": "sunshine", "translationEnSource": "en-ta-dictionary", "word": "ஞாயிற்றொளி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 4, "length": 2, "spokenRatio": 0.0, "word": "ஞாய்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 3, "length": 3, "spokenRatio": 0.0, "word": "ஞாற்சி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 3, "word": "ஞாற்று", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "ஞாலமாது", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "llm-authored", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "categories": ["space"], "categorySource": "authored", "definitionTa": "உயிர்கள் வாழும் உலகம்", "frequency": 167, "length": 3, "meaningSource": "authored", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அகிலம்", "அண்டசராசரம்", "அண்டம்", "அவனி", "உலகம்", "ஊழி", "காசினி", "ஜகம்", "தரணி", "நிலம்", "பார்", "பிரபஞ்சம்", "புவி", "பூ", "பூச்சக்கரம்", "பூமி", "மேதினி", "லோகம்", "வையகம்"], "translationEn": "world", "translationEnSource": "llm-authored", "word": "ஞாலம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞாலித்தட்டு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "ஞாலுதட்டு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞாலுத்தட்டு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 3, "word": "ஞாளம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 9, "length": 2, "spokenRatio": 0.0, "word": "ஞாளி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "ஞாளிதம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞாளியாதனம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "ஞாளியூர்தி", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "categories": ["flowers"], "categorySource": "attested", "frequency": 73, "length": 3, "spokenRatio": 0.0, "word": "ஞாழல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 2, "word": "ஞாழி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 2, "word": "ஞாழ்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 0, "length": 3, "meaningSource": "attested", "pos": ["noun"], "synonymsTa": ["ஒலி", "ஓசை", "சத்தம்"], "word": "ஞிமிர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 10, "length": 3, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["தேனீ"], "word": "ஞிமிறு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 4, "length": 4, "spokenRatio": 0.0, "word": "ஞெகிழம்", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 55, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "word": "ஞெகிழி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 8, "length": 3, "meaningSource": "attested", "pos": ["verb"], "spokenRatio": 0.0, "synonymsTa": ["உருகு", "கழல்", "தளர்", "மலர்", "மெலி"], "word": "ஞெகிழ்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞெகிழ்விப்பி", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 11, "length": 3, "spokenRatio": 0.0, "word": "ஞெண்டு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "ஞெண்டுகம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "ஞெமன்கோல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 0, "length": 3, "pos": ["noun"], "word": "ஞெமலி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 1, "length": 3, "spokenRatio": 0.0, "word": "ஞெமல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "ஞெமிரிய", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "ஞெமுக்கம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "ஞெமுங்குதல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 7, "length": 2, "spokenRatio": 0.0, "word": "ஞெமை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 3, "word": "ஞெரல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 2, "word": "ஞெரி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "ஞெரேரெனல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "ஞெரேலெனல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 2, "length": 2, "spokenRatio": 0.0, "word": "ஞெலி", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 0, "length": 4, "meaningSource": "attested", "pos": ["noun"], "synonymsTa": ["தீக்கடைகோல்"], "translationEn": "fire-stick", "translationEnSource": "en-ta-dictionary", "word": "ஞெலிகோலி", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "master-dictionary", "ta-wiktionary-titles"], "frequency": 10, "length": 4, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["குச்சியைச் சுழற்றி அல்லது முறுக்கித் தீயுண்டாக்கும் பண்டைய கருவி"], "translationEn": "fire-drill", "translationEnSource": "en-ta-dictionary", "word": "ஞெலிகோல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "ஞெலுவன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "ஞெலுவல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 1, "length": 3, "spokenRatio": 0.0, "word": "ஞெளிர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "ஞெள்ளல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "ஞெள்ளெனல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 2, "length": 3, "spokenRatio": 0.0, "word": "ஞெள்ளை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 2, "length": 3, "spokenRatio": 0.0, "word": "ஞேயம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 3, "word": "ஞேயர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 2, "word": "ஞேயா", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "ஞைஞையெனல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "ஞொள்ளெனல்", "wordClass": "headword"}

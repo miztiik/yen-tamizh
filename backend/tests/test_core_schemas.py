@@ -28,6 +28,7 @@ from yen_tamizh_backend.contracts import (
     LEXICON_SOURCES_CHANGELOG,
     LEXICON_SOURCES_VERSION,
     LEXICON_VERSION,
+    PARTITION_KEYS,
     REGISTRY,
     AnagramPuzzle,
     AppConfig,
@@ -44,7 +45,7 @@ from yen_tamizh_backend.contracts import (
 )
 from yen_tamizh_backend.contracts.base import SchemaModel
 from yen_tamizh_backend.contracts.save import compute_day_key
-from yen_tamizh_backend.ezhuthu import segment
+from yen_tamizh_backend.ezhuthu import BASE_ROMAN, segment
 
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 _FIXTURES = _REPO_ROOT / "datasets" / "fixtures" / "contracts"
@@ -112,13 +113,14 @@ def test_compute_day_key_joins_value_fields() -> None:
 # வாய்ப்பு - a headword from the plan's reference classification table.
 _WORD = "\u0bb5\u0bbe\u0baf\u0bcd\u0baa\u0bcd\u0baa\u0bc1"
 _EZHUTHU = segment(_WORD)
+_BASE = _WORD[0]
+_BASE_HEX = f"{ord(_BASE):04x}"
 _SHA = "a" * 64
 
 
 def _entry(**overrides: object) -> dict[str, object]:
     row: dict[str, object] = {
         "word": _WORD,
-        "ezhuthu": list(_EZHUTHU),
         "length": len(_EZHUTHU),
         "wordClass": "headword",
         "frequency": 42,
@@ -133,10 +135,21 @@ def _by_class(**counts: int) -> dict[str, int]:
     return buckets
 
 
+def _counters(published: int = 1, **counts: int) -> dict[str, object]:
+    classified = _by_class(**(counts or {"headword": 1}))
+    shown = dict.fromkeys(get_args(WordClass), 0)
+    shown["headword"] = published
+    return {
+        "classified": {"rows": sum(classified.values()), "byClass": classified},
+        "published": {"rows": sum(shown.values()), "byClass": shown},
+    }
+
+
 def _meta(**overrides: object) -> dict[str, object]:
     doc: dict[str, object] = {
         "version": LEXICON_VERSION,
         "changelog": [entry.model_dump() for entry in LEXICON_CHANGELOG],
+        "partitionKeys": list(PARTITION_KEYS),
         "provenance": [
             {
                 "id": "en-ta-dictionary",
@@ -145,20 +158,24 @@ def _meta(**overrides: object) -> dict[str, object]:
                 "path": "datasets/lexicon/sources/en-ta-dictionary/source.json",
                 "bytes": 1024,
                 "sha256": _SHA,
-                "rowsIn": 56856,
-                "factsOut": 54156,
+                "observations": 56856,
+                "facts": 54156,
             }
         ],
-        "counters": {"rows": 1, "byClass": _by_class(headword=1)},
+        "counters": _counters(),
         "partitions": [
             {
-                "path": "datasets/lexicon/by-class/headword.ndjson",
+                "path": f"datasets/lexicon/by-class/headword-{_BASE_HEX}.ndjson",
                 "wordClass": "headword",
+                "baseFirstEzhuthu": _BASE_HEX,
                 "rows": 1,
                 "bytes": 256,
                 "sha256": _SHA,
             }
         ],
+        "ezhuthuIndex": {
+            _BASE_HEX: {"ezhuthu": _BASE, "roman": BASE_ROMAN[_BASE], "kind": "uyirmei"}
+        },
     }
     doc.update(overrides)
     return doc
@@ -183,14 +200,41 @@ def _source(**overrides: object) -> dict[str, object]:
     return source
 
 
+def _frequency_source(**overrides: object) -> dict[str, object]:
+    source: dict[str, object] = {
+        "id": "opensubtitles-ta",
+        "name": "OpenSubtitles 2018 Tamil word frequency",
+        "origin": "hermitdave/FrequencyWords content/2018/ta/ta_full.txt",
+        "role": "frequency",
+        "kind": "delimited",
+        "path": "datasets/corpus/opensubtitles-ta/source.txt",
+        "bytes": 4096,
+        "sha256": _SHA,
+        "precedence": 31,
+        "delimiter": " ",
+        "wordColumn": 0,
+        "countColumn": 1,
+    }
+    source.update(overrides)
+    return source
+
+
 def _registry(**overrides: object) -> dict[str, object]:
+    # The frequency corpus rides along in every fixture registry: spokenSources
+    # names a registered frequency source, so a registry without one could not
+    # validate whatever else the caller is testing.
+    named = overrides.pop("sources", [_source()])
+    assert isinstance(named, list)
     doc: dict[str, object] = {
         "version": LEXICON_SOURCES_VERSION,
         "changelog": [entry.model_dump() for entry in LEXICON_SOURCES_CHANGELOG],
         "lexiconRoot": "datasets/lexicon",
         "outputs": ["ndjson"],
+        "publishedClasses": ["headword"],
+        "spokenSources": ["opensubtitles-ta"],
+        "maxPartitionBytes": 34603008,
         "posAliases": {"noun": {"pos": ["noun"]}},
-        "sources": [_source()],
+        "sources": [*named, _frequency_source()],
     }
     doc.update(overrides)
     return doc
@@ -214,11 +258,15 @@ def test_lexicon_entry_accepts_a_minimal_row() -> None:
     assert "pos" not in row.model_dump(exclude_none=True)
 
 
-def test_lexicon_entry_rejects_ezhuthu_that_does_not_rejoin() -> None:
-    with pytest.raises(ValidationError):
-        LexiconEntry.model_validate(_entry(ezhuthu=list(_EZHUTHU)[:-1]))
+def test_lexicon_entry_recomputes_the_length_from_the_word() -> None:
+    # There is no ezhuthu column to trust, so the check is against the live
+    # segmentation - which is a stronger statement than a stored list agreeing
+    # with itself, and it is what keeps a corrupt row out at 12 bytes a row.
+    assert "ezhuthu" not in LexiconEntry.model_fields
     with pytest.raises(ValidationError):
         LexiconEntry.model_validate(_entry(length=len(_EZHUTHU) + 1))
+    with pytest.raises(ValidationError):
+        LexiconEntry.model_validate(_entry(ezhuthu=list(_EZHUTHU)))
 
 
 def test_lexicon_entry_rejects_an_empty_sparse_list() -> None:
@@ -279,13 +327,54 @@ def test_lexicon_counters_require_a_bucket_for_every_word_class() -> None:
     thin = _by_class(headword=1)
     del thin["sandhiArtifact"]
     with pytest.raises(ValidationError):
-        Lexicon.model_validate(_meta(counters={"rows": 1, "byClass": thin}))
+        Lexicon.model_validate(
+            _meta(
+                counters={
+                    "classified": {"rows": 1, "byClass": thin},
+                    "published": {"rows": 1, "byClass": _by_class(headword=1)},
+                }
+            )
+        )
 
 
 def test_lexicon_counters_reject_an_unknown_word_class_bucket() -> None:
     with pytest.raises(ValidationError):
         Lexicon.model_validate(
-            _meta(counters={"rows": 1, "byClass": _by_class(headword=1) | {"noun": 0}})
+            _meta(
+                counters={
+                    "classified": {
+                        "rows": 1,
+                        "byClass": _by_class(headword=1) | {"noun": 0},
+                    },
+                    "published": {"rows": 1, "byClass": _by_class(headword=1)},
+                }
+            )
+        )
+
+
+def test_a_withheld_class_is_counted_in_full_and_published_at_zero() -> None:
+    # The two families are what make "nothing was discarded" checkable: the
+    # classes this policy withholds keep their real size on the record, and the
+    # published family carries a zero rather than a silence.
+    doc = Lexicon.model_validate(_meta(counters=_counters(headword=1, inflected=99)))
+    assert doc.counters.classified.byClass["inflected"] == 99
+    assert doc.counters.published.byClass["inflected"] == 0
+    assert doc.counters.classified.rows == 100
+    assert doc.counters.published.rows == 1
+
+
+def test_a_class_is_published_whole_or_withheld_whole() -> None:
+    # A published count that is neither zero nor the classified count is rows
+    # LOST between the classifier and the writer, which a single counter family
+    # could not have told apart from rows withheld.
+    with pytest.raises(ValidationError):
+        Lexicon.model_validate(
+            _meta(
+                counters={
+                    "classified": {"rows": 2, "byClass": _by_class(headword=2)},
+                    "published": {"rows": 1, "byClass": _by_class(headword=1)},
+                }
+            )
         )
 
 
@@ -299,7 +388,7 @@ def test_lexicon_counters_reject_an_unknown_word_class_bucket() -> None:
             {"rows": 2, "byClass": _by_class(headword=1)}, id="rows-stops-matching"
         ),
         pytest.param(
-            {"rows": 1, "byClass": _by_class(headword=0, inflected=1)},
+            {"rows": 1, "byClass": _by_class(headword=0, colloquial=1)},
             id="partitions-disagree-class-by-class",
         ),
     ),
@@ -307,32 +396,59 @@ def test_lexicon_counters_reject_an_unknown_word_class_bucket() -> None:
 def test_mutating_one_class_count_breaks_the_reconciliation(
     mutated: dict[str, object],
 ) -> None:
-    # THE ORACLE. sum(byClass) == counters.rows == the rows the partition table
-    # declares. Move ONE class count and the document stops validating, so a row
-    # lost between the classifier and the writer cannot ship as a silent drop.
+    # THE ORACLE. sum(byClass) == counters.published.rows == the rows the
+    # partition table declares. Move ONE class count and the document stops
+    # validating, so a row lost between the classifier and the writer cannot
+    # ship as a silent drop.
     Lexicon.model_validate(_meta())
     with pytest.raises(ValidationError):
-        Lexicon.model_validate(_meta(counters=mutated))
+        Lexicon.model_validate(
+            _meta(
+                counters={
+                    "classified": {"rows": 1, "byClass": _by_class(headword=1)},
+                    "published": mutated,
+                }
+            )
+        )
 
 
-def test_lexicon_partition_recomputes_its_ezhuthu_hex() -> None:
-    base = _EZHUTHU[0][0]
-    cell = {
-        "path": "datasets/lexicon/by-class/headword-4-0bb5.ndjson",
-        "wordClass": "headword",
-        "length": 4,
-        "firstEzhuthuHex": f"{ord(base):04x}",
-        "firstEzhuthu": base,
-        "rows": 1,
-        "bytes": 256,
-        "sha256": _SHA,
-    }
-    Lexicon.model_validate(_meta(partitions=[cell]))
+def test_lexicon_partitions_decode_through_the_ezhuthu_index() -> None:
+    # No globbing and no probe-and-fallback: a reader resolves a file from this
+    # table alone, so a hex it cannot decode - or an entry no file uses - is a
+    # document that describes something other than itself.
+    Lexicon.model_validate(_meta())
     with pytest.raises(ValidationError):
-        Lexicon.model_validate(_meta(partitions=[cell | {"firstEzhuthuHex": "0b95"}]))
-    # The split is nested: an ezhuthu cut only ever subdivides a length cut.
+        Lexicon.model_validate(_meta(ezhuthuIndex={}))
     with pytest.raises(ValidationError):
-        Lexicon.model_validate(_meta(partitions=[cell | {"length": None}]))
+        Lexicon.model_validate(
+            _meta(
+                ezhuthuIndex={
+                    "0b95": {"ezhuthu": _BASE, "roman": "k", "kind": "uyirmei"}
+                }
+            )
+        )
+    with pytest.raises(ValidationError):
+        Lexicon.model_validate(
+            _meta(
+                ezhuthuIndex={
+                    _BASE_HEX: {
+                        "ezhuthu": _BASE,
+                        "roman": BASE_ROMAN[_BASE],
+                        "kind": "uyirmei",
+                    },
+                    "0b95": {"ezhuthu": "\u0b95", "roman": "k", "kind": "uyirmei"},
+                }
+            )
+        )
+
+
+def test_lexicon_declares_the_address_its_partitions_use() -> None:
+    # A declared address nothing enforces is a comment wearing a field's
+    # clothes, so the contract pins it - and changing the layout becomes a
+    # contract change rather than a quiet one.
+    assert tuple(PARTITION_KEYS) == ("wordClass", "baseFirstEzhuthu")
+    with pytest.raises(ValidationError):
+        Lexicon.model_validate(_meta(partitionKeys=["wordClass", "length"]))
 
 
 def test_lexicon_carries_no_generated_at() -> None:

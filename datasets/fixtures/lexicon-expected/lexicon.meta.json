@@ -1,0 +1,545 @@
+{
+  "version": "2026-08-16T10:00",
+  "changelog": [
+    {
+      "version": "2026-08-16T10:00",
+      "change": "Split counters into a classified and a published census; made baseFirstEzhuthu the second and final partition key and dropped length from the partition table; added partitionKeys and ezhuthuIndex; dropped the ezhuthu column from the row; renamed provenance rowsIn / factsOut to observations / facts.",
+      "why": "Row 11, the first writer. The publish policy commits four servable classes of ten, so a single counter would have made the withheld classes unprovable - classified counts the whole population and published counts the files, and publication is all-or-nothing per class, so 'nothing was discarded' is a checkable statement rather than a claim. The measured layout is one file per (wordClass, base first ezhuthu) at 241 files and a 2.2 MiB largest file, so the length key it was authored with addresses nothing and a partition key that is sometimes absent is worse than one that is always there. ezhuthu goes for the reason freqRank went: it is segment(word), a pure function of a published column, and storing a derived value is a drift surface as well as 35.4 B a row. observations / facts are what the store can actually prove about a source; rowsIn read as raw rows and no stage keeps that."
+    },
+    {
+      "version": "2026-08-16",
+      "change": "Added notAWord to the WordClass vocabulary.",
+      "why": "Row 9a - the classifier had no verdict for a surface that is not a word at all, so 641,819 scrape artifacts wore real classes: repeated aytham as loanword, leading-dot strings as inflected, a 1,212-ezhuthu paragraph as suspectedTypo. notAWord is a CONFIDENT NEGATIVE and is deliberately distinct from unclassified, which is an ABSENT verdict - collapsing them would destroy the only counters that say whether the classifier works. Additive: every existing row still validates, and selection stays an allow-list so nothing reaches a player by omission."
+    },
+    {
+      "version": "2026-08-14",
+      "change": "Initial lexicon contracts: the LexiconEntry row shape and the Lexicon meta document (provenance, per-class counters, partition table).",
+      "why": "Row 3 - contracts before logic (Holy Law #3): the all-words artifact that replaces the corpus funnel gets its typed shape before any stage reads or writes it."
+    }
+  ],
+  "partitionKeys": [
+    "wordClass",
+    "baseFirstEzhuthu"
+  ],
+  "provenance": [
+    {
+      "id": "azhiyasudargal",
+      "name": "azhiyasudargal.com word frequency",
+      "origin": "yen-tamizh_OLD/words_and_frequency/words_and_frequency/frequency+words_in_azhiyasudargal.html",
+      "path": "sources/azhiyasudargal.1x.csv",
+      "bytes": 2576,
+      "sha256": "217453acc7bc213e8659e233556f729220b5507aa6405c38b839cce63dc888b4",
+      "observations": 200,
+      "facts": 0
+    },
+    {
+      "id": "dinamalar",
+      "name": "Dinamalar news archive 2009-2019 word frequency",
+      "origin": "yen-tamizh_OLD/words_and_frequency/words_and_frequency/frequency+words_in_Dinamalar_dataset_2009_2019.csv",
+      "path": "sources/dinamalar.1x.csv",
+      "bytes": 4829,
+      "sha256": "75e3be07eb8e1dd4fc33e6265f27fc7588873fdac083cc621cf0317f301ac5bf",
+      "observations": 200,
+      "facts": 0
+    },
+    {
+      "id": "en-ta-dictionary",
+      "name": "English-Tamil dictionary with part-of-speech prefixes (t1)",
+      "origin": "yen-tamizh_OLD/src/dictionary/raw/t1.json",
+      "path": "sources/en-ta-dictionary.1x.json",
+      "bytes": 28968,
+      "sha256": "e5100f7b0ee573a564afc300e3d7d9e3b755b83629ba7775a3d833ea82254bba",
+      "observations": 454,
+      "facts": 2464
+    },
+    {
+      "id": "gurunithya",
+      "name": "gurunithya.wordpress.com word frequency",
+      "origin": "yen-tamizh_OLD/words_and_frequency/words_and_frequency/frequency+words_in_gurunithya.wordpress.com.html",
+      "path": "sources/gurunithya.1x.csv",
+      "bytes": 4761,
+      "sha256": "a185eb24fabff6aeae4b754302b44a838bfeab9182c448fc32fca20ed892296f",
+      "observations": 200,
+      "facts": 0
+    },
+    {
+      "id": "huggingface-wordlist",
+      "name": "Clean Tamil word list (HuggingFace derived)",
+      "origin": "yen-tamizh_OLD/src/dictionary/intermediate/ta_words_huggingface.json",
+      "path": "sources/huggingface-wordlist.1x.json",
+      "bytes": 8342,
+      "sha256": "1d860b0dd011e0329ff509900a60e03625dff2289698c8a498b66f4f0320f97d",
+      "observations": 200,
+      "facts": 200
+    },
+    {
+      "id": "inflected-verbs-bulk",
+      "name": "Bulk Tamil inflected verb forms",
+      "origin": "yen-tamizh_OLD/src/dictionary/raw/Simple-verbs-01022021.txt",
+      "path": "sources/inflected-verbs-bulk.1x.txt",
+      "bytes": 9431,
+      "sha256": "5d84bbf9a535932e7b17251b429c4f603673703a1c625ec2c61cccac5c9c0060",
+      "observations": 197,
+      "facts": 0
+    },
+    {
+      "id": "inflected-verbs-clean",
+      "name": "Cleaned Tamil inflected verb forms",
+      "origin": "yen-tamizh_OLD/src/dictionary/intermediate/verbs.txt",
+      "path": "sources/inflected-verbs-clean.1x.txt",
+      "bytes": 6961,
+      "sha256": "f5452d4819ffbceb7de8141e36cd639907721970373bff73a40e6dc8512bb341",
+      "observations": 200,
+      "facts": 0
+    },
+    {
+      "id": "llm-authored",
+      "name": "Agent-authored Tamil meanings, synonyms, translations, POS and themes",
+      "origin": "authored in-session by the agent executing the pipeline; see docs/how-to/enrich-the-lexicon.md",
+      "path": "sources/entries.jsonl",
+      "bytes": 1767398,
+      "sha256": "5e236b960ea674183cd6f93c81a20f0cd3d5632ea398adb46f7e6785adf5385b",
+      "observations": 6269,
+      "facts": 28644
+    },
+    {
+      "id": "master-dictionary",
+      "name": "yen-tamizh_OLD curated Tamil master dictionary",
+      "origin": "yen-tamizh_OLD/src/dictionary/master_dictionary.json",
+      "path": "sources/master-dictionary.1x.json",
+      "bytes": 36899,
+      "sha256": "aa2dd43591867498f30aec7f2476c092a902dc4ee27b4348cf22491762c17b80",
+      "observations": 200,
+      "facts": 564
+    },
+    {
+      "id": "old-wordlist",
+      "name": "yen-tamizh_OLD raw Tamil word list (t2)",
+      "origin": "yen-tamizh_OLD/src/dictionary/raw/t2.json",
+      "path": "sources/old-wordlist.1x.json",
+      "bytes": 9174,
+      "sha256": "625ff900f1c42b38e72c52acd62f5fab21b3398bd3f26812b419869597ea6994",
+      "observations": 200,
+      "facts": 200
+    },
+    {
+      "id": "opensubtitles-ta",
+      "name": "OpenSubtitles 2018 Tamil frequency list (hermitdave/FrequencyWords)",
+      "origin": "https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/ta/ta_full.txt",
+      "path": "sources/opensubtitles-ta.1x.txt",
+      "bytes": 4413,
+      "sha256": "1d973d6b0ca5310089eb59e8bf4b2614e55810c1fcf5d07cb7f248b3f2a57eed",
+      "observations": 200,
+      "facts": 0
+    },
+    {
+      "id": "sirukathaigal",
+      "name": "sirukathaigal.com short-story archive word frequency",
+      "origin": "yen-tamizh_OLD/words_and_frequency/words_and_frequency/frequency+words_in_sirukathaigal.com.html",
+      "path": "sources/sirukathaigal.1x.csv",
+      "bytes": 5566,
+      "sha256": "109464647220f5afe93664ada16aba082cc8cd00fcf24e843245e90ca3945345",
+      "observations": 200,
+      "facts": 0
+    },
+    {
+      "id": "solvanam",
+      "name": "solvanam.com literary magazine word frequency",
+      "origin": "yen-tamizh_OLD/words_and_frequency/words_and_frequency/frequency+words_in_solvanam.html",
+      "path": "sources/solvanam.1x.csv",
+      "bytes": 5476,
+      "sha256": "8dc8b0d9873466edb4c42279b04521e143017c042e2de6b3f4783e8a22ce5a97",
+      "observations": 200,
+      "facts": 0
+    },
+    {
+      "id": "spellcheck-wordlist",
+      "name": "Tamil word list validated by a Nannul-rules spellchecker",
+      "origin": "yen-tamizh_OLD/src/dictionary/intermediate/ta_words_v1.json",
+      "path": "sources/spellcheck-wordlist.1x.json",
+      "bytes": 8848,
+      "sha256": "38d986c8b3716762c1249028b2a5111660af6bed6a7a33f960b8f9032ebc7e28",
+      "observations": 200,
+      "facts": 200
+    },
+    {
+      "id": "ta-dedup",
+      "name": "Deduplicated Tamil web corpus word frequency",
+      "origin": "yen-tamizh_OLD/words_and_frequency/words_and_frequency/frequency+words_in_ta_dedup.txt",
+      "path": "sources/ta-dedup.1x.csv",
+      "bytes": 4421,
+      "sha256": "e637b900ebe6ce45fe223fe9efb4d092441771022c736f65ca02672786699c9f",
+      "observations": 200,
+      "facts": 0
+    },
+    {
+      "id": "ta-wiktionary-titles",
+      "name": "Tamil Wiktionary page titles, main namespace",
+      "origin": "https://dumps.wikimedia.org/tawiktionary/20260801/tawiktionary-20260801-all-titles-in-ns0.gz",
+      "path": "sources/ta-wiktionary-titles.1x.txt",
+      "bytes": 1557,
+      "sha256": "622d052221883f5a63ffb411d407c28cbf4fd45017f418597881e32a11fc73f4",
+      "observations": 199,
+      "facts": 199
+    },
+    {
+      "id": "tamil-words-frequency",
+      "name": "Aggregated Tamil web and news word frequency",
+      "origin": "yen-tamizh_OLD/src/dictionary/raw/tamil-words-frequency.csv",
+      "path": "sources/tamil-words-frequency.1x.csv",
+      "bytes": 5053,
+      "sha256": "43bfecb9faac61bb2f4e08ef1f1d3b17fb411048da1b49e8a406452c97101e25",
+      "observations": 199,
+      "facts": 0
+    },
+    {
+      "id": "tamilmurasu",
+      "name": "Tamil Murasu news archive 2011-2020 word frequency",
+      "origin": "yen-tamizh_OLD/words_and_frequency/words_and_frequency/frequency+words_in_Tamilmurasu_dataset_06_Jan_2011_06_Jan_2020.csv",
+      "path": "sources/tamilmurasu.1x.csv",
+      "bytes": 4969,
+      "sha256": "91357fe367d26cea7d2e175c3c72db7aa42eab171b8fd9b9468befbea8f4f6ae",
+      "observations": 200,
+      "facts": 0
+    },
+    {
+      "id": "themed-vocabulary",
+      "name": "Curated themed Tamil vocabulary with English pairings",
+      "origin": "yen-tamizh_OLD/src/dictionary/intermediate/ta_vocabulary_clean.json",
+      "path": "sources/themed-vocabulary.1x.json",
+      "bytes": 15444,
+      "sha256": "d4b91f5f21e813412e8ab3539169893619530f1e1a1f810066b4f502fc8b3440",
+      "observations": 128,
+      "facts": 258
+    },
+    {
+      "id": "wiki",
+      "name": "Tamil Wikipedia word frequency",
+      "origin": "yen-tamizh_OLD/words_and_frequency/words_and_frequency/frequency+words_in_wiki.txt",
+      "path": "sources/wiki.1x.csv",
+      "bytes": 5286,
+      "sha256": "ca5edab867d2c45142897038ccdcd56dfc7e9dc89472d7863fc91788355b91f6",
+      "observations": 200,
+      "facts": 0
+    },
+    {
+      "id": "wiktextract-ta",
+      "name": "Tamil Wiktionary via Wiktextract (kaikki.org)",
+      "origin": "https://kaikki.org/dictionary/Tamil/kaikki.org-dictionary-Tamil.jsonl",
+      "path": "sources/wiktextract-ta.1x.jsonl",
+      "bytes": 109346,
+      "sha256": "83ec0fc1f3dee6e6ced60f030cb7c8c132331e9d9d0ae38151b71bd98d6abf4e",
+      "observations": 8,
+      "facts": 178
+    }
+  ],
+  "counters": {
+    "classified": {
+      "rows": 8857,
+      "byClass": {
+        "headword": 6583,
+        "inflected": 393,
+        "colloquial": 0,
+        "properNoun": 0,
+        "loanword": 205,
+        "boundStem": 0,
+        "sandhiArtifact": 46,
+        "suspectedTypo": 257,
+        "notAWord": 424,
+        "unclassified": 949
+      }
+    },
+    "published": {
+      "rows": 6583,
+      "byClass": {
+        "headword": 6583,
+        "inflected": 0,
+        "colloquial": 0,
+        "properNoun": 0,
+        "loanword": 0,
+        "boundStem": 0,
+        "sandhiArtifact": 0,
+        "suspectedTypo": 0,
+        "notAWord": 0,
+        "unclassified": 0
+      }
+    }
+  },
+  "partitions": [
+    {
+      "path": "out/by-class/headword-0b85.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b85",
+      "rows": 497,
+      "bytes": 179234,
+      "sha256": "d2c8d3472f2f2342a158e568f6a435481fdb2e203579822a7f1febaa6c93a834"
+    },
+    {
+      "path": "out/by-class/headword-0b86.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b86",
+      "rows": 143,
+      "bytes": 52623,
+      "sha256": "96ef1d5aceb4f4ccd9c42b325c37c7338ffb709854725a03fa5375316413af91"
+    },
+    {
+      "path": "out/by-class/headword-0b87.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b87",
+      "rows": 270,
+      "bytes": 95523,
+      "sha256": "9e8abcce9bd8566b2a6437453d94b44be74ed14233bba7d1f655dfa25a31a369"
+    },
+    {
+      "path": "out/by-class/headword-0b88.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b88",
+      "rows": 17,
+      "bytes": 5867,
+      "sha256": "fe59deb0d4dd766188baaba010644e642108a1eae6c907e84ff27ac16b8ecf6c"
+    },
+    {
+      "path": "out/by-class/headword-0b89.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b89",
+      "rows": 247,
+      "bytes": 88216,
+      "sha256": "e1da4a95eaad15e2c980a9d34ed30d372d9729d027126eb0ba58093cce5763af"
+    },
+    {
+      "path": "out/by-class/headword-0b8a.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b8a",
+      "rows": 35,
+      "bytes": 11931,
+      "sha256": "bccc354a3e73efca637c5c2bd8c709405d1fa41bbd00667b011485b0ad9feefa"
+    },
+    {
+      "path": "out/by-class/headword-0b8e.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b8e",
+      "rows": 122,
+      "bytes": 44823,
+      "sha256": "aa00de8bf1f8f961e28ac36dc2ae4dc65b218ae0d54b26e19e2780f30c6cd650"
+    },
+    {
+      "path": "out/by-class/headword-0b8f.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b8f",
+      "rows": 43,
+      "bytes": 15149,
+      "sha256": "de0ea59dcd81cc35b2a2a6bec3f2220992ab326bd04ca1b36d671134cd3b97d1"
+    },
+    {
+      "path": "out/by-class/headword-0b90.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b90",
+      "rows": 16,
+      "bytes": 5387,
+      "sha256": "453465c0040d98ed90cca98e7c938ab484988f06e4fb23f6a45c2450794dad34"
+    },
+    {
+      "path": "out/by-class/headword-0b92.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b92",
+      "rows": 103,
+      "bytes": 36062,
+      "sha256": "54ac056538eab1e73dd5e8e12ade75330cc8be6d5eeaca2e21f94cd60f4e0459"
+    },
+    {
+      "path": "out/by-class/headword-0b93.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b93",
+      "rows": 34,
+      "bytes": 12205,
+      "sha256": "5f52fe71bc036e960b673aec7ea8d0d06534964cf3b3ef5712246660c6544c1b"
+    },
+    {
+      "path": "out/by-class/headword-0b94.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b94",
+      "rows": 2,
+      "bytes": 718,
+      "sha256": "39e2e79c02389561d990489a1517f920510333ad82d6180d86610d350292ad74"
+    },
+    {
+      "path": "out/by-class/headword-0b95.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b95",
+      "rows": 973,
+      "bytes": 355220,
+      "sha256": "e29363b3dd9298bd5d1068b0763cebc7b1f0dc137d6144716e6161e5abfed13c"
+    },
+    {
+      "path": "out/by-class/headword-0b9a.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b9a",
+      "rows": 598,
+      "bytes": 216249,
+      "sha256": "fb106669e816a7320fed5863992d27208ce73c90efe36a9fdc66fca7e6686a10"
+    },
+    {
+      "path": "out/by-class/headword-0b9e.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b9e",
+      "rows": 6,
+      "bytes": 2099,
+      "sha256": "2913ea7985b4eb29da46acb48281a4a801e46fbd48f87082690c54a081e04a8c"
+    },
+    {
+      "path": "out/by-class/headword-0ba4.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0ba4",
+      "rows": 704,
+      "bytes": 253956,
+      "sha256": "f866f71bd07da5f1471530633c38470cc59aaf8eb62f61cb3d7041e48141588a"
+    },
+    {
+      "path": "out/by-class/headword-0ba8.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0ba8",
+      "rows": 433,
+      "bytes": 156517,
+      "sha256": "f53bc6758bbeae957d6419c029fa46bbf968c65fe2a62ff8f6cc1291234d11dc"
+    },
+    {
+      "path": "out/by-class/headword-0baa.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0baa",
+      "rows": 952,
+      "bytes": 346329,
+      "sha256": "d129846f3c16ce785d8723c0f3a2848527400fd031368830b231b8cecd2c59b2"
+    },
+    {
+      "path": "out/by-class/headword-0bae.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0bae",
+      "rows": 745,
+      "bytes": 270242,
+      "sha256": "1c398c97df03a0be0780178224980020284a5bada813dc8e79154a0afec2d53c"
+    },
+    {
+      "path": "out/by-class/headword-0baf.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0baf",
+      "rows": 19,
+      "bytes": 6673,
+      "sha256": "e79a47e3278db0e2f5aa66e6c939c90396480ca2e3a3a0826ac5b4b95ab3e766"
+    },
+    {
+      "path": "out/by-class/headword-0bb5.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0bb5",
+      "rows": 624,
+      "bytes": 225947,
+      "sha256": "2de47472b4e1ea94831d48b7608c88eecca2523ed94dbd35790820c40e9cf3b6"
+    }
+  ],
+  "ezhuthuIndex": {
+    "0b85": {
+      "ezhuthu": "அ",
+      "roman": "a",
+      "kind": "uyir"
+    },
+    "0b86": {
+      "ezhuthu": "ஆ",
+      "roman": "aa",
+      "kind": "uyir"
+    },
+    "0b87": {
+      "ezhuthu": "இ",
+      "roman": "i",
+      "kind": "uyir"
+    },
+    "0b88": {
+      "ezhuthu": "ஈ",
+      "roman": "ii",
+      "kind": "uyir"
+    },
+    "0b89": {
+      "ezhuthu": "உ",
+      "roman": "u",
+      "kind": "uyir"
+    },
+    "0b8a": {
+      "ezhuthu": "ஊ",
+      "roman": "uu",
+      "kind": "uyir"
+    },
+    "0b8e": {
+      "ezhuthu": "எ",
+      "roman": "e",
+      "kind": "uyir"
+    },
+    "0b8f": {
+      "ezhuthu": "ஏ",
+      "roman": "ee",
+      "kind": "uyir"
+    },
+    "0b90": {
+      "ezhuthu": "ஐ",
+      "roman": "ai",
+      "kind": "uyir"
+    },
+    "0b92": {
+      "ezhuthu": "ஒ",
+      "roman": "o",
+      "kind": "uyir"
+    },
+    "0b93": {
+      "ezhuthu": "ஓ",
+      "roman": "oo",
+      "kind": "uyir"
+    },
+    "0b94": {
+      "ezhuthu": "ஔ",
+      "roman": "au",
+      "kind": "uyir"
+    },
+    "0b95": {
+      "ezhuthu": "க",
+      "roman": "k",
+      "kind": "uyirmei"
+    },
+    "0b9a": {
+      "ezhuthu": "ச",
+      "roman": "ch",
+      "kind": "uyirmei"
+    },
+    "0b9e": {
+      "ezhuthu": "ஞ",
+      "roman": "nj",
+      "kind": "uyirmei"
+    },
+    "0ba4": {
+      "ezhuthu": "த",
+      "roman": "th",
+      "kind": "uyirmei"
+    },
+    "0ba8": {
+      "ezhuthu": "ந",
+      "roman": "nh",
+      "kind": "uyirmei"
+    },
+    "0baa": {
+      "ezhuthu": "ப",
+      "roman": "p",
+      "kind": "uyirmei"
+    },
+    "0bae": {
+      "ezhuthu": "ம",
+      "roman": "m",
+      "kind": "uyirmei"
+    },
+    "0baf": {
+      "ezhuthu": "ய",
+      "roman": "y",
+      "kind": "uyirmei"
+    },
+    "0bb5": {
+      "ezhuthu": "வ",
+      "roman": "v",
+      "kind": "uyirmei"
+    }
+  }
+}

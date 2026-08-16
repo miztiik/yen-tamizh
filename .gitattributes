@@ -32,3 +32,16 @@ datasets/fixtures/*.jsonl text eol=lf
 # run on the next contributor's machine, so LF is pinned rather than left to
 # core.autocrlf.
 datasets/lexicon/sources/llm-authored/entries.jsonl text eol=lf
+
+# The published lexicon and its index. Every file's sha256 and byte count are
+# recorded in lexicon.meta.json and re-checked against disk by the row-11
+# Oracles, and "re-publishing an unchanged store is byte-identical" is the whole
+# gate - so a checkout that rewrote the line endings would fail on whoever
+# cloned it rather than on the change that broke it. The publisher writes LF
+# explicitly; these rules make git store and check out the same bytes.
+datasets/lexicon/by-class/*.ndjson text eol=lf
+datasets/lexicon/lexicon.meta.json text eol=lf
+
+# The committed expectation the fixture pipeline is byte-compared against, for
+# exactly the same reason: it is the output of the same writer at fixture scale.
+datasets/fixtures/lexicon-expected/** text eol=lf

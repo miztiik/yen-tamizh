@@ -1,0 +1,13 @@
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 233, "length": 3, "spokenRatio": 0.0, "word": "யசோதை", "wordClass": "properNoun"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 529, "length": 3, "meaningSource": "attested", "spokenRatio": 0.0, "synonymsTa": ["காலன்", "கூற்றன்", "தென்னவன்"], "word": "யமன்", "wordClass": "properNoun"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 743, "length": 3, "meaningSource": "attested", "spokenRatio": 0.0, "synonymsTa": ["காளிந்தி"], "word": "யமுனை", "wordClass": "properNoun"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 63, "length": 3, "spokenRatio": 0.0, "word": "யஹ்யா", "wordClass": "properNoun"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 0, "length": 4, "word": "யாகுவம்", "wordClass": "properNoun"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 5919, "length": 6, "spokenRatio": 0.0, "word": "யாழ்ப்பாணம்", "wordClass": "properNoun"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 66, "length": 4, "spokenRatio": 0.0, "word": "யுரேனசு", "wordClass": "properNoun"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 166, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "word": "யூதம்", "wordClass": "properNoun"}
+{"attestedBy": ["spellcheck-wordlist", "wiktextract-ta"], "frequency": 345, "length": 2, "spokenRatio": 0.0, "word": "யேசு", "wordClass": "properNoun"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 365, "length": 3, "spokenRatio": 0.0, "word": "யோசுவா", "wordClass": "properNoun"}
+{"attestedBy": ["spellcheck-wordlist", "wiktextract-ta"], "frequency": 567, "length": 4, "meaningSource": "attested", "spokenRatio": 0.0, "synonymsTa": ["புனித சூசையப்பர்", "புனித யோசேப்பு"], "word": "யோசேப்பு", "wordClass": "properNoun"}
+{"attestedBy": ["spellcheck-wordlist", "wiktextract-ta"], "frequency": 2280, "length": 3, "spokenRatio": 0.0, "word": "யோவான்", "wordClass": "properNoun"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 89, "length": 3, "spokenRatio": 0.0, "word": "யோவேல்", "wordClass": "properNoun"}

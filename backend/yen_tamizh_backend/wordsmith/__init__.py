@@ -11,7 +11,8 @@ runtime server (Holy Law #1) and the browser never reads anything it writes
 except the published bank the puzzle engine bakes.
 
 EXTRACT and STAGE exist so far (Rows 5 and 6); ENRICH writes the store's
-derived zone from row 7, and PUBLISH renders the artifact from row 11.
+derived zone from row 7, and PUBLISH renders the artifact from row 11, with
+``pipeline`` sequencing the four and holding no logic of its own.
 """
 
 from __future__ import annotations
@@ -37,6 +38,17 @@ from yen_tamizh_backend.wordsmith.extract import (
     extract_source,
     load_registry,
     normalize,
+)
+from yen_tamizh_backend.wordsmith.pipeline import PipelineRun, run
+from yen_tamizh_backend.wordsmith.publish import (
+    PublishRun,
+    WrittenPartition,
+    base_hex,
+    partition_name,
+    publish,
+    render,
+    render_meta,
+    write_rows,
 )
 from yen_tamizh_backend.wordsmith.readers import (
     DEFAULT_CHUNK,
@@ -87,6 +99,8 @@ __all__ = [
     "Fact",
     "FactKind",
     "Observation",
+    "PipelineRun",
+    "PublishRun",
     "RemoveResult",
     "Signal",
     "SignalContext",
@@ -95,7 +109,9 @@ __all__ = [
     "StageRun",
     "StoreStats",
     "Tally",
+    "WrittenPartition",
     "apply_extract",
+    "base_hex",
     "canonical_digest",
     "canonical_dump",
     "derived_epoch",
@@ -114,10 +130,16 @@ __all__ = [
     "normalize",
     "open_store",
     "orthotactic_score",
+    "partition_name",
+    "publish",
     "read_elements",
     "remove_source",
+    "render",
+    "render_meta",
+    "run",
     "stage",
     "stage_epoch",
     "store_stats",
     "transaction",
+    "write_rows",
 ]

@@ -1,0 +1,836 @@
+{
+  "version": "2026-08-16T10:00",
+  "changelog": [
+    {
+      "version": "2026-08-16T10:00",
+      "change": "Split counters into a classified and a published census; made baseFirstEzhuthu the second and final partition key and dropped length from the partition table; added partitionKeys and ezhuthuIndex; dropped the ezhuthu column from the row; renamed provenance rowsIn / factsOut to observations / facts.",
+      "why": "Row 11, the first writer. The publish policy commits four servable classes of ten, so a single counter would have made the withheld classes unprovable - classified counts the whole population and published counts the files, and publication is all-or-nothing per class, so 'nothing was discarded' is a checkable statement rather than a claim. The measured layout is one file per (wordClass, base first ezhuthu) at 241 files and a 2.2 MiB largest file, so the length key it was authored with addresses nothing and a partition key that is sometimes absent is worse than one that is always there. ezhuthu goes for the reason freqRank went: it is segment(word), a pure function of a published column, and storing a derived value is a drift surface as well as 35.4 B a row. observations / facts are what the store can actually prove about a source; rowsIn read as raw rows and no stage keeps that."
+    },
+    {
+      "version": "2026-08-16",
+      "change": "Added notAWord to the WordClass vocabulary.",
+      "why": "Row 9a - the classifier had no verdict for a surface that is not a word at all, so 641,819 scrape artifacts wore real classes: repeated aytham as loanword, leading-dot strings as inflected, a 1,212-ezhuthu paragraph as suspectedTypo. notAWord is a CONFIDENT NEGATIVE and is deliberately distinct from unclassified, which is an ABSENT verdict - collapsing them would destroy the only counters that say whether the classifier works. Additive: every existing row still validates, and selection stays an allow-list so nothing reaches a player by omission."
+    },
+    {
+      "version": "2026-08-14",
+      "change": "Initial lexicon contracts: the LexiconEntry row shape and the Lexicon meta document (provenance, per-class counters, partition table).",
+      "why": "Row 3 - contracts before logic (Holy Law #3): the all-words artifact that replaces the corpus funnel gets its typed shape before any stage reads or writes it."
+    }
+  ],
+  "partitionKeys": [
+    "wordClass",
+    "baseFirstEzhuthu"
+  ],
+  "provenance": [
+    {
+      "id": "dinamalar",
+      "name": "Dinamalar news archive 2009-2019 word frequency",
+      "origin": "yen-tamizh_OLD/words_and_frequency/words_and_frequency/frequency+words_in_Dinamalar_dataset_2009_2019.csv",
+      "path": "datasets/corpus/dinamalar/source.csv",
+      "bytes": 6247571,
+      "sha256": "a4ff12e33979b45aacb64f5a8be9c963e25c28cfba5dca6db0c77f3a682fcebf",
+      "observations": 169487,
+      "facts": 0
+    },
+    {
+      "id": "en-ta-dictionary",
+      "name": "English-Tamil dictionary with part-of-speech prefixes (t1)",
+      "origin": "yen-tamizh_OLD/src/dictionary/raw/t1.json",
+      "path": "datasets/lexicon/sources/en-ta-dictionary/source.json",
+      "bytes": 14884252,
+      "sha256": "de9952d65e4c03955d70bd36cc844da14b4c48749a11b3146d011b6d5e8452c1",
+      "observations": 161929,
+      "facts": 2709708
+    },
+    {
+      "id": "gurunithya",
+      "name": "gurunithya.wordpress.com word frequency",
+      "origin": "yen-tamizh_OLD/words_and_frequency/words_and_frequency/frequency+words_in_gurunithya.wordpress.com.html",
+      "path": "datasets/corpus/gurunithya/source.csv",
+      "bytes": 95111,
+      "sha256": "9c94c91b19bf3ff6d41f31d43a884df395241fb8bc10646897381634291656b6",
+      "observations": 3062,
+      "facts": 0
+    },
+    {
+      "id": "huggingface-wordlist",
+      "name": "Clean Tamil word list (HuggingFace derived)",
+      "origin": "yen-tamizh_OLD/src/dictionary/intermediate/ta_words_huggingface.json",
+      "path": "datasets/lexicon/sources/huggingface-wordlist/source.json",
+      "bytes": 1010186,
+      "sha256": "c5c06d47a53b98a423b557e147ba02c0cdfc433759422dae7234decbe6720d09",
+      "observations": 26485,
+      "facts": 26485
+    },
+    {
+      "id": "inflected-verbs-bulk",
+      "name": "Bulk Tamil inflected verb forms",
+      "origin": "yen-tamizh_OLD/src/dictionary/raw/Simple-verbs-01022021.txt",
+      "path": "datasets/lexicon/sources/inflected-verbs-bulk/source.txt",
+      "bytes": 69572318,
+      "sha256": "3baf32b9662c248b81273be0446c4f8fbfcb812c0ea6675ee47485293a9fb3b5",
+      "observations": 1412799,
+      "facts": 0
+    },
+    {
+      "id": "inflected-verbs-clean",
+      "name": "Cleaned Tamil inflected verb forms",
+      "origin": "yen-tamizh_OLD/src/dictionary/intermediate/verbs.txt",
+      "path": "datasets/lexicon/sources/inflected-verbs-clean/source.txt",
+      "bytes": 727814,
+      "sha256": "0e1913e15f1ebc7413b50f8b738a933ab7f6ecd48c3db09e9a6f4ef107226d1e",
+      "observations": 19249,
+      "facts": 0
+    },
+    {
+      "id": "llm-authored",
+      "name": "Agent-authored Tamil meanings, synonyms, translations, POS and themes",
+      "origin": "authored in-session by the agent executing the pipeline; see docs/how-to/enrich-the-lexicon.md",
+      "path": "datasets/lexicon/sources/llm-authored/entries.jsonl",
+      "bytes": 1767398,
+      "sha256": "5e236b960ea674183cd6f93c81a20f0cd3d5632ea398adb46f7e6785adf5385b",
+      "observations": 6269,
+      "facts": 28644
+    },
+    {
+      "id": "master-dictionary",
+      "name": "yen-tamizh_OLD curated Tamil master dictionary",
+      "origin": "yen-tamizh_OLD/src/dictionary/master_dictionary.json",
+      "path": "datasets/corpus/master-dictionary/source.json",
+      "bytes": 19128594,
+      "sha256": "385347a37dc315ae78e2df714d28f9da99420bf79570f4bca28c8d3c90756cc9",
+      "observations": 104073,
+      "facts": 222404
+    },
+    {
+      "id": "old-wordlist",
+      "name": "yen-tamizh_OLD raw Tamil word list (t2)",
+      "origin": "yen-tamizh_OLD/src/dictionary/raw/t2.json",
+      "path": "datasets/corpus/old-wordlist/source.json",
+      "bytes": 1712398,
+      "sha256": "defb1b04013299925dd0bb1086891e6ef64b1dbc672bc9208233777ed3de0fda",
+      "observations": 36068,
+      "facts": 36082
+    },
+    {
+      "id": "opensubtitles-ta",
+      "name": "OpenSubtitles 2018 Tamil frequency list (hermitdave/FrequencyWords)",
+      "origin": "https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/ta/ta_full.txt",
+      "path": "datasets/corpus/opensubtitles-ta/source.txt",
+      "bytes": 562582,
+      "sha256": "62105bea7448f5243dc4bfbed5311dd607f08af21fa026c776d2a373c10a24f8",
+      "observations": 19085,
+      "facts": 0
+    },
+    {
+      "id": "sirukathaigal",
+      "name": "sirukathaigal.com short-story archive word frequency",
+      "origin": "yen-tamizh_OLD/words_and_frequency/words_and_frequency/frequency+words_in_sirukathaigal.com.html",
+      "path": "datasets/corpus/sirukathaigal/source.csv",
+      "bytes": 9083366,
+      "sha256": "f32b4c4db4f8acd58e6d97530af0c74c6e7be40c7f59feeb7c51da8533e49537",
+      "observations": 254577,
+      "facts": 0
+    },
+    {
+      "id": "solvanam",
+      "name": "solvanam.com literary magazine word frequency",
+      "origin": "yen-tamizh_OLD/words_and_frequency/words_and_frequency/frequency+words_in_solvanam.html",
+      "path": "datasets/corpus/solvanam/source.csv",
+      "bytes": 4345491,
+      "sha256": "cae466298d1740545210a22297997414c983883c38a20a64ce5ae536f04dcd23",
+      "observations": 127296,
+      "facts": 0
+    },
+    {
+      "id": "spellcheck-wordlist",
+      "name": "Tamil word list validated by a Nannul-rules spellchecker",
+      "origin": "yen-tamizh_OLD/src/dictionary/intermediate/ta_words_v1.json",
+      "path": "datasets/lexicon/sources/spellcheck-wordlist/source.json",
+      "bytes": 15602428,
+      "sha256": "050d49af576aae6c4305fd31334b404b28ecea52d3de1ff35cd85539cce578f1",
+      "observations": 355275,
+      "facts": 355275
+    },
+    {
+      "id": "ta-dedup",
+      "name": "Deduplicated Tamil web corpus word frequency",
+      "origin": "yen-tamizh_OLD/words_and_frequency/words_and_frequency/frequency+words_in_ta_dedup.txt",
+      "path": "datasets/corpus/ta-dedup/source.csv",
+      "bytes": 20962605,
+      "sha256": "dac09925388c0339d26c9e46532892a7812611d55bad9db2bc9b6ab90e12d90e",
+      "observations": 549630,
+      "facts": 0
+    },
+    {
+      "id": "ta-wiktionary-titles",
+      "name": "Tamil Wiktionary page titles, main namespace",
+      "origin": "https://dumps.wikimedia.org/tawiktionary/20260801/tawiktionary-20260801-all-titles-in-ns0.gz",
+      "path": "datasets/lexicon/sources/ta-wiktionary-titles/source.txt",
+      "bytes": 7745492,
+      "sha256": "7b4954ccad02227771354192a88bbae82939009068067b029abd073e29321cf0",
+      "observations": 410074,
+      "facts": 410074
+    },
+    {
+      "id": "tamil-words-frequency",
+      "name": "Aggregated Tamil web and news word frequency",
+      "origin": "yen-tamizh_OLD/src/dictionary/raw/tamil-words-frequency.csv",
+      "path": "datasets/corpus/tamil-words-frequency/source.csv",
+      "bytes": 192867247,
+      "sha256": "b2be87bb2c503da602e7d5656acc0efc396592d8c422f40db269ced4134b5978",
+      "observations": 4548421,
+      "facts": 0
+    },
+    {
+      "id": "tamilmurasu",
+      "name": "Tamil Murasu news archive 2011-2020 word frequency",
+      "origin": "yen-tamizh_OLD/words_and_frequency/words_and_frequency/frequency+words_in_Tamilmurasu_dataset_06_Jan_2011_06_Jan_2020.csv",
+      "path": "datasets/corpus/tamilmurasu/source.csv",
+      "bytes": 501112,
+      "sha256": "14f9c5c04c4d8b860dfe51946c32633147f66bbff7c47b62d9d1b87cd2f2a1df",
+      "observations": 15626,
+      "facts": 0
+    },
+    {
+      "id": "themed-vocabulary",
+      "name": "Curated themed Tamil vocabulary with English pairings",
+      "origin": "yen-tamizh_OLD/src/dictionary/intermediate/ta_vocabulary_clean.json",
+      "path": "datasets/lexicon/sources/themed-vocabulary/source.json",
+      "bytes": 144240,
+      "sha256": "91a78edadca357690975066c6d00815060f79e6a679f07e9a63cd8758f26ed6c",
+      "observations": 1121,
+      "facts": 2580
+    },
+    {
+      "id": "wiki",
+      "name": "Tamil Wikipedia word frequency",
+      "origin": "yen-tamizh_OLD/words_and_frequency/words_and_frequency/frequency+words_in_wiki.txt",
+      "path": "datasets/corpus/wiki/source.csv",
+      "bytes": 9673403,
+      "sha256": "98e57ad7e12917380bf31482f4230efb46ec81ea131357a209fbee1e9e16f2fb",
+      "observations": 273953,
+      "facts": 0
+    },
+    {
+      "id": "wiktextract-ta",
+      "name": "Tamil Wiktionary via Wiktextract (kaikki.org)",
+      "origin": "https://kaikki.org/dictionary/Tamil/kaikki.org-dictionary-Tamil.jsonl",
+      "path": "datasets/lexicon/sources/wiktextract-ta/source.jsonl",
+      "bytes": 86701341,
+      "sha256": "56c3063941fe4fe8004efbd51e6a57173b25f5d86c68fff648e27be5a15fc723",
+      "observations": 11103,
+      "facts": 83017
+    }
+  ],
+  "counters": {
+    "classified": {
+      "rows": 6569694,
+      "byClass": {
+        "headword": 137991,
+        "inflected": 1425408,
+        "colloquial": 1,
+        "properNoun": 1074,
+        "loanword": 601832,
+        "boundStem": 1,
+        "sandhiArtifact": 448943,
+        "suspectedTypo": 267970,
+        "notAWord": 949378,
+        "unclassified": 2737096
+      }
+    },
+    "published": {
+      "rows": 139067,
+      "byClass": {
+        "headword": 137991,
+        "inflected": 0,
+        "colloquial": 1,
+        "properNoun": 1074,
+        "loanword": 0,
+        "boundStem": 1,
+        "sandhiArtifact": 0,
+        "suspectedTypo": 0,
+        "notAWord": 0,
+        "unclassified": 0
+      }
+    }
+  },
+  "partitions": [
+    {
+      "path": "datasets/lexicon/by-class/boundStem-0ba4.ndjson",
+      "wordClass": "boundStem",
+      "baseFirstEzhuthu": "0ba4",
+      "rows": 1,
+      "bytes": 22001,
+      "sha256": "2fe9a1314d0ac016aa8ac80f464eba6225c66fcb79776731e20a1d9a1482e7c3"
+    },
+    {
+      "path": "datasets/lexicon/by-class/colloquial-0b85.ndjson",
+      "wordClass": "colloquial",
+      "baseFirstEzhuthu": "0b85",
+      "rows": 1,
+      "bytes": 186,
+      "sha256": "92c3fc00981633b3a2371747689ecf7f09f21706d2f45af9f939d8ab290993f9"
+    },
+    {
+      "path": "datasets/lexicon/by-class/headword-0b85.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b85",
+      "rows": 11791,
+      "bytes": 5207827,
+      "sha256": "d1985d9b91f50ddadc0c517b44e639608737a6e3156fe65e97bde66ef3092f08"
+    },
+    {
+      "path": "datasets/lexicon/by-class/headword-0b86.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b86",
+      "rows": 3809,
+      "bytes": 1724057,
+      "sha256": "c4474dce818c7ff8d058166efba0aae76560fbf4ca5f273b7372af96ae487c36"
+    },
+    {
+      "path": "datasets/lexicon/by-class/headword-0b87.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b87",
+      "rows": 6442,
+      "bytes": 3962027,
+      "sha256": "9dab1d00eacc8cde42f1e8560ee07422863dc233ae944773d4f5e92b0ec82f94"
+    },
+    {
+      "path": "datasets/lexicon/by-class/headword-0b88.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b88",
+      "rows": 519,
+      "bytes": 287467,
+      "sha256": "95b09b3d71f9f40d16de4b8d77c92512ab2cfc39ced441e10c126739ffac0405"
+    },
+    {
+      "path": "datasets/lexicon/by-class/headword-0b89.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b89",
+      "rows": 5000,
+      "bytes": 3841909,
+      "sha256": "0fcff7c412385a65fa00b2a2d5ab6ae36e27d50091bd08134029dcfed371cb15"
+    },
+    {
+      "path": "datasets/lexicon/by-class/headword-0b8a.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b8a",
+      "rows": 837,
+      "bytes": 668259,
+      "sha256": "c68b517ed52edf478ac85beda00c58ad4d4df3b3c74752bc619cac99245bd71b"
+    },
+    {
+      "path": "datasets/lexicon/by-class/headword-0b8e.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b8e",
+      "rows": 2137,
+      "bytes": 1514713,
+      "sha256": "29ffe92ddbf5eb7b50761a09f96f8ff609a5fc6aebf434b47e297bd36e86e0b5"
+    },
+    {
+      "path": "datasets/lexicon/by-class/headword-0b8f.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b8f",
+      "rows": 899,
+      "bytes": 574051,
+      "sha256": "f412c3de99c6df08af1c0f18d543eefcd231790be8eb8f3e7f4bd70cf3448fe2"
+    },
+    {
+      "path": "datasets/lexicon/by-class/headword-0b90.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b90",
+      "rows": 283,
+      "bytes": 117572,
+      "sha256": "dbbdc27d7bd97518da27c374cb5f96cbc2f65679b6817650fb93d2ae8494e913"
+    },
+    {
+      "path": "datasets/lexicon/by-class/headword-0b92.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b92",
+      "rows": 1565,
+      "bytes": 1275437,
+      "sha256": "dcc5c74d651d65a535af031ac1edba4b5e4bdc91d63b747307a53555fb229b75"
+    },
+    {
+      "path": "datasets/lexicon/by-class/headword-0b93.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b93",
+      "rows": 579,
+      "bytes": 400864,
+      "sha256": "a086d88c2d28cb94e3e9d6ce6dae4c8c40fcc40cd8f856aa7fea6c277b7d35fc"
+    },
+    {
+      "path": "datasets/lexicon/by-class/headword-0b94.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b94",
+      "rows": 167,
+      "bytes": 158028,
+      "sha256": "c93d3c2234a3c792730ddb9443b66326ffbe8716596feb7f32a0eafd84f0864d"
+    },
+    {
+      "path": "datasets/lexicon/by-class/headword-0b95.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b95",
+      "rows": 18775,
+      "bytes": 10972440,
+      "sha256": "608298ed959fe9c15036d12c9151e25990a1ebc8a0a8a9d1297027651dc829b3"
+    },
+    {
+      "path": "datasets/lexicon/by-class/headword-0b99.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b99",
+      "rows": 1,
+      "bytes": 150,
+      "sha256": "70d522e4f86747a6bfcec4151ad3f0e3cb6b9663995e0599a5db3100ccbca750"
+    },
+    {
+      "path": "datasets/lexicon/by-class/headword-0b9a.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b9a",
+      "rows": 13448,
+      "bytes": 7401143,
+      "sha256": "2c52345f226bca42b905dc0bcfa72ca4c6c8e7c391099c3f7d9cdca328e88a95"
+    },
+    {
+      "path": "datasets/lexicon/by-class/headword-0b9e.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0b9e",
+      "rows": 193,
+      "bytes": 42877,
+      "sha256": "29197878a7244124ce6b893e8f785efcce7e8b9660d2cff4daba3ee1beb15a56"
+    },
+    {
+      "path": "datasets/lexicon/by-class/headword-0ba4.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0ba4",
+      "rows": 12591,
+      "bytes": 8833347,
+      "sha256": "80e8485396733e0a47601d1d33e91630159cce4cc091bfd10abd7f526c207bf7"
+    },
+    {
+      "path": "datasets/lexicon/by-class/headword-0ba8.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0ba8",
+      "rows": 8481,
+      "bytes": 5375471,
+      "sha256": "c644d8b8e898af1918cd636a9ff1422b3ad567968ce665add8f927d6caa3c50c"
+    },
+    {
+      "path": "datasets/lexicon/by-class/headword-0baa.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0baa",
+      "rows": 20521,
+      "bytes": 10824819,
+      "sha256": "601be54a25c8da6253461eb22a87320d021f24e2fd594325c7f6d0beccf36112"
+    },
+    {
+      "path": "datasets/lexicon/by-class/headword-0bae.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0bae",
+      "rows": 16378,
+      "bytes": 8828007,
+      "sha256": "41dbfe08e7387255daac72c8bcba221fd80c8a98cecc40db81080ecaf22c547a"
+    },
+    {
+      "path": "datasets/lexicon/by-class/headword-0baf.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0baf",
+      "rows": 696,
+      "bytes": 166499,
+      "sha256": "88e4f296c1ed17d80ec9de121b9c434fcf4ab569924a75dcc491e2eec67264ef"
+    },
+    {
+      "path": "datasets/lexicon/by-class/headword-0bb5.ndjson",
+      "wordClass": "headword",
+      "baseFirstEzhuthu": "0bb5",
+      "rows": 12879,
+      "bytes": 7852684,
+      "sha256": "9897f99391baf3cbd299150e9c6feda143014cac91b31bb5e176de9372594cf8"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0b85.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0b85",
+      "rows": 74,
+      "bytes": 37267,
+      "sha256": "53855e6e8507b7719ba45141ad3b6295f9e70b7bc4b434c78e5563e9bff48d7d"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0b86.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0b86",
+      "rows": 33,
+      "bytes": 37614,
+      "sha256": "3c28bfeac3a0da09b6735d2bb71658f1ca246c4ce4b5ce8b0cdaa63edebd104b"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0b87.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0b87",
+      "rows": 48,
+      "bytes": 24841,
+      "sha256": "ee45a5e6200fa63b72a8e7baaa6bc10efe8129ed74c38de474bb1e998e1aced6"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0b88.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0b88",
+      "rows": 7,
+      "bytes": 4131,
+      "sha256": "40d3b5a280439bf994ba1eece34828b153905c9bec5cc0177fd21d920f6fa577"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0b89.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0b89",
+      "rows": 21,
+      "bytes": 5755,
+      "sha256": "e2f1d08dd8af1d631132349987ebbeb4f3f155ea6fa5bd36507163efd44e4852"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0b8a.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0b8a",
+      "rows": 2,
+      "bytes": 686,
+      "sha256": "aa28d7310174cec460812b00e0c88493d46db85596c997b19ffa07e71b84e796"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0b8e.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0b8e",
+      "rows": 17,
+      "bytes": 3996,
+      "sha256": "b7e5e4913ad5c64a01962b75894eff31baff14276b4462af7640c4b735bb7f35"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0b8f.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0b8f",
+      "rows": 7,
+      "bytes": 2649,
+      "sha256": "fd5c08f0a444a76f2f61bd1bfea3b2d9b74d681c04c6b1ce55f0ce82ef79ff99"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0b90.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0b90",
+      "rows": 8,
+      "bytes": 2164,
+      "sha256": "cc303896ecaa72ef979120dcf4817563e3806adf7c923aefdf888aceb4be77cf"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0b92.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0b92",
+      "rows": 6,
+      "bytes": 952,
+      "sha256": "7aa83254b753cc2de6f632b73ea2996f3bcf8551b886143f89076c2521135c7b"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0b93.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0b93",
+      "rows": 5,
+      "bytes": 845,
+      "sha256": "0601ce32c092cfcb5408fd14c560ba5ac6a0056415daeb5ff11967843f9c8a41"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0b94.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0b94",
+      "rows": 2,
+      "bytes": 429,
+      "sha256": "cde26bc18f7b391ff6644c9bbbf7468a620f99021a12b5a9378639a900a1bc05"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0b95.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0b95",
+      "rows": 167,
+      "bytes": 119100,
+      "sha256": "8a626417c8f76ef7b712bbe2f2a6e48e76274ddcb22fdae86734a410af03254b"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0b9a.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0b9a",
+      "rows": 115,
+      "bytes": 53657,
+      "sha256": "32b735a08d51289cb708b780c79bad97dc907a7e400d512cfbc6e4daff091ad2"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0b9c.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0b9c",
+      "rows": 23,
+      "bytes": 5671,
+      "sha256": "7eab20f79c503b6829692064f7e49a3fcafb7cab0ddccffdc7b1d6b966672e48"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0b9e.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0b9e",
+      "rows": 1,
+      "bytes": 253,
+      "sha256": "82c9c96b2b2c71193bfd8ccc519e305dfd6d61610c0d7aea72680ccd05fd51a4"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0b9f.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0b9f",
+      "rows": 7,
+      "bytes": 1107,
+      "sha256": "0e7b76bc1d475360b188c1d6f04644d4ddff557b22d69fd3fc65c565ed1edc30"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0ba4.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0ba4",
+      "rows": 105,
+      "bytes": 38363,
+      "sha256": "725849f99b0a6bd109e10a7def302d2fafdd4c36e97d44b4fee17f6eddf82f83"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0ba8.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0ba8",
+      "rows": 45,
+      "bytes": 17943,
+      "sha256": "3eb248453d2bc0d280d32cd37132d417833bbd77e962156a26ad141385a70ac3"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0baa.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0baa",
+      "rows": 151,
+      "bytes": 67600,
+      "sha256": "223965fc21df5a06bd98a65ad43054c85825de4ed479314f47dc96fb69b3a186"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0bae.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0bae",
+      "rows": 97,
+      "bytes": 42331,
+      "sha256": "deb9e435ae23f544aef924fbda9373587061b88f5b2e2470e68322b84f980fd2"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0baf.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0baf",
+      "rows": 13,
+      "bytes": 2656,
+      "sha256": "783e4492564bc20039ae334ceb5457da0a4824249e6e61aa18d64c8a42b4a483"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0bb0.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0bb0",
+      "rows": 23,
+      "bytes": 5661,
+      "sha256": "29a6657935d648da32e6efb65c70ef2db3953e39a02650a000b3d9be19c081aa"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0bb2.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0bb2",
+      "rows": 11,
+      "bytes": 2612,
+      "sha256": "132aabb18b366531ac125418541cf4af26a0f601ba9ecbf6de63c4cde3dd497b"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0bb4.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0bb4",
+      "rows": 1,
+      "bytes": 138,
+      "sha256": "66f968eb7cab9d7f1a7941561dcf83e6869e2c3c082e4b94d1feef3cfe7ede4d"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0bb5.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0bb5",
+      "rows": 68,
+      "bytes": 37151,
+      "sha256": "f8d3e89dbac4c4bede1b7c40882577ac9919645247e346c051178e7a237e2a48"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0bb6.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0bb6",
+      "rows": 4,
+      "bytes": 1054,
+      "sha256": "4fc6db4e50d6096c8301870ef7b45d86f4be63c248facea66f52712f8b2f69fd"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0bb8.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0bb8",
+      "rows": 2,
+      "bytes": 401,
+      "sha256": "2cc283f8f0cad2f302dc42b99c931e72c47c671fd4c1c739ae2f7653797d8fa4"
+    },
+    {
+      "path": "datasets/lexicon/by-class/properNoun-0bb9.ndjson",
+      "wordClass": "properNoun",
+      "baseFirstEzhuthu": "0bb9",
+      "rows": 11,
+      "bytes": 1771,
+      "sha256": "ee8a8add1b02904d4b2b4f1b8f3ff92d8713f01578dc7a708762a3e62fdcc17d"
+    }
+  ],
+  "ezhuthuIndex": {
+    "0b85": {
+      "ezhuthu": "அ",
+      "roman": "a",
+      "kind": "uyir"
+    },
+    "0b86": {
+      "ezhuthu": "ஆ",
+      "roman": "aa",
+      "kind": "uyir"
+    },
+    "0b87": {
+      "ezhuthu": "இ",
+      "roman": "i",
+      "kind": "uyir"
+    },
+    "0b88": {
+      "ezhuthu": "ஈ",
+      "roman": "ii",
+      "kind": "uyir"
+    },
+    "0b89": {
+      "ezhuthu": "உ",
+      "roman": "u",
+      "kind": "uyir"
+    },
+    "0b8a": {
+      "ezhuthu": "ஊ",
+      "roman": "uu",
+      "kind": "uyir"
+    },
+    "0b8e": {
+      "ezhuthu": "எ",
+      "roman": "e",
+      "kind": "uyir"
+    },
+    "0b8f": {
+      "ezhuthu": "ஏ",
+      "roman": "ee",
+      "kind": "uyir"
+    },
+    "0b90": {
+      "ezhuthu": "ஐ",
+      "roman": "ai",
+      "kind": "uyir"
+    },
+    "0b92": {
+      "ezhuthu": "ஒ",
+      "roman": "o",
+      "kind": "uyir"
+    },
+    "0b93": {
+      "ezhuthu": "ஓ",
+      "roman": "oo",
+      "kind": "uyir"
+    },
+    "0b94": {
+      "ezhuthu": "ஔ",
+      "roman": "au",
+      "kind": "uyir"
+    },
+    "0b95": {
+      "ezhuthu": "க",
+      "roman": "k",
+      "kind": "uyirmei"
+    },
+    "0b99": {
+      "ezhuthu": "ங",
+      "roman": "ng",
+      "kind": "uyirmei"
+    },
+    "0b9a": {
+      "ezhuthu": "ச",
+      "roman": "ch",
+      "kind": "uyirmei"
+    },
+    "0b9c": {
+      "ezhuthu": "ஜ",
+      "roman": "ja",
+      "kind": "uyirmei"
+    },
+    "0b9e": {
+      "ezhuthu": "ஞ",
+      "roman": "nj",
+      "kind": "uyirmei"
+    },
+    "0b9f": {
+      "ezhuthu": "ட",
+      "roman": "d",
+      "kind": "uyirmei"
+    },
+    "0ba4": {
+      "ezhuthu": "த",
+      "roman": "th",
+      "kind": "uyirmei"
+    },
+    "0ba8": {
+      "ezhuthu": "ந",
+      "roman": "nh",
+      "kind": "uyirmei"
+    },
+    "0baa": {
+      "ezhuthu": "ப",
+      "roman": "p",
+      "kind": "uyirmei"
+    },
+    "0bae": {
+      "ezhuthu": "ம",
+      "roman": "m",
+      "kind": "uyirmei"
+    },
+    "0baf": {
+      "ezhuthu": "ய",
+      "roman": "y",
+      "kind": "uyirmei"
+    },
+    "0bb0": {
+      "ezhuthu": "ர",
+      "roman": "r",
+      "kind": "uyirmei"
+    },
+    "0bb2": {
+      "ezhuthu": "ல",
+      "roman": "l",
+      "kind": "uyirmei"
+    },
+    "0bb4": {
+      "ezhuthu": "ழ",
+      "roman": "zh",
+      "kind": "uyirmei"
+    },
+    "0bb5": {
+      "ezhuthu": "வ",
+      "roman": "v",
+      "kind": "uyirmei"
+    },
+    "0bb6": {
+      "ezhuthu": "ஶ",
+      "roman": "sha",
+      "kind": "uyirmei"
+    },
+    "0bb8": {
+      "ezhuthu": "ஸ",
+      "roman": "sa",
+      "kind": "uyirmei"
+    },
+    "0bb9": {
+      "ezhuthu": "ஹ",
+      "roman": "ha",
+      "kind": "uyirmei"
+    }
+  }
+}

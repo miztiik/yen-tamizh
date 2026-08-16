@@ -1,0 +1,17 @@
+{"attestedBy": ["huggingface-wordlist", "old-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 2953, "length": 4, "meaningSource": "attested", "spokenRatio": 0.000339, "synonymsTa": ["மிசிர்வேதம்"], "word": "எகிப்து", "wordClass": "properNoun"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 92, "length": 6, "spokenRatio": 0.0, "word": "எக்குவடோர்", "wordClass": "properNoun"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 34, "length": 6, "spokenRatio": 0.0, "word": "எசுத்தோனியா", "wordClass": "properNoun"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 5, "length": 6, "spokenRatio": 0.0, "word": "எசேக்கியல்", "wordClass": "properNoun"}
+{"attestedBy": ["ta-wiktionary-titles", "wiktextract-ta"], "frequency": 215, "length": 6, "spokenRatio": 0.0, "word": "எட்டுத்தொகை", "wordClass": "properNoun"}
+{"attestedBy": ["spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 185, "length": 5, "meaningSource": "attested", "spokenRatio": 0.0, "synonymsTa": ["ஹீப்ரு"], "word": "எபிரேயம்", "wordClass": "properNoun"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 1153, "length": 3, "meaningSource": "attested", "spokenRatio": 0.0, "synonymsTa": ["யமன்"], "word": "எமன்", "wordClass": "properNoun"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 112, "length": 6, "spokenRatio": 0.0, "word": "எரித்திரியா", "wordClass": "properNoun"}
+{"attestedBy": ["spellcheck-wordlist", "wiktextract-ta"], "frequency": 1083, "length": 5, "spokenRatio": 0.0, "word": "எருசலேம்", "wordClass": "properNoun"}
+{"attestedBy": ["en-ta-dictionary", "huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "categories": ["animals"], "categorySource": "attested", "frequency": 362, "length": 3, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஆடுமாடுகள்", "ஏறு", "ஏற்றியல்", "கன்றுகாலிகள்", "கால்நடை", "காளை", "குதிரைகள்", "புல்லார்நிரை", "ரிஷபம்", "விதையடித்த காளை"], "translationEn": "Ox", "translationEnSource": "themed-vocabulary", "word": "எருது", "wordClass": "properNoun"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 338, "length": 4, "spokenRatio": 0.0, "word": "எரேமியா", "wordClass": "properNoun"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 830, "length": 6, "spokenRatio": 0.0, "word": "எர்ணாகுளம்", "wordClass": "properNoun"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 45, "length": 3, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["முகில்", "மேகம்"], "word": "எழிலி", "wordClass": "properNoun"}
+{"attestedBy": ["huggingface-wordlist", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 3074, "length": 3, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அழகு", "இளமை", "உயர்ச்சி"], "word": "எழில்", "wordClass": "properNoun"}
+{"attestedBy": ["spellcheck-wordlist", "wiktextract-ta"], "frequency": 894, "length": 4, "spokenRatio": 0.0, "word": "எஸ்தர்", "wordClass": "properNoun"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 22, "length": 6, "spokenRatio": 0.0, "word": "எஸ்பெராண்டோ", "wordClass": "properNoun"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 276, "length": 3, "spokenRatio": 0.0, "word": "எஸ்ரா", "wordClass": "properNoun"}

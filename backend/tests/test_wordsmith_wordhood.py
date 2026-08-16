@@ -26,7 +26,6 @@ file's own normalization form cannot change what it asserts.
 from __future__ import annotations
 
 import json
-import shutil
 import sqlite3
 from dataclasses import dataclass, replace
 from pathlib import Path
@@ -35,7 +34,7 @@ from typing import Any
 import pytest
 from pydantic import ValidationError
 
-from _lexicon_workspace import source_bytes
+from _lexicon_workspace import fixture_registry
 from yen_tamizh_backend.contracts.lexicon import WordClass
 from yen_tamizh_backend.contracts.lexicon_sources import (
     ATTESTING_ROLES,
@@ -44,7 +43,7 @@ from yen_tamizh_backend.contracts.lexicon_sources import (
 )
 from yen_tamizh_backend.contracts.wordhood import Wordhood
 from yen_tamizh_backend.wordsmith.enrich import enrich, load_config, reclassify
-from yen_tamizh_backend.wordsmith.extract import extract, load_registry, sha256_of
+from yen_tamizh_backend.wordsmith.extract import extract, load_registry
 from yen_tamizh_backend.wordsmith.signals_exact import orthotactic_score
 from yen_tamizh_backend.wordsmith.stage import stage
 from yen_tamizh_backend.wordsmith.store import (
@@ -606,26 +605,7 @@ class Enriched:
 
 
 def _fixture_registry(root: Path) -> LexiconSources:
-    entries: list[dict[str, Any]] = []
-    source: LexiconSource
-    for source in REGISTRY.sources:
-        fixture = source_bytes(_REPO_ROOT, _FIXTURES, source)
-        staged = root / "sources" / fixture.name
-        staged.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(fixture, staged)
-        digest, size = sha256_of(staged)
-        entries.append(
-            source.model_dump(exclude_none=True)
-            | {
-                "path": f"sources/{fixture.name}",
-                "sha256": digest,
-                "bytes": size,
-                "enabled": True,
-            }
-        )
-    return LexiconSources.model_validate(
-        REGISTRY.model_dump(exclude_none=True) | {"lexiconRoot": "out", "sources": entries}
-    )
+    return fixture_registry(_REPO_ROOT, REGISTRY, root)
 
 
 @pytest.fixture(scope="module")

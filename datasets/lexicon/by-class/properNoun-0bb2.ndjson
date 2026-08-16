@@ -1,0 +1,11 @@
+{"attestedBy": ["huggingface-wordlist", "old-wordlist", "wiktextract-ta"], "frequency": 156, "length": 7, "spokenRatio": 0.0, "word": "லக்சம்பர்க்", "wordClass": "properNoun"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 510, "length": 3, "spokenRatio": 0.0, "word": "லடாக்", "wordClass": "properNoun"}
+{"attestedBy": ["ta-wiktionary-titles", "wiktextract-ta"], "frequency": 7629, "length": 4, "spokenRatio": 0.000262, "word": "லண்டன்", "wordClass": "properNoun"}
+{"attestedBy": ["en-ta-dictionary", "huggingface-wordlist", "old-wordlist", "wiktextract-ta"], "frequency": 817, "length": 4, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 0.004896, "synonymsTa": ["(பெயரடை) வினைச் சொற்களில் செய்வினைப் பொருளில் செயப்பாட்டுவினை உருவான", "ஆணையிட்டு வாக்குமூலம் கொடுப்பவர்", "எழுத்து மூலச் சான்றறிக்கை அளிப்பவர்", "கிரேக்க இலக்கணங்களிற் செய்வினை பொருளில் வழங்கம் செயப்பாட்டு வினை", "சான்றாளர்"], "translationEn": "deponent", "translationEnSource": "en-ta-dictionary", "word": "லத்தீன்", "wordClass": "properNoun"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 12, "length": 4, "spokenRatio": 0.0, "word": "லாபுவான்", "wordClass": "properNoun"}
+{"attestedBy": ["huggingface-wordlist", "old-wordlist", "wiktextract-ta"], "frequency": 267, "length": 3, "spokenRatio": 0.0, "word": "லாவோஸ்", "wordClass": "properNoun"}
+{"attestedBy": ["ta-wiktionary-titles", "wiktextract-ta"], "frequency": 103, "length": 4, "spokenRatio": 0.0, "word": "லிஸ்பன்", "wordClass": "properNoun"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 6, "length": 7, "spokenRatio": 0.0, "word": "லீக்டன்ஸ்டைன்", "wordClass": "properNoun"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 31, "length": 4, "spokenRatio": 0.0, "word": "லெசோத்தோ", "wordClass": "properNoun"}
+{"attestedBy": ["huggingface-wordlist", "old-wordlist", "wiktextract-ta"], "frequency": 526, "length": 4, "spokenRatio": 0.001901, "word": "லெபனான்", "wordClass": "properNoun"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 92, "length": 4, "spokenRatio": 0.0, "word": "லைபீரியா", "wordClass": "properNoun"}

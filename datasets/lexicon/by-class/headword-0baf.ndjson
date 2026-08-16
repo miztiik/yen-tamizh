@@ -1,0 +1,696 @@
+{"attestedBy": ["ta-wiktionary-titles", "wiktextract-ta"], "frequency": 2643, "length": 1, "spokenRatio": 0.0, "word": "ய", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 8, "word": "யகிர்த்துச்சூலை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யக்கதரு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யக்கராசன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யக்கராத்திரி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யக்கியபசு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 8, "word": "யக்கியபுருடன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 9, "word": "யக்கியயோக்கியம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யக்கியாரி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 0, "length": 8, "meaningSource": "attested", "pos": ["noun"], "synonymsTa": ["பூணூல்"], "word": "யக்கியோபவீதம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யக்கேசன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 3, "word": "யசசு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யசசுவி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யசனம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யசமானன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 2, "word": "யசு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 1, "length": 8, "spokenRatio": 0.0, "word": "யசோதரகாவியம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 31, "length": 4, "spokenRatio": 0.0, "word": "யசோதரை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 8, "length": 5, "spokenRatio": 0.0, "word": "யசோதரையை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 5, "length": 4, "spokenRatio": 0.0, "word": "யசோவதி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யஞ்ஞன்", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 6, "length": 4, "spokenRatio": 0.0, "word": "யஞ்ஞம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யஞ்ஞவராகம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 18, "length": 3, "spokenRatio": 0.0, "word": "யட்ச", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யட்சம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யட்சவாசம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 5, "length": 4, "spokenRatio": 0.0, "word": "யட்சிணி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 32, "length": 2, "spokenRatio": 0.0, "word": "யதா", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யதாநகல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 1, "length": 8, "spokenRatio": 0.0, "word": "யதாப்பிரகாரம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 2188, "length": 6, "spokenRatio": 0.0, "word": "யதார்த்தம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 47, "length": 8, "spokenRatio": 0.0, "word": "யதார்த்தவாதம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 34, "length": 7, "spokenRatio": 0.0, "word": "யதார்த்தவாதி", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 15808, "length": 2, "spokenRatio": 0.0, "translationEn": "secret", "translationEnSource": "master-dictionary", "word": "யதி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யதிதாளம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யதிதிமதி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யதிபாத்திரம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யதியாசாரம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யதிராசன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யதிவழு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 9, "word": "யதீந்திரசரணர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 16, "word": "யதீந்திரப்பிரவணப்பிரபாவம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 774, "length": 2, "spokenRatio": 0.0, "word": "யது", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யதுநாதன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 4, "length": 8, "spokenRatio": 0.0, "word": "யதேச்சாதிகாரம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 15, "length": 6, "spokenRatio": 0.0, "word": "யதேச்சையாய்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யதேந்திரியம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 11, "length": 5, "spokenRatio": 0.0, "word": "யத்தனம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 8, "word": "யந்திரகிரகம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யந்திரக்கல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யந்திரசாபம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 860, "length": 5, "spokenRatio": 0.0, "word": "யந்திரம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யந்திரலோகம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யந்திரவாவி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யந்திரவூர்தி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யந்திரு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 264, "length": 4, "spokenRatio": 0.0, "word": "யன்னல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 9499, "length": 2, "spokenRatio": 0.0, "word": "யம", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 15, "length": 6, "spokenRatio": 0.0, "word": "யமகண்டம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 10, "word": "யமகண்டம்பாடுதல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 37, "length": 4, "spokenRatio": 0.0, "word": "யமகம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 1, "length": 7, "spokenRatio": 0.0, "word": "யமகவந்தாதி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 1, "length": 6, "spokenRatio": 0.0, "word": "யமகாதகன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யமகாளிந்தி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 3, "length": 7, "spokenRatio": 0.0, "word": "யமகிங்கரன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 3, "length": 14, "spokenRatio": 0.0, "word": "யமகிங்கரர்களிடமிருந்து", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 0, "length": 9, "word": "யமகிங்கரர்களை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 5, "length": 9, "spokenRatio": 0.0, "word": "யமகிங்கரர்கள்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யமகீடம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யமசபம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 9, "word": "யமதங்கிமைந்தன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 13, "length": 5, "spokenRatio": 0.0, "word": "யமதர்ம", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 1, "length": 8, "spokenRatio": 0.0, "word": "யமதர்மனுடைய", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 10, "length": 6, "spokenRatio": 0.0, "word": "யமதர்மன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 3, "length": 4, "spokenRatio": 0.0, "word": "யமதூதி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 1, "length": 5, "spokenRatio": 0.0, "word": "யமனாவது", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 8, "word": "யமனிகைப்புடவை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 26, "length": 5, "spokenRatio": 0.0, "word": "யமனுக்கு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 11, "length": 5, "spokenRatio": 0.0, "word": "யமனுடன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 12, "length": 5, "spokenRatio": 0.0, "word": "யமனுடைய", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 24, "length": 4, "spokenRatio": 0.0, "word": "யமனும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 0, "length": 5, "word": "யமனுலக", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 1, "length": 9, "spokenRatio": 0.0, "word": "யமனுலகத்துக்கு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 10, "length": 6, "spokenRatio": 0.0, "word": "யமனுலகம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 3, "length": 7, "spokenRatio": 0.0, "word": "யமனுலகுக்கு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 14, "length": 3, "spokenRatio": 0.0, "word": "யமனே", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 33, "length": 3, "spokenRatio": 0.0, "word": "யமனை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 7, "length": 4, "spokenRatio": 0.0, "word": "யமனோடு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யமபகினி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யமபடன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யமபடம்", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 1, "length": 5, "spokenRatio": 0.0, "word": "யமபுரம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 25, "length": 3, "spokenRatio": 0.0, "word": "யமம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 6, "length": 7, "spokenRatio": 0.0, "word": "யமலோகத்தின்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 2, "length": 8, "spokenRatio": 0.0, "word": "யமலோகத்திற்கு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 20, "length": 8, "spokenRatio": 0.0, "word": "யமலோகத்துக்கு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யமளம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யமவாகனம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யமவாதை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யமவிரதம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யமவேதனை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 10, "length": 3, "spokenRatio": 0.0, "word": "யமாரி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 46, "length": 2, "spokenRatio": 0.0, "word": "யமி", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 590, "length": 3, "spokenRatio": 0.0, "word": "யமுனா", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 8, "length": 7, "spokenRatio": 0.0, "word": "யமுனாகல்யாணி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யமுனாசனகன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 8, "word": "யமுனாப்பிராதிரு", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 406, "length": 3, "spokenRatio": 0.0, "word": "யயாதி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 2, "word": "யயு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யற்சத்தம்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 0, "length": 4, "meaningSource": "attested", "pos": ["noun"], "synonymsTa": ["(வினை.) ஏற்படுத்திக் கொடு", "ஆயத்தஞ் செய்", "சித்தஞ் செய்யப்பேறு", "தொழிலாளியின் கருவிகலத் தொகுதி", "படைவீரர் முட்டைமுடிச்சுத் தொகுதி", "பயண ஆயத்த அணி", "மரத்தொட்டி", "மூட்டை முடிச்சுப் பை"], "translationEn": "kit", "translationEnSource": "en-ta-dictionary", "word": "யளகள", "wordClass": "headword"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 1309, "length": 2, "pos": ["pronoun"], "spokenRatio": 0.0, "word": "யவ", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 6, "length": 6, "spokenRatio": 0.0, "word": "யவட்சாரம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 8, "word": "யவனத்தச்சர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 8, "word": "யவனப்பிரியம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யவனப்பேழை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 11, "length": 4, "spokenRatio": 0.0, "word": "யவனம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 70, "length": 4, "spokenRatio": 0.0, "word": "யவனர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 7, "length": 7, "spokenRatio": 0.0, "word": "யவனர்களும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யவனாரி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யவனாலசம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யவனாள்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 1, "length": 4, "spokenRatio": 0.0, "word": "யவனிகை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 8, "word": "யவமத்தியயதி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 3, "word": "யவம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யவரேகை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 3, "word": "யவாகு", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யாககுண்டம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யாகசம்மினி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 457, "length": 4, "spokenRatio": 0.0, "word": "யாகசாலை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யாகசேனன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யாகத்தம்பம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 8, "word": "யாகத்திரவியம்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 0, "length": 8, "meaningSource": "attested", "pos": ["adjective"], "synonymsTa": ["உயிர்ப்பலிக்குரிய", "திருப்படையல் சார்ந்த"], "translationEn": "sacrificial", "translationEnSource": "en-ta-dictionary", "word": "யாகத்துக்குரிய", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 204, "length": 4, "spokenRatio": 0.0, "word": "யாகத்தை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யாகபதி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யாகபத்தினி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யாகபாகம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யாகபாரி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யாகபேரம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யாகபோசனர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யாகப்பிறையான்", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 1692, "length": 3, "spokenRatio": 0.0, "word": "யாகம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யாகவிபாகம்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "huggingface-wordlist", "llm-authored", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "definitionTa": "உயிர் தங்கும் உடற்கூடு", "frequency": 547, "length": 3, "meaningSource": "authored", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அமைத்தல்", "அமைப்பாண்மை", "அமைப்பு", "அமைப்பு விதித்தொகுதி", "அரசியல் அமைப்பு", "ஆக்க அமைவு", "உடம்பு", "உடல்", "உடல் கட்டமைவு", "கட்டு", "தேகம்", "நிறுவுதல்", "மனத்தின் ஆக்க நலம்", "முடிச்சு"], "translationEn": "constitution", "translationEnSource": "en-ta-dictionary", "word": "யாக்கை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 10, "length": 5, "spokenRatio": 0.0, "word": "யாங்கணும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 5, "length": 4, "meaningSource": "attested", "pos": ["adverb"], "spokenRatio": 0.0, "synonymsTa": ["எங்கு"], "word": "யாங்கண்", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யாங்கர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 13, "length": 3, "meaningSource": "attested", "pos": ["adverb"], "spokenRatio": 0.0, "synonymsTa": ["எங்கு"], "word": "யாங்கு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 4, "length": 4, "spokenRatio": 0.0, "word": "யாங்கும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 8, "length": 5, "spokenRatio": 0.0, "word": "யாங்ஙனம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 8, "word": "யாசகத்திருநாள்", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 31, "length": 4, "spokenRatio": 0.0, "word": "யாசகன்", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 384, "length": 4, "spokenRatio": 0.0, "word": "யாசகம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 1, "length": 4, "spokenRatio": 0.0, "word": "யாசனம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 3, "word": "யாசனை", "wordClass": "headword"}
+{"attestedBy": ["spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 17, "length": 2, "meaningSource": "attested", "pos": ["verb"], "spokenRatio": 0.0, "synonymsTa": ["இர", "பிச்சையெடு"], "word": "யாசி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யாசிதகம்", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 9, "length": 5, "spokenRatio": 0.0, "word": "யாசித்தல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 8, "word": "யாஞ்ஞவல்கியம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 10, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "word": "யாடு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 2, "length": 3, "spokenRatio": 0.0, "word": "யாணன்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 0, "length": 4, "meaningSource": "attested", "pos": ["noun"], "synonymsTa": ["பெருவாழ்வு அற்பர்"], "translationEn": "parvenu", "translationEnSource": "en-ta-dictionary", "word": "யாணரார்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யாணர்நகர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 114, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "word": "யாண்டு", "wordClass": "headword"}
+{"attestedBy": ["llm-authored", "master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "definitionTa": "எல்லா இடத்திலும்", "frequency": 64, "length": 4, "meaningSource": "authored", "pos": ["adverb"], "spokenRatio": 0.0, "translationEn": "ubiquitarian", "translationEnSource": "master-dictionary", "word": "யாண்டும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 5, "length": 3, "spokenRatio": 0.0, "word": "யாண்டை", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "spellcheck-wordlist"], "frequency": 166, "length": 2, "meaningSource": "attested", "pos": ["pronoun"], "spokenRatio": 0.0, "synonymsTa": ["(பெ.) என்ன", "ஆள் வகையில் என்ன தொழிலையுடையவரான", "எதனை", "எது", "எதுவோ அது", "எத்தகைய", "எந்த", "என்ன", "எவற்றை", "எவை", "எவையோ அவை", "எவ்வளவினதான", "யாவை"], "translationEn": "what", "translationEnSource": "en-ta-dictionary", "word": "யாத", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யாதசாம்பதி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யாதனம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யாதனாசரீரம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 2, "length": 3, "spokenRatio": 0.0, "word": "யாதனை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 1, "length": 4, "spokenRatio": 0.0, "word": "யாதபதி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 4, "length": 3, "spokenRatio": 0.0, "word": "யாதம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 142, "length": 4, "spokenRatio": 0.0, "word": "யாதவன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யாதவம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 551, "length": 4, "spokenRatio": 0.0, "word": "யாதவர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 2, "length": 3, "spokenRatio": 0.0, "word": "யாதவி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 9, "word": "யாதாயாதமாயலைதல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யாதார்த்தியம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யாதிகன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யாதினிக்குல்லி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 1430, "length": 2, "meaningSource": "attested", "pos": ["noun", "pronoun"], "spokenRatio": 0.0, "synonymsTa": ["எது", "ஏது", "கள்", "ஞாபகம்", "நினைவு", "பிசாசு", "பேய்"], "word": "யாது", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 1205, "length": 3, "spokenRatio": 0.0, "word": "யாதும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 304, "length": 4, "spokenRatio": 0.0, "word": "யாதெனின்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 4, "length": 5, "spokenRatio": 0.0, "word": "யாதென்றும்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 3, "length": 6, "meaningSource": "attested", "pos": ["pronoun"], "spokenRatio": 0.0, "synonymsTa": ["(பெ.) இரண்டில் ஒவ்வொன்றுமான", "(வினையடை) இரண்டிலொன்றாக", "இரண்டிலொன்று", "இரண்டில் ஒவ்வொன்றும்"], "translationEn": "either", "translationEnSource": "en-ta-dictionary", "word": "யாதேனுமொன்று", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 6, "length": 4, "spokenRatio": 0.0, "translationEn": "verse-making", "translationEnSource": "master-dictionary", "word": "யாத்தல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 5, "length": 4, "spokenRatio": 0.0, "word": "யாத்தார்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 86, "length": 7, "spokenRatio": 0.0, "word": "யாத்திராகமம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 8, "word": "யாத்திராகரணம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யாத்திராதானம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 11, "word": "யாத்திராப்பிரசங்கம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 6, "length": 4, "spokenRatio": 0.0, "word": "யாத்திரி", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 7, "length": 6, "spokenRatio": 0.0, "word": "யாத்திரிகன்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 36, "length": 6, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["(வினை.) யாத்திரிகர் போல் அலை", "தலந் திரிதருபவர்", "வாழ்க்கைப்பயணஞ் செய்பவர்"], "translationEn": "pilgrim", "translationEnSource": "en-ta-dictionary", "word": "யாத்திரிகர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 126, "length": 8, "spokenRatio": 0.0, "word": "யாத்திரிகர்கள்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 9, "word": "யாத்திரிகர்விடுதி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 9, "length": 6, "spokenRatio": 0.0, "word": "யாத்திரீகர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 4, "length": 10, "spokenRatio": 0.0, "word": "யாத்திரீகர்களிடம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 1, "length": 9, "spokenRatio": 0.0, "word": "யாத்திரீகர்களின்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 6, "length": 10, "spokenRatio": 0.0, "word": "யாத்திரீகர்களுக்கு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 1, "length": 10, "spokenRatio": 0.0, "word": "யாத்திரீகர்களுடன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 5, "length": 8, "spokenRatio": 0.0, "word": "யாத்திரீகர்களை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 30, "length": 8, "spokenRatio": 0.0, "word": "யாத்திரீகர்கள்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 1, "length": 8, "spokenRatio": 0.0, "word": "யாத்திரீகளுடன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 2, "length": 6, "spokenRatio": 0.0, "word": "யாத்திரீகள்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "huggingface-wordlist", "llm-authored", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "definitionTa": "புனித இடங்களுக்குச் செல்லும் பயணம்", "frequency": 4112, "length": 4, "meaningSource": "authored", "pos": ["noun"], "spokenRatio": 0.000486, "synonymsTa": ["(வினை.) யாத்திரை செல்", "பயணம்", "வாழ்க்கைப் பயணம்"], "translationEn": "pilgrimage", "translationEnSource": "en-ta-dictionary", "word": "யாத்திரை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யாத்திரைக்காவி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 235, "length": 6, "spokenRatio": 0.0, "word": "யாத்திரைக்கு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யாத்திரைபோதல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 3, "length": 7, "spokenRatio": 0.0, "word": "யாத்திரையிலும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 203, "length": 6, "spokenRatio": 0.0, "word": "யாத்திரையில்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 345, "length": 5, "spokenRatio": 0.0, "word": "யாத்திரையை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 8, "word": "யாத்திரோற்சவம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 16, "length": 3, "spokenRatio": 0.0, "word": "யாத்து", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யானஞ்செய்தல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யானபாத்திரம்", "wordClass": "headword"}
+{"attestedBy": ["llm-authored", "master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "categories": ["transport"], "categorySource": "authored", "definitionTa": "ஏறிச் செல்லும் ஊர்தி", "frequency": 43, "length": 3, "meaningSource": "authored", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["சிவிகை", "மரக்கலம்", "வாகனம்"], "translationEn": "vehicle", "translationEnSource": "llm-authored", "word": "யானம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யானெனதெனல்", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "categories": ["animals"], "categorySource": "attested", "frequency": 13345, "length": 2, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 0.000225, "synonymsTa": ["எறும்பி", "ஐராவதம்", "கசம்", "கரி", "களிறு"], "translationEn": "Elephant", "translationEnSource": "themed-vocabulary", "word": "யானை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 901, "length": 5, "spokenRatio": 0.0, "word": "யானைகளின்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 4, "length": 8, "spokenRatio": 0.0, "word": "யானைகளிலிருந்து", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 144, "length": 5, "spokenRatio": 0.0, "word": "யானைகளில்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 519, "length": 6, "spokenRatio": 0.0, "word": "யானைகளுக்கு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 375, "length": 5, "spokenRatio": 0.0, "word": "யானைகளும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 989, "length": 4, "spokenRatio": 0.0, "word": "யானைகளை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 108, "length": 6, "spokenRatio": 0.0, "word": "யானைகளையும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 28, "length": 5, "spokenRatio": 0.0, "word": "யானைகளோடு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 5916, "length": 4, "spokenRatio": 0.0, "word": "யானைகள்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யானைகைக்கோள்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யானைக்கச்சை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யானைக்கணையம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 8, "length": 5, "spokenRatio": 0.0, "word": "யானைக்கண்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யானைக்கதி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யானைக்கத்தளை", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 6, "length": 6, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அறிவற்றன்", "அறிவற்றவன்", "ஏரானால் ஏற்படுத்தப்பட்ட பொன் கன்று தெய்வம்", "கடலில் மிதக்கும் பனிக்கட்டி மலை. (தொ.) பணத்தெய்வம்", "கன்றின் பதனிட்ட தோல்", "கன்று", "கன்றுக்குட்டி", "கருச்சிதைவுறு", "குழந்தை", "திமிங்கிலக் குழவி", "பின்காலின் சதைப்பகுதி", "மான்கன்று", "மிதியடி செய்", "மூடன்", "யானைக்குட்டி"], "translationEn": "calf", "translationEnSource": "en-ta-dictionary", "word": "யானைக்கன்று", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யானைக்கரணம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யானைக்கவடு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 111, "length": 5, "spokenRatio": 0.0, "word": "யானைக்கால்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 12, "word": "யானைக்கால்வணக்கிப்பூடு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 830, "length": 4, "spokenRatio": 0.0, "word": "யானைக்கு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 34, "length": 6, "spokenRatio": 0.0, "word": "யானைக்குட்டி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யானைக்குப்பு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 139, "length": 5, "spokenRatio": 0.0, "word": "யானைக்கும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 0, "length": 9, "word": "யானைக்குறுந்தோட்டி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 1, "length": 6, "spokenRatio": 0.0, "word": "யானைக்கூடம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யானைக்கை", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 3, "length": 5, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["(வினை) தந்தத்தினால் குத்து", "கோட்டினாற் குத்தித் துளை", "தந்தம்", "நீண்ட கூம்பல்", "பரம்புப் பல்லுறுப்பு", "பூட்டுப்பல் உறப்பு"], "translationEn": "tusk", "translationEnSource": "en-ta-dictionary", "word": "யானைக்கோடு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 8, "word": "யானைச்சப்பரம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யானைச்சொறி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 62, "length": 4, "spokenRatio": 0.0, "word": "யானைதான்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யானைத்தண்டம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 14, "length": 7, "spokenRatio": 0.0, "word": "யானைத்தந்தம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யானைத்தலைவன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யானைத்திசை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யானைத்திப்பலி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யானைத்தீ", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 0, "length": 7, "meaningSource": "attested", "pos": ["noun"], "synonymsTa": ["அங்குசம்", "தோட்டி"], "translationEn": "ankus", "translationEnSource": "en-ta-dictionary", "word": "யானைத்துறட்டி", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யானைநடை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 8, "word": "யானைபாய்ச்சுதல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 1, "length": 5, "spokenRatio": 0.0, "word": "யானைப்பசி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யானைப்படுகுழி", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 68, "length": 5, "spokenRatio": 0.0, "word": "யானைப்படை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யானைப்பட்டம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யானைப்பந்து", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யானைப்பல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 4, "length": 8, "spokenRatio": 0.0, "word": "யானைப்பாகனாகவே", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 1, "length": 10, "spokenRatio": 0.0, "word": "யானைப்பாகனாயிருந்து", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 1, "length": 8, "spokenRatio": 0.0, "word": "யானைப்பாகனாலும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 1, "length": 8, "spokenRatio": 0.0, "word": "யானைப்பாகனாவது", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 4, "length": 8, "spokenRatio": 0.0, "word": "யானைப்பாகனிடம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 2, "length": 7, "spokenRatio": 0.0, "word": "யானைப்பாகனின்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 2, "length": 8, "spokenRatio": 0.0, "word": "யானைப்பாகனுக்கு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 1, "length": 9, "spokenRatio": 0.0, "word": "யானைப்பாகனுடனும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 4, "length": 8, "spokenRatio": 0.0, "word": "யானைப்பாகனுடைய", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 8, "length": 7, "spokenRatio": 0.0, "word": "யானைப்பாகனும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 6, "length": 6, "spokenRatio": 0.0, "word": "யானைப்பாகனை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 2, "length": 8, "spokenRatio": 0.0, "word": "யானைப்பாகனையும்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "huggingface-wordlist", "llm-authored", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "categories": ["profession"], "categorySource": "authored", "definitionTa": "யானையை அடக்கி ஓட்டுபவர்", "frequency": 85, "length": 6, "meaningSource": "authored", "pos": ["noun"], "spokenRatio": 0.0, "translationEn": "mahount", "translationEnSource": "en-ta-dictionary", "word": "யானைப்பாகன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 1, "length": 9, "spokenRatio": 0.0, "word": "யானைப்பாகர்களும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 15, "length": 5, "spokenRatio": 0.0, "word": "யானைப்பாகா", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யானைப்புளுகன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 4, "length": 5, "spokenRatio": 0.0, "word": "யானைப்போர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யானைமஞ்சள்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யானைமட்டம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யானைமணி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 0, "length": 5, "pos": ["noun"], "word": "யானைமதம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 2, "length": 5, "spokenRatio": 0.0, "word": "யானைமந்தை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யானைமறம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 13, "length": 4, "spokenRatio": 0.0, "translationEn": "howdah", "translationEnSource": "master-dictionary", "word": "யானைமீது", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 1, "length": 4, "spokenRatio": 0.0, "word": "யானைமீதோ", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யானைமீன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 6, "length": 4, "spokenRatio": 0.0, "word": "யானைமுக", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 0, "length": 5, "word": "யானைமுகனை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யானைமுகபடாம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யானைமுகவன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 10, "word": "யானைமுகவற்கிளையோன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யானைமுகவோடம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 76, "length": 4, "spokenRatio": 0.0, "word": "யானைமேல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யானையங்குருகு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 23, "length": 4, "spokenRatio": 0.0, "word": "யானையடி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யானையடிக்கல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யானையாளி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 1, "length": 8, "spokenRatio": 0.0, "word": "யானையிடத்திலும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 87, "length": 5, "spokenRatio": 0.0, "word": "யானையிடம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 12, "length": 5, "spokenRatio": 0.0, "word": "யானையினால்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 1834, "length": 4, "spokenRatio": 0.0, "translationEn": "Mastodon", "translationEnSource": "master-dictionary", "word": "யானையின்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 1, "length": 8, "spokenRatio": 0.0, "word": "யானையிலிருந்தும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 64, "length": 4, "spokenRatio": 0.0, "word": "யானையில்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 97, "length": 5, "spokenRatio": 0.0, "word": "யானையுடன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 868, "length": 4, "spokenRatio": 0.0, "word": "யானையும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யானையுரித்தோன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 40, "length": 3, "spokenRatio": 0.0, "word": "யானையே", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 6, "length": 6, "spokenRatio": 0.0, "word": "யானையேற்றம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 1474, "length": 3, "spokenRatio": 0.0, "word": "யானையை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 5, "length": 6, "spokenRatio": 0.0, "word": "யானையைப்போல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 93, "length": 5, "spokenRatio": 0.0, "word": "யானையையும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 5, "length": 5, "spokenRatio": 0.0, "word": "யானையைவிட", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 37, "length": 3, "spokenRatio": 0.0, "word": "யானையோ", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யானைவணக்கி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யானைவிச்சுளி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யானைவீரர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யானைவென்றி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யானைவேட்டுவன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 1780, "length": 2, "meaningSource": "attested", "pos": ["pronoun"], "spokenRatio": 0.0, "synonymsTa": ["நான்"], "word": "யான்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 3, "word": "யான்மை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யாபனம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 3, "word": "யாபம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 2, "length": 4, "spokenRatio": 0.0, "word": "யாபாரம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யாபித்தல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யாப்பண்டம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 11, "length": 7, "spokenRatio": 0.0, "word": "யாப்பதிகாரம்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "spellcheck-wordlist"], "frequency": 12, "length": 5, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["(கண) மடங்டகெண்", "(வினை) அள", ". முகத்தலளவைக்கூறு", "அலகீடு", "அளந்தறுதி செய்", "அளந்து வழங்கு", "அளவிடு", "அளவு", "அளவு கோல்", "அளவு முறை", "அளவுக்கருவி", "அளவுப்பட்டை", "அளவெண்", "அளவெல்லை", "அளவை", "அளவொப்பிடு", "கடந்துசெல்", "குறித்து அளவு பிரித்தெடு", "சட்டமன்றச் செயல்முறை", "சந்தம்வ", "தாளம்", "நடவடிக்கை", "நீர்ம அளவு கலம்", "நீள-அகல-உயரங்கள் கண்டுணர்", "படிக்கூறு", "படியளவு", "பருமன்", "பருமன் மதித்தறி", "பாத்திடு", "போட்டியிடு", "மதித்துணர்", "மேலுங் கீழும் பார்த்துத் தர மதிப்பிட்டறி", "வரையளவு"], "translationEn": "measure", "translationEnSource": "en-ta-dictionary", "word": "யாப்பமைதி", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 0, "length": 10, "meaningSource": "attested", "pos": ["verb"], "synonymsTa": ["அச்சுக்கோத்திணை", "அச்சுருப்படுத்து", "அமைதிப்படுத்தி", "இணக்கமாக்கு", "இணைந்து ஆக்கு", "ஒன்றுபட்டு உருவாக்கு", "கருத்துருவாக்கு", "சொற்களை இணைத்துப் பாட்டியற்று", "சொல்லமைதிப்படுத்து", "பண் புனைந்து உருப்படுத்து", "பாட்டிசைப்படுத்து", "பிணக்குத்தீர்த்துவை", "முன்னேற்பாடு செய்தமை"], "translationEn": "compose", "translationEnSource": "en-ta-dictionary", "word": "யாப்பமைதிப்படுத்து", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 0, "length": 7, "pos": ["noun"], "translationEn": "versificator", "translationEnSource": "en-ta-dictionary", "word": "யாப்பமைப்போர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 16, "length": 11, "spokenRatio": 0.0, "word": "யாப்பருங்கலக்காரிகை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 31, "length": 8, "spokenRatio": 0.0, "word": "யாப்பருங்கலம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யாப்பறை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யாப்பானந்தம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யாப்பியயானம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 1, "length": 7, "spokenRatio": 0.0, "word": "யாப்பியரோகம்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "spellcheck-wordlist"], "frequency": 33, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "translationEn": "metrics", "translationEnSource": "en-ta-dictionary", "word": "யாப்பியல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 10, "word": "யாப்பியவுகந்துடைமை", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 119, "length": 8, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["செய்யுளமைப்பியல்"], "translationEn": "prosody", "translationEnSource": "en-ta-dictionary", "word": "யாப்பிலக்கணம்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "huggingface-wordlist", "llm-authored", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "definitionTa": "செய்யுள் அமைப்பை வகுக்கும் இலக்கண விதி", "frequency": 22715, "length": 3, "meaningSource": "authored", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["(வி.) பாடல் இயற்று", "உறுதி", "கட்டு", "கவிதை ஏடு", "கவிதை நடை", "சிறுபா", "சூழ்ச்சி", "செய்யுட் பகுதி", "செய்யுளாகப் பாட்டில் தெரிவி", "செய்யுள்", "செய்யுள் செய்", "செய்யுள் பத்தி", "செய்யுள் வரி", "திருக்கோயிலிசையில் ஒருகுரற் பாடகர் பாடற் பகுதி", "திருக்கோயில் வஸீபாட்டுப் பாசுரத்தின் ஒருமுறைப் படிப்பு வாசகம்", "பாட்டு", "பாம்பு", "பொருத்தம்", "யாப்பிலக்கணம்", "யாப்புமுறை", "விவிலிய ஏட்டுச் சிறுகூறு"], "translationEn": "verse", "translationEnSource": "en-ta-dictionary", "word": "யாப்பு", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 1, "length": 5, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["(வி.) பாடல் இயற்று", "கவிதை ஏடு", "கவிதை நடை", "சிறுபா", "செய்யுட் பகுதி", "செய்யுளாகப் பாட்டில் தெரிவி", "செய்யுள்", "செய்யுள் செய்", "செய்யுள் பத்தி", "செய்யுள் வரி", "திருக்கோயிலிசையில் ஒருகுரற் பாடகர் பாடற் பகுதி", "திருக்கோயில் வஸீபாட்டுப் பாசுரத்தின் ஒருமுறைப் படிப்பு வாசகம்", "பாட்டு", "யாப்பு", "விவிலிய ஏட்டுச் சிறுகூறு"], "translationEn": "verse", "translationEnSource": "en-ta-dictionary", "word": "யாப்புமுறை", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 0, "length": 7, "meaningSource": "attested", "pos": ["adjective"], "synonymsTa": ["அளத்தலை உட்கொண்ட", "அளவுமுறைக்குரிய", "சீராலமைந்த", "சீருக்குரிய"], "translationEn": "metrical", "translationEnSource": "en-ta-dictionary", "word": "யாப்புமுறையான", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 1, "length": 8, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["செய்யுளாக்கம்", "யாப்புத் தொகுப்பு"], "translationEn": "versification", "translationEnSource": "en-ta-dictionary", "word": "யாப்புருவாக்கம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யாப்புறவு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யாப்புறுதல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யாப்புறுத்தல்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 0, "length": 5, "meaningSource": "attested", "pos": ["noun"], "synonymsTa": ["(பெ.) ஏழன்தொகையான", "எழுசீர்", "ஏழடிப்படையான உருப்படி", "ஏழன் தொகுதி", "ஏழாண்டுகள் சார்ந்த", "ஏழாண்டுக்காலம்", "ஏழாண்டுக்கொருமுறையான", "ஏழினை அடிப்படையாகக் கொண்ட", "ஏழு ஏழான"], "translationEn": "septenary", "translationEnSource": "en-ta-dictionary", "word": "யாப்புவகை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யாப்புவழு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யாமகோடம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யாமக்கோட்டம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 8, "word": "யாமங்கொள்பவர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யாமசரிதன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யாமபதி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யாமபேரி", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "huggingface-wordlist", "llm-authored", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "definitionTa": "இரவின் நடுப் பொழுது", "frequency": 157, "length": 3, "meaningSource": "authored", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["(அரு.) இரா விழிப்பு", "(அரு.) கண்விழித்துக்கொண்டிரு", "(வினை.)   கூர்ந்து நோக்க", "இரவு விழித்திரு", "இரவுக் காவல் முறைநேர எல்லை", "இரவுக் காவல்முறை", "இரவுக்காவல்", "இரவுநேர முறைக்கூறு", "இராக்காவல்", "இராக்காவல் குழு", "உன்னிப்பாயிரு", "உன்னிப்பு", "எதிர்நோக்கிக் காத்திரு", "எதிர்பார்த்துக் காத்திரு", "ஒற்றறாடு", "கவனித்து  மேற்பார்", "கவனிப்பு", "காத்திரு", "காத்திருக்கை", "காத்துப்பேணு", "காலங்கருதியிரு", "காவல்", "குறித்து விழிப்புடனிரு", "கூர்ந்து கவனி", "கைக்கடிகாரம்", "நகர்சுற்றுக்காவலர்", "நகர்ச்சுற்றுக் காவற் குழுவினர்", "நகர்ச்சுற்றுக் காவற்குழு", "பண்டை எபிரேயர்-ரோமரிடையே இராக்காவற் காலக்கூறு", "முன்னெச்சரிக்கையுடனிரு", "முற்கால நகர் சுற்றுக்காவல்", "வாய்ப்புக்காகக் காத்திரு", "விழிப்பு நிலை", "வேணவாவுடன் காத்திரு"], "translationEn": "night-watch", "translationEnSource": "en-ta-dictionary", "word": "யாமம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யாமயாழ்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 8, "word": "யாமளசாத்திரம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 8, "word": "யாமளபுராதனர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 2, "length": 4, "spokenRatio": 0.0, "word": "யாமளம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 8, "word": "யாமளருபதேசம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யாமளாக்கினி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யாமளாசாரியர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 2, "length": 3, "spokenRatio": 0.0, "word": "யாமளை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யாமவதி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 61, "length": 2, "spokenRatio": 0.0, "word": "யாமி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யாமிகன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 1264, "length": 3, "spokenRatio": 0.0, "word": "யாமினி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யாமினீபதி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யாமியன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யாமியம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யாமியாயனம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 2, "length": 3, "spokenRatio": 0.0, "word": "யாமியை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யாமீரன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யாமுகம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யாமுனம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யாமுனாசாரியர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யாமுனேட்டகம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 11, "word": "யாமைமயிர்க்கம்பலம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 1280, "length": 2, "pos": ["pronoun"], "spokenRatio": 0.0, "word": "யாம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 10, "word": "யாம்மியோத்தராந்தம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யாயாவரர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 92, "length": 2, "spokenRatio": 0.0, "word": "யாய்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "spellcheck-wordlist"], "frequency": 63, "length": 5, "meaningSource": "attested", "spokenRatio": 0.0, "synonymsTa": ["எவராகிலும்", "யாரேனும்"], "translationEn": "whoever pron.", "translationEnSource": "en-ta-dictionary", "word": "யாராயினும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 18, "length": 2, "spokenRatio": 0.0, "word": "யாரி", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "old-wordlist", "spellcheck-wordlist", "wiktextract-ta"], "frequency": 6620, "length": 4, "pos": ["pronoun"], "spokenRatio": 0.001964, "word": "யாருக்கு", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "llm-authored", "spellcheck-wordlist"], "definitionTa": "எவருக்கு உரியது என வினவும் சொல்", "frequency": 3025, "length": 4, "meaningSource": "authored", "pos": ["noun", "pronoun"], "spokenRatio": 0.006281, "synonymsTa": ["எதனுடைய", "எதுவோ அதனுடைய", "எவனுடைய", "எவனோ அவனுடைய", "எவருடைய", "எவரோ அவருடைய", "எவளுடைய", "எவளோ அவளுடைய"], "translationEn": "Whose", "translationEnSource": "themed-vocabulary", "word": "யாருடைய", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 8, "word": "யாருந்தின்னாமூலி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 18, "length": 5, "spokenRatio": 0.0, "word": "யாருமிலர்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 0, "length": 5, "meaningSource": "attested", "pos": ["pronoun"], "synonymsTa": ["(பெ.) ஒன்றுமில்லாத", "(வினையிடை.) ஒரு சிறிது கூட இல்லாததாக"], "translationEn": "none", "translationEnSource": "en-ta-dictionary", "word": "யாருமிலார்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 34444, "length": 3, "spokenRatio": 0.00241, "word": "யாரும்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "spellcheck-wordlist"], "frequency": 2018, "length": 4, "meaningSource": "attested", "spokenRatio": 0.000496, "synonymsTa": ["எவராகிலும்", "யாராயினும்"], "translationEn": "whoever pron.", "translationEnSource": "en-ta-dictionary", "word": "யாரேனும்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 4034, "length": 2, "meaningSource": "attested", "pos": ["noun", "pronoun"], "spokenRatio": 0.000992, "synonymsTa": ["எவனை", "எவனோ அவனை", "எவரை", "எவர்களை", "எவளை", "எவளோ அவளை", "யாரோ அவரை"], "translationEn": "Whom", "translationEnSource": "themed-vocabulary", "word": "யாரை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 11011, "length": 2, "pos": ["pronoun"], "spokenRatio": 0.00554, "translationEn": "some", "translationEnSource": "master-dictionary", "word": "யாரோ", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 56569, "length": 2, "meaningSource": "attested", "pos": ["noun", "pronoun"], "spokenRatio": 0.004755, "synonymsTa": ["ஆர்", "எவர்"], "translationEn": "Who", "translationEnSource": "themed-vocabulary", "word": "யார்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யார்பதம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 130, "length": 2, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஆறு"], "word": "யாறு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யாற்றுநீர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 2, "length": 3, "spokenRatio": 0.0, "word": "யாலம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யாளவரி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 111, "length": 2, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஆனை", "யானை", "யானையாளி"], "word": "யாளி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யாளிக்கால்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யாளிப்பட்டை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யாளிமுகம்", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யாளியூர்தி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யாளிலலாடம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 18, "length": 2, "spokenRatio": 0.0, "word": "யாழ", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 3, "word": "யாழல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 4, "length": 6, "spokenRatio": 0.0, "word": "யாழாசிரியன்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "spellcheck-wordlist"], "frequency": 0, "length": 5, "pos": ["noun"], "translationEn": "harpist", "translationEnSource": "en-ta-dictionary", "word": "யாழிசைஞர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 8, "length": 6, "spokenRatio": 0.0, "word": "யாழிசையுடன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 11, "length": 5, "spokenRatio": 0.0, "word": "யாழிசையும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 5, "length": 4, "spokenRatio": 0.0, "word": "யாழிசையை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 135, "length": 3, "spokenRatio": 0.0, "word": "யாழின்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 17, "length": 4, "spokenRatio": 0.0, "word": "யாழிலும்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "spellcheck-wordlist"], "frequency": 0, "length": 6, "meaningSource": "attested", "pos": ["noun"], "synonymsTa": ["(பெ.) யாழ்சார்ந்த", "இசைப்பாட்டாகப் பாடத்தக்க", "கவிஞரின் தற்கருத்துணர்ச்சிகளைத் தெரிவிக்கிற", "கவிஞர் வகையில் உணர்ச்சி நிரம்பிய சிறு பாடல்கள் ஏழுதுகிற", "சிறிய அளவினதான உணர்ச்சிப்பாடல்", "தன்னுணர்ச்சிப்பாட்டு", "பாடலினது இயல்புள்ள", "பாடலினால் தெரிவிக்கப்பட்ட", "பாடலுருவான", "பாடுதற்கேற்ற", "பாட்டில் வௌதயிடத்தக்க"], "translationEn": "lyric", "translationEnSource": "en-ta-dictionary", "word": "யாழுக்குரிய", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 0, "length": 4, "meaningSource": "attested", "pos": ["noun"], "synonymsTa": ["நரப்பிசைக்கருவியின் பத்தர்ப்புழை"], "translationEn": "sound-hole", "translationEnSource": "en-ta-dictionary", "word": "யாழுந்தி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 61, "length": 3, "spokenRatio": 0.0, "word": "யாழும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 170, "length": 2, "spokenRatio": 0.0, "word": "யாழை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 9730, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "translationEn": "bass-bar", "translationEnSource": "master-dictionary", "word": "யாழ்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யாழ்க்கரணம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 1, "length": 9, "spokenRatio": 0.0, "word": "யாழ்க்கருவிகளின்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 1, "length": 11, "spokenRatio": 0.0, "word": "யாழ்க்களஞ்சியத்தின்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 1, "length": 11, "spokenRatio": 0.0, "word": "யாழ்க்களஞ்சியத்தில்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 2, "length": 10, "spokenRatio": 0.0, "word": "யாழ்க்களஞ்சியத்தை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 1, "length": 9, "spokenRatio": 0.0, "word": "யாழ்க்களஞ்சியம்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 0, "length": 6, "meaningSource": "attested", "pos": ["noun"], "synonymsTa": ["(கப்.) கப்பல் தலைவன் நிற்பதற்கான மேடை", "(வினை) இணை", "இன்னியங்களின் நரம்புகளைத் தாங்கும் மரத்துண்டு", "சீட்டாட்ட வகை", "பாலங்கட்டு", "பாலம்", "மூக்குக் கண்ணாடியின் இடை இணைப்புக் கம்பி", "மூக்குத் தண்டு"], "translationEn": "bridge", "translationEnSource": "en-ta-dictionary", "word": "யாழ்க்குதிரை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யாழ்செய்தல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யாழ்தரித்தாள்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 1, "length": 6, "spokenRatio": 0.0, "word": "யாழ்த்தண்டு", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 1, "length": 6, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["(இசை.) ஒத்திருக்கும் சுர இயைபு", "(உட.) திண்ணிய நரம்பு நாளம்", "(வடி.) வில்வளைவின் நாண்வரை", "நாடி", "நிறஇயைபு", "வீணைக்கத்தி"], "translationEn": "chord", "translationEnSource": "en-ta-dictionary", "word": "யாழ்நரம்பு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யாழ்பதங்காளி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 9, "word": "யாழ்ப்பாணநாயனார்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "llm-authored", "master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "categories": ["profession"], "categorySource": "authored", "definitionTa": "யாழ் இசைக்கும் கலைஞர்", "frequency": 47, "length": 6, "meaningSource": "authored", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["உணர்ச்சிப் பாடற்கவிஞர்", "பிரெஞ்சுநாட்டுப் பிரவென்சு பகுதியிலிருந்து தொடடிங்கி மேலே ஐரோப்பா வெங்கும் பதினோராம் நுற்றாண்டில் பரவி இயங்கிய நாடோ டி இசைப் பாடகர்", "யாழ்வகை வாசிப்பவர்"], "translationEn": "lutanist", "translationEnSource": "en-ta-dictionary", "word": "யாழ்ப்பாணர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 2, "length": 5, "spokenRatio": 0.0, "word": "யாழ்ப்பாணி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யாழ்முனிவன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 6, "length": 4, "spokenRatio": 0.0, "word": "யாழ்முரி", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "spellcheck-wordlist"], "frequency": 0, "length": 4, "meaningSource": "attested", "pos": ["noun"], "synonymsTa": ["(வினை) ஆறு நரம்புள்ள நரப்பிசைக் கருவி வகை வாசி", "ஆறு நரம்மபுள்ள இசைக்கருவி வகை"], "translationEn": "guitar", "translationEnSource": "en-ta-dictionary", "word": "யாழ்வகை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யாழ்வல்லோர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யாழ்வாசித்தல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யாழ்வாசினை", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 0, "length": 4, "meaningSource": "attested", "pos": ["noun"], "synonymsTa": ["(பே-வ) (கப்.) பாய்மரக்கு குறுக்குக்கட்டை", "(வினை)யாழ்வில் கையாளு", "(வினை)வளை", "(வினை.) குத்து", "அச்சுக்கோப்புக் கட்டை", "அச்சுக்கோப்புக் கட்டையில் வைத்திணை", "அச்சுக்கோப்புக் கட்டையில் வைத்து ஒழுங்குபடுத்து", "அடங்கு உட்படு", "அரக்குக் குச்சு", "அழுந்து", "ஆழ்ந்து பதி", "இசைக்கோல்", "இசையியக்குநர் கைக்கழி", "இணக்க அறிவிப்பு", "இணக்கமளி", "இணக்ருவி", "இயக்கந் தடைபட்டு நில்", "இயங்க முடியாதிரு", "உடல்வளைத்தல்", "உலோகக் கைப்பிடி", "உழையாதவர்", "ஊக்கமற்றவர்", "ஊன்றுகோல்", "ஒடுங்கிய மரச்சட்டம்", "ஒட்டிக்கொண்டிரு", "ஒட்டிக்கொள்", "ஒட்டியிரு", "ஒட்டிவை", "ஒட்டுறு", "ஒன்றிரண்டு கண்ணிவளையங்களை முடிச்சு", "கணக்குக் குறிகள் பதிந்த கட்டை", "கணிப்புக் கோல்", "கப்பலின் முகப்பு", "கம்பி", "கம்பு", "கம்பு இணை", "கம்பு வைத்திணை", "கழி", "கழுத்துப்பட்டியின் அணி முடிச்சு", "கீழப்படி", "கீழ்ப்படி", "குச்சி", "குணில்", "குத்தி ஊடுருவு", "குத்தி நுழைவி", "குத்திவை", "குனி", "கூர்முனைப்பாய்ச்சு", "கைத்தடி", "சமுதாய மதிப்பற்றவர்", "சர்க்கரை அச்சு", "சவர்க்காரக்கட்டி", "சிக்கு", "சிறப்பற்றவர்", "சிறுதுணுக்கு", "சுண்ணக் காம்பு", "சுள்ளி", "செடிகொடிகளுக்குக் கொழுகொம்பு அமை", "செருகிவை", "தரையசை", "தலைதாழ்த்தல்", "தலையசைப்பு", "தலைவணங்கு", "தலைவணங்கு பணி", "தும்பு", "துருத்தி நிற்கவை", "துருத்தி நில்", "நட்டமாக நில்", "நன்மதிப்பறிவிப்பு", "நரப்பிசைக்கருவிவகை வாசிக்க உதவும் நீள் நரப்புக்கருவி", "நீட்டு", "நீண்டிரு", "நீள் பிழம்பு", "நீள்துண்டு", "பசை தடவி ஒட்டு", "படகின் முன்புறம்", "பணி", "பணிவிகழடக்கு", "பந்துமட்டை", "பற்றிநில்", "பற்று", "பிரம்பு", "பொருத்திவை", "மந்திரக் கோல்", "மனத்துள் உறை", "மரத்தடி", "மாத்திரைக் கோல்", "முந்துறக்காட்டு", "முந்துறத்தோன்று", "முனை ஒட்டிவை", "முனை குத்தி நில்", "முனை குத்திவை நட்டுவை", "முனை குத்திவைக்கப் பெறு", "முரசடி கோல்", "யாழ்வில் மீட்டு", "யாழ்வில்லின் ஓரசைப்பு", "வணக்கம்", "வளையச்செய்", "வானவில்", "வானுர்தியிலிருந்து எறியப்படும் குண்டுகளின் நீள்தொடர்த்தொகுதி", "விடா உறுதியுடனிரு", "விடாதுபற்றியிரு", "விறகுக் கட்டை", "விறைப்பாக நிற்பவர்", "வில்", "விளைவு"], "translationEn": "bow", "translationEnSource": "en-ta-dictionary", "word": "யாழ்வில்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யாவசூகம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யாவச்சீவம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 3, "word": "யாவண்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 206, "length": 3, "pos": ["pronoun"], "spokenRatio": 0.0, "word": "யாவது", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யாவத்தீவு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யாவனம்", "wordClass": "headword"}
+{"attestedBy": ["llm-authored", "master-dictionary", "ta-wiktionary-titles", "wiktextract-ta"], "definitionTa": "யாரென வினவும் ஆண்பால் சொல்", "frequency": 42, "length": 3, "meaningSource": "authored", "pos": ["pronoun"], "spokenRatio": 0.0, "synonymsTa": ["எவன்"], "translationEn": "which man", "translationEnSource": "llm-authored", "word": "யாவன்", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 4, "length": 3, "spokenRatio": 0.0, "word": "யாவம்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 0, "length": 8, "meaningSource": "attested", "pos": ["noun"], "synonymsTa": ["(பெ.) நிரம்பிய", "உச்சபடி நிலை", "குறையாத", "குறைவற்ற", "செறிவுற்று நெருங்கிய", "நிரம்பப்பெற்ற", "நிறை அளவு", "நிறைந்த", "பிரிவுறாத", "பெயர்க்குரிய", "பெரும்பான்மை அடங்கிய", "பேரளவு உட்கொண்ட", "முழுஅளவான", "முழுநிறைவான", "முழுமை", "முழுமையான", "யாவும் அடங்கிய", "வளமான"], "translationEn": "full", "translationEnSource": "en-ta-dictionary", "word": "யாவருமடங்கிய", "wordClass": "headword"}
+{"attestedBy": ["llm-authored", "master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "definitionTa": "விடுபடாமல் ஒவ்வொருவரும்", "frequency": 3029, "length": 4, "meaningSource": "authored", "pos": ["pronoun"], "spokenRatio": 0.00033, "synonymsTa": ["அனைவரும்", "எல்லோரும்", "எவரும்", "யாரும்"], "translationEn": "admittedly", "translationEnSource": "master-dictionary", "word": "யாவரும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 213, "length": 5, "spokenRatio": 0.0, "word": "யாவரையும்", "wordClass": "headword"}
+{"attestedBy": ["llm-authored", "master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "definitionTa": "எந்த நபர் என வினவும் சொல்", "frequency": 187, "length": 3, "meaningSource": "authored", "pos": ["pronoun"], "spokenRatio": 0.0, "synonymsTa": ["அனைவர்", "எவர்"], "translationEn": "who", "translationEnSource": "llm-authored", "word": "யாவர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 422, "length": 6, "spokenRatio": 0.0, "translationEn": "nihilism", "translationEnSource": "master-dictionary", "word": "யாவற்றையும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 2, "length": 3, "meaningSource": "attested", "pos": ["pronoun"], "spokenRatio": 0.0, "synonymsTa": ["எவள்"], "word": "யாவள்", "wordClass": "headword"}
+{"attestedBy": ["llm-authored", "master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "definitionTa": "விதிவிலக்கு இன்றி முழுவதும்", "frequency": 3958, "length": 3, "meaningSource": "authored", "pos": ["pronoun"], "spokenRatio": 0.0, "synonymsTa": ["அனைத்தும்", "எல்லாம்", "யாவையும்"], "translationEn": "animalculism", "translationEnSource": "master-dictionary", "word": "யாவும்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 333, "length": 2, "meaningSource": "attested", "pos": ["pronoun"], "spokenRatio": 0.0, "synonymsTa": ["(பெ.) என்ன", "ஆள் வகையில் என்ன தொழிலையுடையவரான", "எதனை", "எது", "எதுவோ அது", "எத்தகைய", "எந்த", "என்ன", "எவற்றை", "எவை", "எவையோ அவை", "எவ்வளவினதான", "யாத"], "translationEn": "what", "translationEnSource": "en-ta-dictionary", "word": "யாவை", "wordClass": "headword"}
+{"attestedBy": ["spellcheck-wordlist", "wiktextract-ta"], "frequency": 507, "length": 4, "meaningSource": "attested", "pos": ["pronoun"], "spokenRatio": 0.0, "synonymsTa": ["அனைத்தும்", "எல்லாம்", "யாவும்"], "word": "யாவையும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 175, "length": 1, "spokenRatio": 0.0, "word": "யி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 49, "length": 1, "spokenRatio": 0.0, "word": "யீ", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 2, "length": 2, "spokenRatio": 0.0, "word": "யீது", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 6031, "length": 1, "spokenRatio": 0.009949, "word": "யு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 1103, "length": 2, "spokenRatio": 0.0, "word": "யுக", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 1, "length": 8, "spokenRatio": 0.0, "word": "யுகங்களைப்போல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 87, "length": 5, "spokenRatio": 0.0, "word": "யுகங்கள்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 8, "length": 5, "spokenRatio": 0.0, "word": "யுகசந்தி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யுகதருமம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யுகந்தரம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யுகபேதம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 8, "word": "யுகப்பிரளயம்", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 16, "length": 5, "spokenRatio": 0.0, "word": "யுகமுடிவு", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "huggingface-wordlist", "llm-authored", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "definitionTa": "மிக நீண்ட காலப் பகுதி", "frequency": 1106, "length": 3, "meaningSource": "authored", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["(வினை) முதுமையுறு", "ஆயுள்", "உரிமை வயது", "ஊழி", "எல்லையற்ற காலம்", "கற்பம்", "காலப்பிரிவு", "காலம்", "சரியான", "தலைமுறை", "பருவம்", "பிளேட்டோ வின் கோட்பாடு வகையில் அணாதி காலந்தொட்டு நிலைபேறுடைய கடவுட்கூறான தத்துவம்", "பேரூழி", "முதிர்ச்சி", "முதிர்ச்சி அடை", "முதுமை", "முதுமைப்படுத்து", "முதுமையாகத் தோற்று", "வயது", "வாழ்நாள்"], "translationEn": "aeon", "translationEnSource": "en-ta-dictionary", "word": "யுகம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யுகளம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 110, "length": 3, "spokenRatio": 0.0, "word": "யுகாதி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 8, "word": "யுகாதிப்பண்டிகை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யுகாந்தம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யுகாந்தாக்கினி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 2, "length": 9, "spokenRatio": 0.0, "word": "யுகாந்திரங்களில்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யுக்குமாத்திரி", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "llm-authored", "ta-wiktionary-titles"], "definitionTa": "சிக்கலைத் தீர்க்கும் அறிவுத் திறன்", "frequency": 486, "length": 3, "meaningSource": "authored", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["(அள) நிமித்தம்", "(வினை)வாதிடு", "அறிவாராய்ச்சித் திறம்", "அறிவு கடந்த உணர்வு", "அறிவுரு", "அளவை நுல் முறைப்படி செய்திகளை அடுக்கிக்காட்டு", "ஆஜ்ய்ச்சி செய்", "ஆய்ந்து முடிவு செய்", "ஆராய்ச்சியால் முடிவுக்கு வா", "இயல்பொழுங்கு", "இயைபுணர்வு", "உய்த்தறிவால் உணர்", "உள்ளார்ந்த விளக்கம்", "எண்ணிப்பார்", "ஏது", "ஒழுங்கு உய்த்துணர்வு", "கடவுள்", "காரணகாரிய முறையில் ஆஜ்ய்", "காரணகாரிய முறையில் விளக்கு", "காரணகாரியத் தொடர்பாக ஆராய்ச்சிசெய்", "காரணகாரியமாக விளக்கு", "காரணம்", "சீர்தூக்கிப் பார்", "செயற்காரணம்", "செயல் நோக்கம்", "செயல்நோக்க விளக்கம்", "செயல்விளக்க ஆதாரம்", "தர்க்கமிடு", "நடைமுறை நலம்", "நடைமுறைக்கு உகந்த நலம்", "நம்பிக்கை ஆதாரம்", "நல்லறிவு நிலை", "நல்லுணர்வு நிலை", "நல்வழி", "நியாயம்", "நீதி", "நேரிய செயல் முறை", "நேரிய நடத்தை", "நேர்நெறி", "நேர்மை", "பகுத்தறிவின் முடிவு", "பகுத்தறிவு செயலாற்றும் நிலை", "பகுத்தறிவுக்கு ஒத்ததாகக் காட்டு", "பகுத்தறிவுக்கு ஒத்தநிலை", "பகுத்தறிவைப் பயன்படுத்து", "பரிசீலனை செய்", "பொருத்தமுடிடைமை", "மட்.டியல் நடை", "மயக்கமின்மை", "மாட்டொழுங்கு", "முகாந்தரம்", "முடிவு வலியுறுத்தும் ஆதாரம்", "முடிவுவிளக்கம", "முரணின்மை", "மெய்யறிவு", "யுக்திபூர்வமாகத் தருவி", "யூகிடி", "வாத ஆதாரம்", "வாத நேர்மை", "வாதகாரணம்", "வாதத்தால் இணக்குவி", "வாதத்துக்காகக் கதில் ஆய்ந்து பார்", "வாதத்துக்காகப் பேசிப்பார்", "வாதமுறையணயாகக் கூறு", "வாதமுறையிற் பேசு", "வாதிட்டு இணக்குவிக்க முஸ்ல்", "வாதிட்டு முடிவுசெய்", "வாதிட்டுப் பார்", "விளக்க வாசகம்", "விளக்கக்கூற்று", "விவாதி", "விவேகம்"], "translationEn": "reason", "translationEnSource": "en-ta-dictionary", "word": "யுக்தி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யுஞ்சானன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 4, "length": 6, "spokenRatio": 0.0, "word": "யுதிட்டிரன்", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist"], "frequency": 2487, "length": 3, "spokenRatio": 0.000804, "word": "யுத்த", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 6, "length": 9, "spokenRatio": 0.0, "word": "யுத்தகளங்களில்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 43, "length": 8, "spokenRatio": 0.0, "word": "யுத்தகளத்தில்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 4, "length": 6, "spokenRatio": 0.0, "word": "யுத்தகளம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 11, "length": 9, "spokenRatio": 0.0, "word": "யுத்தக்களத்தில்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 63, "length": 7, "spokenRatio": 0.0, "word": "யுத்தங்களில்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 25, "length": 6, "spokenRatio": 0.0, "word": "யுத்தங்களை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 121, "length": 6, "spokenRatio": 0.0, "word": "யுத்தங்கள்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 9, "word": "யுத்தசன்னத்தன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 8, "word": "யுத்தசன்னாகம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 9, "word": "யுத்தசன்னியாசம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 238, "length": 7, "spokenRatio": 0.0, "word": "யுத்தத்தினால்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 885, "length": 6, "spokenRatio": 0.00113, "word": "யுத்தத்தின்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 197, "length": 7, "spokenRatio": 0.0, "word": "யுத்தத்திற்கு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 1177, "length": 6, "spokenRatio": 0.0, "word": "யுத்தத்தில்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 117, "length": 7, "spokenRatio": 0.0, "word": "யுத்தத்துக்கு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 572, "length": 5, "spokenRatio": 0.0, "word": "யுத்தத்தை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 12, "length": 6, "spokenRatio": 0.0, "word": "யுத்தத்தையே", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 7, "length": 6, "spokenRatio": 0.0, "word": "யுத்தத்தோடு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யுத்தநாதி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 10, "word": "யுத்தநாதிவாக்கியம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யுத்தமுகம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 97, "length": 5, "spokenRatio": 0.0, "word": "யுத்தமும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 2, "length": 7, "spokenRatio": 0.0, "word": "யுத்தமென்றால்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 77, "length": 4, "spokenRatio": 0.0, "word": "யுத்தமே", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "llm-authored", "master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "definitionTa": "இரு நாடுகளுக்கு இடையே நிகழும் போர்", "frequency": 5862, "length": 4, "meaningSource": "authored", "pos": ["noun"], "spokenRatio": 0.000171, "synonymsTa": ["(வினை.) (பழ.) போர்புரி யுத்தம் செய்", "எதிர்த்தாக்கு நடவடிக்கைகளின் தொகுதி", "நாடுகளிடையே பகைமைத் தாக்கு", "நீடித்த பகைமை", "பூசலிடு", "போட்டியிடு", "போராட்டம்", "போரிட்டு அடக்கு", "போர்"], "translationEn": "Battle", "translationEnSource": "themed-vocabulary", "word": "யுத்தம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 0, "length": 10, "word": "யுத்தரங்கத்துக்கு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யுத்தரங்கம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 1, "length": 6, "spokenRatio": 0.0, "word": "யுத்தவீரன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யுத்தவேது", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யுத்தாயுத்தம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 5, "length": 6, "spokenRatio": 0.0, "word": "யுத்திகளில்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 57, "length": 5, "spokenRatio": 0.0, "word": "யுத்திகளை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யுத்திக்காரன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யுத்திசித்தி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யுத்தியுத்தர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யுத்திவாதம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யுத்தோன்முகன்", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 346, "length": 3, "spokenRatio": 0.0, "word": "யுனானி", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 865, "length": 5, "spokenRatio": 0.0, "word": "யுரேனியம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 5, "length": 4, "spokenRatio": 0.0, "word": "யுள்ளும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 458, "length": 2, "spokenRatio": 0.0, "word": "யுவ", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 568, "length": 3, "spokenRatio": 0.0, "word": "யுவதி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 76, "length": 5, "spokenRatio": 0.0, "word": "யுவதியின்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 58, "length": 5, "spokenRatio": 0.0, "word": "யுவதியும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 45, "length": 4, "spokenRatio": 0.0, "word": "யுவனும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 24003, "length": 3, "spokenRatio": 0.0, "word": "யுவன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யுவராசன்", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 76, "length": 4, "spokenRatio": 0.0, "word": "யுவராணி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 5623, "length": 1, "spokenRatio": 0.000178, "word": "யூ", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 1, "length": 4, "spokenRatio": 0.0, "word": "யூகசாலி", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 0, "length": 5, "meaningSource": "attested", "pos": ["adjective"], "synonymsTa": ["அமைந்திருந்து செயல் செய்யக்கூடிய", "அறிவுநுட்பம் வாய்ந்த", "உலகியல் அறிவுவாய்ந்த", "கூர்மதியுடைய", "சூழ்திறமிக்க", "செயலறிவுத்திறம்வாய்ந்த", "செயல்நுட்பமறிந்த", "புனைதிறம் வாய்ந்த", "புனைதிறம்வல்ல", "வகைதிரிபுணர்வுடைய", "விவேகமுடைய"], "translationEn": "ingenious", "translationEnSource": "en-ta-dictionary", "word": "யூகமுடைய", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 351, "length": 3, "spokenRatio": 0.005698, "word": "யூகம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யூகாட்சரம்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 333, "length": 2, "meaningSource": "attested", "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["கணி", "குறிகூறுபவன்", "நமித்திகன்", "வருவதுரைப்போன்"], "translationEn": "Guess", "translationEnSource": "themed-vocabulary", "word": "யூகி", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 0, "length": 3, "meaningSource": "attested", "pos": ["noun"], "synonymsTa": ["(அள) நிமித்தம்", "(வினை)வாதிடு", "அறிவாராய்ச்சித் திறம்", "அறிவு கடந்த உணர்வு", "அறிவுரு", "அளவை நுல் முறைப்படி செய்திகளை அடுக்கிக்காட்டு", "ஆஜ்ய்ச்சி செய்", "ஆய்ந்து முடிவு செய்", "ஆராய்ச்சியால் முடிவுக்கு வா", "இயல்பொழுங்கு", "இயைபுணர்வு", "உய்த்தறிவால் உணர்", "உள்ளார்ந்த விளக்கம்", "எண்ணிப்பார்", "ஏது", "ஒழுங்கு உய்த்துணர்வு", "கடவுள்", "காரணகாரிய முறையில் ஆஜ்ய்", "காரணகாரிய முறையில் விளக்கு", "காரணகாரியத் தொடர்பாக ஆராய்ச்சிசெய்", "காரணகாரியமாக விளக்கு", "காரணம்", "சீர்தூக்கிப் பார்", "செயற்காரணம்", "செயல் நோக்கம்", "செயல்நோக்க விளக்கம்", "செயல்விளக்க ஆதாரம்", "தர்க்கமிடு", "நடைமுறை நலம்", "நடைமுறைக்கு உகந்த நலம்", "நம்பிக்கை ஆதாரம்", "நல்லறிவு நிலை", "நல்லுணர்வு நிலை", "நல்வழி", "நியாயம்", "நீதி", "நேரிய செயல் முறை", "நேரிய நடத்தை", "நேர்நெறி", "நேர்மை", "பகுத்தறிவின் முடிவு", "பகுத்தறிவு செயலாற்றும் நிலை", "பகுத்தறிவுக்கு ஒத்ததாகக் காட்டு", "பகுத்தறிவுக்கு ஒத்தநிலை", "பகுத்தறிவைப் பயன்படுத்து", "பரிசீலனை செய்", "பொருத்தமுடிடைமை", "மட்.டியல் நடை", "மயக்கமின்மை", "மாட்டொழுங்கு", "முகாந்தரம்", "முடிவு வலியுறுத்தும் ஆதாரம்", "முடிவுவிளக்கம", "முரணின்மை", "மெய்யறிவு", "யுக்தி", "யுக்திபூர்வமாகத் தருவி", "வாத ஆதாரம்", "வாத நேர்மை", "வாதகாரணம்", "வாதத்தால் இணக்குவி", "வாதத்துக்காகக் கதில் ஆய்ந்து பார்", "வாதத்துக்காகப் பேசிப்பார்", "வாதமுறையணயாகக் கூறு", "வாதமுறையிற் பேசு", "வாதிட்டு இணக்குவிக்க முஸ்ல்", "வாதிட்டு முடிவுசெய்", "வாதிட்டுப் பார்", "விளக்க வாசகம்", "விளக்கக்கூற்று", "விவாதி", "விவேகம்"], "translationEn": "reason", "translationEnSource": "en-ta-dictionary", "word": "யூகிடி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 1, "length": 5, "spokenRatio": 0.0, "word": "யூகித்தல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யூகிப்பயில்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யூகிமந்திரி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 1, "length": 2, "spokenRatio": 0.0, "word": "யூகை", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "spellcheck-wordlist"], "frequency": 0, "length": 4, "meaningSource": "attested", "pos": ["noun"], "synonymsTa": ["யூதசட்ட வித்தகர்"], "translationEn": "rabbI", "translationEnSource": "en-ta-dictionary", "word": "யூதகுரு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யூதக்கல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யூதநாயகன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யூதபம்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 1, "length": 6, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["செமித்திக் இனவெறுப்பு"], "translationEn": "anti-Semitism", "translationEnSource": "en-ta-dictionary", "word": "யூதப்பகைமை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 2, "length": 5, "spokenRatio": 0.0, "translationEn": "proselyte", "translationEnSource": "master-dictionary", "word": "யூதமதம்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "spellcheck-wordlist"], "frequency": 4, "length": 8, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["(பெ.)யூதரல்லாத", "குடியினம் குறித்த", "குடியினம் சார்ந்த", "சொல் வகையில் இனம் குறித்த", "புறச் சமயம் சார்ந்த", "யூதர்   வழக்கில் புற இனம் சார்ந்த", "யூதர் வழக்கில் புற இனத்தவர்"], "translationEn": "gentile", "translationEnSource": "en-ta-dictionary", "word": "யூதரல்லாதவர்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "huggingface-wordlist", "llm-authored", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "definitionTa": "யூத சமயத்தைச் சேர்ந்தவர்", "frequency": 417, "length": 3, "meaningSource": "authored", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["(பெ.) எபிரேய மொழியைச் சார்ந்த", "(வினை.) (பே-வ.) ஏய்", "அத்தர்", "ஈவிரக்கமின்ஜீப் பேரம் செய்பவர்", "எபிரேய இனத்தைச் சேர்ந்தவர்", "எபிரேயமொழி", "எவரையும் எஷீதில் நம்பாதவர்", "கடுங்கண்டிப்பாளர்", "கடுவட்டிக்குக் கல்ன் கொடுப்பவர்", "தேர்ந்தெடுக்கப்பட்டவர்களில் ஒருவர்", "பண்டைக்கால எபிரேய மொழி", "பண்டைய இஸ்ரேயில் நாட்டைச் சார்ந்தவர்", "புரியாத நடை", "மட்டிலாச் சூழ்ச்சி செய்து ஏமாற்று", "யாக்கோபின் வழிவந்தவர்", "யூதர் சட்டத்தைக் கடைப்பிடிக்கும் கிறித்தவ சமயப்பிரிவினர்", "யூதர்களைச் சார்ந்த", "விளங்காத மொழி"], "translationEn": "Hebrew", "translationEnSource": "en-ta-dictionary", "word": "யூதர்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 0, "length": 9, "pos": ["adjective"], "translationEn": "judaic", "translationEnSource": "en-ta-dictionary", "word": "யூதர்களுக்குரிய", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 0, "length": 9, "pos": ["adjective"], "translationEn": "Talmudistic", "translationEnSource": "en-ta-dictionary", "word": "யூதவேதஞ்சார்ந்த", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 2, "length": 4, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["செமித்திக் இனத்தை வெறுப்பவர்"], "translationEn": "anti-Semite", "translationEnSource": "en-ta-dictionary", "word": "யூதவைரி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யூபத்தம்பம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 17, "length": 3, "spokenRatio": 0.0, "word": "யூபம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 3, "word": "யூமியா", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 29, "length": 4, "spokenRatio": 0.0, "word": "யூரேசியா", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 61, "length": 6, "spokenRatio": 0.0, "word": "யூரோப்பியம்", "wordClass": "headword"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 0, "length": 4, "pos": ["numeral"], "word": "யெரநூறு", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 0, "length": 8, "meaningSource": "attested", "pos": ["noun"], "synonymsTa": ["ஊக்கக்கேடு", "செயற்கூச்சம்", "தன்னம்பிக்கையின்மை", "தயக்கம்"], "translationEn": "diffidence", "translationEnSource": "en-ta-dictionary", "word": "யெற்பின்னிடைவும", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 932, "length": 4, "spokenRatio": 0.0, "word": "யெல்லாம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 591, "length": 1, "spokenRatio": 0.011844, "word": "யே", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 26, "length": 3, "spokenRatio": 0.0, "word": "யேட்டி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 3795, "length": 1, "spokenRatio": 0.0, "translationEn": "mimosa", "translationEnSource": "master-dictionary", "word": "யை", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 0, "length": 3, "meaningSource": "attested", "pos": ["noun"], "synonymsTa": ["(வினை) வழிகாட்டு", "அறிவுரையாளர்", "ஆசிரியர்", "இட்டுக்கொண்டு செல்", "இயக்கம் தூண்டும் உறுப்பு", "இயந்திர வகையில் இயக்கும் தண்டு", "ஊதியம்", "கடற்படைக் கப்பல்கள் இயங்க  மூலமாதிரியாயியங்கும் கலம்", "கடைத்தேற்றம் இலக்காயமை", "குறித்துக்காட்டும் அடையாளம்", "செயற்படுத்து", "தலைமை ஏற்று ஆட்சி நடத்து", "தலைவர்", "தூண்டு", "தூண்டுதற் காரணமாயியங்கு", "நடத்து", "நிலை சுட்டிக் காட்டும் குறி", "நெறிப்படுத்தும் கோட்பாடாயமை", "படைத்துறை வேவுப் பணியாளர்கள்", "பயண வழி விளக்க நுல்", "பெண் சாரணர்", "பெண்சாரண இயக்கத்தினர்", "பெற்றுப் பிரயாணிகளுடன் செல்லுபவர்", "முன்செல்", "முன்மாதிரி", "முறைப்படுத்து", "மூலக் கோட்பாடுகளடங்கிய சுவடி", "வழிகாட்டி", "வழிகாட்டியாகச் செயலாற்று", "வழிகாட்டும் தத்துவம்", "வழிகாட்டும் நுல்", "வழிகாட்டுவது", "வழித்துணை செல்", "வழித்துணைப்பணியாளர்", "வழிப்படுத்து", "வாழ்க்கை வழிகாட்டி", "ஸ்விட்சர்லாந்து நாட்டில் மலையேறுதலைத் தொழிலாக கொண்டவர்கள்"], "translationEn": "guide", "translationEnSource": "en-ta-dictionary", "word": "யையேடு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 14, "length": 1, "spokenRatio": 0.0, "word": "யொ", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 2, "length": 5, "spokenRatio": 0.0, "word": "யொத்தவன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 851, "length": 1, "spokenRatio": 0.044653, "word": "யோ", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist"], "frequency": 2010, "length": 2, "spokenRatio": 0.0, "translationEn": "banker", "translationEnSource": "master-dictionary", "word": "யோக", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யோககுண்டலினி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யோகக்கட்டு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 3, "length": 6, "spokenRatio": 0.0, "word": "யோகக்காட்சி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 105, "length": 5, "spokenRatio": 0.0, "word": "யோகங்கள்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யோகசமாதி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 1, "length": 4, "spokenRatio": 0.0, "word": "யோகசம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யோகசரன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யோகசாதனம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யோகசாத்திரம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 0, "length": 6, "word": "யோகசாலிதான்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யோகசிகை", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 2, "length": 5, "spokenRatio": 0.0, "word": "யோகசித்தி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யோகசூடாமணி", "wordClass": "headword"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 0, "length": 5, "pos": ["noun"], "word": "யோகசேமம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 3, "length": 5, "spokenRatio": 0.0, "word": "யோகசைவம்", "wordClass": "headword"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 0, "length": 6, "pos": ["noun"], "word": "யோகட்சேமம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 1, "length": 6, "spokenRatio": 0.0, "word": "யோகதண்டம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யோகதத்துவம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யோகதீட்சை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 8, "length": 6, "spokenRatio": 0.0, "word": "யோகத்திலும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 7, "length": 7, "spokenRatio": 0.0, "word": "யோகத்துக்கும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 173, "length": 4, "spokenRatio": 0.0, "word": "யோகத்தை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 5, "length": 6, "spokenRatio": 0.0, "word": "யோகநித்திரை", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 10, "length": 4, "spokenRatio": 0.0, "word": "யோகநிலை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 4, "length": 5, "spokenRatio": 0.0, "word": "யோகந்தான்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யோகபதம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 1, "length": 5, "spokenRatio": 0.0, "word": "யோகபரன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 1, "length": 5, "spokenRatio": 0.0, "word": "யோகபீடம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யோகபூசை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 1, "length": 7, "spokenRatio": 0.0, "word": "யோகப்பட்டம்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary"], "frequency": 0, "length": 6, "meaningSource": "attested", "pos": ["noun"], "synonymsTa": ["கால்நடைகளின் விற்பனையில் விறபவர் வாங்குபவருக்கு நற்பேறவாவின் சின்னமாகத் திருப்பிக்கொடுக்கும் பணம்", "நற்பேற்றுச் சின்னமாகச் செலவழியாது வைத்திருக்கும் பணம்", "வாய்ப்பு வளப் பணம்"], "translationEn": "luck-money, luck-penny", "translationEnSource": "en-ta-dictionary", "word": "யோகப்பணம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 2, "length": 7, "spokenRatio": 0.0, "word": "யோகமார்க்கம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 162, "length": 4, "spokenRatio": 0.0, "word": "யோகமும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யோகயாமளம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யோகரூடி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 39, "length": 3, "spokenRatio": 0.0, "word": "யோகர்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யோகவாகி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 2, "length": 4, "spokenRatio": 0.0, "word": "யோகவான்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 4, "length": 6, "spokenRatio": 0.0, "word": "யோகவிபாகம்", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 6969, "length": 2, "spokenRatio": 0.0, "word": "யோகா", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யோகாக்கினி", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 413, "length": 5, "spokenRatio": 0.0, "word": "யோகாசனம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யோகாசாரன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 2, "length": 5, "spokenRatio": 0.0, "word": "யோகாசாரம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யோகாசாரியன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யோகாதிகாரம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யோகாதிசயம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 9, "length": 7, "spokenRatio": 0.0, "word": "யோகாப்பியாசம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யோகார்த்தம்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 3046, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "translationEn": "yogi", "translationEnSource": "en-ta-dictionary", "word": "யோகி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 61, "length": 5, "spokenRatio": 0.0, "word": "யோகிகளும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யோகிதண்டம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யோகித்தல்", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 91, "length": 3, "spokenRatio": 0.0, "word": "யோகினி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யோகினிசாலம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யோகினிச்சி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யோகினிதிசை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யோகிப்பு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 99, "length": 4, "spokenRatio": 0.0, "word": "யோகியின்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 2, "length": 6, "spokenRatio": 0.0, "word": "யோகீசுவரன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 9, "word": "யோக்கியதாபட்சம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 10, "word": "யோக்கியதாபத்திரிகை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 186, "length": 5, "spokenRatio": 0.0, "word": "யோக்கியதை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 14, "word": "யோக்கியத்துக்குக்கொடுத்தல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 100, "length": 5, "spokenRatio": 0.0, "word": "யோக்கியன்", "wordClass": "headword"}
+{"attestedBy": ["llm-authored", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "definitionTa": "நேர்மையான நல்ல நடத்தை", "frequency": 125, "length": 5, "meaningSource": "authored", "pos": ["noun"], "spokenRatio": 0.0, "translationEn": "uprightness", "translationEnSource": "llm-authored", "word": "யோக்கியம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 6, "length": 6, "spokenRatio": 0.0, "word": "யோக்கியவான்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யோக்கியாசனம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யோக்கியாதி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 9, "word": "யோக்கியாயோக்கியம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யோசனன்", "wordClass": "headword"}
+{"attestedBy": ["en-ta-dictionary", "huggingface-wordlist", "llm-authored", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "definitionTa": "மனத்தில் தோன்றும் கருத்து அல்லது ஆலோசனை", "frequency": 5632, "length": 3, "meaningSource": "authored", "pos": ["noun"], "spokenRatio": 0.006037, "synonymsTa": [". தௌதவற்ற கொள்கை", "அறிவுடைமை", "அறிவுரை", "ஆலோசனை", "உசிதம்", "உட்கருத்து", "உட்கோள்", "உபதேசம்", "உருவாகாத் திட்டம்", "உள்நோக்கம்", "எண்ணச்சாயல்", "எண்ணம்", "என்ற பண்டைக் கிரேக்க அறிஞர் கருத்துபடி குறைவுடைய நிலையற்ற உலகப் பொருள்வகைகளுக்குய குறைவற்ற நிலையான மூல முதற்படிவம்", "ஒலி", "ஓசை", "கருத்து", "கருத்துத் தூண்டுதல்", "கருத்துப்போக்கு", "கருத்துருவம", "குறிப்பீடு", "குறிப்புரை", "சதி", "சத்தம்", "சூழ்ச்சி", "திடீர் எண்ணம்", "திட்ட வட்டமாகாக் கருத்து", "திட்டம்", "தூண்டுதல்", "தூண்டுரை", "தொனிப்பொருள்", "நினைவு", "நினைவுத்தோற்றம்", "நினைவுப்படிவம்", "பாவனை உரு", "பிரேரணை", "பிளேட்டோ", "புதுக்கருத்து", "முன்வைப்புரை", "மூலக்குறிப்பு", "மூலமாதிரி", "விவேகம்"], "translationEn": "idea", "translationEnSource": "en-ta-dictionary", "word": "யோசனை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யோசனைகந்தி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 59, "length": 6, "spokenRatio": 0.0, "word": "யோசனைகளில்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 4, "length": 8, "spokenRatio": 0.0, "word": "யோசனைகளெல்லாம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 457, "length": 5, "spokenRatio": 0.008753, "word": "யோசனைகளை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 816, "length": 5, "spokenRatio": 0.003676, "word": "யோசனைகள்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 1, "length": 7, "spokenRatio": 0.0, "word": "யோசனைக்காரன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 217, "length": 5, "spokenRatio": 0.0, "word": "யோசனைக்கு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யோசனைசாலி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 105, "length": 5, "spokenRatio": 0.0, "word": "யோசனைதான்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 2, "length": 6, "spokenRatio": 0.0, "word": "யோசனைத்தான்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 111, "length": 6, "spokenRatio": 0.0, "word": "யோசனைப்படி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 14, "length": 8, "spokenRatio": 0.0, "word": "யோசனையாகத்தான்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 2, "length": 6, "spokenRatio": 0.0, "word": "யோசனையாவது", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 18, "length": 6, "spokenRatio": 0.0, "word": "யோசனையிலேயே", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 675, "length": 5, "spokenRatio": 0.0, "word": "யோசனையில்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 250, "length": 5, "spokenRatio": 0.0, "word": "யோசனையும்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 846, "length": 4, "spokenRatio": 0.001182, "word": "யோசனையை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 60, "length": 6, "spokenRatio": 0.0, "word": "யோசனையையும்", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 1310, "length": 2, "meaningSource": "attested", "pos": ["verb"], "spokenRatio": 0.005344, "synonymsTa": ["எண்ணு", "நினை"], "translationEn": "Think", "translationEnSource": "themed-vocabulary", "word": "யோசி", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 14, "length": 5, "spokenRatio": 0.0, "word": "யோசித்தல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 3087, "length": 4, "spokenRatio": 0.002592, "word": "யோசித்து", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யோதனம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 1, "length": 2, "spokenRatio": 0.0, "word": "யோதை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யோத்திரம்", "wordClass": "headword"}
+{"attestedBy": ["huggingface-wordlist", "master-dictionary", "old-wordlist", "spellcheck-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 580, "length": 2, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["பெண்குறி"], "word": "யோனி", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யோனிக்கலப்பு", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 7, "word": "யோனிசங்கரன்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யோனிசிராவம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 1, "length": 7, "spokenRatio": 0.0, "word": "யோனித்துவாரம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யோனிபேதம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 6, "length": 7, "spokenRatio": 0.0, "word": "யோனிப்படுதல்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யோனிப்புற்று", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 1, "length": 8, "spokenRatio": 0.0, "word": "யோனிப்பொருத்தம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 6, "word": "யோனிமுத்திரை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யோனிரோகம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 2, "length": 6, "spokenRatio": 0.0, "word": "யோனிலிங்கம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 3, "word": "யோமிய", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யோமியதார்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 1, "length": 1, "spokenRatio": 0.0, "word": "யௌ", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 4, "length": 4, "spokenRatio": 0.0, "word": "யௌகிகம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 4, "length": 3, "spokenRatio": 0.0, "word": "யௌதம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 4, "word": "யௌதுகம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist"], "frequency": 57, "length": 3, "spokenRatio": 0.0, "word": "யௌவன", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 8, "word": "யௌவனகண்டகம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 5, "word": "யௌவனதசை", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary"], "frequency": 0, "length": 5, "word": "யௌவனத்து", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "spellcheck-wordlist", "ta-wiktionary-titles"], "frequency": 14, "length": 4, "spokenRatio": 0.0, "word": "யௌவனம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 0, "length": 8, "word": "யௌவனலக்கணம்", "wordClass": "headword"}
+{"attestedBy": ["master-dictionary", "ta-wiktionary-titles"], "frequency": 4, "length": 4, "spokenRatio": 0.0, "word": "யௌவனிகை", "wordClass": "headword"}

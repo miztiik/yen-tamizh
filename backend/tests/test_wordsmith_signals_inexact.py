@@ -441,7 +441,7 @@ def enriched(tmp_path_factory: pytest.TempPathFactory) -> Enriched:
     root = tmp_path_factory.mktemp("inexact")
     entries: list[dict[str, Any]] = []
     for source in REGISTRY.sources:
-        fixture = source_bytes(_REPO_ROOT, _FIXTURES, source)
+        fixture = source_bytes(_REPO_ROOT, source)
         staged = root / "sources" / fixture.name
         staged.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(fixture, staged)

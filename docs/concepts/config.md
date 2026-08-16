@@ -1,6 +1,6 @@
 # Config
 
-**Last Updated**: 2026-08-13
+**Last Updated**: 2026-08-16
 
 Where tunable behaviour and player-facing copy live, and the rule that separates a knob from an identifier. Config-driven with sane defaults is a project principle ([principles.md](principles.md), Holy Law #6): a fresh clone runs on the defaults, and no game-balance number is hardcoded in code.
 
@@ -36,7 +36,7 @@ This is where the Tamil display names for the Games and Modes - working names to
 Not every config file is for the browser. Several are read only by the build-time producer and never ship to a player:
 
 - **`config/corpus-sources.json`** and **`config/derived-wordlists.json`** - the corpus and derived layers ([../how-to/add-a-corpus-source.md](../how-to/add-a-corpus-source.md), [../how-to/add-a-derived-wordlist.md](../how-to/add-a-derived-wordlist.md)).
-- **`config/lexicon-sources.json`** - the lexicon's source registry ([../how-to/add-a-lexicon-source.md](../how-to/add-a-lexicon-source.md)).
+- **`config/lexicon-sources.json`** - the lexicon's source registry, and the three PUBLISH knobs beside it: `publishedClasses` (which of the ten word classes the repository commits), `spokenSources` (the frequency corpora that are spoken Tamil, which is what makes `spokenRatio` computable) and `maxPartitionBytes` (the ceiling one published file may not cross). See [../how-to/add-a-lexicon-source.md](../how-to/add-a-lexicon-source.md) and [../how-to/rebuild-the-lexicon.md](../how-to/rebuild-the-lexicon.md).
 - **`config/wordhood.json`** - what each word-hood defect costs, which registered source carries a ready-made grammar or verb-form judgement, how the ezhuthu sequence model is fitted, and how far the nearest-headword search looks ([../architecture/lexicon/word-hood.md](../architecture/lexicon/word-hood.md)). The letter rules themselves are NOT here: which ezhuthu may open a Tamil word is a fact about the language, not a knob, so it lives in the ezhuthu library.
 - **`config/daily-generator.json`** - the daily puzzle engine: attempts, time limit, head start, hint wording and cost, and the ezhuthu-length bands that map to a difficulty ([../how-to/generate-the-daily-bank.md](../how-to/generate-the-daily-bank.md)).
 

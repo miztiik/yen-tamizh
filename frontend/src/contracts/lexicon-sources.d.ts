@@ -14,6 +14,7 @@ export type Change = string
 export type Version = string
 export type Why = string
 export type Lexiconroot = string
+export type Maxpartitionbytes = number
 /**
  * @minItems 1
  */
@@ -22,6 +23,10 @@ export type Note = (string | null)
 export type Pos = ([("adjective" | "adverb" | "conjunction" | "determiner" | "interjection" | "noun" | "numeral" | "particle" | "postposition" | "pronoun" | "verb"), ...(("adjective" | "adverb" | "conjunction" | "determiner" | "interjection" | "noun" | "numeral" | "particle" | "postposition" | "pronoun" | "verb"))[]] | null)
 export type Reject = (("notAWord" | "multiWordUnit" | "noTamilCounterpart" | "notAPosLabel") | null)
 export type Wordclassevidence = ([("inflected" | "colloquial" | "properNoun" | "loanword" | "boundStem" | "sandhiArtifact" | "suspectedTypo"), ...(("inflected" | "colloquial" | "properNoun" | "loanword" | "boundStem" | "sandhiArtifact" | "suspectedTypo"))[]] | null)
+/**
+ * @minItems 1
+ */
+export type Publishedclasses = [("headword" | "inflected" | "colloquial" | "properNoun" | "loanword" | "boundStem" | "sandhiArtifact" | "suspectedTypo" | "notAWord" | "unclassified"), ...(("headword" | "inflected" | "colloquial" | "properNoun" | "loanword" | "boundStem" | "sandhiArtifact" | "suspectedTypo" | "notAWord" | "unclassified"))[]]
 /**
  * @minItems 1
  */
@@ -48,6 +53,7 @@ export type Rootkey = (string | null)
 export type Sha256 = string
 export type Wordcolumn = (number | null)
 export type Wordfield = (string | null)
+export type Spokensources = string[]
 export type Version1 = string
 
 /**
@@ -57,9 +63,12 @@ export interface LexiconSources {
 categoryAliases?: Categoryaliases
 changelog: Changelog
 lexiconRoot: Lexiconroot
+maxPartitionBytes: Maxpartitionbytes
 outputs: Outputs
 posAliases: Posaliases
+publishedClasses: Publishedclasses
 sources: Sources
+spokenSources?: Spokensources
 version: Version1
 }
 export interface Categoryaliases {

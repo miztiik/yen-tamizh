@@ -12,6 +12,7 @@ from __future__ import annotations
 from yen_tamizh_backend.ezhuthu.classify import EzhuthuKind, classify
 from yen_tamizh_backend.ezhuthu.segment import segment
 from yen_tamizh_backend.ezhuthu.word_shape import (
+    BASE_ROMAN,
     CLUSTER_FOLLOWERS,
     CONSONANTS,
     EZHUTHU_INVENTORY,
@@ -31,6 +32,7 @@ from yen_tamizh_backend.ezhuthu.word_shape import (
 )
 
 __all__ = [
+    "BASE_ROMAN",
     "CLUSTER_FOLLOWERS",
     "CONSONANTS",
     "EZHUTHU_INVENTORY",

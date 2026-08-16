@@ -1,0 +1,23 @@
+{"attestedBy": ["wiktextract-ta"], "frequency": 499, "length": 6, "meaningSource": "attested", "spokenRatio": 0.0, "synonymsTa": ["அரங்கநாதன்"], "word": "ரங்கநாதன்", "wordClass": "properNoun"}
+{"attestedBy": ["ta-wiktionary-titles", "wiktextract-ta"], "frequency": 110, "length": 5, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["இன்பம்", "மகிழ்ச்சி", "வசீகரம்"], "word": "ரஞ்சிதம்", "wordClass": "properNoun"}
+{"attestedBy": ["huggingface-wordlist", "old-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 687, "length": 4, "meaningSource": "attested", "spokenRatio": 0.0, "synonymsTa": ["ஈதுல் ஃபித்ர்", "ரம்சான்"], "word": "ரமலான்", "wordClass": "properNoun"}
+{"attestedBy": ["en-ta-dictionary", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 27, "length": 4, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["பகற்பொழுதெல்லாம் உண்ணா நோன்பு மேற்கொள்ளப்படும் இஸ்லாமிய ஆண்டின் ஒன்பதாம் மாதம்", "ரமலான்"], "translationEn": "Ramadan", "translationEnSource": "en-ta-dictionary", "word": "ரம்சான்", "wordClass": "properNoun"}
+{"attestedBy": ["huggingface-wordlist", "old-wordlist", "wiktextract-ta"], "frequency": 909, "length": 4, "spokenRatio": 0.0, "word": "ரம்ஜான்", "wordClass": "properNoun"}
+{"attestedBy": ["ta-wiktionary-titles", "wiktextract-ta"], "frequency": 4879, "length": 3, "spokenRatio": 0.000615, "word": "ரஷ்யா", "wordClass": "properNoun"}
+{"attestedBy": ["ta-wiktionary-titles", "wiktextract-ta"], "frequency": 7289, "length": 4, "spokenRatio": 0.0, "word": "ராகவன்", "wordClass": "properNoun"}
+{"attestedBy": ["huggingface-wordlist", "old-wordlist", "wiktextract-ta"], "frequency": 5611, "length": 5, "spokenRatio": 0.0, "word": "ராஜஸ்தான்", "wordClass": "properNoun"}
+{"attestedBy": ["huggingface-wordlist", "old-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 166974, "length": 2, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 1.2e-05, "synonymsTa": ["அதிபதி", "அரசன்", "அரட்டன்", "ஆண்டவன்", "இராசன்", "இறை", "இறையோன்", "இறைவன்", "ஈசன்", "ஐயன்", "கோ", "கோன்", "தேவன்", "பிரான்", "பெருமான்", "மன்னன்", "மன்னவன்", "ராயன்", "வேந்தன்"], "word": "ராஜா", "wordClass": "properNoun"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 444, "length": 6, "spokenRatio": 0.0, "word": "ராணிப்பேட்டை", "wordClass": "properNoun"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 1785, "length": 5, "spokenRatio": 0.0, "word": "ராமநாதன்", "wordClass": "properNoun"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 8345, "length": 7, "spokenRatio": 0.0, "word": "ராமநாதபுரம்", "wordClass": "properNoun"}
+{"attestedBy": ["huggingface-wordlist", "old-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 27414, "length": 3, "spokenRatio": 0.0, "word": "ராமன்", "wordClass": "properNoun"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 3594, "length": 3, "spokenRatio": 0.0, "word": "ராமர்", "wordClass": "properNoun"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 1355, "length": 6, "spokenRatio": 0.0, "word": "ராமேசுவரம்", "wordClass": "properNoun"}
+{"attestedBy": ["huggingface-wordlist", "old-wordlist", "wiktextract-ta"], "frequency": 929, "length": 4, "spokenRatio": 0.0, "word": "ராவணன்", "wordClass": "properNoun"}
+{"attestedBy": ["huggingface-wordlist", "old-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 1292, "length": 2, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["முனி", "முனிவன்"], "word": "ரிஷி", "wordClass": "properNoun"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 92, "length": 5, "spokenRatio": 0.0, "word": "ருத்திரன்", "wordClass": "properNoun"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 22524, "length": 2, "spokenRatio": 0.0004, "word": "ரூத்", "wordClass": "properNoun"}
+{"attestedBy": ["huggingface-wordlist", "old-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 26613, "length": 3, "spokenRatio": 0.0, "word": "ரேவதி", "wordClass": "properNoun"}
+{"attestedBy": ["ta-wiktionary-titles", "wiktextract-ta"], "frequency": 88, "length": 4, "spokenRatio": 0.0, "word": "ரோமாபுரி", "wordClass": "properNoun"}
+{"attestedBy": ["en-ta-dictionary", "huggingface-wordlist", "old-wordlist", "ta-wiktionary-titles", "wiktextract-ta"], "frequency": 935, "length": 2, "meaningSource": "attested", "pos": ["noun"], "spokenRatio": 0.00107, "synonymsTa": ["கத்தோலிக்க திருக்கோயில்", "ரோமப்பேரரசு", "ரோமாபுரி அரசெல்லை", "ரோமாபுரித் திருச்சபை"], "translationEn": "Rome", "translationEnSource": "en-ta-dictionary", "word": "ரோம்", "wordClass": "properNoun"}
+{"attestedBy": ["wiktextract-ta"], "frequency": 168, "length": 3, "spokenRatio": 0.0, "word": "ரோஹிணி", "wordClass": "properNoun"}

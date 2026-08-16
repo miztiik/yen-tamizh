@@ -122,7 +122,13 @@ def _staged(root: Path, label: str) -> Path:
     )
     registry = LexiconSources.model_validate(
         REGISTRY.model_dump(exclude_none=True)
-        | {"lexiconRoot": "out", "sources": [entry.model_dump(exclude_none=True)]}
+        | {
+            "lexiconRoot": "out",
+            "sources": [entry.model_dump(exclude_none=True)],
+            # This one-source workspace carries no frequency corpus, and the
+            # registry refuses to name a spoken source it does not carry.
+            "spokenSources": [],
+        }
     )
     extract_source(entry, registry, workspace, force=True)
     stage(registry, workspace)

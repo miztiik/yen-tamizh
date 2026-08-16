@@ -276,6 +276,7 @@ recorded there.
 ## See also
 
 - [../architecture/lexicon/pipeline.md](../architecture/lexicon/pipeline.md) - the four stages, and why the readers stream.
+- [rebuild-the-lexicon.md](rebuild-the-lexicon.md) - re-running the stages after the registry changes, and what a refresh commit contains.
 - [../concepts/lexicon.md](../concepts/lexicon.md) - observation versus attestation, `wordClass`, `pos` versus `categories`.
 - [../architecture/contracts/schemas.md](../architecture/contracts/schemas.md) - the `lexicon-sources` contract and its shape decisions.
 - [`../../datasets/lexicon/sources/README.md`](../../datasets/lexicon/sources/README.md) - the acquisition ledger.
