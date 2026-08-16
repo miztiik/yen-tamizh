@@ -60,7 +60,7 @@ from yen_tamizh_backend.contracts.lexicon_sources import (
     WordClassEvidence,
 )
 from yen_tamizh_backend.contracts.wordhood import Wordhood
-from yen_tamizh_backend.ezhuthu import analyse
+from yen_tamizh_backend.ezhuthu import analyse, is_a_letter
 from yen_tamizh_backend.ezhuthu.word_shape import WordShape
 from yen_tamizh_backend.wordsmith.signals_exact import SignalContext
 from yen_tamizh_backend.wordsmith.store import quoted
@@ -156,9 +156,16 @@ def not_a_word_reason(shape: WordShape, config: Wordhood) -> str | None:
     it failed on. Deriving the reason a second time somewhere else would let the
     published verdict and the reviewed reason disagree.
 
-    Three rejections, each a threshold in config, and each with a real producer
-    measured over the store: a unit that is not an ezhuthu at all, a length no
-    Tamil word reaches, and one character repeated.
+    Four rejections, each a threshold in config, and each with a real producer
+    measured over the store: a unit that is not an ezhuthu at all, a cluster
+    that is not a well-formed LETTER, a length no Tamil word reaches, and one
+    character repeated.
+
+    The first two are deliberately DISJOINT. ``rejectNonTamil`` asks whether the
+    string is Tamil; ``rejectMalformedEzhuthu`` asks, of a string that IS, whether
+    every unit is a letter Tamil has. Letting the second also catch Latin would
+    make the first unreachable, and a knob another knob dominates is a knob that
+    does nothing.
     """
     settings = config.classifier.notAWord
     units = shape.ezhuthu
@@ -166,6 +173,12 @@ def not_a_word_reason(shape: WordShape, config: Wordhood) -> str | None:
         return "empty"
     if settings.rejectNonTamil and shape.hasNonTamil:
         return "nonTamil"
+    if (
+        settings.rejectMalformedEzhuthu
+        and not shape.hasNonTamil
+        and not all(is_a_letter(unit) for unit in units)
+    ):
+        return "malformedEzhuthu"
     if len(units) > settings.maxEzhuthu:
         return "tooLong"
     # Only a surface of more than one ezhuthu can fail this: a one-ezhuthu word

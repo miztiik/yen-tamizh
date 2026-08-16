@@ -32,3 +32,15 @@ datasets/fixtures/*.jsonl text eol=lf
 # run on the next contributor's machine, so LF is pinned rather than left to
 # core.autocrlf.
 datasets/lexicon/sources/llm-authored/entries.jsonl text eol=lf
+
+# The published lexicon, its index and its generated ready-reckoner. Every
+# file's sha256 and byte count are recorded in lexicon.meta.json and re-checked
+# against disk by the row-11 Oracle, and the fixture expectation is byte-compared
+# against a fresh pipeline run - so an end-of-line conversion on any of them
+# would fail the build on whichever machine has the other core.autocrlf setting.
+# The writer always emits LF; these attributes make the stored blob and every
+# checkout agree with it.
+datasets/lexicon/by-class/** text eol=lf
+datasets/lexicon/lexicon.meta.json text eol=lf
+datasets/lexicon/README.md text eol=lf
+datasets/fixtures/lexicon-expected/** text eol=lf

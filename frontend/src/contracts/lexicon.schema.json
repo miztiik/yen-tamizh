@@ -28,9 +28,44 @@
       "title": "ChangelogEntry",
       "type": "object"
     },
-    "LexiconCounters": {
+    "EzhuthuIndexEntry": {
       "additionalProperties": false,
-      "description": "The per-class ledger: every published row lands under exactly one class.\n\n``byClass`` carries a bucket for EVERY ``wordClass`` - a missing bucket and\na zero bucket say different things, and only one of them is a measurement.",
+      "description": "What one partition's hex key stands for, spelled out for a human.\n\nThis is where the Tamil letter and its ASCII spelling live: as correctable\nDATA in a document a reviewer already opens, never as a path component. A\ncode point is fixed by an external standard, so it can carry an address; a\nromanization is a judgement call, and correcting one must not rename a\npublished file.\n\n``ezhuthu`` is a WHOLE letter, not the base character it is built from - one\ncode point for an uyir or a bare consonant, two once a vowel sign or a pulli\nattaches. ``kind`` classifies that whole letter, so a consonant carrying a\npulli reads ``mei`` and a bare one reads ``uyirmei`` (the inherent /a/).",
+      "properties": {
+        "ezhuthu": {
+          "minLength": 1,
+          "title": "Ezhuthu",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "uyir",
+            "mei",
+            "uyirmei",
+            "aytham",
+            "other"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "roman": {
+          "minLength": 1,
+          "pattern": "^[A-Za-z]+$",
+          "title": "Roman",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ezhuthu",
+        "roman",
+        "kind"
+      ],
+      "title": "EzhuthuIndexEntry",
+      "type": "object"
+    },
+    "LexiconCensus": {
+      "additionalProperties": false,
+      "description": "A per-class ledger: every counted row lands under exactly one class.\n\n``byClass`` carries a bucket for EVERY ``wordClass`` - a missing bucket and\na zero bucket say different things, and only one of them is a measurement.",
       "properties": {
         "byClass": {
           "additionalProperties": {
@@ -64,29 +99,35 @@
         "rows",
         "byClass"
       ],
+      "title": "LexiconCensus",
+      "type": "object"
+    },
+    "LexiconCounters": {
+      "additionalProperties": false,
+      "description": "The two censuses, and the rule that binds them.\n\n``classified`` counts the WHOLE population the store holds, class by class,\nincluding every class the publish policy withholds. ``published`` counts\nwhat the committed files carry. Committing both is what makes \"nothing was\ndiscarded\" a checkable statement rather than a claim: a withheld class is\nstill on the record here, at its real size, in the repository.\n\nPublication is ALL-OR-NOTHING per class, and that is the rule the model\nenforces. A class is published whole or not at all, so a published count\nthat is neither zero nor the classified count means rows went missing\nbetween the classifier and the writer - the one failure a per-class policy\nwould otherwise hide.",
+      "properties": {
+        "classified": {
+          "$ref": "#/$defs/LexiconCensus"
+        },
+        "published": {
+          "$ref": "#/$defs/LexiconCensus"
+        }
+      },
+      "required": [
+        "classified",
+        "published"
+      ],
       "title": "LexiconCounters",
       "type": "object"
     },
     "LexiconEntry": {
       "additionalProperties": false,
-      "description": "One lexicon row: every published fact about one Tamil surface.\n\nNot a ``SchemaModel`` - see the module docstring.\n\nEvery sparse column is OPTIONAL and never a defaulted empty list.\n``model_dump(exclude_none=True)`` drops ``None`` but keeps ``[]``, so a\ndefaulted empty list writes an empty pair on every row that lacks the fact -\nroughly 200 MB of nothing across the published set.\n\n``wordhood`` and ``freqRank`` are optional for the same reason the publisher\nomits them: both are derived diagnostics rather than facts a source\nasserted, ``freqRank`` is a sort of the published ``frequency`` and\n``wordClass`` IS ``wordhood``'s verdict, so neither can cost the project a\nfact. The contract still types them, because the store-side renderings carry\nthem and an untyped diagnostic is an untyped diagnostic.",
+      "description": "One lexicon row: what a consumer of the lexicon reads about one surface.\n\nNot a ``SchemaModel`` - see the module docstring.\n\nEvery sparse column is OPTIONAL and never a defaulted empty list.\n``model_dump(exclude_none=True)`` drops ``None`` but keeps ``[]``, so a\ndefaulted empty list would write an empty pair on every row that lacks the\nfact.\n\nThe row carries facts and counts, not provenance. ``attestedBy`` was a list\nof source slugs on every row and what selection actually gates on is the\nCOUNT, so it is published as one; the three ``*Source`` stamps and\n``compound`` had no reader at all. ``wordhood`` and ``freqRank`` are gone on\nthe same principle they were always going to be omitted under - a derived\ndiagnostic whose verdict (``wordClass``) or whose input (``frequency``) is\nitself published. ``ezhuthu`` is ``segment(word)``, a pure function of a\npublished column, so storing it would mint a drift surface as well as spend\nbytes; ``length`` stays because selection reads it, and it is checked\nagainst the live segmentation on every row.",
       "properties": {
-        "attestedBy": {
-          "anyOf": [
-            {
-              "items": {
-                "pattern": "^[a-z][a-z0-9-]*$",
-                "type": "string"
-              },
-              "minItems": 1,
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Attestedby"
+        "attestations": {
+          "minimum": 0,
+          "title": "Attestations",
+          "type": "integer"
         },
         "categories": {
           "anyOf": [
@@ -104,35 +145,6 @@
           "default": null,
           "title": "Categories"
         },
-        "categorySource": {
-          "anyOf": [
-            {
-              "enum": [
-                "attested",
-                "authored",
-                "reviewed"
-              ],
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Categorysource"
-        },
-        "compound": {
-          "anyOf": [
-            {
-              "type": "boolean"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Compound"
-        },
         "definitionTa": {
           "anyOf": [
             {
@@ -146,27 +158,6 @@
           "default": null,
           "title": "Definitionta"
         },
-        "ezhuthu": {
-          "items": {
-            "type": "string"
-          },
-          "minItems": 1,
-          "title": "Ezhuthu",
-          "type": "array"
-        },
-        "freqRank": {
-          "anyOf": [
-            {
-              "minimum": 1,
-              "type": "integer"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Freqrank"
-        },
         "frequency": {
           "minimum": 0,
           "title": "Frequency",
@@ -176,23 +167,6 @@
           "minimum": 1,
           "title": "Length",
           "type": "integer"
-        },
-        "meaningSource": {
-          "anyOf": [
-            {
-              "enum": [
-                "attested",
-                "authored",
-                "reviewed"
-              ],
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Meaningsource"
         },
         "pos": {
           "anyOf": [
@@ -253,6 +227,11 @@
           "default": null,
           "title": "Synonymsta"
         },
+        "tier1Attestations": {
+          "minimum": 0,
+          "title": "Tier1Attestations",
+          "type": "integer"
+        },
         "translationEn": {
           "anyOf": [
             {
@@ -265,19 +244,6 @@
           ],
           "default": null,
           "title": "Translationen"
-        },
-        "translationEnSource": {
-          "anyOf": [
-            {
-              "pattern": "^[a-z][a-z0-9-]*$",
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Translationensource"
         },
         "word": {
           "minLength": 1,
@@ -299,49 +265,22 @@
           ],
           "title": "Wordclass",
           "type": "string"
-        },
-        "wordhood": {
-          "anyOf": [
-            {
-              "additionalProperties": {
-                "type": "number"
-              },
-              "minProperties": 1,
-              "propertyNames": {
-                "enum": [
-                  "attested",
-                  "orthotactic",
-                  "breadth",
-                  "nannulValid",
-                  "knownVerbForm",
-                  "ngram",
-                  "neighbour",
-                  "zipf"
-                ]
-              },
-              "type": "object"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Wordhood"
         }
       },
       "required": [
         "word",
-        "ezhuthu",
-        "length",
         "wordClass",
-        "frequency"
+        "length",
+        "frequency",
+        "attestations",
+        "tier1Attestations"
       ],
       "title": "LexiconEntry",
       "type": "object"
     },
     "LexiconPartition": {
       "additionalProperties": false,
-      "description": "One published NDJSON cell, and what it holds.\n\nThe split keys - ``wordClass``, then ezhuthu ``length``, then the word's\nBASE first ezhuthu - are all immutable per word, so a refresh INSERTS into a\ncell and never reshuffles one. Only a changed ``wordClass`` moves a row, and\nthat is a reviewable semantic event. ``firstEzhuthuHex`` renders the base\nezhuthu as lowercase 4-digit hex so every path stays ASCII; this document is\nwhat maps the hex back to the ezhuthu it stands for.",
+      "description": "One published NDJSON file, and what it holds.\n\nAddressed by ``wordClass`` then ``firstEzhuthu`` - the word's opening letter\nas the lowercase 4-digit hex of each of its code points. Both keys are\nimmutable per word, so a refresh INSERTS into a file and never reshuffles\none; only a changed ``wordClass`` moves a row, and that is a reviewable\nsemantic event. Hex keeps every path ASCII; ``ezhuthuIndex`` on the meta\ndocument is what maps it back to the letter.",
       "properties": {
         "bytes": {
           "minimum": 0,
@@ -349,44 +288,9 @@
           "type": "integer"
         },
         "firstEzhuthu": {
-          "anyOf": [
-            {
-              "maxLength": 1,
-              "minLength": 1,
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Firstezhuthu"
-        },
-        "firstEzhuthuHex": {
-          "anyOf": [
-            {
-              "pattern": "^[0-9a-f]{4}$",
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Firstezhuthuhex"
-        },
-        "length": {
-          "anyOf": [
-            {
-              "minimum": 1,
-              "type": "integer"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Length"
+          "pattern": "^(?:[0-9a-f]{4}){1,2}$",
+          "title": "Firstezhuthu",
+          "type": "string"
         },
         "path": {
           "pattern": "^[A-Za-z0-9._-]+(/[A-Za-z0-9._+-]+)*$",
@@ -423,6 +327,7 @@
       "required": [
         "path",
         "wordClass",
+        "firstEzhuthu",
         "rows",
         "bytes",
         "sha256"
@@ -432,16 +337,16 @@
     },
     "LexiconProvenance": {
       "additionalProperties": false,
-      "description": "One source's contribution, and the exact bytes it contributed from.\n\n``sha256`` + ``bytes`` identify the input, so a later run can prove it read\nthe same file and CI can compare the declared set against the registry with\nno network and no raw bytes on disk.",
+      "description": "One source's contribution, and the exact bytes it contributed from.\n\n``sha256`` + ``bytes`` identify the input, so a later run can prove it read\nthe same file and CI can compare the declared set against the registry with\nno network and no raw bytes on disk.\n\n``observations`` and ``facts`` are what the STORE can prove about the\nsource - the surfaces it contributed and the typed assertions it made. They\nare named for what they are: no stage retains a raw input row count once the\nextract is written, so a field called ``rowsIn`` could only ever have been\nfilled with one of these two wearing the wrong name.",
       "properties": {
         "bytes": {
           "minimum": 0,
           "title": "Bytes",
           "type": "integer"
         },
-        "factsOut": {
+        "facts": {
           "minimum": 0,
-          "title": "Factsout",
+          "title": "Facts",
           "type": "integer"
         },
         "id": {
@@ -454,6 +359,11 @@
           "title": "Name",
           "type": "string"
         },
+        "observations": {
+          "minimum": 0,
+          "title": "Observations",
+          "type": "integer"
+        },
         "origin": {
           "minLength": 1,
           "title": "Origin",
@@ -463,11 +373,6 @@
           "pattern": "^[A-Za-z0-9._-]+(/[A-Za-z0-9._+-]+)*$",
           "title": "Path",
           "type": "string"
-        },
-        "rowsIn": {
-          "minimum": 0,
-          "title": "Rowsin",
-          "type": "integer"
         },
         "sha256": {
           "pattern": "^[0-9a-f]{64}$",
@@ -482,8 +387,8 @@
         "path",
         "bytes",
         "sha256",
-        "rowsIn",
-        "factsOut"
+        "observations",
+        "facts"
       ],
       "title": "LexiconProvenance",
       "type": "object"
@@ -492,7 +397,7 @@
   "$id": "lexicon.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
-  "description": "The lexicon META document (``datasets/lexicon/lexicon.meta.json``).\n\nIt carries no ``words`` list. The lexicon is streamed NDJSON with no\nin-memory row list, so the reconciliation reads ``counters.rows`` and the\npartition table's declared counts rather than ``len(words)`` - a document\nmodel holding every row could not be constructed at this size and would\nquietly re-introduce the materialization the publisher exists to avoid.",
+  "description": "The lexicon META document (``datasets/lexicon/lexicon.meta.json``).\n\nIt carries no ``words`` list. The lexicon is streamed NDJSON with no\nin-memory row list, so the reconciliation reads ``counters.published.rows``\nand the partition table's declared counts rather than ``len(words)`` - a\ndocument model holding every row could not be constructed at this size and\nwould quietly re-introduce the materialization the publisher exists to\navoid.",
   "properties": {
     "changelog": {
       "items": {
@@ -504,6 +409,22 @@
     },
     "counters": {
       "$ref": "#/$defs/LexiconCounters"
+    },
+    "ezhuthuIndex": {
+      "additionalProperties": {
+        "$ref": "#/$defs/EzhuthuIndexEntry"
+      },
+      "minProperties": 1,
+      "title": "Ezhuthuindex",
+      "type": "object"
+    },
+    "partitionKeys": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Partitionkeys",
+      "type": "array"
     },
     "partitions": {
       "items": {
@@ -541,9 +462,11 @@
   "required": [
     "version",
     "changelog",
+    "partitionKeys",
     "provenance",
     "counters",
-    "partitions"
+    "partitions",
+    "ezhuthuIndex"
   ],
   "title": "Lexicon",
   "type": "object"

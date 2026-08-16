@@ -1,0 +1,957 @@
+{"attestations": 2, "frequency": 641, "length": 2, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "gonococcus", "word": "மேக", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேகங்களினூடே உண்டாம் ஒலி", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "மேககர்ச்சனை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கார்காலம் ( )", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேககாலம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேகரோகங்களைப் போக்குதற்குரிய ஒருவகைக் கூட்டுமருந்து ( 1214.)", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "மேககுலாந்தகன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இரத்தங்கெடுதலினாலுண்டாம் கட்டிவகை", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "gumma", "word": "மேகக்கட்டி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேகநீராலுண்டாகும் கரப்பான்வகை", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகக்கரப்பன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "<!---# குறியீட்டிற்கு அடுத்து, தமிழில் விளக்கம் எழுதி", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகக்கலம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஆட்டுரோசனை", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["ஆட்டுரோசனை"], "tier1Attestations": 2, "word": "மேகக்கல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சீர்பந்தபாஷாணம் ( )", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகக்காக்கையோன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வெட்டைநோய் ( )", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகக்காங்கை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "பறங்கிப்புண்", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["பறங்கிப்புண்"], "tier1Attestations": 2, "word": "மேகக்கிரந்தி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கிரகணி ஆறனுள் ஒன்று ( )", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகக்கிராணி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓர் இராகம்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகக்குறிஞ்சி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 7, "length": 7, "pos": ["adverb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "in nubibus", "word": "மேகங்களிடையே", "wordClass": "headword"}
+{"attestations": 2, "frequency": 100, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "carry", "word": "மேகங்களின்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 6, "length": 9, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேகங்களிலிருந்து", "wordClass": "headword"}
+{"attestations": 2, "frequency": 66, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "rent(2)", "word": "மேகங்களில்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 30, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேகங்களுக்கு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 107, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேகங்களை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 637, "length": 5, "spokenRatio": 0.00471, "tier1Attestations": 1, "translationEn": "rack", "word": "மேகங்கள்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேகநோய் படருகை", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகசஞ்சாரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கரிய மனோசிலை ( )", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகசடை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "முத்து ( )", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகசம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கர்ப்பூரம் ( )", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகசாரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேகத்தொகுதி", "frequency": 2, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மேகத்தொகுதி"], "tier1Attestations": 2, "word": "மேகசாலம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மலைச்சுரம்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["மலைச்சுரம்"], "tier1Attestations": 2, "word": "மேகசுரம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மேகநோயால் உடற்பொருத்தில் உண்டாம் விறைப்பு", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகசூலை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ராஜாவர்த்தம் ( )", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகசோரணம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "துர்நீரால் தோன்றுஞ் சிரங்குவகை", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகச்சிரங்கு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மாக்கல்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["சுக்கான்கல்", "மாக்கல்"], "tier1Attestations": 2, "word": "மேகச்சிலை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இந்திரவில்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["இந்திரவில்"], "tier1Attestations": 2, "word": "மேகதனு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மயிலிறகு ( )", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகதாரி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பார்வையை மங்கச்செய்யும் கண்ணோய்வகை ( )", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகதிமிரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மின்னல் ( )", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகதீபம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேகநோய்கொண்ட உடம்பு ( )", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகதேகம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 9, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேகத்திட்டுக்கள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 5, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேகத்தினால்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பூநாகம் ( )", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகத்தின்விந்து", "wordClass": "headword"}
+{"attestations": 2, "frequency": 92, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேகத்திரளில்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மிகச் சிறிய நீர்த்துளிகள் செறிந்தும், வெண்மையாகவோ, சாம்பல் நிறமான மேகத்தொகுதியை மேகத்திரள் என்கிறோம்", "frequency": 13, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேகத்திரள்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 9, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேகத்திரள்கள்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 6, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேகத்திரை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 11, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேகத்துக்கு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஆகாயம் ( )", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகத்துவாரம்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 129, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேகத்தை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 12, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேகத்தையும்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "குளிகைமருந்துவகை ( iii, 189.)", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகநாதக்குளிகை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "தேவராஜனையும் இந்திரனையும் தோற்கடித்த ராவணனின் புத்திரன்", "frequency": 104, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["இந்திரஜித்", "கடற்கோ", "கடற்தெய்வம்", "கடலிறைவன்", "சமுத்திரராசன்", "சலபதி", "நதிபதி", "நீர்க்கடவுள்", "பாசன்", "பாசபாணி", "புனல்வேந்தன்", "புற்சன்னியன்", "மகரவாகனன்", "முகில்நாயகன்", "வருணன்"], "tier1Attestations": 1, "translationEn": "Varuna", "word": "மேகநாதன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இந்திரன்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["இந்திரன்"], "tier1Attestations": 2, "word": "மேகநாயகன்", "wordClass": "headword"}
+{"attestations": 4, "frequency": 6, "length": 4, "pos": ["adjective", "noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "clap", "word": "மேகநோய்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஆண்குறி", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["ஆண்குறி"], "tier1Attestations": 2, "word": "மேகனம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேகநோயாற் படரும் புண்வகை", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகபடலம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "காண்க...மேகமண்டலம்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகபதம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "முகிற்கூட்டம்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["முகிற்கூட்டம்"], "tier1Attestations": 2, "word": "மேகபந்தி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நாகப்பச்சை ( )", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகப்பச்சை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோல்மேலுண்டாம் சொறிவகை", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகப்படை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒருவகை மேகவியாதி", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகப்பற்று", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பறங்கிப்புண்வகை ( )", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகப்புடை", "wordClass": "headword"}
+{"attestations": 7, "definitionTa": "பறங்கிப்புண் ( )", "frequency": 9, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கிரந்திப்புண்"], "tier1Attestations": 3, "translationEn": "syphilis", "word": "மேகப்புண்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மேகநோயா லுண்டாம் கட்டிவகை", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகப்புற்று", "wordClass": "headword"}
+{"attestations": 7, "definitionTa": "வானம்பாடி", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["ஆகாசப்பக்ஷி", "ஆகாசப்பட்சி", "கம்புள்", "கலிங்கம்", "காருணி", "சாரங்கம்", "வானம்பாடி"], "tier1Attestations": 3, "translationEn": "skylark", "word": "மேகப்புள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "tier1Attestations": 1, "word": "மேகமண்டலங்களை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 10, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேகமண்டலத்துக்கு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மேகம் சஞ்சரிக்கும் ஆகாயவெளி", "frequency": 3, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "noahs ark", "word": "மேகமண்டலம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மந்தாரச்சிலை ( )", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகமந்தாரம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 5, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "uncloudy", "word": "மேகமற்ற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "cloud-topped", "word": "மேகமளாவிய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 8, "length": 6, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "cloudless", "word": "மேகமில்லாத", "wordClass": "headword"}
+{"attestations": 1, "frequency": 37, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேகமும்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "வானத்தில் மிதக்கும் நீராவித் திவலைகளின் திரள் கூட்டம் கூட்டமாக காணப்படுவது", "frequency": 26, "length": 7, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "cloudy", "word": "மேகமூட்டமான", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மேகங்கள் பரந்து சூழ்ந்து மூடியிருத்தல்", "frequency": 183, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "cloudiness", "word": "மேகமூட்டம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இந்திரன் ( 60.)", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகமூர்ந்தோன்", "wordClass": "headword"}
+{"attestations": 9, "categories": ["space"], "definitionTa": "வளியில் தென்படும் நீர்நிறை மண்டலம் (பன்மை மேகங்கள்)", "frequency": 106916, "length": 3, "pos": ["noun"], "spokenRatio": 9e-06, "synonymsTa": ["ஆயம்", "எழிலி", "கார்", "கொண்டல்", "கொண்மூ", "மங்குல்", "மஞ்சு.", "முகில்"], "tier1Attestations": 5, "translationEn": "Cloud", "word": "மேகம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "புகை( )", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகயோனி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓர் இராகம்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகரஞ்சி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "குறிஞ்சியாழ்த்திறத் தொன்று ( )", "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகராகக்குறிஞ்சி", "wordClass": "headword"}
+{"attestations": 7, "definitionTa": "பாலையாழ்த்திறவகை ( )", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 3, "word": "மேகராகம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேகரோகத்தால் வருந்துபவ-ன்-ள்", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகரோகி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "செல்லும் வழிகளில் நீர்தெளிப்போர்", "frequency": 30, "length": 3, "pos": ["noun"], "spokenRatio": 0.3, "tier1Attestations": 2, "word": "மேகர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இடை ( )", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகலாபதம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "இந்தியாவின் ஒரு மாநிலம்", "frequency": 31, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேகலாயா", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பூமத்தியரேகை", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["பூமத்தியரேகை"], "tier1Attestations": 2, "word": "மேகலாரேகை", "wordClass": "headword"}
+{"attestations": 9, "categories": ["dresses-and-accessories"], "definitionTa": "இடை ஆபரணம்", "frequency": 120, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அரைஞாண்", "ஆடை", "புடைவை"], "tier1Attestations": 5, "translationEn": "belt", "word": "மேகலை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேகவண்ணப்பூவுள்ள செடிவகை ( )", "frequency": 0, "length": 10, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகவண்ணக்குறிஞ்சி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மேகம்போன்ற கருநிறமுள்ளவன் திருமால்", "frequency": 17, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேகவண்ணன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பலவர்ணங்களைக் காட்டும் பட்டுத்துணிவகை", "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகவன்னப்பட்டு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அவுரி ( )", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகவருணை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பலபடியான நிறம் மாறும் புடைவைவகை", "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகவர்ணப்புடைவை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கருநீலம்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["கருநீலம்"], "tier1Attestations": 2, "word": "மேகவர்ணம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இந்திரன்", "frequency": 2, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["இந்திரன்", "கருங்கல்", "சிவன்", "சிவபிரான்"], "tier1Attestations": 2, "translationEn": "Indra", "word": "மேகவாகனன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேகநோய்வகை", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["மேகநோய்வகை"], "tier1Attestations": 2, "word": "மேகவாதசூலை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வாதநோய்வகை", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["வாதநோய்வகை"], "tier1Attestations": 2, "word": "மேகவாதம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தயிர் ( )", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகவாய்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "காதலரிடம் மேகத்தைத் தூதுவிடுவதாகக்கூறும் பிரபந்தவகை", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகவிடுதூது", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பிளவைநோய் ( )", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகவித்திரதி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மழைமேகம் கலைகை ( 2833, உரை.)", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகவிநாசம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "துர்நீரால் உண்டாம் நோய்வகை", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகவியாதி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பித்து ( )", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகவிருளி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மயிலிறகினடி ( )", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகாகுந்தம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மின்னல் ( )", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகாக்கினி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நவநாயகருள் குறித்த வருஷத்து மழைக்குரிய கிரகம் ( )", "frequency": 3, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேகாதிபதி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மழைக்காலிருட்டு", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["மழைக்காலிருட்டு"], "tier1Attestations": 2, "word": "மேகாந்தகாரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மயில்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["மயில்"], "tier1Attestations": 2, "word": "மேகானந்தி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இராகவகை ( ராக. பக். 103.)", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகாரக்குறிஞ்சி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மயில்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["மயில்"], "tier1Attestations": 2, "word": "மேகாரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேகநோய் தீர்க்கும் தைலம் ( தைல.)", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "மேகாரித்தைலம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இறைச்சி ( )", "frequency": 1, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேகை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஆப்பறைதல்", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["ஆப்பறைதல்", "வஞ்சித்தல்"], "tier1Attestations": 2, "word": "மேக்கடித்தல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மேலிடம்", "frequency": 24, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மேலிடம்"], "tier1Attestations": 2, "word": "மேக்கு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கடலில் ஓடும் கட்டுமரவகை", "frequency": 30, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேங்கா", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நாட்டில் களவு முதலியன நேராமற் பாதுகாப்பவன்", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "மேங்காவற்காரன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "விரிந்த மயிற்றோகை ( )", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேசகம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேளகர்த்தாக்களு ளொன்று ( 47.)", "frequency": 18, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேசகல்யாணி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இராகவகை ( ராக. பக். 104.)", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேசபௌளி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நோய்", "frequency": 18, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["நோய்"], "tier1Attestations": 2, "word": "மேசம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உலகைக் காப்பவர்", "frequency": 51, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "Messiah", "word": "மேசியா", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கடலை மாவினால் உருவான பர்பி", "frequency": 1, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேசு", "wordClass": "headword"}
+{"attestations": 6, "categories": ["hall"], "definitionTa": "எழுதுகருவி முதலிய பொருள்களை வைப்பதற்குரியதும் கால்களால் தாங்கப்படும் பலகையுடைதுமான சாமான் வகை", "frequency": 1153, "length": 2, "pos": ["noun"], "spokenRatio": 0.006071, "tier1Attestations": 4, "translationEn": "Table", "word": "மேசை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "நான்கு காலக்ளின் மேல் பொருள்களை வைப்பதற்கும், எழுதுதல் போன்ற செயல்கள் செய்வதற்கும், அதன் அடியில் பெட்டி போன்ற பகுதி.", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "drawer", "word": "மேசைஅறை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கத்திவகை", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["கத்திவகை"], "tier1Attestations": 2, "word": "மேசைக்கத்தி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "15 மி.லி அளவு கொண்ட அளவு கரண்டி", "frequency": 97, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "tablespoon", "word": "மேசைக்கரண்டி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பரவர்வகையினர் ( 123.)", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேசைக்காரர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "table", "word": "மேசைக்குரிய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "tablature", "word": "மேசைச்சித்திரம்", "wordClass": "headword"}
+{"attestations": 3, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "desktop", "word": "மேசைத்தளம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "diaper", "word": "மேசைத்துகில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "drugget", "word": "மேசைத்துணி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "table", "word": "மேசைபோன்ற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "table-talk", "word": "மேசையுரையாடல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேசையின்மேல் விரிக்குந் துணி", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "overlay", "word": "மேசைவிரிப்பு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேஷராசிக்கு உடையவன் செவ்வாய் ( 98.)", "frequency": 39, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேடன்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஆடு", "frequency": 2453, "length": 3, "pos": ["noun"], "spokenRatio": 0.002446, "synonymsTa": ["ஆடு", "கவசம்", "சித்திரை", "மேழம்"], "tier1Attestations": 2, "translationEn": "sheep", "word": "மேடம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "சோதிடத்தில் ஓர் இராசி", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 3, "translationEn": "goat", "word": "மேடராசி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "low", "word": "மேடல்லாத", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இடபம் மிதுனம் கடகம் சிங்கம் ஆகிய இராசிகள் சேர்ந்த சூரியவீதியின் பகுதி ( 11, 2, உரை.)", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேடவீதி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அக்கினிதேவன்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["அக்கினிதேவன்"], "tier1Attestations": 2, "word": "மேடாதிபன்", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "அடுத்து இருக்கும் பரப்பை விட சற்று உயரமான பகுதி", "frequency": 225, "length": 3, "pos": ["adjective", "noun"], "spokenRatio": 0.0, "synonymsTa": ["திட்டான"], "tier1Attestations": 3, "translationEn": "altitudinous", "word": "மேடான", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சூரியவீதியை அயனாரம்பங்களில் இருபகுதியாக்கும் அயனமண்டலம்", "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 2, "word": "மேடாயனமண்டலம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நெசவுகருவியின் உறுப்புவகை", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேடிக்கம்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 16, "length": 4, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "prominent", "word": "மேடிட்ட", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வளையலுப்பு ( )", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேடியுபபு", "wordClass": "headword"}
+{"attestations": 9, "definitionTa": "இச்சொல் தமிழிலக்கணப்படி, பல்பொருள் ஒரு மொழி ஆகும்", "frequency": 1124, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["உயரம்", "சிறுதிடர்", "திடல்", "திட்டு", "பெருமை", "வயிறு"], "tier1Attestations": 5, "translationEn": "ascent", "word": "மேடு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேட்டுநிலத்தை வெட்டிச் சமமாக்குதல் ( vii, 277.)", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "மேடுகல்லுதல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 77, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "remblai", "word": "மேடுகளை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "up", "word": "மேடுநோக்கி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "swell", "word": "மேடுபடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 11, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "smooth", "word": "மேடுபள்ளங்களகற்று", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "smooth", "word": "மேடுபள்ளமப்ற்றுத", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 8, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "smooth", "word": "மேடுபள்ளமற்ற", "wordClass": "headword"}
+{"attestations": 2, "frequency": 5, "length": 7, "pos": ["adverb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "unevenly", "word": "மேடுபள்ளமாக", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "ஒத்த தன்மை இல்லாத நிலை", "frequency": 7, "length": 7, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["ஒழுங்கற்ற", "கரடுமுரடான", "சமதளமில்லாத", "சமமட்டமில்லாத", "சமமற்ற"], "tier1Attestations": 2, "translationEn": "broken", "word": "மேடுபள்ளமான", "wordClass": "headword"}
+{"attestations": 2, "frequency": 97, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேடும்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "சுவர் ( )", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["சுவர்"], "tier1Attestations": 3, "word": "மேடூகம்", "wordClass": "headword"}
+{"attestations": 9, "definitionTa": ", = தளமுயர்ந்த இடப்பகுதி", "frequency": 4582, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["செய்குன்று", "மாடி"], "tier1Attestations": 5, "translationEn": "Stage", "word": "மேடை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 33, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "ship-rigged", "word": "மேடைகளும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 257, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேடைகள்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 1079, "length": 4, "spokenRatio": 0.000927, "tier1Attestations": 1, "translationEn": "entrance", "word": "மேடைக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "spot", "word": "மேடைக்குறியிடம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "scaffold", "word": "மேடைக்கூண்டு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அடிச்சுவர்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["அடிச்சுவர்"], "tier1Attestations": 2, "word": "மேடைச்சுவர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "platform", "word": "மேடைத்தளம்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "rhetorician", "word": "மேடைப்பேச்சறளர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 22, "length": 8, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "tub-thumper", "word": "மேடைப்பேச்சாளர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 173, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "oration", "word": "மேடைப்பேச்சு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "platform", "word": "மேடைப்பேச்சுத்துறை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "platform", "word": "மேடையமைத்துக்கொடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "dais", "word": "மேடையரங்கம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 471, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "balk-line", "word": "மேடையின்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நாடக மேடையின் திரை", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "theater curtain", "word": "மேடையின்பின்திரை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மேடையின்பின்பக்கத்தை குறிப்பது.", "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "wing", "word": "மேடையின்பின்புறம்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 121, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "cash-railway", "word": "மேடையிலிருந்து", "wordClass": "headword"}
+{"attestations": 2, "frequency": 82, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேடையிலே", "wordClass": "headword"}
+{"attestations": 2, "frequency": 4921, "length": 4, "spokenRatio": 0.001016, "tier1Attestations": 1, "translationEn": "apron", "word": "மேடையில்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 97, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேடையும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "talk", "word": "மேடையுரை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "நாடகம், நாட்டியம் முதலியவற்றினை நடத்துவதற்காக மேடையில் ஏறும் செயல்", "frequency": 1, "length": 4, "pos": ["verb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "stage", "word": "மேடையேறு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 398, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "exeunt", "word": "மேடையை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கடன்சீட்டைப் பிறனுக்கு மாற்றுகை", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேடோவர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "புஞ்சைச் சாகுபடிக்குரிய மேட்டுப்பாங்கான நிலம்", "frequency": 1, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேட்டாங்காடு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உதவி வேலைக்காரன்", "frequency": 16, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேட்டி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 110, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "borrow", "word": "மேட்டின்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 4, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேட்டின்மீது", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "அகந்தை", "frequency": 55, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அகந்தை", "தலைமை", "மேன்மை"], "tier1Attestations": 5, "translationEn": "haughtiness", "word": "மேட்டிமை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மற்றவர்களை விட தாம் உயர்ந்தவர்கள், அப்பாற்பட்டவர்கள் என்ற கர்வம்", "frequency": 35, "length": 8, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அகந்தை"], "tier1Attestations": 2, "translationEn": "smug", "word": "மேட்டிமைத்தனம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 10, "length": 6, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "aristocratic, aristocratical", "word": "மேட்டிமையான", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஆண்குறி", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["ஆண்குறி"], "tier1Attestations": 2, "word": "மேட்டிரம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 27, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேட்டிலிருந்து", "wordClass": "headword"}
+{"attestations": 1, "frequency": 39, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேட்டிலும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "up", "word": "மேட்டிலுள்ள", "wordClass": "headword"}
+{"attestations": 2, "frequency": 468, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "high", "word": "மேட்டில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 357, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "bluff", "word": "மேட்டு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 11, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேட்டுக்கரையிலிருந்து", "wordClass": "headword"}
+{"attestations": 1, "frequency": 39, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேட்டுக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "eminence", "word": "மேட்டுத்திடல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தொட்டியர் தலைவன் ( vii, 185.)", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "மேட்டுநாயக்கன்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "uplander", "word": "மேட்டுநிலத்தார்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "நதி, ஏரி முதலியவை அதிகரிப்பதினால் நீரில் மூழ்காத ஒரு பூமி", "frequency": 24, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மேடான பகுதி"], "tier1Attestations": 1, "translationEn": "highland", "word": "மேட்டுப்பகுதி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நீர் ஏறிப்பாயவேண்டியதான மேட்டுநிலம்", "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 2, "word": "மேட்டுப்பாய்ச்சல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேட்டுநிலம் ( iii, 288.)", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேட்டேற்றம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 119, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேட்டை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஆடு ( )", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேண்டம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "paramount", "word": "மேதகவான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "paramount", "word": "மேதகவாளர்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மேன்மை", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["மதிப்பு", "மேன்மை"], "tier1Attestations": 3, "translationEn": "genius", "word": "மேதகவு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "especial", "word": "மேதகவுடைய", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "prerogative", "word": "மேதகவுரிமை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேன்மையாதல்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["மேன்மையாதல்"], "tier1Attestations": 2, "word": "மேதகுதல்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "மேன்மை", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["மேன்மை"], "tier1Attestations": 3, "translationEn": "Dom", "word": "மேதகை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 2, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "excellency", "word": "மேதகைமை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 5, "length": 4, "pos": ["adjective", "noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "Olympain", "word": "மேதக்க", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சாக்கியமுனிவருக்கு முன்றோன்றிய புத்தர்களுள் ஒருவர் ( 30, 14, கீழ்க்குறிப்பு.)", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேதங்கரர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கொழுப்பு", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["கொழுப்பு"], "tier1Attestations": 2, "word": "மேதசு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கற்பரிபாஷாணம் ( )", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேதச்சி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "யாகம் ( )", "frequency": 8, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["யாகம்"], "tier1Attestations": 3, "word": "மேதம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மலை", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["மலை"], "tier1Attestations": 2, "translationEn": "mountain", "word": "மேதரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மூங்கில்வேலைசெய்து வாழுஞ்சாதியார்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேதரவர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தட்சிணாமூர்த்தியை உபாசிக்கும் மந்திரங்களு ளொன்று", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேதாமனு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேதரவர் ( )", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேதாவர்", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "புத்திமான்; பெரிய அறிவாளி; அறிவுஜீவி; மேதை; மேதன்", "frequency": 108, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மேதை"], "tier1Attestations": 4, "translationEn": "person of supreme intelligence", "word": "மேதாவி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 7, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேதாவிகளுக்கும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 94, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேதாவிகள்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மேதாவியான,புத்திசாலியான", "frequency": 9, "length": 5, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["புத்திசாலியான"], "tier1Attestations": 1, "translationEn": "quick-witted", "word": "மேதாவியான", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மிக்க இயற்கையறிவு", "frequency": 5, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேதாவிலாசம்", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "எருமை", "frequency": 40, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["எருமை", "நெற்களம்", "வெந்தயம்"], "tier1Attestations": 2, "translationEn": "buffalo", "word": "மேதி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வைப்புப்பாஷாணவகை ( )", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "மேதிக்கவுணன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "துர்க்கை", "frequency": 0, "length": 11, "pos": ["noun"], "synonymsTa": ["துர்க்கை"], "tier1Attestations": 2, "word": "மேதிச்சென்னிமிதித்தோள்", "wordClass": "headword"}
+{"attestations": 7, "definitionTa": "பூமி", "frequency": 27, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அகிலம்", "அண்டம்", "அவனி", "உலகம்", "உலகு", "காசினி", "சகம்.", "ஜகம்", "ஞாலம்", "தரணி", "புவனம்", "பூமி", "லோகம்", "வையகம்", "வையம்"], "tier1Attestations": 3, "translationEn": "earth", "word": "மேதினி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பூமியைச் சிருட்டித்தவன் பிரமன்", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "மேதினிபடைத்தோன்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "உயிரினங்கள் வாழும் இடம். 22222", "frequency": 0, "length": 7, "pos": ["adjective"], "synonymsTa": ["அகிலமயமான", "அண்டமயமான", "அவணிமயமான", "உலகமயமான", "காசினிமயமான", "சகமயமான", "ஜகமயமான", "ஞாலமயமான", "தரணிமயமான", "பிரபஞ்சமயமான", "புவனமயமான", "பூலோகமயமான", "லோகமயமான", "வையகமயமான", "வையமயமான"], "tier1Attestations": 1, "translationEn": "cosmic", "word": "மேதினிமயமான", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "எருமை யூர்பவன் இயமன்", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேதியான்", "wordClass": "headword"}
+{"attestations": 8, "definitionTa": "வித்வான்,பேரறிஞர்,சான்றோர்", "frequency": 1547, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அறிவாளி", "கொழுப்பு", "சான்றோர்", "பண்டிதர்", "புதன்", "பேரறிஞர்", "வித்வான்"], "tier1Attestations": 4, "translationEn": "genius", "word": "மேதை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கற்றறிந்து புலமை பெற்றவர்கள்", "frequency": 570, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "geniuses, npl.", "word": "மேதைகள்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "புலவர் ( )", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேதையர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "எலும்பு (ம. வெ.)", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேதோசம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒரு வகை சாதம்", "frequency": 12, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேத்தி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "காயவைத்து மசாலாவிற்கு பயன்படுத்தப்படும் ஒரு செடியின் நறுமணமுள்ள விதை", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["சீரகம்", "ஜீரகம்", "பிலசம்"], "tier1Attestations": 1, "translationEn": "cumin", "word": "மேத்தியம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வசம்பு", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["வசம்பு"], "tier1Attestations": 2, "translationEn": "sweet flag", "word": "மேத்தியாசம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஆட்டுக்கடா", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["ஆட்டுக்கடா"], "tier1Attestations": 2, "translationEn": "ram", "word": "மேத்திரம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "இதில் வெந்தயக்கீரையில் இருக்கும் நிலக்கடலைப் போலுள்ள ஒரு தானியம்", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "word": "மேத்தூரி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேன்மை", "frequency": 2, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["தலைவன்", "மேன்மை"], "tier1Attestations": 2, "word": "மேந்தலை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உயர்ந்த இடம் ( )", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேந்தானம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வெந்தயம், மேதி", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["மேதி", "வெந்தயம்"], "tier1Attestations": 2, "translationEn": "fenugreek", "word": "மேந்திகை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேம்பட்டு விளங்குதல்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "மேந்தோன்றுதல்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "மீந்தோல்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["மீந்தோல்"], "tier1Attestations": 3, "translationEn": "epidermis", "word": "மேந்தோல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "ecdysis", "word": "மேந்தோல்கழிப்பு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஏழாம்வேற்றுமை", "frequency": 18, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஏழாம்வேற்றுமை"], "tier1Attestations": 2, "word": "மேன", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒரு அப்சரா", "frequency": 1312, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மேனகை", "மைனா"], "tier1Attestations": 1, "word": "மேனகா", "wordClass": "headword"}
+{"attestations": 7, "definitionTa": "தேவலோகத்து மகளிரு ளொருத்தி", "frequency": 123, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மேனகா"], "tier1Attestations": 3, "word": "மேனகை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேனகையினால்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 7, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேனகையும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேனகையோ", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வெங்காரம் ( )", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேனசம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அதிகப்படியாகவுள்ள நீர்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேனடைநீர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "காண்க: மேலத்து", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேனத்து", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அத்தை அல்லது அம்மான் குடும்பத்தாரோடு ஒருவனுக்கு உள்ள உறவு முறைமை", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேனரிக்கம்", "wordClass": "headword"}
+{"attestations": 2, "categories": ["trees"], "frequency": 38, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "sedan", "word": "மேனா", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மனப்பூர்வமின்றி வெளிக்குப் பேசுதல்", "frequency": 0, "length": 11, "pos": ["noun"], "tier1Attestations": 2, "word": "மேனாக்காய்ச்சொல்லுதல்", "wordClass": "headword"}
+{"attestations": 4, "frequency": 3, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["சுவர்க்கம்", "பீடபூமி", "பொன்னாங்கண்ணி", "மேற்சீமை", "மைசூர்"], "tier1Attestations": 1, "word": "மேனாடு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 10, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "westerner", "word": "மேனாட்டவர்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "தேவர்", "frequency": 6, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["தேவர்"], "tier1Attestations": 2, "word": "மேனாட்டார்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பெருமிதங் கொள்ளுதல்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேனாணித்தல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பெருமிதம்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["பெருமிதம்"], "tier1Attestations": 2, "word": "மேனாணிப்பு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பூனை", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["பூனை", "மயில்", "வெள்ளாடு"], "tier1Attestations": 2, "word": "மேனாதம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேனையின் கணவன் இமவான் ( )", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேனாதவம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மூடுபல்லக்கு", "frequency": 0, "length": 8, "pos": ["noun"], "synonymsTa": ["மூடுபல்லக்கு"], "tier1Attestations": 2, "word": "மேனாப்பல்லக்கு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 3, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "coquette", "word": "மேனாமினுக்கி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அவமதிச்சொல்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["அவமதிச்சொல்"], "tier1Attestations": 2, "word": "மேனாம்பு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேனாள் - மேல் + நாள்", "frequency": 313, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["பின்னாள்", "முன்னாள்"], "tier1Attestations": 2, "translationEn": "former day", "word": "மேனாள்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பெட்டிவண்டி", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["பெட்டிவண்டி"], "tier1Attestations": 2, "word": "மேனாவண்டி", "wordClass": "headword"}
+{"attestations": 9, "definitionTa": "1. உடல்", "frequency": 812, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அங்கம்.", "அழகு", "உடம்பு", "உடல்", "கட்டை", "காயம்", "சரீரம்", "தேகம்", "நலம்", "நிறம்", "முண்டம்", "மெய்", "யாக்கை", "வடிவம்"], "tier1Attestations": 5, "translationEn": "crop", "word": "மேனி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தம் உருவத்தை மறைக்கவல்லவர் அசுரர் ( )", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "மேனிகரப்போர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அழகு குறைதல்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["உருவங்கெடுதல்", "கலக்கமுறுதல்", "சீர்குலைதல்"], "tier1Attestations": 2, "word": "மேனிகுலைதல்", "wordClass": "headword"}
+{"attestations": 3, "frequency": 152, "length": 4, "pos": ["adjective", "noun"], "spokenRatio": 0.0, "synonymsTa": ["படி", "மேனியாக", "வண்ணம்"], "tier1Attestations": 2, "word": "மேனிக்கு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "சம்பாநெல் வகை ( )", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேனிச்சம்பா", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "பழைய வரிவகை ( . Tr. 89.)", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேனிப்பொன்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "prettiness", "word": "மேனிமினுககு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "எப்பொழுதும் அலங்காரம் செய்துகொண்டு திரிபவ-ன்-ள்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேனிமினுக்கி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 27, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேனியனே", "wordClass": "headword"}
+{"attestations": 2, "frequency": 132, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேனியன்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "ablugion", "word": "மேனியலம்புதல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 225, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "Addisions disease", "word": "மேனியில்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 191, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேனியும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 8, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேனியெல்லாம்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 97, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேனியை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தேவர் ( 63.)", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேனிலர்", "wordClass": "headword"}
+{"attestations": 7, "categories": ["house"], "definitionTa": "முன்னர் உள்ளது", "frequency": 69, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 5, "translationEn": "betterness", "word": "மேனிலை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கோபுர முதலியவற்றின் மேல்மாடி ( 229.)", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "மேனிலைக்கட்டு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "superior", "word": "மேனிலைசார்ந்த", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "spiritualize", "word": "மேனிலைப்படுத்து", "wordClass": "headword"}
+{"attestations": 3, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "மேனிலைப்பாசனம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "sublime", "word": "மேனிலையார்ந்த", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["மழைநீர்", "மேற்றண்ணீர்"], "tier1Attestations": 1, "word": "மேனீர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இமவான் மனைவி", "frequency": 64, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேனை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பார்வதி ( 23.)", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேனைமகள்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேனோக்கிக் கிளம்புகை", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["செருக்கு", "பேரவா"], "tier1Attestations": 2, "word": "மேனோக்கம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேல் எழுதல்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["கருவங்கொண்டிருத்தல்", "பேரவாக்கொள்ளுதல்", "வாந்தியாதல்", "விருத்தியாதல்"], "tier1Attestations": 2, "word": "மேனோக்குதல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 2487, "length": 2, "spokenRatio": 0.004021, "tier1Attestations": 1, "translationEn": "deemster", "word": "மேன்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மஞ்சள் நிறத்தில் காணப்படும் ஒரு வகை கனிமம்", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "orpiment", "word": "மேன்சில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "Manx", "word": "மேன்தீவு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மூலபலம்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["மூலபலம்"], "tier1Attestations": 2, "word": "மேன்படை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "உருண்டை வடிவமான ஒரு முள் நிறைந்த மரம்", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "word": "மேன்பர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பிரதான குரு", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "மேன்பாட்டுக்குரு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun", "verb"], "tier1Attestations": 1, "translationEn": "exalt", "word": "மேன்மக்களாக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "gentle", "word": "மேன்மக்களுடைய", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "உயர்ந்தோர்", "frequency": 199, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["உயர்ந்தோர்"], "tier1Attestations": 3, "translationEn": "gentlefolk, gentlefolks, n, pl.", "word": "மேன்மக்கள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேன்மாட", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேன்மாடத்தின்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 10, "length": 10, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேன்மாடத்திலிருந்து", "wordClass": "headword"}
+{"attestations": 1, "frequency": 10, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேன்மாடத்தில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேன்மாடத்து", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேன்மாடத்துக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேன்மாடத்தை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "உபரிகை", "frequency": 10, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["உபரிகை"], "tier1Attestations": 2, "translationEn": "brattice", "word": "மேன்மாடம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "tier1Attestations": 1, "word": "மேன்மாடிக்கு", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "மேலே மூடுதற்குதவுவது", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 3, "word": "மேன்மூடி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "superimpose", "word": "மேன்மேலடுக்கு", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "பின்னும் பெருக மேன்மேலுங் குடைந்தாடி யாடுவோமே ( 5, 30)", "frequency": 571, "length": 5, "pos": ["adjective", "adverb", "noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "forward", "word": "மேன்மேலும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 61, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "assay-piece", "word": "மேன்மைக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 13, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேன்மைதான்", "wordClass": "headword"}
+{"attestations": 4, "frequency": 1, "length": 8, "pos": ["noun", "verb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "crown", "word": "மேன்மைப்படுத்து", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 10, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "glorifiication", "word": "மேன்மைப்படுத்துதல்", "wordClass": "headword"}
+{"attestations": 4, "frequency": 0, "length": 6, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "lowbrowed", "word": "மேன்மையற்ற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "greaten", "word": "மேன்மையாகு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "cultured", "word": "மேன்மையாக்கப்பட்ட", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "சிறப்பானத் தன்மை.", "frequency": 341, "length": 5, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["உயர்ந்த", "உயர்வான", "சிறந்த", "சிறப்பான", "தனிச்சிறபுள்ள", "நல்ல", "முக்கியமான", "மேலான", "விசேஷமான"], "tier1Attestations": 3, "translationEn": "advantageous", "word": "மேன்மையான", "wordClass": "headword"}
+{"attestations": 2, "frequency": 11, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேன்மையுடன்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "dignify", "word": "மேன்மையுடையதாக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 14, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேன்மையே", "wordClass": "headword"}
+{"attestations": 2, "frequency": 301, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேன்மையை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "distinguished", "word": "மேன்மைவாய்ந்த", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மரக்கலத்தின் முன்புறம் ( )", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 3, "word": "மேன்றலை", "wordClass": "headword"}
+{"attestations": 1, "categories": ["trees"], "frequency": 273, "length": 4, "spokenRatio": 0.003663, "tier1Attestations": 1, "word": "மேப்பிள்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஏமாற்றுதல்", "frequency": 0, "length": 8, "pos": ["noun"], "synonymsTa": ["ஏமாற்றுதல்"], "tier1Attestations": 2, "word": "மேமூட்டைபோடுதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வஞ்சகன்", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["வஞ்சகன்"], "tier1Attestations": 2, "word": "மேமூட்டையாசாமி", "wordClass": "headword"}
+{"attestations": 3, "frequency": 11, "length": 4, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["சிற", "முன்னேறு"], "tier1Attestations": 2, "translationEn": "bang", "word": "மேம்படு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "topping", "word": "மேம்படுகை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சிறத்தல்", "frequency": 10, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["சிறத்தல்"], "tier1Attestations": 2, "word": "மேம்படுதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 7, "length": 10, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "uncultivated", "word": "மேம்படுத்தப்படாத", "wordClass": "headword"}
+{"attestations": 8, "definitionTa": "இவ்வாறு வேலை செய்வதால் கொஞ்சம் அல்லது சிலவற்றை உயர்த்துவது", "frequency": 81, "length": 6, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["அதிகரி", "உயர்த்து"], "tier1Attestations": 4, "translationEn": "better", "word": "மேம்படுத்து", "wordClass": "headword"}
+{"attestations": 1, "frequency": 4, "length": 8, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "uplifting", "word": "மேம்படுத்துகிற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "salt", "word": "மேம்படுத்துங்கூறு", "wordClass": "headword"}
+{"attestations": 8, "definitionTa": "இருக்கும் நிலையைவிட உயர்வான அல்லது சிறப்பான நிலையை அடையச் செய்தல்", "frequency": 522, "length": 8, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["உயர்வடைதல்"], "tier1Attestations": 4, "translationEn": "uplifting", "word": "மேம்படுத்துதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "Promoters", "word": "மேம்படுத்துநர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "regenerator", "word": "மேம்படுத்துபவசர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 9, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "uplifter", "word": "மேம்படுத்துபவர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேம்பாடுற்றவன்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["மேம்பாடுற்றவன்"], "tier1Attestations": 2, "word": "மேம்படுநன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "முன்பை விட உயர்ந்த", "frequency": 1721, "length": 5, "pos": ["adjective", "noun"], "spokenRatio": 0.002324, "tier1Attestations": 2, "translationEn": "chief", "word": "மேம்பட்ட", "wordClass": "headword"}
+{"attestations": 1, "frequency": 76, "length": 7, "pos": ["adverb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "superiorly", "word": "மேம்பட்டதாக", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "ruling", "word": "மேம்பட்டதான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 120, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "queen", "word": "மேம்பட்டது", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "outstrip", "word": "மேம்பட்டிரு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "dominate", "word": "மேம்பட்டுநில்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "improver", "word": "மேம்பாடடைபவர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "improvable", "word": "மேம்பாடடையத்தக்க", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "இருக்கும் நிலையை விட மேலான, உயர்ந்த நிலையான செயல்.", "frequency": 19, "length": 5, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["முன்னேற்றமான", "வளர்ச்சியான"], "tier1Attestations": 1, "translationEn": "progressive", "word": "மேம்பாடான", "wordClass": "headword"}
+{"attestations": 10, "definitionTa": "மேன்மை; மேம்படுத்துதல்", "frequency": 2631, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அபிவிருத்தி", "கௌரவம்", "சிறப்பு", "தக்கமதிப்பு", "பெருக்கம்", "முன்னேற்றம்", "மேன்மை", "மேம்படுத்துதல்", "வளர்ச்சி", "வளர்ச்சிம்", "விருத்தி"], "tier1Attestations": 6, "translationEn": "advance", "word": "மேம்பாடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 6, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "shining", "word": "மேம்பாடுடைய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "magnate", "word": "மேம்பாடுடையவர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "edifying", "word": "மேம்பாடுறச்செய்கிற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "sublimation", "word": "மேம்பாடுறுவிப்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "homage", "word": "மேம்பாடேற்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "lift", "word": "மேம்பாட்டாதரவு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "mastery", "word": "மேம்பாட்டுநிலை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வேலைகளைக் கண்காணிக்கை", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேம்பார்வை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "viaduct", "word": "மேம்பாலப்பாதை", "wordClass": "headword"}
+{"attestations": 6, "categories": ["places"], "definitionTa": "சாலை, இருப்புப்பாதை முதலியவற்றின் மேலே போக்குவரத்துக்காகக் கட்டப்படும் பாலம்", "frequency": 2244, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 4, "translationEn": "Flyover", "word": "மேம்பாலம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அறுவடைக்குமுன் தானியவிளைவைப் புள்ளிமதிப்புச் செய்கை", "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 2, "word": "மேம்புள்ளிமதிப்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "ennoble", "word": "மேம்மையுறச்செய்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அளவிடற்குரியது", "frequency": 1, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அளவிடற்குரியது", "உவமேயம்"], "tier1Attestations": 2, "word": "மேயம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மேய்கை", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["மேய்கை"], "tier1Attestations": 3, "word": "மேயல்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "விலங்குகளை மேய்ப்பதற்காக விடுவது", "frequency": 0, "length": 4, "pos": ["noun", "verb"], "synonymsTa": ["மேய்க்கவிடு"], "tier1Attestations": 2, "translationEn": "run", "word": "மேயவிடு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உறைபவன்", "frequency": 17, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["உறைபவன்"], "tier1Attestations": 2, "word": "மேயான்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "மேய்க்கும் தலைவர்", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["வழிநடத்துபவர்"], "tier1Attestations": 1, "word": "மேயேகோ", "wordClass": "headword"}
+{"attestations": 9, "definitionTa": "சிறிது - சிறிதாக துண்டித்து சாப்பிடுவது", "frequency": 45, "length": 2, "pos": ["noun", "verb"], "spokenRatio": 0.0, "tier1Attestations": 5, "translationEn": "depasture", "word": "மேய்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இடையன் கோல்", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேய்கோல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "விலங்குகளை மேய்ப்பதற்காக விடுவது", "frequency": 0, "length": 6, "pos": ["verb"], "synonymsTa": ["மேயவிடு"], "tier1Attestations": 1, "translationEn": "run", "word": "மேய்க்கவிடு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஆடுமாடு முதலியன மேய்ப்பவன்", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேய்க்கி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கறையான்வகை", "frequency": 0, "length": 9, "pos": ["noun"], "synonymsTa": ["கறையான்வகை"], "tier1Attestations": 2, "word": "மேய்ச்சற்கறையான்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 6, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "forest", "word": "மேய்ச்சற்காடு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஆடுமாடுகள் மேயுமிடம்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "மேய்ச்சற்றரை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேய்ச்சற்றரை", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["மேய்ச்சற்றரை"], "tier1Attestations": 2, "word": "மேய்ச்சற்றலை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "depasture", "word": "மேய்ச்சலளி", "wordClass": "headword"}
+{"attestations": 10, "definitionTa": "மேய்கை", "frequency": 763, "length": 5, "pos": ["noun"], "spokenRatio": 0.002621, "synonymsTa": ["கேடுற்றது", "தீனி", "மேய்கை", "மேய்ச்சற்றரை", "மேய்த்தல்"], "tier1Attestations": 6, "translationEn": "feed", "word": "மேய்ச்சல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "புல்பூண்டு உள்ள இடத்தில் கால்நடைகளை மேய்ப்பதற்காக விடப்படும் நிலம்.", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "alp", "word": "மேய்ச்சல்நிலம்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "விலங்கு முதலியன உணவுகொள்ளுதல்", "frequency": 16, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "grazing", "word": "மேய்தல்", "wordClass": "headword"}
+{"attestations": 8, "definitionTa": "புல் முதலியவற்றை விலங்குகள் உண்ணச் செய்தல்", "frequency": 67, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மேய்ச்சல்"], "tier1Attestations": 4, "translationEn": "feed", "word": "மேய்த்தல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "shepherd", "word": "மேய்த்துப்பேணு", "wordClass": "headword"}
+{"attestations": 6, "categories": ["profession"], "definitionTa": "இடையன்", "frequency": 63, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அடக்கியாளுபவன்", "இடையன்", "போதகன்"], "tier1Attestations": 4, "translationEn": "shepherd", "word": "மேய்ப்பன்", "wordClass": "headword"}
+{"attestations": 3, "categories": ["profession"], "definitionTa": "சபையை வழிநடத்தும் போதகர்", "frequency": 48, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "pastor", "word": "மேய்ப்பர்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மேய்க்கும் கூலியாள்", "frequency": 46, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேய்ப்பவன்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "மேய்க்கை", "frequency": 27, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மேய்க்கை"], "tier1Attestations": 4, "translationEn": "feed", "word": "மேய்ப்பு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இரைதேடுவதற்கு வெளிச்சந் தந்துதவும்படி நாகம் உமிழ்வதாகக் கருதப்படும் இரத்தினம்", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேய்மணி", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "1) ஒரு உணவுப்பொருள். சௌசௌ என்றும் அழைக்கப்படுகிறது", "frequency": 9, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேரக்காய்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பேய் பிசாசு (கரு. அக.)", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேரக்காலி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "rule", "word": "மேரலாளராயமை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "காசாயவகை ( iv, 195.)", "frequency": 0, "length": 3, "pos": ["noun"], "tier1Attestations": 2, "word": "மேராழி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "புராணங்களிலும், பண்டைய இலக்கியங்களிலும் குறிப்பிடப்படும் ஒரு மலை", "frequency": 292, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "mountain", "word": "மேரு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வாசனைப்பண்டவகை ( )", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேருகம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சிவபிரான்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["சிவபிரான்"], "tier1Attestations": 2, "word": "மேருதாமன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கடவுளர் முன் எடுக்கும் அடுக்குத்தீபம்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேருத்தீபம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "செபமாலை முதலியவற்றின் நாயகமணி ( )", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேருமணி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "14 -ஆம் நூற்றாண்டினிறுதியில் வாமனாசாரியர் செய்ததும் மேரு மந்தரர்களின் சரிதத்தைக் கூறுவதுமான ஒரு சைன காப்பியம்", "frequency": 1, "length": 10, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேருமந்தரபுராணம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "அனைத்து மலைகளின் ராஜாவாக கருதப்படும் மத நூல்களில் வர்ணிக்கப்படும் ஒரு மலை", "frequency": 23, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["இமயமலை", "இமாச்சலம்"], "tier1Attestations": 1, "word": "மேருமலை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 11, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேருமலையின்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கதிர்க்கோல் ( )", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "மேருயந்திரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பொன்மணல் ( )", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேருவின்வாரி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேருமலையை வில்லாகக் கொண்டவன் சிவபிரான்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேருவில்லி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "எல்லை", "frequency": 160, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அடக்கம்", "எல்லை", "வகை"], "tier1Attestations": 3, "word": "மேரை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேரை பிரித்துக் கொடுப்பதற்காக ஏற்பட்ட திட்டம்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "மேரைத்திட்டம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "முற்காலத்தில் தானியமாகக் கொடுக்கப்பட்டுப் பின்பு ரொக்கத்தொகையாகச் செலுத்தப்படும் மாசூற்பகுதி", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேரைமானியம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "எல்லையைக் குறிக்கும் வரப்பு முதலியவற்றை அழிக்கை", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "மேரையழித்தல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உண்டியலை உறுதிப்படுத்தி எழுதும் கடிதம்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேற்கடுதாசி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "superstruction, superstructure", "word": "மேற்கட்டடம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கூரை", "frequency": 8, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கூரை"], "tier1Attestations": 3, "translationEn": "awning", "word": "மேற்கட்டி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "tilt", "word": "மேற்கட்டியிடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "hoodless", "word": "மேற்கட்டியில்லாத", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேல்வீடு ( )", "frequency": 1, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அங்கவஸ்திரம்", "அலங்காரம்", "துணையாதாரம்"], "tier1Attestations": 2, "translationEn": "canopy", "word": "மேற்கட்டு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 5, "length": 8, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "superstruction, superstructure", "word": "மேற்கட்டுமானம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "முன்பே அல்லது மேலே கூறப்பட்ட", "frequency": 4790, "length": 5, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["மேற்கூறிய"], "tier1Attestations": 1, "translationEn": "above-mentioned", "word": "மேற்கண்ட", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1718, "length": 7, "pos": ["adverb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "supra", "word": "மேற்கண்டவாறு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 1, "length": 10, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேற்கண்டவாறெல்லாம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஊர்த்துவமுகமாகச்செல்லுந் தன்மை", "frequency": 2, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மோட்சம்"], "tier1Attestations": 2, "word": "மேற்கதி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அளவடியுள் முதலயற்சீர்க்கணின்றி ஒழிந்த மூன்றுசீர்க்கண்ணும் மோனை முதலாயினவரத் தொடுப்பது ( 723, உரை.)", "frequency": 1, "length": 9, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேற்கதுவாய்த்தொடை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேற்குத்திசைக்குரிய", "frequency": 5, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மேற்குத்திசைக்குரிய"], "tier1Attestations": 2, "word": "மேற்கத்தி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மேற்குப்பக்கத்தான்", "frequency": 1, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மேற்குப்பக்கத்தான்"], "tier1Attestations": 2, "word": "மேற்கத்தியான்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "குறை", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["குறை"], "tier1Attestations": 2, "word": "மேற்கருமம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "sheathe", "word": "மேற்கவசமிடு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கவடிவிளையாட்டுள் ஒருவகை", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேற்கவடி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "cover", "word": "மேற்கவி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "awning", "word": "மேற்கவிகை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "over", "word": "மேற்கவிந்து", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "cross-over", "word": "மேற்கவிபாதை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "open", "word": "மேற்கவிவற்ற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "pulvinate", "word": "மேற்கவிவான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "incumbency", "word": "மேற்கவிவு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "overcome", "word": "மேற்கவிவுறு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "exemplar", "word": "மேற்காட்டு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "காதின் மேற்பகுதி", "frequency": 1, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேற்காது", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மேற்கு திசையிலிருந்து வீசும் காற்று", "frequency": 7, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மேற்குகாற்று"], "tier1Attestations": 1, "translationEn": "prevailing westerly", "word": "மேற்காற்று", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேல்விசாரணை", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["மேல்விசாரணை"], "tier1Attestations": 2, "word": "மேற்காவல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பாஷாணம் ( )", "frequency": 2, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேற்கி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "superincumbent", "word": "மேற்கிடக்கின்ற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "incumbent", "word": "மேற்கிடக்கிற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "superposed", "word": "மேற்கிடத்தப்பெற்ற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "superpose", "word": "மேற்கிடத்து", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "superposition", "word": "மேற்கிடை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 367, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேற்கிலும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 2283, "length": 4, "spokenRatio": 0.000438, "tier1Attestations": 1, "translationEn": "western", "word": "மேற்கில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "tier1Attestations": 1, "word": "மேற்கிளை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 6, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேற்கிளையில்", "wordClass": "headword"}
+{"attestations": 10, "categories": ["space"], "definitionTa": "சூரியன் மறையும் திசை", "frequency": 21442, "length": 3, "pos": ["noun", "postposition"], "spokenRatio": 0.001119, "synonymsTa": ["குடகு"], "tier1Attestations": 6, "translationEn": "west", "word": "மேற்கு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மேற்கு திசையிலிருந்து வீசும் காற்று", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["மேற்காற்று"], "tier1Attestations": 1, "translationEn": "prevailing westerly", "word": "மேற்குகாற்று", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "காணியாளர்", "frequency": 8, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["காணியாளர்"], "tier1Attestations": 2, "translationEn": "aristocracy", "word": "மேற்குடி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "arriere-ban", "word": "மேற்குடிமக்கள்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "aristocrat", "word": "மேற்குடியாளர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உச்சிக்குடுமி", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["உச்சிக்குடுமி"], "tier1Attestations": 2, "word": "மேற்குடுமி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தென்னிந்தியாவின் மேல்புறத்தில் தெற்குவடக்காகத் தொடர்ந்துசெல்லும் மலை", "frequency": 9, "length": 11, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேற்குத்தொடர்ச்சிமலை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "western", "word": "மேற்குநாட்டவர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேலே ஏற்கெனவே சொன்ன", "frequency": 252, "length": 6, "pos": ["adjective", "noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "ditton", "word": "மேற்குறித்த", "wordClass": "headword"}
+{"attestations": 1, "frequency": 711, "length": 8, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "before-mentioned", "word": "மேற்குறிப்பிட்ட", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உயர்ந்தசாதியார்", "frequency": 1, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["உயர்ந்தசாதியார்"], "tier1Attestations": 2, "word": "மேற்குலத்தோர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "westing", "word": "மேற்குவாட்டம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "tent", "word": "மேற்கூடாரமமை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "chimney", "word": "மேற்கூடு", "wordClass": "headword"}
+{"attestations": 8, "categories": ["house"], "definitionTa": "வீட்டின்மேல் வேய்ந்த கூரை", "frequency": 716, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கூரை"], "tier1Attestations": 4, "translationEn": "Ceiling", "word": "மேற்கூரை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 9, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேற்கூரையிலும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 251, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேற்கூரையில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 92, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேற்கூரையை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மேலே குறிப்பிட்ட", "frequency": 167, "length": 8, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["மேற்சொன்ன"], "tier1Attestations": 1, "translationEn": "alleged", "word": "மேற்கூறப்பட்ட", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "such", "word": "மேற்கூறப்பட்டது", "wordClass": "headword"}
+{"attestations": 1, "frequency": 5, "length": 9, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "such", "word": "மேற்கூறப்பட்டவை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "முன்பே அல்லது மேலே கூறப்பட்ட", "frequency": 1722, "length": 5, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["மேற்கண்ட"], "tier1Attestations": 1, "translationEn": "above-mentioned", "word": "மேற்கூறிய", "wordClass": "headword"}
+{"attestations": 5, "frequency": 1708, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "west", "word": "மேற்கே", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "overbid", "word": "மேற்கேட்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 10, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேற்கேயிருந்து", "wordClass": "headword"}
+{"attestations": 2, "frequency": 51, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேற்கேயும்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "சூரியன் மறையும் திசை.", "frequency": 27, "length": 6, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "westerly", "word": "மேற்கேயுள்ள", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "overbid", "word": "மேற்கேள்விகேள்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோளுக்கும் முழங்கைக்கும் இடையிலான பகுதி", "frequency": 70, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "arm", "word": "மேற்கை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "suffuse", "word": "மேற்கொட்டு", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "மேலும்", "frequency": 12055, "length": 5, "pos": ["adverb", "noun"], "spokenRatio": 0.0, "synonymsTa": ["இனிமேல்", "மேலும்"], "tier1Attestations": 4, "translationEn": "thereto", "word": "மேற்கொண்டு", "wordClass": "headword"}
+{"attestations": 6, "frequency": 506, "length": 4, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["ஏற்றுக்கொள்", "கடைப்பிடி", "கைக்கொள்", "நடத்து", "பூண்", "முயல்"], "tier1Attestations": 4, "translationEn": "adopt", "word": "மேற்கொள்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 5, "length": 9, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "assumable", "word": "மேற்கொள்ளத்தக்க", "wordClass": "headword"}
+{"attestations": 1, "frequency": 37, "length": 9, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "unadopted", "word": "மேற்கொள்ளப்படாத", "wordClass": "headword"}
+{"attestations": 1, "frequency": 12, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "take", "word": "மேற்கொள்ளு", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "மேலேறுதல்", "frequency": 209, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மேலேறுதல்"], "tier1Attestations": 3, "translationEn": "adoption", "word": "மேற்கொள்ளுதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "betake", "word": "மேற்கொள்ளுவி", "wordClass": "headword"}
+{"attestations": 2, "frequency": 4, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "upstroke", "word": "மேற்கோடு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "செய்யுட்குற்றங்களு ளொன்று ( பக். 525.)", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "மேற்கோண்மலைவு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "வீட்டின் கூரைப் பகுதி", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 3, "translationEn": "roof", "word": "மேற்கோப்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "dictum", "word": "மேற்கோளுரை", "wordClass": "headword"}
+{"attestations": 8, "definitionTa": "வேறொருவர் கூறியதைக் கூறப்பட்ட வடிவத்திலேயே எடுத்துக்காட்டுவது", "frequency": 2777, "length": 4, "pos": ["noun"], "spokenRatio": 0.00072, "synonymsTa": ["எடுத்துக்காட்டு"], "tier1Attestations": 6, "translationEn": "authority", "word": "மேற்கோள்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வேறொருவர் கூறியதைக் கூறப்பட்ட வடிவத்திலேயே எடுத்துக்காட்டுவது", "frequency": 918, "length": 6, "spokenRatio": 0.002179, "tier1Attestations": 1, "translationEn": "Citation", "word": "மேற்கோள்கள்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "வேறொருவர் கூறியதைக் கூறப்பட்ட வடிவத்திலேயே எடுத்துக் காட்டுவதற்கு பயன்படுத்தும் குறி.", "frequency": 39, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "quotation mark", "word": "மேற்கோள்குறி", "wordClass": "headword"}
+{"attestations": 5, "categories": ["dresses-and-accessories"], "definitionTa": "மேலே அணியும் சட்டை", "frequency": 51, "length": 5, "pos": ["noun"], "spokenRatio": 0.019608, "tier1Attestations": 2, "translationEn": "coat", "word": "மேற்சட்டை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "முன்சாட்சியை யுறுதிப்படுத்தும் சாட்சி", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேற்சாட்சி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உயர்குலம்", "frequency": 5, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["உயர்குலம்"], "tier1Attestations": 2, "word": "மேற்சாதி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "எழுதியுள்ளதை யுறுதிப்படுத்துஞ் சீட்டு", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேற்சீட்டு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இங்கிலாந்து முதலிய மேனாடு", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["மைசூர்நாடு"], "tier1Attestations": 2, "word": "மேற்சீமை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "superimposition", "word": "மேற்சுமத்தீடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "entail", "word": "மேற்சுமத்து", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நிலையான அலைகளில் அடிப்படை அதிர்வெண்களைவிட அதிகமான அதிர்வெண்களில் அதிரும்போது அவை மேற்சுரங்கள் எனப்படுகிறது", "frequency": 3, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேற்சுரங்கள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "trichome", "word": "மேற்செதிள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "assault", "word": "மேற்சென்றெதிர்த்தல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பாலையாழ்த்திறவகை ( ) ( 3, 88, உரை.)", "frequency": 4, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேற்செம்பாலை", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "படையெடுப்பு", "frequency": 2, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["படையெடுப்பு"], "tier1Attestations": 4, "translationEn": "circumvention", "word": "மேற்செலவு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "climb", "word": "மேற்செல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "upping", "word": "மேற்செல்கிற", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அப்பாற்போதல்", "frequency": 1, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அப்பாற்போதல்", "மேற்படுதல்", "விரைதல்"], "tier1Attestations": 2, "word": "மேற்செல்லுதல்", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "மேலே குறிப்பிட்ட", "frequency": 1108, "length": 5, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["மேற்கூறப்பட்ட"], "tier1Attestations": 3, "translationEn": "above", "word": "மேற்சொன்ன", "wordClass": "headword"}
+{"attestations": 1, "frequency": 31, "length": 9, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "such", "word": "மேற்சொல்லப்பட்ட", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "upper", "word": "மேற்பகல்", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "மேலுள்ள பகுதி; மேற்பாகம்", "frequency": 269, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 4, "translationEn": "cap", "word": "மேற்பகுதி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 9, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "upper", "word": "மேற்பகுதிக்குரிய", "wordClass": "headword"}
+{"attestations": 2, "frequency": 324, "length": 7, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "upward", "word": "மேற்பகுதியில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 16, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "outside,", "word": "மேற்பக்கம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 25, "length": 4, "pos": ["postposition"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "upon", "word": "மேற்பட", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "spread", "word": "மேற்படர்வு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "suffuse", "word": "மேற்படர்வுறு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "coating", "word": "மேற்படலம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "within", "word": "மேற்படாதவாறு", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "மேலே ஏற்கெனவே குறிப்பிட்ட", "frequency": 4483, "length": 4, "pos": ["adjective", "noun"], "spokenRatio": 0.0, "tier1Attestations": 4, "translationEn": "ditton", "word": "மேற்படி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேற்படிக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 11, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "incumbent", "word": "மேற்படிந்தழுத்துகிற", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "படித்து முடித்த கல்விக்கு அடுத்த மேல்நிலைப் படிப்பு; உயர்கல்வி", "frequency": 992, "length": 6, "pos": ["noun"], "spokenRatio": 0.001008, "tier1Attestations": 2, "translationEn": "higher education", "word": "மேற்படிப்பு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 6, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "ditton", "word": "மேற்படியான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 4, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேற்படியில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "remove", "word": "மேற்படிவத்தேறுதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun", "verb"], "tier1Attestations": 1, "translationEn": "reflect", "word": "மேற்படிவி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "project", "word": "மேற்படிவுசெய்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 1, "length": 4, "pos": ["verb"], "spokenRatio": 0.0, "synonymsTa": ["அதிகமா", "சிற"], "tier1Attestations": 1, "word": "மேற்படு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "சிறந்திருத்தல்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["அதிகமாதல்", "சிறந்திருத்தல்"], "tier1Attestations": 2, "word": "மேற்படுதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "touch", "word": "மேற்படுநிலை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["adverb"], "tier1Attestations": 1, "translationEn": "to", "word": "மேற்படும்படி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மரத்தின் மேலுள்ள தோல்", "frequency": 6, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "word": "மேற்பட்டை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "tier1Attestations": 1, "translationEn": "Retreading", "word": "மேற்பட்டையிடல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பரவ மகளிர் காதணிவகை", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "governor", "word": "மேற்பணி", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "preferment", "word": "மேற்பதவி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மரம் செடி முதலியன", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேற்பயிர்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 1096, "length": 7, "pos": ["noun"], "spokenRatio": 0.001825, "tier1Attestations": 1, "translationEn": "upside", "word": "மேற்பரப்பில்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "traction", "word": "மேற்பரப்பிழுவை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "sow", "word": "மேற்பரப்பிவிடு", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "தரை முதலியவற்றின் வெளிப்பரப்பு", "frequency": 839, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 4, "translationEn": "area", "word": "மேற்பரப்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "lucid", "word": "மேற்பரப்புடைய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேற்பலகை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 4, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேற்பலகையில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "weight", "word": "மேற்பளு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 13, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "upside", "word": "மேற்பாகத்தில்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மேலுள்ள பகுதி; மேற்பகுதி", "frequency": 19, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "barn-owl", "word": "மேற்பாகம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நகலுக்கு மூலமாயுள்ளது", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேற்பாடம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இரண்டு கால்களையும் சம்மணமாக மடித்துப் பாதங்களைத் துடைகளின் மேலாக வைக்கும் யோகாசனவகை", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேற்பாதம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேடாயிருக்கும் பக்கநிலம்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "மேற்பாதிநிலம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "tier1Attestations": 1, "translationEn": "top, mast", "word": "மேற்பாய்மரம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "uprush", "word": "மேற்பாய்வு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "uprush", "word": "மேற்பாய்வுறு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "அமுங்கும்படி ஒன்றன் மேலே வைக்கும் பாரம்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 3, "translationEn": "weight", "word": "மேற்பாரம்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 22, "length": 4, "pos": ["verb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "examine", "word": "மேற்பார்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கண்காணித்த்ல மேற்பார்க்க மைந்தரு மூவாவெருதும் ( )", "frequency": 1, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேற்பார்த்தல்", "wordClass": "headword"}
+{"attestations": 10, "definitionTa": "வேலையாட்கள்/பணியாளர்கள் கண்காணிப்பு/நிர்வாகம், காரிய விசாரணை; தணிக்கை", "frequency": 1014, "length": 5, "pos": ["noun"], "spokenRatio": 0.000986, "tier1Attestations": 6, "translationEn": "care", "word": "மேற்பார்வை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 9, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "supervisory", "word": "மேற்பார்வைக்குரிய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 6, "length": 8, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "naked", "word": "மேற்பார்வையற்ற", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "அமைப்பை மேற்பார்வை செய்யும் ஒருவர்", "frequency": 887, "length": 8, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கண்காணிப்பார்", "கண்காணிப்பாளர்"], "tier1Attestations": 2, "translationEn": "curator", "word": "மேற்பார்வையாளர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒரு கூட்டத்தினர் பணியை ஒழுங்காக செய்கிறார்களா எனக் கண்காணித்தல்", "frequency": 4, "length": 7, "pos": ["noun", "verb"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "care", "word": "மேற்பார்வையிடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "under", "word": "மேற்பார்வையில", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "visiting", "word": "மேற்பார்வையீடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "visitor", "word": "மேற்பார்வையீட்டாள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 12, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "visiting", "word": "மேற்பார்வையீட்டிற்குரிய", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "இருப்புப்பாதை முதலியவற்றின் மேலே கட்டப்பட்ட பாலம்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "underbridge", "word": "மேற்பாலம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மரக்கலத்தின் உறுப்புவகை", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேற்பாவல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "superinduction", "word": "மேற்புகுத்தீடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "prominent", "word": "மேற்புடைப்பான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "prominenece, prominency", "word": "மேற்புடைப்பு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேலானவரிடத்திர் பெறும் புத்திமதி", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேற்புத்தி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சுவர்க்கம்", "frequency": 11, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["சுவர்க்கம்"], "tier1Attestations": 2, "word": "மேற்புரம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "scurf", "word": "மேற்புறச்செதிள்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 209, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "cementation", "word": "மேற்புறத்தில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேற்புறத்து", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மனித உடலில் உள்ள தோலின் வெளிப்புற அடுக்கு", "frequency": 8, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["வெளித்தோல்"], "tier1Attestations": 1, "translationEn": "epidermis", "word": "மேற்புறத்தோல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "வெளிப்புறம்", "frequency": 252, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["வெளிப்புறம்"], "tier1Attestations": 2, "translationEn": "dead wood", "word": "மேற்புறம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தேவர் ( தைல.)", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேற்புலவர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "suffuse", "word": "மேற்பூசு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "debunk", "word": "மேற்பூச்சகற்று", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "face", "word": "மேற்பூச்சிடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "veneerer", "word": "மேற்பூச்சிடுபவர்", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "வெளிப்பூச்சு", "frequency": 122, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["குற்றமறைக்கை", "வெளிப்பூச்சு"], "tier1Attestations": 4, "translationEn": "facing", "word": "மேற்பூச்சு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "smeary", "word": "மேற்பூச்சுடைய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "smeariness", "word": "மேற்பூச்சுப்பண்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "veneering", "word": "மேற்பூச்சுமானம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மேற்கொண்டு விவகரிக்கை", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேற்பேச்சு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["adverb"], "tier1Attestations": 1, "translationEn": "around", "word": "மேற்பொதிவாக", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "deep-seated", "word": "மேற்போக்கல்லாத", "wordClass": "headword"}
+{"attestations": 2, "frequency": 2, "length": 6, "pos": ["adverb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "superficially", "word": "மேற்போக்காக", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 6, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "airy", "word": "மேற்போக்கான", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கீழுள்ள ஆறு அல்லது வாய்க்காலுக்கு மேலே குறுக்காக நீரோடும்படி கட்டிய கால்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேற்போக்கி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "serious", "word": "மேற்போக்கியல்பற்ற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "upgrade", "word": "மேற்போக்கு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வலிய ஏற்றுக்கொள்ளுதல்", "frequency": 0, "length": 11, "pos": ["noun"], "tier1Attestations": 2, "word": "மேற்போட்டுக்கொள்ளுதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "cloak", "word": "மேற்போர்வை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "உயர்ந்தசாதி மட்டக்குதிரை", "frequency": 6, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேற்றட்டு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேலிடத்தினின்று வரும் நீர்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேற்றண்ணீர்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "மேல்மாடி", "frequency": 7, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["காவற்படை", "புறவிதழ்", "மெய்க்காவற்படை", "மேற்றட்டு", "மேல்மாடி"], "tier1Attestations": 3, "translationEn": "upper floor", "word": "மேற்றளம்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 6, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேற்றளி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மேற்கு, மேல்திசை", "frequency": 15, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மேற்கு", "மேல்திசை"], "tier1Attestations": 2, "translationEn": "west", "word": "மேற்றிசை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேற்றிசைக்கு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வருணன் ( )", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "மேற்றிசைப்பாலன்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேற்றிசையை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உயர்குலம்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["உயர்குலம்"], "tier1Attestations": 2, "word": "மேற்றிணை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "bishopric", "word": "மேற்றிராசனம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கிறிஸ்தவக் கண்காணியார்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேற்றிராணி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கத்தோலிக் கிறிஸ்தவக் கண்காணியாரின் பட்டம்", "frequency": 0, "length": 10, "pos": ["noun"], "tier1Attestations": 2, "word": "மேற்றிராணிப்பட்டம்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "archdeacon", "word": "மேற்றிராணியர்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 5, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "bishop", "word": "மேற்றிராணியார்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "hully", "word": "மேற்றொலுடைய", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உயர்ந்த செயல்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேற்றொழில்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேல்புறத் தோல்", "frequency": 30, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "epidermis", "word": "மேற்றோல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 6646, "length": 2, "spokenRatio": 0.001806, "tier1Attestations": 1, "translationEn": "awheel", "word": "மேல", "wordClass": "headword"}
+{"attestations": 3, "frequency": 11, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேலகம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேலக்காற்றில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 5, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேலக்காற்று", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேலக்காற்றுடன்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "tier1Attestations": 1, "word": "மேலக்காற்றை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பகிரங்கம்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["பகிரங்கம்", "வெளிப்பகட்டு"], "tier1Attestations": 2, "word": "மேலங்கம்", "wordClass": "headword"}
+{"attestations": 9, "definitionTa": "மேற்சட்டை", "frequency": 33, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கோட்", "மேற்சட்டை"], "tier1Attestations": 5, "translationEn": "garment", "word": "மேலங்கி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தானியமாகச் செலுத்தும் இறை ( vi, 41.)", "frequency": 9, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேலடி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேலிடுவது", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["மேலிடுவது"], "tier1Attestations": 2, "word": "மேலடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "superimposed", "word": "மேலடுக்கப்பட்ட", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "applique", "word": "மேலடைப்பணி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேற்கூரை அல்லது மச்சின் அடிப்புறத்தில் தைக்கப்படும் பலகை", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலடைப்பு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "நிலவியல்; கண்டத் துண்டு", "frequency": 0, "length": 8, "tier1Attestations": 1, "translationEn": "crustal fragment", "word": "மேலட்டத்துண்டு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 41, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "lampas", "word": "மேலண்ணத்தில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேலண்ணத்துடன்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 5, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "uraniscus", "word": "மேலண்ணம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உள்ளதைக் காட்டிலும் கூடுதலாக", "frequency": 25, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "extra", "word": "மேலதிகம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "அதிகாரியின் வேலை", "frequency": 414, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["உயரதிகாரி"], "tier1Attestations": 1, "translationEn": "duty", "word": "மேலதிகாரி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உறுதிமொழி", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["உறுதிமொழி"], "tier1Attestations": 2, "word": "மேலத்தாட்சி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பெருமிதம்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["பெருமிதம்"], "tier1Attestations": 2, "word": "மேலத்து", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பழக்கம்", "frequency": 3, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["பழக்கம்"], "tier1Attestations": 2, "word": "மேலனம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "hush", "word": "மேலரிப்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "scarificator", "word": "மேலறுவைக்கத்தி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உடம்பழுக்கு", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["உடம்பழுக்கு"], "tier1Attestations": 2, "word": "மேலழுக்கு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "பெரியோன்", "frequency": 8, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["பெரியோன்"], "tier1Attestations": 2, "word": "மேலவன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "முருகக்கடவுள்", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["இந்திரன்", "முருகக்கடவுள்"], "tier1Attestations": 2, "word": "மேலவரிறைவன்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 10, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "better", "word": "மேலவர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "betters", "word": "மேலவர்கள்", "wordClass": "headword"}
+{"attestations": 3, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலவர்க்கிறைவன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேற்பட்ட அதிகாரஸ்தானம்", "frequency": 143, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேலா", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "ஒன்றுக்கு உயரே அல்லது அதற்கு மிஞ்சி", "frequency": 11008, "length": 3, "pos": ["adverb", "noun"], "spokenRatio": 0.000182, "synonymsTa": ["மேற்பட்டு"], "tier1Attestations": 2, "translationEn": "aloft", "word": "மேலாக", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "lift", "word": "மேலாக்கப்படி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "meliorism", "word": "மேலாக்கவியல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மகளிர்/பெண்கள் மார்பின்மேலிடும் சீலை/சேலை", "frequency": 5, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மாராப்பு"], "tier1Attestations": 2, "translationEn": "chuddah, chuddar", "word": "மேலாக்கு", "wordClass": "headword"}
+{"attestations": 8, "categories": ["dresses-and-accessories"], "definitionTa": "பெண்கள் பயன்படுத்தும் தாவணி அல்லது துப்பட்டா போன்ற ஆடை", "frequency": 414, "length": 3, "pos": ["noun"], "spokenRatio": 0.002415, "tier1Attestations": 4, "translationEn": "pall", "word": "மேலாடை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "vavasour", "word": "மேலாட்குடியாள்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "(வாக்கியப் பயன்பாடு) - இங்கிலாந்து, பெரும்பான்மையான நாடுகளை செய்தது", "frequency": 59, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 4, "translationEn": "ascendancy", "word": "மேலாட்சி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "suzerain", "word": "மேலாட்சிக்குரிய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "management", "word": "மேலாட்சிசெய்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "tier1Attestations": 1, "translationEn": "dominance, dominancy", "word": "மேலாட்சிநிலை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "quote", "word": "மேலாட்சிப்பகுதி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "master", "word": "மேலாட்சியாளர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "asendant", "word": "மேலாட்சியுடைய", "wordClass": "headword"}
+{"attestations": 2, "frequency": 1, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "ordinance", "word": "மேலாணை", "wordClass": "headword"}
+{"attestations": 7, "definitionTa": "நிருவாகம்", "frequency": 34705, "length": 4, "pos": ["noun"], "spokenRatio": 5.8e-05, "synonymsTa": ["நிருவாகம்", "நிர்வாகம்"], "tier1Attestations": 5, "translationEn": "dominance, dominancy", "word": "மேலாண்மை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "seigniorage", "word": "மேலாண்மைக்கூறு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "magisterial", "word": "மேலாண்மைத்தனமான", "wordClass": "headword"}
+{"attestations": 3, "frequency": 0, "length": 10, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலாண்மைநடவடிக்கை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 12, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "overlord", "word": "மேலாண்மையர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேலாண்மை என்னும் இயலைப்பற்றி பயிலும் புலம் அல்லது கல்வித்துறையே மேலாண்மையியல் ஆகும்", "frequency": 33, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "a study of management", "word": "மேலாண்மையியல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "guidance", "word": "மேலாண்மையுதவி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "power", "word": "மேலாண்மையுரிமை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சிறத்தல்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["சிறத்தல்"], "tier1Attestations": 2, "word": "மேலாதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேற்புறமாக்குதல் ( )", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலாத்தல்", "wordClass": "headword"}
+{"attestations": 3, "frequency": 1, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேலாநெல்லி", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "எண்ணிக்கையில் முதலில் வருகிற", "frequency": 3456, "length": 3, "pos": ["adjective", "noun"], "spokenRatio": 0.000289, "synonymsTa": ["உயந்த", "உயர்ந்த", "உயர்வான", "சிறந்த", "சிறப்புவாய்ந்த", "நல்ல", "நாகரீகமான", "மரியாதைக்குரிய", "மிகச்சிறந்த", "மூத்த", "மேன்மையான"], "tier1Attestations": 3, "translationEn": "best", "word": "மேலான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 28, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "work-master", "word": "மேலான்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மேல்விதானம்", "frequency": 5, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மேல்விதானம்"], "tier1Attestations": 2, "word": "மேலாப்பு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பட்டினவரின் கருவி வகை ( )", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலாமரம்", "wordClass": "headword"}
+{"attestations": 3, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலாமினுக்கி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கஸ்தூரிமானின் எலும்பு ( )", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலாமுதுரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேலெழுந்தவாரி", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["மேலெழுந்தவாரி"], "tier1Attestations": 2, "word": "மேலாம்புறம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உயர்ந்தோர்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["உயர்ந்தோர்"], "tier1Attestations": 2, "word": "மேலாயினார்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வீரர்", "frequency": 5, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["வீரர்"], "tier1Attestations": 2, "word": "மேலார்", "wordClass": "headword"}
+{"attestations": 3, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலார்ப்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "incumbency", "word": "மேலார்வு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மழை ( )", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலாலம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "லலாடத்தில் ஆன்மா தங்கிநிற்கும் நிலைகளாகிய சாக்கிரத்திற்சாக்கிரம், சாக்கிரத்திற்சொப்பனம், சாக்கிரத்திற்சுழுத்தி, சாக்கிரத்தில்துரியம் சாக்கிரத்தில்துரியாதீதம் என்ற ஐந்தவத்தைகள் ( 4, 35, நிரம்ப.)", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலாலவத்தை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "உயர்தரமான", "frequency": 72, "length": 3, "pos": ["adjective", "adverb", "noun"], "spokenRatio": 0.0, "synonymsTa": ["இனிமேல்", "உயர்தரமான"], "tier1Attestations": 3, "word": "மேலால்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "மேனியை யலங்கரித்துக்கொண்டு மினுக்குபவள்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "word": "மேலால்மினுக்கி", "wordClass": "headword"}
+{"attestations": 9, "categories": ["profession"], "definitionTa": "மேலாண்மை செய்பவர்", "frequency": 5200, "length": 4, "pos": ["noun"], "spokenRatio": 0.001538, "synonymsTa": ["சார்பாளன்"], "tier1Attestations": 5, "translationEn": "director", "word": "மேலாளர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "officer", "word": "மேலாளால்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "நாற்சாதியு ளொன்றைச் சேர்ந்தவன்", "frequency": 6, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "commander", "word": "மேலாள்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வித்தியாதர மன்னர்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலாழியார்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மீன்பிடிக்கும் வலைவகை ( )", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலாவலை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "mandate", "word": "மேலிடக்கட்டளை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "rebuke", "word": "மேலிடக்கண்டனம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["adverb"], "tier1Attestations": 1, "translationEn": "superiorly", "word": "மேலிடத்ததாக", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "upper", "word": "மேலிடத்திலமைந்த", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 8, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "superscript", "word": "மேலிடத்திலுள்ள", "wordClass": "headword"}
+{"attestations": 2, "frequency": 220, "length": 6, "pos": ["adverb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "atop", "word": "மேலிடத்தில்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 113, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "up", "word": "மேலிடத்துக்கு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேல் நிலையில் உள்ள அதிகார அமைப்பு", "frequency": 795, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "head", "word": "மேலிடம்", "wordClass": "headword"}
+{"attestations": 3, "frequency": 0, "length": 3, "pos": ["noun", "verb"], "synonymsTa": ["அதிகமா", "மேலெழு", "மேல்விழு", "வாந்தியா"], "tier1Attestations": 2, "translationEn": "sling", "word": "மேலிடு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அதிகமாதல்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["அதிகமாதல்", "வாந்தியாதல்"], "tier1Attestations": 2, "word": "மேலிடுதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "cover", "word": "மேலிட்டுப்பரப்பு", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "மேன்மை", "frequency": 5, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மேன்மை"], "tier1Attestations": 3, "translationEn": "ptosis", "word": "மேலிமை", "wordClass": "headword"}
+{"attestations": 3, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலிமைத்தாறு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேலிருந்தவன்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 1161, "length": 5, "spokenRatio": 0.000861, "tier1Attestations": 1, "translationEn": "descend", "word": "மேலிருந்து", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மேலே கீழே", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "inverse", "word": "மேலிருந்துகீழாக", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "overlook", "word": "மேலிருந்துநோக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "open", "word": "மேலீடற்ற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 4, "pos": ["adverb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "superficially", "word": "மேலீடாக", "wordClass": "headword"}
+{"attestations": 2, "frequency": 1, "length": 4, "pos": ["adjective", "noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "cursory", "word": "மேலீடான", "wordClass": "headword"}
+{"attestations": 2, "frequency": 1, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "facing", "word": "மேலீடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "accession", "word": "மேலீட்டம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "அந்தரங்கமாக வல்லாமல்", "frequency": 118, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேலுக்கு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வாயிலெடுத்தல்", "frequency": 0, "length": 8, "pos": ["noun"], "synonymsTa": ["வாயிலெடுத்தல்"], "tier1Attestations": 2, "word": "மேலுக்கெடுத்தல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "less", "word": "மேலுஞ்சிறிதான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 8, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "over-estimate", "word": "மேலுடை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இரண்டில் மேலுள்ள உதடு; ஓட்டம்; மேல்வாயிதழ்", "frequency": 14, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "upper lip", "word": "மேலுதடு", "wordClass": "headword"}
+{"attestations": 3, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலுத்தரியம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "less", "word": "மேலுந்தாழ்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வாயுபசாரம்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["வாயுபசாரம்"], "tier1Attestations": 2, "word": "மேலுபசாரம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 10, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேலுமிரு", "wordClass": "headword"}
+{"attestations": 10, "definitionTa": "மற்றும்", "frequency": 406683, "length": 3, "pos": ["adverb", "noun"], "spokenRatio": 0.000329, "synonymsTa": ["அன்றியும்", "கூட", "கூடுதலாக", "மற்றும்"], "tier1Attestations": 6, "translationEn": "Also", "word": "மேலும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "slough", "word": "மேலுரிபோக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "tier1Attestations": 1, "translationEn": "dominance, dominancy", "word": "மேலுரிமை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "overlord", "word": "மேலுரிமையரசு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "master", "word": "மேலுரிமையர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "துணைச்சாட்சி ( )", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலுறுதி", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "<!---# குறியீட்டிற்கு அடுத்து, தமிழில் விளக்கம் எழுதி", "frequency": 34, "length": 3, "pos": ["noun"], "spokenRatio": 0.058824, "tier1Attestations": 3, "translationEn": "casing", "word": "மேலுறை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "exposure", "word": "மேலுறைநீக்கம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "expose", "word": "மேலுறையகற்று", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun", "verb"], "tier1Attestations": 1, "translationEn": "face", "word": "மேலுறையிடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "superfusion", "word": "மேலுற்றரவு", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "தேவலோகம், சொர்க்கம், சுவர்க்கம், பரலோகம்", "frequency": 61, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["சுவர்க்கம்", "சொர்க்கம்", "தேவலோகம்", "பரலோகம்"], "tier1Attestations": 2, "translationEn": "celestial world", "word": "மேலுலகம்", "wordClass": "headword"}
+{"attestations": 5, "frequency": 6, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "beyond", "word": "மேலுலகு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "supernal", "word": "மேலுலகுக்குரிய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 4, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேலுல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 886, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "over", "word": "மேலுள்ள", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "upshoot", "word": "மேலெய்வு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 3, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "upthrow", "word": "மேலெறி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "upcast", "word": "மேலெறிவு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேலுக்கு", "frequency": 39, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மேலுக்கு"], "tier1Attestations": 2, "word": "மேலெழ", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "buoy", "word": "மேலெழச்செய்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "ஒன்றின் அடிப்பாகம் அல்லது அடிப்பாகத்தினுடைய அடுக்குகளை மேல்பாகத்தில் கொஞ்சம் உயர்த்துவது", "frequency": 0, "length": 3, "pos": ["noun", "verb"], "tier1Attestations": 2, "translationEn": "buoy", "word": "மேலெழு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேற்கிளம்புகை", "frequency": 9, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["செருக்கு", "மேற்கிளம்புகை"], "tier1Attestations": 2, "translationEn": "uprush", "word": "மேலெழுச்சி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேற்கிளம்புதல்", "frequency": 1, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["எதிர்நோக்கிவருதல்", "மிதத்தல்", "மேற்கிளம்புதல்"], "tier1Attestations": 2, "word": "மேலெழுதல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 5, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "overwrite", "word": "மேலெழுதுக", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேலெழுதுக, மேலெழுதுதல் (கணினியியல்)", "frequency": 1, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "overwrite", "word": "மேலெழுதுதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒப்புகொண்டதற்கு அறிகுறியாகக் கையெழுத்திடுதல்", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலெழுத்திடுதல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "தலைமை யெழுத்தாளன் ( 565 of 1926.)", "frequency": 2, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "indorsation,", "word": "மேலெழுத்து", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஆழமில்லாத அறிவு", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலெழுந்தஞானம்", "wordClass": "headword"}
+{"attestations": 4, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலெழுந்தபுத்தி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "சிரமமின்மை", "frequency": 1, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["சிரமமின்மை"], "tier1Attestations": 2, "word": "மேலெழுந்தவாரி", "wordClass": "headword"}
+{"attestations": 2, "frequency": 17, "length": 9, "pos": ["adverb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "superficially", "word": "மேலெழுந்தவாரியாக", "wordClass": "headword"}
+{"attestations": 2, "frequency": 16, "length": 9, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "superficial", "word": "மேலெழுந்தவாரியான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "dop", "word": "மேலெழும்பிக்குதி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 15, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "sprout", "word": "மேலெழும்பு", "wordClass": "headword"}
+{"attestations": 9, "definitionTa": "மேல் = மீது", "frequency": 21368, "length": 2, "pos": ["adverb", "noun", "postposition"], "spokenRatio": 0.001357, "synonymsTa": ["இன்னும்", "மேலும்", "மேல்", "மேல்புறம்"], "tier1Attestations": 5, "translationEn": "Above", "word": "மேலே", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "incrustation,n.", "word": "மேலேடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "hoist", "word": "மேலேதள்ளுதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "application", "word": "மேலேபூசுதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 11, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "aforenamed", "word": "மேலேபெயர்கூறப்பட்ட", "wordClass": "headword"}
+{"attestations": 4, "frequency": 199, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "upper", "word": "மேலேயுள்ள", "wordClass": "headword"}
+{"attestations": 2, "frequency": 689, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "up", "word": "மேலேறி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "shoot", "word": "மேலேழு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வானுலகம் ஏழு", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "puva-lokam", "word": "மேலேழுலகம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மேற்கத்திய, மேற்கே உள்ள", "frequency": 1525, "length": 2, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "anime", "word": "மேலை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேற்குக்கரை", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["மேற்குக்கரை"], "tier1Attestations": 2, "word": "மேலைக்கரை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "இனிமேல்", "frequency": 1, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["இனிமேல்"], "tier1Attestations": 2, "word": "மேலைக்கு", "wordClass": "headword"}
+{"attestations": 3, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலைச்சமுத்திரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கோயம்புத்தூர் ஜில்லாவில் உள்ள திருப்பேரூர் என்னுஞ் சிவதலம்", "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலைச்சிதம்பரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "முன்னாள், முற்காலம்", "frequency": 4, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["முன்னாள்", "முற்காலம்"], "tier1Attestations": 2, "translationEn": "yesterday", "word": "மேலைநாள்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சிவபிரானது நெற்றிக்கண்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலைநெற்றி", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "occidental", "word": "மேலையுலகினர்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "சுவர்க்கம் ( )", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 3, "translationEn": "west", "word": "மேலையுலகு", "wordClass": "headword"}
+{"attestations": 3, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலைவீடு", "wordClass": "headword"}
+{"attestations": 3, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலைவெளி", "wordClass": "headword"}
+{"attestations": 3, "frequency": 0, "length": 3, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலொடி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "veneering", "word": "மேலொட்டுமானம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ருசுவைத் திடப்படுத்தும் சாட்சியம்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலொப்பனை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கையெழுத்து", "frequency": 10, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கையெழுத்து"], "tier1Attestations": 2, "word": "மேலொப்பம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இசைகுற்றவகை ( 57, 26)", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலொருக்கல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "superposed", "word": "மேலொருங்கியைந்த", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மறு ஒற்றி", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலொற்றி", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "வானகம், சொர்க்கம்", "frequency": 78, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["சொர்க்கம்", "வானகம்"], "tier1Attestations": 2, "translationEn": "heaven", "word": "மேலோகம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கரையாருள் ஒருவகையார் ( )", "frequency": 556, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேலோங்கி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "reign", "word": "மேலோங்கியிரு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 2, "length": 4, "pos": ["verb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "prevail", "word": "மேலோங்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேலோங்குவதை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "முன்யோசனை ( 80.)", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலோசனை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "உலாவியைக் குறிப்பதற்குப் பயன்படும் சொல்", "frequency": 5, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["உலாவி"], "tier1Attestations": 3, "translationEn": "wash", "word": "மேலோடி", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "வெளியே மூடும் ஓடு", "frequency": 88, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 4, "translationEn": "egg-shell", "word": "மேலோடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "conchiferous", "word": "மேலோடுடைய", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "எதிர்த்துத்தாக்குதல்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["எதிர்த்துத்தாக்குதல்"], "tier1Attestations": 2, "word": "மேலோடுதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஆழம் இல்லாத, மேலெழுந்தவாரியான", "frequency": 391, "length": 6, "pos": ["adjective", "noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "cursory", "word": "மேலோட்டமான", "wordClass": "headword"}
+{"attestations": 2, "frequency": 18, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "upping", "word": "மேலோட்டம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "sketch", "word": "மேலோட்டவருணனை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மேன்மை பொருந்தியவன்", "frequency": 32, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கடவுள்", "மேலானவன்"], "tier1Attestations": 2, "word": "மேலோன்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "எண்ணம் அல்லது நடத்தையாக இருப்பது", "frequency": 0, "length": 10, "pos": ["verb"], "synonymsTa": ["நடத்தையோடுடிரு", "நடந்துகொள்"], "tier1Attestations": 1, "translationEn": "treat", "word": "மேலோரிடத்துஒழுகல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மேலிடத்தோர்", "frequency": 114, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மேலிடத்தோர்"], "tier1Attestations": 2, "translationEn": "deference", "word": "மேலோர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அதிகாரமளிக்குஞ் சீட்டு", "frequency": 0, "length": 3, "pos": ["noun"], "tier1Attestations": 2, "word": "மேலோலை", "wordClass": "headword"}
+{"attestations": 9, "definitionTa": "1)வானம், 2)மேன்மை), 3)மே, 4) உடம்பு, 5)மேற்கு", "frequency": 64664, "length": 2, "pos": ["adjective", "adverb", "noun", "particle", "postposition"], "spokenRatio": 0.000959, "synonymsTa": ["அப்பால்", "இனி", "உடல்", "உயர்", "கூடுதலாக", "சிறந்த", "பற்றி", "பின்", "மீது", "மேன்மை", "மேற்கு", "மேலிடம்", "மேலே", "மேல்புறம்", "வானம்", "வான்"], "tier1Attestations": 5, "translationEn": "up", "word": "மேல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மேற்றிசையிலுள்ள சமுத்திரம்", "frequency": 5, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேல்கடல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "aedile", "word": "மேல்காப்பாளர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கட்டடத்தின் மேற்கோப்பு", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேல்காயர்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "மேற்கிலிருந்து வீசும் காற்று; கோடைக்காற்று", "frequency": 17, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "west", "word": "மேல்காற்று", "wordClass": "headword"}
+{"attestations": 1, "definitionTa": "உயர்ந்த ஜாதியில் பிறந்தவர்கள்.", "frequency": 0, "length": 10, "pos": ["adjective"], "synonymsTa": ["உயர்ந்தகுடியில்பிறந்த", "உயர்ந்தகுலத்தில்பிறந்த"], "tier1Attestations": 1, "translationEn": "quality", "word": "மேல்குடியில்பிறந்த", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேல்கூரைகளை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அப்பாலானது", "frequency": 7, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அப்பாலானது", "உயர்தரம்", "மேடு", "மேற்கு"], "tier1Attestations": 2, "word": "மேல்கை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கோயிலின் தலைமைப்பூசகன் ( ii. 48, 49.)", "frequency": 114, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேல்சாந்தி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேல்பக்கம்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["மேல்பக்கம்"], "tier1Attestations": 2, "word": "மேல்சார்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "வண்டி முதலியவற்றின் மேற்கூடு", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "word": "மேல்டாப்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "Occident", "word": "மேல்தசை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "smear", "word": "மேல்தடவிவிடு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "மேல் நிலை; மேல் மட்டம்", "frequency": 412, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "upper class", "word": "மேல்தட்டு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "promote", "word": "மேல்தரப்படுத்து", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "blanket", "word": "மேல்தளப்பரப்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 50, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "terrace", "word": "மேல்தளம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "<!---# குறியீட்டிற்கு அடுத்து, தமிழில் விளக்கம் எழுதி", "frequency": 20, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "supramaxillary", "word": "மேல்தாடை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "supramaxillary", "word": "மேல்தாடைக்குமிய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "skin", "word": "மேல்தாள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 5, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "armour", "word": "மேல்தோடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "crustaceous", "word": "மேல்தோடுடைய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "hypodermic", "word": "மேல்தோலடியிலுள்ள", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "corticate, corticated", "word": "மேல்தோலையுடைய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 52, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "bark", "word": "மேல்தோல்", "wordClass": "headword"}
+{"attestations": 3, "frequency": 14, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேல்நாடு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேற்கத்திய தேசங்களோடு தொடர்புடையவன்", "frequency": 0, "length": 9, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "western", "word": "மேல்நாட்டிற்குரிய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "eventuality", "word": "மேல்நிகழ்வு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "overlord", "word": "மேல்நிலக்கிழார்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "ஒன்று அல்லது ஒருவர் அடையும் மிக உயர்ந்த நிலை", "frequency": 1850, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["உச்சநிலை", "உச்சம்", "உயர்நிலை", "உயர்வுநிலை"], "tier1Attestations": 3, "translationEn": "seniority", "word": "மேல்நிலை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "general", "word": "மேல்நிலைப்பட்ட", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "superior", "word": "மேல்நிலையர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 4, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "top-sawyer", "word": "மேல்நிலையினர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 8, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "upper", "word": "மேல்நிலையிலுள்ள", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 13, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "betters", "word": "மேல்நிலையிலுள்ளனவர்கள்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஆறு, ஏரி முதலியவைகளின் நீர்", "frequency": 3, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "surface water", "word": "மேல்நீர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 325, "length": 5, "pos": ["adjective", "noun"], "spokenRatio": 0.003077, "tier1Attestations": 1, "translationEn": "up", "word": "மேல்நோக்கி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "mount", "word": "மேல்நோக்கிப்பரவு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 40, "length": 6, "pos": ["adjective", "noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "upgrade", "word": "மேல்நோக்கிய", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "மேலே அமைந்த பாகம்", "frequency": 190, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "head", "word": "மேல்பகுதி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மேலேயுள்ள திசையில்", "frequency": 35, "length": 6, "pos": ["adverb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "up", "word": "மேல்பக்கம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "superfusion", "word": "மேல்படர்வு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 5, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேல்படி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேல்வாரம்", "frequency": 75, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மேற்குப்பகுதி", "மேல்வாரம்"], "tier1Attestations": 2, "translationEn": "buttery-hatch", "word": "மேல்பாதி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேற்குப்பக்கம்", "frequency": 8, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மேற்குப்பக்கம்"], "tier1Attestations": 2, "word": "மேல்பால்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நவகண்டத் தொன்று ( )", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "மேல்பால்விதேகம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சட்டையின் மேற்பாகம்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேல்பீட்டி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒரு பொருள் அல்லது பரப்பின் கரையில் அல்லது அருகில்", "frequency": 161, "length": 5, "pos": ["adverb"], "spokenRatio": 0.0, "synonymsTa": ["மேலே", "மேல்"], "tier1Attestations": 1, "translationEn": "atop", "word": "மேல்புறம்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "நீர்மடையை அடுத்துள்ள விளைநிலம்", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "word": "மேல்மடை", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "மேல்நிலை", "frequency": 26, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மேல்நிலை"], "tier1Attestations": 1, "translationEn": "high level", "word": "மேல்மட்டம்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "மைசூர்ப்பிரதேசம் ( . Sm. 94.)", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "word": "மேல்மண்டலம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 5, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "superego", "word": "மேல்மனம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "tarnish", "word": "மேல்மாசு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 19, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "Balkong", "word": "மேல்மாடம்", "wordClass": "headword"}
+{"attestations": 4, "categories": ["house"], "definitionTa": "வீட்டின் மேனிலைக்கட்டு", "frequency": 46, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "upstairs", "word": "மேல்மாடி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "upstairs", "word": "மேல்மாடிப்பகுதி", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "கூரையின் கீழே ஒரு வீட்டின் மேற்புறத்தில் திறந்தவெளி கொண்ட தளம்; பெரும்பாலும் சேமிப்பிற்குப் பயன்படுத்தப்படுகிறது", "frequency": 0, "length": 6, "tier1Attestations": 1, "translationEn": "Attic", "word": "மேல்மாடியறை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "upstairs,", "word": "மேல்மாடியிலுள்ள", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ரொட்டி, பிரெட்டை வட்டமாக தேய்ப்பதற்காக பயன்படுத்தக்கூடிய காய்ந்த மாவு", "frequency": 1, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேல்மாவு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "superfluous", "word": "மேல்மிச்சமான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "upbuoyance", "word": "மேல்மிதப்பு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "மேற்குப்பகுதி", "frequency": 14, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மேற்குப்பகுதி"], "tier1Attestations": 1, "word": "மேல்முகம்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "உடுத்தும் போது மேற்புறமாக வரும் சீலையின் முகப்பு", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "word": "மேல்முன்றானை", "wordClass": "headword"}
+{"attestations": 7, "definitionTa": "வழக்கில் அடுத்தநிலையில் செய்யப்படும் முறையீடு", "frequency": 2426, "length": 6, "pos": ["noun"], "spokenRatio": 0.000412, "tier1Attestations": 4, "translationEn": "appellant", "word": "மேல்முறையீடு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "முயற்சி முதலியவற்றால் மேலெழும் பெருமூச்சு", "frequency": 35, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேல்மூச்சு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "covered", "word": "மேல்மோடுள்ள", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["postposition"], "tier1Attestations": 1, "translationEn": "against", "word": "மேல்மோதி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வாயுதேவன் ( 90.)", "frequency": 0, "length": 10, "pos": ["noun"], "tier1Attestations": 2, "word": "மேல்வடதிக்காள்வோன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நகரமுதலியவற்றின் வெளிச்சுற்று", "frequency": 2, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["முதன்மை"], "tier1Attestations": 2, "word": "மேல்வட்டம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "impinge;", "word": "மேல்வந்தழுத்து", "wordClass": "headword"}
+{"attestations": 5, "frequency": 12, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "Shift key", "word": "மேல்வரி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மேலிடமாக அமைந்துள்ள வரிசை", "frequency": 25, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேல்வரிசை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "முன்மாதிரியாய் அமைந்தது", "frequency": 1, "length": 9, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "copy", "word": "மேல்வரிச்சட்டம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "apanage", "word": "மேல்வருமானம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சம்பளத்திற்குமேல் அதிகப்படியாகக் கிடைக்கும் வருமானம்", "frequency": 4, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேல்வரும்படி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உடம்பு நோவு", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேல்வலி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 5, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "anticline", "word": "மேல்வளைவு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "anticlinorium", "word": "மேல்வளைவுத்தொகுதி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "appeal", "word": "மேல்வழக்காடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "review", "word": "மேல்வழக்காய்வு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "appeal", "word": "மேல்வழக்கு", "wordClass": "headword"}
+{"attestations": 3, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேல்வாசகம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒப்படிக்கணக்கைத் தீர்க்குமுன் தருமம் முதலியவற்றிற்குச் செலவிடும் தானியம்", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேல்வாசி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அயல் நிலங்களினும் அதிக வருவாயுள்ள நிலம்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "மேல்வாசிநிலம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நெல்முதலியவற்றை அளவில் அதிகப்படுத்திக் காட்டும் அளத்தல்முறை", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "மேல்வாசியளவு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "எழுதல்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["எழுதல்"], "tier1Attestations": 2, "word": "மேல்வாதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒன்றிலிருந்து மேலெண்ணப்படும் எண்முறை", "frequency": 2, "length": 8, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேல்வாயிலக்கம்", "wordClass": "headword"}
+{"attestations": 7, "definitionTa": "வாயின் மேற்பகுதி ( )", "frequency": 10, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அண்ணம்"], "tier1Attestations": 3, "translationEn": "palate", "word": "மேல்வாய்", "wordClass": "headword"}
+{"attestations": 3, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 2, "word": "மேல்வாய்க்கணக்கு", "wordClass": "headword"}
+{"attestations": 3, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "adjuntant lesser", "word": "மேல்வாய்க்கொக்கு", "wordClass": "headword"}
+{"attestations": 3, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "மேல்வாய்ப்புறம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நிலத்தின் சுவான்தார்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேல்வாரதார்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "விளைவிலிருந்து நிலச்சொந்தக்காரருக்குக் கொடுத்தற்குரிய தானியப்பகுதி", "frequency": 3, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேல்வாரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சாரத்தின்மேற் போடப்படும் பலகை", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["கைம்மரம்"], "tier1Attestations": 2, "word": "மேல்வாரை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கண்காணிப்பு", "frequency": 8, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கண்காணிப்பு"], "tier1Attestations": 3, "translationEn": "survey", "word": "மேல்விசாரணை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வீட்டின் முகட்டுவளை", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேல்விட்டம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கட்டடவளைவின் வெளிவீச்சு", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "மேல்விட்டவளைவு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "supercanopy", "word": "மேல்விதானம்", "wordClass": "headword"}
+{"attestations": 3, "frequency": 1, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேல்வினை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "படுக்கையின் மேல்விரிப்புச் சீலை", "frequency": 2, "length": 4, "pos": ["noun", "verb"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "overlay", "word": "மேல்விரி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "sheet", "word": "மேல்விரிப்பிணை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 4, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "overlay", "word": "மேல்விரிப்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "sham", "word": "மேல்விரிப்புத்துணி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "உயிர்மெய்களில் இகர ஈகாரங்களைக் குறிக்க மெய்கள் மேல் இடும் குறியீடு ( எழுத். 17, உரை.)", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேல்விலங்கு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கடிதப்புறத்தே கடிதத்தைப்பெறுவோரின் ஊரி பெயர் முதலியன குறிக்கும் வாசகம்", "frequency": 5, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேல்விலாசம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேல்விலாசம்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["மேல்விலாசம்"], "tier1Attestations": 2, "word": "மேல்விளாசம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "gunwale", "word": "மேல்விளிம்பு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பிற்பயன்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["பிற்பயன்"], "tier1Attestations": 2, "word": "மேல்விளைவு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "முற்படச்சென்று பாய்தல்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேல்விழுதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "breathe", "word": "மேல்வீசு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மெத்தைவீடு", "frequency": 1, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மாடி", "மெத்தைவீடு"], "tier1Attestations": 2, "word": "மேல்வீடு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "முதல் வெள்ளத்திற்குப் பின்வரும் வெள்ளம்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "மேல்வெள்ளம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 3, "pos": ["noun", "verb"], "tier1Attestations": 1, "translationEn": "apply", "word": "மேல்வை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "superposed", "word": "மேல்வைக்கப்பட்ட", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "superpose", "word": "மேல்வைத்திணைவி", "wordClass": "headword"}
+{"attestations": 2, "frequency": 4, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "supersession", "word": "மேல்வைப்பு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "superposition", "word": "மேல்வைப்புநிலை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 271, "length": 2, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "swell-organ", "word": "மேள", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கஞ்சி ( )", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "மேளகம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஜன்யராகங்களுக்கு மூலமாகிய ராகங்கள்", "frequency": 885, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேளகர்த்தா", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேளம் வாசிப்போன்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேளகாரன்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "நாகசுரம் ஒத்து தவல் தாளம் இவற்றை வாசிக்கும் வாத்தியக்காரர்", "frequency": 3, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேளகாரர்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கச்சேரியாக மேளவாத்தியம் வாசிக்கை", "frequency": 8, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேளக்கச்சேரி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒலி நன்கு கேட்கும்படி இசையமைவுபெறுந் தன்மை", "frequency": 2, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேளக்கட்டு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஆடம்பரக்காரன்", "frequency": 5, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஆடம்பரக்காரன்"], "tier1Attestations": 2, "word": "மேளக்காரன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வாத்தியங்களுக்குச் சுருதி சேர்த்தல்", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "மேளங்கட்டுதல்", "wordClass": "headword"}
+{"attestations": 3, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "மேளஞ்செய்தல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 30, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேளதாளங்கள்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கலக்கை", "frequency": 2, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கலக்கை", "கூட்டம்"], "tier1Attestations": 2, "word": "மேளனம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தவல் அடித்தல்", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["ஒத்துப்பேசுதல்", "பகிரங்கஞ்செய்தல்", "வருந்திமுயலுதல்"], "tier1Attestations": 2, "word": "மேளமடித்தல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 25, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "மேளமும்", "wordClass": "headword"}
+{"attestations": 4, "categories": ["arts"], "definitionTa": "நாகசுரம் ஒத்து தவல், தாளம் என்பவற்றின் இசைத் தொகுதி", "frequency": 866, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மேளகர்த்தா"], "tier1Attestations": 2, "translationEn": "Drums", "word": "மேளம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூட்டுதல் ( )", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேளித்தல்", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "கவசம் ( )", "frequency": 2, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேழகம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பருத்த செம்மறியாட்டுக்கடா", "frequency": 10, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "sheep", "word": "மேழம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஏர்", "frequency": 12, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஏர்"], "tier1Attestations": 2, "translationEn": "plough", "word": "மேழி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஏரால் வருஞ் செல்வம்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "மேழிச்செல்வம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "plough-tail", "word": "மேழிப்பிடி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உழவர் ( )", "frequency": 1, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேழியர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "விவசாயச் செலவு", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "மேழிவாரம்", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "கஞ்சி ( )", "frequency": 7, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேழை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 3, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "ashlaring", "word": "மேவடை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "காண்க: மேவார்", "frequency": 7, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேவலர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பக்கத்தை மேவி நகல் எடுத்தல்", "frequency": 13, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஆசை", "கலக்கை"], "tier1Attestations": 2, "translationEn": "scanning", "word": "மேவல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பொருத்தமாதல்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["பொருத்தமாதல்"], "tier1Attestations": 2, "word": "மேவாதல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "பகைவர்", "frequency": 123, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["பகைவர்"], "tier1Attestations": 2, "word": "மேவார்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun", "verb"], "tier1Attestations": 1, "translationEn": "run", "word": "மேவிச்செல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தங்கச்செய்தல்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["தங்கச்செய்தல்"], "tier1Attestations": 2, "word": "மேவித்தல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மித்திரர் ( )", "frequency": 5, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "மேவினர்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "1)மேன்மை), 2)தடவு", "frequency": 41, "length": 2, "pos": ["adjective", "noun", "verb"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "catch", "word": "மேவு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "ashlar", "word": "மேவுகல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "sleeve-coupling", "word": "மேவுகுழல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அடைதல்", "frequency": 6, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அடைதல்"], "tier1Attestations": 2, "word": "மேவுதல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "மழைபெய்த அளவைக் காட்டுங்கணக்கு ( )", "frequency": 0, "length": 10, "pos": ["noun"], "tier1Attestations": 1, "word": "மேவுபர்சாத்கணக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 3, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "refer", "word": "மேவுவி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "reference", "word": "மேவுவிப்பு", "wordClass": "headword"}

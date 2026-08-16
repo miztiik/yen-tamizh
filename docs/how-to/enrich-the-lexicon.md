@@ -127,7 +127,7 @@ The rule has a second edge worth stating, because it is where most declines actu
 
 ## The review loop
 
-Review is bounded by CONSUMPTION, not by volume: only rows that can reach a player need it. Review is PER-ROW, not per-field - a reviewed row becomes `categorySource: reviewed` AND `meaningSource: reviewed` together, because a human who checked the meaning read the theme on the same line.
+Review is bounded by CONSUMPTION, not by volume: only rows that can reach a player need it. Review is PER-ROW, not per-field - a human who checked the meaning read the theme on the same line.
 
 Until a human reviews a row:
 
@@ -136,6 +136,8 @@ Until a human reviews a row:
 - and its authored attestation does not count toward the attestation gate. An unreviewed model row cannot be the evidence that a model row is real.
 
 A human review is itself an attestation act, which is what flips all three.
+
+**None of that is enforceable from the published artifact today, and saying so is the point.** Row 3 designed `meaningSource` / `categorySource` (`attested` / `authored` / `reviewed`) to carry the state, and row 11 dropped them: `reviewed` had no producer, there is no human review pass, and a column that is `attested` on nearly every row and `authored` on the rest was 139,000 rows paying for a distinction the store already holds per fact. The rule above therefore binds the AUTHORING pass and the operator, not the reader - and the row that first sells a paid hint (row 14) is the one that has to name a mechanism it can actually check, rather than inheriting a column that was never filled with the value it existed for.
 
 ## Authoring instructions - `promptVersion` 2026-08-16
 
@@ -156,6 +158,7 @@ This section IS the prompt. Changing it means date-stamping a new `promptVersion
 
 - [../architecture/lexicon/pipeline.md](../architecture/lexicon/pipeline.md) - the four stages and why the authored file is an input rather than a stage.
 - [../architecture/lexicon/word-hood.md](../architecture/lexicon/word-hood.md) - which surfaces are eligible to be authored at all.
-- [../concepts/lexicon.md](../concepts/lexicon.md) - `meaningSource`, `categorySource`, and why a definition is never republished verbatim.
+- [../concepts/lexicon.md](../concepts/lexicon.md) - why an attested Tamil definition outranks an authored one, and why an English definition is never republished.
+- [rebuild-the-lexicon.md](rebuild-the-lexicon.md) - running the stages, and what a refresh commit contains.
 - [add-a-lexicon-source.md](add-a-lexicon-source.md) - registering any other source, all of which are acquired rather than authored.
 - [../../CLAUDE.md](../../CLAUDE.md) - Holy Law #1 (no runtime backend, so no API client), #7 (no mocks), #8 (no new dependency without a named beneficiary).

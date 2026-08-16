@@ -35,6 +35,7 @@ from typing import Any, get_args
 
 import pytest
 
+from _lexicon_workspace import narrowed
 from yen_tamizh_backend.contracts.lexicon import PartOfSpeech
 from yen_tamizh_backend.contracts.lexicon_sources import LexiconSource, LexiconSources
 from yen_tamizh_backend.ezhuthu import segment
@@ -120,10 +121,7 @@ def _staged(root: Path, label: str) -> Path:
         SOURCE.model_dump(exclude_none=True)
         | {"path": f"sources/{staged_path.name}", "sha256": digest, "bytes": size}
     )
-    registry = LexiconSources.model_validate(
-        REGISTRY.model_dump(exclude_none=True)
-        | {"lexiconRoot": "out", "sources": [entry.model_dump(exclude_none=True)]}
-    )
+    registry = narrowed(REGISTRY, [entry], lexiconRoot="out")
     extract_source(entry, registry, workspace, force=True)
     stage(registry, workspace)
     return workspace / "out" / "cache" / "lexicon.db"

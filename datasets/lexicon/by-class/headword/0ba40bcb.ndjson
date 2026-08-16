@@ -1,0 +1,544 @@
+{"attestations": 4, "definitionTa": "ஓர் உயிர்மெய்யெழுத்து (த் + ஓ)", "frequency": 558, "length": 1, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "தோ", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பால்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["பால்"], "tier1Attestations": 2, "word": "தோகசம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வயாநோய்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["வயாநோய்", "விருப்பம்"], "tier1Attestations": 2, "word": "தோகதம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கர்ப்பிணி ( )", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "தோகதவதி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "சிறுமை", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["இளங்குழந்தை", "சிறுமை", "துயரம்", "பால்"], "tier1Attestations": 3, "word": "தோகம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அசோகமரம்", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["அசோகமரம்"], "tier1Attestations": 2, "word": "தோகலி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சோனைப்புல்", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["சோனைப்புல்"], "tier1Attestations": 2, "word": "தோகல்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "இச்சொல் தமிழிலக்கணப்படி, பல்பொருள் ஒரு மொழி ஆகும்", "frequency": 505, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["உரோமம்", "சிறகு", "செட்டை", "பீலி", "மயில்", "முடி", "வால்"], "tier1Attestations": 3, "translationEn": "trash", "word": "தோகை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "carborundum", "word": "தோகைக்கல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மயிலுக்குப் பகையான ஒந்தி", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "தோகைப்பகை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஆண்மயில்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["ஆண்மயில்"], "tier1Attestations": 2, "word": "தோகைமஞ்ஞை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஆண்மயில்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["ஆண்மயில்"], "tier1Attestations": 2, "translationEn": "male peacock", "word": "தோகைமயில்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பெண்களின் முகத்தை அலங்கரிப்பதான மஞ்சள்", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "தோகைமுகபூடணம்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 68, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோகையை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கடலை மாவிலான ஒருவகை உணவு", "frequency": 5, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோக்கா", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோக்குமம்", "frequency": 6, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["தோக்குமம்"], "tier1Attestations": 2, "word": "தோக்கியம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "துவக்கு", "frequency": 1, "length": 3, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["கைச்சுடுகலன்", "துவக்கு"], "tier1Attestations": 2, "translationEn": "begin", "word": "தோக்கு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "காதின் குறும்பி", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["முகில்"], "tier1Attestations": 2, "word": "தோக்குமம்", "wordClass": "headword"}
+{"attestations": 3, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "தோக்குருவி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பருத்தி", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["பருத்தி"], "tier1Attestations": 2, "word": "தோக்குளம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "முன்றானை", "frequency": 1, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கொய்சகம்", "முன்றானை"], "tier1Attestations": 2, "word": "தோக்கை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தேரின் வெளிப்பக்கத்து வளைவு", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "தோக்கொடுங்கை", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "குற்றம்", "frequency": 351, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["குறை", "குற்றம்", "சன்னி", "நாடிக்கொதிப்பு", "பாவம்", "விடக்காய்ச்சல்"], "tier1Attestations": 4, "translationEn": "lead-poisoning", "word": "தோசம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நற்பேறு அற்றவன்", "frequency": 14, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "தோசி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கொக்குவகை", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["கொக்குவகை"], "tier1Attestations": 3, "word": "தோசிக்கொக்கு", "wordClass": "headword"}
+{"attestations": 9, "definitionTa": "தோய்ப்பதால் தோசை", "frequency": 2792, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 5, "translationEn": "pancake", "word": "தோசை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "இதில் ஜிலேபி உருவாக்கப்படும் ஒரு வகை அகன்ற மற்றும் தட்டையான அடிப்பாகத்தை கொண்ட கடாய்", "frequency": 212, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஆழமில்லாத இழுப்பைச் சட்டி"], "tier1Attestations": 1, "translationEn": "pan", "word": "தோசைக்கல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கல்லில் வார்க்கும் தோசையைத் திருப்பவும் எடுக்கவும் உதவும் கருவி", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "தோசைதிருப்பி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோட்டுச்சிரங்கு", "frequency": 0, "length": 8, "pos": ["noun"], "synonymsTa": ["தோட்டுச்சிரங்கு"], "tier1Attestations": 2, "word": "தோடகச்சிரங்கு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தாமரை", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["கொப்புளம்", "தாமரை"], "tier1Attestations": 2, "translationEn": "lotus", "word": "தோடகம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வாதம் பித்தம் சிலேட்டுமம் என்னும் முப்பிணிகள்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "தோடத்திரயம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "குறை", "frequency": 8, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["இரவு", "குறை", "சன்னி", "நாடிக்கொதிப்பு", "பாவம்", "பிணி", "பித்தவாதசுரம்", "மகிழ்ச்சி", "விடக்காயச்சல்"], "tier1Attestations": 2, "word": "தோடம்", "wordClass": "headword"}
+{"attestations": 3, "frequency": 28, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "orange", "word": "தோடம்பழம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நாடகத்தின் முன்மொழிப் பாட்டு", "frequency": 4, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "தோடயம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "gymnospermous", "word": "தோடற்ற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 3, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "chitinous", "word": "தோடான", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "(பெ) - = = ஆரஞ்சுப்பழம் = இன்னரந்தம்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "navel", "word": "தோடாப்பழம்", "wordClass": "headword"}
+{"attestations": 7, "definitionTa": "ஒரு பண்வகை", "frequency": 657, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "word": "தோடி", "wordClass": "headword"}
+{"attestations": 9, "categories": ["dresses-and-accessories"], "definitionTa": "பெண்கள் காதில் அணியும் அணிகலன்", "frequency": 798, "length": 2, "pos": ["adjective", "noun"], "spokenRatio": 0.001253, "synonymsTa": ["அணை", "இலை", "ஓலை", "கடுக்கண்", "கதிர்த்தாள்", "கம்மல்", "காதணி", "குதம்பை", "குழை", "தொகுதி", "தொங்கடம்", "தொங்கட்டான்", "தொங்கல்", "தோல்", "பூ", "பூவிதழ்"], "tier1Attestations": 5, "translationEn": "Earrings", "word": "தோடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "pare", "word": "தோடுநீக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "scutellation", "word": "தோடுபொதிவு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "conchiferous", "word": "தோடுள்ள", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சலாபக்குளியல் ஒரு முழுக்கிற் கிடைக்கும் சிப்பிகள்", "frequency": 21, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஆடாதோடை"], "tier1Attestations": 2, "translationEn": "produce of a single dive at a pearl-fishery", "word": "தோடை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "தோடயம்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["தோடயம்"], "tier1Attestations": 2, "word": "தோடையம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோட்சந்து", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["தோட்சந்து", "தோள்"], "tier1Attestations": 2, "word": "தோட்கட்டு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "தோள்வளை", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["தோள்வளை"], "tier1Attestations": 3, "translationEn": "slave-bangle", "word": "தோட்காப்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "tippet", "word": "தோட்குட்டை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கட்டுச்சோறு", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["கட்டுச்சோறு"], "tier1Attestations": 2, "word": "தோட்கோப்பு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோளில் தாங்கும் சுமை", "frequency": 1, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["காவடி", "மூட்டை"], "tier1Attestations": 2, "word": "தோட்சுமை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 2154, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "bower", "word": "தோட்ட", "wordClass": "headword"}
+{"attestations": 6, "categories": ["hobby"], "definitionTa": "தோட்டப்பயிர்களைப் பயிலும் கல்வித்துறை", "frequency": 23249, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 4, "translationEn": "Gardening", "word": "தோட்டக்கலை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோட்டக்கலைப்பயிர்களைப் பயிலும் கல்விப்புலம்", "frequency": 1, "length": 9, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "horticulture", "word": "தோட்டக்கலையியல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "(பெ) =ஆறுமணிக்குருவி=பொன்னுத்தட்டான்=காளி", "frequency": 12, "length": 8, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "தோட்டக்கள்ளன்", "wordClass": "headword"}
+{"attestations": 7, "definitionTa": "தோட்டத்தைப் பார்க்கும் வேலையாள்", "frequency": 151, "length": 7, "pos": ["noun"], "spokenRatio": 0.006623, "tier1Attestations": 3, "translationEn": "gardener", "word": "தோட்டக்காரன்", "wordClass": "headword"}
+{"attestations": 4, "categories": ["profession"], "definitionTa": "தோட்ட வேலை செய்பவர்", "frequency": 85, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "Gardener", "word": "தோட்டக்காரர்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "தோட்டக்காரனின் மனைவி", "frequency": 4, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோட்டக்காரி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கேணிப் பாய்ச்சலுள்ள கொல்லைநிலம்", "frequency": 3, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "தோட்டக்கால்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சவுக்கண்டி", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["சவுக்கண்டி"], "tier1Attestations": 2, "word": "தோட்டக்குடிசை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோட்டத்துக்குத் தகுதியான நிலம் ( v, 327.)", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "தோட்டக்கூறு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 49, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோட்டங்களின்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 7, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோட்டங்களிலே", "wordClass": "headword"}
+{"attestations": 1, "frequency": 675, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோட்டங்களில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 16, "length": 9, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோட்டங்களுக்குள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 128, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோட்டங்களும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 462, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "border", "word": "தோட்டத்தின்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 285, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோட்டத்திற்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 127, "length": 9, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "escape, n.", "word": "தோட்டத்திலிருந்து", "wordClass": "headword"}
+{"attestations": 1, "frequency": 64, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோட்டத்திலும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 40, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோட்டத்திலுள்ள", "wordClass": "headword"}
+{"attestations": 1, "frequency": 4049, "length": 6, "spokenRatio": 0.000741, "tier1Attestations": 1, "translationEn": "lawn-sprinkler", "word": "தோட்டத்தில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 579, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோட்டத்து", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோட்டத்துகுள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 380, "length": 7, "spokenRatio": 0.002632, "tier1Attestations": 1, "word": "தோட்டத்துக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 113, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோட்டத்துக்குள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 8, "length": 9, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோட்டத்துக்குள்ளே", "wordClass": "headword"}
+{"attestations": 1, "frequency": 507, "length": 5, "spokenRatio": 0.001972, "tier1Attestations": 1, "translationEn": "landscape-gardener", "word": "தோட்டத்தை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோட்டந்தான்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "செவிடு", "frequency": 1, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["செவிடு"], "tier1Attestations": 2, "word": "தோட்டந்தூரம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "gardener", "word": "தோட்டப்பணியர்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "காய்கறிகள்", "frequency": 13, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["காய்கறிகள்"], "tier1Attestations": 2, "translationEn": "gardening", "word": "தோட்டப்பயிர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "alley", "word": "தோட்டப்பாதை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "tier1Attestations": 1, "translationEn": "devil-in-a-brush n.", "word": "தோட்டமலர்வகை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 115, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோட்டமும்", "wordClass": "headword"}
+{"attestations": 10, "categories": ["garden"], "definitionTa": "இயற்கை முறையில்  பொதுமக்களின் சொத்தாக பாதுகாக்கப்படும் பூமியின் ஒரு பகுதி", "frequency": 4678, "length": 4, "pos": ["noun"], "spokenRatio": 0.000214, "synonymsTa": ["கொல்லை", "சோலை", "துடவை", "தோப்பு", "படப்பை", "பண்ணை", "பூங்கா"], "tier1Attestations": 6, "translationEn": "bosk", "word": "தோட்டம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோட்டக் கண்காணிப்பு", "frequency": 4, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "தோட்டவாரியம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "produce", "word": "தோட்டவிளைவு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "lodge", "word": "தோட்டவீடு", "wordClass": "headword"}
+{"attestations": 10, "definitionTa": "வேட்டைச் சுடுகலனில் பயன்படுத்தப்படும் சுடுகலக் குண்டு", "frequency": 681, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["குண்டு"], "tier1Attestations": 6, "translationEn": "cantridge", "word": "தோட்டா", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "துப்பாக்கியிலிருந்து சுடப்படும் ஒரு பொருள்", "frequency": 387, "length": 6, "spokenRatio": 0.010336, "tier1Attestations": 1, "translationEn": "Bullets", "word": "தோட்டாக்கள்", "wordClass": "headword"}
+{"attestations": 9, "categories": ["profession"], "definitionTa": "ஆணை", "frequency": 95, "length": 3, "pos": ["noun"], "spokenRatio": 0.021053, "synonymsTa": ["அங்குசம்", "ஆணை", "கட்டழகு", "கதவு", "காவல்", "கொக்கி", "செங்காந்தள்மலர்", "துப்புறவுத் தொழிலாளர்", "தோணாமுகம்", "நெல்லிமரம்", "மனைவாயில்", "வெட்டியான்"], "tier1Attestations": 5, "translationEn": "ankus", "word": "தோட்டி", "wordClass": "headword"}
+{"attestations": 3, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "vulture", "word": "தோட்டிக்கழுகு", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "தோட்டிப்பெண்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["தோட்டிப்பெண்"], "tier1Attestations": 2, "word": "தோட்டிச்சி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒற்றுமை", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["ஒற்றுமை", "வெட்டியான்வேலை"], "tier1Attestations": 3, "word": "தோட்டிமை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "scavenger", "word": "தோட்டியாயிரு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒலைச்சுருள் முதலியன இட்டகாது", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "தோட்டுக்காது", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சக்கரவாணம்", "frequency": 0, "length": 9, "pos": ["noun"], "synonymsTa": ["சக்கரவாணம்"], "tier1Attestations": 2, "word": "தோட்டுச்சக்கரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கொப்புளச்சிரங்கு", "frequency": 0, "length": 8, "pos": ["noun"], "synonymsTa": ["கொப்புளச்சிரங்கு"], "tier1Attestations": 2, "word": "தோட்டுச்சிரங்கு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கணவன்", "frequency": 1, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கணவன்"], "tier1Attestations": 2, "word": "தோட்டுணை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "testcean", "word": "தோட்டுயிர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "testcean", "word": "தோட்டுயிர்சார்ந்த", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "தோட்புறத்து எலும்பு", "frequency": 4, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "shoulder", "word": "தோட்பட்டை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "எதிர்த்து நிற்றற் குறியாகத் தோள்தட்டுதல். அல்லாக் காற் றோட்புடைக்கொள்ளா வெழும் ( , 312)", "frequency": 0, "length": 10, "pos": ["noun"], "tier1Attestations": 2, "word": "தோட்புடைக்கொள்ளுதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அகழ்சூழ்ந்த பெரிய நகரம்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "தோணாமுகம்", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "ஓடம்; கப்பல்; மிதவை", "frequency": 286, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அம்பு", "இரேவதி", "ஓடம்", "கட்டுமரம்", "கப்பல்", "கலன்", "கலம்", "சேறு", "தெப்பம்", "நாவாய்", "நீர்", "நௌகா", "படகு", "போட்டு", "மதிலுறுப்பு", "மரக்கலம்", "மரம்", "மிதவை", "வஞ்சி", "வள்ளம்"], "tier1Attestations": 4, "translationEn": "boat", "word": "தோணி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோணிக்கு வாங்கும் வரி ( )", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "தோணிக்கடமை", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "படகோட்டி", "frequency": 2, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["படகோட்டி"], "tier1Attestations": 2, "word": "தோணிக்காரன்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "ferry", "word": "தோணிசெலுத்து", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["verb"], "tier1Attestations": 1, "word": "தோணிதள்ளு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஒடத்தை நீரில் விடுதல்", "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "word": "தோணிதள்ளுதல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "படகைக் கழையால் தள்ளுதல்", "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "word": "தோணிதாங்குதல்", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "துறைமுகம்", "frequency": 26, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["துறைமுகம்"], "tier1Attestations": 4, "translationEn": "ferry", "word": "தோணித்துறை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 6, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோணித்துறையில்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சீகாழி", "frequency": 5, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["சீகாழி"], "tier1Attestations": 2, "word": "தோணிபுரம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "தோணிபோல் அமைக்கப்படும் கற்பாலம்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 3, "translationEn": "pontoon", "word": "தோணிப்பாலம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அம்பு ( )", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "தோணியம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "ferry", "word": "தோணியிலேற்றிச்செல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 2, "pos": ["verb"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோணு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "தோன்றுதல்", "frequency": 0, "length": 4, "pos": ["verb"], "synonymsTa": ["தோன்றுதல்"], "tier1Attestations": 1, "word": "தோணுதல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மகளிர் விளையாட்டுவகை", "frequency": 1, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "தோணோக்கம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "தோண்டுவதன் மூலமாக பூமியிலிருந்து பெறுகிற", "frequency": 214, "length": 7, "pos": ["adjective"], "spokenRatio": 0.004673, "synonymsTa": ["தோண்டிய", "வெட்டப்பட்ட", "வெட்டிய"], "tier1Attestations": 1, "translationEn": "mined", "word": "தோண்டப்பட்ட", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஓநாய்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["ஓநாய்", "கோணாய்"], "tier1Attestations": 3, "translationEn": "wolf", "word": "தோண்டான்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "நீர்க்கலம்", "frequency": 1951, "length": 3, "pos": ["noun"], "spokenRatio": 0.002563, "synonymsTa": ["நீர்க்கலம்"], "tier1Attestations": 2, "translationEn": "badger", "word": "தோண்டி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கையால் அல்லது கருவியால் மண்ணை பள்ளம் ஏற்படும் படி அகற்றிய நிலை.", "frequency": 237, "length": 4, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["தோண்டப்பட்ட", "வெட்டப்பட்ட", "வெட்டிய"], "tier1Attestations": 1, "translationEn": "engraved", "word": "தோண்டிய", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 5, "pos": ["noun", "verb"], "tier1Attestations": 1, "translationEn": "disentomb", "word": "தோண்டியெடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 15, "length": 11, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "unearthed", "word": "தோண்டியெடுக்கப்பட்ட", "wordClass": "headword"}
+{"attestations": 9, "definitionTa": "குழி பறி, அகழ், குடை", "frequency": 28, "length": 3, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["அகழ்", "கிண்டு", "கிளறு", "குடை", "துருவு", "துழாவு", "தேடு", "தோண்டுதல்", "நோண்டு", "பண்டமிறக்கு", "முக"], "tier1Attestations": 5, "translationEn": "Dig", "word": "தோண்டு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "தோண்டும் கூலி", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "word": "தோண்டுகூலி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நாற்றங்காலில் தேங்கின நீரை வடிக்கத் தோண்டும் சிறுகால்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "தோண்டுச்சால்", "wordClass": "headword"}
+{"attestations": 7, "definitionTa": "அகழ்தல்", "frequency": 101, "length": 5, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["அகழ்தல்", "குடைதல்", "குழிவெட்டுதல்", "தோண்டு", "முகத்தல்"], "tier1Attestations": 3, "translationEn": "dig", "word": "தோண்டுதல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 6, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "digger", "word": "தோண்டுபவர்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "மணமகனும் மணமகளும் மாலைமாற்றுதல்", "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "word": "தோண்மாற்றுதல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "புயவலி", "frequency": 0, "length": 5, "pos": ["verb"], "synonymsTa": ["புயவலி"], "tier1Attestations": 1, "word": "தோண்முதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பிடரி", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["பிடரி"], "tier1Attestations": 2, "word": "தோண்மேல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோண்முதல்", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["தோண்முதல்"], "tier1Attestations": 2, "word": "தோண்மை", "wordClass": "headword"}
+{"attestations": 4, "categories": ["trees"], "definitionTa": "கருங்காலி, ஈட்டி; நீண்ட மரவகை", "frequency": 13, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "blackwood. dalbergia latifolia", "word": "தோதகத்தி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வஞ்சகன்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["ஒழுக்கமற்றவன்", "கடுகடுப்புள்ளவன்", "வஞ்சகன்"], "tier1Attestations": 2, "translationEn": "deceiver", "word": "தோதகன்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "தொந்தரவுபண்ணுதல்", "frequency": 0, "length": 7, "pos": ["verb"], "synonymsTa": ["ஒழுக்கமற்றிருத்தல்", "தொந்தரவுபண்ணுதல்"], "tier1Attestations": 1, "word": "தோதகமாடுதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வருத்தம்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["கற்பொழுக்கமின்மை", "சாலவித்தை", "வஞ்சகம்", "வருத்தம்"], "tier1Attestations": 2, "translationEn": "vexation", "word": "தோதகம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வஞ்சகி", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["வஞ்சகி"], "tier1Attestations": 2, "translationEn": "deceitful woman", "word": "தோதகி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வஞ்சகி", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["வஞ்சகி"], "tier1Attestations": 2, "translationEn": "deceitful woman", "word": "தோதகை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அங்குசம்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["அங்குசம்", "ஈட்டி"], "tier1Attestations": 2, "word": "தோதனம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பசுவின் கன்று", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["வருத்தம்"], "tier1Attestations": 2, "word": "தோதம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "முரணுதல். மெத்த மெத்தத் தோதலித்துப்பேசுஞ் சுணைகெட்ட மூளி ( 1509)", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "தோதலித்தல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ரீட்டே ஜாதியை சார்ந்த ஒரு மரம்", "frequency": 0, "length": 3, "pos": ["noun"], "tier1Attestations": 1, "word": "தோதின்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வசதி, சவுகரியம்", "frequency": 38, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["உபாயம்", "ஒப்பு", "சம்பந்தம்", "சவுகரியம்", "தொடர்பு", "பொருத்தம்", "வசதி"], "tier1Attestations": 2, "translationEn": "convenience", "word": "தோது", "wordClass": "headword"}
+{"attestations": 2, "frequency": 4, "length": 3, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோத்த", "wordClass": "headword"}
+{"attestations": 7, "definitionTa": "மாங்கனிகளில் ஒருவகைப் பழம்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 3, "translationEn": "a variety of indian mango 'thothapari'", "word": "தோத்தாபரி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "துதிப்பாட்டு", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["துதிப்பாட்டு"], "tier1Attestations": 2, "word": "தோத்திரப்பா", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "கடவுள், பெரியோர் முதலியோரைத் புகழ்ந்து பாடும் பாட்டு; துதிப்பாசுரம்", "frequency": 0, "length": 8, "pos": ["noun"], "synonymsTa": ["துதிப்பாசுரம்", "துதிப்பாட்டு"], "tier1Attestations": 3, "translationEn": "song of praise", "word": "தோத்திரப்பாட்டு", "wordClass": "headword"}
+{"attestations": 9, "definitionTa": "புகழ்ச்சி", "frequency": 112, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["எடுத்தேத்துதல்", "சிலாகை", "துதித்தல்", "துத்தியம்", "தோத்திரப்பாட்டு", "பரிமளிப்பு", "பாராட்டுதல்", "புகழ்ச்சி", "பூஷித்தல்", "மகிமைப்படுத்துதல்", "மெச்சுதல்", "வணக்கமொழி"], "tier1Attestations": 5, "translationEn": "psalm", "word": "தோத்திரம்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "புகழ்தல்", "frequency": 0, "length": 7, "pos": ["verb"], "synonymsTa": ["புகழ்தல்"], "tier1Attestations": 1, "word": "தோத்திரித்தல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "trier", "word": "தோந்தறிபவர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "smell", "word": "தோந்துகண்டறி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "engender", "word": "தோன்றக்காரணமாயிரு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "போதுமானபடி கொடுத்தல்", "frequency": 0, "length": 9, "pos": ["verb"], "tier1Attestations": 1, "word": "தோன்றக்கொடுத்தல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 6, "tier1Attestations": 1, "word": "தோன்றலுக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோன்றலுடன்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 15, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோன்றலே", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "மகன்", "frequency": 185, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அண்ணன்", "அண்ணல்", "அரசன்", "உயர்ச்சி", "கனவான்", "தமையன்", "தலைமை", "தலைவன்", "தோன்றல்விகாரம்", "தோற்றம்", "பெருமையிற்சிறந்தோன்", "மகன்", "மூத்தோன்", "விளக்கம்"], "tier1Attestations": 2, "translationEn": "son", "word": "தோன்றல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மொழிப்புணர்ச்சியில் எழுத்து , சாரியை முதலியன தோன்றுகை", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "தோன்றல்விகாரம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 4, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "unsprung", "word": "தோன்றாக", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "smother", "word": "தோன்றாதடக்கிவிடு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பிறரறியாமல் உதவுவோனாகிய கடவுள்", "frequency": 1, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "தோன்றாத்துணை", "wordClass": "headword"}
+{"attestations": 3, "frequency": 18, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "non-appearance", "word": "தோன்றாமை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒரு தொடரில் வெளிப்படச் சொல்லப்படாத எழுவாய்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "தோன்றாவெழுவாய்", "wordClass": "headword"}
+{"attestations": 4, "categories": ["flowers"], "definitionTa": "இரத்தம்", "frequency": 4872, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["இரத்தம்", "காந்தள்"], "tier1Attestations": 2, "translationEn": "camp", "word": "தோன்றி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வணிகர்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["செல்வர்", "வணிகர்"], "tier1Attestations": 2, "word": "தோன்றிகர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "flashy", "word": "தோன்றிமறைகிற", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "முழுமையாக வெளிவந்த", "frequency": 5593, "length": 4, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["உதயமான"], "tier1Attestations": 1, "translationEn": "risen", "word": "தோன்றிய", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "இந்த இடத்தில் ஒரு பொருள் உற்பத்தியாவது அல்லது தோன்றுவது", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["உற்பத்தியிடம்"], "tier1Attestations": 1, "translationEn": "beginning", "word": "தோன்றியஇடம்", "wordClass": "headword"}
+{"attestations": 9, "definitionTa": "தோன்று", "frequency": 119, "length": 3, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["உண்டா", "உதி", "உருவா", "உருவாகு", "எழு", "தெரி", "பிற", "புறப்படு", "வா", "விடி"], "tier1Attestations": 5, "translationEn": "begin", "word": "தோன்று", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "எதன் மூலமாகவோ உருவாகும்", "frequency": 108, "length": 5, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "produced", "word": "தோன்றுகிற", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "விளங்குதல்", "frequency": 107, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["விளங்குதல்"], "tier1Attestations": 3, "translationEn": "appearance", "word": "தோன்றுதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "view", "word": "தோன்றுதிறம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேலரசனுக்குச் சிற்றரசன் செலுத்துங் காணிக்கை ( )", "frequency": 60, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "தோபா", "wordClass": "headword"}
+{"attestations": 3, "frequency": 0, "length": 3, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "scad", "word": "தோபாரை", "wordClass": "headword"}
+{"attestations": 7, "definitionTa": "வண்ணான்", "frequency": 31, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஏகாலியன்", "சலவையாளி", "செளசேயன்", "துணிவெளுப்பவன்", "வண்ணாஜாதி", "வண்ணான்"], "tier1Attestations": 3, "word": "தோபி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பிராமண வழக்கு. தகப்பன்", "frequency": 10, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "father", "word": "தோப்பனார்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பிராமண வழக்கு. தகப்பன்", "frequency": 3, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "father", "word": "தோப்பன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "துட்டன் , தீயன்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["தீயன்", "துட்டன்"], "tier1Attestations": 2, "word": "தோப்பாடி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "திருநந்தவனப் பணி செய்யும் பரதேசி", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "தோப்பாண்டி", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "நெல்லால் சமைத்த கள்", "frequency": 10, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["பியர்"], "tier1Attestations": 4, "translationEn": "rice-beer", "word": "தோப்பி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "காதுகளைக் கைகளால் மாறிப்பிடித்துக்கொண்டு உட்கார்ந்து எழுந்துநிற்கச் செய்யும் தண்டனை வகை", "frequency": 2, "length": 8, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "தோப்பிக்கரணம்", "wordClass": "headword"}
+{"attestations": 7, "categories": ["garden"], "definitionTa": "' - (பெ) - ஒரே வகையான மரங்கள் வளர்க்கப்படும் இடம்", "frequency": 884, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["சோலை", "தோட்டம்"], "tier1Attestations": 5, "translationEn": "bosk", "word": "தோப்பு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "இருகை மாறிச் செவியைப் பிடித்து இருகால் முடக்கியிருந்து எழுதல்", "frequency": 0, "length": 11, "pos": ["verb"], "tier1Attestations": 1, "word": "தோப்புகரணம்போடுதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 10, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோப்புகளிலும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 47, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோப்புகளில்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 27, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோப்புகளும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 93, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோப்புகள்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோப்புக்கரணம்", "frequency": 0, "length": 8, "pos": ["noun"], "synonymsTa": ["தோப்புக்கரணம்"], "tier1Attestations": 2, "word": "தோப்புக்கண்டம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோப்புக்கரணம்", "frequency": 0, "length": 8, "pos": ["noun"], "synonymsTa": ["தோப்புக்கரணம்"], "tier1Attestations": 2, "word": "தோப்புக்கன்னம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "காதுகளைக் கைகளால் மாறிப்பிடித்துக்கொண்டு உட்கார்ந்து எழுந்துநிற்கச் செய்யும் தண்டனை வகை", "frequency": 152, "length": 8, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "cross-handed squat-up", "word": "தோப்புக்கரணம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 12, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோப்புக்கள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 38, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோப்புக்குள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 53, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோப்புத்துறை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோப்புத்துறைக்கு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "திண்மையின்றிப் பருத்தது", "frequency": 55, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["தொங்குசதை"], "tier1Attestations": 2, "word": "தோப்பை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூட்டம்", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["கூட்டம்"], "tier1Attestations": 2, "word": "தோமம்", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "எறியாயுதம்", "frequency": 13, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["எறியாயுதம்", "கைவேல்", "தண்டாயுதம்"], "tier1Attestations": 2, "word": "தோமரம்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "குற்றம்", "frequency": 381, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["குற்றம்", "தீமை", "துன்பம்"], "tier1Attestations": 3, "word": "தோம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சிவப்பு", "frequency": 22, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["சிவப்பு"], "tier1Attestations": 2, "word": "தோம்பு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தாமரை", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["தாமரை"], "tier1Attestations": 2, "word": "தோயசம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மேகம்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["நெய்", "மேகம்", "வெண்ணெய்"], "tier1Attestations": 2, "word": "தோயதம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நீரைக்கொண்டதான மேகம்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "தோயதரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கடல்", "frequency": 1, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கடல்"], "tier1Attestations": 2, "word": "தோயதி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இலவங்கம்", "frequency": 0, "length": 8, "pos": ["noun"], "synonymsTa": ["இலவங்கம்"], "tier1Attestations": 2, "word": "தோயதிப்பிரயம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பொடுதலை", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["பொடுதலை"], "tier1Attestations": 2, "word": "தோயபாணம்", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "சுகியன்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["சுகியன்", "தோசை"], "tier1Attestations": 2, "word": "தோயப்பம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நீர்", "frequency": 20, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கடல்", "நீர்"], "tier1Attestations": 2, "word": "தோயம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோய்தல்", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["கலத்தல்", "குளித்தல்", "தயிர்", "தோய்தல்"], "tier1Attestations": 2, "word": "தோயல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "சமயம்வாய்க்கை", "frequency": 0, "length": 8, "pos": ["verb"], "synonymsTa": ["சமயம்வாய்க்கை"], "tier1Attestations": 1, "word": "தோயல்வாய்த்தல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun", "verb"], "tier1Attestations": 1, "translationEn": "dib", "word": "தோயவிடு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "டார்ஜிலிங்கின் காடுகளில் காணப்படும் ஒரு வகை மலைப்பிரதேச மரம்", "frequency": 0, "length": 3, "pos": ["noun"], "tier1Attestations": 1, "word": "தோயேரி", "wordClass": "headword"}
+{"attestations": 2, "frequency": 76, "length": 2, "pos": ["noun", "verb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "bathe", "word": "தோய்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தவளை", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["தவளை"], "tier1Attestations": 2, "word": "தோய்சூசகம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உறைகை", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["உறைகை"], "tier1Attestations": 2, "word": "தோய்ச்சல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "முழுகுதல்", "frequency": 22, "length": 4, "pos": ["verb"], "spokenRatio": 0.0, "synonymsTa": ["அகப்படுதல்", "அணைதல்", "உறைதல்", "ஒத்தல்", "கலத்தல்", "கிட்டுதல்", "செறிதல்", "துவைச்சலிடுதல்", "நட்டல்", "நனைதல்", "நிலத்துப்படிதல்", "பொருத்துதல்", "முகத்தல்", "முழுகுதல்"], "tier1Attestations": 2, "translationEn": "clottiness, clotting", "word": "தோய்தல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "நனைத்தல்", "frequency": 4, "length": 5, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["ஆடைதுவைத்தல்", "சாயமேற்றுதல்", "துவைச்சலிடுதல்", "நனைத்தல்"], "tier1Attestations": 2, "translationEn": "dip", "word": "தோய்த்தல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "dip", "word": "தோய்த்தெடு", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "கறை படிந்த", "frequency": 818, "length": 4, "pos": ["adjective", "noun"], "spokenRatio": 0.001222, "synonymsTa": ["ஈரமான", "நனைந்த"], "tier1Attestations": 2, "translationEn": "immersion", "word": "தோய்ந்த", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "நண்பர்", "frequency": 6, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["நண்பர்"], "tier1Attestations": 2, "word": "தோய்ந்தார்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "clotter", "word": "தோய்ந்துபோ", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "tier1Attestations": 1, "translationEn": "clottiness, clotting", "word": "தோய்ந்துபோதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "steep", "word": "தோய்ந்தூறவை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மிகுபனி", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["மிகுபனி"], "tier1Attestations": 2, "word": "தோய்பனி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சுகியன் என்னும் பணிகாரம்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "தோய்ப்பன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தீயன்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["தீயன்"], "tier1Attestations": 2, "word": "தோய்ப்பாடி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோய்ச்சல்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["தோய்ச்சல்"], "tier1Attestations": 2, "word": "தோய்ப்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 3, "pos": ["noun", "verb"], "tier1Attestations": 1, "translationEn": "circumfuse", "word": "தோய்வி", "wordClass": "headword"}
+{"attestations": 2, "frequency": 37, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "sop", "word": "தோய்வு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "fall", "word": "தோய்வுறு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "steep", "word": "தோய்வுறுத்து", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோரணக்கந்து", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["தோரணக்கந்து"], "tier1Attestations": 2, "word": "தோரணகம்பம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கோயில் முதலியவற்றின் முன்வாயிலில் அலங்கார வளைவைத் தாங்கி நிற்கும் தூண்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "தோரணக்கந்து", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நீர் ஆழம் அறியுங் கல்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "தோரணக்கல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வரிவகை ( 1921-22, p.&nbsp;109.)", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "தோரணக்காணிக்கை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோரணகம்பம்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["திருவாசிக்கால்", "தோரணகம்பம்"], "tier1Attestations": 2, "word": "தோரணக்கால்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "festoon", "word": "தோரணங்கட்டு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 15, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோரணங்களாலும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோரணங்களினால்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 31, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோரணங்களும்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "சுப நிகழ்ச்சிகளில் கட்டுவதற்காக பூக்கள், இலைகள் முதலியவற்றினாலான மாலை", "frequency": 172, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அலங்காரத் தொங்கல்"], "tier1Attestations": 2, "translationEn": "festoon", "word": "தோரணங்கள்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "யானைப்பாகன்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["யானைப்பாகன்"], "tier1Attestations": 2, "word": "தோரணன்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "இச்சொல் தமிழிலக்கணப்படி, பல்பொருள் ஒரு மொழி ஆகும்", "frequency": 353, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "festoon", "word": "தோரணம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "அலங்கார வளைவுள்ள வாயில்", "frequency": 14, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "தோரணவாயில்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "தோரணங்களால் அலங்கரிக்கப்பட்ட தெரு", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "தோரணவீதி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "நல்லொழுங்கு", "frequency": 1, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["நல்லொழுங்கு", "முறை"], "tier1Attestations": 3, "translationEn": "patter", "word": "தோரணி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நல்லொழுங்கு", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["நல்லொழுங்கு", "முறை"], "tier1Attestations": 2, "word": "தோரணிக்கம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "எரிந்த அல்லது எரிகிற மரத்துண்டு", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["எரிபந்தம்", "தீக்கொள்ளி", "தீப்பந்தம்", "தீவட்டி", "தீவர்த்தி", "பந்தம்", "பந்தவிளக்கு"], "tier1Attestations": 1, "translationEn": "brand", "word": "தோரணீயம்", "wordClass": "headword"}
+{"attestations": 4, "frequency": 387, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "attitude", "word": "தோரணை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோரணையிலிருந்து", "wordClass": "headword"}
+{"attestations": 2, "frequency": 368, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோரணையில்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 68, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோரணையும்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தொந்தரவு", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["கட்டாயம்", "தொந்தரவு"], "tier1Attestations": 2, "word": "தோரத்தம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "(யூதர்கள் வழக்கப்படி) போதனை, வாழ்க்கை நெறி, திருச்சட்டம்", "frequency": 149, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "Torah", "word": "தோரா", "wordClass": "headword"}
+{"attestations": 3, "frequency": 1438, "length": 5, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோராயமாக", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சரியான அளவு அல்லாத", "frequency": 190, "length": 5, "pos": ["adjective", "noun"], "spokenRatio": 0.005263, "tier1Attestations": 2, "translationEn": "rough", "word": "தோராயமான", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "உத்தேசம்; பக்கமடை; கிட்டத்தட்ட", "frequency": 25, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["உத்தேசம்", "கிட்டத்தட்ட", "பக்கமடை"], "tier1Attestations": 2, "word": "தோராயம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓயாத வழக்கு", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "தோராவழக்கு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சோறு", "frequency": 6, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["சோறு"], "tier1Attestations": 2, "word": "தோரி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நாட்டியம் ஆடி முதிர்ந்தவள்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "தோரியமகள்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நாட்டியம் ஆடி முதிர்ந்தவள்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "தோரியமடந்தை", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "ஒரு தனிமம், இதன் அணுவெண் 90. இத்தனிமம் திட நிலையில் காணப்படுகிறது", "frequency": 225, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 4, "translationEn": "thorium", "word": "தோரியம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒரு மலைநெல்வகை", "frequency": 14, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அணிவிடம்", "இரத்தம்", "கைவரை", "மங்கல்நிறம்", "மயில்விசிறி", "மூங்கிலரிசி"], "tier1Attestations": 2, "word": "தோரை", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "தோல்வியுறல்", "frequency": 0, "length": 5, "pos": ["verb"], "synonymsTa": ["இணங்குதல்", "இழத்தல்", "தோல்வியுறல்"], "tier1Attestations": 1, "word": "தோர்த்தல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோல்வி", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["தோல்வி"], "tier1Attestations": 2, "word": "தோர்வை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒவ்வொன்றும் , ஒவ்வொரு பொழுதும் என்னும் பொருளில் வரும் ஓர் இடைச்சொல்", "frequency": 3, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "தோறு", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "ஒவ்வொன்றும் , ஒவ்வொரு பொழுதும் என்னும் பொருளில் வரும் ஓர் இடைச்சொல்", "frequency": 4664, "length": 3, "pos": ["adjective", "noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "the", "word": "தோறும்", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "போட்டியில் ஒருவரை தோல்வியடைய செய்தல்", "frequency": 2, "length": 4, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["வீழ்த்து"], "tier1Attestations": 3, "translationEn": "beat", "word": "தோற்கடி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "unbeaten", "word": "தோற்கடிக்கப்பெறாத", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "எதிர்த்து போட்டியிட்வரை தோல்வியுரச் செய்தது.", "frequency": 255, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "winner", "word": "தோற்கடித்த", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "thrash", "word": "தோற்கடித்தடக்கு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "தோற்றோடப்பண்ணல்", "frequency": 9, "length": 7, "pos": ["verb"], "spokenRatio": 0.0, "synonymsTa": ["தோற்றோடப்பண்ணல்"], "tier1Attestations": 1, "word": "தோற்கடித்தல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 10, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "repulse", "word": "தோற்கடிப்பு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "முன்கைத் தோற்கவசம்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "தோற்கட்டு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "தோலாற் செய்யப்பட்ட இசைக் கருவிவகை", "frequency": 29, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "kettle-drum", "word": "தோற்கருவி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வாச்சியம் இசைப்போர்", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "தோற்கருவியாளர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோலால் அமைந்த சட்டை", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "தோற்கவசம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோற்செவி", "frequency": 40, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["தோற்செவி"], "tier1Attestations": 2, "word": "தோற்காது", "wordClass": "headword"}
+{"attestations": 3, "frequency": 2, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "abrasion", "word": "தோற்காயம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோலடிப்பறவை", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["தோலடிப்பறவை"], "tier1Attestations": 2, "word": "தோற்காற்பறவை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "தோல் பதனிடும் இடம்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 3, "translationEn": "tannery", "word": "தோற்கிடங்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "shield", "word": "தோற்கிடுகு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "முன்கையில் அணியும் தோற்கவசம்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "தோற்கைத்தாளம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "skin", "word": "தோற்சரக்கு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "எண்ணெய் வைக்க உதவும் தோலாலான பாத்திரவகை", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "தோற்சித்தை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "noli me tangere", "word": "தோற்சிலந்திப்புண்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "scarification", "word": "தோற்செதுக்கீடு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "செருப்புவகை", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["செருப்புவகை"], "tier1Attestations": 2, "word": "தோற்செருப்பு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "புறச்செவி", "frequency": 6, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["புறச்செவி"], "tier1Attestations": 2, "word": "தோற்செவி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "tannery", "word": "தோற்பதனீட்டகம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கேடகம்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["கேடகம்", "நெடுஞ்செருப்பு"], "tier1Attestations": 2, "word": "தோற்பரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வேசி", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["இழிஞன்", "வேசி"], "tier1Attestations": 2, "word": "தோற்பாடி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோலால் அமைந்த தவிசு", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "தோற்பாய்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "தோலாற்செய்து ஆட்டும் பாவை", "frequency": 11, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "leathern puppet", "word": "தோற்பாவை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "தோற்பாவையைக்கொண்டு ஆட்டுங் கூத்து", "frequency": 2, "length": 8, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "show with leathern puppets", "word": "தோற்பாவைக்கூத்து", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "தோல்வி", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["தோல்வி"], "tier1Attestations": 2, "translationEn": "marker", "word": "தோற்பு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோலின்துளை", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["தோலின்துளை", "மேற்றோல்"], "tier1Attestations": 2, "word": "தோற்புரை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "தோலால் செய்த பை", "frequency": 7, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["உடம்பு"], "tier1Attestations": 2, "translationEn": "bladder", "word": "தோற்பை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 1535, "length": 3, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "beaten", "word": "தோற்ற", "wordClass": "headword"}
+{"attestations": 2, "frequency": 1, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "beginning", "word": "தோற்றக்காலம்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "trait", "word": "தோற்றக்கூறு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "unbecoming", "word": "தோற்றக்கேடான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "fault", "word": "தோற்றக்கேடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "view", "word": "தோற்றக்கோணம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோற்றங்களினால்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 26, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "physiology", "word": "தோற்றங்களையும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 187, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "chequer-wise", "word": "தோற்றங்கள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "deface", "word": "தோற்றங்கெடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "begin", "word": "தோற்றங்கொள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "effect", "word": "தோற்றச்செவ்வி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "big", "word": "தோற்றத்தாலுயர்ந்த", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "<!---# குறியீட்டிற்கு அடுத்து, தமிழில் விளக்கம் எழுதி", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "தோற்றத்திசு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 23, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோற்றத்தினால்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 185, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோற்றத்தின்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 70, "length": 9, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோற்றத்திலிருந்து", "wordClass": "headword"}
+{"attestations": 2, "frequency": 200, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோற்றத்திலும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 1889, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "diminish", "word": "தோற்றத்தில்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 132, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோற்றத்துக்கு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 30, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோற்றத்துடனும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 442, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "lumber", "word": "தோற்றத்துடன்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 1917, "length": 5, "spokenRatio": 0.001565, "tier1Attestations": 1, "translationEn": "distort", "word": "தோற்றத்தை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 331, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோற்றத்தையும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "open", "word": "தோற்றத்தொடங்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 13, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "way", "word": "தோற்றநிலை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "favoured", "word": "தோற்றநிலையுடைய", "wordClass": "headword"}
+{"attestations": 2, "frequency": 5, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோற்றந்தான்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சுணைக்கேடு", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["சுணைக்கேடு"], "tier1Attestations": 2, "word": "தோற்றனம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "display", "word": "தோற்றப்பகட்டு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["adverb"], "tier1Attestations": 1, "translationEn": "sub specie", "word": "தோற்றப்படி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "outward", "word": "தோற்றமட்டிலுமான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "look", "word": "தோற்றமளி", "wordClass": "headword"}
+{"attestations": 2, "frequency": 28, "length": 5, "pos": ["adjective", "noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "apparent", "word": "தோற்றமான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "transform", "word": "தோற்றமாறு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒரு இடத்திலிருந்து மற்றொரு இடத்திற்கு வருதல் அல்லது கொண்டுசெல்லும் செயல்", "frequency": 4, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["உருமாற்றம்"], "tier1Attestations": 1, "translationEn": "transformation", "word": "தோற்றமாற்றம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "browless", "word": "தோற்றமில்லாத", "wordClass": "headword"}
+{"attestations": 3, "frequency": 102, "length": 6, "pos": ["adjective", "noun"], "spokenRatio": 0.009804, "tier1Attestations": 2, "translationEn": "browed", "word": "தோற்றமுடைய", "wordClass": "headword"}
+{"attestations": 2, "frequency": 5, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோற்றமுடையவன்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 870, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "bilateral", "word": "தோற்றமும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "spring", "word": "தோற்றமுறு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "mother", "word": "தோற்றமூலம்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 206, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "idealism", "word": "தோற்றமே", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "பார்வைக்குத் தெரியும் புற வடிவம்.", "frequency": 1, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அங்கஅமைப்பு", "உடலமைப்பு", "உடல்", "உருவமைப்பு", "உருவம்", "தோற்றம்"], "tier1Attestations": 1, "translationEn": "apparel", "word": "தோற்றமைப்பு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 31, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோற்றமோ", "wordClass": "headword"}
+{"attestations": 10, "definitionTa": "தோற்றம், பிரதிபலிப்பு", "frequency": 7079, "length": 4, "pos": ["noun", "verb"], "spokenRatio": 0.003108, "synonymsTa": ["அங்கஅமைப்பு", "ஆரம்பம்", "உடலமைப்பு", "உடல்", "உருவமைப்பு", "உருவம்", "காட்சி", "ஜனனம்", "துவக்கம்", "தோற்றமைப்பு", "பிம்பம்", "பிரதிபலிப்பு", "பிறப்பு", "மூலதனம்", "ரூபம்"], "tier1Attestations": 6, "translationEn": "Appearance", "word": "தோற்றம்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஒருவகை கதை சொல்லி", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "word": "தோற்றம்பாடி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "காட்சி", "frequency": 2, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஆவேசம்", "உயர்பிறப்பு", "உற்பத்தி", "காட்சி", "வெளிப்படல்"], "tier1Attestations": 2, "translationEn": "view", "word": "தோற்றரவு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "தோன்றுகை", "frequency": 6, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["தோன்றுகை", "தோல்வி", "புகழ்", "வலிமை"], "tier1Attestations": 2, "word": "தோற்றல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 29, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோற்றவர்களை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "father", "word": "தோற்றவி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "phase", "word": "தோற்றவேறுபாடு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பிறப்பிறப்பு", "frequency": 0, "length": 8, "pos": ["noun"], "synonymsTa": ["பிறப்பிறப்பு"], "tier1Attestations": 2, "word": "தோற்றவொடுக்கம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "அஞ்சிப் புறங்கொடுத்தோடுபவன்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 3, "word": "தோற்றாங்கொள்ளி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "whence", "word": "தோற்றிடம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "lose", "word": "தோற்றிழ", "wordClass": "headword"}
+{"attestations": 3, "frequency": 1003, "length": 3, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["தோன்று", "பிறப்பி"], "tier1Attestations": 2, "translationEn": "beam", "word": "தோற்று", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "தோன்றுதல்", "frequency": 0, "length": 5, "pos": ["verb"], "synonymsTa": ["தோன்றுதல்", "பிறப்பித்தல்"], "tier1Attestations": 1, "word": "தோற்றுதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சக்கிலியர்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["சக்கிலியர்", "செம்மார்"], "tier1Attestations": 2, "word": "தோற்றுன்னர்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஜெயிக்க அல்லது வெற்றிப்பெறாத", "frequency": 140, "length": 6, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["தோல்வி பெற்ற", "தோல்வியடைந்த"], "tier1Attestations": 1, "translationEn": "lost", "word": "தோற்றுப்போன", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உலைத்துருத்தி", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["உடம்பு", "உலைத்துருத்தி"], "tier1Attestations": 2, "word": "தோற்றுருத்தி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 10, "length": 6, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "isagogic", "word": "தோற்றுவாயான", "wordClass": "headword"}
+{"attestations": 7, "definitionTa": "மூலம், ஆரம்பம்", "frequency": 166, "length": 5, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["ஆரம்பம்", "துவக்கம்", "பாயிரம்", "மூலம்"], "tier1Attestations": 5, "translationEn": "beginning", "word": "தோற்றுவாய்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "begin", "word": "தோற்றுவாய்செய்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "தோற்றுவித்தல்.", "frequency": 1, "length": 4, "pos": ["adjective", "noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["உண்டாக்கு", "படை"], "tier1Attestations": 2, "translationEn": "beget", "word": "தோற்றுவி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "beginningless", "word": "தோற்றுவிக்கப்படாத", "wordClass": "headword"}
+{"attestations": 2, "frequency": 4, "length": 7, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "creative", "word": "தோற்றுவிக்கிற", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "தோன்றச் செய்தல்", "frequency": 36, "length": 7, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["உண்டாக்கல்", "பிறப்பித்தல்"], "tier1Attestations": 2, "translationEn": "generation", "word": "தோற்றுவித்தல்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "ஒன்றை உருவாக்கியவர்.", "frequency": 155, "length": 8, "pos": ["noun"], "spokenRatio": 0.012903, "synonymsTa": ["உருவாக்கியவர்", "ஏற்படுத்தியவர்"], "tier1Attestations": 2, "translationEn": "father", "word": "தோற்றுவித்தவர்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 1, "length": 8, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "begetter", "word": "தோற்றுவிப்பவர்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 4, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "web-foot", "word": "தோலடி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோலால் இணைக்கப்பட்ட காலுள்ள பறவை", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "தோலடிப்பறவை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["adjective", "noun"], "tier1Attestations": 1, "translationEn": "subcutaneous", "word": "தோலடியான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "tier1Attestations": 1, "translationEn": "palmiped, palmipede", "word": "தோலடியுள்ள", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 3, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "skin", "word": "தோலடை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நிறுத்தல்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["நிறுத்தல்"], "tier1Attestations": 2, "word": "தோலனம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "அற்பன்", "frequency": 1, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அற்பன்", "தோலி", "தோல்", "தோழன்", "தோழி"], "tier1Attestations": 2, "translationEn": "mean", "word": "தோலன்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "downfall", "word": "தோலர்வி", "wordClass": "headword"}
+{"attestations": 4, "frequency": 0, "length": 4, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "skinless", "word": "தோலற்ற", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒரு வகை தோல் நோய்", "frequency": 85, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "prickly heat", "word": "தோலழற்சி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒரு ரூபா எடை", "frequency": 69, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "centigram, centigramme", "word": "தோலா", "wordClass": "headword"}
+{"attestations": 1, "frequency": 14, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "skiver", "word": "தோலாடை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கயமைத்தனம்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["கயமைத்தனம்"], "tier1Attestations": 2, "word": "தோலாட்டம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "இழிஞன்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["இழிஞன்"], "tier1Attestations": 2, "word": "தோலாண்டி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 3, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "strong", "word": "தோலாத", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நாவன்மையுடையவர்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["நாவன்மையுடையவர்"], "tier1Attestations": 2, "word": "தோலாநாவினர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "புல்லன் , அற்பன்", "frequency": 5, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அற்பன்", "புல்லன்"], "tier1Attestations": 2, "word": "தோலான்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஈடழியாமை , தோல்வியின்மை", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["ஈடழியாமை", "தோல்வியின்மை"], "tier1Attestations": 2, "word": "தோலாமை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 16, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "der,mal, dermatic, dermic", "word": "தோலாலான", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பயனற்றவள்", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["பயனற்றவள்"], "tier1Attestations": 2, "word": "தோலாள்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "முடிவுபெறாத வழக்கு", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "தோலாவழக்கு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பழம், காய்கறிகளின் வெளிப்புற பகுதி", "frequency": 19, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "skin of fruits and vegetables", "word": "தோலி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஊஞ்சல், தொட்டில்", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["ஊஞ்சல்", "காது", "தொட்டில்"], "tier1Attestations": 2, "translationEn": "swing", "word": "தோலிகை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 626, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "callus", "word": "தோலின்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "தோல்வேலை செய்வோர்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "word": "தோலின்துன்னர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "sensualize", "word": "தோலின்பமுறுவி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "தோல் மற்றும் அது தொடர்பான நோய்கள் பற்றி ஆய்வு செய்யும் அறிவியல் துறை", "frequency": 17, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "dermatology", "word": "தோலியல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 2, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோலிலே", "wordClass": "headword"}
+{"attestations": 2, "frequency": 1009, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "black-head", "word": "தோலில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "web", "word": "தோலிழைமம்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 239, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "rhino(2), rhinoceros", "word": "தோலும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "graze", "word": "தோலுராயவிடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "graze", "word": "தோலுராய்வு", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "தோலுரிக்க செய்வது", "frequency": 0, "length": 3, "pos": ["noun", "verb"], "tier1Attestations": 2, "translationEn": "ex voto", "word": "தோலுரி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 6, "length": 9, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "peeled", "word": "தோலுரிக்கப்பட்ட", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "peeler", "word": "தோலுரிக்குங்கருவி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பாம்பு சட்டை கழற்றுதல் ( 1546.)", "frequency": 25, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "தோலுரித்தல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கிடுகுபடையைச் சிறப்பித்துக் கூறும் புறத்துறை", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "தோலுழிஞை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1124, "length": 2, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "bate", "word": "தோலை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "சமைப்பதற்கு முன் கோழி, ஆடு முதலியவற்றின் தோலை நீக்கும் செயல்.", "frequency": 0, "length": 6, "pos": ["verb"], "synonymsTa": ["தோல்உரி", "நீக்கு"], "tier1Attestations": 1, "translationEn": "peel off", "word": "தோலைபிடுங்கு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வரிவகை ( viii, 43.)", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "தோலொட்டு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உடம்படாமைக் குறிப்பு", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["எவ்விதமும்"], "tier1Attestations": 2, "word": "தோலோதோல்", "wordClass": "headword"}
+{"attestations": 9, "definitionTa": "உடலின் மேற்புறப் பகுதி ஆகும். முடிகள், இதிலிருந்தே உருவாகின்றன", "frequency": 7341, "length": 2, "pos": ["noun", "verb"], "spokenRatio": 0.000681, "synonymsTa": ["உரி", "தோல்வி"], "tier1Attestations": 5, "translationEn": "integument", "word": "தோல்", "wordClass": "headword"}
+{"attestations": 3, "frequency": 2, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "pratincole", "word": "தோல்குருவி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோல் தொடர்பான நோய்கள்.", "frequency": 43, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "skin disease", "word": "தோல்நோய்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "tan-liquor", "word": "தோல்பதச்சாறு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "tan", "word": "தோல்பதனிடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "scurf", "word": "தோல்பொருக்கு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "கருவில்லாத முட்டை", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "word": "தோல்முட்டை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 2, "length": 4, "pos": ["noun"], "spokenRatio": 0.5, "tier1Attestations": 1, "translationEn": "leather", "word": "தோல்வார்", "wordClass": "headword"}
+{"attestations": 10, "definitionTa": "தொய்வு அல்லது தோய்வு என்னும் சொல்லே வழுதி தோல்வி என்று ஆனது", "frequency": 11116, "length": 3, "pos": ["noun", "verb"], "spokenRatio": 0.0009, "synonymsTa": ["தோற்றல்", "தோல்வு"], "tier1Attestations": 6, "translationEn": "Defeat", "word": "தோல்வி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "சண்டை, பந்தயம் முதலியவற்றின் முடிவில் வெற்றி வாய்ப்பை இழந்துவிட்ட நிலை.", "frequency": 0, "length": 5, "pos": ["verb"], "synonymsTa": ["தோல்வியடை"], "tier1Attestations": 1, "translationEn": "lose", "word": "தோல்விஅடை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 549, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோல்விகளை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 612, "length": 5, "spokenRatio": 0.001634, "tier1Attestations": 1, "translationEn": "non nobis", "word": "தோல்விகள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "undiscomfited", "word": "தோல்விகொள்ளாத", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "lose", "word": "தோல்விக்காரணமாயமை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சக்கிலியர் , செம்மார்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["சக்கிலியர்", "செம்மார்"], "tier1Attestations": 2, "word": "தோல்வினைஞர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சங்கிலியர் , செம்மார்", "frequency": 0, "length": 8, "pos": ["noun"], "synonymsTa": ["சங்கிலியர்", "செம்மார்"], "tier1Attestations": 2, "word": "தோல்வினைமாக்கள்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "சண்டை, பந்தயம் முதலியவற்றின் முடிவில் வெற்றி வாய்ப்பை இழந்து விடுதல்.", "frequency": 7, "length": 5, "pos": ["verb"], "spokenRatio": 0.0, "synonymsTa": ["தேர்ச்சிபெறாமலிரு", "தோல்வி அடை", "தோல்விஅடை", "பெயிலாகு"], "tier1Attestations": 2, "translationEn": "fail", "word": "தோல்வியடை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "சண்டை பந்தயம் முதலியவற்றின் முடிவில் வெற்றி வாய்ப்பை இழந்து விட்டநிலை.", "frequency": 750, "length": 7, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["தோற்றுப்போன", "தோல்வி பெற்ற", "வெற்றிஇழந்த", "வெற்றிபெறாத"], "tier1Attestations": 1, "translationEn": "defeated", "word": "தோல்வியடைந்த", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சருமத்தைப்பற்றிய நோய்", "frequency": 7, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "தோல்வியாதி", "wordClass": "headword"}
+{"attestations": 2, "frequency": 476, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோல்வியும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun", "verb"], "tier1Attestations": 1, "translationEn": "checkmate", "word": "தோல்வியுறச்செய்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "போட்டியில் நிராகரிப்பது தொடர்பான", "frequency": 0, "length": 6, "pos": ["adjective"], "synonymsTa": ["நாக்அவுட்"], "tier1Attestations": 1, "translationEn": "hard", "word": "தோல்வியுறவி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 6, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "indefectible", "word": "தோல்வியுறாத", "wordClass": "headword"}
+{"attestations": 4, "frequency": 1, "length": 5, "pos": ["noun", "verb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "go", "word": "தோல்வியுறு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "failure", "word": "தோல்வியுறுபவர்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "போட்டியில் தோற்ற", "frequency": 303, "length": 6, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "snookered", "word": "தோல்வியுற்ற", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "தோல்வியடைந்த ஒரு நபர்", "frequency": 4, "length": 8, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "defeated", "word": "தோல்வியுற்றவன்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "fall", "word": "தோல்வியெய்து", "wordClass": "headword"}
+{"attestations": 2, "frequency": 2905, "length": 4, "spokenRatio": 0.000344, "tier1Attestations": 1, "translationEn": "defeatism", "word": "தோல்வியை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோல்வி", "frequency": 6, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["தோல்வி"], "tier1Attestations": 2, "word": "தோல்வு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "shrug", "word": "தோளசைப்பு", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "தோளில் அணியும் மோதிரம் முதலிய ஆபரணம்", "frequency": 3, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "tippet", "word": "தோளணி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒருவகைச் சாதியினர் ( iii, 268.)", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "தோளாச்செவியர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தொளையிடப்படாத இரத்தினம்", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "தோளாமணி", "wordClass": "headword"}
+{"attestations": 7, "definitionTa": "அவுரிப்பூண்டு", "frequency": 21, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அரக்கு", "அவுரிப்பூண்டு", "கான்படுதிரவியம்", "சம்பாடம்", "சேந்துபந்தம்", "தமரம்", "மதியங்கு", "யாவம்", "வேத்திரக்கீயம்"], "tier1Attestations": 3, "translationEn": "lac", "word": "தோளி", "wordClass": "headword"}
+{"attestations": 2, "frequency": 164, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "scarf-wise", "word": "தோளின்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "திருமணஞ் செய்துகொள்ளுதல்", "frequency": 0, "length": 8, "pos": ["verb"], "tier1Attestations": 1, "word": "தோளிற்கொள்ளுதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 136, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "pick-a-back", "word": "தோளிலும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 55, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோளிலே", "wordClass": "headword"}
+{"attestations": 1, "frequency": 11, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோளிலோ", "wordClass": "headword"}
+{"attestations": 2, "frequency": 3166, "length": 3, "spokenRatio": 0.000632, "tier1Attestations": 1, "translationEn": "accolade", "word": "தோளில்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "Bestie", "word": "தோளுக்கினியர்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "துளைத்தல்", "frequency": 0, "length": 4, "pos": ["verb"], "synonymsTa": ["துளைத்தல்", "தோண்டுதல்", "நீக்குதல்"], "tier1Attestations": 1, "word": "தோளுதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 106, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோளும்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோளை உயர்த்துவது மூலம் சந்தேகத்தை வெளிபடுத்தும் சைகை", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "shrug", "word": "தோளுயர்த்தல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 398, "length": 2, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "scapular", "word": "தோளை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 40, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோளையும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோளையோ", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["adverb"], "tier1Attestations": 1, "translationEn": "abreast", "word": "தோளொடுதோளாக", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோளையெடுத்தல்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["தோளையெடுத்தல்"], "tier1Attestations": 2, "word": "தோளோச்சல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 244, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "serried", "word": "தோளோடு", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "கழுத்தின் கீழ், கைகள் உடலில் இணையும் அகலமான மேற்பகுதி", "frequency": 2273, "length": 2, "pos": ["noun"], "spokenRatio": 0.00088, "synonymsTa": ["சகாயம்", "துணை", "புயம்"], "tier1Attestations": 4, "translationEn": "arm", "word": "தோள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "crossbelt", "word": "தோள்கச்சை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "scapular", "word": "தோள்கட்டு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 93, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோள்களிலும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 9, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோள்களிலே", "wordClass": "headword"}
+{"attestations": 1, "frequency": 413, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "bertha, berthe", "word": "தோள்களில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 39, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோள்களுக்கு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 79, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோள்களும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 283, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "shouldered", "word": "தோள்களை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 64, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோள்களையும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 339, "length": 4, "spokenRatio": 0.00295, "tier1Attestations": 1, "word": "தோள்கள்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "உதவுதல்", "frequency": 0, "length": 7, "pos": ["verb"], "synonymsTa": ["உதவுதல்"], "tier1Attestations": 1, "word": "தோள்கொடுத்தல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "வீரக்குறியாகப் புயங்களைத் தட்டுதல்", "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "word": "தோள்கொட்டுதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "scapular", "word": "தோள்சார்ந்த", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "தழுவுதல்", "frequency": 0, "length": 6, "pos": ["verb"], "synonymsTa": ["தழுவுதல்"], "tier1Attestations": 1, "word": "தோள்சேர்தல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "தோள்கொட்டுதல்", "frequency": 0, "length": 7, "pos": ["verb"], "synonymsTa": ["தோள்கொட்டுதல்"], "tier1Attestations": 1, "word": "தோள்தட்டுதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "scarf", "word": "தோள்துண்டு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஒன்றைப் பற்றாகக் கொள்ளுதல்", "frequency": 0, "length": 9, "pos": ["verb"], "tier1Attestations": 1, "word": "தோள்படிகொள்ளுதல்", "wordClass": "headword"}
+{"attestations": 7, "categories": ["hospital"], "definitionTa": "தோளின் தட்டையான பகுதி.", "frequency": 454, "length": 5, "pos": ["noun"], "spokenRatio": 0.002203, "synonymsTa": ["புஜம்", "புயம்"], "tier1Attestations": 4, "translationEn": "scapula", "word": "தோள்பட்டை", "wordClass": "headword"}
+{"attestations": 4, "frequency": 7, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "knapsack", "word": "தோள்பை", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "தோளை மாறிக்கொடுத்தல்", "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "word": "தோள்மாறுதல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "தோண்மாற்றுதல்", "frequency": 0, "length": 7, "pos": ["verb"], "synonymsTa": ["தோண்மாற்றுதல்"], "tier1Attestations": 1, "word": "தோள்மாற்றுதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 12, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "shoulder", "word": "தோள்மூட்டு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தோளில் அணியும் வளைவகை", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "தோள்வந்தி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "புசபலம்", "frequency": 8, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["புசபலம்"], "tier1Attestations": 2, "word": "தோள்வலி", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "தோளில் அணியும் வளை வகை", "frequency": 22, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "ring worn on the upper arm", "word": "தோள்வளை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 9, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழனாகிய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 13, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழனிடம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 22, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழனுக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழனுடனும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 64, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழனும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 28, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழனை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 13, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழனையும்", "wordClass": "headword"}
+{"attestations": 10, "categories": ["relations"], "definitionTa": "நண்பன்", "frequency": 973, "length": 3, "pos": ["noun"], "spokenRatio": 0.005139, "synonymsTa": ["கூட்டாளி", "கேள்வன்", "சகா", "சிநேகிதன்", "துணைவன்", "நண்பன்", "பாங்கன்"], "tier1Attestations": 6, "translationEn": "buddy", "word": "தோழன்", "wordClass": "headword"}
+{"attestations": 10, "categories": ["relations"], "definitionTa": "நட்பு", "frequency": 983, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஆதரவாளர்", "கூட்டாளி", "சிநேகம்", "சிநேகிதம்", "சினேகிதம்", "நட்பு", "நேசம்."], "tier1Attestations": 6, "translationEn": "associability", "word": "தோழமை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "fraternize", "word": "தோழமைகொள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 8, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "fellowship", "word": "தோழமைக்கழகம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "sport", "word": "தோழமைக்கினியவர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "livable", "word": "தோழமைக்குகந்த", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "suite", "word": "தோழமைக்குழு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "social", "word": "தோழமைக்கூட்டம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "intercourse", "word": "தோழமைத்தொடர்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "bonhomie", "word": "தோழமைப்பண்பு", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "அன்பு, ஒத்த கருத்து, நலன், அக்கறை முதலியவற்றின் அடிப்படையில் பொதுவாக உறவினர் அல்லாதவருடன் கொள்ளும் உறவு இல்லாத் தன்மை.", "frequency": 0, "length": 6, "pos": ["adjective"], "synonymsTa": ["சிநேகமற்ற", "சிநேகமில்லாத", "சினேகமற்ற", "சினேமில்லாத", "தோழமையில்லாத", "நட்பற்ற", "நட்பில்லாத"], "tier1Attestations": 2, "translationEn": "lone", "word": "தோழமையற்ற", "wordClass": "headword"}
+{"attestations": 5, "frequency": 23, "length": 5, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "friendly", "word": "தோழமையான", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "அன்பு, ஒத்த கருத்து, நலன், அக்கறை முதலியவற்றின் அடிப்படையில் பொதுவாக உறவினர் அல்லாதவருடன் கொள்ளும் உறவு இல்லாத் தன்மை.", "frequency": 0, "length": 7, "pos": ["adjective"], "synonymsTa": ["சிநேகமற்ற", "சிநேகமில்லாத", "சினேகமற்ற", "சினேமில்லாத", "தோழமையற்ற", "நட்பற்ற", "நட்பில்லாத"], "tier1Attestations": 1, "translationEn": "friendless", "word": "தோழமையில்லாத", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மாட்டுக்கொட்டில்", "frequency": 5, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கடல்", "பேரெண்", "மாட்டுக்கொட்டில்"], "tier1Attestations": 2, "word": "தோழம்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 77, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழரின்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "நண்பன் இல்லாமல் இருப்பது", "frequency": 0, "length": 6, "pos": ["adjective"], "synonymsTa": ["கேண்மையரில்லாத", "சிநேகிதனில்லாத", "துணையில்லாத", "துணையோரில்லாத", "நட்பினரில்லாத", "நண்பனில்லாத", "நேயரில்லாத", "பாங்கரில்லாத", "மித்திரரில்லாத"], "tier1Attestations": 1, "translationEn": "unfriendly", "word": "தோழரில்லாத", "wordClass": "headword"}
+{"attestations": 1, "frequency": 710, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழரும்", "wordClass": "headword"}
+{"attestations": 4, "categories": ["relations"], "definitionTa": "ஒன்றாக உழைக்கும் நண்பர்", "frequency": 6648, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கூட்டாளி", "நண்பர்"], "tier1Attestations": 3, "translationEn": "associate", "word": "தோழர்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 247, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழர்களின்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 439, "length": 6, "spokenRatio": 0.002278, "tier1Attestations": 1, "word": "தோழர்களும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 493, "length": 5, "spokenRatio": 0.103448, "tier1Attestations": 1, "word": "தோழர்களே", "wordClass": "headword"}
+{"attestations": 2, "frequency": 218, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழர்களை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1963, "length": 2, "spokenRatio": 0.000509, "tier1Attestations": 1, "word": "தோழா", "wordClass": "headword"}
+{"attestations": 9, "definitionTa": "சகி, சேடி, பாங்கி", "frequency": 5906, "length": 2, "pos": ["noun"], "spokenRatio": 0.000677, "synonymsTa": ["சகி", "சேடி", "துணைவி", "பாங்கி"], "tier1Attestations": 5, "translationEn": "abigail", "word": "தோழி", "wordClass": "headword"}
+{"attestations": 2, "frequency": 125, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழிகளிடம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 27, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழிகளில்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 139, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழிகளும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 37, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழிகளையும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 1208, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழிகள்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 686, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழிக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 31, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழிக்கும்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பாங்கி", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["தேவி", "பாங்கி"], "tier1Attestations": 2, "word": "தோழிச்சி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழிப்பெண்கள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழிமார்களில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 9, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழிமார்களும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 5, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழிமார்கள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழியருக்குள்ளே", "wordClass": "headword"}
+{"attestations": 1, "frequency": 17, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழியரே", "wordClass": "headword"}
+{"attestations": 2, "frequency": 466, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழியிடம்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 543, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழியின்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 249, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழியும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 225, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "தோழியை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மாட்டுத்தொழுவம்", "frequency": 3, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மாட்டுத்தொழுவம்"], "tier1Attestations": 2, "word": "தோழ்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "போக்கிரி", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["போக்கிரி"], "tier1Attestations": 2, "word": "தோழ்ப்பாடி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 3, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "marrow", "word": "தோழ்ர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஆண்மக்களின் அரையாடை", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "தோவத்தி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒரு கால அளவு", "frequency": 0, "length": 3, "pos": ["noun"], "tier1Attestations": 2, "word": "தோவம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "puteal", "word": "தோவளம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கிணற்றைச் சுற்றி எழுப்பிய சுவர்", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "தோவாளம்", "wordClass": "headword"}

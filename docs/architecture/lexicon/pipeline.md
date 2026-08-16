@@ -20,8 +20,14 @@ and nothing else.
 | EXTRACT | `python -m yen_tamizh_backend.wordsmith.extract [--source ID]` | one raw source plus its registry entry | `datasets/lexicon/cache/extracts/<source-id>.jsonl` |
 | STAGE | `... .stage [--source ID] [--remove ID]` | the extracts | the STAGED zone of `datasets/lexicon/cache/lexicon.db` |
 | ENRICH | `... .enrich [--signal NAME] [--classify]` | the STAGED zone | the DERIVED zone: signals and `wordClass` |
-| REVIEW | `... .review` | both zones | `datasets/lexicon/cache/review/*.ndjson` |
-| PUBLISH | `... .publish [--format ...]` | both zones | `datasets/lexicon/*` |
+| PUBLISH | `... .publish` | both zones | `datasets/lexicon/by-class/**`, `lexicon.meta.json`, `README.md` |
+| REVIEW | `... .review` | both zones | `datasets/lexicon/review/*.ndjson` |
+
+The first four are the pipeline, and `python -m yen_tamizh_backend.wordsmith.pipeline`
+runs them in that order. REVIEW sits beside them: it is a REPORT over the
+derived zone rather than a step that produces the next stage's input, so it is
+deliberately not sequenced - an operator asks for it when they want to read the
+residue.
 
 Each stage reads the previous stage's ON-DISK artifact rather than an in-process
 value, and `pipeline.py` only sequences them. That is what makes a stage
@@ -35,9 +41,6 @@ The seam is also what makes DELTA ingest possible. A source's contribution has
 to be recomputable in isolation before it can be replaced or removed in
 isolation, and an addressable per-source extract file is the cheapest way to
 make it so.
-
-EXTRACT, STAGE, ENRICH and REVIEW exist today. PUBLISH documents itself here as
-it lands.
 
 ## EXTRACT
 
@@ -391,10 +394,16 @@ silent all-negative. Fail fast at the boundary.
 ENRICH's verdicts live in a two-gigabyte gitignored SQLite file. That is the
 right home for them and a useless one for a person: nobody opens a store to find
 out why a word was refused, or how much work an enrichment pass still has in
-front of it. REVIEW writes that state out beside the store, under
-`datasets/lexicon/cache/review/`, one JSON object per line so a shell, an editor
-and a diff all read it. The directory is inside the gitignored build cache, so
-the files are visible to whoever ran the pipeline and are never committed.
+front of it. REVIEW writes that state out under `datasets/lexicon/review/`, one
+JSON object per line so a shell, an editor and a diff all read it. The files are
+gitignored; a committed README in that directory says what each one is.
+
+They are deliberately NOT under `datasets/lexicon/cache/`. That directory is
+machine state one stage hands to the next, and a reader who finds a work queue
+in it reasonably concludes the file is uninteresting and safe to delete. These
+are WORKING MATERIAL: the residue a classifier could not place and the queue an
+authoring pass works through. Same gitignore, different meaning, so a different
+home.
 
 | File | Answers | Carries |
 | --- | --- | --- |
@@ -423,6 +432,227 @@ it over an unchanged store rewrites the same bytes and a review dump can never
 change a verdict. The refusal reason is computed by the CLASSIFIER's own
 function rather than re-derived here, so a reviewed reason cannot disagree with
 a published verdict.
+
+## PUBLISH
+
+The last stage reads both zones, resolves every published word's facts into one
+row, and streams the result to `datasets/lexicon/`. Three artifacts land:
+`by-class/<wordClass>/<hex>.ndjson` (the rows), `lexicon.meta.json` (the index),
+and a generated `README.md` (the human ready-reckoner). None of them is ever
+hand-edited.
+
+### Retention is not publication
+
+The store keeps every surface any source ever showed us and every fact anybody
+asserted about them. The REPOSITORY commits the classes a player can actually be
+served: `headword`, `properNoun`, `boundStem` and `colloquial`. Git history is
+append-only, so a byte committed once is carried forever, which makes what to
+publish a decision rather than a default.
+
+What keeps the thesis honest is `counters.classified` - a per-class census of
+the WHOLE population, committed beside the files. So a withheld class is on the
+record in the repository at its real size, and "nothing was discarded, only
+unpublished" is a statement a reader can check rather than one they have to take
+on trust. `counters.published` counts what the files carry, and publication is
+ALL-OR-NOTHING per class: a published count that is neither zero nor the
+classified count means rows went missing between the classifier and the writer,
+which is the one failure a per-class policy would otherwise hide.
+
+`publishedClasses` is a knob in `config/lexicon-sources.json`, because which
+classes are servable is a policy that can change without any code changing.
+
+### The address is a pure function of the word
+
+`partitionKeys` is `["wordClass", "firstEzhuthu"]`, declared IN the meta
+document so a consumer learns the address from the artifact rather than from the
+code that wrote it. Both keys are immutable per word:
+
+- `wordClass` is the classifier's verdict, so only a re-classification moves a
+  row between files - which is a reviewable semantic event, two line changes;
+- the first ezhuthu is the word's own opening letter, and a word does not change
+  what it starts with.
+
+So a refresh INSERTS a line into a file that already exists. Nothing in PUBLISH
+reads a previous artifact to decide where a row goes, which is what makes "a
+clean checkout produces the same layout as a refresh" true.
+
+### The file name is hex, and the hex is padded
+
+A file is named for its letter's Unicode code points, each as lowercase 4-digit
+hex: `0b85.ndjson` is `அ`, `0b95.ndjson` is `க`, `0b950bbe.ndjson` is `கா`. Four
+digits for a bare letter, eight once a vowel sign or a pulli attaches.
+
+The padding is the point. Zero-padded 4-digit groups make ASCII filename order
+equal code-point order, so a directory listing is in the same order as the rows
+inside the files, and a file's neighbours in `ls` are its neighbours in the sort.
+Two things have to hold for that alignment and PUBLISH ASSERTS both rather than
+assuming them:
+
+- the letter is **NFC**. A decomposed letter still segments as one ezhuthu, so
+  without this check the artifact would carry two files for one letter and the
+  index would describe both as if they were different;
+- every code point is in the **Basic Multilingual Plane**. A five-digit group
+  would break the padding and the order with it.
+
+Tamil satisfies both everywhere, which is exactly why they are assertions: an
+invariant nothing checks is a comment.
+
+Hex rather than Tamil script or a romanization, and the rule underneath is **put
+the IMMUTABLE identifier in the path and the CORRECTABLE label in data.** A code
+point is fixed by an external standard; a romanization is a judgement call, and
+correcting a judgement call must never rename a published file. Tamil script in
+a path is also less legible than hex on the operator's own machine, because
+git's default `core.quotepath` renders non-ASCII paths as octal escapes.
+
+`ezhuthuIndex` on the meta document is where the letter is spelled out: each hex
+key decodes ONCE to `{ezhuthu, roman, kind}`. `roman` is composed rather than
+tabulated - the base character's ASCII label plus the vowel the sign writes - so
+`க` is `ka`, `கா` is `kaa` and `க்` is `k`. All 247 ezhuthu spell uniquely.
+
+`maxPartitionBytes` (33 MiB, a third of GitHub's 100 MiB hard blob wall) is a
+HARD BUILD ASSERTION, not a partition threshold. The layout is decided by the
+address; this is what says out loud, naming the file and its byte count, that one
+class has outgrown what one file should carry - and then the layout needs a
+decision rather than a larger number.
+
+### Row order, and what a refresh diff looks like
+
+Rows sort by `word` ASC within a file. Because the first ezhuthu is that sort's
+own leading key, the partition cut is a RANGE cut on an order that already
+exists: concatenating a class's files in name order reproduces the sorted class
+exactly.
+
+The stream is ordered by `(wordClass, first ezhuthu, word)` using the SAME
+function that names the file, so each address arrives as one contiguous run and
+the writer holds ONE open handle at a time. Ordering by `word` alone would very
+nearly do it and would be wrong in a case nobody would notice for years: a
+one-letter word sorts before every longer word starting with the same letter, and
+a rare combining mark sorts between them.
+
+On a refresh: a new word inserts one line, a changed frequency or meaning
+rewrites one line in place, and only a changed `wordClass` moves a row between
+files. That is the diff a reviewer wants - the words that actually changed.
+
+### The resolution rules
+
+STAGE resolves nothing: every fact keeps the `source_id` that asserted it, which
+is what makes the staged zone commutative. PUBLISH is where contradictions are
+settled, once, with the registry's precedence in hand.
+
+| Column | Rule |
+| --- | --- |
+| `frequency` | SUM over the `frequency`-role corpora - a count is evidence that adds up, not a claim that competes |
+| `spokenRatio` | the declared `spokenSources` share of that sum, to six places |
+| `attestations` | how many sources allowed to assert word-hood carried a `headword` fact, counted DISTINCT on the source |
+| `tier1Attestations` | of those, how many are `attestationTier: lexicographic` |
+| `pos` | UNION, translated through `posAliases`, deduped and sorted |
+| `synonymsTa` | UNION of ASSERTED synonymy only, excluding the word itself |
+| `categories` | UNION, normalized through `categoryAliases` so `Birds` and `birds` collapse |
+| `translationEn` | the winner of ONE display slot, by precedence, attested ahead of authored |
+| `definitionTa` | the same, and see below |
+
+UNION for a set-valued fact with no display slot; PRECEDENCE for a fact that
+occupies one. A Tamil verbal noun genuinely is both a noun and a verb, so
+resolving `pos` by precedence would delete whichever a lower-ranked source held.
+A translation can only be shown once, so exactly one source has to win it.
+
+`synonymsTa` is the ASSERTED synonymy only. A2's sideways read - the words that
+share an English gloss - is staged as `glossPeer` rather than `synonym` (Row 9b)
+and never reaches the artifact: sharing a gloss is not meaning the same thing,
+and the clique would have added 47 MiB of it.
+
+`definitionEn` is never published. It is the one column the inventory carries
+only as English prose, and the lexicon serves Tamil.
+
+A raw POS tag with no `posAliases` entry is a HARD PUBLISH FAILURE naming the tag
+and its row count - never dropped, because a silent boundary drop is the defect
+this pipeline exists to remove, and never passed through, because that would
+defeat the closed vocabulary.
+
+### An attested meaning outranks an authored one
+
+Row 4 decision 2a: a Tamil definition publishes VERBATIM from an attesting
+source, and `llm_enrich` fills only what no source attests. The resolver puts
+`role: authored` LAST in the single-slot ordering, ahead of precedence.
+
+Stated as a RULE rather than as a precedence number on purpose. `llm-authored`
+was registered at precedence 19 when 19 was last; two later rows appended
+sources at 21 and 22, and those two are the biggest Tamil-definition sources in
+the inventory. A precedence-only resolver would therefore have published an
+authored gloss over a dictionary's - silently, as a side effect of appending a
+row to a config file. The rule cannot be broken that way.
+
+### The row carries facts and counts, and nothing else
+
+`word`, `wordClass`, `length`, `frequency`, `attestations`, `tier1Attestations`,
+`spokenRatio`, `translationEn`, `definitionTa`, `synonymsTa`, `pos`,
+`categories`. Every sparse column is OMITTED when absent - never an empty list,
+never a null - because `model_dump(exclude_none=True)` drops `None` but keeps
+`[]`, so a defaulted empty list would write an empty pair on every row lacking
+the fact.
+
+What is NOT there, and why:
+
+- **`attestedBy`** - a list of source slugs on every row, where what selection
+  gates on is the COUNT. Two integers carry the gate; the names stay in the
+  store, where a question about ONE word can be asked of it. Two integers rather
+  than an integer and a flag because a boolean costs the same bytes on the line
+  and says strictly less.
+- **`ezhuthu`** - it is `segment(word)`, a pure function of a column that IS
+  published. Measured at 66.5 B a row, but bytes are the smaller argument: a
+  stored copy of a derived value is a DRIFT SURFACE, and the cheapest way not to
+  have that disagreement is not to store it. `length` stays because selection
+  reads it, and it is checked against the LIVE segmentation on every row - the
+  same guarantee at a fortieth of the bytes.
+- **`wordhood` and `freqRank`** - derived diagnostics of this pipeline rather
+  than facts a source asserted. `wordClass` IS `wordhood`'s verdict and
+  `freqRank` is a sort of the published `frequency`, so neither can cost the
+  project a fact.
+- **`meaningSource`, `translationEnSource`, `categorySource`, `compound`** - no
+  reader. Provenance that describes a value nobody traces from the artifact is a
+  column every row pays for and nothing spends.
+
+### Everything streams, and the newline is named
+
+One `json.dumps(row, ensure_ascii=False, sort_keys=True)` per line, written
+straight from a `sqlite3` cursor to a temp handle, then `os.replace`. Peak Python
+memory is one row whatever the population is.
+
+The handle is opened with `newline="\n"` and `encoding="utf-8"` EXPLICITLY. The
+operator runs Windows, where Python's default text mode translates `\n` to
+`\r\n` - which would break the byte-identity Oracle on the very machine that
+performs the real publish. `.gitattributes` pins the same thing from git's side,
+so `core.autocrlf` cannot undo it on the next contributor's checkout.
+
+Each file's sha256 is computed by reading the file BACK, so the digest is a
+statement about the bytes on disk rather than about what the process meant to
+write.
+
+### The index is the only way in
+
+A consumer resolves a file through `partitions[]` in `lexicon.meta.json`: no
+globbing, no probe-and-fallback. Each entry carries `path`, `wordClass`,
+`firstEzhuthu`, `rows`, `bytes` and `sha256`, and the model checks that the
+declared population reconciles with `counters.published` class by class.
+
+A file the previous publish wrote and this one no longer addresses is DELETED,
+and an emptied class directory goes with it. Without that the directory and the
+index disagree, and a reader that trusts the index alone would never notice.
+
+`README.md` is generated from the same document, so the two cannot drift. It
+carries no date: the artifact has no `generatedAt` for the reason a rebuild has
+to byte-compare, and a wall clock in a generated file would defeat that on the
+first re-run. Git records when.
+
+### The full rebuild is operator-only
+
+CI runs `mypy`, the tests, and the fixture-pipeline integration gate - which
+drives all four stages over the committed byte-exact fixture slices and
+byte-compares the result against `datasets/fixtures/lexicon-expected/`. Nothing
+else. The raw sources are gitignored so CI has nothing to rebuild from, and a
+nightly rebuild would shift frequency sums and therefore the candidate list every
+night, making the no-rewrite rule on already-published puzzle days unenforceable
+in principle.
 
 ## Design rationale
 
@@ -562,6 +792,15 @@ and recomputed whole.
 | Plain Python dicts and no store at all | Every delta becomes a full re-merge of every extract - the destructive funnel with extra steps. Not restartable, not inspectable, and it breaks stage independence. |
 | One zone, with signals namespaced by `source_id` | No signal IS per-source; four are whole-corpus aggregates. A fake `source_id` on a signal row would make `DELETE WHERE source_id = ?` silently wrong. |
 | A content digest instead of a write counter for `stage_epoch` | It can report the derived zone CURRENT when it is not: the extractor version is not part of the staged content, so a re-extraction that changes every fact can leave any digest over those facts' source rows unmoved. A counter's only failure mode is one unnecessary recompute. |
+| Publishing every class at full fidelity | Roughly 900 MB of committed NDJSON, of which the six unpublished classes are the bulk, and git history is append-only so it would be carried forever. Retention is what the store is for; `counters.classified` is what keeps the withheld classes provable in the repository. |
+| One file per class | `headword` alone would be a single large file, so "what changed in headwords?" spans one enormous blob and any growth walks toward the 100 MiB wall with no address to split on. The first ezhuthu is free: it is already the sort's leading key. |
+| A `length` component in the address | It makes a word's ADDRESS depend on the SIZE OF ITS CLASS the moment it is applied conditionally, and unconditionally it multiplies the file count for a key no consumer resolves on. `wordClass` plus the first ezhuthu is the whole address. |
+| The BASE first ezhuthu rather than the whole letter | It collapses `க`, `கா`, `கி` and the other eleven into one file, which is the merge the padded hex was chosen to avoid, and the resulting files are 12x larger for no gain. The whole letter costs a second 4-digit group. |
+| Romanized or Tamil-script file names | A romanization is a judgement call and correcting one would RENAME published files; it is also case-significant in every ASCII scheme (`N`/`n`, `L`/`l`), which collides on NTFS and APFS. Tamil script in a path renders as octal escapes under git's default `core.quotepath`. The letter lives in `ezhuthuIndex` as correctable data instead. |
+| Publishing `attestedBy` as the list of source names | Every row pays for a list of slugs so that selection can take its length. The two counts are the gate; the names are provenance, and provenance answers a question about ONE word, which is what the store is for. |
+| Resolving `definitionTa` by precedence alone | `llm-authored` sits at precedence 19 and two later rows appended sources at 21 and 22 - the two biggest Tamil-definition sources in the inventory. Precedence alone would have published an authored gloss over a dictionary's as a side effect of appending a config row. Attested-before-authored is a rule, so it cannot be broken by ordering. |
+| Splitting a file pre-emptively at a size threshold | The address is a pure function of the word; a threshold makes it a function of the artifact's own history, so a clean checkout could produce a different layout from a refresh and the byte-identity Oracle would hold only when a prior artifact is present. The 33 MiB figure survives as a build ASSERTION instead. |
+| A wall-clock stamp in the generated README | The artifact has no `generatedAt` precisely so a rebuild byte-compares; a date in a file the same run generates would defeat that on the first re-run. Git records when. |
 
 
 ## See also
@@ -570,6 +809,7 @@ and recomputed whole.
 - [word-hood.md](word-hood.md) - the eight signals ENRICH computes and what each one catches.
 - [../contracts/schemas.md](../contracts/schemas.md) - the `lexicon` and `lexicon-sources` contracts.
 - [../../how-to/add-a-lexicon-source.md](../../how-to/add-a-lexicon-source.md) - adding a source as a data change.
+- [../../how-to/rebuild-the-lexicon.md](../../how-to/rebuild-the-lexicon.md) - running the stages singly or as a pipeline, and what a refresh commit contains.
 - [../../how-to/enrich-the-lexicon.md](../../how-to/enrich-the-lexicon.md) - the one source that is AUTHORED rather than acquired: its provenance fields, its evidence tiers and the human review loop.
 - [../../../datasets/lexicon/sources/README.md](../../../datasets/lexicon/sources/README.md) - the acquisition ledger: every source's origin, bytes and sha256.
 - [../../../CLAUDE.md](../../../CLAUDE.md) - Holy Law #1 (no runtime backend), #3 (contracts before logic), #6 (no hardcoding).

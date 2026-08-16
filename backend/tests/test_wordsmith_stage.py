@@ -105,7 +105,7 @@ def workspace(tmp_path_factory: pytest.TempPathFactory) -> Workspace:
     root = tmp_path_factory.mktemp("wordsmith")
     entries: list[dict[str, Any]] = []
     for source in SOURCES:
-        fixture = source_bytes(_REPO_ROOT, _FIXTURES, source)
+        fixture = source_bytes(_REPO_ROOT, source)
         staged = root / "sources" / fixture.name
         staged.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(fixture, staged)

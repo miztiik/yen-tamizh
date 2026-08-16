@@ -1,0 +1,3 @@
+{"attestations": 1, "categories": ["birds"], "definitionTa": "பச்சை நிற வளர்ப்புப் பறவை", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "green parrot", "word": "பைங்கிளி", "wordClass": "headword"}
+{"attestations": 1, "categories": ["hospital"], "definitionTa": "மனநிலை பிறழ்ந்த நிலை", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["மனநோய்"], "tier1Attestations": 1, "translationEn": "madness", "word": "பைத்தியம்", "wordClass": "headword"}
+{"attestations": 1, "definitionTa": "வயதில் சிறிய ஆண் பிள்ளை", "frequency": 134, "length": 3, "pos": ["noun"], "spokenRatio": 1.0, "synonymsTa": ["சிறுவன்", "பிள்ளை"], "tier1Attestations": 1, "translationEn": "boy", "word": "பையன்", "wordClass": "headword"}

@@ -13,7 +13,8 @@ except the published bank the puzzle engine bakes.
 
 EXTRACT and STAGE exist so far (Rows 5 and 6); ENRICH writes the store's
 derived zone from row 7, REVIEW dumps it for a human from row 9b, and PUBLISH
-renders the artifact from row 11.
+renders the artifact from row 11, with ``pipeline`` sequencing the four stages
+and holding no logic of its own.
 """
 
 from __future__ import annotations
@@ -40,6 +41,21 @@ from yen_tamizh_backend.wordsmith.extract import (
     load_registry,
     normalize,
 )
+from yen_tamizh_backend.wordsmith.pipeline import PipelineRun, run
+from yen_tamizh_backend.wordsmith.publish import (
+    BY_CLASS,
+    META_NAME,
+    README_NAME,
+    PublishRun,
+    WrittenPartition,
+    partition_hex,
+    partition_path,
+    publish,
+    render,
+    render_meta,
+    render_readme,
+    write_rows,
+)
 from yen_tamizh_backend.wordsmith.readers import (
     DEFAULT_CHUNK,
     iter_delimited,
@@ -47,6 +63,13 @@ from yen_tamizh_backend.wordsmith.readers import (
     iter_json_array,
     iter_jsonl,
     read_elements,
+)
+from yen_tamizh_backend.wordsmith.resolve import (
+    SINGLE_ATTRS,
+    UNION_ATTRS,
+    ResolutionError,
+    check_the_closed_vocabularies,
+    first_ezhuthu,
 )
 from yen_tamizh_backend.wordsmith.review import ReviewRun, review
 from yen_tamizh_backend.wordsmith.signals_exact import (
@@ -79,19 +102,27 @@ from yen_tamizh_backend.wordsmith.store import (
 )
 
 __all__ = [
+    "BY_CLASS",
     "DEFAULT_CHUNK",
     "EXACT_SIGNALS",
     "EXTRACTOR_VERSION",
+    "META_NAME",
+    "README_NAME",
     "SIGNALS",
     "SIGNAL_COLUMNS",
+    "SINGLE_ATTRS",
     "STORE_VERSION",
+    "UNION_ATTRS",
     "ApplyResult",
     "EnrichRun",
     "ExtractHeader",
     "Fact",
     "FactKind",
     "Observation",
+    "PipelineRun",
+    "PublishRun",
     "RemoveResult",
+    "ResolutionError",
     "ReviewRun",
     "Signal",
     "SignalContext",
@@ -100,9 +131,11 @@ __all__ = [
     "StageRun",
     "StoreStats",
     "Tally",
+    "WrittenPartition",
     "apply_extract",
     "canonical_digest",
     "canonical_dump",
+    "check_the_closed_vocabularies",
     "derived_epoch",
     "derived_is_current",
     "distribution",
@@ -111,6 +144,7 @@ __all__ = [
     "enrich",
     "extract",
     "extract_source",
+    "first_ezhuthu",
     "iter_delimited",
     "iter_delimited_quoted",
     "iter_json_array",
@@ -120,11 +154,19 @@ __all__ = [
     "normalize",
     "open_store",
     "orthotactic_score",
+    "partition_hex",
+    "partition_path",
+    "publish",
     "read_elements",
     "remove_source",
+    "render",
+    "render_meta",
+    "render_readme",
     "review",
+    "run",
     "stage",
     "stage_epoch",
     "store_stats",
     "transaction",
+    "write_rows",
 ]

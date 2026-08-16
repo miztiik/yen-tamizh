@@ -1,0 +1,711 @@
+{"attestations": 3, "definitionTa": "இது தமிழின் உயிர் எழுத்துக்களில், 11வது எழுத்தாகும்", "frequency": 12292, "length": 1, "pos": ["interjection", "particle", "verb"], "spokenRatio": 0.033436, "synonymsTa": ["ஆ", "ஏய்", "ஐயோ", "ஓஒ", "ஓய்", "புணர்"], "tier1Attestations": 2, "word": "ஓ", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "வியப்புக் குறிப்பு", "frequency": 25, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓஒ", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பேன்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["பேன்", "மூட்டைப்பூச்சி"], "tier1Attestations": 2, "word": "ஓகணம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பேன்", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["பேன்", "மூட்டைப்பூச்சி"], "tier1Attestations": 2, "word": "ஓகணி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வெள்ளம் (சூடா.)", "frequency": 15, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["பெருங்கூட்டம்"], "tier1Attestations": 2, "word": "ஓகம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஓ ' என்னும் உயிரெழுத்து", "frequency": 20, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மயில்"], "tier1Attestations": 2, "word": "ஓகாரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பிரணவ வடிவம் , கடவுள்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓகாரவுரு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 105, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "The person who practicing yoga and breathing", "word": "ஓகி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அப்பம்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["அப்பம்"], "tier1Attestations": 2, "word": "ஓகுலம்", "wordClass": "headword"}
+{"attestations": 3, "frequency": 28, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["உவகை", "ஓசை", "ஓர்கை"], "tier1Attestations": 2, "translationEn": "delight", "word": "ஓகை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒகோ! அப்படியா!!.நான் தான் தவறாக புரிந்து கொண்டேன்", "frequency": 269, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "interjection expressing surprise or joy", "word": "ஓகோ", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "காண்க: ஓகணம் (யாழ். அக.)", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓகோதனி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உயரம், உயர்ச்சி", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["உயரம்", "உயர்ச்சி", "உயர்வு", "பெருமை"], "tier1Attestations": 2, "translationEn": "height", "word": "ஓக்கம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வாந்தி குணம்", "frequency": 2, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஓக்காளிப்பு", "ஓங்காளம்", "வாயாலெடுத்தல்"], "tier1Attestations": 2, "translationEn": "vomiting", "word": "ஓக்காளம்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "வாந்திக் குணமுண்டாதல்", "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "word": "ஓக்காளித்தல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வாந்திக் குணம்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓக்காளிப்பு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஏற்றது , தகுந்தது", "frequency": 5, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஏற்றது", "தகுந்தது"], "tier1Attestations": 2, "word": "ஓக்கியம்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "உயர்த்துதல் , எழும்பச்செய்தல்", "frequency": 0, "length": 5, "pos": ["verb"], "synonymsTa": ["அறுதியிடுதல்", "ஆக்குதல்", "உயர்த்துதல்", "எறிதல்", "எழும்பச்செய்தல்", "தருதல்"], "tier1Attestations": 1, "word": "ஓக்குதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "gag", "word": "ஓங்கரி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மலை", "frequency": 11, "length": 4, "spokenRatio": 0.0, "synonymsTa": ["மலை", "யானை"], "tier1Attestations": 1, "translationEn": "cliff", "word": "ஓங்கல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 61, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓங்கார", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓங்காரவுருவன் , கடவுள்", "frequency": 4, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஓங்காரவுருவன்", "கடவுள்"], "tier1Attestations": 2, "word": "ஓங்காரன்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஓம் எனும் மந்திரம்; பிரணவம்", "frequency": 32, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "Om", "word": "ஓங்காரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கடவுள்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["கடவுள்", "கௌரிபாடாணம்"], "tier1Attestations": 2, "word": "ஓங்காரவுரு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "பிரணவப் பொருளானவள் , சக்தி", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 3, "translationEn": "heave", "word": "ஓங்காரி", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஓங்காரத்தை உச்சரித்தல்", "frequency": 0, "length": 7, "pos": ["verb"], "synonymsTa": ["உறுக்குதல்"], "tier1Attestations": 1, "word": "ஓங்காரித்தல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓக்காளம்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["ஓக்காளம்"], "tier1Attestations": 2, "word": "ஓங்காளம்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "உன்னிப் பார்த்தல்", "frequency": 0, "length": 9, "pos": ["verb"], "tier1Attestations": 1, "word": "ஓங்கிப்பார்த்தல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "stamp", "word": "ஓங்கிமிதி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உயர்ந்து ஓங்கி நிற்கும்", "frequency": 115, "length": 4, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "lofty", "word": "ஓங்கிய", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "உயர்த்தித் தாக்குதல்", "frequency": 0, "length": 8, "pos": ["verb"], "tier1Attestations": 1, "word": "ஓங்கியடித்தல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 4, "length": 8, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "towery", "word": "ஓங்கியுயர்ந்த", "wordClass": "headword"}
+{"attestations": 5, "categories": ["aquatic-animals"], "definitionTa": "ஒரு கடல்மீன்வகை", "frequency": 41, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["டால்பின்"], "tier1Attestations": 4, "translationEn": "tuna", "word": "ஓங்கில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "strike", "word": "ஓங்கிவெட்டு", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "அடிக்கக் கையை ஓங்கினார்", "frequency": 37, "length": 3, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["உயர்", "உயர்த்து", "சிற", "பெருகு"], "tier1Attestations": 3, "translationEn": "rise", "word": "ஓங்கு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "உயர்தல்", "frequency": 0, "length": 5, "pos": ["verb"], "synonymsTa": ["உயர்தல்", "ஓக்காளித்தல்", "பரவுதல்", "பெருகுதல்", "பெருமையடைதல்", "வளர்தல்"], "tier1Attestations": 1, "word": "ஓங்குதல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஓங்கு - உயரமான", "frequency": 0, "length": 6, "tier1Attestations": 1, "word": "ஓங்குதாங்கு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 4, "pos": ["verb"], "synonymsTa": ["உயர்த்து"], "tier1Attestations": 1, "translationEn": "elevate", "word": "ஓங்குவி", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஓங்கச்செய்தல் , உயரச்செய்தல்", "frequency": 1, "length": 7, "pos": ["verb"], "spokenRatio": 0.0, "synonymsTa": ["உயரச்செய்தல்", "ஓங்கச்செய்தல்"], "tier1Attestations": 1, "word": "ஓங்குவித்தல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "(தமி) - (பெ) = தாரிச்சிட்டு", "frequency": 62, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "ஓசனிச்சிட்டு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "பறவை சிறகடித்தல்", "frequency": 1, "length": 6, "pos": ["verb"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓசனித்தல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "யோசனையளவு", "frequency": 3, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["யோசனையளவு"], "tier1Attestations": 2, "word": "ஓசனை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "' - (பெ) = ஆசாரியன். (பி.நி.) = ஆசான் = மிக நுண்ணிய திறமையாளன்", "frequency": 82, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "preceptor", "word": "ஓசன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒளி", "frequency": 1, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஆண்குறி", "ஆதாரம்", "ஒளி", "சமர்த்து", "நிமித்தம்", "மிகுபுகழ்", "வலிமை"], "tier1Attestations": 2, "word": "ஓசம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நிமித்தம் , பொருட்டு", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["நிமித்தம்", "பொருட்டு"], "tier1Attestations": 2, "word": "ஓசரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கேடு", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["கேடு"], "tier1Attestations": 2, "word": "ஓசரி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அழகு", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["அழகு", "சிரமமின்மை", "வருத்தமின்மை"], "tier1Attestations": 2, "word": "ஓசழக்கு", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "இலவசம்", "frequency": 873, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["இரவல்", "இலவசம்"], "tier1Attestations": 3, "word": "ஓசி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பிழைப்பு", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["பிழைப்பு"], "tier1Attestations": 2, "word": "ஓசிவனம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "withy", "word": "ஓசிவிழைவான", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "புகழ்", "frequency": 11, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["புகழ்", "வலி"], "tier1Attestations": 2, "word": "ஓசு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வலியோன்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["பரவசாதியான்", "மீகாமன்", "வலியோன்"], "tier1Attestations": 2, "word": "ஓசுநன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒரு தனிமம், இதன் அணுவெண் 76. இத்தனிமம் திட நிலையில் காணப்படுகிறது", "frequency": 30, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "ஓசுமியம்", "wordClass": "headword"}
+{"attestations": 9, "definitionTa": "ஒலி", "frequency": 3012, "length": 2, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["அடி", "இரைச்சல்", "எழுத்தோசை", "ஒலி", "கீர்த்தி", "சத்தம்", "செய்யுளோசை", "தொனி", "புகழ்", "மிடற்றொலி", "வாழை"], "tier1Attestations": 5, "translationEn": "crack", "word": "ஓசை", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஓசை - பொருளுற்றது", "frequency": 0, "length": 4, "tier1Attestations": 1, "word": "ஓசைஒலி", "wordClass": "headword"}
+{"attestations": 2, "frequency": 834, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓசைகள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "ding-dong", "word": "ஓசைசெய்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "காலணிவகை", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["காலணிவகை"], "tier1Attestations": 2, "word": "ஓசைசெய்தளை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 11, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "sea-gauge", "word": "ஓசைசெய்யுங்கருவிவகை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "slack", "word": "ஓசைச்செறிவற்ற", "wordClass": "headword"}
+{"attestations": 2, "frequency": 22, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓசைதான்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "tone", "word": "ஓசைத்திட்பம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "audibility", "word": "ஓசைத்தௌதவு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "dumb", "word": "ஓசைபடாத", "wordClass": "headword"}
+{"attestations": 1, "frequency": 6, "length": 6, "pos": ["adverb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "silently", "word": "ஓசைபடாமல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "sound", "word": "ஓசைபடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "sounder", "word": "ஓசைபடுவது", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "go", "word": "ஓசைபெறு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "dull", "word": "ஓசைமந்தப்படுத்து", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "hush", "word": "ஓசையடங்கியிரு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "silence", "word": "ஓசையமர்த்து", "wordClass": "headword"}
+{"attestations": 1, "frequency": 20, "length": 5, "pos": ["adjective", "noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "calm", "word": "ஓசையற்ற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "rhythm", "word": "ஓசையாழுக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "mum", "word": "ஓசையின்மை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 70, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "deep", "word": "ஓசையில்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 137, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "detonator", "word": "ஓசையுடன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இன்னோசையுடைமை , நூலழகு பத்தனுள் ஒனறு", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓசையுடைமை", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "செய்யுளோசை இசைதல்", "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "word": "ஓசையுண்ணுதல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 278, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓசையும்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "செய்யுள் ஓசையை இசையச் செய்தல்", "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "word": "ஓசையூட்டுதல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 170, "length": 3, "spokenRatio": 0.005882, "tier1Attestations": 1, "word": "ஓசையை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 37, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓசையையும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "rhythmic,  thythmical", "word": "ஓசையொழுக்குடைய", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உயர்வு , புகழ்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["உயர்வு", "புகழ்"], "tier1Attestations": 2, "word": "ஓச்சம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உயர்வு", "frequency": 5, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["உயர்வு", "தளர்ச்சி"], "tier1Attestations": 2, "word": "ஓச்சல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "அதிகாரம் செலுத்து", "frequency": 0, "length": 3, "pos": ["noun", "verb"], "synonymsTa": ["எறி", "ஓட்டு", "தூண்டு"], "tier1Attestations": 2, "translationEn": "brandish", "word": "ஓச்சு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "எறிதல்", "frequency": 1, "length": 5, "pos": ["verb"], "spokenRatio": 0.0, "synonymsTa": ["உயர்த்துதல்", "எறிதல்", "செலுத்துதல்", "பாய்ச்சுதல்", "வீசுதல்"], "tier1Attestations": 1, "word": "ஓச்சுதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வறையல் , வறுத்த உணவு", "frequency": 1, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "ஓச்சை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உயரமான, உடல் மெலிந்த நபர்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "a tall", "word": "ஓஞ்சட்டையன்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "உவமவுருபு", "frequency": 3651, "length": 2, "spokenRatio": 0.001096, "synonymsTa": ["உவமவுருபு"], "tier1Attestations": 2, "translationEn": "flare-path n.", "word": "ஓட", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓடக்கார", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "tier1Attestations": 1, "word": "ஓடக்காரனின்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓடக்காரனும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "tier1Attestations": 1, "word": "ஓடக்காரனை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "படகு செலுத்துபவன், படகோட்டி", "frequency": 16, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "Charon", "word": "ஓடக்காரன்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "tier1Attestations": 1, "word": "ஓடக்காரப்பெண்ணின்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "tier1Attestations": 1, "word": "ஓடக்காரப்பெண்ணை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "tier1Attestations": 1, "word": "ஓடக்காரர்களில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "tier1Attestations": 1, "word": "ஓடக்காரர்களும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓடக்காரர்களை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "tier1Attestations": 1, "word": "ஓடக்காரர்கள்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "படகு செலுத்துபவள், படகோட்டி", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "boatwoman", "word": "ஓடக்காரி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "tier1Attestations": 1, "word": "ஓடக்காரிக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "tier1Attestations": 1, "word": "ஓடக்காரிதானே", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "tier1Attestations": 1, "word": "ஓடக்காரியின்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "tier1Attestations": 1, "word": "ஓடக்காரியென்றால்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "ferriage", "word": "ஓடக்கூலி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "படகு தள்ளும் கழி; துடுப்பு", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "boatman's pole", "word": "ஓடக்கோல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 14, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓடங்கள்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒருவரின் மனதில் விரக்தி ஏற்பட்டு அதை யாரிடமும் கூறாமல் சென்றுவிடுவது அல்லது அவரை ஓடவைப்பதற்கு ஈடுபடுத்துவது", "frequency": 0, "length": 5, "pos": ["verb"], "synonymsTa": ["ஓடவை", "துரத்தியடி", "வெருட்டிஓட்டு"], "tier1Attestations": 1, "translationEn": "chase away", "word": "ஓடச்செய்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மருந்திற்குரிய பூடு முதலியவை; ஓஷதி ஒடதி நிரைத்தார் ( அகலிகை. 23)", "frequency": 0, "length": 3, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "medicinal herb or drug", "word": "ஓடதி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சந்திரன்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["சந்திரன்"], "tier1Attestations": 2, "word": "ஓடதிநாதன்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 11, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓடத்தின்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 4, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓடத்திலிருந்து", "wordClass": "headword"}
+{"attestations": 2, "frequency": 47, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "ferriage", "word": "ஓடத்தில்", "wordClass": "headword"}
+{"attestations": 3, "categories": ["places"], "definitionTa": "படகு நிற்கும் துறைமுகம்", "frequency": 69, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "quay", "word": "ஓடத்துறை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "tier1Attestations": 1, "word": "ஓடத்துறைக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "ferry-house", "word": "ஓடத்துறையில்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 140, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓடத்தை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "tier1Attestations": 1, "word": "ஓடந்தள்ளுவோர்", "wordClass": "headword"}
+{"attestations": 4, "frequency": 10, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஆமை", "உறுப்படக்கி", "கூர்மம்"], "tier1Attestations": 3, "translationEn": "All-father", "word": "ஓடன்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 6, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "shanty", "word": "ஓடப்பாட்டு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓடமுமே", "wordClass": "headword"}
+{"attestations": 6, "categories": ["transport"], "definitionTa": "நீரில் செல்லும் படகு வகை", "frequency": 395, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஓடப்பாட்டு", "தோணி", "மகநாள்"], "tier1Attestations": 5, "translationEn": "boat", "word": "ஓடம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஓடில்லாத", "frequency": 6, "length": 4, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["ஓடில்லாத"], "tier1Attestations": 1, "translationEn": "unshelled", "word": "ஓடற்ற", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஓடுதல்", "frequency": 13, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஆமெனல்", "ஓடுதல்", "குலைதல்", "கெடுதல்"], "tier1Attestations": 2, "word": "ஓடல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "புடமிடுதல்", "frequency": 0, "length": 6, "pos": ["verb"], "synonymsTa": ["புடமிடுதல்"], "tier1Attestations": 1, "word": "ஓடவிடுதல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒருவரின் மனதில் விரக்தி ஏற்பட்டு அதை யாரிடமும் கூறாமல் சென்றுவிடுவது அல்லது அவரை ஓடவைப்பதற்கு ஈடுபடுத்துவது", "frequency": 0, "length": 3, "pos": ["verb"], "synonymsTa": ["ஓடச்செய்", "துரத்தியடி", "வெருட்டிஓட்டு"], "tier1Attestations": 1, "word": "ஓடவை", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "புடமிடுதல்", "frequency": 0, "length": 6, "pos": ["verb"], "synonymsTa": ["உறுதிப்படுத்தல்", "புடமிடுதல்"], "tier1Attestations": 1, "word": "ஓடவைத்தல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அணி முதலியவற்றில் மாட்டும் ஆணி ( ii, 18.)", "frequency": 0, "length": 3, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓடாணி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓட்டம் இல்லாத, தேங்கிய", "frequency": 196, "length": 3, "pos": ["adjective"], "spokenRatio": 0.005102, "tier1Attestations": 2, "translationEn": "stagnant", "word": "ஓடாத", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "stand", "word": "ஓடாதிரு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மரக்கலம் செய்வோன்", "frequency": 12, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஓவியன்", "தச்சன்"], "tier1Attestations": 2, "word": "ஓடாவி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பயணம் செய்பவர்", "frequency": 10174, "length": 2, "pos": ["noun"], "spokenRatio": 0.000688, "tier1Attestations": 2, "translationEn": "abscondence", "word": "ஓடி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "காண்க: ஓடி (யாழ். அக.)", "frequency": 0, "length": 3, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓடிகை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "overrun", "word": "ஓடிக்களைப்புறு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "லட்சியத்தை பெறுவதற்காக மிகவும் வேகமாக வேலை செய்வது", "frequency": 2, "length": 7, "pos": ["verb"], "spokenRatio": 0.0, "synonymsTa": ["சென்றுகொண்டிரு", "செயல்பட்டுக்கொண்டிரு"], "tier1Attestations": 1, "translationEn": "race", "word": "ஓடிக்கொண்டிரு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "skedaddle", "word": "ஓடிச்சிதறு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "அலைதல்", "frequency": 0, "length": 7, "pos": ["verb"], "synonymsTa": ["அலைதல்"], "tier1Attestations": 1, "word": "ஓடித்திரிதல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 30, "length": 4, "pos": ["verb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "flee", "word": "ஓடிப்போ", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "விட்டு நீங்குதல்", "frequency": 1, "length": 6, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["ஓட்டமெடுத்தல்"], "tier1Attestations": 2, "translationEn": "flight", "word": "ஓடிப்போதல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஓடிப்போன, ஓடிய", "frequency": 378, "length": 5, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["ஓடிய"], "tier1Attestations": 1, "translationEn": "at large(p)", "word": "ஓடிப்போன", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "disappearance", "word": "ஓடிமறைதல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஓடிப்போன, ஓடிய", "frequency": 2139, "length": 3, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["ஓடிப்போன"], "tier1Attestations": 1, "translationEn": "at large(p)", "word": "ஓடிய", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "அவைக்குத் தகாத பேச்சு; அசப்பிய வார்த்தை; பரிகாசம்", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "obscenity", "word": "ஓடியம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கிளிஞ்சல்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["கிளிஞ்சல்"], "tier1Attestations": 2, "word": "ஓடியவோடம்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "பெருமுயற்சி செய்தல்", "frequency": 0, "length": 10, "pos": ["verb"], "tier1Attestations": 1, "word": "ஓடியாடிப்பார்த்தல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஓட்டமும் ஆட்டமுமாயிருத்தல்", "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "word": "ஓடியாடுதல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "படிப்படியாய் இறுகுதல்", "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "word": "ஓடியுறைதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "flight", "word": "ஓடியொளித்தல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஓடில்லாத", "frequency": 2, "length": 5, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["ஓடற்ற"], "tier1Attestations": 1, "translationEn": "unshelled", "word": "ஓடில்லாத", "wordClass": "headword"}
+{"attestations": 2, "frequency": 21, "length": 4, "pos": ["verb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "absquatulate", "word": "ஓடிவிடு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "உடல் முழுவதும் விறைத்தல்", "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "word": "ஓடிவிறைத்தல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "வெளிவாங்குதல்", "frequency": 0, "length": 7, "pos": ["verb"], "synonymsTa": ["வெளிவாங்குதல்"], "tier1Attestations": 1, "word": "ஓடிவெளித்தல்", "wordClass": "headword"}
+{"attestations": 9, "definitionTa": "கால்களை வேகமாக அசைத்து நகர்வது", "frequency": 1562, "length": 2, "pos": ["adjective", "noun", "postposition", "verb"], "spokenRatio": 0.005122, "synonymsTa": ["அகலப்படுத்து", "இயங்கு", "உடன்செல்", "சில்", "செங்கல்", "செல்", "தலையோடு", "தோடு", "நீட்டு", "பாய்", "போ", "மண்டையோடு", "விரிவுபடுத்து"], "tier1Attestations": 5, "translationEn": "Flee", "word": "ஓடு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கரப்பான்வகை", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["கரப்பான்வகை"], "tier1Attestations": 2, "word": "ஓடுகரப்பான்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 42, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓடுகளும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 90, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓடுகளை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 12, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓடுகளையும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 377, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "Tiles", "word": "ஓடுகள்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "வீட்டில் தங்காமல் ஓடிவிடுபவர்", "frequency": 12, "length": 4, "pos": ["adjective", "noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "eloper", "word": "ஓடுகாலி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "நீரோடுங் கால்வாய்", "frequency": 1, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "ஓடுகால்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஓடுகின்ற", "frequency": 69, "length": 5, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "running(a)", "word": "ஓடுகின்ற", "wordClass": "headword"}
+{"attestations": 2, "frequency": 185, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "current", "word": "ஓடுகிற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "slender", "word": "ஓடுங்கிய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "walkie-pushie", "word": "ஓடுசேணி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "<!---# குறியீட்டிற்கு அடுத்து, தமிழில் விளக்கம் எழுதி", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓடுதண்டு", "wordClass": "headword"}
+{"attestations": 7, "categories": ["games"], "definitionTa": "கால்களை வேகமாக அசைத்து நகரும் செயல்", "frequency": 98, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "Running", "word": "ஓடுதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "விமானம் ஓடி மேலெழுந்து பறக்கவும், பறந்தபின் கீழிறங்கி ஓடி நிற்கவும் தேவைப்படும் நீண்ட பாதை", "frequency": 77, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "runway", "word": "ஓடுதளம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அவசரங்களில் நேரும் குழப்பம்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓடுதாவடி", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஓடுமாற்றிப் புதுப்பித்தல்", "frequency": 0, "length": 8, "pos": ["verb"], "tier1Attestations": 1, "word": "ஓடுதிருப்புதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இடுதிரை", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["இடுதிரை"], "tier1Attestations": 2, "word": "ஓடுபடம்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "நடைப்பந்தல்", "frequency": 0, "length": 6, "pos": ["verb"], "synonymsTa": ["நடைப்பந்தல்"], "tier1Attestations": 1, "word": "ஓடுபந்தல்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 21, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "courier", "word": "ஓடுபவர்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "விமானம் ஓடி மேலெழுந்து பறக்கவும், பறந்து முடிந்தபின் கீழிறங்கி ஓடி நிற்கவும் தேவைப்படும் நீண்ட பாதை", "frequency": 95, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "runway in an airport", "word": "ஓடுபாதை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 5, "pos": ["adverb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "tegularly", "word": "ஓடுபோன்ற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "stolon", "word": "ஓடுமுளைத்தண்டு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஓர் அசைச்சொல்", "frequency": 6925, "length": 3, "pos": ["noun"], "spokenRatio": 0.000144, "tier1Attestations": 2, "translationEn": "autocar", "word": "ஓடும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 531, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "runner", "word": "ஓடுவது", "wordClass": "headword"}
+{"attestations": 1, "frequency": 12, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓடுவதுதான்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வாதநோய்வகை", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["வாதநோய்வகை"], "tier1Attestations": 2, "word": "ஓடுவாயு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "புரையோடும் புண்வகை அரித்தரித்துச் செல்லும் புண்", "frequency": 0, "length": 11, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓடுவிப்புருதிக்கட்டி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "tile", "word": "ஓடுவேய்", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "சிறிய நீர்வழி; சிறியஆறு", "frequency": 660, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அகழி", "குளம்", "மலைவழி"], "tier1Attestations": 4, "translationEn": "brook", "word": "ஓடை", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஓடை - நிலத்தை அறுத்துச் செல்லும் நீரோட்டம்", "frequency": 0, "length": 6, "tier1Attestations": 1, "word": "ஓடைஉடைப்பு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 20, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓடைகளிலும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 69, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓடைகளில்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 24, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓடைகளும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 196, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓடைகள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 10, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓடைக்கரை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 13, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓடைக்கரையில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 5, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓடைக்கரையை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 5, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓடைக்கால்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓடைதான்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "tier1Attestations": 1, "word": "ஓடைப்பக்கம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓடையருகில்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 88, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "milldam", "word": "ஓடையின்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 17, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓடையிலிருந்து", "wordClass": "headword"}
+{"attestations": 1, "frequency": 8, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓடையிலும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 309, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓடையில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 70, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓடையை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "tier1Attestations": 1, "word": "ஓடையைத்தான்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 1793, "length": 3, "spokenRatio": 0.009481, "tier1Attestations": 1, "translationEn": "commutate", "word": "ஓட்ட", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பாடல் முழுதும் இதழ் குவிந்தும கூடியும் இயலும் எழுத்துகளேயுள்ள சித்திரகவி", "frequency": 6, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "ஓட்டகம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அஞ்சற்காரன்", "frequency": 1, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அஞ்சற்காரன்"], "tier1Attestations": 2, "word": "ஓட்டக்காரன்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஓடுவதுபோல நடித்தல்", "frequency": 0, "length": 9, "pos": ["verb"], "tier1Attestations": 1, "word": "ஓட்டங்காட்டுதல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "தடபுடல்", "frequency": 3, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["தடபுடல்"], "tier1Attestations": 3, "translationEn": "play", "word": "ஓட்டசாட்டம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "run", "word": "ஓட்டச்சுற்றுமுறை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒரு நெல் வகை", "frequency": 1, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "ஓட்டடம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அப்பவகை", "frequency": 3, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அப்பவகை"], "tier1Attestations": 2, "word": "ஓட்டடை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "<!---# குறியீட்டிற்கு அடுத்து, தமிழில் விளக்கம் எழுதி", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓட்டத்தள்ளு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓட்டுத் துத்திச்செடி", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓட்டத்தி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "tier1Attestations": 1, "word": "ஓட்டத்தினாலும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 149, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓட்டத்தின்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1158, "length": 6, "spokenRatio": 0.000864, "tier1Attestations": 1, "word": "ஓட்டத்தில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 91, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓட்டத்துக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 766, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "heart", "word": "ஓட்டத்தை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓட்டத்தைவிட", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "run", "word": "ஓட்டத்தொலைவெல்லை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 30, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓட்டத்தோடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "double-quick", "word": "ஓட்டநடையில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "double-quick", "word": "ஓட்டநடையுடைய", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பாட்டனுக்குப் பாட்டன்; பூட்டனின் தந்தை", "frequency": 12, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "father of great grand father", "word": "ஓட்டன்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "run", "word": "ஓட்டப்படிமுறை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "run", "word": "ஓட்டப்பந்தயமிடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 82, "length": 9, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "course", "word": "ஓட்டப்பந்தயம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓட்டடை", "frequency": 4, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஓட்டடை"], "tier1Attestations": 2, "word": "ஓட்டப்பம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "race", "word": "ஓட்டப்பாட்டை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "run", "word": "ஓட்டப்பாணி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "இதில் போட்டியாளர்களை ஓடவைக்கும் ஒரு போட்டி", "frequency": 39, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "race", "word": "ஓட்டப்போட்டி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "நீர் மற்றும் திரவப்பொருட்கள் தேங்கி நிற்காமல் செல்லுதல்.", "frequency": 10, "length": 5, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "flowing", "word": "ஓட்டமான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 479, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓட்டமும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "run", "word": "ஓட்டமுறை", "wordClass": "headword"}
+{"attestations": 10, "categories": ["games"], "definitionTa": "மனதின் எண்ண அலைகள்.", "frequency": 5718, "length": 4, "pos": ["noun"], "spokenRatio": 0.000175, "tier1Attestations": 6, "translationEn": "course", "word": "ஓட்டம்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "தப்பி ஓடுதல்", "frequency": 0, "length": 9, "pos": ["verb"], "tier1Attestations": 1, "word": "ஓட்டம்பிடித்தல்", "wordClass": "headword"}
+{"attestations": 5, "categories": ["places"], "definitionTa": "உணவு விடுதி", "frequency": 1791, "length": 4, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["உணவகம்", "உணவு விடுதி", "உண்டிச்சாலை", "மெஸ்", "விடுதி"], "tier1Attestations": 3, "translationEn": "hotel", "word": "ஓட்டல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 336, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓட்டல்கள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "pace", "word": "ஓட்டவேகம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சிரட்டை , தேங்காய் ஓடு", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓட்டாங்கச்சி", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "பழமையான மட்கலங்கள் உடைந்து உருவான ஓடு துண்டு", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "word": "ஓட்டாங்கணி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒருவகை மீன்", "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓட்டாங்கிளிஞ்சல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "சிப்பி என்ற உயிரினத்தின் தோற்றம்", "frequency": 0, "length": 9, "pos": ["noun"], "synonymsTa": ["இப்பி", "கவாட்டி", "சிப்பி"], "tier1Attestations": 1, "translationEn": "shell", "word": "ஓட்டாங்கிளிஞ்சில்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உடைந்த பானை ஓடுகள் மேலும் உடையும் பொழுது தோன்றும் சிறு சிறு துண்டுகள்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "pot sherd", "word": "ஓட்டாஞ்சல்லி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "இரந்துண்பவன்", "frequency": 16, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["இரந்துண்பவன்", "பிச்சைக்காரன்"], "tier1Attestations": 2, "word": "ஓட்டாண்டி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒட்டாம்பாரை", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["ஒட்டாம்பாரை"], "tier1Attestations": 2, "word": "ஓட்டாம்பாரை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "Tilery", "word": "ஓட்டாலை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "பாட்டிக்கு பாட்டி; பூட்டியின் தாய்", "frequency": 2160, "length": 3, "pos": ["noun"], "spokenRatio": 0.000926, "tier1Attestations": 2, "translationEn": "chauffeur, chauffeur", "word": "ஓட்டி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 255, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓட்டிகளுக்கு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒட்டினால் ஒட்டும்", "frequency": 0, "length": 7, "pos": ["verb"], "synonymsTa": ["ஓட்டினால்மூடு"], "tier1Attestations": 1, "translationEn": "tile", "word": "ஓட்டினால்மறை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒட்டினால் ஒட்டும்", "frequency": 0, "length": 7, "pos": ["verb"], "synonymsTa": ["ஓட்டினால்மறை"], "tier1Attestations": 1, "translationEn": "tile", "word": "ஓட்டினால்மூடு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓட்டகம்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["ஓட்டகம்"], "tier1Attestations": 2, "word": "ஓட்டியம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒரு நாடு", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓட்டிரம்", "wordClass": "headword"}
+{"attestations": 10, "definitionTa": "வாக்கு", "frequency": 5942, "length": 3, "pos": ["noun", "verb"], "spokenRatio": 0.000841, "synonymsTa": ["வாக்கு"], "tier1Attestations": 6, "translationEn": "Drive", "word": "ஓட்டு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 10, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓட்டுக்கூரை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "tier1Attestations": 1, "word": "ஓட்டுக்கூரையையும்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஓடிவிடுதல்", "frequency": 0, "length": 9, "pos": ["verb"], "synonymsTa": ["ஓடிவிடுதல்"], "tier1Attestations": 1, "word": "ஓட்டுக்கொடுத்தல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 25, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓட்டுடன்", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "அழித்தல்", "frequency": 199, "length": 5, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["அழித்தல்", "கலத்தல்", "காலந்தாழ்த்துதல்", "செய்துமுடித்தல்", "செலுத்துதல்", "நீங்கச்செய்தல்", "புகுத்துதல்"], "tier1Attestations": 2, "translationEn": "driving", "word": "ஓட்டுதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒருவகைப் பூண்டு", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓட்டுத்துத்தி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஓட்டுத்தையல்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "mosaic", "word": "ஓட்டுத்தையல்", "wordClass": "headword"}
+{"attestations": 9, "categories": ["profession"], "definitionTa": "வண்டியினை ஓட்டும் வல்லமைப் பெற்றவர்", "frequency": 4651, "length": 5, "pos": ["noun"], "spokenRatio": 0.001935, "synonymsTa": ["ஓட்டுனர்", "சாரதி"], "tier1Attestations": 5, "translationEn": "Driver", "word": "ஓட்டுநர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "<!---# குறியீட்டிற்கு அடுத்து, தமிழில் விளக்கம் எழுதி", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓட்டுந்தண்டு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "பேருந்து, கார் முதலிய வாகனங்களை ஓட்டும் பணிபுரிபவர்.", "frequency": 1212, "length": 5, "pos": ["noun"], "spokenRatio": 0.000825, "synonymsTa": ["ஓட்டுநர்"], "tier1Attestations": 1, "translationEn": "driver", "word": "ஓட்டுனர்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 100, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "driver", "word": "ஓட்டுபவர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சிப்பியில் ஒட்டிய முத்து", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓட்டுமுத்து", "wordClass": "headword"}
+{"attestations": 1, "frequency": 146, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["வாக்குரிமை"], "tier1Attestations": 1, "word": "ஓட்டுரிமை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஓடு வேய்ந்த வீடு", "frequency": 5, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "house with tiled roof", "word": "ஓட்டுவீடு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "விரைந்தோடுதல்", "frequency": 0, "length": 7, "pos": ["verb"], "synonymsTa": ["விரைந்தோடுதல்"], "tier1Attestations": 1, "word": "ஓட்டெடுத்தல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தலையெழுத்து", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["தலையெழுத்து"], "tier1Attestations": 2, "word": "ஓட்டெழுத்து", "wordClass": "headword"}
+{"attestations": 10, "definitionTa": "பெரும்பாலும் தரை, சுவர் போன்ற இடங்களில் அமைந்திருக்கும் துளை.", "frequency": 1411, "length": 3, "pos": ["adjective", "noun"], "spokenRatio": 0.002126, "synonymsTa": ["துளை", "துவாரம்", "பொந்து"], "tier1Attestations": 6, "translationEn": "chink", "word": "ஓட்டை", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஓட்டை - துளை - பழுது பாரத்து பயன் படுத்தலாம்", "frequency": 0, "length": 6, "tier1Attestations": 1, "word": "ஓட்டைஉடைவு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஊதாரித்தனமாகச் செலவு செய்யும் கை/நபர்", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "prodigal", "word": "ஓட்டைகை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "பொருள் தங்காத கை", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓட்டைக்கை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கேள்வி பற்றாத செவி", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓட்டைச்செவி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அறைபோன மனம் , வெறுமை மனம்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓட்டைநெஞ்சு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "குறைந்துள்ள பல்", "frequency": 5, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மூளிப்பல்"], "tier1Attestations": 2, "translationEn": "row of teeth in which one or more are lacking", "word": "ஓட்டைப்பல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒன்றும் தாங்காத மனம்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓட்டைமனம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "பெரும்பாலும் வட்டவடிவில் ஏற்படுத்தப்படும் சிறிய இடைவெளி அல்லது திறப்பு.", "frequency": 1, "length": 5, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["துளையான"], "tier1Attestations": 1, "translationEn": "penetrable", "word": "ஓட்டையான", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "துவாரம் உண்டாக்குதல்.", "frequency": 0, "length": 5, "pos": ["verb"], "synonymsTa": ["துளையிடு"], "tier1Attestations": 1, "translationEn": "bore", "word": "ஓட்டையிடு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒன்றில் துளை இல்லாத", "frequency": 2, "length": 7, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["துளையில்லாத", "துவாரமில்லாத"], "tier1Attestations": 1, "translationEn": "imperforate", "word": "ஓட்டையில்லாத", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சிதைந்த பண்டங்கள்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓட்டையுடைசல்", "wordClass": "headword"}
+{"attestations": 4, "frequency": 0, "length": 6, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "leaky", "word": "ஓட்டையுடைய", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "உளறுவாயன், அம்பலவாயன்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["அம்பலவாயன்", "உளறுவாயன்"], "tier1Attestations": 2, "word": "ஓட்டைவாயன்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "sieve", "word": "ஓட்டைவாயர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓட்டைவாய்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓணநாளுக்குரிய திருமால்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓணப்பிரான்", "wordClass": "headword"}
+{"attestations": 7, "definitionTa": "ஆறு", "frequency": 691, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஆறு"], "tier1Attestations": 3, "word": "ஓணம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 3, "tier1Attestations": 1, "word": "ஓணானோ", "wordClass": "headword"}
+{"attestations": 6, "categories": ["reptiles"], "definitionTa": "ஓந்தி", "frequency": 286, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஒடக்கான்", "ஓந்தான்", "ஓந்தி"], "tier1Attestations": 4, "translationEn": "lizard", "word": "ஓணான்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 16, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓணான்கள்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒருவகை இராசாளி", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓணான்குத்தி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பெருங்கால் , ஆனைக்கால்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["ஆனைக்கால்", "பெருங்கால்"], "tier1Attestations": 2, "word": "ஓதக்கால்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "sogginess", "word": "ஓதநீர்மை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "உண்டி", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["உண்டி", "சோறு", "பெருமை", "போர்"], "tier1Attestations": 2, "word": "ஓதனம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓதல் தன்மை", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["பாடல்"], "tier1Attestations": 2, "word": "ஓதன்மை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நெசவின் நெட்டிழை , குறுக்கிழைகள்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓதப்புரோதம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "soggy", "word": "ஓதமான", "wordClass": "headword"}
+{"attestations": 9, "categories": ["nature"], "definitionTa": "ஞானம்", "frequency": 47, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அலை", "ஆழி", "ஈரப்பதம்", "ஈரம்", "கடல்", "சமுத்திரம்", "சீதளம்", "ஞானம்", "திமிதம்", "நசை", "நசைவு", "நனைவு", "நீராணிக்கம்", "பிச்சிலம்", "வெள்ளம்"], "tier1Attestations": 5, "translationEn": "estuary", "word": "ஓதம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஓதுதல்", "frequency": 60, "length": 3, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["ஒழிதல்", "ஓதுதல்", "சொல்லல்", "படித்தல்", "போதித்தல்", "வாசித்தல்"], "tier1Attestations": 3, "translationEn": "recitation", "word": "ஓதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "காசுக்கட்டி , காவிக்கட்டி", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["காசுக்கட்டி", "காவிக்கட்டி"], "tier1Attestations": 2, "word": "ஓதளை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கடல்", "frequency": 3, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கடல்"], "tier1Attestations": 2, "translationEn": "sea", "word": "ஓதவனம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வேள்வி செய்யும் ஆசிரியருள் ஒருவன்", "frequency": 1, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "ஓதா", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கூந்தல்", "frequency": 380, "length": 2, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["ஓதுபவன்", "கூந்தல்"], "tier1Attestations": 2, "translationEn": "hair", "word": "ஓதி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அவதி ஞானம்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["மெய்யறிவு"], "tier1Attestations": 2, "word": "ஓதிஞானம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓதிமவாகனன்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["ஓதிமவாகனன்"], "tier1Attestations": 2, "word": "ஓதிமன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பிரமன்", "frequency": 0, "length": 9, "pos": ["noun"], "synonymsTa": ["பிரமன்"], "tier1Attestations": 2, "translationEn": "Brahma", "word": "ஓதிமமுயர்த்தோன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அன்னம்", "frequency": 6, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அன்னம்", "கவரிமா", "மலை"], "tier1Attestations": 2, "translationEn": "swan", "word": "ஓதிமம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அன்னப் பறவையை வாகனமாகக் கொண்ட பிரமன்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "Brahma", "word": "ஓதிமவாகனன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அன்னப் பறவை வடிவாகச் செய்யப்பட்ட விளக்கு", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓதிமவிளக்கு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "திருமணம் முதலியவற்றில் மொய்யிடுதல் , திருமணம் முதலியவற்றில் தரும் அன்பளிப்பு", "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "word": "ஓதியிடுதல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "மந்திரநீர் தெளித்தல்", "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "word": "ஓதியிறைத்தல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "மந்திரித்துத் தேங்காய் உடைத்தல்", "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "word": "ஓதியுடைத்தல்", "wordClass": "headword"}
+{"attestations": 8, "definitionTa": "மந்திரம் சொல்/பாடு; செபம் செய்", "frequency": 33, "length": 2, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["சொல்", "படி"], "tier1Attestations": 4, "translationEn": "say", "word": "ஓது", "wordClass": "headword"}
+{"attestations": 3, "frequency": 108, "length": 4, "pos": ["verb"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓதுதல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "படிக்கும் தன்மையைக் குறிக்கும் சொல்லாகும்", "frequency": 230, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓதும்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஆசான்", "frequency": 1, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஆசான்", "படிப்பவன்", "மாணாக்கன்"], "tier1Attestations": 2, "word": "ஓதுவான்", "wordClass": "headword"}
+{"attestations": 6, "categories": ["profession"], "definitionTa": "சைவத் திருகோயில்களில் திருமுறை பாடுபவர்", "frequency": 120, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 4, "translationEn": "reciter", "word": "ஓதுவார்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 82, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓதுவார்கள்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கற்பவர்க்கு உணவிடுதல் , முப்பத்திரண்டு அறங்களுள் ஒன்று", "frequency": 1, "length": 8, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "ஓதுவார்க்குணவு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "படிப்பித்தல்", "frequency": 35, "length": 6, "pos": ["verb"], "spokenRatio": 0.0, "synonymsTa": ["படிப்பித்தல்"], "tier1Attestations": 1, "word": "ஓதுவித்தல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "முழக்கம், ஒலி, ஓசை", "frequency": 21, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஒலி", "ஓசை", "முழக்கம்"], "tier1Attestations": 2, "translationEn": "ozone", "word": "ஓதை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சிறகு", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["சிறகு"], "tier1Attestations": 2, "word": "ஓதைவாரி", "wordClass": "headword"}
+{"attestations": 3, "frequency": 33, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "to compare", "word": "ஓத்தல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "பச்சோந்தி", "frequency": 2, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஓந்தி", "பச்சோந்தி"], "tier1Attestations": 3, "translationEn": "chameleon", "word": "ஓத்தி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வேதம் கற்பிக்கும் இடம்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓத்தின்சாலை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓமத்திற்குரிய பொருள்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓத்திரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வேள்விசெய்வோன்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["வேள்விசெய்வோன்"], "tier1Attestations": 2, "word": "ஓத்திரி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓதுகை , ஓதப்படுவது", "frequency": 360, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஓதப்படுவது", "ஓதுகை", "விதி", "வேதம்"], "tier1Attestations": 2, "word": "ஓத்து", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வேதமோதுவோன்", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["உபாத்தியாயன்", "வேதமோதுவோன்"], "tier1Attestations": 2, "word": "ஓத்துரைப்போன்", "wordClass": "headword"}
+{"attestations": 10, "categories": ["animals"], "definitionTa": "ஓநாய் - கோணாய் என்பது ஓநாய் என மருவிற்று (கோள்+நாய்-கோணாய். கோள்-வலிமை).. ( வேருக்கு நீர் வார்த்தவர்கள், தமிழ்மணி, 30 அக். 2011 )", "frequency": 499, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கோணாய்", "கோநாய்", "தோண்டான்"], "tier1Attestations": 6, "translationEn": "Wolf", "word": "ஓநாய்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 12, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓநாய்களும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 745, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓநாய்கள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "lupine", "word": "ஓநாய்க்குரிய", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "ஓணான்", "frequency": 6, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஓணான்"], "tier1Attestations": 3, "translationEn": "a common agamoid lizard", "word": "ஓந்தி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "எழுத்தின் சாரியை", "frequency": 11, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "ஓனம்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "உடையவன்", "frequency": 201, "length": 2, "spokenRatio": 0.0, "synonymsTa": ["உடையவன்"], "tier1Attestations": 1, "word": "ஓன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கூறு , அம்சம்", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["அம்சம்", "அவித்தை", "கூறு"], "tier1Attestations": 2, "word": "ஓபாதி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "வீணான பொழுது", "frequency": 56, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "idle time", "word": "ஓபி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கதவு", "frequency": 0, "length": 2, "pos": ["noun"], "synonymsTa": ["கதவு"], "tier1Attestations": 2, "word": "ஓபு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓர்ப்படியாள்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["ஓர்ப்படியாள்"], "tier1Attestations": 2, "word": "ஓப்படியாள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓப்பாரி", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஓட்டுதல்", "frequency": 13, "length": 5, "pos": ["verb"], "spokenRatio": 0.0, "synonymsTa": ["உயரவெடுத்தல்", "ஓட்டுதல்", "துரத்துதல்", "நீக்குதல்"], "tier1Attestations": 1, "word": "ஓப்புதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "picture", "word": "ஓப்புமை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 11, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "a per se", "word": "ஓப்புயர்வற்றதொன்று", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "வேள்விக்குழி", "frequency": 4, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["வேள்விக்குழி"], "tier1Attestations": 2, "translationEn": "pit dug out in the ground for keeping sacrificial fire", "word": "ஓமகுண்டம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "வேள்வி செய்யும் செயல்", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["அக்னிசாந்தி", "அக்னிட்டோமம்", "அசட்டி", "அசமடம்", "அசமதாகம்", "ஆராதனை", "ஒளபாசாணம்", "தீவளர்த்தல்", "யாகம்", "வேள்வி"], "tier1Attestations": 1, "word": "ஓமக்குண்டம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நெருப்பு வளர்த்துச் சாந்தி பண்ணுகை", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓமசாந்தி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வேள்விச்சாலை", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["வேள்விச்சாலை"], "tier1Attestations": 2, "word": "ஓமசாலை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வேள்விக்குரிய துணைப்பொருள் , ஓமம் செய்யும் பொருள்", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓமத்திரவியம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓமத்தீநீர்", "frequency": 0, "length": 8, "pos": ["noun"], "synonymsTa": ["ஓமத்தீநீர்"], "tier1Attestations": 2, "translationEn": "omum water", "word": "ஓமத்திராவகம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஓமனில் பூர்வீகமாக வசிப்பவன்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "Omani", "word": "ஓமன்வாசி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஓமம் செய்த சாம்பல்", "frequency": 14, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["திருநீறு"], "tier1Attestations": 2, "word": "ஓமப்பொடி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வேள்விச்சாலை", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["வேள்விச்சாலை"], "tier1Attestations": 2, "word": "ஓமமண்டபம்", "wordClass": "headword"}
+{"attestations": 9, "categories": ["spices"], "definitionTa": "அசட்டி, அசமடம், அசமோதை", "frequency": 197, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அக்கிட்டோமம்", "அக்கினிசாந்தி", "அக்னிசாந்தி", "அக்னிட்டோமம்", "அசட்டி", "அசமடம்", "அசமதாகம்", "அசமோதை", "எக்கியம்", "ஒமியம்", "ஔபாசாணம்", "கிரது", "தீவளர்த்தல்", "யஞ்ஞம்", "யாகம்", "வேள்வி", "ஹோமம்"], "tier1Attestations": 5, "translationEn": "a Hindu ritual involving fire", "word": "ஓமம்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "வேள்வி செய்வதற்காகத் தீ வளர்த்தல்", "frequency": 0, "length": 9, "pos": ["verb"], "tier1Attestations": 1, "word": "ஓமம்வளர்த்தல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஒழிவறுதல்", "frequency": 0, "length": 6, "pos": ["verb"], "synonymsTa": ["ஒழிவறுதல்"], "tier1Attestations": 1, "word": "ஓமறத்தல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஊர்ப்பேச்சு", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["ஊர்ப்பேச்சு", "வசைப்பேச்சு"], "tier1Attestations": 2, "word": "ஓமலிப்பு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஊர்ப்பேச்சு", "frequency": 1, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஊர்ப்பேச்சு", "வசைப்பேச்சு"], "tier1Attestations": 2, "word": "ஓமல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒரு மூலிகைக்கொடி", "frequency": 33, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "an indian medicinal creeper...called omavalli in tamil language", "word": "ஓமவல்லி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கருப்பூரவல்லிப் பூண்டு", "frequency": 3, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "ஓமவள்ளி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வேள்வித் தீ", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓமாக்கினி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒரு அரபு நாடு", "frequency": 106, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "ஓமான்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நறும்புனலில் இடும் மணப்பொருள்கள். இலவங்கம் , பச்சிலை , கச்சோலம் , ஏலம் , நாகணம் , கோட்டம் , நாகம் , மதாவரிசி , தக்கோலம் , நன்னாரி , வெண்கோட்டம் , கத்தூரி , வேரி , இலாமிச்சை , கண்டில் , வெண்ணெய் , கடு , நெல்லி , தான்றி , துத்தம் , வண்ணக் கச்சோலம் , அரேணுகம் , மாஞ்சி , சயிலேகம் , புழுகு , புன்னை , நறுந்தாது , புலியுகிர் , சரளம் , தமாலம் , வகுளம் , பதுமுகம் , கொடிவேலி , நுண்ணேலம்", "frequency": 4, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "ஓமாலிகை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓமஞ்செய்", "frequency": 31, "length": 2, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["ஓமஞ்செய்", "தீ", "நீர்", "நெய்"], "tier1Attestations": 2, "translationEn": "perform the homa secrifice", "word": "ஓமி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கேடு , அழிவு , துன்பம்", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["அழிவு", "கேடு", "துன்பம்"], "tier1Attestations": 2, "word": "ஓமிடி", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "கேடுறுதல் , அழிதல்", "frequency": 0, "length": 5, "pos": ["verb"], "synonymsTa": ["அழிதல்", "கேடுறுதல்"], "tier1Attestations": 1, "word": "ஓமிடிதல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஓமஞ்செய்தல்", "frequency": 0, "length": 5, "pos": ["verb"], "synonymsTa": ["ஓமஞ்செய்தல்"], "tier1Attestations": 1, "word": "ஓமித்தல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓமம், யாகம்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["ஓமம்", "யாகம்"], "tier1Attestations": 2, "translationEn": "sacrifice", "word": "ஓமியம்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஓமிடிதல்", "frequency": 0, "length": 5, "pos": ["verb"], "synonymsTa": ["ஓமிடிதல்"], "tier1Attestations": 1, "word": "ஓமுடிதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒரு பாலைநிலத்து மரம்", "frequency": 11, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["உகாமரம்", "மாமரம்"], "tier1Attestations": 2, "word": "ஓமை", "wordClass": "headword"}
+{"attestations": 7, "definitionTa": "இந்து சமயத்திலுள்ள ஒரு புனிதமான குறியீடு மற்றும் ஒலி; பிரணவம்", "frequency": 3767, "length": 2, "pos": ["noun", "particle"], "spokenRatio": 0.0, "synonymsTa": ["ஆம்"], "tier1Attestations": 3, "translationEn": "ampere", "word": "ஓம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 4, "pos": ["verb"], "synonymsTa": ["உடன்படு"], "tier1Attestations": 1, "word": "ஓம்படு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "உடன்படுதல்", "frequency": 0, "length": 6, "pos": ["verb"], "synonymsTa": ["உடன்படுதல்"], "tier1Attestations": 1, "word": "ஓம்படுதல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "பாதுகாக்குமாறு சேர்த்தல்", "frequency": 0, "length": 7, "pos": ["verb"], "synonymsTa": ["உறுதிகூறல்", "பரிகரித்தல்"], "tier1Attestations": 1, "word": "ஓம்படுத்தல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "பாதுகாப்பு", "frequency": 1, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["பரிகாரம்", "பாதுகாப்பு", "மறவாமை"], "tier1Attestations": 2, "translationEn": "protection", "word": "ஓம்படை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "பெரியயோர் கூறும் அறிவுரை", "frequency": 8, "length": 8, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "ஓம்படைக்கிளவி", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "பொருத்தமான வரையளவுடன் தீங்கு அல்லது சேதத்திலிருந்து காத்தல்", "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "safeguard", "word": "ஓம்பிக்காவல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பாதுகாத்தல்", "frequency": 2, "length": 3, "pos": ["verb"], "spokenRatio": 0.0, "synonymsTa": ["இவறுதல்", "சீர்தூக்குதல்", "பரிகரித்தல்", "பாதுகாத்தல்", "பேணுதல்", "வளர்த்தல்"], "tier1Attestations": 1, "translationEn": "To protect", "word": "ஓம்பு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பாதுகாத்தல்", "frequency": 36, "length": 5, "pos": ["verb"], "spokenRatio": 0.0, "synonymsTa": ["இவறுதல்", "சீர்தூக்குதல்", "பரிகரித்தல்", "பாதுகாத்தல்", "பேணுதல்", "வளர்த்தல்"], "tier1Attestations": 1, "translationEn": "To protect", "word": "ஓம்புதல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "host", "word": "ஓம்புநர்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "<!---# குறியீட்டிற்கு அடுத்து, தமிழில் விளக்கம் எழுதி", "frequency": 2, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "ஓம்புயிரி", "wordClass": "headword"}
+{"attestations": 4, "frequency": 4, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "ஓம்புயிர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இளைப்பாறாமல் தொடரும்", "frequency": 388, "length": 3, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "continued", "word": "ஓயாத", "wordClass": "headword"}
+{"attestations": 2, "frequency": 483, "length": 3, "pos": ["adverb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "constantly", "word": "ஓயாது", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "foul", "word": "ஓயாத்தூறலான", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இடைவிடாத (நிற்காத) மழை", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "incessant rain", "word": "ஓயாமாரி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["adverb"], "tier1Attestations": 1, "translationEn": "to", "word": "ஓயும்படி", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "ஒருவரை அழைக்கும்போது கூறப்படும் விளியுருபு", "frequency": 520, "length": 2, "pos": ["interjection", "noun", "verb"], "spokenRatio": 0.007692, "synonymsTa": ["அடங்கு", "அழி", "இளைப்பாறு", "ஒழி", "சுருங்கு", "தளர்", "மாறு", "முடி", "முடிவுறு", "வற்று"], "tier1Attestations": 3, "translationEn": "an interjection used in calling attention", "word": "ஓய்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சிறிதும் ஓய்வில்லாமை", "frequency": 0, "length": 10, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓய்ச்சலொழிவில்லாமை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஓய்வு", "frequency": 7, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஓய்வு", "தளர்ச்சி"], "tier1Attestations": 2, "word": "ஓய்ச்சல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "உள்ளதன் நுணுக்கம்", "frequency": 6, "length": 4, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "slim", "word": "ஓய்தல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஆறியிருத்தல்", "frequency": 0, "length": 8, "pos": ["verb"], "synonymsTa": ["ஆறியிருத்தல்", "சோம்பியிருத்தல்", "வேலையொழிந்திருத்தல்"], "tier1Attestations": 1, "word": "ஓய்ந்திருத்தல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "gallant", "word": "ஓய்யாரமான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "resting-place", "word": "ஓய்வகம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "comfort", "word": "ஓய்வமைதி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "leisurely", "word": "ஓய்வமைவாக", "wordClass": "headword"}
+{"attestations": 7, "definitionTa": "ஓய்வெடுக்கப் பயன்படுத்தும் அறை", "frequency": 99, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஓய்வுஅறை"], "tier1Attestations": 3, "translationEn": "room to relax or rest", "word": "ஓய்வறை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 9, "length": 5, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "continual", "word": "ஓய்வற்ற", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "spell", "word": "ஓய்வளி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "easeful", "word": "ஓய்வளிக்கிற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 25, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "otiose, otiose", "word": "ஓய்வான", "wordClass": "headword"}
+{"attestations": 5, "categories": ["places"], "definitionTa": "ஓய்வெடுக்கும் இடம்", "frequency": 109, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 4, "translationEn": "billet", "word": "ஓய்விடம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "play", "word": "ஓய்வின்பம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "couch", "word": "ஓய்விருக்கை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "Rest house", "word": "ஓய்வில்லம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "சிறு நொடிப் பொழுதும் ஓய்வெடுக்காமல்", "frequency": 121, "length": 7, "pos": ["adverb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "restlessly", "word": "ஓய்வில்லாமல்", "wordClass": "headword"}
+{"attestations": 10, "categories": ["hospital"], "definitionTa": "வேலை முதலியவற்றிலிருந்து ஒழிவு/களைப்பாறுதல்; அமைதி", "frequency": 13685, "length": 3, "pos": ["noun"], "spokenRatio": 0.002046, "synonymsTa": ["இளைப்பாறுதல்", "ஒழிவு", "தளர்வு", "முடிவு"], "tier1Attestations": 6, "translationEn": "Rest", "word": "ஓய்வு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "வேலையை முடித்த பின் களைப்பை  நீக்கிப் பெறும் அமைதியாக இருக்குமிடம்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["ஓய்வறை"], "tier1Attestations": 1, "translationEn": "rest house", "word": "ஓய்வுஅறை", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஓய்வு - வேலையின்றி ஓய்ந்திருத்தல்", "frequency": 0, "length": 6, "tier1Attestations": 1, "word": "ஓய்வுஒழிவு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அளவு முடிவு", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓய்வுகரை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "repose", "word": "ஓய்வுகொடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun", "verb"], "tier1Attestations": 1, "translationEn": "anchor", "word": "ஓய்வுகொள்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 9, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "evening", "word": "ஓய்வுக்காலம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "rest-day", "word": "ஓய்வுக்குகந்த", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 7, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "retiring", "word": "ஓய்வுக்குரிய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "retreat", "word": "ஓய்வுச்சமிக்கை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "disengaged", "word": "ஓய்வுடைய", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "அலுவலகம், கல்வி நிறுவனம் முதலியவற்றில் ஓய்வு தரும் முறையில் அல்லது பண்டிகை, தேசிய முக்கியதுவம் வாய்ந்த நாட்கள் போன்றவற்றை அனுசரிப்பதற்காகப் பணி நடைபெறாதிருக்கும் காலம்.", "frequency": 41, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["விடுமுறை"], "tier1Attestations": 3, "translationEn": "vacation", "word": "ஓய்வுநாள்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "வேலையை முடித்த பின் களைப்பை நீக்குவதற்காக உள்ள மணித்துளிகள்.", "frequency": 5, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஓய்வுவேலை"], "tier1Attestations": 2, "translationEn": "down-sitting", "word": "ஓய்வுநேரம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "களைப்பை நீக்கிப் பெறும் அமைதி", "frequency": 2369, "length": 6, "pos": ["adjective"], "spokenRatio": 0.0, "synonymsTa": ["பணி நிறைவு பெற்ற"], "tier1Attestations": 1, "translationEn": "retired", "word": "ஓய்வுபெற்ற", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "sabbath", "word": "ஓய்வுப்பருவம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 3, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "calm", "word": "ஓய்வுறு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒரு நடவடிக்கை அல்லது ஆர்வமாகும், பெரும்பாலும் ஓய்வு நேரத்தில் இன்பத்திற்காக அல்லது ஓய்விற்காக பொழுதுபோக்கு மேற்கொள்ளப்படுகிறது", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "hobby", "word": "ஓய்வுழை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "வேலையை முடித்த பின் களைப்பை நீக்குவதற்காக உள்ள மணித்துளிகள்.", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["ஓய்வுநேரம்"], "tier1Attestations": 1, "translationEn": "leisure", "word": "ஓய்வுவேலை", "wordClass": "headword"}
+{"attestations": 9, "definitionTa": "ஒரு பணியிலிருந்து ஓய்வு பெற்றபின் வழங்கப்படும் ஊதியம்", "frequency": 2159, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["பென்சன்"], "tier1Attestations": 5, "translationEn": "pensionary", "word": "ஓய்வூதியம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "வேலை செய்து - செய்து களைப்படைவதால் ஒய்வெடுப்பது", "frequency": 15, "length": 4, "pos": ["verb"], "spokenRatio": 0.0, "synonymsTa": ["இளைப்பாறு"], "tier1Attestations": 1, "translationEn": "rest", "word": "ஓய்வெடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 11, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "down-lying", "word": "ஓய்வெடுத்துக்கொள்கிற", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "slave", "word": "ஓய்வொழிவற்றவர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["adverb"], "tier1Attestations": 1, "translationEn": "constantly", "word": "ஓய்வொழிவின்றி", "wordClass": "headword"}
+{"attestations": 2, "frequency": 522, "length": 2, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "aileron", "word": "ஓர", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மனைவியுடன் பிறந்தாள் கணவன் , சகலன்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓரகத்தன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓர்ப்படியாள்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["ஓர்ப்படியாள்"], "tier1Attestations": 2, "word": "ஓரகத்தாள்", "wordClass": "headword"}
+{"attestations": 6, "categories": ["relations"], "definitionTa": "கணவனுடைய சகோதரன் மனைவி", "frequency": 230, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஓரகத்தாள்"], "tier1Attestations": 4, "translationEn": "husband's brother's wife", "word": "ஓரகத்தி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓர் உறவுச் சொல்", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "name of relationship between wives of brothers", "word": "ஓரகத்துப்படி", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "வழிமாற்று ஓரகத்துப்படி", "frequency": 0, "length": 10, "tier1Attestations": 1, "word": "ஓரகத்துப்படிகள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "unfair", "word": "ஓரகமான", "wordClass": "headword"}
+{"attestations": 2, "frequency": 29, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "swivel-eye", "word": "ஓரக்கண்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சாய்ந்த பார்வையுடையவன்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓரக்கண்ணன்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "mitten", "word": "ஓரக்கறை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "side-glance", "word": "ஓரக்காட்சி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சாய்ந்த பார்வையுடையவன்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓரக்காரன்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "guard", "word": "ஓரக்குஞ்சமிடு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "guard", "word": "ஓரக்குஞ்சம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "sidelock", "word": "ஓரக்குடுமி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "apostil, apostille", "word": "ஓரக்குறிப்பு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 13, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "marginal", "word": "ஓரக்குறிப்புக்களையுடைய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "sidelock", "word": "ஓரக்கொண்டை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒதுக்கு", "frequency": 1, "length": 6, "pos": ["noun", "verb"], "spokenRatio": 0.0, "synonymsTa": ["அலட்சியப்படுத்து", "உதாசீனப்படுத்து", "ஒதுக்கு", "புறக்கணி", "பொருட்படுத்தாமலிரு"], "tier1Attestations": 2, "translationEn": "edge", "word": "ஓரங்கட்டு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 83, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "double-ender", "word": "ஓரங்களிலும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 414, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "befringe", "word": "ஓரங்களில்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 2, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓரங்களுக்கு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தனிப்பேச்சு; தன்னுரை", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["தனிப்பேச்சு", "தன்னுரை"], "tier1Attestations": 2, "translationEn": "monologue", "word": "ஓரங்கவுரை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "(தமிழ்),(பெ) - = ஒரு வகை வானரம் = காடுகளின் மனிதன் என்பது பொருள்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓரங்குட்டன்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஓர் அசையே சீர்நிலைபெற்று வருகை , தனித்து நேரசையோ நிரையசையோ சீர்நிலை பெறல் , அசைச்சீர்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓரசைச்சீர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "monosyllable", "word": "ஓரசைச்சொல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "sidelong", "word": "ஓரச்சாய்வாக", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "sidelong", "word": "ஓரச்சாய்வான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "shde-slip", "word": "ஓரச்சாய்வு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒருபோகம்", "frequency": 222, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஒருபோகம்"], "tier1Attestations": 2, "word": "ஓரடி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அடிக்கடி", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["அடிக்கடி", "நெருக்கமாக"], "tier1Attestations": 2, "word": "ஓரடிக்கோரடி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒருவகை இசைப்பாட்டு", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓரடிப்பதம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒரு சிற்றளவு", "frequency": 0, "length": 3, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "split", "word": "ஓரடை", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "எல்லாம்", "frequency": 0, "length": 5, "synonymsTa": ["எல்லாம்", "முழுதும்"], "tier1Attestations": 1, "word": "ஓரட்டும்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒரு உறுப்பு/பகுதி", "frequency": 25, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "protista", "word": "ஓரணு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 15, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓரணுவும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 11, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "protophyte", "word": "ஓரணுவுயிர்த்தாவரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒருவழி (அதர் = வழி)", "frequency": 6, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "valve", "word": "ஓரதர்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 11, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "alongside", "word": "ஓரத்தின்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 68, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓரத்திலும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 26, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓரத்திலே", "wordClass": "headword"}
+{"attestations": 2, "frequency": 2049, "length": 5, "spokenRatio": 0.000488, "tier1Attestations": 1, "translationEn": "apostrophe", "word": "ஓரத்தில்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 263, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓரத்து", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "marginal", "word": "ஓரத்துக்குரிய", "wordClass": "headword"}
+{"attestations": 2, "frequency": 36, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "border", "word": "ஓரத்தை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "bordered", "word": "ஓரத்தையுடைய", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "<!---# குறியீட்டிற்கு அடுத்து, தமிழில் விளக்கம் எழுதி", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓரநிறுத்தி", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஓர் + அன்ன = ஓரன்ன", "frequency": 2, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓரன்ன", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒரு தன்மையல்லாமை", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓரன்மை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 2, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "board", "word": "ஓரப்பகுதி", "wordClass": "headword"}
+{"attestations": 2, "frequency": 3, "length": 9, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓரப்பகுதிகளில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "fringe", "word": "ஓரப்பட்டை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "curb", "word": "ஓரப்பலகை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "cock-eye", "word": "ஓரப்பார்வைக்கண்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["adverb"], "tier1Attestations": 1, "translationEn": "skewwhiff", "word": "ஓரப்பார்வையாக", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "cock-eyed", "word": "ஓரப்பார்வையான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "lobe", "word": "ஓரப்பிளவுக்கூறு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நடுவில் இல்லாமல் விளிம்பில்", "frequency": 1472, "length": 4, "pos": ["adverb"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "along", "word": "ஓரமாக", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "sidelock", "word": "ஓரமுடி", "wordClass": "headword"}
+{"attestations": 10, "definitionTa": "விளிம்பு. (எ.கா) - சாலை ஓரத்தில் நடப்பது பாதுகாப்பானது ஆகும்", "frequency": 1248, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["கரை", "முடுக்கு", "மூலை"], "tier1Attestations": 6, "translationEn": "border", "word": "ஓரம்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "word": "ஓரம்சத்துவம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒருபக்கம் சார்ந்து பேசல்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓரம்பேசல்", "wordClass": "headword"}
+{"attestations": 4, "frequency": 41, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "ஓரறிவு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "புல் மரம் முதலியன", "frequency": 2, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "ஓரறிவுயிர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "chum", "word": "ஓரறைத்துணைவர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "room-mate", "word": "ஓரறைத்தோழர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒருதன்மையானது", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["ஒருதன்மையானது"], "tier1Attestations": 2, "word": "ஓரற்று", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 5, "pos": ["adverb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "partly", "word": "ஓரளவாக", "wordClass": "headword"}
+{"attestations": 1, "frequency": 12, "length": 5, "pos": ["pronoun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "some", "word": "ஓரளவில்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "முழுமையாக அல்லாமல் ஒரு சிறிதளவு", "frequency": 5824, "length": 4, "pos": ["adverb", "pronoun"], "spokenRatio": 0.000515, "synonymsTa": ["ஓரளவுக்கு", "கொஞ்சம்", "சிறிது"], "tier1Attestations": 4, "translationEn": "something", "word": "ஓரளவு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "முழுமையாக இல்லாவிட்டாலும் கொஞ்சம்", "frequency": 1975, "length": 6, "pos": ["adverb"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "rather", "word": "ஓரளவுக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 143, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓரளவேனும்", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "பட்சபாதமாக வஞ்சித்தல்; பாரபட்சப் போக்கு; ஓரவஞ்சனை, பாகுபாடு", "frequency": 47, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 4, "translationEn": "partiality", "word": "ஓரவஞ்சனை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கணவனின உடன்பிறந்தவனின் மனைவி", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓரவத்தி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓரவஞ்சனை", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["ஓரவஞ்சனை", "பட்சபாதம்"], "tier1Attestations": 2, "word": "ஓரவாரம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "favour", "word": "ஓரவுணர்வு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "indentation", "word": "ஓரவெட்டு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒரு மீன்வகை", "frequency": 35, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "ஓரா", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தன்/தன் வீட்டு நலனையே கவனிக்கும் பெண்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓராங்கண்ணி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓருசேர", "frequency": 2, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["இடைவிடாமல்", "ஒன்றுபோல", "ஓருசேர"], "tier1Attestations": 2, "word": "ஓராங்கு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "தாலாட்டுதல்", "frequency": 0, "length": 6, "pos": ["verb"], "synonymsTa": ["தாலாட்டுதல்"], "tier1Attestations": 1, "word": "ஓராட்டுதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சதுர்ப்பட்டோலை", "frequency": 0, "length": 9, "pos": ["noun"], "synonymsTa": ["சதுர்ப்பட்டோலை"], "tier1Attestations": 2, "word": "ஓராட்டுப்பட்டோலை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒருவனுக்கே உரிய நிலம்", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓராண்காணி", "wordClass": "headword"}
+{"attestations": 2, "frequency": 954, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓராண்டுக்கு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒரு தொடராய் வரும் பரம்பரை", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓராண்வழி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஏதோ ஒன்று", "frequency": 1, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "certain", "word": "ஓரானொரு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஓரம் - கடைப் பகுதி (அ) விளிம்பு", "frequency": 0, "length": 6, "tier1Attestations": 1, "word": "ஓராம்சாரம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "இசைப்பு, இசைவு, இயைபு, கலப்பு, கலம்பகம், கலவை, கழுமு, குழைவு", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["இசைப்பு", "இசைவு", "இயைபு", "கலப்பு", "கலம்பகம்", "கலவை", "கழுமு", "குழைவு", "சாய்வு", "தோணியின்சாய்ந்தவோர்புறம்"], "tier1Attestations": 3, "translationEn": "obliquity", "word": "ஓராயம்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "ஒலிவாங்கி = microphone", "frequency": 469, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஆண்நரி", "ஆண்மயிர்", "ஆண்முசு", "காளிவாகனம்", "கிழநரி", "புறமயிர்"], "tier1Attestations": 3, "translationEn": "tod", "word": "ஓரி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தீர்மானம்", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["இசைவு", "சமாதானம்", "தீர்மானம்"], "tier1Attestations": 2, "word": "ஓரிசு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 30, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓரிடத்திலே", "wordClass": "headword"}
+{"attestations": 2, "frequency": 1545, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "congest", "word": "ஓரிடத்தில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "concur", "word": "ஓரிடத்தில்கூடு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 15, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓரிடத்துக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["adverb"], "tier1Attestations": 1, "translationEn": "nowhere", "word": "ஓரிடத்துமின்றி", "wordClass": "headword"}
+{"attestations": 2, "frequency": 186, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "amphitheatre", "word": "ஓரிடம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "incoordination", "word": "ஓரிடினப்பாடின்மை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒரு சிறிய பூண்டின மூலிகைச் செடி", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "Spade Flower plant", "word": "ஓரிதழ்த்தாமரை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஓரினத்தோடு தொடர்புடைய", "frequency": 275, "length": 3, "pos": ["adjective"], "spokenRatio": 0.003636, "tier1Attestations": 1, "translationEn": "heterosexual", "word": "ஓரின", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "lot", "word": "ஓரினக்கூட்டு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒரு நபர் விருப்பத்திற்காக மாறான சேர்க்கையினால் கவரப்படுவது", "frequency": 26, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "heterosexual", "word": "ஓரினசேர்க்கை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 186, "length": 8, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["தன்பாலீர்ப்பு"], "tier1Attestations": 1, "word": "ஓரினச்சேர்க்கை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "fellow", "word": "ஓரினத்தது", "wordClass": "headword"}
+{"attestations": 1, "frequency": 4, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "homogenity", "word": "ஓரினத்தன்மை", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "ஜாதி அல்லது உப ஜாதியின் பிரிவு", "frequency": 3, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "fellow", "word": "ஓரினத்தவர்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒரே இனத்தைச் சேர்ந்து இருப்பது.", "frequency": 0, "length": 10, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "homogeneous", "word": "ஓரினத்தைச்சேர்ந்த", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒரே இனத்தைச் சார்ந்தவர்கள்.", "frequency": 0, "length": 12, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "blood relation", "word": "ஓரினத்தைச்சேர்ந்தவன்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "aggregate", "word": "ஓரினத்தொகை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "co-ordinate", "word": "ஓரினப்படுத்து", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 12, "pos": ["noun"], "tier1Attestations": 1, "word": "ஓரினப்புணர்ச்சியாளர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "congener", "word": "ஓரினப்பொருள்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "சில முக்கிய இடங்களில் வசிக்கக்கூடிய மக்கள் கூட்டம் அல்லது முன்னோர்கள் வசித்த இடத்தில் இருப்பவர்கள் மேலும் பண்பாடு, நல்லொழுக்கம் முதலியவற்றினால் அருகில் உள்ளவர்களிடம் வேறுபட்டு கீழ் நிலையில் இருப்பவர்", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["இனமரபு குழு"], "tier1Attestations": 1, "translationEn": "tribe", "word": "ஓரினமக்கள்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "தேடாமற் கிடத்தல்", "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "word": "ஓரிபூத்தல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "<!---# குறியீட்டிற்கு அடுத்து, தமிழில் விளக்கம் எழுதி", "frequency": 1, "length": 6, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓரியல்பான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["சண்டை"], "tier1Attestations": 1, "word": "ஓரியாட்டம்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 22, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓரியின்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓரியுடன்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 8, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓரியை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["adverb"], "tier1Attestations": 1, "translationEn": "overnight", "word": "ஓரிரவுக்குள்ளாக", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வெகு விரைவில்", "frequency": 5279, "length": 3, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓரிரு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "வேதாந்த தத்துவத்தில் உள்ள ஆத்மா மற்றும் பரமாத்மாவை ஒன்றாக கருதப்படுவது மேலும் பிரம்மாவைத் தவிர அனைத்துப் பொருட்களும் அல்லது தத்துவங்களும் உண்மை இல்லாமல் இருப்பது", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["தனியிறைவாதம்"], "tier1Attestations": 1, "translationEn": "monotheism", "word": "ஓரிறைவாதம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "nonillion", "word": "ஓரிலக்கம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓரிதழ்த்தாமரை", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["ஓரிதழ்த்தாமரை"], "tier1Attestations": 2, "word": "ஓரிலைத்தாமரை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "துத்திவகை", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["துத்திவகை"], "tier1Attestations": 2, "word": "ஓரிலைத்துத்தி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "<!---# குறியீட்டிற்கு அடுத்து, தமிழில் விளக்கம் எழுதி", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓரில்லம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 3, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "nide", "word": "ஓரீடு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒருமுறை ஈன்ற பசு", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓரீற்றா", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "நொடி", "frequency": 3710, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["நொடி"], "tier1Attestations": 2, "translationEn": "sinuation", "word": "ஓரு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "monodactylous", "word": "ஓருகிர்கொண்ட", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓர் அசைச்சொல்", "frequency": 34, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "ஓரும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "tier1Attestations": 1, "word": "ஓருருவத்தில்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "<!---# குறியீட்டிற்கு அடுத்து, தமிழில் விளக்கம் எழுதி", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓருறுப்பானவை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பல பல்லில்லாத உள்ளி", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓருள்ளிப்பூடு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒரு சிற்றளவு", "frequency": 1, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "word": "ஓரெடை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வந்த எழுத்தே மடக்கிவரும் சொல்லணி", "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓரெழுத்துமடக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 5, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓரெழுத்தொருமொழி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "சங்க காலத்தில் ஆடப்பட்ட ஒரு வகை விளையாட்டு", "frequency": 188, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "tierce", "word": "ஓரை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மகளிர் விளையாட்டுப் பாவை", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓரைப்பாவை", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஓரைப்பாவையை வைத்துக் கொண்டு மகளிர் விளையாடுதல்", "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "word": "ஓரையயர்தல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "ellipsoid", "word": "ஓரைவட்டக்கட்டி", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "முழுதும்", "frequency": 1, "length": 4, "spokenRatio": 0.0, "synonymsTa": ["சராசரியாக", "முழுதும்"], "tier1Attestations": 1, "word": "ஓரொட்டு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒவ்வொன்று", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["ஒவ்வொன்று"], "tier1Attestations": 2, "word": "ஓரொன்று", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தாளத்து ஒரு மாத்திரை பெற்றுவருஞ் செய்யுள்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓரொற்றுவாரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒருசார்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["ஒருசார்", "சிறுபான்மையாய்"], "tier1Attestations": 2, "word": "ஓரோவழி", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "தமிழ் இலக்கணப் பயன்பாட்டுச் சொல்", "frequency": 157159, "length": 2, "pos": ["adjective", "noun", "particle", "verb"], "spokenRatio": 1.3e-05, "synonymsTa": ["அறி", "ஆராய்", "ஒண்டி", "ஒன்று", "ஒற்றை", "தனி", "நினை"], "tier1Attestations": 3, "translationEn": "an", "word": "ஓர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒருகண் பார்வையுடைய காகம்", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓர்கட்புள்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓர்குடியிற் பெண் கொண்டோன் , ஓரகத்தன் , சகலன்", "frequency": 0, "length": 10, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓர்குடியிற்கொண்டோன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒரு காதில் குண்டலமணிந்த பலராமன்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓர்குண்டலன்", "wordClass": "headword"}
+{"attestations": 3, "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["யானை"], "tier1Attestations": 2, "translationEn": "elephant", "word": "ஓர்கை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "அம்பர் , ஒரு மணப்பண்டம்", "frequency": 1, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "amber", "word": "ஓர்க்கோலை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓரிசு", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["ஓரிசு", "சமாதானம்", "தீர்மானம்"], "tier1Attestations": 2, "word": "ஓர்சல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஆராய்ச்சி", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["அறிவு", "ஆராய்ச்சி", "உணர்ச்சி"], "tier1Attestations": 2, "word": "ஓர்ச்சி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஆராய்தல்", "frequency": 1, "length": 4, "pos": ["verb"], "spokenRatio": 0.0, "synonymsTa": ["அறிதல்", "ஆராய்தல்", "உணர்தல்", "எண்ணுதல்", "தெளிதல்", "நல்லறிவு"], "tier1Attestations": 1, "word": "ஓர்தல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஆராய்தல்", "frequency": 0, "length": 5, "pos": ["verb"], "synonymsTa": ["ஆராய்தல்", "தெரிந்தெடுத்தல்", "நினைத்தல்"], "tier1Attestations": 1, "word": "ஓர்த்தல்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஆராய்கை", "frequency": 0, "length": 3, "pos": ["noun"], "synonymsTa": ["ஆராய்கை", "எண்ணுகை", "சிந்திக்கை"], "tier1Attestations": 2, "word": "ஓர்பு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கணவரின் சகோதரரின் மனைவி, ஒரகத்தி", "frequency": 12, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "wife of husband's brother", "word": "ஓர்ப்படி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "கணவனின் உடன்பிறந்தான் மனைவி", "frequency": 2, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "wife of the husband's brother", "word": "ஓர்ப்படியாள்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஆராய்ந்து தெளிதல்", "frequency": 2, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "investigative mindset", "word": "ஓர்ப்பு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மனத்திட்பம்", "frequency": 10, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["மனத்திட்பம்"], "tier1Attestations": 2, "word": "ஓர்மம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மனந்திடப்படுதல்", "frequency": 0, "length": 6, "pos": ["verb"], "synonymsTa": ["மனந்திடப்படுதல்"], "tier1Attestations": 1, "word": "ஓர்மித்தல்", "wordClass": "headword"}
+{"attestations": 8, "definitionTa": "ஒருமை", "frequency": 26, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஆடம்பரம்", "ஒருமை", "ஒற்றுமை", "ஞாபகம்", "தனிமை", "துணிவு", "நனவு", "நினைப்பு", "நினைவு", "பிரஞ்ஞை"], "tier1Attestations": 4, "translationEn": "mind", "word": "ஓர்மை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஒருபாற் சார்கை", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓர்வம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓர்பு", "frequency": 5, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஓர்பு"], "tier1Attestations": 2, "word": "ஓர்வு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கோங்கு", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["கோங்கு"], "tier1Attestations": 2, "word": "ஓற்பலம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 24, "length": 2, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓல", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அத்தாணியிற்சேவை செய்யும் பரிவாரம்", "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓலக்கச்சூளை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அத்தாணி மண்டபம்", "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓலக்கமண்டபம்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "கொலு மண்டபம்", "frequency": 8, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "durbar", "word": "ஓலக்கம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "tier1Attestations": 1, "word": "ஓலக்குரலும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 5, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓலக்குரல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 8, "length": 6, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓலத்தையும்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "(பெ) - - மேற்கு நெதர்லாந்து - தமிழகத்தின் பகுதிகளை ஆண்ட, ஒரு நாட்டின் பெயர்", "frequency": 0, "length": 4, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓலந்து", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "முறையிடுதல்", "frequency": 0, "length": 6, "pos": ["noun", "verb"], "synonymsTa": ["அபயங்கூறுதல்", "அழுதல்", "முறையிடுதல்", "முழங்குதல்"], "tier1Attestations": 2, "translationEn": "lamia", "word": "ஓலமிடுதல்", "wordClass": "headword"}
+{"attestations": 7, "definitionTa": "துன்பத்தில் எழுப்பும் நீள் அழுகுரல்", "frequency": 264, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["அழுகை", "ஊளை", "ஒலி", "கதறல்", "கூக்குரல்", "சத்தம்"], "tier1Attestations": 5, "translationEn": "wail", "word": "ஓலம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "tier1Attestations": 1, "word": "ஓலம்போன்ற", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "தாலாட்டுதல்", "frequency": 0, "length": 6, "pos": ["verb"], "synonymsTa": ["தாலாட்டுதல்"], "tier1Attestations": 1, "word": "ஓலாட்டுதல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "அலறுதல்", "frequency": 0, "length": 5, "pos": ["verb"], "synonymsTa": ["அலறுதல்", "முழங்குதல்"], "tier1Attestations": 1, "word": "ஓலிடுதல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "முழங்குதல்", "frequency": 0, "length": 4, "pos": ["verb"], "synonymsTa": ["முழங்குதல்"], "tier1Attestations": 1, "word": "ஓலுதல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஒலி பொருந்துதல்", "frequency": 0, "length": 5, "pos": ["verb"], "synonymsTa": ["கூவுதல்"], "tier1Attestations": 1, "word": "ஓலுறுதல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "இன்னோசையுண்டாக்குதல்", "frequency": 0, "length": 6, "pos": ["verb"], "synonymsTa": ["இன்னோசையுண்டாக்குதல்", "தாலாட்டுதல்"], "tier1Attestations": 1, "word": "ஓலுறுத்தல்", "wordClass": "headword"}
+{"attestations": 6, "definitionTa": "பனை மரத்தின் இலை", "frequency": 713, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["எழுத்தோலை", "குருத்தோலை", "வைக்கோல்"], "tier1Attestations": 4, "translationEn": "frond", "word": "ஓலை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 29, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓலைகளில்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 55, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓலைகளை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 77, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓலைகள்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பள்ளியிற் படிப்போர் , மாணவர்கள்", "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓலைக்கணக்கர்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓலைச்சட்டம்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["ஓலைச்சட்டம்"], "tier1Attestations": 2, "word": "ஓலைக்கண்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "tier1Attestations": 1, "word": "ஓலைக்காகத்தான்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஓலையின் நெருப்புக் கனிவு", "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "word": "ஓலைக்காந்தல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓலைத்துண்டு", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["ஓலைத்துண்டு"], "tier1Attestations": 2, "word": "ஓலைக்கிணாட்டு", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சங்குவகை", "frequency": 0, "length": 8, "pos": ["noun"], "synonymsTa": ["கிளிஞ்சல்வகை", "சங்குவகை"], "tier1Attestations": 2, "word": "ஓலைக்கிளிஞ்சல்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 5, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓலைக்கு", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஓலையால் மழை வெயில் தாங்க முடையப்படும் கூடு", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓலைக்குடை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஓலையால் மழை வெயில் தாங்க முடையப்படும் கூடு", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓலைக்கூடை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கடிதப் போக்குவரத்து", "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓலைக்கோள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓலைச்சுருளையும்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓலைக் கடிதம்", "frequency": 2, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "silver-foil", "word": "ஓலைச்சுருள்", "wordClass": "headword"}
+{"attestations": 4, "frequency": 239, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "manuscript on palm leaf", "word": "ஓலைச்சுவடி", "wordClass": "headword"}
+{"attestations": 2, "frequency": 16, "length": 9, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓலைச்சுவடிகளும்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 4, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓலைச்சுவடியின்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 9, "length": 8, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓலைச்சுவடியும்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 10, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓலைச்சுவடியை", "wordClass": "headword"}
+{"attestations": 2, "frequency": 8, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓலைதான்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஓலையில் எழுதுதல்", "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "word": "ஓலைதீட்டுதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "எழுத்தாணி", "frequency": 0, "length": 8, "pos": ["noun"], "synonymsTa": ["எழுத்தாணி"], "tier1Attestations": 2, "word": "ஓலைதீட்டும்படை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சீட்டுக்கவி", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["சீட்டுக்கவி"], "tier1Attestations": 2, "word": "ஓலைத்தூக்கு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "frondage", "word": "ஓலைத்தொகுதி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "chip-hat", "word": "ஓலைத்தொப்பி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "papyrus", "word": "ஓலைநாணல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சோழருடைய தலைமைக்காரிய நிருவாகி", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓலைநாயகன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "சோழருடைய தலைமைக்காரிய நிருவாகி", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓலைநாயகம்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஓலையில் செய்தி எழுதி அனுப்புதல்", "frequency": 0, "length": 7, "pos": ["verb"], "tier1Attestations": 1, "word": "ஓலைபோக்குதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கடிதச் செய்தி", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["சீட்டுக்கவி"], "tier1Attestations": 2, "word": "ஓலைப்பாசுரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கடிதச் செய்தி", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["சீட்டுக்கவி"], "tier1Attestations": 2, "word": "ஓலைப்பாயிரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பனையோலையால் பின்னப்பட்ட பாய் ஆகும்", "frequency": 6, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "palm-leaf mat", "word": "ஓலைப்பாய்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கட்டளை", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["கட்டளை"], "tier1Attestations": 2, "word": "ஓலைப்புறம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "தாழம்பூ", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["தாழம்பூ"], "tier1Attestations": 2, "word": "ஓலைப்பூ", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "கடிதத் தொடக்கத்தில் எழுதும் வக்கணை", "frequency": 0, "length": 9, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓலைமுகப்பாசுரம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓலை முகப்பில் இடும் முத்திரை", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓலைமுத்திரை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓலைச்சீட்டு", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["ஓலைச்சீட்டு"], "tier1Attestations": 2, "word": "ஓலைமுறி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 5, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓலையா", "wordClass": "headword"}
+{"attestations": 2, "frequency": 7, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓலையினால்", "wordClass": "headword"}
+{"attestations": 2, "frequency": 2, "length": 7, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓலையிலிருந்து", "wordClass": "headword"}
+{"attestations": 2, "frequency": 224, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓலையில்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "tier1Attestations": 1, "word": "ஓலையுங்கூட", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 5, "tier1Attestations": 1, "word": "ஓலையுடனே", "wordClass": "headword"}
+{"attestations": 2, "frequency": 18, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓலையுடன்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 24, "length": 4, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓலையும்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "சீட்டெழுதுதல்", "frequency": 0, "length": 7, "pos": ["verb"], "synonymsTa": ["சீட்டெழுதுதல்", "சீதனவுறுதியெழுதுதல்"], "tier1Attestations": 1, "word": "ஓலையெழுதுதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இராயசம்", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["இராயசம்"], "tier1Attestations": 2, "word": "ஓலையெழுத்து", "wordClass": "headword"}
+{"attestations": 1, "frequency": 1, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓலையே", "wordClass": "headword"}
+{"attestations": 2, "frequency": 161, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓலையை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 13, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓலையையும்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "சாதல்", "frequency": 0, "length": 7, "pos": ["verb"], "synonymsTa": ["இறத்தல்", "சாதல்"], "tier1Attestations": 1, "word": "ஓலைவாங்குதல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "எழுதுதற்கு உதவுமாறு ஓலை சீவுதல்", "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "word": "ஓலைவார்தல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "வாளைமீன்வகை", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["வாளைமீன்வகை"], "tier1Attestations": 2, "word": "ஓலைவாலன்", "wordClass": "headword"}
+{"attestations": 5, "definitionTa": "வாளைமீன் வகை", "frequency": 1, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 3, "translationEn": "scabbard-fish", "word": "ஓலைவாளை", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒலி", "frequency": 169, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஒலி", "தாலாட்டு"], "tier1Attestations": 2, "translationEn": "backwater", "word": "ஓல்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஒரு தனிமம், இதன் அணுவெண் 67. இத்தனிமம் திட நிலையில் காணப்படுகிறது", "frequency": 17, "length": 5, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓல்மியம்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "வழிமாற்று ஔஷதம்", "frequency": 0, "length": 5, "tier1Attestations": 1, "word": "ஓளடதம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஒழுங்கு", "frequency": 55, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஒழுங்கு", "யானைப்பந்தி", "வரிசை"], "tier1Attestations": 2, "word": "ஓளி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 10, "length": 2, "pos": ["verb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "annul", "word": "ஓழி", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "liquid", "word": "ஓழுகிசையான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "fluent", "word": "ஓழுகியலான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 3, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "run", "word": "ஓழுகு", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "lewd", "word": "ஓழுக்கங்கெட்ட", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "broken-down", "word": "ஓழுங்கங்கெட்ட", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 9, "pos": ["adjective"], "tier1Attestations": 1, "translationEn": "neat", "word": "ஓழுங்கமைப்புடைய", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["verb"], "tier1Attestations": 1, "translationEn": "economy", "word": "ஓழுங்கமைவு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 1, "length": 5, "pos": ["adjective"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "spruce", "word": "ஓழுங்கான", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "anarchy", "word": "ஓழுங்கின்மை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "prog(3), progghis", "word": "ஓழுங்குகாவலர்", "wordClass": "headword"}
+{"attestations": 7, "definitionTa": "ஓவியன்", "frequency": 160, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["உலைஅடுப்பு", "ஓவியன்", "சித்திரகாரன்", "ரொட்டி சுடும் அடுப்பு"], "tier1Attestations": 3, "translationEn": "oven", "word": "ஓவன்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓவியம்", "frequency": 2, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["உயரம்", "ஓவியம்", "சித்திரம்"], "tier1Attestations": 2, "translationEn": "complin, compline", "word": "ஓவம்", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஒழிதல்", "frequency": 0, "length": 5, "pos": ["verb"], "synonymsTa": ["ஒழிதல்"], "tier1Attestations": 1, "word": "ஓவருதல்", "wordClass": "headword"}
+{"attestations": 9, "definitionTa": "கம்மாளர்", "frequency": 3983, "length": 3, "pos": ["adjective", "noun"], "spokenRatio": 0.00226, "synonymsTa": ["அதிகம்", "ஏத்தாளர்", "ஓவியர்", "கம்மாளர்", "சித்திரகாரர்", "ஜாஸ்தி"], "tier1Attestations": 5, "translationEn": "over", "word": "ஓவர்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 4, "length": 3, "pos": ["adverb"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "sedulously", "word": "ஓவாது", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "மாறாத்துன்பம்", "frequency": 0, "length": 5, "pos": ["noun"], "synonymsTa": ["மாறாத்துன்பம்"], "tier1Attestations": 2, "word": "ஓவாப்பிணி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "விடாமுயற்சி", "frequency": 0, "length": 6, "pos": ["noun"], "synonymsTa": ["விடாமுயற்சி"], "tier1Attestations": 2, "translationEn": "perseverance", "word": "ஓவாமுயற்சி", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "நீங்காமை", "frequency": 4, "length": 3, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["இடைவிடாமை", "ஒழியாமை", "நீங்காமை"], "tier1Attestations": 2, "word": "ஓவாமை", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "பற்கள் போன வாய்", "frequency": 0, "length": 3, "pos": ["noun"], "tier1Attestations": 2, "translationEn": "mouth lacking teeth", "word": "ஓவாய்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஓவியம், சித்திரம்", "frequency": 209, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஓவியம்", "சித்திரம்"], "tier1Attestations": 2, "translationEn": "picture", "word": "ஓவி", "wordClass": "headword"}
+{"attestations": 2, "frequency": 4227, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "cul-de-lampe", "word": "ஓவிய", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "அழகிய வரிகளையுடைய புலி", "frequency": 0, "length": 6, "pos": ["noun"], "tier1Attestations": 2, "word": "ஓவியகாயம்", "wordClass": "headword"}
+{"attestations": 3, "categories": ["arts"], "definitionTa": "படம் வரையும் கலை", "frequency": 59, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "painting", "word": "ஓவியக்கலை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "prospect", "word": "ஓவியக்காட்சி", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "அனைத்து ஓவியங்களையும் பார்வையாளர்களின் பார்வைக்காக வைக்கப்படும் இடம்", "frequency": 10, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["சித்திரக்கூடம்"], "tier1Attestations": 1, "translationEn": "gallery", "word": "ஓவியக்கூடம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "board", "word": "ஓவியத்தட்டி", "wordClass": "headword"}
+{"attestations": 2, "frequency": 6, "length": 6, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 1, "translationEn": "arras", "word": "ஓவியத்திரை", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 10, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "tapestry", "word": "ஓவியத்திரைச்சுருள்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 8, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "presentment", "word": "ஓவியத்தோற்றம்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "paint", "word": "ஓவியந்தீட்டு", "wordClass": "headword"}
+{"attestations": 4, "frequency": 22520, "length": 4, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "artist", "word": "ஓவியன்", "wordClass": "headword"}
+{"attestations": 1, "frequency": 0, "length": 7, "pos": ["noun"], "tier1Attestations": 1, "translationEn": "lilkeness", "word": "ஓவியப்படம்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "இனியமொழி", "frequency": 0, "length": 7, "pos": ["noun"], "synonymsTa": ["இனியமொழி"], "tier1Attestations": 2, "word": "ஓவியப்பேச்சு", "wordClass": "headword"}
+{"attestations": 2, "frequency": 125, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓவியமும்", "wordClass": "headword"}
+{"attestations": 10, "categories": ["arts"], "definitionTa": "சித்திரம்", "frequency": 50001, "length": 4, "pos": ["noun"], "spokenRatio": 0.00054, "synonymsTa": ["அழகு", "சித்திரம்", "படம்", "மேற்கோள்"], "tier1Attestations": 6, "translationEn": "painting", "word": "ஓவியம்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஓவியம் தீட்டிய நிலை.", "frequency": 0, "length": 8, "pos": ["adjective"], "synonymsTa": ["சித்திரம்வரைந்த", "படம்வரைந்த"], "tier1Attestations": 1, "translationEn": "depicted", "word": "ஓவியம்வரைந்த", "wordClass": "headword"}
+{"attestations": 9, "categories": ["profession"], "definitionTa": "ஓவியம் வரைபவர்.", "frequency": 1822, "length": 4, "pos": ["noun"], "spokenRatio": 0.000549, "tier1Attestations": 5, "translationEn": "Artist", "word": "ஓவியர்", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "பூ வேலைப்பாடுகளால் சித்தரிக்கப்பட்ட", "frequency": 0, "length": 10, "pos": ["adjective"], "synonymsTa": ["சித்திரவேலைப்பாடிருக்கும்", "சித்திரவேலைப்பாடுள்ள"], "tier1Attestations": 1, "translationEn": "carved", "word": "ஓவியவேலைப்பாடுள்ள", "wordClass": "headword"}
+{"attestations": 4, "definitionTa": "ஓவி", "frequency": 2, "length": 2, "pos": ["noun"], "spokenRatio": 0.0, "synonymsTa": ["ஓவி"], "tier1Attestations": 2, "word": "ஓவு", "wordClass": "headword"}
+{"attestations": 2, "definitionTa": "ஒழிதல் , நீங்குதல்", "frequency": 9, "length": 4, "pos": ["verb"], "spokenRatio": 0.0, "synonymsTa": ["ஒழிதல்", "நீக்குதல்", "நீங்குதல்", "முடிதல்"], "tier1Attestations": 1, "word": "ஓவுதல்", "wordClass": "headword"}
+{"attestations": 3, "definitionTa": "ஓரொலிக் குறிப்பு", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["ஓவென்றொலித்தல்"], "tier1Attestations": 2, "word": "ஓவெனல்", "wordClass": "headword"}
