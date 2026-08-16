@@ -251,6 +251,22 @@ Three defects were found by measurement, not by review. Each is quantified:
 
 **The layout is explicitly NOT settled.** Fowler's and Carmack's 2026-08-15 rulings (one file per class, no `length` key, no hex, no `ezhuthuIndex`) were reasoned over a 50,949-row artifact that C1 and C2 prove is wrong. They are RETAINED AS INPUT, not as a decision. The user's alternative - one file per FIRST EZHUTHU, up to 247 files (12 uyir + 18 mei + 1 aytham base letters; 18 x 12 = 216 uyirmei) - is on the table and is arithmetically sound. It is re-decided after the remeasure, with the personas re-consulted on the real numbers.
 
+### SETTLED 2026-08-16 by the user, after the remeasure: POLICY D, ONE FILE PER FIRST EZHUTHU
+
+The remeasure (post 4a / 9a / 10a, 6,569,694 surfaces, real per-class row widths of 121-192 B) produced this decision table - **files / largest file MiB / total MiB**:
+
+| Publish policy | one file per class | class + length | one file per first ezhuthu |
+| --- | --- | --- | --- |
+| A everything | 10 / **387.2** / 901 - EXCEEDS the 100 MiB wall | 327 / 69.8 / 901 | 5,608 / 30.0 / 901 |
+| B drop `notAWord` | 9 / **387.2** / 784 - EXCEEDS | 140 / 69.8 / 784 | 2,046 / 30.0 / 784 |
+| C drop `notAWord` + `unclassified` | 8 / **208.9** / 397 - EXCEEDS | 115 / 35.5 / 397 | 1,724 / 17.6 / 397 |
+| **D servable classes only - CHOSEN** | 4 / 25.2 / 25 | 31 / 5.1 / 25 | **241 / 2.2 / 25** |
+| E headword only | 1 / 25.2 / 25 | 19 / 5.1 / 25 | 118 / 2.2 / 25 |
+
+**RULING: publish `headword`, `properNoun`, `boundStem`, `colloquial`; one file per (`wordClass`, base first ezhuthu). 241 files, largest 2.2 MiB, 25 MiB total.** Pattern `<wordClass>-<hex>.ndjson`, e.g. `headword-0b95.ndjson`. `lexicon.meta.json` carries `partitionKeys`, one `partitions[]` entry per file, and the `ezhuthuIndex` decoding every hex to its Tamil character, romanization and kind (row 11 decision 16).
+
+User approval supersedes every agent (CLAUDE.md section 0). Recorded so the reversal is not silent: Carmack's 2026-08-15 ruling deleted the third partition key and argued that MORE FILES MAKE A LINE-ORIENTED GIT DIFF WORSE, which cuts against 241 files; and Fowler's ruling made the raw-source archive a MERGE CONDITION on row 11, which still stands and is still unmet. What SURVIVES of the user's original "full fidelity, nothing discarded" directive: every PUBLISHED row keeps every fact, the store retains all 6,569,694 surfaces, and `counters.classified` commits a per-class census of the FULL population so the unpublished classes are provable in the repo. What CHANGES: 6,569,694 rows published -> 139,067.
+
 | # | Row title | Phase | Depends-on | Parallel-group | Status | Worktree | PR | Subagent |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Delete `requireCoAnagram`; retain the multiset index; add the re-bake guard | A | - | A | DONE #13 | `../yen-tamizh-row1` (removed) | #13 | worker |
