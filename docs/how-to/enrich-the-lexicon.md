@@ -1,6 +1,6 @@
 # Enrich the lexicon
 
-**Last Updated**: 2026-08-15
+**Last Updated**: 2026-08-16
 
 How the Tamil meanings, synonyms, English translations, parts of speech and themes that a player eventually reads get written, reviewed and committed. The four stages this feeds are in [../architecture/lexicon/pipeline.md](../architecture/lexicon/pipeline.md); what the words mean is [../concepts/lexicon.md](../concepts/lexicon.md); which surfaces are word-hood-eligible in the first place is [../architecture/lexicon/word-hood.md](../architecture/lexicon/word-hood.md).
 
@@ -63,7 +63,43 @@ Authoring is bounded to the rows that can actually be SERVED: `wordClass == head
 
 **E5 rows are not authored.** No translation, no part of speech, no synonym set and no sense prose means there is nothing to author FROM, and writing a meaning anyway is guessing from orthography. The lexicon already forbids that for themes, where a wrong guess costs a player one paid hint; it must bind harder on the meaning, which is both the summary line and the most expensive rung on the ladder.
 
-Measured over the current bounded set, E3, E4 and E5 are all EMPTY, and that is structural rather than lucky. The word-hood classifier only calls a surface a headword when one source supplied both a headword fact and a describing fact, and the two sources that can do that both also supply either a definition or a translation. So today every authorable row is E1 or E2, and the E5 rule has nothing to exclude. That will change the moment a bare-word-list source is promoted, which is exactly when the rule earns its place.
+Measured over the current bounded set, E3, E4 and E5 are all EMPTY, and that is structural rather than lucky. The word-hood classifier only calls a surface a headword when a tier-1 authority listed it as an entry, and those authorities each also supply either a definition or a translation. So today every authorable row is E1 or E2, and the E5 rule has nothing to exclude. That will change the moment a bare-word-list source is promoted, which is exactly when the rule earns its place.
+
+## Cross-validate before you author
+
+Having several dictionaries is only worth something if they are COMBINED. Taking whichever source happens to answer first, authoring from that, and reporting the union is not lexicography - it is a lucky draw wearing a citation.
+
+So authoring reads the store PER WORD and PER SOURCE, not per attribute. Every candidate arrives carrying every fact every source holds about it:
+
+| Evidence | Where it comes from |
+| --- | --- |
+| `translation` | the English-Tamil dictionary read forward, and the curated dictionary's own English column |
+| `synonym` | the same bilingual dictionary read SIDEWAYS - every Tamil term sharing an English headword and part-of-speech prefix |
+| `definitionEn` | Wiktextract's sense prose |
+| `pos` | any of the three lexicographic authorities |
+| `category` | the themed vocabulary |
+| `frequency`, `spokenRatio` | the nine frequency corpora, summed and split |
+
+**Where the sources DISAGREE, record it - a disagreement is a signal, not noise.** Two authorities giving a word two unrelated English glosses is usually a genuine homograph, and the meaning that gets authored has to name the sense the frequency evidence supports rather than silently averaging them. A gloss that no other source recognises, on a word every corpus attests, is more often a defect in that one source than a rare sense; the sideways synonym read is the usual culprit, because grouping by an English headword mixes senses freely.
+
+Cross-validation is also what makes the no-hedge rule operable rather than aspirational. One source asserting a meaning is a claim; two independent authorities agreeing on it is the confidence the rule asks for, and a candidate whose sources cannot be reconciled is declined rather than averaged.
+
+## The priority order
+
+Author in this order and stop at the budget. It is a priority order rather than a preference because every rung above the next carries strictly more player-visible value per row.
+
+1. **3-6 ezhuthu headwords passing the serving gates.** They are the only rows a Game can serve today, so they carry all of the player-visible value. Everything else is inventory.
+2. **Highest frequency first.** Selection draws frequency-stratified, and the top quartile is the vocabulary a player actually holds. Frequency-first ordering also buys the most coverage per row authored: the head of the distribution is short.
+3. **Best evidence tier first** - E1, then E2, then E3 and E4. A row with sense prose can be authored faster and more accurately than one with a bare translation, so the same effort buys more meanings and fewer declines.
+4. **Then 7-10 ezhuthu, same ordering**, if budget remains.
+
+## Defer, never drop
+
+A candidate this pass did not author is DEFERRED, never dropped. It keeps every fact the store holds about it, it stays in the store, and the next pass finds it exactly where this one left it. Nothing is deleted to make a coverage number look better.
+
+The distinction is the whole reason EXTRACT and STAGE never filter: the store is the retention layer, and what is SERVED is a decision taken downstream against gates that can be re-run. A deferred word costs nothing but the row it already occupies; a dropped word costs a re-acquisition of gitignored bytes and a full re-run to recover. So a batch reports its deferred count BY BAND alongside its authored count, and both are first-class outputs.
+
+A DECLINE is different from a defer and is also reported: a decline is a candidate that was read, weighed against its evidence, and refused because no meaning could be authored confidently. The commonest cause is a form whose only available sense is a grammatical relation to another word.
 
 ## The no-hedge rule
 
@@ -85,18 +121,20 @@ Until a human reviews a row:
 
 A human review is itself an attestation act, which is what flips all three.
 
-## Authoring instructions - `promptVersion` 2026-08-15
+## Authoring instructions - `promptVersion` 2026-08-16
 
-This section IS the prompt. Changing it means date-stamping a new `promptVersion` and recording it on the rows written under it.
+This section IS the prompt. Changing it means date-stamping a new `promptVersion` and recording it on the rows written under it. The `2026-08-15` revision is what the first batch was written under; `2026-08-16` adds rules 2, 9 and 10 - cross-validation across every authority, the disagreement rule, and the explicit defer.
 
-1. Author only within the bounded set, highest frequency first. Those are the rows a player can actually be served.
-2. Condition on the retained evidence - the English definition, the translation, the part of speech, the synonym group. Never on the shape of the Tamil string.
-3. Write `definitionTa` as an explanatory Tamil PHRASE, not a sentence and not a single word. It should let a Tamil speaker who does not know the word arrive at it.
-4. Never let the meaning contain the word it explains, and never list a word as its own synonym. Both hand over the whole puzzle.
-5. Take `synonymsTa` only from terms that share the SENSE being defined. The sideways read of a bilingual dictionary groups by the English headword, so it mixes senses freely and most of what it offers is wrong for any one of them.
-6. Give `pos` on every row you touch. Dictionary POS covers a small minority of surfaces, and without authored POS the part-of-speech selection dimension has almost nothing to work with.
-7. Give `categories` only when a theme in the closed set genuinely applies, and choose it from the GLOSS rather than the Tamil string. Never mint a theme - a theme is player-facing copy and minting one is a human decision.
-8. If you are not confident, omit the field. A decline is a first-class outcome and is reported as a number, not hidden.
+1. Author only within the bounded set, in the priority order above. Those are the rows a player can actually be served.
+2. Read EVERY source's facts for the word before writing anything, not the first one that answers. Where two authorities agree, the meaning is settled. Where they disagree, decide which sense the frequency evidence supports and author THAT sense; do not blend them.
+3. Condition on the retained evidence - the English definition, the translation, the part of speech, the synonym group. Never on the shape of the Tamil string.
+4. Write `definitionTa` as an explanatory Tamil PHRASE, not a sentence and not a single word. It should let a Tamil speaker who does not know the word arrive at it.
+5. Never let the meaning contain the word it explains, and never list a word as its own synonym. Both hand over the whole puzzle.
+6. Take `synonymsTa` only from terms that share the SENSE being defined. The sideways read of a bilingual dictionary groups by the English headword, so it mixes senses freely and most of what it offers is wrong for any one of them.
+7. Give `pos` on every row you touch. Dictionary POS covers a small minority of surfaces, and without authored POS the part-of-speech selection dimension has almost nothing to work with.
+8. Give `categories` only when a theme in the closed set genuinely applies, and choose it from the GLOSS rather than the Tamil string. Never mint a theme - a theme is player-facing copy and minting one is a human decision.
+9. If you are not confident, omit the field, and if no field can be written confidently, DECLINE the row. A decline is a first-class outcome and is reported as a number, not hidden.
+10. Whatever the batch does not reach is DEFERRED, not dropped. Report the deferred count by band. The store keeps every one of them for the next pass.
 
 ## See also
 
