@@ -1,5 +1,5 @@
-{"attestations": 1, "frequency": 40, "length": 5, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓசியானியா", "wordClass": "properNoun"}
-{"attestations": 2, "frequency": 2616, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓசூர்", "wordClass": "properNoun"}
-{"attestations": 5, "definitionTa": "காளி,பிடாரி,அர்ச்சகர் இவர்கள் காளி கோயிலில் பரம்பரை பரம்பரையாக பூஜை செய்து வருகிறார்கள்", "frequency": 0, "length": 4, "pos": ["noun"], "synonymsTa": ["ஆசான்", "கணக்காயன்"], "tier1Attestations": 3, "word": "ஓச்சன்", "wordClass": "properNoun"}
-{"attestations": 5, "definitionTa": "ஓமனோடு தொடர்புடைய", "frequency": 438, "length": 3, "pos": ["adjective", "noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "Oman", "word": "ஓமன்", "wordClass": "properNoun"}
-{"attestations": 1, "frequency": 1342, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "ஓவியா", "wordClass": "properNoun"}
+{"word": "ஓசியானியா", "frequency": 40, "length": 5, "wordClass": "properNoun", "attestations": 1, "tier1Attestations": 1, "spokenRatio": 0.0}
+{"word": "ஓசூர்", "frequency": 2616, "length": 3, "wordClass": "properNoun", "attestations": 2, "tier1Attestations": 1, "spokenRatio": 0.0}
+{"word": "ஓச்சன்", "definitionTa": ["காளி,பிடாரி,அர்ச்சகர் இவர்கள் காளி கோயிலில் பரம்பரை பரம்பரையாக பூஜை செய்து வருகிறார்கள்", "கணக்காயன்", "ஆசான்"], "synonymsTa": ["ஆசான்", "கணக்காயன்"], "pos": ["noun"], "frequency": 0, "length": 4, "wordClass": "properNoun", "attestations": 5, "tier1Attestations": 3}
+{"word": "ஓமன்", "definitionTa": ["ஓமனோடு தொடர்புடைய", "கிழக்கு அரபி தீவில் அமைந்துள்ள ஒரு தேசம்"], "translationEn": "Oman", "pos": ["adjective", "noun"], "frequency": 438, "length": 3, "wordClass": "properNoun", "attestations": 5, "tier1Attestations": 2, "spokenRatio": 0.0}
+{"word": "ஓவியா", "frequency": 1342, "length": 3, "wordClass": "properNoun", "attestations": 1, "tier1Attestations": 1, "spokenRatio": 0.0}

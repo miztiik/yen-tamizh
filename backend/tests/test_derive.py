@@ -96,6 +96,7 @@ STALIN = "\u0bb8\u0bcd\u0b9f\u0bbe\u0bb2\u0bbf\u0ba9\u0bcd"
 
 # A Tamil meaning, so a row can satisfy requireMeaning without inventing English.
 MEANING = "\u0b92\u0bb0\u0bc1 \u0baa\u0bca\u0bb0\u0bc1\u0bb3\u0bcd"
+SENSES = [MEANING]
 
 _SHA = "0" * 64
 
@@ -110,7 +111,7 @@ def _entry(
     frequency: int = 100,
     attestations: int = 3,
     tier1Attestations: int = 2,
-    definitionTa: str | None = MEANING,
+    definitionTa: list[str] | None = SENSES,
 ) -> LexiconEntry:
     """One lexicon row, with every gate satisfied unless a test moves a knob."""
     return LexiconEntry(
@@ -134,7 +135,7 @@ def _write_lexicon(repo_root: Path, rows: list[LexiconEntry]) -> Path:
     directory = repo_root / "datasets" / "lexicon"
     cells: dict[tuple[str, str], list[LexiconEntry]] = {}
     for row in rows:
-        key = (row.wordClass, partition_hex(segment(row.word)[0]))
+        key = (row.wordClass, partition_hex(segment(row.word)[0][0]))
         cells.setdefault(key, []).append(row)
 
     partitions: list[dict[str, Any]] = []
@@ -151,13 +152,13 @@ def _write_lexicon(repo_root: Path, rows: list[LexiconEntry]) -> Path:
             {
                 "path": path.relative_to(repo_root).as_posix(),
                 "wordClass": word_class,
-                "firstEzhuthu": hex_key,
+                "baseEzhuthu": hex_key,
                 "rows": len(cell_rows),
                 "bytes": size,
                 "sha256": digest,
             }
         )
-        letter = segment(cell_rows[0].word)[0]
+        letter = segment(cell_rows[0].word)[0][0]
         index[hex_key] = {
             "ezhuthu": letter,
             "roman": ezhuthu_roman(letter),
@@ -449,7 +450,7 @@ def test_rows_arrive_in_partition_table_order(tmp_path: Path) -> None:
 def _address(row: LexiconEntry) -> tuple[str, str, str]:
     return (
         row.wordClass,
-        partition_hex(segment(row.word)[0]),
+        partition_hex(segment(row.word)[0][0]),
         row.word,
     )
 

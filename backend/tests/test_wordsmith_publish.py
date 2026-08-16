@@ -65,9 +65,10 @@ from yen_tamizh_backend.wordsmith.resolve import (
     SEPARATOR,
     ResolutionError,
     check_the_closed_vocabularies,
-    first_ezhuthu,
+    base_ezhuthu,
 )
 from yen_tamizh_backend.wordsmith.store import connect, transaction
+from yen_tamizh_backend.wordsmith.wikitext import parse_page
 
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 _REGISTRY_PATH = _REPO_ROOT / "config" / "lexicon-sources.json"
@@ -270,6 +271,15 @@ def _committed_rows() -> Iterator[tuple[str, LexiconEntry]]:
                 yield cell.path, LexiconEntry.model_validate_json(line)
 
 
+def _committed_lines() -> Iterator[tuple[str, str]]:
+    """Every committed row as its RAW line - the bytes, not a parsed model."""
+    document = _meta_document(COMMITTED_META)
+    for cell in document.partitions:
+        with (_REPO_ROOT / cell.path).open(encoding="utf-8") as handle:
+            for line in handle:
+                yield cell.path, line
+
+
 def test_every_committed_row_is_self_consistent_sorted_and_correctly_addressed() -> (
     None
 ):
@@ -293,7 +303,7 @@ def test_every_committed_row_is_self_consistent_sorted_and_correctly_addressed()
         assert "".join(parts) == row.word
         assert row.length == len(parts)
         assert row.wordClass == cell.wordClass
-        assert partition_hex(parts[0]) == cell.firstEzhuthu
+        assert partition_hex(parts[0][0]) == cell.baseEzhuthu
         assert row.tier1Attestations <= row.attestations
         seen = previous.get(path)
         assert seen is None or seen < row.word, f"{path} is not sorted at {row.word!r}"
@@ -308,14 +318,14 @@ def test_every_committed_row_is_self_consistent_sorted_and_correctly_addressed()
 
 
 def test_every_committed_file_name_is_its_address_and_sorts_with_it() -> None:
-    # Zero-padded 4-digit groups are what make ASCII filename order equal
+    # Zero-padded 4-digit keys are what make ASCII filename order equal
     # code-point order, so `ls` order is row order. Asserted rather than argued.
     document = _meta_document(COMMITTED_META)
     by_class: dict[str, list[str]] = {}
     for cell in document.partitions:
-        assert cell.path.endswith(f"{BY_CLASS}/{cell.wordClass}/{cell.firstEzhuthu}.ndjson")
-        assert len(cell.firstEzhuthu) in (4, 8)
-        by_class.setdefault(cell.wordClass, []).append(cell.firstEzhuthu)
+        assert cell.path.endswith(f"{BY_CLASS}/{cell.wordClass}/{cell.baseEzhuthu}.ndjson")
+        assert len(cell.baseEzhuthu) == 4
+        by_class.setdefault(cell.wordClass, []).append(cell.baseEzhuthu)
     for word_class, keys in by_class.items():
         assert keys == sorted(keys), word_class
         first_words = []
@@ -359,7 +369,7 @@ def test_the_ezhuthu_index_spells_out_every_address_it_is_asked_about() -> None:
         assert segment(entry.ezhuthu) == [entry.ezhuthu]
         assert entry.roman == ezhuthu_roman(entry.ezhuthu)
         assert entry.kind == classify(entry.ezhuthu)
-    assert {cell.firstEzhuthu for cell in document.partitions} == set(
+    assert {cell.baseEzhuthu for cell in document.partitions} == set(
         document.ezhuthuIndex
     )
 
@@ -374,7 +384,7 @@ def test_the_generated_readme_restates_the_index_it_is_generated_from() -> None:
     for entry in document.ezhuthuIndex.values():
         assert entry.ezhuthu in body and entry.roman in body
     for cell in document.partitions:
-        assert f"{BY_CLASS}/{cell.wordClass}/{cell.firstEzhuthu}.ndjson" in body
+        assert f"{BY_CLASS}/{cell.wordClass}/{cell.baseEzhuthu}.ndjson" in body
 
 
 def test_no_committed_path_is_absolute_or_backslashed() -> None:
@@ -388,27 +398,150 @@ def test_no_committed_path_is_absolute_or_backslashed() -> None:
 
 
 # --------------------------------------------------------------------------
+# The row's field order, and the senses it carries.
+# --------------------------------------------------------------------------
+
+# The order a published row serializes in, pinned as a literal. Row 12a: a row
+# opens on the word and what it MEANS and closes on the columns a selection gate
+# answers from. It is the contract's field order rather than a sort, so this
+# list is the gate that keeps the two from drifting.
+_FIELD_ORDER = [
+    "word",
+    "definitionTa",
+    "translationEn",
+    "synonymsTa",
+    "pos",
+    "categories",
+    "frequency",
+    "length",
+    "wordClass",
+    "attestations",
+    "tier1Attestations",
+    "spokenRatio",
+]
+
+
+def test_the_row_serializes_human_first_in_the_contracts_own_order() -> None:
+    assert list(LexiconEntry.model_fields) == _FIELD_ORDER
+    row = LexiconEntry(
+        word="\u0b95\u0b9f\u0bb2\u0bcd",
+        definitionTa=["\u0b86\u0bb4\u0bbf"],
+        translationEn="sea",
+        synonymsTa=["\u0b95\u0b9f\u0bb2\u0bcd\u0bb5\u0bc7\u0bb2\u0bbf"],
+        pos=["noun"],
+        categories=["nature"],
+        frequency=7,
+        length=3,
+        wordClass="headword",
+        attestations=2,
+        tier1Attestations=1,
+        spokenRatio=0.5,
+    )
+    assert list(json.loads(render(row))) == _FIELD_ORDER
+
+
+def test_a_sparse_row_keeps_the_order_of_the_fields_it_does_carry() -> None:
+    row = LexiconEntry(
+        word="\u0b95\u0b9f\u0bb2\u0bcd",
+        frequency=0,
+        length=3,
+        wordClass="headword",
+        attestations=1,
+        tier1Attestations=1,
+    )
+    keys = list(json.loads(render(row)))
+    assert keys == [name for name in _FIELD_ORDER if name in set(keys)]
+    assert keys[0] == "word"
+
+
+def test_every_committed_row_opens_on_the_word() -> None:
+    # Oracle 4 over the real artifact: a reader scanning a file sees what the
+    # row is about before anything else on the line.
+    checked = 0
+    for _, raw in _committed_lines():
+        assert raw.startswith('{"word": ')
+        checked += 1
+    assert checked
+
+
+def test_no_sense_a_source_asserted_is_dropped(published: Published) -> None:
+    # Row 12a's whole point. definitionTa used to be one display slot resolved
+    # by precedence, so a page carrying three senses published one - the Tamil
+    # Wiktionary lists the tree, the victor's garland and victory itself under
+    # vaakai, and only the tree reached the artifact.
+    conn = sqlite3.connect(published.db)
+    try:
+        asserted: dict[str, set[str]] = {}
+        for word, value in conn.execute(
+            "SELECT word, value FROM fact WHERE attr = 'definitionTa'"
+        ):
+            asserted.setdefault(str(word), set()).add(str(value))
+    finally:
+        conn.close()
+    many = 0
+    for row in _rows_under(published.out):
+        expected = asserted.get(row.word)
+        if expected is None:
+            assert row.definitionTa is None
+            continue
+        assert row.definitionTa is not None
+        assert set(row.definitionTa) == expected
+        many += len(expected) > 1
+    assert many, "no fixture word carries more than one sense"
+
+
+def test_a_meaning_line_does_not_end_on_a_cross_reference() -> None:
+    # The wiki closes vaakai's first sense with a link to the English common
+    # name, delimited from the sense by the same semicolon that separates two
+    # Tamil clauses. It is apparatus, not meaning.
+    facts = parse_page(
+        "\u0bb5\u0bbe\u0b95\u0bc8",
+        "===\u0baa\u0bca\u0bb0\u0bc1\u0bb3\u0bcd===\n"
+        ":* \u0bae\u0bb2\u0bb0\u0bcd. ''(Albizia lebbeck)''; [[siris]].\n"
+        ":* \u0bb5\u0bc6\u0bb1\u0bcd\u0bb1\u0bbf.\n",
+    )
+    assert facts.definitions == [
+        "\u0bae\u0bb2\u0bb0\u0bcd. (Albizia lebbeck)",
+        "\u0bb5\u0bc6\u0bb1\u0bcd\u0bb1\u0bbf",
+    ]
+    assert not any("siris" in value for value in facts.definitions)
+
+
+def test_a_wholly_latin_meaning_line_is_still_refused_not_emptied() -> None:
+    # The head is never emptied, so the harvester's own Tamil test is what
+    # refuses a line that carries no Tamil at all.
+    facts = parse_page(
+        "probe", "===\u0baa\u0bca\u0bb0\u0bc1\u0bb3\u0bcd===\n:* alpha; beta\n"
+    )
+    assert facts.definitions == []
+    assert facts.skipped == 1
+
+
+# --------------------------------------------------------------------------
 # The address itself, and the two assertions that keep it aligned.
 # --------------------------------------------------------------------------
 
 
-def test_the_address_is_the_whole_first_ezhuthu_not_its_base() -> None:
-    assert partition_hex(first_ezhuthu("\u0b85\u0bb0\u0b9a\u0bc1")) == "0b85"
-    assert partition_hex(first_ezhuthu("\u0b95\u0b9f\u0bb2\u0bcd")) == "0b95"
-    assert partition_hex(first_ezhuthu("\u0b95\u0bbe\u0bb2\u0bcd")) == "0b950bbe"
-    assert partition_hex(first_ezhuthu("\u0b95\u0bbf\u0bb3\u0bbf")) == "0b950bbf"
+def test_the_address_is_the_base_letter_not_the_whole_ezhuthu() -> None:
+    # ka, kaa and ki share one file, exactly as a dictionary files them under
+    # one heading: the vowel sign rides on the letter and does not change which
+    # letter the word opens on.
+    assert partition_hex(base_ezhuthu("\u0b85\u0bb0\u0b9a\u0bc1")) == "0b85"
+    assert partition_hex(base_ezhuthu("\u0b95\u0b9f\u0bb2\u0bcd")) == "0b95"
+    assert partition_hex(base_ezhuthu("\u0b95\u0bbe\u0bb2\u0bcd")) == "0b95"
+    assert partition_hex(base_ezhuthu("\u0b95\u0bbf\u0bb3\u0bbf")) == "0b95"
 
 
-def test_a_decomposed_first_letter_is_refused_rather_than_addressed_twice() -> None:
-    # ko written NFD is ke + aa, which segments as one letter and would mint a
-    # SECOND file for a letter that already has one.
+def test_a_decomposed_first_letter_addresses_the_same_file_as_a_composed_one() -> None:
+    # ko written NFD is ke + aa. Under the FULL-ezhuthu address that was a
+    # second file for a letter that already had one, which is why the writer had
+    # to refuse it. The base letter is the same code point either way, so the
+    # two spellings now land in the same file and there is nothing to refuse.
     composed = "\u0b95\u0bca"
     decomposed = unicodedata.normalize("NFD", composed)
     assert decomposed != composed
     assert segment(decomposed) == [decomposed]
-    assert partition_hex(composed) == "0b950bca"
-    with pytest.raises(PublishError, match="NFC"):
-        partition_hex(decomposed)
+    assert partition_hex(composed[0]) == partition_hex(decomposed[0]) == "0b95"
 
 
 def test_a_letter_outside_the_basic_multilingual_plane_is_refused() -> None:
@@ -418,9 +551,9 @@ def test_a_letter_outside_the_basic_multilingual_plane_is_refused() -> None:
         partition_hex("\U00011fff")
 
 
-def test_a_mark_sequence_no_letter_has_is_refused() -> None:
+def test_an_address_of_more_than_one_code_point_is_refused() -> None:
     with pytest.raises(PublishError, match="code points"):
-        partition_hex("\u0b95\u0bbe\u0bbf")
+        partition_hex("\u0b95\u0bbe")
 
 
 # --------------------------------------------------------------------------
@@ -502,7 +635,11 @@ def test_an_attested_meaning_outranks_an_authored_one(published: Published) -> N
     contested = [row for row in _rows_under(published.out) if row.word in both]
     assert contested, "no fixture word is described by both an authority and the pass"
     for row in contested:
-        assert row.definitionTa in attested[row.word]
+        assert row.definitionTa is not None
+        # Element zero is the display slot, and it is what the single-slot
+        # precedence rule used to publish - an attested sense, never an
+        # authored one, whatever the precedence integers happen to be.
+        assert row.definitionTa[0] in attested[row.word]
 
 
 def test_the_spoken_share_is_a_share_of_the_published_frequency(
@@ -692,7 +829,7 @@ def test_writing_ten_times_the_rows_does_not_cost_ten_times_the_memory(
 # --------------------------------------------------------------------------
 
 
-def test_a_rendered_line_is_compact_sorted_and_unescaped() -> None:
+def test_a_rendered_line_is_compact_unescaped_and_in_contract_field_order() -> None:
     row = LexiconEntry(
         word="\u0b85\u0bb0\u0b9a\u0bc1",
         wordClass="headword",
@@ -705,7 +842,15 @@ def test_a_rendered_line_is_compact_sorted_and_unescaped() -> None:
     line = render(row)
     assert line.endswith("\n") and line.count("\n") == 1
     assert "\\u0b85" not in line
-    assert line.index('"attestations"') < line.index('"frequency"') < line.index('"word"')
+    # The row reads in the order the CONTRACT declares, not in sorted-key order:
+    # the word first, the counters a gate reads last. Asserted against the model's
+    # own field list so the two cannot drift apart, and so a re-sort is a failure
+    # rather than a silent reordering of every published row.
+    rendered = list(json.loads(line))
+    declared = [name for name in LexiconEntry.model_fields if name in set(rendered)]
+    assert rendered == declared
+    assert rendered[0] == "word"
+    assert rendered != sorted(rendered)
     assert json.loads(line) == {
         "word": "\u0b85\u0bb0\u0b9a\u0bc1",
         "wordClass": "headword",

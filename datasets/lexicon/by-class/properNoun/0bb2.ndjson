@@ -1,4 +1,11 @@
-{"attestations": 4, "definitionTa": "வட கிழக்கு ஐரோப்பாவிலுள்ள ஒரு தேசம்", "frequency": 156, "length": 7, "pos": ["noun"], "spokenRatio": 0.0, "tier1Attestations": 2, "translationEn": "Luxembourg", "word": "லக்சம்பர்க்", "wordClass": "properNoun"}
-{"attestations": 1, "frequency": 510, "length": 3, "spokenRatio": 0.0, "tier1Attestations": 1, "word": "லடாக்", "wordClass": "properNoun"}
-{"attestations": 3, "definitionTa": "ஆண்குறி", "frequency": 7629, "length": 4, "pos": ["noun"], "spokenRatio": 0.000262, "synonymsTa": ["ஆண்குறி"], "tier1Attestations": 2, "word": "லண்டன்", "wordClass": "properNoun"}
-{"attestations": 5, "definitionTa": "லத்தீன் மொழியை பேசக்கூடிய மக்கள்", "frequency": 817, "length": 4, "pos": ["adjective", "noun"], "spokenRatio": 0.004896, "tier1Attestations": 3, "translationEn": "deponent", "word": "லத்தீன்", "wordClass": "properNoun"}
+{"word": "லக்சம்பர்க்", "definitionTa": ["வட கிழக்கு ஐரோப்பாவிலுள்ள ஒரு தேசம்"], "translationEn": "Luxembourg", "pos": ["noun"], "frequency": 156, "length": 7, "wordClass": "properNoun", "attestations": 4, "tier1Attestations": 2, "spokenRatio": 0.0}
+{"word": "லடாக்", "frequency": 510, "length": 3, "wordClass": "properNoun", "attestations": 1, "tier1Attestations": 1, "spokenRatio": 0.0}
+{"word": "லண்டன்", "definitionTa": ["ஆண்குறி"], "synonymsTa": ["ஆண்குறி"], "pos": ["noun"], "frequency": 7629, "length": 4, "wordClass": "properNoun", "attestations": 3, "tier1Attestations": 2, "spokenRatio": 0.000262}
+{"word": "லத்தீன்", "definitionTa": ["லத்தீன் மொழியை பேசக்கூடிய மக்கள்", "லத்தீன் மொழியோடு தொடர்புடைய"], "translationEn": "deponent", "pos": ["adjective", "noun"], "frequency": 817, "length": 4, "wordClass": "properNoun", "attestations": 5, "tier1Attestations": 3, "spokenRatio": 0.004896}
+{"word": "லாபுவான்", "frequency": 12, "length": 4, "wordClass": "properNoun", "attestations": 1, "tier1Attestations": 1, "spokenRatio": 0.0}
+{"word": "லாவோஸ்", "definitionTa": ["தென் - கிழக்கு ஆசியாவில் அமைந்துள்ள ஒரு மலைப்பிரதேசம்"], "translationEn": "Laos", "pos": ["noun"], "frequency": 267, "length": 3, "wordClass": "properNoun", "attestations": 4, "tier1Attestations": 2, "spokenRatio": 0.0}
+{"word": "லிஸ்பன்", "definitionTa": ["லிஸ்பன், போர்த்துகல் நாட்டின் தலைநகரமும் மிகப்பெரிய நகரமும் ஆகும்"], "pos": ["noun"], "frequency": 103, "length": 4, "wordClass": "properNoun", "attestations": 3, "tier1Attestations": 2, "spokenRatio": 0.0}
+{"word": "லீக்டன்ஸ்டைன்", "frequency": 6, "length": 7, "wordClass": "properNoun", "attestations": 1, "tier1Attestations": 1, "spokenRatio": 0.0}
+{"word": "லெசோத்தோ", "frequency": 31, "length": 4, "wordClass": "properNoun", "attestations": 1, "tier1Attestations": 1, "spokenRatio": 0.0}
+{"word": "லெபனான்", "definitionTa": ["ஆசியாவிலுள்ள தென் மேற்கில் அமைந்துள்ள ஒரு தேசம்"], "translationEn": "Lebanon", "pos": ["noun"], "frequency": 526, "length": 4, "wordClass": "properNoun", "attestations": 4, "tier1Attestations": 2, "spokenRatio": 0.001901}
+{"word": "லைபீரியா", "frequency": 92, "length": 4, "wordClass": "properNoun", "attestations": 1, "tier1Attestations": 1, "spokenRatio": 0.0}

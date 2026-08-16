@@ -65,11 +65,12 @@ from yen_tamizh_backend.wordsmith.readers import (
     read_elements,
 )
 from yen_tamizh_backend.wordsmith.resolve import (
+    SENSE_ATTR,
     SINGLE_ATTRS,
     UNION_ATTRS,
     ResolutionError,
+    base_ezhuthu,
     check_the_closed_vocabularies,
-    first_ezhuthu,
 )
 from yen_tamizh_backend.wordsmith.review import ReviewRun, review
 from yen_tamizh_backend.wordsmith.signals_exact import (
@@ -108,6 +109,7 @@ __all__ = [
     "EXTRACTOR_VERSION",
     "META_NAME",
     "README_NAME",
+    "SENSE_ATTR",
     "SIGNALS",
     "SIGNAL_COLUMNS",
     "SINGLE_ATTRS",
@@ -133,6 +135,7 @@ __all__ = [
     "Tally",
     "WrittenPartition",
     "apply_extract",
+    "base_ezhuthu",
     "canonical_digest",
     "canonical_dump",
     "check_the_closed_vocabularies",
@@ -144,7 +147,6 @@ __all__ = [
     "enrich",
     "extract",
     "extract_source",
-    "first_ezhuthu",
     "iter_delimited",
     "iter_delimited_quoted",
     "iter_json_array",

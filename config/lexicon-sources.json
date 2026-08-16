@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-16T23:00",
+  "version": "2026-08-17",
   "changelog": [
+    {
+      "version": "2026-08-17",
+      "change": "Registered ta-wikipedia-titles, the first encyclopedic source.",
+      "why": "Row 12a - the served set was still offering personal names, because most Tamil names ARE meaningful words and no signal in the store could tell a name from the word it is made of. A Tamil Wikipedia article title is the one widely available statement that a string names an entity somebody wrote about. It is evidence and never a veto, since fire and mathematics have articles too."
+    },
     {
       "version": "2026-08-16T23:00",
       "change": "Added the three PUBLISH knobs: publishedClasses, spokenSources and maxPartitionBytes.",
@@ -489,6 +494,21 @@
       "hasHeader": true,
       "wordColumn": 8,
       "note": "The second SENSE-SCOPED synonym producer, and the reason it was acquired. One record is a SYNSET - the Tamil words that express one concept - so its synonymy is asserted by the source at a sense, unlike a bilingual dictionary's translation list read sideways. Tier 1 on the contract's own test and not by courtesy: every record carries a Tamil gloss and a part of speech, so somebody decided each string names the concept and then said what the concept is. Pinned by COMMIT SHA rather than by branch, because a branch serves different bytes over time and a recorded sha256 would go stale with nothing in this repository changing. Precedence last among the meaning sources: its English column is a Princeton synset's lemma list rather than a translation chosen for the Tamil word, so it must lose the single display slot to every dictionary that translated the Tamil side directly."
+    },
+    {
+      "id": "ta-wikipedia-titles",
+      "name": "Tamil Wikipedia page titles, main namespace",
+      "origin": "https://dumps.wikimedia.org/tawiki/20260801/tawiki-20260801-all-titles-in-ns0.gz",
+      "role": "encyclopedic",
+      "kind": "delimited",
+      "path": "datasets/lexicon/sources/ta-wikipedia-titles/source.txt",
+      "bytes": 13308981,
+      "sha256": "c2bcd4d2a03b41cca2ca66069199ed3a8e3a40c06e74547ee0425223563a709f",
+      "precedence": 23,
+      "delimiter": "\t",
+      "hasHeader": true,
+      "wordColumn": 0,
+      "note": "An ENTITY inventory: the titles of 237,541 articles somebody wrote. It attests nothing and counts nothing, which is why its role is neither authority nor frequency - an encyclopedia has an article on fire and on mathematics as readily as on a person or a district, so a title is evidence about what a surface NAMES and never a verdict on its own. Registering it as an authority would have added one to the attestation count the serving gate reads, for every place name in Tamil Nadu. The delimiter is a tab, which the file never contains, so each line yields the whole title as one column, and the underscore the dump writes for a space is canonicalized by the same reader the Wiktionary title list uses."
     }
   ]
 }

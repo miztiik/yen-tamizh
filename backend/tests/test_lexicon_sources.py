@@ -39,7 +39,9 @@ _LEDGER = _REPO_ROOT / "datasets" / "lexicon" / "sources" / "README.md"
 _FIXTURES = _REPO_ROOT / "datasets" / "fixtures" / "lexicon"
 _MASTER = _REPO_ROOT / "datasets" / "wordlists" / "master" / "words_ranked.json"
 
-_ROLES = frozenset({"authority", "formEvidence", "frequency", "category", "authored"})
+_ROLES = frozenset(
+    {"authority", "formEvidence", "frequency", "category", "authored", "encyclopedic"}
+)
 _NOT_ACQUIRED = "NOT ACQUIRED"
 _ABSENT = "-"
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
@@ -157,8 +159,8 @@ def test_every_ledger_row_is_complete_or_explicitly_not_acquired(row: LedgerRow)
 def test_the_ledger_covers_every_inventory_group() -> None:
     groups = {row.number[0] for row in LEDGER}
     assert groups == {"A", "B", "C", "D", "E"}, "group F must not be acquired"
-    assert len(LEDGER) == 23
-    assert len({row.id for row in LEDGER}) == 23
+    assert len(LEDGER) == 24
+    assert len({row.id for row in LEDGER}) == 24
 
 
 @pytest.mark.parametrize("row", ACQUIRED, ids=lambda row: row.number)

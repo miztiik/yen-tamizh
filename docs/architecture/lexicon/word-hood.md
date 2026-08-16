@@ -1,6 +1,6 @@
 # Word-hood
 
-**Last Updated**: 2026-08-16
+**Last Updated**: 2026-08-17
 
 How the pipeline decides what KIND of thing a Tamil surface is. The vocabulary -
 what a `wordClass` is, why observation is not attestation, why `length` counts
@@ -676,6 +676,85 @@ with an attested headword and is longer", labels `vaayppu` an inflection of
 `vaay`, and `vaayppu` is one of this layer's own reference headwords. A rule
 that costs a real headword to catch an inflected form is trading the class Row
 12 serves for a class it does not.
+
+**A Tamil Wikipedia article is recorded and deliberately not read.** Why is the
+next section.
+
+## The proper-noun problem, and what an encyclopedia can and cannot settle
+
+`properNoun` is the one class that reaches a player when it is wrong, and it is
+the class this layer is worst at. The verdict has exactly ONE producer - the
+Wiktionary extract's `name` tag, 1,074 surfaces - and the reason it cannot be
+inferred is that **most Tamil personal names ARE ordinary Tamil words**:
+`\u0b85\u0b9e\u0bcd\u0b9a\u0ba9\u0bbe` is kohl, `\u0bae\u0ba3\u0bbf\u0bae\u0bca\u0bb4\u0bbf` is gem-like speech, `\u0b9a\u0baa\u0bbe\u0baa\u0ba4\u0bbf` is the chief
+of an assembly. Every signal here describes the STRING, and the string is a
+perfectly good Tamil word in all three cases. The classifier is not wrong about
+them; it is answering a different question from the one a player's screen asks.
+
+The Tamil Wikipedia's main-namespace title list (`ta-wikipedia-titles`, 237,541
+titles) is the one widely available statement that a string names an ENTITY, so
+it was acquired to test whether it settles the question. It does not, and the
+measurement is worth keeping because it is the reason nothing reads it yet.
+
+### What it separates
+
+| Population | Has a Tamil Wikipedia article |
+| --- | ---: |
+| the 1,074 `properNoun` rows | 814 (75.8%) |
+| the 162,361 `headword` rows | 7,942 (4.9%) |
+| the 32,310 SERVED rows | 5,528 (17.1%) |
+
+A known proper noun is fifteen times likelier to have an article than a
+headword, so the signal is real. What it is not is decisive, because an
+encyclopedia writes about concepts as readily as about people: every one of a
+twelve-word control set - `\u0ba4\u0bc0` fire, `\u0b95\u0ba3\u0bbf\u0ba9\u0bbf` computer, `\u0b95\u0ba3\u0bbf\u0ba4\u0bae\u0bcd` mathematics,
+`\u0bae\u0bb0\u0bae\u0bcd` tree, `\u0b89\u0baa\u0bcd\u0baa\u0bc1` salt, `\u0bae\u0bb4\u0bc8` rain, `\u0b86\u0bb1\u0bc1` river and the rest - has one. A
+blanket veto would delete them.
+
+Worse for the specific complaint, two of the three names the served set was
+caught offering do not have an article at all: `\u0b9a\u0baa\u0bbe\u0baa\u0ba4\u0bbf` does, `\u0bae\u0ba3\u0bbf\u0bae\u0bca\u0bb4\u0bbf` and
+`\u0b85\u0b9e\u0bcd\u0b9a\u0ba9\u0bbe` do not. The signal cannot reach the rows it was acquired for.
+
+### Combining it with the lexicographic evidence
+
+The obvious pairing is with how many dictionaries entered the surface, since a
+word every authority lists is a word whatever else it also names. Over the
+published classes, taking `has an article AND tier1Attestations <= k`:
+
+| k | `properNoun` rows caught | `headword` rows caught | served rows lost |
+| ---: | ---: | ---: | ---: |
+| 1 | 304 | 1,164 | 383 |
+| 2 | 428 | 4,331 | 2,618 |
+| 3 | 647 | 5,299 | 3,306 |
+| 4 | 771 | 6,166 | 3,986 |
+| 5 | 814 | 7,152 | 4,738 |
+
+The `headword` column over-counts harm by exactly the names the classifier
+already gets wrong, so it was read by hand rather than by arithmetic. A random
+sample of 60 of the 2,618 served rows the `k = 2` rule would demote holds
+roughly 19 entities - deities, places, classical text titles, `\u0b9a\u0baa\u0bbe\u0baa\u0ba4\u0bbf` among
+them - and roughly 41 ordinary Tamil words: `\u0b85\u0bae\u0bc8\u0bb5\u0bbe\u0ba4\u0bc8` new moon, `\u0b85\u0bb1\u0bbf\u0ba4\u0bc1\u0baf\u0bbf\u0bb2\u0bcd`
+hypnosis, `\u0bb5\u0bbe\u0ba4\u0bc1\u0bae\u0bc8` almond, `\u0baa\u0bb5\u0bb3\u0bae\u0bb2\u0bcd\u0bb2\u0bbf` night jasmine, `\u0ba8\u0bbf\u0b95\u0bb4\u0bcd\u0baa\u0b9f\u0bae\u0bcd` video,
+`\u0baa\u0bc6\u0ba9\u0bbf\u0b9a\u0bbf\u0bb2\u0bbf\u0ba9\u0bcd` penicillin. **That is about 32 percent precision, so the rule
+would remove two ordinary words for every entity it caught.** At `k = 1` the
+bucket is worse in kind rather than better: it is dominated by modern Tamil
+coinages - `\u0b95\u0bc8\u0baa\u0bc7\u0b9a\u0bbf` mobile phone, `\u0bae\u0bbf\u0ba9\u0bcd\u0ba4\u0b9f\u0bc8` power cut, `\u0b89\u0b9f\u0bb2\u0bcd\u0bae\u0bca\u0bb4\u0bbf` body language,
+`\u0ba8\u0bc2\u0bb2\u0bcd\u0ba8\u0bbf\u0bb2\u0bc8\u0baf\u0bae\u0bcd` library - which is precisely the discovery profile this layer
+exists to protect.
+
+### So the source is staged and no rule reads it
+
+No threshold measured is worth shipping, and a rule that deletes real vocabulary
+to remove a name is a worse defect than the name. The title list is therefore
+acquired, registered, fixture-sliced and STAGED - it is a genuine independent
+observer, so it contributes to `breadth` like any other source - and nothing in
+the cascade consults it. A knob nothing reads would be a lie in the config (the
+same reason `classifier.entryAttrs` was deleted in Row 9a), so there is no knob.
+
+What would settle it is a statement about the ENTITY rather than about the
+title: the Wikipedia category graph says which articles are about people, and
+that lives in a different dump. Recorded here as the next thing to try, with the
+measurement above as the baseline it has to beat.
 
 ## Design rationale
 

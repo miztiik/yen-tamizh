@@ -1,1 +1,6 @@
-{"attestations": 1, "frequency": 0, "length": 3, "tier1Attestations": 1, "translationEn": "retriver", "word": "ஞமலி", "wordClass": "headword"}
+{"word": "ஞமலி", "translationEn": "retriver", "frequency": 0, "length": 3, "wordClass": "headword", "attestations": 1, "tier1Attestations": 1}
+{"word": "ஞானம்", "definitionTa": ["ஆழ்ந்த அறிவும் தெளிவும்"], "translationEn": "wisdom", "synonymsTa": ["அறிவு", "தத்துவம்"], "pos": ["noun"], "frequency": 0, "length": 3, "wordClass": "headword", "attestations": 1, "tier1Attestations": 1}
+{"word": "ஞாபகசக்தி", "definitionTa": ["நினைவில் வைத்திருக்கும் திறன்"], "translationEn": "memory power", "pos": ["noun"], "frequency": 0, "length": 6, "wordClass": "headword", "attestations": 1, "tier1Attestations": 1}
+{"word": "ஞாபகம்", "definitionTa": ["மனத்தில் தங்கியிருக்கும் நினைவு"], "translationEn": "memory", "synonymsTa": ["நினைவு"], "pos": ["noun"], "frequency": 0, "length": 4, "wordClass": "headword", "attestations": 1, "tier1Attestations": 1}
+{"word": "ஞாயிறு", "definitionTa": ["வாரத்தின் முதல் நாள்"], "translationEn": "afterglow", "synonymsTa": ["கதிரவன்", "சூரியன்"], "pos": ["noun"], "categories": ["days"], "frequency": 0, "length": 3, "wordClass": "headword", "attestations": 2, "tier1Attestations": 2}
+{"word": "ஞாலம்", "definitionTa": ["உயிர்கள் வாழும் உலகம்"], "translationEn": "world", "pos": ["noun"], "categories": ["space"], "frequency": 0, "length": 3, "wordClass": "headword", "attestations": 1, "tier1Attestations": 1}

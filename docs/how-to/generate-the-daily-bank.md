@@ -1,6 +1,6 @@
 # Generate the daily bank
 
-**Last Updated**: 2026-08-14
+**Last Updated**: 2026-08-17
 
 How today's puzzles get made, and what to do when you need to bake, re-bake, or
 back-fill a day. The generator is the DAILY PUZZLE ENGINE: it consumes a per-Game
@@ -83,6 +83,13 @@ Rewrites the dates in the run even if they already exist. Use it when changing
 published days is the point - a bad word to pull, a payload shape to migrate -
 and never in the cron. Review the resulting diff before committing: every day it
 touches is a day some player may already be playing.
+
+**The line to draw is TODAY, not the last commit.** A day at or before today's
+date is played or in play and is history; a day after it has never been served
+and is safe to rewrite. Row 12a rebaked 2026-08-17 onward - thirteen days -
+because the lexicon underneath them had changed, and left 2026-08-13 through
+2026-08-16 byte-for-byte alone. A test that spans the bank must DERIVE that span
+from disk rather than pin it, or it goes red the night the cron adds a day.
 
 ## Re-running is safe
 

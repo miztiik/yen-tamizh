@@ -1,6 +1,6 @@
 # Rebuild the lexicon
 
-**Last Updated**: 2026-08-16
+**Last Updated**: 2026-08-17
 
 How to run the `wordsmith` pipeline: the whole thing, one stage, or one source.
 Why it is four stages is [../architecture/lexicon/pipeline.md](../architecture/lexicon/pipeline.md);
@@ -111,7 +111,7 @@ python -m yen_tamizh_backend.wordsmith.publish
 
 Writes three things under `datasets/lexicon/`:
 
-- `by-class/<wordClass>/<hex>.ndjson` - one file per (class, first ezhuthu),
+- `by-class/<wordClass>/<hex>.ndjson` - one file per (class, base ezhuthu),
   rows sorted by `word` ASC;
 - `lexicon.meta.json` - the index: provenance, both counter families, one
   `partitions[]` entry per file with its `sha256`, and `ezhuthuIndex` decoding

@@ -17,25 +17,27 @@ census of the WHOLE population, committed beside the files, so the withheld
 classes are on the record at their real size.
 
 **The address is a pure function of the word.** ``wordClass`` is the
-classifier's verdict and the first ezhuthu is the word's own opening letter, so a
+classifier's verdict and the base ezhuthu is the letter the word opens on, so a
 refresh INSERTS a line into a file that already exists and only a changed verdict
 ever moves a row. Nothing here reads a previous artifact to decide where a row
 goes: a clean checkout produces the same layout as a refresh.
 
-**The address is hex, and the hex is zero-padded in 4-digit groups.** That is
-what makes ASCII filename order equal code-point order, so ``ls`` order is row
-order and a file's neighbours in a listing are its neighbours in the sort. Two
-things have to hold for that alignment and both are ASSERTED rather than assumed:
-the key is NFC (a decomposed letter would mint a second file for a letter that
-already has one) and every code point is in the Basic Multilingual Plane (a
-5-digit group would break the padding). Tamil satisfies both everywhere, which is
-exactly why they must be assertions - an invariant nothing checks is a comment.
+**The address is the BASE letter as four hex digits.** A vowel sign or a pulli is
+a combining mark riding on that letter, so ``ka``, ``kaa`` and ``ki`` share one
+file exactly as a dictionary files them under one heading. A base character is
+one code point by construction, which is what makes the key a fixed four digits
+and ASCII filename order equal code-point order - so ``ls`` order is row order.
+The one thing that has to hold for that is that the code point is in the Basic
+Multilingual Plane, and it is ASSERTED rather than assumed: a five-digit group
+would break the padding. Tamil satisfies it everywhere, which is exactly why it
+must be an assertion - an invariant nothing checks is a comment.
 
-**Everything streams.** One ``json.dumps`` per line, written straight from a
-cursor to a handle opened with an EXPLICIT ``newline="\\n"`` - the operator runs
-Windows, where Python's default text mode would turn every line ending into
-CRLF and break the byte-identity Oracle on the very machine that performs the
-real publish. Peak memory is one row.
+**Everything streams.** One ``json.dumps`` per line in the CONTRACT's own field
+order - the word and its meaning first, the counts a gate reads last - written
+straight from a cursor to a handle opened with an EXPLICIT ``newline="\\n"``: the
+operator runs Windows, where Python's default text mode would turn every line
+ending into CRLF and break the byte-identity Oracle on the very machine that
+performs the real publish. Peak memory is one row.
 """
 
 from __future__ import annotations
@@ -44,7 +46,6 @@ import argparse
 import json
 import sqlite3
 import time
-import unicodedata
 from collections.abc import Iterable, Iterator
 from dataclasses import dataclass, field
 from itertools import groupby
@@ -64,8 +65,8 @@ from yen_tamizh_backend.ezhuthu import classify, ezhuthu_roman
 from yen_tamizh_backend.wordsmith.extract import load_registry, sha256_of
 from yen_tamizh_backend.wordsmith.resolve import (
     ResolutionError,
+    base_ezhuthu,
     check_the_closed_vocabularies,
-    first_ezhuthu,
     prepare,
     stream,
 )
@@ -99,7 +100,7 @@ class WrittenPartition:
     path: Path
     relative: str
     wordClass: str
-    firstEzhuthu: str
+    baseEzhuthu: str
     ezhuthu: str
     rows: int
     bytes: int
@@ -142,33 +143,27 @@ def lexicon_root(registry: LexiconSources, repo_root: Path) -> Path:
 
 
 def partition_hex(ezhuthu: str) -> str:
-    """One whole ezhuthu as lowercase 4-digit hex per code point.
+    """One BASE Tamil letter as lowercase 4-digit hex.
 
-    An NFC Tamil letter is a base character plus at most one combining mark, so
-    the key is four or eight digits and the padding keeps filename order equal to
-    code-point order. Both preconditions are checked here, at the boundary where
-    a file is about to be named after the result.
+    A base character is one code point - the vowel sign and the pulli are
+    combining marks that ride on it - so the key is a fixed four digits, and
+    that fixed width is what keeps filename order equal to code-point order.
+    Both preconditions are checked here, at the boundary where a file is about
+    to be named after the result.
     """
-    if unicodedata.normalize("NFC", ezhuthu) != ezhuthu:
+    if len(ezhuthu) != 1:
         raise PublishError(
-            f"the first ezhuthu {ezhuthu!r} is not NFC-normalized, so it would be "
-            f"addressed differently from the same letter written normally and the "
-            f"artifact would carry two files for one letter"
+            f"the address {ezhuthu!r} is {len(ezhuthu)} code points; a base Tamil "
+            f"letter is exactly one, so this surface opens on a mark sequence "
+            f"rather than on a letter"
         )
-    wide = [point for point in ezhuthu if ord(point) > _BMP_CEILING]
-    if wide:
+    if ord(ezhuthu) > _BMP_CEILING:
         raise PublishError(
-            f"the first ezhuthu {ezhuthu!r} holds U+{ord(wide[0]):X}, above the "
-            f"Basic Multilingual Plane - a five-digit group would break the "
+            f"the base letter {ezhuthu!r} is U+{ord(ezhuthu):X}, above the Basic "
+            f"Multilingual Plane - a five-digit group would break the "
             f"zero-padding that makes filename order equal code-point order"
         )
-    if len(ezhuthu) > 2:
-        raise PublishError(
-            f"the first ezhuthu {ezhuthu!r} is {len(ezhuthu)} code points; a "
-            f"normalized Tamil letter is one or two, so this surface carries a "
-            f"mark sequence no letter has"
-        )
-    return "".join(f"{ord(point):04x}" for point in ezhuthu)
+    return f"{ord(ezhuthu):04x}"
 
 
 def partition_path(directory: Path, word_class: str, hex_key: str) -> Path:
@@ -177,13 +172,15 @@ def partition_path(directory: Path, word_class: str, hex_key: str) -> Path:
 
 
 def render(row: LexiconEntry) -> str:
-    """One published line. Sorted keys, no ASCII escaping, no trailing space."""
-    return (
-        json.dumps(
-            row.model_dump(exclude_none=True), ensure_ascii=False, sort_keys=True
-        )
-        + "\n"
-    )
+    """One published line, in the contract's own field order.
+
+    NOT sorted keys. ``model_dump`` returns the fields in declaration order,
+    which is every bit as deterministic as a sort and puts the row in the order
+    a person reads it - the word, then what it means, then the machine columns a
+    selection gate answers from. Sorting opened every row on ``attestations``
+    and buried ``word`` eight fields in.
+    """
+    return json.dumps(row.model_dump(exclude_none=True), ensure_ascii=False) + "\n"
 
 
 def write_rows(handle: TextIO, rows: Iterable[LexiconEntry]) -> int:
@@ -227,7 +224,7 @@ def _write_partition(
         path=path,
         relative=path.relative_to(repo_root).as_posix(),
         wordClass=word_class,
-        firstEzhuthu=hex_key,
+        baseEzhuthu=hex_key,
         ezhuthu=ezhuthu,
         rows=count,
         bytes=size,
@@ -238,14 +235,14 @@ def _write_partition(
 def _write_partitions(
     rows: Iterator[LexiconEntry], directory: Path, repo_root: Path, ceiling: int
 ) -> list[WrittenPartition]:
-    # The stream is ordered by (wordClass, first ezhuthu, word) using the SAME
+    # The stream is ordered by (wordClass, base ezhuthu, word) using the SAME
     # function that names the file, so each address is one contiguous run - which
     # is what lets the writer hold ONE open handle rather than one per file.
     directory.mkdir(parents=True, exist_ok=True)
     return [
         _write_partition(directory, repo_root, word_class, ezhuthu, group, ceiling)
         for (word_class, ezhuthu), group in groupby(
-            rows, key=lambda row: (row.wordClass, first_ezhuthu(row.word))
+            rows, key=lambda row: (row.wordClass, base_ezhuthu(row.word))
         )
     ]
 
@@ -328,7 +325,7 @@ def _provenance(
 
 
 def _ezhuthu_index(written: Iterable[WrittenPartition]) -> dict[str, dict[str, str]]:
-    letters = {cell.firstEzhuthu: cell.ezhuthu for cell in written}
+    letters = {cell.baseEzhuthu: cell.ezhuthu for cell in written}
     index: dict[str, dict[str, str]] = {}
     for hex_key in sorted(letters):
         letter = letters[hex_key]
@@ -373,7 +370,7 @@ def _meta_document(
                 {
                     "path": cell.relative,
                     "wordClass": cell.wordClass,
-                    "firstEzhuthu": cell.firstEzhuthu,
+                    "baseEzhuthu": cell.baseEzhuthu,
                     "rows": cell.rows,
                     "bytes": cell.bytes,
                     "sha256": cell.sha256,
@@ -413,9 +410,10 @@ def render_readme(document: Lexicon) -> str:
         "`python -m yen_tamizh_backend.wordsmith.publish` to refresh it, and see",
         "[`../../docs/how-to/rebuild-the-lexicon.md`](../../docs/how-to/rebuild-the-lexicon.md).",
         "",
-        "One file per (`wordClass`, first ezhuthu). The file name is the letter's",
-        "Unicode code points as lowercase 4-digit hex, so a directory listing is in",
-        "the same order as the rows inside it. The letter itself and its ASCII",
+        "One file per (`wordClass`, base ezhuthu). The file name is the letter's",
+        "Unicode code point as lowercase 4-digit hex, so a directory listing is in",
+        "the same order as the rows inside it. A vowel sign rides on the letter, so",
+        "`ka`, `kaa` and `ki` share one file. The letter itself and its ASCII",
         f"spelling live in [`{META_NAME}`]({META_NAME}) and in the tables below -",
         "as data a correction can edit, never as a path a correction would rename.",
         "",
@@ -457,10 +455,10 @@ def render_readme(document: Lexicon) -> str:
         for cell in document.partitions:
             if cell.wordClass != word_class:
                 continue
-            letter = index[cell.firstEzhuthu]
-            path = f"{BY_CLASS}/{word_class}/{cell.firstEzhuthu}{SUFFIX}"
+            letter = index[cell.baseEzhuthu]
+            path = f"{BY_CLASS}/{word_class}/{cell.baseEzhuthu}{SUFFIX}"
             lines.append(
-                f"| [`{cell.firstEzhuthu}{SUFFIX}`]({path}) | {letter.ezhuthu} | "
+                f"| [`{cell.baseEzhuthu}{SUFFIX}`]({path}) | {letter.ezhuthu} | "
                 f"{letter.roman} | {letter.kind} | {cell.rows:,} |"
             )
     lines.extend(

@@ -30,9 +30,10 @@
     },
     "EzhuthuIndexEntry": {
       "additionalProperties": false,
-      "description": "What one partition's hex key stands for, spelled out for a human.\n\nThis is where the Tamil letter and its ASCII spelling live: as correctable\nDATA in a document a reviewer already opens, never as a path component. A\ncode point is fixed by an external standard, so it can carry an address; a\nromanization is a judgement call, and correcting one must not rename a\npublished file.\n\n``ezhuthu`` is a WHOLE letter, not the base character it is built from - one\ncode point for an uyir or a bare consonant, two once a vowel sign or a pulli\nattaches. ``kind`` classifies that whole letter, so a consonant carrying a\npulli reads ``mei`` and a bare one reads ``uyirmei`` (the inherent /a/).",
+      "description": "What one partition's hex key stands for, spelled out for a human.\n\nThis is where the Tamil letter and its ASCII spelling live: as correctable\nDATA in a document a reviewer already opens, never as a path component. A\ncode point is fixed by an external standard, so it can carry an address; a\nromanization is a judgement call, and correcting one must not rename a\npublished file.\n\n``ezhuthu`` is a BASE letter - the uyir, the consonant or the aytham a word\nopens on, one code point. It is deliberately not the whole opening ezhuthu:\na vowel sign rides on the consonant and does not change which letter the\nword is filed under, exactly as a dictionary files ka, kaa and ki together.\n``kind`` classifies that base letter, so a bare consonant reads ``uyirmei``\n(the inherent /a/).",
       "properties": {
         "ezhuthu": {
+          "maxLength": 1,
           "minLength": 1,
           "title": "Ezhuthu",
           "type": "string"
@@ -122,7 +123,7 @@
     },
     "LexiconEntry": {
       "additionalProperties": false,
-      "description": "One lexicon row: what a consumer of the lexicon reads about one surface.\n\nNot a ``SchemaModel`` - see the module docstring.\n\nEvery sparse column is OPTIONAL and never a defaulted empty list.\n``model_dump(exclude_none=True)`` drops ``None`` but keeps ``[]``, so a\ndefaulted empty list would write an empty pair on every row that lacks the\nfact.\n\nThe row carries facts and counts, not provenance. ``attestedBy`` was a list\nof source slugs on every row and what selection actually gates on is the\nCOUNT, so it is published as one; the three ``*Source`` stamps and\n``compound`` had no reader at all. ``wordhood`` and ``freqRank`` are gone on\nthe same principle they were always going to be omitted under - a derived\ndiagnostic whose verdict (``wordClass``) or whose input (``frequency``) is\nitself published. ``ezhuthu`` is ``segment(word)``, a pure function of a\npublished column, so storing it would mint a drift surface as well as spend\nbytes; ``length`` stays because selection reads it, and it is checked\nagainst the live segmentation on every row.",
+      "description": "One lexicon row: what a consumer of the lexicon reads about one surface.\n\nNot a ``SchemaModel`` - see the module docstring.\n\nEvery sparse column is OPTIONAL and never a defaulted empty list.\n``model_dump(exclude_none=True)`` drops ``None`` but keeps ``[]``, so a\ndefaulted empty list would write an empty pair on every row that lacks the\nfact.\n\nThe row carries facts and counts, not provenance. ``attestedBy`` was a list\nof source slugs on every row and what selection actually gates on is the\nCOUNT, so it is published as one; the three ``*Source`` stamps and\n``compound`` had no reader at all. ``wordhood`` and ``freqRank`` are gone on\nthe same principle they were always going to be omitted under - a derived\ndiagnostic whose verdict (``wordClass``) or whose input (``frequency``) is\nitself published. ``ezhuthu`` is ``segment(word)``, a pure function of a\npublished column, so storing it would mint a drift surface as well as spend\nbytes; ``length`` stays because selection reads it, and it is checked\nagainst the live segmentation on every row.\n\nTHE FIELD ORDER IS THE SERIALIZED ORDER, and that is why it is worth\nreading. ``model_dump`` returns fields in declaration order, so the writer\ndumps this dict as it stands rather than sorting the keys - which is just as\ndeterministic and puts the row in the order a person reads it: the word,\nwhat it MEANS, then the machine columns a selection gate gets its answer\nfrom. Sorted keys opened every row on ``attestations`` and buried ``word``\neight fields in.",
       "properties": {
         "attestations": {
           "minimum": 0,
@@ -148,8 +149,11 @@
         "definitionTa": {
           "anyOf": [
             {
-              "minLength": 1,
-              "type": "string"
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
             },
             {
               "type": "null"
@@ -269,9 +273,9 @@
       },
       "required": [
         "word",
-        "wordClass",
-        "length",
         "frequency",
+        "length",
+        "wordClass",
         "attestations",
         "tier1Attestations"
       ],
@@ -280,17 +284,17 @@
     },
     "LexiconPartition": {
       "additionalProperties": false,
-      "description": "One published NDJSON file, and what it holds.\n\nAddressed by ``wordClass`` then ``firstEzhuthu`` - the word's opening letter\nas the lowercase 4-digit hex of each of its code points. Both keys are\nimmutable per word, so a refresh INSERTS into a file and never reshuffles\none; only a changed ``wordClass`` moves a row, and that is a reviewable\nsemantic event. Hex keeps every path ASCII; ``ezhuthuIndex`` on the meta\ndocument is what maps it back to the letter.",
+      "description": "One published NDJSON file, and what it holds.\n\nAddressed by ``wordClass`` then ``baseEzhuthu`` - the code point of the\nletter the word opens on, as lowercase 4-digit hex. Both keys are immutable\nper word, so a refresh INSERTS into a file and never reshuffles one; only a\nchanged ``wordClass`` moves a row, and that is a reviewable semantic event.\nHex keeps every path ASCII; ``ezhuthuIndex`` on the meta document is what\nmaps it back to the letter.",
       "properties": {
+        "baseEzhuthu": {
+          "pattern": "^[0-9a-f]{4}$",
+          "title": "Baseezhuthu",
+          "type": "string"
+        },
         "bytes": {
           "minimum": 0,
           "title": "Bytes",
           "type": "integer"
-        },
-        "firstEzhuthu": {
-          "pattern": "^(?:[0-9a-f]{4}){1,2}$",
-          "title": "Firstezhuthu",
-          "type": "string"
         },
         "path": {
           "pattern": "^[A-Za-z0-9._-]+(/[A-Za-z0-9._+-]+)*$",
@@ -327,7 +331,7 @@
       "required": [
         "path",
         "wordClass",
-        "firstEzhuthu",
+        "baseEzhuthu",
         "rows",
         "bytes",
         "sha256"

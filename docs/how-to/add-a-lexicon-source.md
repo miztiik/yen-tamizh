@@ -1,6 +1,6 @@
 # How to add a lexicon source
 
-**Last Updated**: 2026-08-16
+**Last Updated**: 2026-08-17
 
 Adding another Tamil dictionary, word list or frequency table is a **data change
 plus a re-run** - a registry entry and a command, never a code rewrite. Only an
@@ -92,10 +92,18 @@ repo-relative `path`, its `bytes` and `sha256`, and a unique `precedence`.
 | `formEvidence` | only that a surface is NOT a headword |
 | `category` | themes; never word-hood |
 | `frequency` | counts; never word-hood |
+| `encyclopedic` | nothing - it observes its surfaces and says a string names an ENTITY somebody wrote an article about |
 
 Get this wrong and a scraper's long tail of typos becomes dictionary Tamil. The
 distinction is [../concepts/lexicon.md](../concepts/lexicon.md)'s observation
 versus attestation, and `role` is where it is declared.
+
+`encyclopedic` is the one role that asserts NOTHING, and the reason it exists
+rather than being folded into `authority` is arithmetic: an authority emits a
+`headword` fact per row, so filing the Tamil Wikipedia's 237,541 article titles
+there would have added one to the `attestations` count Row 12's serving gate
+reads, for every place name in Tamil Nadu. Its claim is about the WORLD rather
+than about the language, so `attestationTier` is forbidden on it too.
 
 ### `precedence` - who wins a single-slot value
 
