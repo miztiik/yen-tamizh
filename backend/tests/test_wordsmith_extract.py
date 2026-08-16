@@ -24,6 +24,7 @@ Four things are proven:
 
 from __future__ import annotations
 
+import csv
 import gc
 import io
 import json
@@ -51,7 +52,7 @@ from yen_tamizh_backend.wordsmith.extract import (
     sha256_of,
 )
 from yen_tamizh_backend.wordsmith.llm_enrich import AUTHORED_SOURCE_ID
-from yen_tamizh_backend.wordsmith.readers import iter_json_array
+from yen_tamizh_backend.wordsmith.readers import iter_delimited_quoted, iter_json_array
 
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 _REGISTRY_PATH = _REPO_ROOT / "config" / "lexicon-sources.json"
@@ -165,6 +166,16 @@ def count_records(source: LexiconSource, path: Path) -> int:
     if source.kind == "delimited":
         lines = [line for line in raw.splitlines() if line.strip()]
         return max(len(lines) - 1, 0) if source.hasHeader else len(lines)
+    if source.kind == "delimited-quoted":
+        # A whole-document parse, which is exactly what the streaming reader is
+        # not allowed to be - and what makes the count independent of it. A
+        # quoted field may hold a newline, so a record is not a line.
+        rows = [
+            row
+            for row in csv.reader(io.StringIO(raw), delimiter=source.delimiter or "\t")
+            if any(field.strip() for field in row)
+        ]
+        return max(len(rows) - 1, 0) if source.hasHeader else len(rows)
     if source.kind == "jsonl":
         return len([line for line in raw.splitlines() if line.strip()])
     if source.kind == "mediawiki-xml":
@@ -187,7 +198,7 @@ def count_records(source: LexiconSource, path: Path) -> int:
 
 
 def test_the_registry_validates_and_carries_the_row_three_stamp() -> None:
-    assert REGISTRY.version == "2026-08-16T18:00"
+    assert REGISTRY.version == "2026-08-16T22:00"
     assert REGISTRY.changelog[0].version == REGISTRY.version
     assert REGISTRY.lexiconRoot == "datasets/lexicon"
     assert REGISTRY.outputs == ["ndjson"]
@@ -524,16 +535,22 @@ def test_the_english_tamil_dictionary_reads_forward_and_sideways(
         encoding="utf-8"
     )
     forward = _facts(text, "translation")
-    sideways = _facts(text, "synonym")
+    sideways = _facts(text, "glossPeer")
     assert forward and sideways
     # Read forward: the row "n. <a>, <b>." gives both Tamil terms the same
-    # English headword. Read sideways: each is the other's synonym.
+    # English headword. Read sideways: each shares that English gloss with the
+    # other - co-membership of a translation list, which is NOT synonymy and so
+    # is never a `synonym` fact.
     first = next(record for record in forward if record["value"] == "A B C")
     peers = {
         record["value"] for record in sideways if record["word"] == first["word"]
     }
     assert peers
     assert first["word"] not in peers
+    assert _facts(text, "synonym") == [], (
+        "a bilingual dictionary read sideways asserts no same-language "
+        "equivalence, so it must produce no synonym fact"
+    )
 
 
 def test_the_synonym_key_is_the_headword_AND_the_part_of_speech(
@@ -565,18 +582,18 @@ def test_the_synonym_key_is_the_headword_AND_the_part_of_speech(
     text = extract_source(entry, registry, tmp_path, force=True).out.read_text(
         encoding="utf-8"
     )
-    assert _facts(text, "synonym") == []
+    assert _facts(text, "glossPeer") == []
     assert {record["value"] for record in _facts(text, "pos")} == {"noun", "verb"}
 
 
 def test_a_group_flush_is_not_credited_to_the_row_that_ended_it(
     tmp_path: Path,
 ) -> None:
-    # The synonym run closes when the English headword CHANGES, so its facts are
-    # emitted while the NEXT row is being read. A row that produces nothing of
-    # its own must still count as a parse reject - measured on the real source,
-    # inferring "did this row produce anything" from the yields under-counted
-    # the rejects by 8 of 15.
+    # The gloss-peer run closes when the English headword CHANGES, so its facts
+    # are emitted while the NEXT row is being read. A row that produces nothing
+    # of its own must still count as a parse reject - measured on the real
+    # source, inferring "did this row produce anything" from the yields
+    # under-counted the rejects by 8 of 15.
     source = next(entry for entry in SOURCES if entry.id == "en-ta-dictionary")
     staged = tmp_path / "sources" / "boundary.json"
     staged.parent.mkdir(parents=True, exist_ok=True)
@@ -602,7 +619,7 @@ def test_a_group_flush_is_not_credited_to_the_row_that_ended_it(
     assert result.tally.rowsIn == 2
     assert result.tally.rowsOut == 1
     assert result.tally.parseRejects == 1
-    assert _facts(result.out.read_text(encoding="utf-8"), "synonym")
+    assert _facts(result.out.read_text(encoding="utf-8"), "glossPeer")
 
 
 def test_the_blanket_category_tag_yields_no_part_of_speech(tmp_path: Path) -> None:
@@ -723,6 +740,291 @@ def test_a_wiktionary_page_that_says_nothing_is_observed_but_not_attested(
 
 
 # --------------------------------------------------------------------------
+# 5b. Row 9b - canonicalization, the gloss clique, and the source's own denial
+# --------------------------------------------------------------------------
+
+# aa (U+0B86), aatu (U+0B86 U+0B9F U+0BC1) and a two-word title.
+_AA = "\u0b86"
+_AATU = "\u0b86\u0b9f\u0bc1"
+
+
+def test_a_mediawiki_title_is_read_in_one_spelling_whichever_the_export_ships(
+    tmp_path: Path,
+) -> None:
+    # The SAME wiki ships underscores in its title list and spaces in its
+    # content dump. Reading them as two strings staged 187,234 multi-word titles
+    # twice for no new Tamil word.
+    source = next(entry for entry in SOURCES if entry.id == "ta-wiktionary-titles")
+    staged = tmp_path / "sources" / "titles.txt"
+    staged.parent.mkdir(parents=True, exist_ok=True)
+    staged.write_text(
+        f"page_title\n{_AA}_{_AATU}\n{_AATU}\n", encoding="utf-8", newline="\n"
+    )
+    digest, size = sha256_of(staged)
+    entry = LexiconSource.model_validate(
+        source.model_dump(exclude_none=True)
+        | {"path": "sources/titles.txt", "sha256": digest, "bytes": size}
+    )
+    registry = LexiconSources.model_validate(
+        REGISTRY.model_dump(exclude_none=True)
+        | {"lexiconRoot": "out", "sources": [entry.model_dump(exclude_none=True)]}
+    )
+    text = extract_source(entry, registry, tmp_path, force=True).out.read_text(
+        encoding="utf-8"
+    )
+    surfaces = {
+        record["surface"]
+        for line in text.splitlines()[1:-1]
+        if (record := json.loads(line)).get("record") == "observation"
+    }
+    assert surfaces == {f"{_AA} {_AATU}", _AATU}
+    assert not any("_" in surface for surface in surfaces)
+
+
+def test_a_bracketed_marker_is_stripped_from_a_tamil_term_and_counted(
+    tmp_path: Path,
+) -> None:
+    # "(pe.) <word>" is a part-of-speech stamp, not part of the word. A term
+    # that is NOTHING but a stamp reduces to nothing and is counted, never
+    # emitted as a surface. The stamp sits on a LATER comma piece here because
+    # that is where the real file carries it: a bracket opening the very first
+    # piece is inside the leading ASCII marker the splitter already removes.
+    source = next(entry for entry in SOURCES if entry.id == "en-ta-dictionary")
+    marker = "\u0baa\u0bc6."  # pe. - the noun stamp
+    staged = tmp_path / "sources" / "brackets.json"
+    staged.parent.mkdir(parents=True, exist_ok=True)
+    staged.write_text(
+        json.dumps(
+            [{"tamil": f"n. {_AATU}, ({marker}) {_AA}, ({marker})", "eng": "one"}]
+        ),
+        encoding="utf-8",
+    )
+    digest, size = sha256_of(staged)
+    entry = LexiconSource.model_validate(
+        source.model_dump(exclude_none=True)
+        | {"path": "sources/brackets.json", "sha256": digest, "bytes": size}
+    )
+    registry = LexiconSources.model_validate(
+        REGISTRY.model_dump(exclude_none=True)
+        | {"lexiconRoot": "out", "sources": [entry.model_dump(exclude_none=True)]}
+    )
+    result = extract_source(entry, registry, tmp_path, force=True)
+    text = result.out.read_text(encoding="utf-8")
+    surfaces = {
+        record["surface"]
+        for line in text.splitlines()[1:-1]
+        if (record := json.loads(line)).get("record") == "observation"
+    }
+    assert surfaces == {_AATU, _AA}
+    assert "parentheticalsStripped=2" in result.extra
+    assert "emptiedByStrip=1" in result.extra
+
+
+def test_an_unbalanced_bracket_is_left_alone(tmp_path: Path) -> None:
+    # A marker the source's own extraction truncated. Guessing where it ended
+    # would invent a word rather than recover one, and the classifier's own
+    # precondition already refuses a surface carrying punctuation.
+    source = next(entry for entry in SOURCES if entry.id == "en-ta-dictionary")
+    staged = tmp_path / "sources" / "unbalanced.json"
+    staged.parent.mkdir(parents=True, exist_ok=True)
+    staged.write_text(
+        json.dumps([{"tamil": f"n. {_AATU}, ({_AA}", "eng": "one"}]), encoding="utf-8"
+    )
+    digest, size = sha256_of(staged)
+    entry = LexiconSource.model_validate(
+        source.model_dump(exclude_none=True)
+        | {"path": "sources/unbalanced.json", "sha256": digest, "bytes": size}
+    )
+    registry = LexiconSources.model_validate(
+        REGISTRY.model_dump(exclude_none=True)
+        | {"lexiconRoot": "out", "sources": [entry.model_dump(exclude_none=True)]}
+    )
+    result = extract_source(entry, registry, tmp_path, force=True)
+    text = result.out.read_text(encoding="utf-8")
+    surfaces = {
+        record["surface"]
+        for line in text.splitlines()[1:-1]
+        if (record := json.loads(line)).get("record") == "observation"
+    }
+    assert surfaces == {_AATU, f"({_AA}"}
+    assert "parentheticalsStripped=0" in result.extra
+
+
+def test_a_rejected_not_a_word_tag_emits_the_source_s_denial(tmp_path: Path) -> None:
+    # The registry routes `character` to reject notAWord, and the contract says
+    # that means the source denied word-hood. Before Row 9b only the pos fact
+    # was suppressed and the headword fact went out anyway, so the pipeline
+    # asserted exactly what the source denied.
+    source = next(entry for entry in SOURCES if entry.id == "wiktextract-ta")
+    staged = tmp_path / "sources" / "letters.jsonl"
+    staged.parent.mkdir(parents=True, exist_ok=True)
+    staged.write_text(
+        json.dumps({"word": _AA, "pos": "character"}, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+    digest, size = sha256_of(staged)
+    entry = LexiconSource.model_validate(
+        source.model_dump(exclude_none=True)
+        | {"path": "sources/letters.jsonl", "sha256": digest, "bytes": size}
+    )
+    registry = LexiconSources.model_validate(
+        REGISTRY.model_dump(exclude_none=True)
+        | {"lexiconRoot": "out", "sources": [entry.model_dump(exclude_none=True)]}
+    )
+    result = extract_source(entry, registry, tmp_path, force=True)
+    text = result.out.read_text(encoding="utf-8")
+    assert [record["value"] for record in _facts(text, "wordClassEvidence")] == [
+        "notAWord"
+    ]
+    assert _facts(text, "pos") == []
+    assert result.tally.posRejected == 1
+
+
+# --------------------------------------------------------------------------
+# 5c. Row 9b - the quoted delimited reader and the synset extractor
+# --------------------------------------------------------------------------
+
+_IWN = next(entry for entry in SOURCES if entry.id == "indowordnet-ta")
+
+
+def _iwn_record(
+    iwn_id: str, category: str, english: str, synset: str, gloss: str, link: str
+) -> str:
+    return "\t".join(
+        (iwn_id, category, "1", category, english, "an english gloss", "h", "hg",
+         synset, gloss, link)
+    )
+
+
+def test_a_quoted_field_may_hold_the_delimiter_a_quote_and_a_newline() -> None:
+    # The property that makes this a separate reader kind rather than a flag.
+    # The plain reader sees four malformed lines here; there are two records.
+    document = (
+        "a\tb\n"
+        'one\t"holds\ta tab, a ""quote"" and\na newline"\n'
+        "two\tplain\n"
+    )
+    rows = list(iter_delimited_quoted(io.StringIO(document), _IWN))
+    assert rows == [
+        ["one", 'holds\ta tab, a "quote" and\na newline'],
+        ["two", "plain"],
+    ]
+    assert len(document.splitlines()) == 4, "the fixture really does span lines"
+
+
+def test_the_quoted_reader_holds_only_the_record_it_is_assembling() -> None:
+    # The same streaming predicate every other reader carries, stated over the
+    # committed fixture: a 10x document must not peak at ten times the 1x one.
+    def peak(path: Path) -> int:
+        # The document is loaded and the handle built OUTSIDE the traced window:
+        # measured from inside, the peak is the document, which is the one thing
+        # a streaming reader is not responsible for.
+        handle = io.StringIO(path.read_text(encoding="utf-8"))
+        gc.collect()
+        tracemalloc.start()
+        for _ in iter_delimited_quoted(handle, _IWN):
+            pass
+        measured = tracemalloc.get_traced_memory()[1]
+        tracemalloc.stop()
+        return measured
+
+    one = peak(fixture_for(_IWN, "1x"))
+    ten = peak(fixture_for(_IWN, "10x"))
+    assert ten <= one * 1.2, f"peak grew from {one} to {ten} with the document"
+
+
+def _iwn_extract(records: list[str], tmp_path: Path) -> str:
+    staged = tmp_path / "sources" / "synsets.tsv"
+    staged.parent.mkdir(parents=True, exist_ok=True)
+    header = "\t".join(
+        (
+            "iwn_id", "iwn_category", "english_id", "english_category",
+            "english_synset_words", "english_gloss", "hindi_synset",
+            "hindi_gloss", "tamil_synset", "tamil_gloss", "type_link",
+        )
+    )
+    staged.write_text(
+        "\n".join([header, *records]) + "\n", encoding="utf-8", newline="\n"
+    )
+    digest, size = sha256_of(staged)
+    entry = LexiconSource.model_validate(
+        _IWN.model_dump(exclude_none=True)
+        | {"path": "sources/synsets.tsv", "sha256": digest, "bytes": size}
+    )
+    registry = LexiconSources.model_validate(
+        REGISTRY.model_dump(exclude_none=True)
+        | {"lexiconRoot": "out", "sources": [entry.model_dump(exclude_none=True)]}
+    )
+    return extract_source(entry, registry, tmp_path, force=True).out.read_text(
+        encoding="utf-8"
+    )
+
+
+def test_a_synset_is_a_sense_scoped_synonym_set(tmp_path: Path) -> None:
+    # The whole reason this source was acquired: the words in one record are
+    # equivalents of each other IN ONE SENSE, asserted by the source, so they
+    # are `synonym` facts rather than the `glossPeer` a translation list gives.
+    text = _iwn_extract(
+        [
+            _iwn_record(
+                "1", "NOUN", "fire", f"{_AATU}, {_AA}", "a tamil gloss||an example",
+                "Direct",
+            )
+        ],
+        tmp_path,
+    )
+    synonyms = {
+        (record["word"], record["value"]) for record in _facts(text, "synonym")
+    }
+    assert synonyms == {(_AATU, _AA), (_AA, _AATU)}
+    assert _facts(text, "glossPeer") == []
+    assert {record["value"] for record in _facts(text, "definitionTa")} == {
+        "a tamil gloss"
+    }
+    assert {record["value"] for record in _facts(text, "pos")} == {"noun"}
+    assert {record["value"] for record in _facts(text, "translation")} == {"fire"}
+
+
+def test_a_hypernym_link_yields_no_translation(tmp_path: Path) -> None:
+    # `type_link` says how the Tamil synset was joined to the Princeton one. On
+    # a hypernym link the English words name a BROADER concept, so publishing
+    # them as the translation would assert an equivalence the source declined
+    # to assert. Everything the source DID assert still lands.
+    text = _iwn_extract(
+        [
+            _iwn_record(
+                "1", "NOUN", "animal", _AATU, "a tamil gloss||an example",
+                "Hypernymy",
+            )
+        ],
+        tmp_path,
+    )
+    assert _facts(text, "translation") == []
+    assert {record["value"] for record in _facts(text, "definitionTa")} == {
+        "a tamil gloss"
+    }
+    assert {record["word"] for record in _facts(text, "headword")} == {_AATU}
+
+
+def test_a_multiword_synset_member_is_read_with_its_space(tmp_path: Path) -> None:
+    # The release writes a multi-word expression with underscores, the Princeton
+    # convention it inherits with the synset ids.
+    text = _iwn_extract(
+        [
+            _iwn_record(
+                "1", "VERB", "run", f"{_AATU}_{_AA}", "a tamil gloss||an example",
+                "Direct",
+            )
+        ],
+        tmp_path,
+    )
+    assert {record["word"] for record in _facts(text, "headword")} == {
+        f"{_AATU} {_AA}"
+    }
+
+
+# --------------------------------------------------------------------------
 # 6. Against the real sources, when they are on disk
 # --------------------------------------------------------------------------
 
@@ -737,3 +1039,19 @@ def test_the_registered_digest_still_describes_the_raw_bytes(
     digest, size = sha256_of(path)
     assert digest == source.sha256
     assert size == source.bytes
+
+
+def test_the_quoted_source_really_does_hold_a_record_that_spans_two_lines() -> None:
+    # The measurement that justifies the reader kind, asserted against the real
+    # bytes: 16,640 logical records over 16,642 physical lines.
+    path = _REPO_ROOT / _IWN.path
+    if not path.exists():
+        pytest.skip(f"{_IWN.path} is gitignored and not on disk")
+    raw = path.read_bytes()
+    with path.open("r", encoding="utf-8", newline="") as handle:
+        records = sum(1 for _ in iter_delimited_quoted(handle, _IWN))
+    assert records == 16639, "records, after the header the registry declares"
+    assert raw.count(b"\n") == 16642
+    assert records + 1 < raw.count(b"\n"), (
+        "a line-splitting reader would see more records than there are"
+    )

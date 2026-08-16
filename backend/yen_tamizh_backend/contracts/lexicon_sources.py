@@ -6,10 +6,16 @@ it supersedes: adding another Tamil source is a DATA change here plus a re-run,
 never a code rewrite. Only an unseen source FORMAT costs code - a reader plus a
 member of ``LexiconSourceKind``.
 
-Four reader families cover every source in the inventory:
+Five reader families cover every source in the inventory:
 
 - ``delimited``     - one record per line (``delimiter``, ``hasHeader``,
   ``wordColumn``, ``countColumn``).
+- ``delimited-quoted`` - the same four knobs, but the record is an RFC-4180
+  FIELD sequence rather than a split line: a field may be quoted, and a quoted
+  field may hold the delimiter, a quote, or a newline. It is a separate kind
+  rather than a flag on ``delimited`` because the two disagree on real bytes -
+  a tab inside a quoted field is one field to this reader and two to the other -
+  and a knob that silently re-reads twelve already-staged sources is not a knob.
 - ``json-array``    - a JSON document holding an array, read with
   ``JSONDecoder.raw_decode`` over a sliding buffer. ``rootKey`` names the key the
   array hangs under, and is ABSENT when the document ROOT is the array itself.
@@ -56,10 +62,28 @@ from yen_tamizh_backend.contracts.lexicon import PartOfSpeech
 
 # The initial mint - see the note on ``LEXICON_VERSION``. The registry file that
 # carries this stamp is written in the row that adds the readers.
-LEXICON_SOURCES_VERSION = "2026-08-16T18:00"
+LEXICON_SOURCES_VERSION = "2026-08-16T22:00"
 LEXICON_SOURCES_CHANGELOG = (
     ChangelogEntry(
         version=LEXICON_SOURCES_VERSION,
+        change=(
+            "Added the delimited-quoted reader kind, and added notAWord to "
+            "WordClassEvidence."
+        ),
+        why=(
+            "Row 9b - IndoWordNet's linked release is a tab-separated file "
+            "whose glosses are RFC-4180 quoted and hold embedded newlines, "
+            "which the line-splitting delimited reader cannot see; and a "
+            "source POS tag routed to reject notAWord is a source DENYING "
+            "word-hood, which is evidence the classifier has to be able to "
+            "read. notAWord is admissible on this deliberately narrow type "
+            "because it is a NEGATIVE: the exclusion of headword exists so a "
+            "config edit cannot let a weak source assert word-hood, and a "
+            "denial asserts none."
+        ),
+    ),
+    ChangelogEntry(
+        version="2026-08-16T18:00",
         change=(
             "Added the mediawiki-xml reader kind and its pageNamespace knob, "
             "required on that kind and forbidden on every other."
@@ -133,7 +157,13 @@ ATTESTING_ROLES: tuple[SourceRole, ...] = ("authority", "authored")
 # draws over the attestation composition, asked one stage earlier.
 AttestationTier = Literal["lexicographic", "enumerative"]
 
-LexiconSourceKind = Literal["delimited", "json-array", "jsonl", "mediawiki-xml"]
+LexiconSourceKind = Literal[
+    "delimited", "delimited-quoted", "json-array", "jsonl", "mediawiki-xml"
+]
+
+# The kinds whose knobs are the delimited four. Stated once, because every
+# branch that asks "is this a delimited file" has to agree with every other.
+DELIMITED_KINDS: tuple[LexiconSourceKind, ...] = ("delimited", "delimited-quoted")
 
 # The self-terminating element grammars: ``{`` and ``"``.
 ElementKind = Literal["object", "string"]
@@ -146,6 +176,14 @@ OutputFormat = Literal["ndjson", "csv", "sqlite"]
 # the classifier's non-verdict, which nothing can be evidence FOR. Both are
 # reachable from ``config/lexicon-sources.json``, so a one-line config edit on
 # the wider type would let a category source assert word-hood.
+#
+# ``notAWord`` IS admissible here, and the asymmetry is the point. What the
+# exclusions above protect is the POSITIVE claim: no config edit may let a weak
+# source say "this is a word". A denial is the opposite claim, and it costs
+# nothing to be wrong in the direction of not serving something. It reaches the
+# store from the one place a source can state it - a POS tag the registry routes
+# to ``reject: notAWord``, which is a lexicographer saying the unit is a script
+# character or a symbol rather than a word (Row 9b).
 WordClassEvidence = Literal[
     "inflected",
     "colloquial",
@@ -154,6 +192,7 @@ WordClassEvidence = Literal[
     "boundStem",
     "sandhiArtifact",
     "suspectedTypo",
+    "notAWord",
 ]
 
 # Why a raw source POS tag yields no ``pos`` fact. Never a silent drop: the tag
@@ -163,6 +202,12 @@ WordClassEvidence = Literal[
 # ``notAWord``           - the source itself says the unit is not a word (a
 #                          script character, a symbol), so extracting a headword
 #                          fact from it would assert what the source denied.
+#                          Since Row 9b the denial is not merely withheld POS:
+#                          it is emitted as ``wordClassEvidence: notAWord`` so
+#                          the classifier can weigh it, because a source saying
+#                          "this is a letter, not a word" is the strongest
+#                          statement anyone in the inventory makes about a bare
+#                          single ezhuthu.
 # ``multiWordUnit``      - a proverb or a phrase attests the PHRASE, not the
 #                          words inside it.
 # ``noTamilCounterpart`` - an English-side label naming a category Tamil does
@@ -313,10 +358,10 @@ class LexiconSource(BaseModel):
                 f"source {self.id!r}: elementKind describes a json-array element "
                 f"and has no meaning for kind {self.kind!r}"
             )
-        if self.kind == "delimited":
+        if self.kind in DELIMITED_KINDS:
             if self.delimiter is None or self.wordColumn is None:
                 raise ValueError(
-                    f"source {self.id!r}: kind 'delimited' needs delimiter + wordColumn"
+                    f"source {self.id!r}: kind {self.kind!r} needs delimiter + wordColumn"
                 )
             stray = self._set_among(_ARRAY_ONLY + _FIELD_MAPPINGS + _MEDIAWIKI_ONLY)
         elif self.kind == "jsonl":
@@ -352,7 +397,7 @@ class LexiconSource(BaseModel):
             stray = self._set_among(
                 _DELIMITED_ONLY + _FIELD_MAPPINGS + _MEDIAWIKI_ONLY
             )
-        if self.kind != "delimited" and self.hasHeader:
+        if self.kind not in DELIMITED_KINDS and self.hasHeader:
             # hasHeader defaults to False, so only a True value is an assertion -
             # and on a JSON kind it is one nothing reads.
             stray.append("hasHeader")

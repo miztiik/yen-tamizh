@@ -44,7 +44,8 @@
               "loanword",
               "boundStem",
               "sandhiArtifact",
-              "suspectedTypo"
+              "suspectedTypo",
+              "notAWord"
             ],
             "type": "string"
           },

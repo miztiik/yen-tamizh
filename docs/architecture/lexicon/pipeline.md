@@ -20,6 +20,7 @@ and nothing else.
 | EXTRACT | `python -m yen_tamizh_backend.wordsmith.extract [--source ID]` | one raw source plus its registry entry | `datasets/lexicon/cache/extracts/<source-id>.jsonl` |
 | STAGE | `... .stage [--source ID] [--remove ID]` | the extracts | the STAGED zone of `datasets/lexicon/cache/lexicon.db` |
 | ENRICH | `... .enrich [--signal NAME] [--classify]` | the STAGED zone | the DERIVED zone: signals and `wordClass` |
+| REVIEW | `... .review` | both zones | `datasets/lexicon/cache/review/*.ndjson` |
 | PUBLISH | `... .publish [--format ...]` | both zones | `datasets/lexicon/*` |
 
 Each stage reads the previous stage's ON-DISK artifact rather than an in-process
@@ -35,8 +36,8 @@ to be recomputable in isolation before it can be replaced or removed in
 isolation, and an addressable per-source extract file is the cheapest way to
 make it so.
 
-EXTRACT, STAGE and ENRICH exist today. PUBLISH documents itself here as it
-lands.
+EXTRACT, STAGE, ENRICH and REVIEW exist today. PUBLISH documents itself here as
+it lands.
 
 ## EXTRACT
 
@@ -48,22 +49,68 @@ difference between them is the whole point of the layer:
   surface, this many times. It says nothing about word-hood.
 - a **fact** is `(word, attr, value, ordinal)` - this source asserted this
   typed thing. The attributes are `headword`, `translation`, `definitionEn`,
-  `definitionTa`, `synonym`, `pos`, `category`, `graphemeCount` and
-  `wordClassEvidence`.
+  `definitionTa`, `synonym`, `glossPeer`, `pos`, `category`, `graphemeCount`
+  and `wordClassEvidence`.
 
 Only a source whose `role` is `authority` or `authored` emits a `headword` fact.
 A frequency list observing a surface a million times still cannot say it is a
 word, and the registry's `role` is what enforces that at the boundary rather
 than three stages later.
 
+### `synonym` and `glossPeer` are different claims
+
+`synonymsTa` publishes a source-ASSERTED same-language equivalence: the
+Wiktionary extract's `synonyms` links, the Tamil Wiktionary's synonym sections,
+an IndoWordNet SYNSET, and an authored row. Three of those four name the
+relation directly and the fourth is a set of words that share one SENSE.
+
+The English-Tamil dictionary asserts no such thing, and the difference is worth
+a second attribute rather than a footnote. Its Tamil column is a translation
+LIST under one English headword, so reading it sideways groups words that share
+an ENGLISH GLOSS - not a meaning. Measured on the real file, `beam` files some
+twenty-five unrelated Tamil terms together, and one word accumulated seventy-one
+"synonyms" that way. The clique is real evidence about meaning and it is the
+largest fact set in the store, so it is kept and named for what it is:
+`glossPeer`.
+
+The distinction is STRUCTURAL rather than a filter at the far end. PUBLISH
+builds `synonymsTa` out of `synonym` facts, so a clique cannot reach the field
+by anyone forgetting an exclusion list, and `llm_enrich` still reads the clique
+as the meaning evidence it genuinely is. Renaming the published FIELD instead -
+`glossTa` - was rejected: a field whose only defence is that it is not lying is
+a field to delete.
+
 ### EXTRACT never filters
 
-Not on word-hood, not on quality, not on length. The only transform is NFC
-normalization, which is canonicalization rather than cleaning. A surface a
-source showed us reaches the store even when it is obviously junk, because the
-lexicon's thesis is that **ingest enriches and selection filters** - and a word
-wrongly excluded should cost a selection knob, not a re-ingest over hundreds of
-megabytes of gitignored bytes.
+Not on word-hood, not on quality, not on length. The only transform is
+CANONICALIZATION, which maps two spellings of one thing onto one spelling and
+loses nothing. There are three, and each belongs to the reader that knows the
+source:
+
+- **NFC**, everywhere, so the ezhuthu segmenter's two spellings of one cluster
+  agree.
+- **MediaWiki title spelling.** MediaWiki stores a title with underscores where
+  the displayed title has spaces, and `[[foo bar]]` and `[[foo_bar]]` are the
+  same page. Which spelling an export ships is a property of the export: the
+  Tamil Wiktionary's title list uses underscores on 187,234 of its 410,074
+  titles and never a space, while the content dump of the SAME wiki uses a space
+  and never an underscore. Reading them as different strings staged every
+  multi-word title twice and grew the store by 187,234 surfaces carrying no
+  Tamil word that was not already there. Measured over the whole title list the
+  mapping is a bijection - 410,074 distinct before and after - so it merges no
+  title into another.
+- **A bilingual dictionary's bracketed apparatus.** The English-Tamil
+  dictionary annotates its Tamil side with a part-of-speech or register stamp in
+  brackets - 10,079 occurrences over 183 distinct markers - and the bracket is
+  the lexicographer's apparatus rather than part of the word. Only a BALANCED
+  group is removed; an unmatched bracket is a marker the source's own extraction
+  truncated, and guessing where it ended would invent a word rather than recover
+  one. Both counts are printed by every run.
+
+A surface a source showed us reaches the store even when it is obviously junk,
+because the lexicon's thesis is that **ingest enriches and selection filters** -
+and a word wrongly excluded should cost a selection knob, not a re-ingest over
+hundreds of megabytes of gitignored bytes.
 
 The one thing EXTRACT does refuse is a record it cannot parse at all - a line
 with no column where the word should be, an element whose word field is not a
@@ -89,6 +136,15 @@ source file. Delimited sources are read a line at a time, JSONL a line at a
 time, a JSON array one element at a time through the standard library's own
 incremental entry point, `JSONDecoder.raw_decode`, over a sliding buffer, and a
 MediaWiki export one page at a time through expat's handler interface.
+
+A QUOTED delimited file is read a RECORD at a time through the standard
+library's `csv` module, which is a separate reader kind rather than a flag,
+because the two disagree on real bytes. In an RFC-4180 file a quoted field may
+hold the delimiter, a doubled quote, or a newline, so a logical record is not a
+physical line: three of IndoWordNet's 16,640 records span two lines each, and a
+line-splitting reader turns those two records into four malformed rows. Making
+it a flag on the existing kind would also silently re-read the twelve delimited
+sources already staged.
 
 The MediaWiki reader is the one place where a tree builder was refused rather
 than simply not used. `ElementTree` materializes every page it is handed, and an
@@ -329,6 +385,44 @@ misspelled id would produce a column of zeros - which reads exactly like a
 signal that honestly found nothing - so ENRICH checks every configured id
 against the store's `source` table and refuses to run rather than reporting a
 silent all-negative. Fail fast at the boundary.
+
+## REVIEW
+
+ENRICH's verdicts live in a two-gigabyte gitignored SQLite file. That is the
+right home for them and a useless one for a person: nobody opens a store to find
+out why a word was refused, or how much work an enrichment pass still has in
+front of it. REVIEW writes that state out beside the store, under
+`datasets/lexicon/cache/review/`, one JSON object per line so a shell, an editor
+and a diff all read it. The directory is inside the gitignored build cache, so
+the files are visible to whoever ran the pipeline and are never committed.
+
+| File | Answers | Carries |
+| --- | --- | --- |
+| `unclassified.ndjson` | which surfaces reached no verdict | all eight signals, so the residue can be sorted rather than counted |
+| `not-a-word.ndjson` | which surfaces were refused, and by WHICH clause | `nonTamil`, `tooLong`, `repeatedEzhuthu`, `empty`, or `sourceDenied` |
+| `enrichment-queue.ndjson` | which unclassified surfaces a tier-1 source already describes | the meanings, synonyms and translations it would work FROM |
+| `headwords-without-a-meaning.ndjson` | which SERVABLE surfaces carry no Tamil definition | the translation, synonym, part of speech or gloss peers an authoring pass would work FROM |
+
+**The enrichment queue is EMPTY over a current derived zone, and that is the
+result rather than a broken query.** A tier-1 source that describes a surface
+also attests it; an attested surface has an ENTRY; and an entry always reaches a
+verdict, because the headword gate either admits it or one of the phase-3 arms
+names why not. So the intersection is empty by construction. A row in that file
+means one of two things, and both are worth knowing: a source described
+something it did not list, or the derived zone is STALE. The 13,500-row version
+of this set that Row 4b reported was the second case - it was measured after the
+Tamil Wiktionary content was staged and before ENRICH had run again.
+
+The queue that is actually left is the fourth file. Those surfaces passed the
+word-hood gate and would still fail a meaning gate, so they are words the game
+can select and cannot explain - which is the size of the authoring work, and a
+different question from what the classifier could not place.
+
+REVIEW writes nothing back. It is a REPORT over the derived zone, so re-running
+it over an unchanged store rewrites the same bytes and a review dump can never
+change a verdict. The refusal reason is computed by the CLASSIFIER's own
+function rather than re-derived here, so a reviewed reason cannot disagree with
+a published verdict.
 
 ## Design rationale
 

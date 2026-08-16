@@ -140,6 +140,7 @@
         "kind": {
           "enum": [
             "delimited",
+            "delimited-quoted",
             "json-array",
             "jsonl",
             "mediawiki-xml"
@@ -351,7 +352,8 @@
                   "loanword",
                   "boundStem",
                   "sandhiArtifact",
-                  "suspectedTypo"
+                  "suspectedTypo",
+                  "notAWord"
                 ],
                 "type": "string"
               },

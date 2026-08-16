@@ -217,6 +217,29 @@ _CATEGORY_LINK = re.compile(
 )
 
 
+def page_title(raw: str) -> str:
+    """One MediaWiki page title, in the spelling the wiki itself calls canonical.
+
+    MediaWiki stores a title with underscores where the displayed title has
+    spaces, and the two are the SAME page - ``[[foo bar]]`` and ``[[foo_bar]]``
+    resolve identically. Which spelling an export ships is a property of the
+    export, not of the page: the Tamil Wiktionary's title list uses underscores
+    on 187,234 of its 410,074 titles and never a space, while the content dump
+    of the same wiki uses a space and never an underscore.
+
+    Reading them as different strings staged every multi-word title TWICE and
+    grew the store by 187,234 surfaces carrying no Tamil word that was not
+    already there. So both readers canonicalize here, and this is the only place
+    that knows the convention.
+
+    It is canonicalization rather than filtering, on exactly the footing NFC is:
+    it maps two spellings of one thing onto one spelling, and it loses nothing.
+    Measured over the whole title list it is a bijection - 410,074 distinct
+    before, 410,074 distinct after - so no title is merged into another.
+    """
+    return _WHITESPACE.sub(" ", raw.replace("_", " ")).strip()
+
+
 @dataclass(slots=True)
 class PageFacts:
     """What one page asserts about its own title, plus what was not readable.

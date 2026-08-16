@@ -21,6 +21,7 @@ reasoning is in ``docs/architecture/lexicon/pipeline.md``.
 
 from __future__ import annotations
 
+import csv
 import json
 import re
 from collections.abc import Iterator
@@ -59,6 +60,39 @@ def iter_delimited(handle: TextIO, source: LexiconSource) -> Iterator[list[str]]
         if not stripped:
             continue
         yield stripped.split(source.delimiter)
+
+
+def iter_delimited_quoted(
+    handle: TextIO, source: LexiconSource
+) -> Iterator[list[str]]:
+    """Yield one RFC-4180 FIELD sequence at a time.
+
+    The difference from ``iter_delimited`` is visible in real bytes rather than
+    in taste: a quoted field may hold the delimiter, a doubled quote, or a
+    NEWLINE, so a logical record is not a physical line. IndoWordNet's linked
+    release has three records whose gloss spans two lines, and splitting those
+    lines gives four field sequences of the wrong width instead of two records.
+
+    ``csv.reader`` is the standard library's own incremental entry point and it
+    streams: it pulls from the handle's line iterator and never holds more than
+    the record being assembled. No quoting grammar is written here (Holy Law
+    #8).
+
+    A blank record is skipped for the same reason a blank line is above, and a
+    short record is yielded rather than judged - deciding what a short record
+    means is extraction's job.
+    """
+    if source.delimiter is None:
+        raise ValueError(
+            f"source {source.id!r}: kind 'delimited-quoted' needs a delimiter"
+        )
+    rows = csv.reader(handle, delimiter=source.delimiter)
+    if source.hasHeader:
+        next(rows, None)
+    for row in rows:
+        if not any(field.strip() for field in row):
+            continue
+        yield row
 
 
 def iter_jsonl(handle: TextIO, source: LexiconSource) -> Iterator[Any]:
@@ -256,6 +290,8 @@ def read_elements(
     """Stream one source's elements through the reader its ``kind`` names."""
     if source.kind == "delimited":
         yield from iter_delimited(handle, source)
+    elif source.kind == "delimited-quoted":
+        yield from iter_delimited_quoted(handle, source)
     elif source.kind == "jsonl":
         yield from iter_jsonl(handle, source)
     elif source.kind == "mediawiki-xml":

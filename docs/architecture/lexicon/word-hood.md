@@ -479,11 +479,51 @@ When two sources assert different classes, `evidencePriority` in config decides,
 and it is validated to rank every value exactly once - a partial ranking would
 leave an assertion with no defined winner and the verdict would then depend on
 the order SQLite returned the facts in. It is ordered by how specific and how
-irreversible the claim is: `properNoun`, then the three that say the string is
-not a whole word, then the two register claims, then `inflected`, which says
-only that this is a form of something else. Over the real store just five
-surfaces carry more than one distinct evidence value, so the ranking is a
-correctness property rather than a frequently-exercised path.
+irreversible the claim is: `notAWord` first, then `properNoun`, then the three
+that say the string is not a whole word, then the two register claims, then
+`inflected`, which says only that this is a form of something else. Over the
+real store just five surfaces carry more than one distinct evidence value, so
+the ranking is a correctness property rather than a frequently-exercised path.
+
+#### The `notAWord` veto - when a source says the unit is a LETTER
+
+`notAWord` is the one evidence value that is a DENIAL rather than a description,
+and it is ranked first because it answers a different question from every other
+value: not what KIND of word this is, but whether it is a word at all.
+
+It reaches the store from the one place a source can state it. The registry
+routes a raw part-of-speech tag to a `reject` reason, and one of those reasons
+is `notAWord` - "the source itself says the unit is not a word (a script
+character, a symbol), so extracting a headword fact from it would assert what
+the source denied". That sentence was in the contract from Row 3 and the code
+did not implement it: EXTRACT suppressed only the `pos` fact, and the `headword`
+fact went out regardless. The pipeline asserted exactly what the source denied,
+and the visible consequence was that the letter `அ` - the first letter of the
+Tamil alphabet - published as a headword with a meaning attached.
+
+So the rejection now emits `wordClassEvidence: notAWord`, and the denial vetoes
+every other source's bare `headword` listing. Another authority merely LISTING
+the same single letter is not an answer to the dictionary that looked at it and
+called it a character.
+
+**The word ONLY is load-bearing.** The denial stands only when it is everything
+that source said about the surface. The Wiktionary extract files the vowel `ஆ`
+as a character in one row and as a noun in another, and the noun has to win -
+so a `notAWord` row is dropped when the SAME source also asserted a part of
+speech for the SAME word. Asking per SOURCE rather than per store is what makes
+that possible while leaving the cross-source veto intact: one source's denial is
+not answered by another source's bare listing, and that is the case the veto
+exists for.
+
+The test is applied in the derived zone, not at extraction. EXTRACT records what
+a row SAID; whether a denial stands is a judgement over everything the source
+said, which is the same division of labour that puts `attestationTier` in the
+registry and reads it at classification time.
+
+**It is not a length rule, and it must not become one.** `நீ`, `தீ`, `பூ` and
+`வா` are all one-ezhuthu Tamil words. What removes `அ` is a lexicographer's
+verdict about `அ`, and the only surfaces affected are the ones a source
+explicitly refused.
 
 ### Phase 2 - the headword gate, which must be EARNED
 

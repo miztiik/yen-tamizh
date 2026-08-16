@@ -30,7 +30,7 @@ import shutil
 import sqlite3
 from dataclasses import dataclass, replace
 from pathlib import Path
-from typing import Any
+from typing import Any, get_args
 
 import pytest
 from pydantic import ValidationError
@@ -41,11 +41,12 @@ from yen_tamizh_backend.contracts.lexicon_sources import (
     ATTESTING_ROLES,
     LexiconSource,
     LexiconSources,
+    WordClassEvidence,
 )
 from yen_tamizh_backend.contracts.wordhood import Wordhood
 from yen_tamizh_backend.wordsmith.enrich import enrich, load_config, reclassify
 from yen_tamizh_backend.wordsmith.extract import extract, load_registry, sha256_of
-from yen_tamizh_backend.wordsmith.signals_exact import orthotactic_score
+from yen_tamizh_backend.wordsmith.signals_exact import SignalContext, orthotactic_score
 from yen_tamizh_backend.wordsmith.stage import stage
 from yen_tamizh_backend.wordsmith.store import (
     SIGNAL_COLUMNS,
@@ -55,6 +56,7 @@ from yen_tamizh_backend.wordsmith.store import (
     stage_epoch,
 )
 from yen_tamizh_backend.wordsmith.wordhood import (
+    EVIDENCE_TABLE,
     SIGNAL_ARGUMENTS,
     WORD_CLASSES,
     Surface,
@@ -64,6 +66,7 @@ from yen_tamizh_backend.wordsmith.wordhood import (
     distribution,
     is_discovery,
     parse_evidence,
+    prepare_evidence,
     tally,
     tier_one_sources,
 )
@@ -77,6 +80,10 @@ _EXPECTED = _REPO_ROOT / "datasets" / "fixtures" / "wordhood_expected.jsonl"
 
 REGISTRY = load_registry(_REGISTRY_PATH)
 CONFIG = load_config(_CONFIG_PATH)
+
+# The vocabulary a SOURCE may assert, taken from the contract rather than
+# restated. Deliberately narrower than ``WordClass``.
+EVIDENCE_CLASSES: tuple[WordClassEvidence, ...] = get_args(WordClassEvidence)
 
 # The classes Row 12 must never see wearing a headword's badge. A surface in any
 # of them is not a word a player can be asked to produce, and the served set is
@@ -465,6 +472,110 @@ def test_not_a_word_is_a_confident_negative_and_unclassified_an_absent_one() -> 
     )
     assert classify_surface(junk, CONFIG) == "notAWord"
     assert classify_surface(unknown, CONFIG) == "unclassified"
+
+
+# --------------------------------------------------------------------------
+# Row 9b - the notAWord veto: when a source says the unit is a LETTER
+# --------------------------------------------------------------------------
+
+# a (U+0B85) - the first letter of the Tamil alphabet, and the surface this
+# veto exists to remove. Its SHAPE breaks no rule, so no threshold can refuse
+# it; only a lexicographer's verdict can.
+_LETTER_A = "\u0b85"
+
+
+def test_a_source_s_denial_beats_the_headword_gate() -> None:
+    # Every clause of the gate passes - the letter is a clean, entered, wholly
+    # Tamil one-ezhuthu surface - and it is still not a word, because a
+    # dictionary looked at it and said so.
+    listed = replace(_PLAIN, word=_LETTER_A, entry=True, evidence=())
+    assert classify_surface(listed, CONFIG) == "headword"
+    denied = replace(listed, evidence=("notAWord",))
+    assert classify_surface(denied, CONFIG) == "notAWord"
+
+
+def test_a_denial_outranks_every_other_thing_a_source_could_say() -> None:
+    # It answers a different question from the rest of the vocabulary: not what
+    # KIND of word this is, but whether it is one. So it is ranked first, and
+    # the ranking is what makes the verdict independent of fact order.
+    assert CONFIG.classifier.evidencePriority[0] == "notAWord"
+    for other in CONFIG.classifier.evidencePriority[1:]:
+        both = replace(_PLAIN, word=_LETTER_A, evidence=("notAWord", other))
+        reversed_order = replace(both, evidence=(other, "notAWord"))
+        assert classify_surface(both, CONFIG) == "notAWord"
+        assert classify_surface(reversed_order, CONFIG) == "notAWord"
+
+
+def test_the_veto_is_not_a_length_rule() -> None:
+    # nii, thii, puu, vaa - four ordinary one-ezhuthu Tamil words. Nothing about
+    # being short refuses a surface; only a source's own verdict does.
+    for word in ("\u0ba8\u0bc0", "\u0ba4\u0bc0", "\u0baa\u0bc2", "\u0bb5\u0bbe"):
+        short = replace(_PLAIN, word=word, entry=True, evidence=())
+        assert classify_surface(short, CONFIG) == "headword", word
+
+
+def test_a_denial_is_a_negative_and_can_never_assert_word_hood() -> None:
+    # The evidence vocabulary is deliberately narrower than WordClass so a
+    # config edit cannot let a weak source assert word-hood. notAWord is
+    # admissible on it precisely because it asserts none.
+    assert "notAWord" in EVIDENCE_CLASSES
+    assert "headword" not in EVIDENCE_CLASSES
+    assert "unclassified" not in EVIDENCE_CLASSES
+
+
+def _evidence_over(rows: list[tuple[str, str, str, str]], db: Path) -> dict[str, str]:
+    """Run the real evidence collector over a store holding exactly ``rows``."""
+    conn = open_store(db)
+    try:
+        conn.executemany(
+            "INSERT INTO fact (source_id, word, attr, value, ordinal) "
+            "VALUES (?, ?, ?, ?, 0)",
+            rows,
+        )
+        prepare_evidence(SignalContext(conn=conn, registry=REGISTRY, config=CONFIG))
+        return {
+            str(word): str(values)
+            for word, values in conn.execute(
+                f"SELECT word, evidence FROM {EVIDENCE_TABLE} ORDER BY word"
+            )
+        }
+    finally:
+        conn.close()
+
+
+def test_a_denial_stands_only_when_it_is_all_that_source_said(tmp_path: Path) -> None:
+    # The Wiktionary extract files the vowel AA as a character in one row and as
+    # a noun in another. The noun has to win, so a denial is dropped when the
+    # SAME source also gave the SAME word a part of speech.
+    letter = _LETTER_A
+    both = "\u0b86"
+    collected = _evidence_over(
+        [
+            ("wiktextract-ta", letter, "wordClassEvidence", "notAWord"),
+            ("wiktextract-ta", both, "wordClassEvidence", "notAWord"),
+            ("wiktextract-ta", both, "pos", "noun"),
+        ],
+        tmp_path / "denial.db",
+    )
+    assert collected == {letter: "notAWord"}
+
+
+def test_one_source_s_denial_is_not_answered_by_another_source_s_listing(
+    tmp_path: Path,
+) -> None:
+    # Asking per SOURCE is what keeps the cross-source veto: a bare word list
+    # carrying the same letter says nothing about it, and a describing fact from
+    # a DIFFERENT source is not the denying source changing its mind.
+    letter = _LETTER_A
+    collected = _evidence_over(
+        [
+            ("wiktextract-ta", letter, "wordClassEvidence", "notAWord"),
+            ("ta-wiktionary-content", letter, "pos", "noun"),
+            ("spellcheck-wordlist", letter, "headword", letter),
+        ],
+        tmp_path / "cross.db",
+    )
+    assert collected == {letter: "notAWord"}
 
 
 # --------------------------------------------------------------------------

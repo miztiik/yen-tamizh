@@ -23,7 +23,9 @@ Four things are proven:
 
 from __future__ import annotations
 
+import csv
 import hashlib
+import io
 import json
 import re
 from pathlib import Path
@@ -42,6 +44,14 @@ _NOT_ACQUIRED = "NOT ACQUIRED"
 _ABSENT = "-"
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
 _LINE_FORMATS = frozenset({".csv", ".txt", ".jsonl"})
+# The quoted TSV's record is a LOGICAL row: a quoted field may hold a newline,
+# so three of its records span two physical lines each. Counting lines would
+# make the 10:1 fixture ratio measure the wrong thing.
+_QUOTED_FORMAT = ".tsv"
+# Every format whose fixture must be a PURE PREFIX - no closing bytes appended,
+# because a truncated record is simply one record fewer rather than a document
+# that no longer parses.
+_PREFIX_FORMATS = _LINE_FORMATS | {_QUOTED_FORMAT}
 # A MediaWiki export's record is a page in the namespace the registry declares,
 # not a physical page: an export interleaves articles with talk, template and
 # project pages. Counted here from the bytes, independently of the reader.
@@ -99,6 +109,8 @@ ACQUIRED = [row for row in LEDGER if row.acquired]
 def _count_records(data: bytes, suffix: str) -> int:
     if suffix in _LINE_FORMATS:
         return data.count(b"\n") + (0 if data.endswith(b"\n") else 1)
+    if suffix == _QUOTED_FORMAT:
+        return sum(1 for _ in csv.reader(io.StringIO(data.decode("utf-8")), delimiter="\t"))
     if suffix == ".xml":
         return data.count(_MEDIAWIKI_RECORD)
     document: Any = json.loads(data.decode("utf-8"))
@@ -145,8 +157,8 @@ def test_every_ledger_row_is_complete_or_explicitly_not_acquired(row: LedgerRow)
 def test_the_ledger_covers_every_inventory_group() -> None:
     groups = {row.number[0] for row in LEDGER}
     assert groups == {"A", "B", "C", "D", "E"}, "group F must not be acquired"
-    assert len(LEDGER) == 22
-    assert len({row.id for row in LEDGER}) == 22
+    assert len(LEDGER) == 23
+    assert len({row.id for row in LEDGER}) == 23
 
 
 @pytest.mark.parametrize("row", ACQUIRED, ids=lambda row: row.number)
@@ -179,7 +191,7 @@ def test_the_one_x_fixture_is_a_byte_exact_slice_of_the_ten_x(row: LedgerRow) ->
     ten = row.fixture("10x").read_bytes()
     head, tail = _decompose(one, ten)
     assert head > 0
-    if row.suffix in _LINE_FORMATS:
+    if row.suffix in _PREFIX_FORMATS:
         assert tail == 0, f"{row.id}: a line fixture must be a pure prefix"
 
 

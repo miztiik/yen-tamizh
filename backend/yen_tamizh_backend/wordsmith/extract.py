@@ -30,6 +30,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import unicodedata
 from collections.abc import Iterator, Sequence
 from dataclasses import dataclass, field
@@ -44,23 +45,34 @@ from yen_tamizh_backend.wordsmith.llm_enrich import (
     themes_of,
 )
 from yen_tamizh_backend.wordsmith.readers import DEFAULT_CHUNK, read_elements
-from yen_tamizh_backend.wordsmith.wikitext import parse_page
+from yen_tamizh_backend.wordsmith.wikitext import page_title, parse_page
 
 # Bumped whenever this module would produce different bytes from the same input.
 # It sits in every extract's header line beside the source digest, so the skip
 # check answers "is this cache still current?" rather than merely "does a file
 # exist?".
-EXTRACTOR_VERSION = "2026-08-16"
+EXTRACTOR_VERSION = "2026-08-16T22:00"
 
-# The typed facts a source can assert about a surface. ``definitionTa`` has no
-# producer on disk - no acquired source carries one - and is named here because
-# ``llm_enrich`` writes it later through the same channel.
+# The typed facts a source can assert about a surface.
+#
+# ``glossPeer`` is the one that is NOT a claim the source wrote down. It records
+# that two Tamil terms were filed under one English headword and part of speech
+# by a bilingual dictionary - co-membership of a translation list, which is
+# evidence about meaning and is emphatically not synonymy. It is a separate
+# attribute from ``synonym`` because the published ``synonymsTa`` field carries
+# a source-ASSERTED same-language equivalence, and a clique read sideways out of
+# a gloss list is not one: read that way ``beam`` yields some twenty-five
+# unrelated Tamil terms and one word collected seventy-one "synonyms". Keeping
+# it as its own attribute is what lets PUBLISH build ``synonymsTa`` from the
+# asserted relation alone while ``llm_enrich`` still reads the clique as the
+# meaning evidence it genuinely is.
 FactKind = Literal[
     "headword",
     "translation",
     "definitionEn",
     "definitionTa",
     "synonym",
+    "glossPeer",
     "pos",
     "category",
     "graphemeCount",
@@ -87,6 +99,9 @@ _A2_POS_SPELLINGS: tuple[tuple[str, str], ...] = (
     ("a.", "a"),
     ("v.", "v"),
 )
+
+# A2's bracketed apparatus: a balanced group with nothing nested inside it.
+_A2_PARENTHETICAL = re.compile(r"\([^()]*\)")
 
 _HASH_CHUNK = 1 << 16
 
@@ -204,6 +219,19 @@ def _route_pos(
         )
     if alias.reject is not None:
         tally.posRejected += 1
+        if alias.reject == "notAWord":
+            # The one rejection that is itself a statement about the surface.
+            # "This unit is a script character, not a word" is a lexicographer
+            # DENYING word-hood, and withholding only the pos fact threw that
+            # denial away while the headword fact went out regardless - so the
+            # pipeline asserted what the source denied. It is emitted as
+            # evidence rather than acted on here because EXTRACT records what a
+            # row said; whether the denial stands is the classifier's judgement,
+            # and it turns on whether the SAME source said anything else about
+            # the surface (Row 9b).
+            yield Fact(
+                word=word, attr="wordClassEvidence", value="notAWord", ordinal=0
+            )
         return
     for ordinal, part in enumerate(alias.pos or ()):
         yield Fact(word=word, attr="pos", value=part, ordinal=ordinal)
@@ -417,10 +445,14 @@ class _EnTaDictionaryExtractor(SourceExtractor):
     """A2: one English headword, one part of speech, several Tamil terms.
 
     Read FORWARD each Tamil term translates to the row's English headword. Read
-    SIDEWAYS the terms filed under one (English headword, part of speech) are
-    equivalents of each other - a synonym set. The part of speech is half the
-    key: without it a noun sense and a verb sense of the same English word
-    collapse into one set.
+    SIDEWAYS the terms filed under one (English headword, part of speech) share
+    an English gloss - which is evidence about MEANING and is not synonymy. They
+    land as ``glossPeer``, never as ``synonym``: this is a bilingual
+    dictionary's translation list, so ``beam`` files some twenty-five unrelated
+    Tamil terms together and reading that as an equivalence relation put
+    seventy-one "synonyms" on one word. The part of speech is still half the
+    grouping key - without it a noun sense and a verb sense of the same English
+    word collapse into one list.
 
     The grouping is a RUN over the source's own sort order, not a whole-file
     index. Measured on all 56,856 rows: 54,928 distinct English headwords in
@@ -433,6 +465,8 @@ class _EnTaDictionaryExtractor(SourceExtractor):
         super().__init__(source, registry)
         self._english: str | None = None
         self._groups: dict[str | None, list[str]] = {}
+        self._stripped = 0
+        self._emptied = 0
 
     def feed(self, element: Any, tally: Tally) -> Iterator[Emission]:
         if not isinstance(element, dict):
@@ -446,7 +480,16 @@ class _EnTaDictionaryExtractor(SourceExtractor):
         if english != self._english:
             yield from self._close_run()
             self._english = english
-        tag, terms = _split_a2_entry(tamil)
+        tag, raw_terms = _split_a2_entry(tamil)
+        terms: list[str] = []
+        for raw in raw_terms:
+            term = _strip_parentheticals(raw)
+            if term != raw:
+                self._stripped += 1
+            if not term:
+                self._emptied += 1
+                continue
+            terms.append(term)
         if not terms:
             tally.parseRejects += 1
             return
@@ -476,9 +519,41 @@ class _EnTaDictionaryExtractor(SourceExtractor):
                 peers = [peer for peer in ordered if peer != term]
                 for position, peer in enumerate(peers):
                     yield Fact(
-                        word=term, attr="synonym", value=peer, ordinal=position
+                        word=term, attr="glossPeer", value=peer, ordinal=position
                     )
         self._groups = {}
+
+    def extra_note(self) -> str:
+        return (
+            f"parentheticalsStripped={self._stripped} "
+            f"emptiedByStrip={self._emptied}"
+        )
+
+
+def _strip_parentheticals(term: str) -> str:
+    """Drop the bracketed markers A2 writes inside a Tamil term.
+
+    The English-Tamil dictionary annotates its Tamil side in brackets: a part of
+    speech or register stamp before the term - measured 10,079 occurrences over
+    183 distinct markers, led by noun, verb, adjective and adverb - and
+    occasionally a sense qualifier after it. The bracket and its contents are
+    the lexicographer's apparatus, not part of the word, and leaving them in put
+    the whole stamp into the store as a surface and into every gloss peer list
+    as a value.
+
+    Only a BALANCED group is removed. An unmatched bracket - 3,108 occurrences -
+    is a different defect, a marker truncated by the source's own extraction,
+    and guessing where it ended would invent a word rather than recover one;
+    those surfaces carry punctuation, so the classifier's own precondition
+    already refuses them.
+
+    A term that is nothing but a marker reduces to the empty string and is
+    counted, never emitted: measured at 9 occurrences.
+    """
+    stripped = _A2_PARENTHETICAL.sub(" ", term)
+    if stripped == term:
+        return term
+    return normalize(" ".join(stripped.split()))
 
 
 def _split_a2_entry(tamil: str) -> tuple[str | None, list[str]]:
@@ -557,6 +632,19 @@ class _AuthoredEntriesExtractor(SourceExtractor):
             )
 
 
+class _TaWiktionaryTitlesExtractor(SourceExtractor):
+    """A8: the Tamil Wiktionary's main-namespace title list.
+
+    A bare listing in every respect but one - the export writes the title in
+    MediaWiki's stored spelling, with underscores where the page's displayed
+    title has spaces. ``wikitext.page_title`` maps that onto the spelling the
+    content dump of the same wiki uses, so one page is one surface.
+    """
+
+    def _surface(self, element: Any) -> str:
+        return page_title(super()._surface(element))
+
+
 class _TaWiktionaryContentExtractor(SourceExtractor):
     """A8b: the Tamil Wiktionary itself - Tamil senses, synonyms, POS, glosses.
 
@@ -583,7 +671,7 @@ class _TaWiktionaryContentExtractor(SourceExtractor):
         if not isinstance(element, dict):
             tally.parseRejects += 1
             return
-        word = normalize(str(element.get("title", "")))
+        word = page_title(normalize(str(element.get("title", ""))))
         if not word:
             tally.parseRejects += 1
             return
@@ -613,12 +701,120 @@ class _TaWiktionaryContentExtractor(SourceExtractor):
         return f"unreadableLines={self._skipped} pagesWithoutFacts={self._silent}"
 
 
+class _IndoWordNetExtractor(SourceExtractor):
+    """A10: IndoWordNet's Tamil synsets, linked to Princeton WordNet.
+
+    One record is one SYNSET - a concept - and its Tamil column holds every
+    Tamil word that expresses that concept. That makes it the only source in the
+    inventory whose synonymy is SENSE-SCOPED: the terms are equivalents of each
+    other IN THIS SENSE, asserted by the source, rather than inferred from
+    co-membership of a bilingual gloss list. It is the corroborating producer
+    for ``synonymsTa`` that the English-Tamil dictionary was never able to be.
+
+    The Tamil gloss is a definition and an example separated by the release's
+    own ``||`` marker; only the definition half is a ``definitionTa``.
+
+    The English column is emitted as a translation ONLY on a ``Direct`` link.
+    ``type_link`` says how the Tamil synset was joined to the Princeton one, and
+    on a ``Hypernymy`` link the English words name a BROADER concept - 2,873 of
+    16,639 records. Publishing those as the translation would assert an
+    equivalence the source explicitly declined to assert, which is inventing a
+    fact rather than declining to filter.
+
+    The column layout lives here rather than in the registry for the same reason
+    the English-Tamil dictionary's marker grammar does: the registry's four
+    field mappings name ONE column each, and this shape needs five with
+    different meanings. ``wordColumn`` is still read from the registry, because
+    that is the column the surfaces come from.
+    """
+
+    _POS_COLUMN = 1
+    _ENGLISH_COLUMN = 4
+    _GLOSS_COLUMN = 9
+    _LINK_COLUMN = 10
+    _COLUMNS = 11
+    # The release separates a gloss's definition from its usage example with
+    # this marker, on every one of its 16,639 records.
+    _GLOSS_SEPARATOR = "||"
+    _DIRECT_LINK = "Direct"
+
+    def __init__(self, source: LexiconSource, registry: LexiconSources) -> None:
+        super().__init__(source, registry)
+        self._hypernym = 0
+        self._multiword = 0
+
+    def feed(self, element: Any, tally: Tally) -> Iterator[Emission]:
+        columns: Sequence[str] = element
+        word_column = self.source.wordColumn
+        if word_column is None or len(columns) < self._COLUMNS:
+            tally.parseRejects += 1
+            return
+        synset = self._synset(columns[word_column])
+        if not synset:
+            tally.parseRejects += 1
+            return
+        tally.rowsOut += 1
+        if columns[self._LINK_COLUMN].strip() != self._DIRECT_LINK:
+            self._hypernym += 1
+        definition = normalize(
+            columns[self._GLOSS_COLUMN].split(self._GLOSS_SEPARATOR, 1)[0]
+        )
+        translations = self._translations(columns)
+        tag = columns[self._POS_COLUMN].strip()
+        for word in synset:
+            yield Observation(surface=word, count=0)
+            if self.asserts_wordhood:
+                yield Fact(word=word, attr="headword", value=word, ordinal=0)
+            for ordinal, peer in enumerate(p for p in synset if p != word):
+                yield Fact(word=word, attr="synonym", value=peer, ordinal=ordinal)
+            if definition:
+                yield Fact(
+                    word=word, attr="definitionTa", value=definition, ordinal=0
+                )
+            for ordinal, english in enumerate(translations):
+                yield Fact(
+                    word=word, attr="translation", value=english, ordinal=ordinal
+                )
+            if tag:
+                yield from _route_pos(tag, word, self.registry, self.source.id, tally)
+
+    def _synset(self, raw: str) -> list[str]:
+        words: list[str] = []
+        for piece in raw.split(","):
+            # The release writes a multi-word expression with underscores, the
+            # Princeton convention it inherits with the synset ids.
+            word = normalize(piece.replace("_", " "))
+            if not word or word in words:
+                continue
+            if " " in word:
+                self._multiword += 1
+            words.append(word)
+        return sorted(words)
+
+    def _translations(self, columns: Sequence[str]) -> list[str]:
+        if columns[self._LINK_COLUMN].strip() != self._DIRECT_LINK:
+            return []
+        english: list[str] = []
+        for piece in columns[self._ENGLISH_COLUMN].split(","):
+            value = normalize(piece.replace("_", " "))
+            if value and value not in english:
+                english.append(value)
+        return english
+
+    def extra_note(self) -> str:
+        return (
+            f"hypernymLinks={self._hypernym} multiwordTerms={self._multiword}"
+        )
+
+
 _EXTRACTORS: dict[str, type[SourceExtractor]] = {
     "master-dictionary": _MasterDictionaryExtractor,
     "themed-vocabulary": _ThemedVocabularyExtractor,
     "wiktextract-ta": _WiktextractExtractor,
     "en-ta-dictionary": _EnTaDictionaryExtractor,
+    "ta-wiktionary-titles": _TaWiktionaryTitlesExtractor,
     "ta-wiktionary-content": _TaWiktionaryContentExtractor,
+    "indowordnet-ta": _IndoWordNetExtractor,
     AUTHORED_SOURCE_ID: _AuthoredEntriesExtractor,
 }
 

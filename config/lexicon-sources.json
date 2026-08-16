@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-16T18:00",
+  "version": "2026-08-16T22:00",
   "changelog": [
+    {
+      "version": "2026-08-16T22:00",
+      "change": "Added the delimited-quoted reader kind, and added notAWord to WordClassEvidence.",
+      "why": "Row 9b - IndoWordNet's linked release is a tab-separated file whose glosses are RFC-4180 quoted and hold embedded newlines, which the line-splitting delimited reader cannot see; and a source POS tag routed to reject notAWord is a source DENYING word-hood, which is evidence the classifier has to be able to read. notAWord is admissible on this deliberately narrow type because it is a NEGATIVE: the exclusion of headword exists so a config edit cannot let a weak source assert word-hood, and a denial asserts none."
+    },
     {
       "version": "2026-08-16T18:00",
       "change": "Added the mediawiki-xml reader kind and its pageNamespace knob, required on that kind and forbidden on every other.",
@@ -20,11 +25,18 @@
   "lexiconRoot": "datasets/lexicon",
   "outputs": ["ndjson"],
   "posAliases": {
+    "ADJECTIVE": {
+      "pos": ["adjective"],
+      "note": "IndoWordNet writes its four synset categories in capitals, and they are the only tags that source emits. Each names a part of speech Tamil has, so all four route straight to pos."
+    },
+    "ADVERB": { "pos": ["adverb"] },
     "Adjectives": { "pos": ["adjective"] },
+    "NOUN": { "pos": ["noun"] },
     "Nouns": {
       "pos": ["noun"],
       "note": "The curated themed source files parts of speech as categories on 827 of its 1,290 rows. It is a real classification over a hand-checked set, unlike the blanket 'nouns' stamp below."
     },
+    "VERB": { "pos": ["verb"] },
     "Verbs": { "pos": ["verb"] },
     "a": { "pos": ["adjective"] },
     "a.adv": { "pos": ["adjective", "adverb"] },
@@ -453,6 +465,22 @@
       "precedence": 21,
       "pageNamespace": 0,
       "note": "The same wiki as ta-wiktionary-titles, and the opposite tier, because the CONTENT is what the title list does not carry: a Tamil sense, a synonym set, a part of speech, an English gloss. That description IS the editorial act attestationTier names, so this source is lexicographic where the bare title list is enumerative. Its headword fact is emitted only for a page that carries at least one of those facts - a stub with nothing said about it is observed, never attested, so the tier-1 claim is true row by row and not merely on average. Precedence last: the wiki's translation column is a free-text list one editor at a time, and it must lose the single English display slot to every curated dictionary."
+    },
+    {
+      "id": "indowordnet-ta",
+      "name": "IndoWordNet Tamil synsets, linked to Princeton WordNet",
+      "origin": "https://raw.githubusercontent.com/cfiltnlp/IWN-En/e48e64b5757d465b31a8339fb003e2ed6931327b/data/english-hindi-tamil-linked.tsv",
+      "role": "authority",
+      "attestationTier": "lexicographic",
+      "kind": "delimited-quoted",
+      "path": "datasets/lexicon/sources/indowordnet-ta/source.tsv",
+      "bytes": 13711270,
+      "sha256": "fe61e17a3dcbb891ea4ffb9c7d0f47eb7775eff2b84f0454f1d012f3f9fe7bb4",
+      "precedence": 22,
+      "delimiter": "\t",
+      "hasHeader": true,
+      "wordColumn": 8,
+      "note": "The second SENSE-SCOPED synonym producer, and the reason it was acquired. One record is a SYNSET - the Tamil words that express one concept - so its synonymy is asserted by the source at a sense, unlike a bilingual dictionary's translation list read sideways. Tier 1 on the contract's own test and not by courtesy: every record carries a Tamil gloss and a part of speech, so somebody decided each string names the concept and then said what the concept is. Pinned by COMMIT SHA rather than by branch, because a branch serves different bytes over time and a recorded sha256 would go stale with nothing in this repository changing. Precedence last among the meaning sources: its English column is a Princeton synset's lemma list rather than a translation chosen for the Tamil word, so it must lose the single display slot to every dictionary that translated the Tamil side directly."
     }
   ]
 }
