@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-17",
+  "version": "2026-08-17T18:00",
   "changelog": [
+    {
+      "version": "2026-08-17T18:00",
+      "change": "Rebuilt the hint ladder: deleted the length rung, added a category rung at cost 1 and a meaning rung at cost 3 either side of the existing first-ezhuthu rung at cost 2, and added categoryLabels holding the Tamil tag the category rung renders for each lexicon category slug.",
+      "why": "Row 14 of the lexicon pipeline - the length rung charged one point for the tile count already on the player's screen, and offering it as one of two hints short-changed the player. The ladder is walked in order rather than chosen from, so its order is its pricing and the three rungs now escalate in what they return as well as in what they cost: a tag, then a letter, then a phrase. categoryLabels lives here rather than in copy.json because hint wording lives here - the Tamil templates already do - and the lexicon's categories column holds English slugs, since a category is a machine dimension there. A slug with no label has no rung: a ladder that is sometimes two rungs is correct."
+    },
     {
       "version": "2026-08-17",
       "change": "Added themeEveryNDays and gave the anagram generator its first themed wordlist.",
@@ -34,13 +39,54 @@
         { "id": "hard", "minLength": 5, "maxLength": 6, "maxStratum": 4 }
       ],
       "hints": [
+        { "kind": "category", "template": "வகை: {category}", "cost": 1 },
         {
           "kind": "first-ezhuthu",
           "template": "முதல் எழுத்து: {firstEzhuthu}",
           "cost": 2
         },
-        { "kind": "length", "template": "{length} எழுத்துகள்", "cost": 1 }
+        { "kind": "meaning", "template": "பொருள்: {meaning}", "cost": 3 }
       ],
+      "categoryLabels": {
+        "amphibians": "நீர்நிலவாழ்வன",
+        "animals": "விலங்கு",
+        "aquatic-animals": "நீர்வாழ்வன",
+        "arts": "கலை",
+        "bathroom": "குளியலறை",
+        "bedroom": "படுக்கையறை",
+        "birds": "பறவை",
+        "colours": "நிறம்",
+        "days": "நாள்",
+        "dresses-and-accessories": "உடை",
+        "emotions": "உணர்வு",
+        "flowers": "மலர்",
+        "food": "உணவு",
+        "fruits": "பழம்",
+        "functions": "விழா",
+        "games": "விளையாட்டு",
+        "garden": "தோட்டம்",
+        "hall": "கூடம்",
+        "hobby": "பொழுதுபோக்கு",
+        "hospital": "மருத்துவமனை",
+        "house": "வீடு",
+        "insects": "பூச்சி",
+        "kitchen": "சமையலறை",
+        "nature": "இயற்கை",
+        "parts-of-plants": "தாவரப்பகுதி",
+        "places": "இடம்",
+        "profession": "தொழில்",
+        "relations": "உறவு",
+        "reptiles": "ஊர்வன",
+        "school": "பள்ளி",
+        "space": "விண்வெளி",
+        "spices": "நறுமணப்பொருள்",
+        "symbols-shapes": "வடிவம்",
+        "tools": "கருவி",
+        "transport": "போக்குவரத்து",
+        "trees": "மரம்",
+        "types-of-plants": "தாவரம்",
+        "vegetables": "காய்கறி"
+      },
       "themes": [
         {
           "wordlist": "datasets/wordlists/derived/themed-nature.json",

@@ -60,8 +60,24 @@
   "$id": "anagram-puzzle.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
-  "description": "One anagram puzzle: a target word, its scrambled ezhuthu tiles, and rules.",
+  "description": "One anagram puzzle: a target word, its scrambled ezhuthu tiles, and rules.\n\n``meaning``, ``translationEn`` and ``alsoValid`` are RESOLVED at bake time,\nnever at play time. The generator holds the lexicon columns and the whole\nserved wordlist; the player downloads what those resolved to, not the inputs\nthey resolved from - so all three are finished display values, never arrays\nthe Game would have to pick from.\n\n``meaning`` is one already-rendered Tamil display string - what the word\nmeans, shown free on the summary once the word is revealed. It is absent\nwhen the lexicon has nothing to say, and an absent meaning renders as the\nword alone: an empty slot would advertise a hole in the data.\n\n``translationEn`` is the summary's DEMOTED second line and nothing else. It\nis never a hint and never the meaning line: a paid rung the player cannot\nread is a rung that stole score, so the meaning rung is omitted rather than\nanswered in English.\n\n``alsoValid`` lists the OTHER served words the same tiles spell. It has to\nbe baked because the Game cannot derive it - ``anagramFanOut`` is a count,\nand reading a wordlist at runtime is forbidden - and without it a player who\narranges a real Tamil word gets a flat rejection instead of \"that is a word,\nbut not today's\". It is absent for the overwhelming majority of words: true\nTamil co-anagrams are rare.",
   "properties": {
+    "alsoValid": {
+      "anyOf": [
+        {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Alsovalid"
+    },
     "attempts": {
       "minimum": 1,
       "title": "Attempts",
@@ -90,6 +106,19 @@
       "default": null,
       "title": "Hints"
     },
+    "meaning": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Meaning"
+    },
     "reveal": {
       "anyOf": [
         {
@@ -116,6 +145,19 @@
       "minimum": 0,
       "title": "Timelimitsec",
       "type": "integer"
+    },
+    "translationEn": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Translationen"
     },
     "version": {
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",

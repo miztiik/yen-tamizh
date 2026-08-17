@@ -69,10 +69,34 @@ from yen_tamizh_backend.contracts.served_denylist import ServedDenylist
 from yen_tamizh_backend.ezhuthu import segment
 from yen_tamizh_backend.wordsmith.artifact import render_document, sha256_of
 
-_SCHEMA_VERSION = "2026-08-17T12:00"
+_SCHEMA_VERSION = "2026-08-17T18:00"
 _CHANGELOG = [
     ChangelogEntry(
         version=_SCHEMA_VERSION,
+        change=(
+            "Every served row now carries definitionTa, translationEn, "
+            "synonymsTa and categories from the published lexicon. "
+            "definitionTa is the FIRST sense rather than the lexicon's list of "
+            "senses."
+        ),
+        why=(
+            "Row 14 of the lexicon pipeline - the hint ladder's dearest rung "
+            "is what a word MEANS and the summary shows the same phrase free "
+            "once the word is solved, so the meaning columns have to reach the "
+            "layer that bakes a puzzle. They are carried raw, not resolved, so "
+            "the rule that turns them into one display string lives in the "
+            "generator beside the wording rather than frozen into this "
+            "artifact. definitionTa keeps only sense zero because the lexicon "
+            "orders senses most-authoritative-first and a Game has exactly one "
+            "display slot: the other senses have no reader and cost 4.89 MB "
+            "across the served set. synonymsTa travels whole instead, because "
+            "it is not a ranked list - every member is an equally correct "
+            "answer - and the generator reads down it to step over a synonym "
+            "that would spell the answer out."
+        ),
+    ),
+    ChangelogEntry(
+        version="2026-08-17T12:00",
         change=(
             "Added the denylisted ledger bucket, charged after every automatic "
             "gate and before the cap, for the words config/served-denylist.json "
@@ -376,7 +400,7 @@ def _game_word(
     total: int,
     fan_out: Counter[MultisetKey],
 ) -> GameWord:
-    """One served row: the lexicon's word plus the two signals a Game reads."""
+    """One served row: the lexicon's word, what it means, and the two signals."""
     ezhuthu = segment(row.word)
     return GameWord(
         word=row.word,
@@ -384,6 +408,12 @@ def _game_word(
         frequency=row.frequency,
         frequencyStratum=position * QUARTILES // total + 1,
         anagramFanOut=fan_out[multiset_key(ezhuthu)],
+        # Sense zero, not the list: the lexicon orders senses most-authoritative
+        # first and a Game has one display slot, so the rest have no reader here.
+        definitionTa=None if row.definitionTa is None else row.definitionTa[0],
+        translationEn=row.translationEn,
+        synonymsTa=row.synonymsTa,
+        categories=row.categories,
         hints=GameWordHints(firstEzhuthu=ezhuthu[0], length=len(ezhuthu)),
     )
 

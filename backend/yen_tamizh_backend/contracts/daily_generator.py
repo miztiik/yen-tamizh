@@ -21,9 +21,9 @@ than a branch in the day loop.
 
 from __future__ import annotations
 
-from typing import Self
+from typing import Annotated, Self
 
-from pydantic import BaseModel, ConfigDict, Field, model_validator
+from pydantic import BaseModel, ConfigDict, Field, StringConstraints, model_validator
 
 from yen_tamizh_backend.contracts.base import SchemaModel
 from yen_tamizh_backend.contracts.common import (
@@ -34,6 +34,9 @@ from yen_tamizh_backend.contracts.common import (
     PackId,
     RelPath,
 )
+
+# A bare one-word tag: non-empty and holding no whitespace of any kind.
+BareTag = Annotated[str, StringConstraints(min_length=1, pattern=r"^\S+$")]
 
 
 class DifficultyBand(BaseModel):
@@ -74,13 +77,23 @@ class DifficultyBand(BaseModel):
 
 
 class HintSpec(BaseModel):
-    """One offered hint: its kind, its wording, and what revealing it costs.
+    """One rung of the ladder: its kind, its wording, and what it costs.
 
-    ``template`` is a Python format string over the wordlist row's honest hint
-    fields (``{firstEzhuthu}``, ``{length}``). The rendered TEXT is per-puzzle
-    data and ships inside the puzzle payload, but the WORDING is player-facing
-    copy - so it lives in config, not in a Python literal, and the generator
-    only fills in the values.
+    ``template`` is a Python format string over the CLOSED vocabulary of fields
+    the generator can fill from a served row - ``{firstEzhuthu}``,
+    ``{category}`` and ``{meaning}``. The rendered TEXT is per-puzzle data and
+    ships inside the puzzle payload, but the WORDING is player-facing copy, so
+    it lives here and the generator only fills in the values.
+
+    A template naming a field OUTSIDE that vocabulary fails the bake loudly; a
+    template naming one INSIDE it that a particular row cannot fill has its rung
+    skipped for that row. Those are different mistakes: the first is a typo in
+    config, the second is the honest state of a lexicon where barely one word in
+    fifteen carries a category.
+
+    ``{length}`` is deliberately NOT in the vocabulary. A rung charging for the
+    tile count already on the player's screen was deleted, and leaving the field
+    fillable would let one config line put it back.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -131,6 +144,13 @@ class GameGeneration(BaseModel):
     reveal: int = Field(ge=0)
     difficulties: list[DifficultyBand] = Field(min_length=1)
     hints: list[HintSpec] = Field(default_factory=list)
+    # The Tamil tag the ``category`` rung renders for each lexicon category
+    # slug. The lexicon's categories column holds English slugs because a
+    # category is a machine dimension there - it is what a themed set is cut on
+    # - while what a player reads is hint wording, and hint wording lives beside
+    # the templates. A slug with no entry here has no rung: the ladder is
+    # shorter for that word rather than English on a Tamil stage.
+    categoryLabels: dict[CopySlug, BareTag] = Field(default_factory=dict)
     # The themed sets this Game may run a whole day from. Empty is the normal
     # state and means this Game never runs a themed day.
     themes: list[ThemedSet] = Field(default_factory=list)
@@ -151,6 +171,17 @@ class GameGeneration(BaseModel):
             # A theme pointing at the ordinary set would make every day themed
             # and say so in the header, which is a lie about the round.
             raise ValueError(f"themes has a repeated wordlist: {paths}")
+        return self
+
+    @model_validator(mode="after")
+    def _the_ladder_is_monotonic(self) -> Self:
+        # The ladder is walked in order, not chosen from, so its order IS its
+        # pricing: each rung must cost at least what the one before it did. A
+        # cheaper rung further down would be unreachable without buying the
+        # dearer one first, which is a shop with the prices swapped.
+        costs = [hint.cost for hint in self.hints]
+        if costs != sorted(costs):
+            raise ValueError(f"hints must be ordered by non-decreasing cost: {costs}")
         return self
 
 

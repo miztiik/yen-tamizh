@@ -205,13 +205,6 @@ SignalName = Literal[
     "zipf",
 ]
 
-# How a value got here. ``attested`` - a source asserted it; ``authored`` - the
-# enrichment pass wrote it from retained evidence; ``reviewed`` - a human
-# checked it. Build-time provenance only: none of it is ever rendered to a
-# player, because an AI badge on some meanings makes a player distrust all of
-# them.
-ProvenanceState = Literal["attested", "authored", "reviewed"]
-
 _SHA256 = r"^[0-9a-f]{64}$"
 
 # A partition key is the code point of ONE BASE ezhuthu - the uyir, the

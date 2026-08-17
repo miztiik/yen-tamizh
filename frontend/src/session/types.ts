@@ -38,6 +38,29 @@ export interface SessionState {
   totalScore: number;
   /** The current item's Game state, so a reload resumes mid-puzzle. */
   currentGameState: unknown;
+  /**
+   * The words resolved so far. Without it a player who reloads mid-day reaches
+   * a summary missing the words they already played. Optional, because a save
+   * written before it existed must still resume (it reads back as none).
+   */
+  resolved?: SessionResultItem[];
+}
+
+/**
+ * One word the session resolved, for the summary's word block.
+ *
+ * The runner builds these from the item payloads, so the summary never reads
+ * `SessionItem.payload` (typed `unknown`) and never learns which Game produced
+ * it. `meaning` and `translationEn` are already-rendered display strings that
+ * the generator resolved at bake time; an absent one renders as nothing at all,
+ * because an empty slot advertises a hole in the data.
+ */
+export interface SessionResultItem {
+  readonly word: string;
+  readonly meaning?: string;
+  readonly translationEn?: string;
+  /** False for a word whose attempts ran out - it is still shown, with meaning. */
+  readonly solved: boolean;
 }
 
 /** The outcome the runner reports when a session ends. */
@@ -49,6 +72,8 @@ export interface SessionResult {
   totalScore: number;
   durationMs: number;
   reason: "completed" | "exited";
+  /** The words this session resolved, in play order (solved and lost alike). */
+  items: SessionResultItem[];
 }
 
 /** A read-only slice of config a Game may consult; never the whole app config. */

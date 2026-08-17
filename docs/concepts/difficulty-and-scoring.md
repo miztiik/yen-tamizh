@@ -47,6 +47,8 @@ The [lexicon](lexicon.md) keeps every surface any source ever showed us. What a 
 | `minFrequency` | 1 | A dictionary word that appears zero times in modern Tamil is a museum piece. This gate does the most work of the four. |
 | `requireMeaning` | true | A word whose Tamil meaning is unknown can carry neither the summary line nor the paid hint rung. |
 
+Every served word therefore has SOMETHING to say about itself, which is what lets the summary show a meaning for all three of a day's words - won or lost. It does not follow that every word can SELL one: the dearest rung is dropped when every phrase available either spells the answer out or carries a Latin-script romanisation, which is 846 of the 32,241 served rows.
+
 Selection is an **allow-list** of word classes, never a deny-list, so a word the classifier could not place cannot reach a player by omission - and the classes a Game may ever be configured to serve are narrowed in the contract itself, so admitting a proper noun is a reviewed change rather than a one-line config edit.
 
 Categories deliberately gate nothing. Only 2,569 of the 162,361 published headwords carry one, so admitting on a category would cut the served set from tens of thousands of rows to a few hundred. A category is a selection DIMENSION for a themed round - a separate set the Daily draws from on the days a whole themed playlist can be filled - never an admission test on the ordinary one. The same holds for `pos`, which is the same mechanism over a different column. See [../how-to/add-a-derived-wordlist.md](../how-to/add-a-derived-wordlist.md).
@@ -69,6 +71,20 @@ The streak ticks **once per completed [Daily](modes.md) day** and is the shared 
 ## Hints cost the brag, not money
 
 A hint is free and unlimited in spirit but costs the **brag**: taking one excludes the day from the best-time record and stamps "hints" on the share card. This is the honest answer to the "stuck" moment (Palm worldview #7) - the game reads a stuck player and offers a free, well-timed hint or a suggestion to replay an earlier item, and it *never* sells a power-up, ships a timer as scarcity, or gates progress behind a purchase (project non-goals, [principles.md](principles.md)). Per-Game hint visibility, count, and cost are config-driven ([config.md](config.md)); the hint shape is defined in [core-loop.md](core-loop.md).
+
+### The anagram's ladder, and what each rung is priced at
+
+The ladder is walked in order, so its order is its pricing. The three rungs and their shipped costs:
+
+| Rung | Returns | Cost | Reaches |
+| --- | --- | --- | --- |
+| `category` | a bare one-word Tamil tag | 1 | 2,111 of 32,241 served words (6.5%) |
+| `first-ezhuthu` | one position | 2 | every served word |
+| `meaning` | a phrase | 3 | 31,395 of 32,241 served words (97.4%) |
+
+The prices are set by **how much of the answer each rung hands over**, and the escalation is legible in the SHAPE of what comes back - a tag, then a letter, then a phrase - which is why the `category` rung must render one bare word and never a sentence. `hints.perGame.anagram` in `config/app-config.json` is the ceiling on how many rungs a day may bake; it is 3, so all three can reach a puzzle, and it is a ceiling rather than a promise.
+
+A fourth rung, `length`, was **deleted**. It charged a point for the tile count already on the player's screen, which reads as the game short-changing them - and it was one of only two rungs offered, so half the ladder returned nothing. The reach column above is why the ladder is variable-length rather than always three: a rung this word cannot honestly answer is skipped and the next one moves up. See [core-loop.md](core-loop.md) for the three honesty rules that drop a rung.
 
 ## The share moment
 

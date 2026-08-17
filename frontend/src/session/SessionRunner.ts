@@ -27,8 +27,51 @@ import type {
   GameModule,
   Session,
   SessionResult,
+  SessionResultItem,
   SessionState,
 } from "./types";
+
+/** Read a string field off an untrusted payload, or `undefined`. */
+function displayString(payload: unknown, key: string): string | undefined {
+  if (typeof payload !== "object" || payload === null) return undefined;
+  const value = (payload as Record<string, unknown>)[key];
+  return typeof value === "string" && value.length > 0 ? value : undefined;
+}
+
+/**
+ * The summary line for one resolved item.
+ *
+ * This is a STRUCTURAL read of three optional display strings, not a branch on
+ * which Game produced them: any payload that names a `word` gets a row, and a
+ * payload that names none is left out rather than rendered as a blank. That is
+ * what lets the summary stay generic while `SessionItem.payload` stays
+ * `unknown` - the summary must never reach into it itself.
+ */
+function resultItem(payload: unknown, solved: boolean): SessionResultItem | null {
+  const word = displayString(payload, "word");
+  if (word === undefined) return null;
+  const meaning = displayString(payload, "meaning");
+  const translationEn = displayString(payload, "translationEn");
+  return {
+    word,
+    ...(meaning === undefined ? {} : { meaning }),
+    ...(translationEn === undefined ? {} : { translationEn }),
+    solved,
+  };
+}
+
+/** Rebuild the resolved list from a persisted (therefore untrusted) snapshot. */
+function restoreResolved(raw: unknown): SessionResultItem[] {
+  if (!Array.isArray(raw)) return [];
+  return raw.flatMap((entry: unknown) => {
+    const solved =
+      typeof entry === "object" &&
+      entry !== null &&
+      (entry as Record<string, unknown>).solved === true;
+    const item = resultItem(entry, solved);
+    return item === null ? [] : [item];
+  });
+}
 
 /** The shell surface the runner drives; the Svelte shell provides one at runtime. */
 export interface SessionHost {
@@ -71,6 +114,7 @@ export class SessionRunner {
   private totalScore = 0;
   private startedAt = 0;
   private ended = false;
+  private readonly resolved: SessionResultItem[] = [];
 
   private hasPendingRestore = false;
   private pendingGameState: unknown = null;
@@ -113,6 +157,7 @@ export class SessionRunner {
       this.totalScore = resumed.totalScore;
       this.pendingGameState = resumed.currentGameState;
       this.hasPendingRestore = true;
+      this.resolved.push(...restoreResolved(resumed.resolved));
     }
 
     this.unsubscribe = this.deps.bus.subscribe((env) => this.onBusEvent(env));
@@ -199,6 +244,7 @@ export class SessionRunner {
       const score = typeof env.data.score === "number" ? env.data.score : 0;
       this.completedCount += 1;
       this.totalScore += score;
+      this.recordResolved(true);
       this.itemIndex += 1;
       this.persist(null);
       this.deps.host.setProgress(this.completedCount, this.totalItems);
@@ -206,10 +252,18 @@ export class SessionRunner {
       return;
     }
     if (env.name === "puzzle.abandoned") {
+      this.recordResolved(false);
       this.itemIndex += 1;
       this.persist(null);
       void this.advance();
     }
+  }
+
+  /** Remember the current item's word for the summary (solved or lost alike). */
+  private recordResolved(solved: boolean): void {
+    const item = this.deps.session.items[this.itemIndex];
+    const entry = item === undefined ? null : resultItem(item.payload, solved);
+    if (entry !== null) this.resolved.push(entry);
   }
 
   /** Persist the live Game's state so a reload resumes at this item. */
@@ -224,6 +278,7 @@ export class SessionRunner {
       completedCount: this.completedCount,
       totalScore: this.totalScore,
       currentGameState,
+      resolved: [...this.resolved],
     };
     this.deps.storage.writeSessionState(this.dayCtx, state);
   }
@@ -241,6 +296,7 @@ export class SessionRunner {
       totalScore: this.totalScore,
       durationMs: this.now() - this.startedAt,
       reason,
+      items: [...this.resolved],
     };
     this.lastResult = result;
 

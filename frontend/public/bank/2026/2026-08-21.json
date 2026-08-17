@@ -13,9 +13,9 @@
   ],
   "date": "2026-08-21",
   "items": [
-    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ச"}, {"cost": 1, "kind": "length", "text": "4 எழுத்துகள்"}], "reveal": 0, "tiles": ["ம்", "கா", "ச", "ய"], "timeLimitSec": 0, "word": "சகாயம்"}},
-    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ஆ"}, {"cost": 1, "kind": "length", "text": "5 எழுத்துகள்"}], "reveal": 0, "tiles": ["தி", "சூ", "த்", "ஆ", "டி"], "timeLimitSec": 0, "word": "ஆத்திசூடி"}},
-    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: அ"}, {"cost": 1, "kind": "length", "text": "5 எழுத்துகள்"}], "reveal": 0, "tiles": ["யெ", "து", "டி", "அ", "கை"], "timeLimitSec": 0, "word": "அடியெதுகை"}}
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ச"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: உதவி"}], "meaning": "உதவி", "reveal": 0, "tiles": ["ம்", "கா", "ச", "ய"], "timeLimitSec": 0, "translationEn": "aid", "word": "சகாயம்"}},
+    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ஆ"}], "meaning": "ஆத்திசூடி என்பது சங்க காலத்தில் வாழ்ந்த ஔவையார் என்ற பெண் புலவர் இயற்றிய நீதி நூல் ஆகும்", "reveal": 0, "tiles": ["தி", "சூ", "த்", "ஆ", "டி"], "timeLimitSec": 0, "translationEn": "one of the ancient classical literature of Tamil language", "word": "ஆத்திசூடி"}},
+    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: அ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: அடிதோறும் முதலெழுத்து அளவொத்து நிற்க இரண்டாம் எழுத்து ஒன்றிவரத் தொடுப்பது"}], "meaning": "அடிதோறும் முதலெழுத்து அளவொத்து நிற்க இரண்டாம் எழுத்து ஒன்றிவரத் தொடுப்பது", "reveal": 0, "tiles": ["யெ", "து", "டி", "அ", "கை"], "timeLimitSec": 0, "translationEn": "monorhyme", "word": "அடியெதுகை"}}
   ],
   "version": "2026-08-17"
 }

@@ -13,9 +13,9 @@
   ],
   "date": "2026-08-20",
   "items": [
-    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: கு"}, {"cost": 1, "kind": "length", "text": "3 எழுத்துகள்"}], "reveal": 0, "tiles": ["து", "கு", "த்"], "timeLimitSec": 0, "word": "குத்து"}},
-    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: அ"}, {"cost": 1, "kind": "length", "text": "5 எழுத்துகள்"}], "reveal": 0, "tiles": ["ர", "டி", "அ", "ம்", "வா"], "timeLimitSec": 0, "word": "அடிவாரம்"}},
-    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ப"}, {"cost": 1, "kind": "length", "text": "6 எழுத்துகள்"}], "reveal": 0, "tiles": ["பு", "ப", "ட", "ப", "ப்", "ட"], "timeLimitSec": 0, "word": "படபடப்பு"}}
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: கு"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: ஊற்று"}], "meaning": "ஊற்று", "reveal": 0, "tiles": ["து", "கு", "த்"], "timeLimitSec": 0, "translationEn": "Punch", "word": "குத்து"}},
+    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 1, "kind": "category", "text": "வகை: இயற்கை"}, {"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: அ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: அடிப்பகுதி"}], "meaning": "அடிப்பகுதி", "reveal": 0, "tiles": ["ர", "டி", "அ", "ம்", "வா"], "timeLimitSec": 0, "translationEn": "base", "word": "அடிவாரம்"}},
+    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 1, "kind": "category", "text": "வகை: உணர்வு"}, {"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ப"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: துடிப்பு"}], "meaning": "துடிப்பு", "reveal": 0, "tiles": ["பு", "ப", "ட", "ப", "ப்", "ட"], "timeLimitSec": 0, "translationEn": "fidget", "word": "படபடப்பு"}}
   ],
   "version": "2026-08-17"
 }

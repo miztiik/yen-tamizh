@@ -168,6 +168,8 @@ def _entry(
     attestations: int = 3,
     tier1Attestations: int = 2,
     definitionTa: list[str] | None = SENSES,
+    translationEn: str | None = None,
+    synonymsTa: list[str] | None = None,
     categories: list[str] | None = None,
     pos: list[PartOfSpeech] | None = None,
 ) -> LexiconEntry:
@@ -180,6 +182,8 @@ def _entry(
         attestations=attestations,
         tier1Attestations=tier1Attestations,
         definitionTa=definitionTa,
+        translationEn=translationEn,
+        synonymsTa=synonymsTa,
         categories=categories,
         pos=pos,
     )
@@ -1091,10 +1095,72 @@ def test_committed_rows_are_unique(committed_anagram: GameWordlist) -> None:
 def test_committed_set_omits_an_invented_category(
     committed_anagram: GameWordlist,
 ) -> None:
-    """A Tamil category name is player-facing copy, so no row may invent one."""
+    """The hints block carries only what a word's own SPELLING yields.
+
+    A row carries the lexicon's English category SLUGS; the Tamil tag a player
+    reads is hint wording and lives in config/daily-generator.json beside the
+    templates. A Tamil label baked into a dataset could only be corrected by a
+    rebuild.
+    """
     raw = json.loads(_ANAGRAM.read_text(encoding="utf-8"))
+    labels = json.loads(
+        (_REPO_ROOT / "config" / "daily-generator.json").read_text(encoding="utf-8")
+    )["games"][0]["categoryLabels"]
     for row in raw["words"]:
         assert set(row["hints"]) == {"firstEzhuthu", "length"}
+        for category in row.get("categories", []):
+            assert category not in labels.values()
+
+
+def test_a_served_row_keeps_the_lexicons_first_sense_not_its_list(
+    tmp_path: Path,
+) -> None:
+    """A Game has one display slot, so senses two and beyond have no reader.
+
+    Sense zero is not an arbitrary pick: the lexicon orders senses
+    most-authoritative-source first, so it is the value the single-slot rule
+    published before the list existed.
+    """
+    senses = ["\u0baa\u0bca\u0bb0\u0bc1\u0bb3\u0bcd 1", "\u0baa\u0bca\u0bb0\u0bc1\u0bb3\u0bcd 2"]
+    cut = _cut(tmp_path, [_entry(ITHAZH, definitionTa=senses)])
+
+    assert [row.word for row in cut.words] == [ITHAZH]
+    assert cut.words[0].definitionTa == senses[0]
+
+
+def test_a_served_row_carries_the_meaning_columns_a_hint_is_built_from(
+    tmp_path: Path,
+) -> None:
+    synonyms = ["\u0b85", "\u0b86"]
+    cut = _cut(
+        tmp_path,
+        [
+            _entry(
+                ITHAZH,
+                translationEn="petal",
+                synonymsTa=synonyms,
+                categories=["flowers"],
+            )
+        ],
+    )
+
+    row = cut.words[0]
+    assert row.translationEn == "petal"
+    assert row.synonymsTa == synonyms
+    assert row.categories == ["flowers"]
+
+
+def test_a_row_the_lexicon_says_nothing_about_carries_no_meaning_columns(
+    tmp_path: Path,
+) -> None:
+    """An absent column is absent, never a defaulted empty list on every row."""
+    cut = _cut(tmp_path, [_entry(ITHAZH)], requireMeaning=False)
+
+    row = cut.words[0]
+    assert row.translationEn is None
+    assert row.synonymsTa is None
+    assert row.categories is None
+    assert "synonymsTa" not in row.model_dump(exclude_none=True)
 
 
 def test_registered_paths_are_relative_and_posix() -> None:

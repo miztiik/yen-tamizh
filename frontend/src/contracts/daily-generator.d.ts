@@ -70,6 +70,7 @@ why: Why
  */
 export interface GameGeneration {
 attempts: Attempts
+categoryLabels?: Categorylabels
 difficulties: Difficulties
 gameId: Gameid
 hints?: Hints
@@ -78,6 +79,13 @@ reveal: Reveal
 themes?: Themes
 timeLimitSec: Timelimitsec
 wordlist: Wordlist1
+}
+export interface Categorylabels {
+/**
+ * This interface was referenced by `Categorylabels`'s JSON-Schema definition
+ * via the `patternProperty` "^[a-z][a-z0-9-]*$".
+ */
+[k: string]: string
 }
 /**
  * One difficulty bucket: the ezhuthu lengths and the familiarity it covers.
@@ -106,13 +114,23 @@ maxStratum: Maxstratum
 minLength: Minlength
 }
 /**
- * One offered hint: its kind, its wording, and what revealing it costs.
+ * One rung of the ladder: its kind, its wording, and what it costs.
  * 
- * ``template`` is a Python format string over the wordlist row's honest hint
- * fields (``{firstEzhuthu}``, ``{length}``). The rendered TEXT is per-puzzle
- * data and ships inside the puzzle payload, but the WORDING is player-facing
- * copy - so it lives in config, not in a Python literal, and the generator
- * only fills in the values.
+ * ``template`` is a Python format string over the CLOSED vocabulary of fields
+ * the generator can fill from a served row - ``{firstEzhuthu}``,
+ * ``{category}`` and ``{meaning}``. The rendered TEXT is per-puzzle data and
+ * ships inside the puzzle payload, but the WORDING is player-facing copy, so
+ * it lives here and the generator only fills in the values.
+ * 
+ * A template naming a field OUTSIDE that vocabulary fails the bake loudly; a
+ * template naming one INSIDE it that a particular row cannot fill has its rung
+ * skipped for that row. Those are different mistakes: the first is a typo in
+ * config, the second is the honest state of a lexicon where barely one word in
+ * fifteen carries a category.
+ * 
+ * ``{length}`` is deliberately NOT in the vocabulary. A rung charging for the
+ * tile count already on the player's screen was deleted, and leaving the field
+ * fillable would let one config line put it back.
  */
 export interface HintSpec {
 cost: Cost

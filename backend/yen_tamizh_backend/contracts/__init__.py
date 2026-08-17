@@ -72,7 +72,6 @@ from yen_tamizh_backend.contracts.lexicon import (
     LexiconPartition,
     LexiconProvenance,
     PartOfSpeech,
-    ProvenanceState,
     SignalName,
     WordClass,
 )
@@ -206,7 +205,6 @@ __all__ = [
     "PartOfSpeech",
     "PosAlias",
     "PosRejection",
-    "ProvenanceState",
     "PuzzleFile",
     "PuzzleItem",
     "RelPath",

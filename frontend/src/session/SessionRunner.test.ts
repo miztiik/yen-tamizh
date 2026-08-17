@@ -218,3 +218,103 @@ describe("SessionRunner", () => {
     expect(ctx.config).toEqual({ hintsEnabled: true });
   });
 });
+
+// The summary must be able to name every word the day held, including the ones
+// the player lost - hiding the meaning of a word you lost punishes twice. The
+// runner is the SOLE producer of that list, so the summary never reaches into
+// `SessionItem.payload`, which is typed `unknown`.
+describe("SessionResult.items", () => {
+  const wordSession: Session = {
+    modeId: "daily",
+    packId: "ta-core",
+    gameId: "fake",
+    sessionId: "run-words",
+    date: "2026-08-13",
+    items: [
+      {
+        gameId: "fake",
+        payload: { word: "one", meaning: "porul", translationEn: "first", score: 5 },
+      },
+      { gameId: "fake", payload: { word: "two", meaning: "irandu", score: 5 } },
+      { gameId: "fake", payload: { word: "three", score: 5 } },
+    ],
+  };
+  const WORD_DAY = { date: "2026-08-13", modeId: "daily", gameId: "fake", packId: "ta-core" };
+
+  function runnerOver(session: Session, store: KeyValueStore, created: FakeGame[]) {
+    const bus = createEventBus();
+    const logger = createLogger({ bus, src: "test", session: "s", now: () => 1 });
+    const factory: GameFactory = () => {
+      const g = new FakeGame();
+      created.push(g);
+      return g;
+    };
+    const h = fakeHost();
+    const runner = new SessionRunner({
+      session,
+      registry: { fake: { load: async () => factory } },
+      storage: new StorageService({ store }),
+      logger,
+      bus,
+      host: h.host,
+      now: () => 1,
+    });
+    return { runner, host: h };
+  }
+
+  test("carries every resolved word in play order, with a solved flag", async () => {
+    const created: FakeGame[] = [];
+    const { runner, host } = runnerOver(wordSession, memStore(), created);
+    await runner.start();
+
+    created[0]!.complete();
+    await flush();
+    created[1]!.abandon(); // attempts ran out - still a word the player met
+    await flush();
+    created[2]!.complete();
+    await flush();
+
+    // A word with no meaning carries no meaning KEY at all: an empty slot would
+    // advertise a hole in the data, so there is nothing for the summary to draw.
+    expect(host.summary()?.items).toEqual([
+      { word: "one", meaning: "porul", translationEn: "first", solved: true },
+      { word: "two", meaning: "irandu", solved: false },
+      { word: "three", solved: true },
+    ]);
+  });
+
+  test("survives a mid-session reload, so a resumed day still names every word", async () => {
+    const store = memStore(); // one browser's storage across the reload
+
+    const first: FakeGame[] = [];
+    const a = runnerOver(wordSession, store, first);
+    await a.runner.start();
+    first[0]!.complete();
+    await flush();
+    expect(new StorageService({ store }).readSessionState(WORD_DAY)?.itemIndex).toBe(1);
+
+    // A brand-new runtime over the same storage picks the list back up.
+    const second: FakeGame[] = [];
+    const b = runnerOver(wordSession, store, second);
+    await b.runner.start();
+    second[0]!.complete();
+    await flush();
+    second[1]!.complete();
+    await flush();
+
+    expect(b.host.summary()?.items.map((item) => item.word)).toEqual(["one", "two", "three"]);
+  });
+
+  test("leaves out an item whose payload names no word", async () => {
+    const created: FakeGame[] = [];
+    const { runner, host } = runnerOver(twoItem, memStore(), created); // payloads have labels
+    await runner.start();
+    created[0]!.complete();
+    await flush();
+    created[1]!.complete();
+    await flush();
+
+    expect(host.summary()?.items).toEqual([]);
+    expect(host.summary()?.itemsCompleted).toBe(2);
+  });
+});

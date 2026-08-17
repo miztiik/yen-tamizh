@@ -13,9 +13,9 @@
   ],
   "date": "2026-08-19",
   "items": [
-    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: க"}, {"cost": 1, "kind": "length", "text": "4 எழுத்துகள்"}], "reveal": 0, "tiles": ["ண்", "ல்", "க", "யா"], "timeLimitSec": 0, "word": "கல்யாண்"}},
-    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ஊ"}, {"cost": 1, "kind": "length", "text": "5 எழுத்துகள்"}], "reveal": 0, "tiles": ["டு", "ர்", "பா", "ப்", "ஊ"], "timeLimitSec": 0, "word": "ஊர்ப்பாடு"}},
-    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: உ"}, {"cost": 1, "kind": "length", "text": "6 எழுத்துகள்"}], "reveal": 0, "tiles": ["யா", "ன", "ண்", "ரு", "டை", "உ"], "timeLimitSec": 0, "word": "உருண்டையான"}}
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: க"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: ஒரு வகை ராகம்"}], "meaning": "ஒரு வகை ராகம்", "reveal": 0, "tiles": ["ண்", "ல்", "க", "யா"], "timeLimitSec": 0, "word": "கல்யாண்"}},
+    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ஊ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: பிறருடைய வேலை"}], "meaning": "பிறருடைய வேலை", "reveal": 0, "tiles": ["டு", "ர்", "பா", "ப்", "ஊ"], "timeLimitSec": 0, "word": "ஊர்ப்பாடு"}},
+    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: உ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: எல்லா பக்கமும் ஒரே அளவான"}], "meaning": "எல்லா பக்கமும் ஒரே அளவான", "reveal": 0, "tiles": ["யா", "ன", "ண்", "ரு", "டை", "உ"], "timeLimitSec": 0, "translationEn": "orbicular", "word": "உருண்டையான"}}
   ],
   "version": "2026-08-17"
 }
