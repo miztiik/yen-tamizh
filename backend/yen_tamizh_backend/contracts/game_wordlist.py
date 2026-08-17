@@ -17,10 +17,12 @@ digest still pins a partitioned input, because ``lexicon.meta.json`` itself
 carries the sha256 of every published file.
 
 ``counters`` is the integrity Oracle, enforced by the model itself, with one
-bucket per serving gate and one per selection dimension::
+bucket per serving gate, one per selection dimension, and one for the curated
+deny-list that runs last::
 
     lexiconRows - outsideClass - outsideCategories - outsidePos - outsideLength
-                - belowAttestations - belowFrequency - withoutMeaning - capped
+                - belowAttestations - belowFrequency - withoutMeaning
+                - denylisted - capped
                 == rowsKept == len(words)
 
 Every published lexicon row is accounted for by exactly one outcome, so a
@@ -150,6 +152,13 @@ class DerivedCounters(BaseModel):
     are charged before the gates so a themed ledger reads as "of the rows this
     theme covers, here is what each gate then removed" rather than burying the
     theme's own reach inside ``outsideLength``.
+
+    ``denylisted`` is the curated exclusion, and it is charged LAST of the
+    row-level buckets - after every automatic gate and before the cap. A word an
+    automatic gate already stopped is charged to that gate, so this bucket
+    counts only the words the deny-list ALONE keeps off the board: how much
+    hand curation the set actually needed, which is the number that says whether
+    an entry still earns its line.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -162,6 +171,7 @@ class DerivedCounters(BaseModel):
     belowAttestations: int = Field(ge=0)
     belowFrequency: int = Field(ge=0)
     withoutMeaning: int = Field(ge=0)
+    denylisted: int = Field(ge=0)
     capped: int = Field(ge=0)
     rowsKept: int = Field(ge=0)
 
@@ -175,6 +185,7 @@ class DerivedCounters(BaseModel):
             + self.belowAttestations
             + self.belowFrequency
             + self.withoutMeaning
+            + self.denylisted
             + self.capped
             + self.rowsKept
         )
@@ -184,7 +195,8 @@ class DerivedCounters(BaseModel):
                 f"{self.outsideClass} + outsideCategories {self.outsideCategories} "
                 f"+ outsidePos {self.outsidePos} + belowAttestations "
                 f"{self.belowAttestations} + belowFrequency {self.belowFrequency} "
-                f"+ withoutMeaning {self.withoutMeaning} + capped {self.capped} "
+                f"+ withoutMeaning {self.withoutMeaning} + denylisted "
+                f"{self.denylisted} + capped {self.capped} "
                 f"+ rowsKept {self.rowsKept} != lexiconRows {self.lexiconRows}"
             )
         return self

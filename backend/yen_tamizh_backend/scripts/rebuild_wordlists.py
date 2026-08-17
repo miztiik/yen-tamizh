@@ -34,11 +34,12 @@ def rebuild(registry_path: Path, repo_root: Path) -> list[tuple[Path, GameWordli
     meta_path = repo_root / registry.lexiconPath
     meta = derive.load_meta(meta_path)
     source = derive.describe_source(meta, meta_path, registry.lexiconPath)
+    denied = derive.load_denylist(repo_root / registry.denylistPath).words()
 
     written: list[tuple[Path, GameWordlist]] = []
     for spec in registry.sets:
         rows = derive.read_rows(meta, repo_root, spec.selection.wordClasses)
-        wordlist = derive.derive(meta, rows, source, spec)
+        wordlist = derive.derive(meta, rows, source, spec, denied)
         out_path = repo_root / spec.out
         write_artifact(out_path, derive.render(wordlist))
         written.append((out_path, wordlist))
@@ -61,7 +62,8 @@ def _report(wordlist: GameWordlist, rel_out: str) -> str:
         f"outsidePos={counters.outsidePos} "
         f"belowAttestations={counters.belowAttestations} "
         f"belowFrequency={counters.belowFrequency} "
-        f"withoutMeaning={counters.withoutMeaning} capped={counters.capped} "
+        f"withoutMeaning={counters.withoutMeaning} "
+        f"denylisted={counters.denylisted} capped={counters.capped} "
         f"sharedFanOut={shared} lengths[{spread}] strata[{quarters}] -> {rel_out}"
     )
 

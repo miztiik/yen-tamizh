@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-17",
+  "version": "2026-08-17T12:00",
   "changelog": [
+    {
+      "version": "2026-08-17T12:00",
+      "change": "Added denylistPath, naming the curated served deny-list every set is cut against.",
+      "why": "Row 16 - the served set opened with Tamil's grammar and with the personal names and mastheads a news corpus makes frequent, and because frequency is a difficulty axis they landed in the EASY band, which is the band a player meets most. No selection knob can express the difference: a part-of-speech rule was measured and rejected, since pos is a union across 21 sources and appa (father) and arasu (government) both carry interjection. The path hangs off the REGISTRY rather than off a set because what makes a word unservable is true of every Game, and a per-set deny-list would let the next set opt out of it by omission."
+    },
     {
       "version": "2026-08-17",
       "change": "Added the categories and pos selection dimensions to a set's selection, and registered the first themed set, themed-nature.",
@@ -28,6 +33,7 @@
     }
   ],
   "lexiconPath": "datasets/lexicon/lexicon.meta.json",
+  "denylistPath": "config/served-denylist.json",
   "sets": [
     {
       "gameId": "anagram",

@@ -13,6 +13,7 @@ export type Changelog = [ChangelogEntry, ...(ChangelogEntry)[]]
 export type Change = string
 export type Version = string
 export type Why = string
+export type Denylistpath = string
 export type Lexiconpath = string
 /**
  * @minItems 1
@@ -41,6 +42,7 @@ export type Version1 = string
  */
 export interface DerivedWordlists {
 changelog: Changelog
+denylistPath: Denylistpath
 lexiconPath: Lexiconpath
 sets: Sets
 version: Version1
