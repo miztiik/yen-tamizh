@@ -23,6 +23,10 @@ everything. The two selection DIMENSIONS are the exception and default to
 absent, because absent means the dimension is not applied - the opposite failure
 mode, where a set that never meant to be themed silently narrows to a few
 hundred rows.
+
+``denylistPath`` names the one input the knobs cannot express: the curated list
+of words that are real Tamil and still make a bad puzzle (row 16). It hangs off
+the registry rather than off a set, because it is true of every Game.
 """
 
 from __future__ import annotations
@@ -173,6 +177,13 @@ class DerivedWordlists(SchemaModel):
     # Every partition is resolved from that document's own table, so the derived
     # layer never globs a directory and never guesses a filename.
     lexiconPath: RelPath
+    # The curated served deny-list. It sits on the REGISTRY rather than on a
+    # set, because it is not a selection knob: what makes a word unservable -
+    # that it is Tamil grammar, or a surname a news corpus made frequent - is
+    # true of every Game, and a per-set deny-list would let the next set opt
+    # out of it by omission. Config rather than a Python literal for the same
+    # reason ``lexiconPath`` is (Holy Law #6).
+    denylistPath: RelPath
     sets: list[DerivedSet] = Field(min_length=1)
 
     @model_validator(mode="after")

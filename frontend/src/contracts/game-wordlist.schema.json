@@ -30,7 +30,7 @@
     },
     "DerivedCounters": {
       "additionalProperties": false,
-      "description": "The reconciliation ledger for one derive run - one bucket per gate.\n\nThe buckets are listed in the order the identity is read, and a row that\nfails more than one gate is counted under the first one that stopped it.\n``outsideClass`` comes off the lexicon's own partition table rather than\nfrom reading those files: selection is an allow-list, so the derived layer\nopens only the classes it serves, and the classes it will not serve are\ncounted from what the meta document declares about them.\n\n``outsideCategories`` and ``outsidePos`` are the two SELECTION dimensions\nrather than gates: they are 0 unless the set asked to be themed, and they\nare charged before the gates so a themed ledger reads as \"of the rows this\ntheme covers, here is what each gate then removed\" rather than burying the\ntheme's own reach inside ``outsideLength``.",
+      "description": "The reconciliation ledger for one derive run - one bucket per gate.\n\nThe buckets are listed in the order the identity is read, and a row that\nfails more than one gate is counted under the first one that stopped it.\n``outsideClass`` comes off the lexicon's own partition table rather than\nfrom reading those files: selection is an allow-list, so the derived layer\nopens only the classes it serves, and the classes it will not serve are\ncounted from what the meta document declares about them.\n\n``outsideCategories`` and ``outsidePos`` are the two SELECTION dimensions\nrather than gates: they are 0 unless the set asked to be themed, and they\nare charged before the gates so a themed ledger reads as \"of the rows this\ntheme covers, here is what each gate then removed\" rather than burying the\ntheme's own reach inside ``outsideLength``.\n\n``denylisted`` is the curated exclusion, and it is charged LAST of the\nrow-level buckets - after every automatic gate and before the cap. A word an\nautomatic gate already stopped is charged to that gate, so this bucket\ncounts only the words the deny-list ALONE keeps off the board: how much\nhand curation the set actually needed, which is the number that says whether\nan entry still earns its line.",
       "properties": {
         "belowAttestations": {
           "minimum": 0,
@@ -45,6 +45,11 @@
         "capped": {
           "minimum": 0,
           "title": "Capped",
+          "type": "integer"
+        },
+        "denylisted": {
+          "minimum": 0,
+          "title": "Denylisted",
           "type": "integer"
         },
         "lexiconRows": {
@@ -92,6 +97,7 @@
         "belowAttestations",
         "belowFrequency",
         "withoutMeaning",
+        "denylisted",
         "capped",
         "rowsKept"
       ],

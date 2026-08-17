@@ -10,7 +10,8 @@ schema, the types, and the validators can never drift from the models.
 
 ``REGISTRY`` is the explicit list of models the exporter walks. Later rows
 append their models here (Row 7: app-config, event-envelope, save, puzzle-file,
-bank-index, anagram-puzzle; Row 9: derived-wordlists, game-wordlist).
+bank-index, anagram-puzzle; Row 9: derived-wordlists, game-wordlist; row 16:
+served-denylist).
 """
 
 from __future__ import annotations
@@ -91,6 +92,12 @@ from yen_tamizh_backend.contracts.lexicon_sources import (
 )
 from yen_tamizh_backend.contracts.puzzle_file import PuzzleFile, PuzzleItem
 from yen_tamizh_backend.contracts.save import Save, compute_day_key
+from yen_tamizh_backend.contracts.served_denylist import (
+    SERVED_DENYLIST_CHANGELOG,
+    SERVED_DENYLIST_VERSION,
+    DeniedWord,
+    ServedDenylist,
+)
 from yen_tamizh_backend.contracts.wordhood import (
     WORDHOOD_CHANGELOG,
     WORDHOOD_VERSION,
@@ -111,8 +118,9 @@ from yen_tamizh_backend.contracts.wordhood import (
 # between the word inventory and the puzzle engine, and Row 13 the daily
 # engine's own registry. The lexicon layer that replaced the retired corpus one
 # registers its meta document, its source registry and the word-hood knobs its
-# enrich stage reads; ``LexiconEntry`` is NOT here - a data row carries no
-# ``version`` / ``changelog``, so it is not a ``SchemaModel``, and it reaches
+# enrich stage reads; row 16 adds the served deny-list the derived layer applies
+# after every automatic gate. ``LexiconEntry`` is NOT here - a data row carries
+# no ``version`` / ``changelog``, so it is not a ``SchemaModel``, and it reaches
 # the schema through ``Lexicon.rowSchema``.
 REGISTRY: tuple[type[SchemaModel], ...] = (
     AnagramPuzzle,
@@ -129,6 +137,7 @@ REGISTRY: tuple[type[SchemaModel], ...] = (
     LexiconSources,
     PuzzleFile,
     Save,
+    ServedDenylist,
     Wordhood,
 )
 
@@ -139,6 +148,8 @@ __all__ = [
     "LEXICON_VERSION",
     "PARTITION_KEYS",
     "REGISTRY",
+    "SERVED_DENYLIST_CHANGELOG",
+    "SERVED_DENYLIST_VERSION",
     "WORDHOOD_CHANGELOG",
     "WORDHOOD_VERSION",
     "AnagramPuzzle",
@@ -152,6 +163,7 @@ __all__ = [
     "CopySlug",
     "DailyConfig",
     "DailyGenerator",
+    "DeniedWord",
     "DerivedCounters",
     "DerivedSelection",
     "DerivedSet",
@@ -200,6 +212,7 @@ __all__ = [
     "RelPath",
     "Save",
     "SchemaModel",
+    "ServedDenylist",
     "SignalName",
     "SourceId",
     "SourceRole",

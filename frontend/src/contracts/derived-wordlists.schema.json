@@ -196,6 +196,11 @@
       "title": "Changelog",
       "type": "array"
     },
+    "denylistPath": {
+      "pattern": "^[A-Za-z0-9._-]+(/[A-Za-z0-9._+-]+)*$",
+      "title": "Denylistpath",
+      "type": "string"
+    },
     "lexiconPath": {
       "pattern": "^[A-Za-z0-9._-]+(/[A-Za-z0-9._+-]+)*$",
       "title": "Lexiconpath",
@@ -219,6 +224,7 @@
     "version",
     "changelog",
     "lexiconPath",
+    "denylistPath",
     "sets"
   ],
   "title": "DerivedWordlists",

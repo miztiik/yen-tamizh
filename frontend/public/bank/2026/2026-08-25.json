@@ -13,9 +13,9 @@
   ],
   "date": "2026-08-25",
   "items": [
-    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ச"}, {"cost": 1, "kind": "length", "text": "4 எழுத்துகள்"}], "reveal": 0, "tiles": ["ப", "பா", "தி", "ச"], "timeLimitSec": 0, "word": "சபாபதி"}},
-    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: யு"}, {"cost": 1, "kind": "length", "text": "5 எழுத்துகள்"}], "reveal": 0, "tiles": ["னி", "யு", "ம்", "ய", "ரே"], "timeLimitSec": 0, "word": "யுரேனியம்"}},
-    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: சி"}, {"cost": 1, "kind": "length", "text": "6 எழுத்துகள்"}], "reveal": 0, "tiles": ["த்", "ரி", "தி", "சி", "வ", "ரா"], "timeLimitSec": 0, "word": "சிவராத்திரி"}}
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: பி"}, {"cost": 1, "kind": "length", "text": "3 எழுத்துகள்"}], "reveal": 0, "tiles": ["னி", "பி", "ன்"], "timeLimitSec": 0, "word": "பின்னி"}},
+    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: பி"}, {"cost": 1, "kind": "length", "text": "5 எழுத்துகள்"}], "reveal": 0, "tiles": ["ற", "ற்", "ப", "பி", "ன்"], "timeLimitSec": 0, "word": "பின்பற்ற"}},
+    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: வ"}, {"cost": 1, "kind": "length", "text": "6 எழுத்துகள்"}], "reveal": 0, "tiles": ["டா", "வ", "ர", "ரு", "ந்", "தி"], "timeLimitSec": 0, "word": "வருடாந்திர"}}
   ],
   "version": "2026-08-17"
 }

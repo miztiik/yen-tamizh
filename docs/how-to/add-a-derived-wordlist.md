@@ -16,8 +16,8 @@ datasets/lexicon/**  ->  published lexicon  ->  per-Game sets  ->  daily puzzles
 The lexicon is everything the pipeline knows: every surface any source ever
 showed us, with its class and every fact asserted about it. A derived wordlist is
 the far smaller set a player is actually asked to spell. **PRESENT and SERVED are
-different populations**, and the selection knobs on this page are the whole
-difference.
+different populations**, and the selection knobs on this page - plus the curated
+deny-list below them - are the whole difference.
 
 Derived sets are **build artifacts**. They are regenerated in full by one
 command, they are a pure function of the lexicon plus the registry, and they are
@@ -74,11 +74,12 @@ its rows share their tiles with another served row, and its length and
 familiarity spread:
 
 ```
-anagram: rowsKept=32310 outsideLength=63443 outsideClass=1076
+anagram: rowsKept=32241 outsideLength=63443 outsideClass=1076
   outsideCategories=0 outsidePos=0
-  belowAttestations=17776 belowFrequency=38020 withoutMeaning=10812 capped=0
-  sharedFanOut=514 lengths[3:5965 4:10287 5:9484 6:6574]
-  strata[q1:8078 q2:8077 q3:8078 q4:8077]
+  belowAttestations=17776 belowFrequency=38020 withoutMeaning=10812
+  denylisted=69 capped=0
+  sharedFanOut=514 lengths[3:5928 4:10260 5:9479 6:6574]
+  strata[q1:8061 q2:8060 q3:8060 q4:8060]
   -> datasets/wordlists/derived/anagram.json
 ```
 
@@ -106,6 +107,10 @@ Two more knobs shape the set without judging a word:
 | --- | --- |
 | `minLength` / `maxLength` | Bounds on a word's **ezhuthu** count, not its code points. |
 | `maxWords` | Cap on the committed artifact; `null` means uncapped. A derived set lives in git, so an uncapped one is an unbounded commit. The cap trims from the RARE end, because rows come out most frequent first. |
+
+One admission test is not a knob and is not per-set: the curated deny-list, which
+runs after all of these. See [the deny-list](#the-deny-list-and-how-to-grow-it)
+below.
 
 ## The two selection dimensions, and the themed set they cut
 
@@ -166,6 +171,62 @@ The Tamil name a player reads for a theme is copy in
 [`../../config/copy.json`](../../config/copy.json), keyed by the theme's
 `copySlug`. A category name is never baked into a dataset.
 
+## The deny-list, and how to grow it
+
+One exclusion is not derivable from the lexicon and runs after every gate above:
+the curated list in
+[`../../config/served-denylist.json`](../../config/served-denylist.json),
+schema-validated against
+[`../../schemas/served-denylist.schema.json`](../../schemas/served-denylist.schema.json)
+and named by the registry's `denylistPath`. It applies to EVERY set, because
+what makes a word unservable is true of every Game.
+
+The lexicon knows what a word IS; it does not know what makes a PUZZLE. Tamil's
+highest-frequency surfaces are its grammar, and since frequency is one axis of
+difficulty they land in the EASY band - the band a player meets most. A Daily
+whose answer is "and" or "this" is not a word puzzle. Beside them sit the
+personal names and newspaper mastheads a news corpus makes frequent, each with a
+real dictionary sense, so nothing upstream can tell them from vocabulary.
+
+```json
+{
+  "note": "why this list exists, and which words were reviewed and KEPT",
+  "functionWords": [{ "word": "...", "reason": "quotative particle" }],
+  "properNouns": [{ "word": "...", "reason": "given name" }]
+}
+```
+
+Adding a word is a data edit plus the same re-run:
+
+1. Put it in `functionWords` if it is grammar rather than vocabulary, or in
+   `properNouns` if a corpus made a name frequent. The split is not decoration -
+   the first judgement is stable for the life of the language, the second
+   follows whichever corpora are staged, so a reviewer needs to know which
+   argument an entry is making before deciding whether it still holds.
+2. Write a short `reason`. It is never rendered; it is for the reviewer deciding
+   whether the NEXT proposed entry belongs, which is the only thing between a
+   curated list and a list that grows by feel. Where the word carries a real
+   dictionary sense that is not what its frequency counts, say so.
+3. Keep both arrays sorted by `word` and deduped - across each other as well as
+   within themselves. The contract refuses anything else.
+4. Append a `changelog` entry, set `version` to today, and re-run
+   `rebuild_wordlists`. `denylisted` in the ledger says how many words the list
+   ALONE removed.
+
+Three rules keep the list honest:
+
+- **Whole words only.** The match is exact, never a prefix or a substring.
+  Tamil agglutinates, so a stem match would take dozens of real words per entry.
+- **The lexicon is untouched.** Every denied word is real Tamil, is attested,
+  and stays in `datasets/lexicon/`. The exclusion is on SERVING, so a dictionary
+  lookup, a frequency study, or a future Game where the player RECOGNISES rather
+  than produces a spelling loses nothing.
+- **Name the word, never a rule.** A part-of-speech filter was measured and
+  rejected: `pos` is a UNION across 21 sources, so `appa` (father) and `arasu`
+  (government) both carry `interjection`, and the rule would have deleted real
+  vocabulary. The `note` lists the 27 words reviewed and deliberately KEPT -
+  read it before adding anything that merely looks grammatical.
+
 ## The ledger, and why it has one bucket per gate
 
 The generated file opens with its source, selection, and counters, so `head`
@@ -181,8 +242,8 @@ tells you what a run did:
   which one moved.
 - `counters` - the reconciliation ledger, which the contract itself enforces:
   `lexiconRows - outsideClass - outsideCategories - outsidePos - outsideLength -
-  belowAttestations - belowFrequency - withoutMeaning - capped == rowsKept ==
-  len(words)`.
+  belowAttestations - belowFrequency - withoutMeaning - denylisted - capped ==
+  rowsKept == len(words)`.
 
 Every published lexicon row is accounted for under exactly one heading, in the
 order the identity is read, and a row that fails several gates is charged to the
@@ -190,7 +251,8 @@ first that stopped it. That is what makes "this gate does the most work" a
 measurement rather than an assertion - and what stops a selection bug from
 quietly dropping words. The two dimension buckets read first, so a themed
 ledger says how far the theme reaches and then what each gate removed from
-inside it; on an ordinary set both are 0.
+inside it; on an ordinary set both are 0. `denylisted` reads LAST, so its number
+is what the deny-list ALONE removed.
 
 `outsideClass` is read off the lexicon's own partition table rather than counted
 line by line: selection is an allow-list, so the derived layer opens only the
@@ -247,6 +309,6 @@ unseen source FORMAT.
 - [`../concepts/lexicon.md`](../concepts/lexicon.md) - the layer above: what a word class, an attestation and a frequency mean.
 - [`../concepts/difficulty-and-scoring.md`](../concepts/difficulty-and-scoring.md) - why the gates are set where they are, and the two-axis difficulty they feed.
 - [generate-the-daily-bank.md](generate-the-daily-bank.md) - the layer below: turning these words into committed puzzles.
-- [`../architecture/contracts/schemas.md`](../architecture/contracts/schemas.md) - the contract pipeline and the `derived-wordlists` / `game-wordlist` decisions.
+- [`../architecture/contracts/schemas.md`](../architecture/contracts/schemas.md) - the contract pipeline and the `derived-wordlists` / `game-wordlist` / `served-denylist` decisions.
 - [`../concepts/games.md`](../concepts/games.md) - the Games these sets feed.
 - [`../../CLAUDE.md`](../../CLAUDE.md) - Holy Law #3 (contracts before logic), #6 (no hardcoding), section 11 (schema versioning).

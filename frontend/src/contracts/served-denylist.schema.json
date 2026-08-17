@@ -1,0 +1,103 @@
+{
+  "$defs": {
+    "ChangelogEntry": {
+      "additionalProperties": false,
+      "description": "One dated entry in a schema's in-file change log (newest first).\n\n``version`` is the date-stamp of the change; ``change`` is what changed;\n``why`` is the reason it changed (CLAUDE.md section 11).",
+      "properties": {
+        "change": {
+          "minLength": 1,
+          "title": "Change",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+          "title": "Version",
+          "type": "string"
+        },
+        "why": {
+          "minLength": 1,
+          "title": "Why",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "change",
+        "why"
+      ],
+      "title": "ChangelogEntry",
+      "type": "object"
+    },
+    "DeniedWord": {
+      "additionalProperties": false,
+      "description": "One denied surface and the reason it may not be a puzzle answer.\n\n``reason`` is required and never rendered: it is for the reviewer deciding\nwhether the next proposed entry belongs, which is the only thing standing\nbetween a curated list and a list that grows by feel. Where a word carries a\nreal dictionary sense that is NOT what its frequency counts - ``kumaar`` is\nlisted as \"prince\" and occurs 329,467 times because it is a surname - the\nreason says so, so nobody re-adds it as vocabulary that was wrongly cut.",
+      "properties": {
+        "reason": {
+          "minLength": 1,
+          "title": "Reason",
+          "type": "string"
+        },
+        "word": {
+          "minLength": 1,
+          "title": "Word",
+          "type": "string"
+        }
+      },
+      "required": [
+        "word",
+        "reason"
+      ],
+      "title": "DeniedWord",
+      "type": "object"
+    }
+  },
+  "$id": "served-denylist.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "The words no Game may serve, split by WHY they are unservable.\n\nThe split is not decoration. A function word is off the board because it is\ngrammar rather than vocabulary, and that judgement is stable for the life of\nthe language. A proper noun is off the board because a corpus made a name\nfrequent, and that judgement follows whichever corpora are staged - so the\ntwo arrays age differently and a reviewer needs to know which kind of\nargument an entry is making before deciding whether it still holds.\n\n``note`` is REQUIRED. The words deliberately KEPT are the whole difference\nbetween this list and the cruder rule it replaces, and a file that does not\nsay which they are is a file the next contributor will \"helpfully\" widen.",
+  "properties": {
+    "changelog": {
+      "items": {
+        "$ref": "#/$defs/ChangelogEntry"
+      },
+      "minItems": 1,
+      "title": "Changelog",
+      "type": "array"
+    },
+    "functionWords": {
+      "items": {
+        "$ref": "#/$defs/DeniedWord"
+      },
+      "minItems": 1,
+      "title": "Functionwords",
+      "type": "array"
+    },
+    "note": {
+      "minLength": 1,
+      "title": "Note",
+      "type": "string"
+    },
+    "properNouns": {
+      "items": {
+        "$ref": "#/$defs/DeniedWord"
+      },
+      "minItems": 1,
+      "title": "Propernouns",
+      "type": "array"
+    },
+    "version": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "version",
+    "changelog",
+    "note",
+    "functionWords",
+    "properNouns"
+  ],
+  "title": "ServedDenylist",
+  "type": "object"
+}

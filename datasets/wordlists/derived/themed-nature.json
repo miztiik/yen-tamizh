@@ -1,6 +1,11 @@
 {
   "changelog": [
     {
+      "change": "Added the denylisted ledger bucket, charged after every automatic gate and before the cap, for the words config/served-denylist.json names.",
+      "version": "2026-08-17T12:00",
+      "why": "Row 16 - the served set opened with Tamil's grammar and with the personal names and mastheads a news corpus makes frequent, and because frequency is a difficulty axis they landed in the EASY band, which is the band a player meets most. No lexicon column separates them: pos is a union across 21 sources, so a part-of-speech rule would have deleted appa and arasu with them. The exclusion is therefore a named list, and it needs its own bucket because the ledger's whole claim is that every published row is accounted for under exactly one heading. It is charged last so its number is what the deny-list ALONE removed rather than what some other gate would have removed anyway."
+    },
+    {
       "change": "Added the categories and pos SELECTION dimensions to the selection, each keeping the rows whose own set-valued column intersects the one named, and gave each its own ledger bucket - outsideCategories and outsidePos - charged before the four serving gates.",
       "version": "2026-08-17",
       "why": "Row 15 of the lexicon pipeline - a themed round is the Daily's variety mechanism, and it costs no new engine because a theme is just a derived set cut on a dimension the lexicon already carries. Neither dimension may ever gate admission for an ordinary set - under 3,000 published headwords carry a category at all - so both are optional and absent means not applied. They get their own buckets because the ledger's whole claim is that every published row is accounted for under exactly one heading, and burying a theme's reach inside an existing gate would make that gate's number a lie."
@@ -30,6 +35,7 @@
     "belowAttestations": 13,
     "belowFrequency": 2,
     "capped": 0,
+    "denylisted": 0,
     "lexiconRows": 163437,
     "outsideCategories": 161803,
     "outsideClass": 1076,
@@ -68,7 +74,7 @@
     "sha256": "b4b869df61da02261c8736df8f1f8daf8b7cbe504e34b87db541066d2932d1be",
     "version": "2026-08-17"
   },
-  "version": "2026-08-17",
+  "version": "2026-08-17T12:00",
   "words": [
     {"anagramFanOut": 1, "ezhuthu": ["ம", "க", "ர", "ந்", "த", "ம்"], "frequency": 112160, "frequencyStratum": 1, "hints": {"firstEzhuthu": "ம", "length": 6}, "word": "மகரந்தம்"},
     {"anagramFanOut": 1, "ezhuthu": ["தெ", "ன்", "ற", "ல்"], "frequency": 58761, "frequencyStratum": 1, "hints": {"firstEzhuthu": "தெ", "length": 4}, "word": "தென்றல்"},

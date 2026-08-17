@@ -1,0 +1,291 @@
+{
+  "version": "2026-08-17",
+  "changelog": [
+    {
+      "version": "2026-08-17",
+      "change": "Initial served deny-list: 55 function words and 14 proper nouns, each with the reason it is off the board.",
+      "why": "Row 16 - the 32,310 words the anagram served included Tamil's grammar and the personal names and mastheads a news corpus makes frequent, and because frequency is a difficulty axis they landed in the EASY band, which is the band a player meets most. No gate the lexicon can express separates them: a part-of-speech rule was measured and rejected because pos is a union across 21 sources, so appa and arasu both carry interjection. A named list with a reason per entry is the honest shape for a judgement no column carries."
+    }
+  ],
+  "note": "Every word here is real Tamil, is attested, and STAYS in the published lexicon - the exclusion is on SERVING only. The list is named one word at a time because no lexicon column separates grammar from vocabulary: pos is a UNION across 21 sources, so அப்பா (father) and அரசு (government) both carry interjection, and a part-of-speech rule would have deleted them. These 27 were reviewed alongside the denied words and deliberately KEPT - do not add them: அப்பா, அம்மா, அரசு, பக்கம், மாதிரி, கொஞ்சம், நிறைய, ஒன்று, இரண்டு, மூன்று, நான்கு, ஐந்து, ஆயிரம், இன்று, பிறகு, அடுத்து, அருகில், எதிராக, காரணமாக, உடனடியாக, இப்படி, எப்படி, செல்வன், ஆதவன், நம்பி, அகில், இந்து. Add an entry only when the WORD ITSELF makes a bad puzzle answer, never because it looked grammatical, and write the reason beside it.",
+  "functionWords": [
+    {
+      "word": "அதனால்",
+      "reason": "instrumental of the distal pronoun, because of that"
+    },
+    {
+      "word": "அதனை",
+      "reason": "accusative of the distal pronoun, it"
+    },
+    {
+      "word": "அதில்",
+      "reason": "locative of the distal pronoun, in that"
+    },
+    {
+      "word": "அந்த",
+      "reason": "distal demonstrative adjective, that"
+    },
+    {
+      "word": "அனைத்து",
+      "reason": "universal quantifier, all"
+    },
+    {
+      "word": "அனைவரும்",
+      "reason": "universal quantifier, everyone"
+    },
+    {
+      "word": "அன்று",
+      "reason": "temporal deictic, on that day; also the literary negative copula"
+    },
+    {
+      "word": "அல்லது",
+      "reason": "disjunctive conjunction, or"
+    },
+    {
+      "word": "அவன்",
+      "reason": "third-person masculine singular pronoun"
+    },
+    {
+      "word": "அவர்",
+      "reason": "third-person honorific pronoun"
+    },
+    {
+      "word": "அவர்கள்",
+      "reason": "third-person plural pronoun"
+    },
+    {
+      "word": "அவள்",
+      "reason": "third-person feminine singular pronoun"
+    },
+    {
+      "word": "ஆகும்",
+      "reason": "copular auxiliary, is"
+    },
+    {
+      "word": "ஆனால்",
+      "reason": "adversative conjunction, but"
+    },
+    {
+      "word": "இந்த",
+      "reason": "proximal demonstrative adjective, this"
+    },
+    {
+      "word": "இருந்து",
+      "reason": "ablative postposition, from"
+    },
+    {
+      "word": "இல்லாமல்",
+      "reason": "negative verbal participle, without"
+    },
+    {
+      "word": "இல்லை",
+      "reason": "negative existential, is not"
+    },
+    {
+      "word": "இவர்",
+      "reason": "proximal honorific pronoun, this person"
+    },
+    {
+      "word": "இவர்கள்",
+      "reason": "proximal third-person plural pronoun"
+    },
+    {
+      "word": "உங்கள்",
+      "reason": "second-person plural possessive pronoun"
+    },
+    {
+      "word": "உள்ள",
+      "reason": "relative participle of the existential verb, which is"
+    },
+    {
+      "word": "உள்ளே",
+      "reason": "locative adverb, inside"
+    },
+    {
+      "word": "எங்கள்",
+      "reason": "first-person plural possessive pronoun"
+    },
+    {
+      "word": "எத்தனை",
+      "reason": "interrogative quantifier, how many"
+    },
+    {
+      "word": "எந்த",
+      "reason": "interrogative adjective, which"
+    },
+    {
+      "word": "எனது",
+      "reason": "first-person singular possessive pronoun"
+    },
+    {
+      "word": "எனவே",
+      "reason": "conjunctive adverb, therefore"
+    },
+    {
+      "word": "எனினும்",
+      "reason": "concessive conjunction, even so"
+    },
+    {
+      "word": "என்ன",
+      "reason": "interrogative pronoun, what"
+    },
+    {
+      "word": "என்பது",
+      "reason": "verbal noun of the quotative, the fact that"
+    },
+    {
+      "word": "என்ற",
+      "reason": "relative participle of the quotative, which is called"
+    },
+    {
+      "word": "என்றால்",
+      "reason": "conditional of the quotative, if"
+    },
+    {
+      "word": "என்று",
+      "reason": "quotative particle closing reported speech"
+    },
+    {
+      "word": "எல்லா",
+      "reason": "attributive quantifier, all"
+    },
+    {
+      "word": "எல்லாம்",
+      "reason": "universal quantifier, everything"
+    },
+    {
+      "word": "எவ்வளவு",
+      "reason": "interrogative quantifier, how much"
+    },
+    {
+      "word": "ஒருவர்",
+      "reason": "indefinite pronoun, one person"
+    },
+    {
+      "word": "ஒவ்வொரு",
+      "reason": "distributive determiner, each"
+    },
+    {
+      "word": "குறித்து",
+      "reason": "postposition, regarding"
+    },
+    {
+      "word": "கொண்டு",
+      "reason": "instrumental verbal participle, with"
+    },
+    {
+      "word": "சிலர்",
+      "reason": "indefinite quantifier, some people"
+    },
+    {
+      "word": "தங்கள்",
+      "reason": "honorific possessive pronoun, your"
+    },
+    {
+      "word": "தன்னை",
+      "reason": "accusative of the reflexive pronoun, oneself"
+    },
+    {
+      "word": "தவிர",
+      "reason": "postposition, except"
+    },
+    {
+      "word": "நாங்கள்",
+      "reason": "first-person plural exclusive pronoun"
+    },
+    {
+      "word": "நீங்கள்",
+      "reason": "second-person plural pronoun"
+    },
+    {
+      "word": "நோக்கி",
+      "reason": "postposition, towards"
+    },
+    {
+      "word": "பற்றி",
+      "reason": "postposition, about"
+    },
+    {
+      "word": "பலர்",
+      "reason": "indefinite quantifier, many people"
+    },
+    {
+      "word": "போதும்",
+      "reason": "finite form of the verb to suffice, enough"
+    },
+    {
+      "word": "போன்ற",
+      "reason": "comparative relative participle, like"
+    },
+    {
+      "word": "மற்றும்",
+      "reason": "coordinating conjunction, and"
+    },
+    {
+      "word": "மூலம்",
+      "reason": "postposition, by means of"
+    },
+    {
+      "word": "விட்டு",
+      "reason": "verbal participle of the auxiliary vidu, having left"
+    }
+  ],
+  "properNouns": [
+    {
+      "word": "அசோகன்",
+      "reason": "given name Asokan"
+    },
+    {
+      "word": "அருண்",
+      "reason": "given name Arun"
+    },
+    {
+      "word": "இந்திரா",
+      "reason": "given name Indira"
+    },
+    {
+      "word": "இமையம்",
+      "reason": "Imayam, a Tamil novelist's pen name"
+    },
+    {
+      "word": "குமார்",
+      "reason": "given name Kumar; the dictionary sense prince is not what its frequency counts"
+    },
+    {
+      "word": "குமுதம்",
+      "reason": "Kumudam, a Tamil weekly magazine masthead; the water-lily sense is not what its frequency counts"
+    },
+    {
+      "word": "கோசலா",
+      "reason": "Kosala, an ancient kingdom on the Sarayu"
+    },
+    {
+      "word": "சாந்தி",
+      "reason": "given name Shanti; the peace sense is not what its frequency counts"
+    },
+    {
+      "word": "செந்தில்",
+      "reason": "given name Senthil, after the Tiruchendur shrine"
+    },
+    {
+      "word": "தினமணி",
+      "reason": "Dinamani, a Tamil daily newspaper masthead"
+    },
+    {
+      "word": "நடேசன்",
+      "reason": "given name Natesan"
+    },
+    {
+      "word": "மோகன்",
+      "reason": "given name Mohan"
+    },
+    {
+      "word": "வாரணாசி",
+      "reason": "Varanasi, a city in Uttar Pradesh"
+    },
+    {
+      "word": "விகடன்",
+      "reason": "Vikatan, a Tamil weekly magazine masthead"
+    }
+  ]
+}

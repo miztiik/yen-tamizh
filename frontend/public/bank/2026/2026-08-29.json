@@ -13,9 +13,9 @@
   ],
   "date": "2026-08-29",
   "items": [
-    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: எ"}, {"cost": 1, "kind": "length", "text": "3 எழுத்துகள்"}], "reveal": 0, "tiles": ["ன்", "னே", "எ"], "timeLimitSec": 0, "word": "என்னே"}},
-    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: கை"}, {"cost": 1, "kind": "length", "text": "5 எழுத்துகள்"}], "reveal": 0, "tiles": ["ல்", "டு", "வி", "கை", "த"], "timeLimitSec": 0, "word": "கைவிடுதல்"}},
-    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: நெ"}, {"cost": 1, "kind": "length", "text": "5 எழுத்துகள்"}], "reveal": 0, "tiles": ["த்", "நெ", "ல்", "ரி", "த"], "timeLimitSec": 0, "word": "நெரித்தல்"}}
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ப"}, {"cost": 1, "kind": "length", "text": "4 எழுத்துகள்"}], "reveal": 0, "tiles": ["ப", "ம்", "க", "க்"], "timeLimitSec": 0, "word": "பக்கம்"}},
+    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: நீ"}, {"cost": 1, "kind": "length", "text": "4 எழுத்துகள்"}], "reveal": 0, "tiles": ["ர்", "ம", "ம்", "நீ"], "timeLimitSec": 0, "word": "நீர்மம்"}},
+    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ச"}, {"cost": 1, "kind": "length", "text": "6 எழுத்துகள்"}], "reveal": 0, "tiles": ["கே", "ந்", "ர", "ச", "து", "தி"], "timeLimitSec": 0, "word": "சந்திரகேது"}}
   ],
   "version": "2026-08-17"
 }

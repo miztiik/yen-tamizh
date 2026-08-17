@@ -13,9 +13,9 @@
   ],
   "date": "2026-08-27",
   "items": [
-    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: சி"}, {"cost": 1, "kind": "length", "text": "3 எழுத்துகள்"}], "reveal": 0, "tiles": ["ப்", "பி", "சி"], "timeLimitSec": 0, "word": "சிப்பி"}},
-    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ம"}, {"cost": 1, "kind": "length", "text": "4 எழுத்துகள்"}], "reveal": 0, "tiles": ["ணி", "ம", "மொ", "ழி"], "timeLimitSec": 0, "word": "மணிமொழி"}},
-    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: அ"}, {"cost": 1, "kind": "length", "text": "5 எழுத்துகள்"}], "reveal": 0, "tiles": ["ந", "க", "அ", "ங்", "ம்"], "timeLimitSec": 0, "word": "அநங்கம்"}}
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: க"}, {"cost": 1, "kind": "length", "text": "4 எழுத்துகள்"}], "reveal": 0, "tiles": ["ந்", "த", "க", "ழி"], "timeLimitSec": 0, "word": "கழிந்த"}},
+    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: மொ"}, {"cost": 1, "kind": "length", "text": "5 எழுத்துகள்"}], "reveal": 0, "tiles": ["வு", "ய", "றி", "ழி", "மொ"], "timeLimitSec": 0, "word": "மொழியறிவு"}},
+    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: கை"}, {"cost": 1, "kind": "length", "text": "6 எழுத்துகள்"}], "reveal": 0, "tiles": ["கை", "ச", "ச்", "க்", "கு", "ர"], "timeLimitSec": 0, "word": "கைச்சரக்கு"}}
   ],
   "version": "2026-08-17"
 }

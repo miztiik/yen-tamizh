@@ -25,6 +25,13 @@ set asks for it, because barely any published row carries a category and a set
 that narrowed on one by accident would collapse to a few hundred rows. It gets
 its own bucket for the same reason a gate does.
 
+One exclusion is not derivable from the lexicon at all, and it runs last: the
+curated deny-list in ``config/served-denylist.json`` (row 16). The lexicon knows
+what a word IS; it cannot know that Tamil's grammar and a newspaper masthead
+make bad puzzle answers even though both are attested, frequent, and carry a
+dictionary sense. Matching is WHOLE-WORD and exact, and the exclusion is on
+SERVING only - every denied word stays in the published lexicon.
+
 Adding a Game's set is a DATA change (see docs/how-to/add-a-derived-wordlist.md):
 append an entry to ``config/derived-wordlists.json`` and re-run
 ``python -m yen_tamizh_backend.scripts.rebuild_wordlists``. The gates are config
@@ -58,13 +65,35 @@ from yen_tamizh_backend.contracts.game_wordlist import (
     GameWordlist,
 )
 from yen_tamizh_backend.contracts.lexicon import Lexicon, LexiconEntry
+from yen_tamizh_backend.contracts.served_denylist import ServedDenylist
 from yen_tamizh_backend.ezhuthu import segment
 from yen_tamizh_backend.wordsmith.artifact import render_document, sha256_of
 
-_SCHEMA_VERSION = "2026-08-17"
+_SCHEMA_VERSION = "2026-08-17T12:00"
 _CHANGELOG = [
     ChangelogEntry(
         version=_SCHEMA_VERSION,
+        change=(
+            "Added the denylisted ledger bucket, charged after every automatic "
+            "gate and before the cap, for the words config/served-denylist.json "
+            "names."
+        ),
+        why=(
+            "Row 16 - the served set opened with Tamil's grammar and with the "
+            "personal names and mastheads a news corpus makes frequent, and "
+            "because frequency is a difficulty axis they landed in the EASY "
+            "band, which is the band a player meets most. No lexicon column "
+            "separates them: pos is a union across 21 sources, so a "
+            "part-of-speech rule would have deleted appa and arasu with them. "
+            "The exclusion is therefore a named list, and it needs its own "
+            "bucket because the ledger's whole claim is that every published "
+            "row is accounted for under exactly one heading. It is charged "
+            "last so its number is what the deny-list ALONE removed rather "
+            "than what some other gate would have removed anyway."
+        ),
+    ),
+    ChangelogEntry(
+        version="2026-08-17",
         change=(
             "Added the categories and pos SELECTION dimensions to the selection, "
             "each keeping the rows whose own set-valued column intersects the "
@@ -182,6 +211,11 @@ def load_registry(path: Path) -> DerivedWordlists:
     return DerivedWordlists.model_validate_json(path.read_text(encoding="utf-8"))
 
 
+def load_denylist(path: Path) -> ServedDenylist:
+    """Load and validate ``config/served-denylist.json``."""
+    return ServedDenylist.model_validate_json(path.read_text(encoding="utf-8"))
+
+
 def read_rows(
     meta: Lexicon, repo_root: Path, word_classes: Iterable[str]
 ) -> Iterator[LexiconEntry]:
@@ -214,6 +248,7 @@ def select(
     meta: Lexicon,
     rows: Iterable[LexiconEntry],
     selection: DerivedSelection,
+    denied: frozenset[str],
 ) -> tuple[list[LexiconEntry], DerivedCounters]:
     """Apply one Game's selection dimensions and serving gates; return the ledger.
 
@@ -229,6 +264,13 @@ def select(
     what makes a themed ledger legible: it says how far the theme reaches, and
     then what each gate removed from inside it.
 
+    ``denied`` is read LAST, and the match is WHOLE-WORD: a denied surface must
+    not take its inflections with it, and a stem match over an agglutinative
+    language would take dozens of real words per entry. Running it after the
+    automatic gates is what makes its bucket the honest measure of the list -
+    the words it ALONE keeps off the board, rather than the ones some gate
+    would have stopped anyway.
+
     The kept rows come out most frequent first, with the word as the tie-break so
     the order is total and the bytes are reproducible. That is also the order the
     cap trims from the back of, so a capped set loses its rarest words rather
@@ -242,6 +284,7 @@ def select(
     wanted_pos = set(selection.pos or ())
     outside_categories = outside_pos = 0
     outside_length = below_attestations = below_frequency = without_meaning = 0
+    denylisted = 0
     kept: list[LexiconEntry] = []
     for row in rows:
         if wanted_categories and not wanted_categories.intersection(row.categories or ()):
@@ -265,6 +308,9 @@ def select(
         if selection.requireMeaning and row.definitionTa is None:
             without_meaning += 1
             continue
+        if row.word in denied:
+            denylisted += 1
+            continue
         kept.append(row)
 
     kept.sort(key=lambda row: (-row.frequency, row.word))
@@ -283,6 +329,7 @@ def select(
         belowAttestations=below_attestations,
         belowFrequency=below_frequency,
         withoutMeaning=without_meaning,
+        denylisted=denylisted,
         capped=capped,
         rowsKept=len(kept),
     )
@@ -294,9 +341,15 @@ def derive(
     rows: Iterable[LexiconEntry],
     source: DerivedSource,
     spec: DerivedSet,
+    denied: frozenset[str],
 ) -> GameWordlist:
-    """Cut one Game's wordlist out of the published lexicon."""
-    kept, counters = select(meta, rows, spec.selection)
+    """Cut one Game's wordlist out of the published lexicon.
+
+    ``denied`` is required rather than defaulted: an empty deny-list and a
+    forgotten one produce identical output, and the one this layer exists to
+    prevent is the forgotten one.
+    """
+    kept, counters = select(meta, rows, spec.selection, denied)
     # Both derived signals are counted AFTER the cap, over the rows this set
     # really serves: a partner nobody is served cannot be the word a Game offers
     # back, and a quartile over a population wider than the served set would say

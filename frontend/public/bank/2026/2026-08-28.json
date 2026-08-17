@@ -13,9 +13,9 @@
   ],
   "date": "2026-08-28",
   "items": [
-    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: அ"}, {"cost": 1, "kind": "length", "text": "4 எழுத்துகள்"}], "reveal": 0, "tiles": ["ச", "ஞ்", "அ", "னா"], "timeLimitSec": 0, "word": "அஞ்சனா"}},
-    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ச"}, {"cost": 1, "kind": "length", "text": "5 எழுத்துகள்"}], "reveal": 0, "tiles": ["ப்", "ச", "ர்", "ம்", "ப"], "timeLimitSec": 0, "word": "சர்ப்பம்"}},
-    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: அ"}, {"cost": 1, "kind": "length", "text": "6 எழுத்துகள்"}], "reveal": 0, "tiles": ["ர்", "அ", "ட்", "கே", "ட", "லி"], "timeLimitSec": 0, "word": "அலிகேட்டர்"}}
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ஐ"}, {"cost": 1, "kind": "length", "text": "4 எழுத்துகள்"}], "reveal": 0, "tiles": ["ந்", "தி", "ஐ", "ணை"], "timeLimitSec": 0, "word": "ஐந்திணை"}},
+    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: உ"}, {"cost": 1, "kind": "length", "text": "5 எழுத்துகள்"}], "reveal": 0, "tiles": ["லி", "ல்", "உ", "வ", "ட"], "timeLimitSec": 0, "word": "உடல்வலி"}},
+    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: அ"}, {"cost": 1, "kind": "length", "text": "5 எழுத்துகள்"}], "reveal": 0, "tiles": ["ள", "கே", "அ", "ன்", "ச"], "timeLimitSec": 0, "word": "அளகேசன்"}}
   ],
   "version": "2026-08-17"
 }

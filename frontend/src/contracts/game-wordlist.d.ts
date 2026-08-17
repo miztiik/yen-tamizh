@@ -16,6 +16,7 @@ export type Why = string
 export type Belowattestations = number
 export type Belowfrequency = number
 export type Capped = number
+export type Denylisted = number
 export type Lexiconrows = number
 export type Outsidecategories = number
 export type Outsideclass = number
@@ -92,11 +93,19 @@ why: Why
  * are charged before the gates so a themed ledger reads as "of the rows this
  * theme covers, here is what each gate then removed" rather than burying the
  * theme's own reach inside ``outsideLength``.
+ * 
+ * ``denylisted`` is the curated exclusion, and it is charged LAST of the
+ * row-level buckets - after every automatic gate and before the cap. A word an
+ * automatic gate already stopped is charged to that gate, so this bucket
+ * counts only the words the deny-list ALONE keeps off the board: how much
+ * hand curation the set actually needed, which is the number that says whether
+ * an entry still earns its line.
  */
 export interface DerivedCounters {
 belowAttestations: Belowattestations
 belowFrequency: Belowfrequency
 capped: Capped
+denylisted: Denylisted
 lexiconRows: Lexiconrows
 outsideCategories: Outsidecategories
 outsideClass: Outsideclass

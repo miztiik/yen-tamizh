@@ -11,9 +11,11 @@ Six things are proven:
 1. **The four serving gates** - class, attestation with its tier-1 leg,
    frequency and meaning each reject for their own reason, and the counters
    reconcile against the lexicon's published row count with no silent drops -
-   and **the two selection dimensions**, ``categories`` and ``pos``, which keep
+   **the two selection dimensions**, ``categories`` and ``pos``, which keep
    the rows their own set-valued column intersects, are charged before the
-   gates, and never apply to a set that did not ask for them.
+   gates, and never apply to a set that did not ask for them - and **the
+   curated deny-list**, which runs after every automatic gate, matches a WHOLE
+   word and never a prefix, and carries its own ledger bucket.
 2. **Resolution by the meta document** - the derived layer opens the files the
    partition table names and NOTHING else, so a stray file in the published
    directory cannot reach a player and a class the lexicon does not publish is a
@@ -24,16 +26,19 @@ Six things are proven:
    assertion is the hand-edit gate: a derived set is a build artifact, so any
    hand edit fails here.
 4. **The Oracles over the REAL committed artifacts** - every row satisfies all
-   four gates; the three words this cutover exists to remove are absent; every
-   ``anagramFanOut`` equals the number of served rows sharing its ezhuthu
-   multiset; every ``frequencyStratum`` is the quartile of THIS set; and the
-   themed set is EXACTLY the rows the theme covers that the gates keep, no more
-   and no fewer, computed independently of the code that cut it.
+   four gates; the three words this cutover exists to remove are absent; no
+   denied word survives in either set while every word deliberately KEPT is
+   still served; every ``anagramFanOut`` equals the number of served rows
+   sharing its ezhuthu multiset; every ``frequencyStratum`` is the quartile of
+   THIS set; and the themed set is EXACTLY the rows the theme covers that the
+   gates keep, no more and no fewer, computed independently of the code that cut
+   it.
 5. **Coverage + schema** - the committed set is non-empty at every target ezhuthu
    length, clears the served-set floor, and validates row by row.
 6. **Rejection** - a malformed row, an incoherent selection, an unsorted
-   dimension, a colliding registry, and a class no Game may ever serve all fail
-   validation rather than being silently accepted.
+   dimension, a colliding registry, a registry naming no deny-list, an unsorted
+   or duplicated or unexplained deny-list, and a class no Game may ever serve
+   all fail validation rather than being silently accepted.
 """
 
 from __future__ import annotations
@@ -65,6 +70,7 @@ from yen_tamizh_backend.contracts.lexicon import (
     PartOfSpeech,
     WordClass,
 )
+from yen_tamizh_backend.contracts.served_denylist import DeniedWord, ServedDenylist
 from yen_tamizh_backend.ezhuthu import classify, ezhuthu_roman, segment
 from yen_tamizh_backend.scripts.rebuild_wordlists import rebuild
 from yen_tamizh_backend.wordsmith import derive
@@ -80,6 +86,7 @@ from yen_tamizh_backend.wordsmith.publish import render as render_row
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 _META = _REPO_ROOT / "datasets" / "lexicon" / "lexicon.meta.json"
 _REGISTRY = _REPO_ROOT / "config" / "derived-wordlists.json"
+_DENYLIST = _REPO_ROOT / "config" / "served-denylist.json"
 _ANAGRAM = _REPO_ROOT / "datasets" / "wordlists" / "derived" / "anagram.json"
 _THEMED = _REPO_ROOT / "datasets" / "wordlists" / "derived" / "themed-nature.json"
 
@@ -106,6 +113,42 @@ ORU = "\u0b92\u0bb0\u0bc1"
 ASURA = "\u0b85\u0b9a\u0bc1\u0bb0"
 DMK = "\u0ba4\u0bbf\u0bae\u0bc1\u0b95"
 STALIN = "\u0bb8\u0bcd\u0b9f\u0bbe\u0bb2\u0bbf\u0ba9\u0bcd"
+
+# The 27 words reviewed alongside the row 16 deny-list and deliberately KEPT -
+# appa, amma, arasu, pakkam, maathiri, konjam, niraiya, the numerals one to five
+# and thousand, inru, piragu, adutthu, arugil, ethiraaga, kaaranamaaga,
+# udanadiyaaga, ippadi, eppadi, and the given names selvan, aadhavan, nambi,
+# agil and indhu. Every one of them is real vocabulary a cruder rule - a
+# part-of-speech filter, or a "looks grammatical" sweep - would have taken.
+_KEPT = (
+    "\u0b85\u0baa\u0bcd\u0baa\u0bbe",
+    "\u0b85\u0bae\u0bcd\u0bae\u0bbe",
+    "\u0b85\u0bb0\u0b9a\u0bc1",
+    "\u0baa\u0b95\u0bcd\u0b95\u0bae\u0bcd",
+    "\u0bae\u0bbe\u0ba4\u0bbf\u0bb0\u0bbf",
+    "\u0b95\u0bca\u0b9e\u0bcd\u0b9a\u0bae\u0bcd",
+    "\u0ba8\u0bbf\u0bb1\u0bc8\u0baf",
+    "\u0b92\u0ba9\u0bcd\u0bb1\u0bc1",
+    "\u0b87\u0bb0\u0ba3\u0bcd\u0b9f\u0bc1",
+    "\u0bae\u0bc2\u0ba9\u0bcd\u0bb1\u0bc1",
+    "\u0ba8\u0bbe\u0ba9\u0bcd\u0b95\u0bc1",
+    "\u0b90\u0ba8\u0bcd\u0ba4\u0bc1",
+    "\u0b86\u0baf\u0bbf\u0bb0\u0bae\u0bcd",
+    "\u0b87\u0ba9\u0bcd\u0bb1\u0bc1",
+    "\u0baa\u0bbf\u0bb1\u0b95\u0bc1",
+    "\u0b85\u0b9f\u0bc1\u0ba4\u0bcd\u0ba4\u0bc1",
+    "\u0b85\u0bb0\u0bc1\u0b95\u0bbf\u0bb2\u0bcd",
+    "\u0b8e\u0ba4\u0bbf\u0bb0\u0bbe\u0b95",
+    "\u0b95\u0bbe\u0bb0\u0ba3\u0bae\u0bbe\u0b95",
+    "\u0b89\u0b9f\u0ba9\u0b9f\u0bbf\u0baf\u0bbe\u0b95",
+    "\u0b87\u0baa\u0bcd\u0baa\u0b9f\u0bbf",
+    "\u0b8e\u0baa\u0bcd\u0baa\u0b9f\u0bbf",
+    "\u0b9a\u0bc6\u0bb2\u0bcd\u0bb5\u0ba9\u0bcd",
+    "\u0b86\u0ba4\u0bb5\u0ba9\u0bcd",
+    "\u0ba8\u0bae\u0bcd\u0baa\u0bbf",
+    "\u0b85\u0b95\u0bbf\u0bb2\u0bcd",
+    "\u0b87\u0ba8\u0bcd\u0ba4\u0bc1",
+)
 
 # A Tamil meaning, so a row can satisfy requireMeaning without inventing English.
 MEANING = "\u0b92\u0bb0\u0bc1 \u0baa\u0bca\u0bb0\u0bc1\u0bb3\u0bcd"
@@ -255,7 +298,10 @@ def _spec(out: str, **overrides: Any) -> dict[str, Any]:
 
 
 def _cut(
-    repo_root: Path, rows: list[LexiconEntry], **overrides: Any
+    repo_root: Path,
+    rows: list[LexiconEntry],
+    denied: frozenset[str] = frozenset(),
+    **overrides: Any,
 ) -> GameWordlist:
     """Publish a fixture lexicon and cut one set out of it, end to end."""
     meta_path = _write_lexicon(repo_root, rows)
@@ -267,7 +313,7 @@ def _cut(
         meta, meta_path, "datasets/lexicon/lexicon.meta.json"
     )
     streamed = derive.read_rows(meta, repo_root, spec.selection.wordClasses)
-    return derive.derive(meta, streamed, source, spec)
+    return derive.derive(meta, streamed, source, spec, denied)
 
 
 @pytest.fixture(scope="module")
@@ -520,6 +566,75 @@ def test_both_dimensions_narrow_together(tmp_path: Path) -> None:
 
 
 # --------------------------------------------------------------------------
+# 1b. The curated deny-list (row 16)
+# --------------------------------------------------------------------------
+
+
+def test_a_denied_word_is_not_served_and_is_charged_to_its_own_bucket(
+    tmp_path: Path,
+) -> None:
+    """Every gate passes and the word still does not reach the board."""
+    rows = [_entry(VAASAL), _entry(ITHAZH), _entry(SAVAAL)]
+    wordlist = _cut(tmp_path, rows, denied=frozenset({SAVAAL}))
+
+    assert sorted(row.word for row in wordlist.words) == sorted([VAASAL, ITHAZH])
+    assert wordlist.counters.denylisted == 1
+    assert wordlist.counters.rowsKept == 2
+
+
+def test_the_deny_list_matches_a_WHOLE_word_and_never_a_prefix(
+    tmp_path: Path,
+) -> None:
+    """VAASAL denied must not take VAASALIL with it - Tamil agglutinates."""
+    inflected = VAASAL + "\u0bbf\u0bb2\u0bcd"
+    wordlist = _cut(
+        tmp_path, [_entry(VAASAL), _entry(inflected)], denied=frozenset({VAASAL})
+    )
+
+    assert [row.word for row in wordlist.words] == [inflected]
+    assert wordlist.counters.denylisted == 1
+
+
+def test_the_deny_list_is_charged_after_every_automatic_gate(tmp_path: Path) -> None:
+    """Its number is what the LIST alone removed, not what a gate would have."""
+    rows = [
+        _entry(VAASAL),
+        _entry(ORU),  # denied AND 2 ezhuthu, so the length gate stopped it first
+        _entry(SAVAAL, frequency=0),  # denied AND never occurs
+    ]
+    wordlist = _cut(tmp_path, rows, denied=frozenset({ORU, SAVAAL}))
+
+    assert [row.word for row in wordlist.words] == [VAASAL]
+    assert wordlist.counters.denylisted == 0
+    assert wordlist.counters.outsideLength == 1
+    assert wordlist.counters.belowFrequency == 1
+
+
+def test_a_denied_word_is_not_counted_by_the_signals_of_the_rows_that_remain(
+    tmp_path: Path,
+) -> None:
+    """A word nobody is served cannot be the answer a Game offers back."""
+    wordlist = _cut(
+        tmp_path, [_entry(VAASAL), _entry(SAVAAL)], denied=frozenset({SAVAAL})
+    )
+
+    assert [(row.word, row.anagramFanOut) for row in wordlist.words] == [(VAASAL, 1)]
+
+
+def test_rebuild_reads_the_deny_list_the_registry_names(tmp_path: Path) -> None:
+    """The path is config, so a run cannot serve a denied word by forgetting it."""
+    registry = _tmp_repo(
+        tmp_path,
+        [_spec("datasets/wordlists/derived/anagram.json")],
+        denied=[VAASAL],
+    )
+    _, wordlist = rebuild(registry, tmp_path)[0]
+
+    assert VAASAL not in {row.word for row in wordlist.words}
+    assert wordlist.counters.denylisted == 1
+
+
+# --------------------------------------------------------------------------
 # 2. Resolution by the meta document, never by globbing
 # --------------------------------------------------------------------------
 
@@ -571,11 +686,33 @@ def _address(row: LexiconEntry) -> tuple[str, str, str]:
 # --------------------------------------------------------------------------
 
 
-def _tmp_repo(tmp_path: Path, sets: list[dict[str, Any]]) -> Path:
-    """A miniature repo root: a real published lexicon plus a real registry file."""
+def _tmp_repo(
+    tmp_path: Path, sets: list[dict[str, Any]], denied: list[str] | None = None
+) -> Path:
+    """A miniature repo root: a real published lexicon, registry and deny-list."""
     _write_lexicon(tmp_path, _sample_rows())
+    denylist = tmp_path / "config" / "served-denylist.json"
+    denylist.parent.mkdir(parents=True)
+    # A deny-list may not be empty, so a fixture that denies nothing still names
+    # a word - one no test lexicon publishes.
+    denylist.write_text(
+        json.dumps(
+            {
+                "version": "2026-08-17",
+                "changelog": [
+                    {"version": "2026-08-17", "change": "test", "why": "test"}
+                ],
+                "note": "test deny-list",
+                "functionWords": [
+                    {"word": word, "reason": "test"}
+                    for word in sorted(denied or [DMK])
+                ],
+                "properNouns": [{"word": STALIN, "reason": "test"}],
+            }
+        ),
+        encoding="utf-8",
+    )
     registry = tmp_path / "config" / "derived-wordlists.json"
-    registry.parent.mkdir(parents=True)
     registry.write_text(
         json.dumps(
             {
@@ -588,6 +725,7 @@ def _tmp_repo(tmp_path: Path, sets: list[dict[str, Any]]) -> Path:
                     }
                 ],
                 "lexiconPath": "datasets/lexicon/lexicon.meta.json",
+                "denylistPath": "config/served-denylist.json",
                 "sets": sets,
             }
         ),
@@ -637,8 +775,9 @@ def test_committed_anagram_set_is_exactly_what_a_rebuild_produces(
     spec = next(entry for entry in registry.sets if entry.gameId == "anagram")
     source = derive.describe_source(committed_meta, _META, registry.lexiconPath)
     rows = derive.read_rows(committed_meta, _REPO_ROOT, spec.selection.wordClasses)
+    denied = derive.load_denylist(_REPO_ROOT / registry.denylistPath).words()
 
-    rebuilt = derive.render(derive.derive(committed_meta, rows, source, spec))
+    rebuilt = derive.render(derive.derive(committed_meta, rows, source, spec, denied))
 
     assert rebuilt == _ANAGRAM.read_text(encoding="utf-8")
 
@@ -661,8 +800,9 @@ def test_committed_themed_set_is_exactly_what_a_rebuild_produces(
     spec = next(entry for entry in registry.sets if entry.gameId == _THEMED_GAME_ID)
     source = derive.describe_source(committed_meta, _META, registry.lexiconPath)
     rows = derive.read_rows(committed_meta, _REPO_ROOT, spec.selection.wordClasses)
+    denied = derive.load_denylist(_REPO_ROOT / registry.denylistPath).words()
 
-    rebuilt = derive.render(derive.derive(committed_meta, rows, source, spec))
+    rebuilt = derive.render(derive.derive(committed_meta, rows, source, spec, denied))
 
     assert rebuilt == _THEMED.read_text(encoding="utf-8")
 
@@ -684,6 +824,7 @@ def test_the_themed_set_is_exactly_the_rows_the_theme_covers_and_the_gates_keep(
     selection = committed_themed.selection
     assert selection.categories is not None
     wanted = set(selection.categories)
+    denied = derive.load_denylist(_DENYLIST).words()
     expected = {
         row.word
         for row in derive.read_rows(committed_meta, _REPO_ROOT, selection.wordClasses)
@@ -693,6 +834,7 @@ def test_the_themed_set_is_exactly_the_rows_the_theme_covers_and_the_gates_keep(
         and row.tier1Attestations >= selection.minTier1Attestations
         and row.frequency >= selection.minFrequency
         and row.definitionTa is not None
+        and row.word not in denied
     }
 
     assert {row.word for row in committed_themed.words} == expected
@@ -774,6 +916,71 @@ def test_the_three_words_this_cutover_removes_are_absent(
         assert word not in served, f"{word} is still served"
 
 
+def test_the_committed_deny_list_validates_at_the_size_it_was_reviewed_at() -> None:
+    """55 grammar words and 14 names - a curated list, counted, not sampled."""
+    denylist = derive.load_denylist(_DENYLIST)
+
+    assert len(denylist.functionWords) == 55
+    assert len(denylist.properNouns) == 14
+    assert len(denylist.words()) == 69
+    assert denylist.note.strip()
+
+
+def test_no_denied_word_survives_in_any_committed_set(
+    committed_anagram: GameWordlist, committed_themed: GameWordlist
+) -> None:
+    """THE row 16 Oracle: the board is what this list says it is."""
+    denied = derive.load_denylist(_DENYLIST).words()
+    for wordlist in (committed_anagram, committed_themed):
+        still_served = sorted(denied & {row.word for row in wordlist.words})
+        assert still_served == [], f"{wordlist.gameId} still serves {still_served}"
+
+
+def test_the_words_deliberately_kept_are_not_on_the_deny_list() -> None:
+    """Real vocabulary a cruder rule would have taken; the note names them all.
+
+    A part-of-speech rule was measured and rejected because ``pos`` is a UNION
+    across 21 sources, so appa (father) and arasu (government) both carry
+    ``interjection``. These words are the cost that rule would have had, and
+    this test is what stops the next contributor re-discovering it.
+    """
+    denylist = derive.load_denylist(_DENYLIST)
+    denied = denylist.words()
+
+    for word in _KEPT:
+        assert word not in denied, f"{word} is real vocabulary, not grammar"
+        assert word in denylist.note, f"the note must name {word} as kept"
+
+
+def test_every_kept_word_is_still_served(committed_anagram: GameWordlist) -> None:
+    """Naming them in a note is cheap; the assertion is that they reached a player."""
+    served = {row.word for row in committed_anagram.words}
+    missing = [word for word in _KEPT if word not in served]
+    assert missing == [], f"the deny-list took real vocabulary with it: {missing}"
+
+
+def test_the_deny_list_did_the_work_the_ledger_claims(
+    committed_anagram: GameWordlist,
+) -> None:
+    """The bucket is a measurement: it equals the denied words the gates let through."""
+    denied = derive.load_denylist(_DENYLIST).words()
+    selection = committed_anagram.selection
+    stopped_here = {
+        row.word
+        for row in derive.read_rows(
+            derive.load_meta(_META), _REPO_ROOT, selection.wordClasses
+        )
+        if row.word in denied
+        and selection.minLength <= row.length <= selection.maxLength
+        and row.attestations >= selection.minAttestations
+        and row.tier1Attestations >= selection.minTier1Attestations
+        and row.frequency >= selection.minFrequency
+        and row.definitionTa is not None
+    }
+
+    assert committed_anagram.counters.denylisted == len(stopped_here)
+
+
 def test_no_committed_row_carries_a_zero_frequency(
     committed_anagram: GameWordlist,
 ) -> None:
@@ -833,6 +1040,7 @@ def test_committed_counters_account_for_every_published_lexicon_row(
             + counters.belowAttestations
             + counters.belowFrequency
             + counters.withoutMeaning
+            + counters.denylisted
             + counters.capped
             + counters.rowsKept
         )
@@ -895,12 +1103,15 @@ def test_registered_paths_are_relative_and_posix() -> None:
         assert not spec.out.startswith("/")
         assert "\\" not in spec.out
     assert not registry.lexiconPath.startswith("/")
+    assert not registry.denylistPath.startswith("/")
+    assert "\\" not in registry.denylistPath
 
 
 def test_the_committed_registry_validates() -> None:
     registry = derive.load_registry(_REGISTRY)
     assert [spec.gameId for spec in registry.sets] == ["anagram", _THEMED_GAME_ID]
     assert registry.lexiconPath == "datasets/lexicon/lexicon.meta.json"
+    assert registry.denylistPath == "config/served-denylist.json"
     for spec in registry.sets:
         assert spec.selection.wordClasses == ["headword"]
 
@@ -1027,6 +1238,7 @@ def test_counters_that_do_not_reconcile_are_rejected() -> None:
             belowAttestations=1,
             belowFrequency=1,
             withoutMeaning=1,
+            denylisted=0,
             capped=0,
             rowsKept=1,
         )
@@ -1055,6 +1267,7 @@ def _wordlist_payload(**overrides: Any) -> dict[str, Any]:
             "belowAttestations": 0,
             "belowFrequency": 0,
             "withoutMeaning": 0,
+            "denylisted": 0,
             "capped": 0,
             "rowsKept": 1,
         },
@@ -1164,6 +1377,7 @@ def test_two_sets_writing_to_one_path_are_rejected() -> None:
             {"version": "2026-08-16T23:30", "change": "test", "why": "test"}
         ],
         "lexiconPath": "datasets/lexicon/lexicon.meta.json",
+        "denylistPath": "config/served-denylist.json",
     }
     with pytest.raises(ValidationError, match="repeated out"):
         DerivedWordlists.model_validate(
@@ -1199,6 +1413,7 @@ def test_an_absolute_output_path_is_rejected() -> None:
                     {"version": "2026-08-16T23:30", "change": "test", "why": "test"}
                 ],
                 "lexiconPath": "datasets/lexicon/lexicon.meta.json",
+                "denylistPath": "config/served-denylist.json",
                 "sets": [_spec("/tmp/anagram.json")],
             }
         )
@@ -1209,3 +1424,101 @@ def test_a_missing_lexicon_fails_loudly(tmp_path: Path) -> None:
     shutil.rmtree(tmp_path / "datasets")
     with pytest.raises(FileNotFoundError):
         rebuild(registry, tmp_path)
+
+
+def test_a_registry_that_names_no_deny_list_is_rejected() -> None:
+    """The knob cannot be forgotten: an absent deny-list serves denied words."""
+    payload = {
+        "version": "2026-08-16T23:30",
+        "changelog": [
+            {"version": "2026-08-16T23:30", "change": "test", "why": "test"}
+        ],
+        "lexiconPath": "datasets/lexicon/lexicon.meta.json",
+        "sets": [_spec("datasets/wordlists/derived/anagram.json")],
+    }
+    with pytest.raises(ValidationError, match="denylistPath"):
+        DerivedWordlists.model_validate(payload)
+
+
+def _denylist_payload(**overrides: Any) -> dict[str, Any]:
+    payload: dict[str, Any] = {
+        "version": "2026-08-17",
+        "changelog": [{"version": "2026-08-17", "change": "test", "why": "test"}],
+        "note": "test deny-list",
+        "functionWords": [{"word": ORU, "reason": "numeral used as an article"}],
+        "properNouns": [{"word": STALIN, "reason": "given name"}],
+    }
+    payload.update(overrides)
+    return payload
+
+
+def test_the_committed_deny_list_is_the_shape_the_contract_describes() -> None:
+    ServedDenylist.model_validate(
+        json.loads(_DENYLIST.read_text(encoding="utf-8"))
+    )
+
+
+def test_an_unsorted_deny_list_is_rejected() -> None:
+    """A set written as a list: the order it is written in must not be information."""
+    with pytest.raises(ValidationError, match="functionWords must be sorted"):
+        ServedDenylist.model_validate(
+            _denylist_payload(
+                functionWords=[
+                    {"word": VAASAL, "reason": "test"},
+                    {"word": ORU, "reason": "test"},
+                ]
+            )
+        )
+
+
+def test_a_word_denied_twice_is_rejected() -> None:
+    """Within one array, and across both - two reviewers disagreeing about why."""
+    with pytest.raises(ValidationError, match="denied more than once"):
+        ServedDenylist.model_validate(
+            _denylist_payload(
+                functionWords=[
+                    {"word": ORU, "reason": "test"},
+                    {"word": ORU, "reason": "test"},
+                ]
+            )
+        )
+    with pytest.raises(ValidationError, match="denied more than once"):
+        ServedDenylist.model_validate(
+            _denylist_payload(properNouns=[{"word": ORU, "reason": "given name"}])
+        )
+
+
+def test_a_blank_deny_list_entry_is_rejected() -> None:
+    with pytest.raises(ValidationError, match="blank word"):
+        ServedDenylist.model_validate(
+            _denylist_payload(functionWords=[{"word": " ", "reason": "test"}])
+        )
+    with pytest.raises(ValidationError, match="blank reason"):
+        ServedDenylist.model_validate(
+            _denylist_payload(functionWords=[{"word": ORU, "reason": " "}])
+        )
+    with pytest.raises(ValidationError):
+        DeniedWord(word=ORU, reason="")
+
+
+def test_a_deny_list_that_does_not_say_why_it_exists_is_rejected() -> None:
+    """The words deliberately KEPT are the whole difference from a cruder rule."""
+    payload = _denylist_payload()
+    del payload["note"]
+    with pytest.raises(ValidationError, match="note"):
+        ServedDenylist.model_validate(payload)
+
+
+def test_an_empty_deny_list_array_is_rejected() -> None:
+    """An empty array and a forgotten file produce the same output; neither is a state."""
+    with pytest.raises(ValidationError):
+        ServedDenylist.model_validate(_denylist_payload(functionWords=[]))
+    with pytest.raises(ValidationError):
+        ServedDenylist.model_validate(_denylist_payload(properNouns=[]))
+
+
+def test_an_unknown_deny_list_field_is_rejected() -> None:
+    with pytest.raises(ValidationError):
+        ServedDenylist.model_validate(_denylist_payload(pos=["noun"]))
+    with pytest.raises(ValidationError):
+        DeniedWord.model_validate({"word": ORU, "reason": "test", "since": "2026"})
