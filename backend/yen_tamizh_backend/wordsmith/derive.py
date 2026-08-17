@@ -19,6 +19,12 @@ how often it actually occurs, and whether the game can say what it means. Each
 gate has its own counter bucket, so what a gate removed is a number in the
 committed file rather than a claim in a commit message.
 
+A set may also narrow itself on a DIMENSION - ``categories`` or ``pos`` - which
+is how a THEMED set is cut. A dimension is not a gate: it never applies unless a
+set asks for it, because barely any published row carries a category and a set
+that narrowed on one by accident would collapse to a few hundred rows. It gets
+its own bucket for the same reason a gate does.
+
 Adding a Game's set is a DATA change (see docs/how-to/add-a-derived-wordlist.md):
 append an entry to ``config/derived-wordlists.json`` and re-run
 ``python -m yen_tamizh_backend.scripts.rebuild_wordlists``. The gates are config
@@ -55,10 +61,31 @@ from yen_tamizh_backend.contracts.lexicon import Lexicon, LexiconEntry
 from yen_tamizh_backend.ezhuthu import segment
 from yen_tamizh_backend.wordsmith.artifact import render_document, sha256_of
 
-_SCHEMA_VERSION = "2026-08-16T23:30"
+_SCHEMA_VERSION = "2026-08-17"
 _CHANGELOG = [
     ChangelogEntry(
         version=_SCHEMA_VERSION,
+        change=(
+            "Added the categories and pos SELECTION dimensions to the selection, "
+            "each keeping the rows whose own set-valued column intersects the "
+            "one named, and gave each its own ledger bucket - outsideCategories "
+            "and outsidePos - charged before the four serving gates."
+        ),
+        why=(
+            "Row 15 of the lexicon pipeline - a themed round is the Daily's "
+            "variety mechanism, and it costs no new engine because a theme is "
+            "just a derived set cut on a dimension the lexicon already carries. "
+            "Neither dimension may ever gate admission for an ordinary set - "
+            "under 3,000 published headwords carry a category at all - so both "
+            "are optional and absent means not applied. They get their own "
+            "buckets because the ledger's whole claim is that every published "
+            "row is accounted for under exactly one heading, and burying a "
+            "theme's reach inside an existing gate would make that gate's "
+            "number a lie."
+        ),
+    ),
+    ChangelogEntry(
+        version="2026-08-16T23:30",
         change=(
             "Cut the set from the published lexicon instead of the ranked "
             "master: source became {metaPath, version, sha256, rows} and lost "
@@ -188,12 +215,19 @@ def select(
     rows: Iterable[LexiconEntry],
     selection: DerivedSelection,
 ) -> tuple[list[LexiconEntry], DerivedCounters]:
-    """Apply one Game's serving gates; return the rows and the ledger.
+    """Apply one Game's selection dimensions and serving gates; return the ledger.
 
     ``rows`` carries only the classes the selection allows - the caller opens no
     others - so ``outsideClass`` is read off the lexicon's own partition table
-    rather than counted line by line. Every other gate counts what it stopped,
+    rather than counted line by line. Every other bucket counts what it stopped,
     and a row failing more than one is charged to the first that stopped it.
+
+    The two DIMENSIONS - ``categories`` and ``pos`` - are read before the gates.
+    Each keeps the rows whose own set-valued column intersects the one named, and
+    a row carrying neither column can never intersect one, so a set that names a
+    dimension serves only rows the lexicon actually tagged. Reading them first is
+    what makes a themed ledger legible: it says how far the theme reaches, and
+    then what each gate removed from inside it.
 
     The kept rows come out most frequent first, with the word as the tie-break so
     the order is total and the bytes are reproducible. That is also the order the
@@ -204,9 +238,18 @@ def select(
     outside_class = sum(
         cell.rows for cell in meta.partitions if cell.wordClass not in served_classes
     )
+    wanted_categories = set(selection.categories or ())
+    wanted_pos = set(selection.pos or ())
+    outside_categories = outside_pos = 0
     outside_length = below_attestations = below_frequency = without_meaning = 0
     kept: list[LexiconEntry] = []
     for row in rows:
+        if wanted_categories and not wanted_categories.intersection(row.categories or ()):
+            outside_categories += 1
+            continue
+        if wanted_pos and not wanted_pos.intersection(row.pos or ()):
+            outside_pos += 1
+            continue
         if not selection.minLength <= row.length <= selection.maxLength:
             outside_length += 1
             continue
@@ -235,6 +278,8 @@ def select(
         lexiconRows=meta.counters.published.rows,
         outsideLength=outside_length,
         outsideClass=outside_class,
+        outsideCategories=outside_categories,
+        outsidePos=outside_pos,
         belowAttestations=below_attestations,
         belowFrequency=below_frequency,
         withoutMeaning=without_meaning,

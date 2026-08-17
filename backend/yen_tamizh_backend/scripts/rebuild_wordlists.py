@@ -57,6 +57,8 @@ def _report(wordlist: GameWordlist, rel_out: str) -> str:
         f"{wordlist.gameId}: rowsKept={counters.rowsKept} "
         f"outsideLength={counters.outsideLength} "
         f"outsideClass={counters.outsideClass} "
+        f"outsideCategories={counters.outsideCategories} "
+        f"outsidePos={counters.outsidePos} "
         f"belowAttestations={counters.belowAttestations} "
         f"belowFrequency={counters.belowFrequency} "
         f"withoutMeaning={counters.withoutMeaning} capped={counters.capped} "

@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-16T23:30",
+  "version": "2026-08-17",
   "changelog": [
+    {
+      "version": "2026-08-17",
+      "change": "Added themeEveryNDays and gave the anagram generator its first themed wordlist.",
+      "why": "Row 15 of the lexicon pipeline - a themed set nothing draws from is a dataset nobody reads, so the day loop needs a place to find one. A theme is registered per Game beside its ordinary wordlist, and the day runs it only when a whole playlist can be drawn from it. themeEveryNDays is 7 because the theme is wide enough to fill months of consecutive days, and a Daily that is nature every day for a season is the opposite of the variety a theme exists to add; one themed day a week is also the cadence the theme's growth target was sized against."
+    },
     {
       "version": "2026-08-16T23:30",
       "change": "Gave every difficulty band a maxStratum bound alongside its length bounds, and moved the length bounds to 3-4 easy, 4-5 medium, 5-6 hard.",
@@ -14,6 +19,7 @@
   ],
   "bankDir": "frontend/public/bank",
   "daysAhead": 6,
+  "themeEveryNDays": 7,
   "games": [
     {
       "gameId": "anagram",
@@ -34,6 +40,12 @@
           "cost": 2
         },
         { "kind": "length", "template": "{length} எழுத்துகள்", "cost": 1 }
+      ],
+      "themes": [
+        {
+          "wordlist": "datasets/wordlists/derived/themed-nature.json",
+          "copySlug": "theme-nature"
+        }
       ]
     }
   ]

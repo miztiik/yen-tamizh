@@ -35,8 +35,12 @@ export type Template = string
 export type Hints = HintSpec[]
 export type Packid = string
 export type Reveal = number
-export type Timelimitsec = number
+export type Copyslug = string
 export type Wordlist = string
+export type Themes = ThemedSet[]
+export type Timelimitsec = number
+export type Wordlist1 = string
+export type Themeeveryndays = number
 export type Version1 = string
 
 /**
@@ -47,6 +51,7 @@ bankDir: Bankdir
 changelog: Changelog
 daysAhead: Daysahead
 games: Games
+themeEveryNDays: Themeeveryndays
 version: Version1
 }
 /**
@@ -70,8 +75,9 @@ gameId: Gameid
 hints?: Hints
 packId: Packid
 reveal: Reveal
+themes?: Themes
 timeLimitSec: Timelimitsec
-wordlist: Wordlist
+wordlist: Wordlist1
 }
 /**
  * One difficulty bucket: the ezhuthu lengths and the familiarity it covers.
@@ -112,4 +118,27 @@ export interface HintSpec {
 cost: Cost
 kind: Kind
 template: Template
+}
+/**
+ * One themed wordlist this Game may run a whole day from.
+ * 
+ * A theme is the Daily's VARIETY mechanism, not a Mode and not a Game: three
+ * unrelated anagrams are a list, three sharing a theme are a round. It costs no
+ * new engine - it is one derived set cut on the ``categories`` dimension, and
+ * ``wordlist`` is where that set landed.
+ * 
+ * ``copySlug`` names the theme's player-facing Tamil label in
+ * ``config/copy.json``. The SLUG travels in the baked day, never the label: a
+ * Tamil category name is copy, and copy never gets baked into a dataset where
+ * it could only be changed by a rebuild.
+ * 
+ * A themed day is OPPORTUNISTIC. The day runs a theme only when a whole
+ * playlist can be drawn from that theme's own wordlist without repeating a
+ * word the bank has already served; otherwise the day is ordinary. A theme is
+ * never padded out with an off-theme word, because the round's whole claim is
+ * that the three words belong together.
+ */
+export interface ThemedSet {
+copySlug: Copyslug
+wordlist: Wordlist
 }

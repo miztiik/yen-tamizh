@@ -12,6 +12,11 @@ generator CONSUMES a derived wordlist (Row 9) and PRODUCES puzzle files, and it
 must be tunable without touching either the words above it or the runtime below
 it. Adding a second Game's generator is a DATA change here (another ``games``
 entry) plus the Game's own payload builder - never a rewrite of the day loop.
+
+A Game may also register THEMED wordlists beside its ordinary one. That is the
+Daily's variety mechanism and it is data too: a themed day draws every slot from
+one theme's own derived set, and which themes exist is a registry edit rather
+than a branch in the day loop.
 """
 
 from __future__ import annotations
@@ -23,6 +28,7 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 from yen_tamizh_backend.contracts.base import SchemaModel
 from yen_tamizh_backend.contracts.common import (
     QUARTILES,
+    CopySlug,
     DifficultyId,
     GameId,
     PackId,
@@ -84,6 +90,32 @@ class HintSpec(BaseModel):
     cost: int = Field(ge=0)
 
 
+class ThemedSet(BaseModel):
+    """One themed wordlist this Game may run a whole day from.
+
+    A theme is the Daily's VARIETY mechanism, not a Mode and not a Game: three
+    unrelated anagrams are a list, three sharing a theme are a round. It costs no
+    new engine - it is one derived set cut on the ``categories`` dimension, and
+    ``wordlist`` is where that set landed.
+
+    ``copySlug`` names the theme's player-facing Tamil label in
+    ``config/copy.json``. The SLUG travels in the baked day, never the label: a
+    Tamil category name is copy, and copy never gets baked into a dataset where
+    it could only be changed by a rebuild.
+
+    A themed day is OPPORTUNISTIC. The day runs a theme only when a whole
+    playlist can be drawn from that theme's own wordlist without repeating a
+    word the bank has already served; otherwise the day is ordinary. A theme is
+    never padded out with an off-theme word, because the round's whole claim is
+    that the three words belong together.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    wordlist: RelPath
+    copySlug: CopySlug
+
+
 class GameGeneration(BaseModel):
     """How one Game turns a wordlist row into a playable puzzle."""
 
@@ -99,6 +131,9 @@ class GameGeneration(BaseModel):
     reveal: int = Field(ge=0)
     difficulties: list[DifficultyBand] = Field(min_length=1)
     hints: list[HintSpec] = Field(default_factory=list)
+    # The themed sets this Game may run a whole day from. Empty is the normal
+    # state and means this Game never runs a themed day.
+    themes: list[ThemedSet] = Field(default_factory=list)
 
     @model_validator(mode="after")
     def _difficulty_ids_are_distinct(self) -> Self:
@@ -108,6 +143,14 @@ class GameGeneration(BaseModel):
         kinds = [hint.kind for hint in self.hints]
         if len(set(kinds)) != len(kinds):
             raise ValueError(f"hints has a repeated kind: {kinds}")
+        slugs = [theme.copySlug for theme in self.themes]
+        if len(set(slugs)) != len(slugs):
+            raise ValueError(f"themes has a repeated copySlug: {slugs}")
+        paths = [theme.wordlist for theme in self.themes] + [self.wordlist]
+        if len(set(paths)) != len(paths):
+            # A theme pointing at the ordinary set would make every day themed
+            # and say so in the header, which is a lie about the round.
+            raise ValueError(f"themes has a repeated wordlist: {paths}")
         return self
 
 
@@ -123,6 +166,15 @@ class DailyGenerator(SchemaModel):
     # today in the bank - plus a pre-baked run keeps the game playable offline
     # across midnight.
     daysAhead: int = Field(ge=0)
+    # How often the Daily MAY run a themed round: every Nth date, counted on the
+    # proleptic Gregorian day number so the cadence is a pure function of the
+    # date and needs no phase knob. 0 turns themed days off entirely.
+    #
+    # A cadence is needed because "themed whenever a theme can fill the day" is
+    # not the same design at 429 servable themed rows as it was at the ~30 the
+    # theme was sized for: without it the Daily would be the same theme every day
+    # for months, which is the opposite of the variety a theme exists to add.
+    themeEveryNDays: int = Field(ge=0)
     games: list[GameGeneration] = Field(min_length=1)
 
     @model_validator(mode="after")

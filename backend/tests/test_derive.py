@@ -10,24 +10,30 @@ Six things are proven:
 
 1. **The four serving gates** - class, attestation with its tier-1 leg,
    frequency and meaning each reject for their own reason, and the counters
-   reconcile against the lexicon's published row count with no silent drops.
+   reconcile against the lexicon's published row count with no silent drops -
+   and **the two selection dimensions**, ``categories`` and ``pos``, which keep
+   the rows their own set-valued column intersects, are charged before the
+   gates, and never apply to a set that did not ask for them.
 2. **Resolution by the meta document** - the derived layer opens the files the
    partition table names and NOTHING else, so a stray file in the published
    directory cannot reach a player and a class the lexicon does not publish is a
    loud error rather than an empty set.
 3. **Determinism** - ``rebuild`` writes byte-identical output from identical
-   input, and the COMMITTED ``anagram.json`` is exactly what a fresh rebuild from
-   the committed lexicon produces. That second assertion is the hand-edit gate: a
-   derived set is a build artifact, so any hand edit fails here.
-4. **The Oracles over the REAL committed artifact** - every row satisfies all
+   input, and the COMMITTED ``anagram.json`` and ``themed-nature.json`` are
+   exactly what a fresh rebuild from the committed lexicon produces. That second
+   assertion is the hand-edit gate: a derived set is a build artifact, so any
+   hand edit fails here.
+4. **The Oracles over the REAL committed artifacts** - every row satisfies all
    four gates; the three words this cutover exists to remove are absent; every
    ``anagramFanOut`` equals the number of served rows sharing its ezhuthu
-   multiset; and every ``frequencyStratum`` is the quartile of THIS set.
+   multiset; every ``frequencyStratum`` is the quartile of THIS set; and the
+   themed set is EXACTLY the rows the theme covers that the gates keep, no more
+   and no fewer, computed independently of the code that cut it.
 5. **Coverage + schema** - the committed set is non-empty at every target ezhuthu
    length, clears the served-set floor, and validates row by row.
-6. **Rejection** - a malformed row, an incoherent selection, a colliding
-   registry, and a class no Game may ever serve all fail validation rather than
-   being silently accepted.
+6. **Rejection** - a malformed row, an incoherent selection, an unsorted
+   dimension, a colliding registry, and a class no Game may ever serve all fail
+   validation rather than being silently accepted.
 """
 
 from __future__ import annotations
@@ -56,6 +62,7 @@ from yen_tamizh_backend.contracts.lexicon import (
     PARTITION_KEYS,
     Lexicon,
     LexiconEntry,
+    PartOfSpeech,
     WordClass,
 )
 from yen_tamizh_backend.ezhuthu import classify, ezhuthu_roman, segment
@@ -74,6 +81,12 @@ _REPO_ROOT = Path(__file__).resolve().parents[2]
 _META = _REPO_ROOT / "datasets" / "lexicon" / "lexicon.meta.json"
 _REGISTRY = _REPO_ROOT / "config" / "derived-wordlists.json"
 _ANAGRAM = _REPO_ROOT / "datasets" / "wordlists" / "derived" / "anagram.json"
+_THEMED = _REPO_ROOT / "datasets" / "wordlists" / "derived" / "themed-nature.json"
+
+# The theme's own registry id, and the share of the servable set a theme must
+# exclude before it is worth naming (row 15 decision 11).
+_THEMED_GAME_ID = "themed-nature"
+_THEME_EXCLUSION_FLOOR = 0.90
 
 # A real anagram pair: vaasal (doorway) and savaal (challenge) are the same three
 # ezhuthu in a different order.
@@ -112,6 +125,8 @@ def _entry(
     attestations: int = 3,
     tier1Attestations: int = 2,
     definitionTa: list[str] | None = SENSES,
+    categories: list[str] | None = None,
+    pos: list[PartOfSpeech] | None = None,
 ) -> LexiconEntry:
     """One lexicon row, with every gate satisfied unless a test moves a knob."""
     return LexiconEntry(
@@ -122,6 +137,8 @@ def _entry(
         attestations=attestations,
         tier1Attestations=tier1Attestations,
         definitionTa=definitionTa,
+        categories=categories,
+        pos=pos,
     )
 
 
@@ -263,6 +280,12 @@ def committed_meta() -> Lexicon:
 def committed_anagram() -> GameWordlist:
     """The REAL committed anagram set, validated against its contract."""
     return GameWordlist.model_validate_json(_ANAGRAM.read_text(encoding="utf-8"))
+
+
+@pytest.fixture(scope="module")
+def committed_themed() -> GameWordlist:
+    """The REAL committed themed set - the first set cut on a dimension."""
+    return GameWordlist.model_validate_json(_THEMED.read_text(encoding="utf-8"))
 
 
 # --------------------------------------------------------------------------
@@ -409,6 +432,94 @@ def test_strata_are_the_quartiles_of_the_served_set(tmp_path: Path) -> None:
 
 
 # --------------------------------------------------------------------------
+# 1a. The two selection dimensions (row 15)
+# --------------------------------------------------------------------------
+
+
+def test_the_categories_dimension_keeps_the_rows_that_intersect_it(
+    tmp_path: Path,
+) -> None:
+    """A dimension is an INTERSECTION: one shared tag is enough to be in the theme."""
+    rows = [
+        _entry(VAASAL, categories=["birds"]),
+        _entry(ITHAZH, categories=["animals", "nature"]),
+        _entry(SAVAAL, categories=["tools"]),
+        _entry(ASURA),
+    ]
+    wordlist = _cut(tmp_path, rows, categories=["birds", "nature"])
+
+    assert sorted(row.word for row in wordlist.words) == sorted([VAASAL, ITHAZH])
+    assert wordlist.counters.outsideCategories == 2
+    assert wordlist.counters.outsidePos == 0
+
+
+def test_a_row_the_lexicon_never_tagged_can_never_join_a_theme(
+    tmp_path: Path,
+) -> None:
+    """Fewer than 3,000 published rows carry a category - the rest are not the theme."""
+    wordlist = _cut(tmp_path, [_entry(VAASAL)], categories=["nature"])
+
+    assert wordlist.words == []
+    assert wordlist.counters.outsideCategories == 1
+
+
+def test_the_pos_dimension_is_the_same_intersection_over_a_different_column(
+    tmp_path: Path,
+) -> None:
+    rows = [
+        _entry(VAASAL, pos=["noun", "verb"]),
+        _entry(ITHAZH, pos=["noun"]),
+        _entry(SAVAAL),
+    ]
+    wordlist = _cut(tmp_path, rows, pos=["verb"])
+
+    assert [row.word for row in wordlist.words] == [VAASAL]
+    assert wordlist.counters.outsidePos == 2
+    assert wordlist.counters.outsideCategories == 0
+
+
+def test_a_set_naming_no_dimension_charges_nothing_to_either_bucket(
+    tmp_path: Path,
+) -> None:
+    """Neither dimension may ever gate an ordinary set - absent means not applied."""
+    wordlist = _cut(tmp_path, _sample_rows())
+
+    assert wordlist.selection.categories is None
+    assert wordlist.selection.pos is None
+    assert wordlist.counters.outsideCategories == 0
+    assert wordlist.counters.outsidePos == 0
+    assert wordlist.counters.rowsKept == 3
+
+
+def test_a_dimension_is_charged_before_the_gates_that_would_also_stop_a_row(
+    tmp_path: Path,
+) -> None:
+    """A row off the theme is off the theme, whatever else is also wrong with it."""
+    rows = [
+        _entry(VAASAL, categories=["nature"]),
+        _entry(ORU, frequency=0),  # too short, never occurs, AND off the theme
+    ]
+    wordlist = _cut(tmp_path, rows, categories=["nature"])
+
+    assert wordlist.counters.outsideCategories == 1
+    assert wordlist.counters.outsideLength == 0
+    assert wordlist.counters.belowFrequency == 0
+
+
+def test_both_dimensions_narrow_together(tmp_path: Path) -> None:
+    rows = [
+        _entry(VAASAL, categories=["birds"], pos=["noun"]),
+        _entry(ITHAZH, categories=["birds"], pos=["verb"]),
+        _entry(SAVAAL, categories=["tools"], pos=["noun"]),
+    ]
+    wordlist = _cut(tmp_path, rows, categories=["birds"], pos=["noun"])
+
+    assert [row.word for row in wordlist.words] == [VAASAL]
+    assert wordlist.counters.outsideCategories == 1
+    assert wordlist.counters.outsidePos == 1
+
+
+# --------------------------------------------------------------------------
 # 2. Resolution by the meta document, never by globbing
 # --------------------------------------------------------------------------
 
@@ -542,9 +653,92 @@ def test_committed_set_pins_the_lexicon_it_was_cut_from(
     assert committed_anagram.source.rows == committed_meta.counters.published.rows
 
 
+def test_committed_themed_set_is_exactly_what_a_rebuild_produces(
+    committed_meta: Lexicon,
+) -> None:
+    """The hand-edit gate for the themed set: a theme is derived, never curated."""
+    registry = derive.load_registry(_REGISTRY)
+    spec = next(entry for entry in registry.sets if entry.gameId == _THEMED_GAME_ID)
+    source = derive.describe_source(committed_meta, _META, registry.lexiconPath)
+    rows = derive.read_rows(committed_meta, _REPO_ROOT, spec.selection.wordClasses)
+
+    rebuilt = derive.render(derive.derive(committed_meta, rows, source, spec))
+
+    assert rebuilt == _THEMED.read_text(encoding="utf-8")
+
+
 # --------------------------------------------------------------------------
 # 4. The Oracles over the real committed artifact
 # --------------------------------------------------------------------------
+
+
+def test_the_themed_set_is_exactly_the_rows_the_theme_covers_and_the_gates_keep(
+    committed_meta: Lexicon, committed_themed: GameWordlist
+) -> None:
+    """THE row 15 Oracle, computed independently of select(): no more, no fewer.
+
+    The expectation is built by walking the published lexicon and applying the
+    theme and the gates by hand, so it agrees with the committed file only if
+    the derived layer really did what the registry says.
+    """
+    selection = committed_themed.selection
+    assert selection.categories is not None
+    wanted = set(selection.categories)
+    expected = {
+        row.word
+        for row in derive.read_rows(committed_meta, _REPO_ROOT, selection.wordClasses)
+        if wanted & set(row.categories or ())
+        and selection.minLength <= row.length <= selection.maxLength
+        and row.attestations >= selection.minAttestations
+        and row.tier1Attestations >= selection.minTier1Attestations
+        and row.frequency >= selection.minFrequency
+        and row.definitionTa is not None
+    }
+
+    assert {row.word for row in committed_themed.words} == expected
+    assert committed_themed.counters.rowsKept == len(expected)
+
+
+def test_the_theme_excludes_almost_all_of_the_servable_set(
+    committed_anagram: GameWordlist, committed_themed: GameWordlist
+) -> None:
+    """Row 15 decision 11: a theme nobody could guess against is not a theme.
+
+    A tag that excludes nothing - "nouns" - narrows nothing for a player told
+    what the round is about, so knowing it would be worth no score at all.
+    """
+    excluded = 1 - len(committed_themed.words) / len(committed_anagram.words)
+    assert excluded >= _THEME_EXCLUSION_FLOOR, f"excludes only {excluded:.4f}"
+
+
+def test_every_themed_row_is_also_served_by_the_ordinary_set(
+    committed_anagram: GameWordlist, committed_themed: GameWordlist
+) -> None:
+    """A themed day may never serve a word an ordinary day could not.
+
+    The theme narrows the ordinary selection; it does not relax it. If a themed
+    set ever carried a word the ordinary gates reject, a themed day would be the
+    back door around the gates.
+    """
+    ordinary = {row.word for row in committed_anagram.words}
+    off_gate = [row.word for row in committed_themed.words if row.word not in ordinary]
+    assert off_gate == []
+
+
+def test_the_themed_set_clears_the_weekly_growth_target(
+    committed_themed: GameWordlist,
+) -> None:
+    """Row 15 decision 12: one themed Daily a week for a year is 52 x 3 rows."""
+    assert len(committed_themed.words) >= 52 * 3
+
+
+def test_the_themed_set_covers_every_difficulty_the_day_deals(
+    committed_themed: GameWordlist,
+) -> None:
+    """A theme that cannot fill a band is a theme that never runs (decision 5)."""
+    lengths = {len(row.ezhuthu) for row in committed_themed.words}
+    assert {3, 4, 5, 6} <= lengths
+    assert {row.frequencyStratum for row in committed_themed.words} == {1, 2, 3, 4}
 
 
 def test_no_committed_row_fails_any_of_the_four_gates(
@@ -627,18 +821,22 @@ def test_every_committed_stratum_is_a_quarter_of_the_committed_set(
 
 def test_committed_counters_account_for_every_published_lexicon_row(
     committed_anagram: GameWordlist,
+    committed_themed: GameWordlist,
 ) -> None:
-    counters = committed_anagram.counters
-    assert counters.lexiconRows == (
-        counters.outsideLength
-        + counters.outsideClass
-        + counters.belowAttestations
-        + counters.belowFrequency
-        + counters.withoutMeaning
-        + counters.capped
-        + counters.rowsKept
-    )
-    assert counters.rowsKept == len(committed_anagram.words)
+    for wordlist in (committed_anagram, committed_themed):
+        counters = wordlist.counters
+        assert counters.lexiconRows == (
+            counters.outsideLength
+            + counters.outsideClass
+            + counters.outsideCategories
+            + counters.outsidePos
+            + counters.belowAttestations
+            + counters.belowFrequency
+            + counters.withoutMeaning
+            + counters.capped
+            + counters.rowsKept
+        )
+        assert counters.rowsKept == len(wordlist.words)
 
 
 # --------------------------------------------------------------------------
@@ -701,9 +899,23 @@ def test_registered_paths_are_relative_and_posix() -> None:
 
 def test_the_committed_registry_validates() -> None:
     registry = derive.load_registry(_REGISTRY)
-    assert [spec.gameId for spec in registry.sets] == ["anagram"]
+    assert [spec.gameId for spec in registry.sets] == ["anagram", _THEMED_GAME_ID]
     assert registry.lexiconPath == "datasets/lexicon/lexicon.meta.json"
-    assert registry.sets[0].selection.wordClasses == ["headword"]
+    for spec in registry.sets:
+        assert spec.selection.wordClasses == ["headword"]
+
+
+def test_the_themed_set_narrows_the_ordinary_selection_and_relaxes_nothing() -> None:
+    """A theme is the same gates plus a dimension - never a gate moved sideways."""
+    registry = derive.load_registry(_REGISTRY)
+    ordinary = next(entry for entry in registry.sets if entry.gameId == "anagram")
+    themed = next(entry for entry in registry.sets if entry.gameId == _THEMED_GAME_ID)
+
+    assert themed.selection.categories, "a themed set must name its dimension"
+    assert ordinary.selection.categories is None
+    assert themed.selection.model_dump(
+        exclude={"categories", "pos"}
+    ) == ordinary.selection.model_dump(exclude={"categories", "pos"})
 
 
 # --------------------------------------------------------------------------
@@ -810,6 +1022,8 @@ def test_counters_that_do_not_reconcile_are_rejected() -> None:
             lexiconRows=10,
             outsideLength=1,
             outsideClass=1,
+            outsideCategories=0,
+            outsidePos=0,
             belowAttestations=1,
             belowFrequency=1,
             withoutMeaning=1,
@@ -836,6 +1050,8 @@ def _wordlist_payload(**overrides: Any) -> dict[str, Any]:
             "lexiconRows": 1,
             "outsideLength": 0,
             "outsideClass": 0,
+            "outsideCategories": 0,
+            "outsidePos": 0,
             "belowAttestations": 0,
             "belowFrequency": 0,
             "withoutMeaning": 0,
@@ -896,6 +1112,34 @@ def test_an_incoherent_selection_is_rejected() -> None:
         _selection(wordClasses=[])
     with pytest.raises(ValidationError, match="minTier1Attestations"):
         _selection(minAttestations=1, minTier1Attestations=2)
+
+
+def test_an_incoherent_dimension_is_rejected() -> None:
+    """A dimension is a SET written as a list, so order must not be information."""
+    with pytest.raises(ValidationError, match="categories must be sorted"):
+        _selection(categories=["nature", "birds"])
+    with pytest.raises(ValidationError, match="categories must be sorted"):
+        _selection(categories=["birds", "birds"])
+    with pytest.raises(ValidationError, match="categories has a blank entry"):
+        _selection(categories=[" "])
+    with pytest.raises(ValidationError):
+        _selection(categories=[])
+    with pytest.raises(ValidationError, match="pos must be sorted"):
+        _selection(pos=["verb", "noun"])
+    with pytest.raises(ValidationError):
+        # The closed vocabulary is the lexicon's; config cannot widen it.
+        _selection(pos=["gerund"])
+
+
+def test_a_dimension_that_is_simply_absent_is_the_ordinary_case() -> None:
+    """The gates must be declared; a dimension must be OPT IN, or a set could \
+narrow itself by accident."""
+    payload = _selection().model_dump()
+    assert payload["categories"] is None
+    assert payload["pos"] is None
+    for knob in ("categories", "pos"):
+        without = {name: value for name, value in payload.items() if name != knob}
+        assert getattr(DerivedSelection.model_validate(without), knob) is None
 
 
 def test_a_selection_knob_that_is_simply_missing_is_rejected() -> None:

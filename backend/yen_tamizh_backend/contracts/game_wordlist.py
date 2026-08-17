@@ -17,14 +17,16 @@ digest still pins a partitioned input, because ``lexicon.meta.json`` itself
 carries the sha256 of every published file.
 
 ``counters`` is the integrity Oracle, enforced by the model itself, with one
-bucket per serving gate::
+bucket per serving gate and one per selection dimension::
 
-    lexiconRows - outsideLength - outsideClass - belowAttestations
-                - belowFrequency - withoutMeaning - capped == rowsKept
-                == len(words)
+    lexiconRows - outsideClass - outsideCategories - outsidePos - outsideLength
+                - belowAttestations - belowFrequency - withoutMeaning - capped
+                == rowsKept == len(words)
 
 Every published lexicon row is accounted for by exactly one outcome, so a
 selection bug cannot quietly drop words and a gate cannot quietly do nothing.
+The two dimension buckets are 0 on every set that names no dimension, which is
+every ordinary set - a themed set is where they carry the weight.
 """
 
 from __future__ import annotations
@@ -142,6 +144,12 @@ class DerivedCounters(BaseModel):
     from reading those files: selection is an allow-list, so the derived layer
     opens only the classes it serves, and the classes it will not serve are
     counted from what the meta document declares about them.
+
+    ``outsideCategories`` and ``outsidePos`` are the two SELECTION dimensions
+    rather than gates: they are 0 unless the set asked to be themed, and they
+    are charged before the gates so a themed ledger reads as "of the rows this
+    theme covers, here is what each gate then removed" rather than burying the
+    theme's own reach inside ``outsideLength``.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -149,6 +157,8 @@ class DerivedCounters(BaseModel):
     lexiconRows: int = Field(ge=0)
     outsideLength: int = Field(ge=0)
     outsideClass: int = Field(ge=0)
+    outsideCategories: int = Field(ge=0)
+    outsidePos: int = Field(ge=0)
     belowAttestations: int = Field(ge=0)
     belowFrequency: int = Field(ge=0)
     withoutMeaning: int = Field(ge=0)
@@ -160,6 +170,8 @@ class DerivedCounters(BaseModel):
         accounted = (
             self.outsideLength
             + self.outsideClass
+            + self.outsideCategories
+            + self.outsidePos
             + self.belowAttestations
             + self.belowFrequency
             + self.withoutMeaning
@@ -169,10 +181,11 @@ class DerivedCounters(BaseModel):
         if accounted != self.lexiconRows:
             raise ValueError(
                 f"outsideLength {self.outsideLength} + outsideClass "
-                f"{self.outsideClass} + belowAttestations {self.belowAttestations} "
-                f"+ belowFrequency {self.belowFrequency} + withoutMeaning "
-                f"{self.withoutMeaning} + capped {self.capped} + rowsKept "
-                f"{self.rowsKept} != lexiconRows {self.lexiconRows}"
+                f"{self.outsideClass} + outsideCategories {self.outsideCategories} "
+                f"+ outsidePos {self.outsidePos} + belowAttestations "
+                f"{self.belowAttestations} + belowFrequency {self.belowFrequency} "
+                f"+ withoutMeaning {self.withoutMeaning} + capped {self.capped} "
+                f"+ rowsKept {self.rowsKept} != lexiconRows {self.lexiconRows}"
             )
         return self
 

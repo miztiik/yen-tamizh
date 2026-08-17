@@ -1,6 +1,6 @@
 # Difficulty and Scoring
 
-**Last Updated**: 2026-08-16
+**Last Updated**: 2026-08-17
 
 The tuning vocabulary: how hard a puzzle is, how a result is scored, and how the streak and stats are derived. This page fixes the terms; the concrete numbers are config-driven ([config.md](config.md)) so tuning never touches code (Holy Law #6). Difficulty as a designed experience is Palm's altitude ([../../.github/agents/palm.agent.md](../../.github/agents/palm.agent.md)).
 
@@ -49,7 +49,7 @@ The [lexicon](lexicon.md) keeps every surface any source ever showed us. What a 
 
 Selection is an **allow-list** of word classes, never a deny-list, so a word the classifier could not place cannot reach a player by omission - and the classes a Game may ever be configured to serve are narrowed in the contract itself, so admitting a proper noun is a reviewed change rather than a one-line config edit.
 
-Categories deliberately gate nothing. Only about 1,290 words carry one, so admitting on a category would cut the served set to roughly a thousand rows. A category is a selection dimension for a themed round, never an admission test.
+Categories deliberately gate nothing. Only 2,569 of the 162,361 published headwords carry one, so admitting on a category would cut the served set from tens of thousands of rows to a few hundred. A category is a selection DIMENSION for a themed round - a separate set the Daily draws from on the days a whole themed playlist can be filled - never an admission test on the ordinary one. The same holds for `pos`, which is the same mechanism over a different column. See [../how-to/add-a-derived-wordlist.md](../how-to/add-a-derived-wordlist.md).
 
 ## Scoring is derived, not stored twice
 
