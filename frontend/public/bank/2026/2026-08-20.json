@@ -1,6 +1,11 @@
 {
   "changelog": [
     {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
       "change": "Initial baked daily playlist.",
       "version": "2026-08-13",
       "why": "Row 13 - the first committed day of the puzzle bank."
@@ -12,5 +17,5 @@
     {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ஆ"}, {"cost": 1, "kind": "length", "text": "5 எழுத்துகள்"}], "reveal": 0, "tiles": ["ஆ", "ம்", "ம்", "ர", "ப"], "timeLimitSec": 0, "word": "ஆரம்பம்"}},
     {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: மா"}, {"cost": 1, "kind": "length", "text": "6 எழுத்துகள்"}], "reveal": 0, "tiles": ["ட்", "மா", "டி", "டு", "ண்", "வ"], "timeLimitSec": 0, "word": "மாட்டுவண்டி"}}
   ],
-  "version": "2026-08-13"
+  "version": "2026-08-17"
 }

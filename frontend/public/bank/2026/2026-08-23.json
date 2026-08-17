@@ -1,6 +1,11 @@
 {
   "changelog": [
     {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
       "change": "Initial baked daily playlist.",
       "version": "2026-08-13",
       "why": "Row 13 - the first committed day of the puzzle bank."
@@ -8,9 +13,10 @@
   ],
   "date": "2026-08-23",
   "items": [
-    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: கொ"}, {"cost": 1, "kind": "length", "text": "3 எழுத்துகள்"}], "reveal": 0, "tiles": ["கொ", "லி", "ல்"], "timeLimitSec": 0, "word": "கொல்லி"}},
-    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: தி"}, {"cost": 1, "kind": "length", "text": "5 எழுத்துகள்"}], "reveal": 0, "tiles": ["ய", "ரு", "த்", "தி", "தி"], "timeLimitSec": 0, "word": "திருத்திய"}},
-    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: மூ"}, {"cost": 1, "kind": "length", "text": "6 எழுத்துகள்"}], "reveal": 0, "tiles": ["சி", "ரை", "ச்", "க்", "க", "மூ"], "timeLimitSec": 0, "word": "மூச்சிரைக்க"}}
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: கா"}, {"cost": 1, "kind": "length", "text": "3 எழுத்துகள்"}], "reveal": 0, "tiles": ["க", "கா", "ம்"], "timeLimitSec": 0, "word": "காகம்"}},
+    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: செ"}, {"cost": 1, "kind": "length", "text": "5 எழுத்துகள்"}], "reveal": 0, "tiles": ["செ", "ம", "ந்", "தா", "ரை"], "timeLimitSec": 0, "word": "செந்தாமரை"}},
+    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ம"}, {"cost": 1, "kind": "length", "text": "6 எழுத்துகள்"}], "reveal": 0, "tiles": ["க", "ந்", "ம்", "ர", "த", "ம"], "timeLimitSec": 0, "word": "மகரந்தம்"}}
   ],
-  "version": "2026-08-13"
+  "theme": "theme-nature",
+  "version": "2026-08-17"
 }
