@@ -13,9 +13,9 @@
   ],
   "date": "2026-08-27",
   "items": [
-    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"alsoValid": ["கந்தழி"], "attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: க"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: இறந்த"}], "meaning": "இறந்த", "reveal": 0, "tiles": ["ந்", "த", "க", "ழி"], "timeLimitSec": 0, "translationEn": "bygone", "word": "கழிந்த"}},
-    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: மொ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: மொழி பற்றிய அறிவு / திறமை"}], "meaning": "மொழி பற்றிய அறிவு / திறமை", "reveal": 0, "tiles": ["வு", "ய", "றி", "ழி", "மொ"], "timeLimitSec": 0, "translationEn": "xenoglossia", "word": "மொழியறிவு"}},
-    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: கை"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: கற்பித்துக் கூறும் வார்த்தை"}], "meaning": "கற்பித்துக் கூறும் வார்த்தை", "reveal": 0, "tiles": ["கை", "ச", "ச்", "க்", "கு", "ர"], "timeLimitSec": 0, "word": "கைச்சரக்கு"}}
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: எ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: இணையான"}], "meaning": "இணையான", "reveal": 0, "tiles": ["தா", "ளி", "ன", "எ"], "timeLimitSec": 0, "translationEn": "clear", "word": "எளிதான"}},
+    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ந"}], "meaning": "மொத்தம் ரூ.30 வீதம் தொழிலாளர் நலநிதிக்கு நிர்வாகம் செலுத்த வேண்டும். 2015ம் ஆண்டிற்கான தொழிலாளர் நல நிதியை 2016 ஜன.,31 க்குள் செலுத்த வேண்டும்.-- தினமலர் | சான்று", "reveal": 0, "tiles": ["நி", "ல", "ந", "தி"], "timeLimitSec": 0, "translationEn": "Benefit fund", "word": "நலநிதி"}},
+    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: பொ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: உண்மைக்கு மாறான சான்று"}], "meaning": "உண்மைக்கு மாறான சான்று", "reveal": 0, "tiles": ["சா", "ச்", "பொ", "ட்", "ய்", "சி"], "timeLimitSec": 0, "word": "பொய்ச்சாட்சி"}}
   ],
   "version": "2026-08-17"
 }

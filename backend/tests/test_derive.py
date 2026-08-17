@@ -921,12 +921,12 @@ def test_the_three_words_this_cutover_removes_are_absent(
 
 
 def test_the_committed_deny_list_validates_at_the_size_it_was_reviewed_at() -> None:
-    """55 grammar words and 14 names - a curated list, counted, not sampled."""
+    """55 grammar words and 17 names - a curated list, counted, not sampled."""
     denylist = derive.load_denylist(_DENYLIST)
 
     assert len(denylist.functionWords) == 55
-    assert len(denylist.properNouns) == 14
-    assert len(denylist.words()) == 69
+    assert len(denylist.properNouns) == 17
+    assert len(denylist.words()) == 72
     assert denylist.note.strip()
 
 

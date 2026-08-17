@@ -13,8 +13,8 @@
   ],
   "date": "2026-08-26",
   "items": [
-    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: அ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: அறிவிப்பு"}], "meaning": "அறிவிப்பு", "reveal": 0, "tiles": ["அ", "க்", "றி", "கை"], "timeLimitSec": 0, "translationEn": "Report", "word": "அறிக்கை"}},
-    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 1, "kind": "category", "text": "வகை: விழா"}, {"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ம"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: கொளுத்தினால் வண்ணச் சுடர் விடும் தீக்குச்சி வடிவப் பட்டாசு"}], "meaning": "கொளுத்தினால் வண்ணச் சுடர் விடும் தீக்குச்சி வடிவப் பட்டாசு", "reveal": 0, "tiles": ["பு", "தா", "ம", "ப்", "த்"], "timeLimitSec": 0, "translationEn": "colorful sparkler shaped like a long matchstick", "word": "மத்தாப்பு"}},
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ஏ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: செய்வதற்குச் சாதகமான"}], "meaning": "செய்வதற்குச் சாதகமான", "reveal": 0, "tiles": ["வா", "ன", "து", "ஏ"], "timeLimitSec": 0, "translationEn": "instrumental", "word": "ஏதுவான"}},
+    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ஊ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: அகர்பத்தி"}], "meaning": "அகர்பத்தி", "reveal": 0, "tiles": ["ஊ", "து", "த்", "ப", "தி"], "timeLimitSec": 0, "translationEn": "incense stick", "word": "ஊதுபத்தி"}},
     {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: த"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: தானாகவே"}], "meaning": "தானாகவே", "reveal": 0, "tiles": ["ல்", "பா", "டி", "ட்", "ன்", "த"], "timeLimitSec": 0, "word": "தன்பாட்டில்"}}
   ],
   "version": "2026-08-17"

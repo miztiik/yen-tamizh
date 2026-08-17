@@ -13,8 +13,8 @@
   ],
   "date": "2026-08-25",
   "items": [
-    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: பி"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: சித்தி"}], "meaning": "சித்தி", "reveal": 0, "tiles": ["னி", "பி", "ன்"], "timeLimitSec": 0, "translationEn": "anastomose", "word": "பின்னி"}},
-    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: பி"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: பின்தொடர"}], "meaning": "பின்தொடர", "reveal": 0, "tiles": ["ற", "ற்", "ப", "பி", "ன்"], "timeLimitSec": 0, "translationEn": "exemplary", "word": "பின்பற்ற"}},
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: அ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: அனுபவித்தல்"}], "meaning": "அனுபவித்தல்", "reveal": 0, "tiles": ["த", "அ", "ல்", "றி"], "timeLimitSec": 0, "translationEn": "prehension", "word": "அறிதல்"}},
+    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: அ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: பார்ப்பார்"}], "meaning": "பார்ப்பார்", "reveal": 0, "tiles": ["த", "ர்", "ண", "ந்", "அ"], "timeLimitSec": 0, "translationEn": "sanyasi", "word": "அந்தணர்"}},
     {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: வ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: வருடத்திற்கு  ஒரு முறை என்ற அளவிலான"}], "meaning": "வருடத்திற்கு  ஒரு முறை என்ற அளவிலான", "reveal": 0, "tiles": ["டா", "வ", "ர", "ரு", "ந்", "தி"], "timeLimitSec": 0, "translationEn": "annual", "word": "வருடாந்திர"}}
   ],
   "version": "2026-08-17"

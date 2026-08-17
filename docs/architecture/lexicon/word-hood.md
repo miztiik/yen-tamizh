@@ -756,6 +756,69 @@ title: the Wikipedia category graph says which articles are about people, and
 that lives in a different dump. Recorded here as the next thing to try, with the
 measurement above as the baseline it has to beat.
 
+### What holds the line today is a hand-written list, and it does not reach far
+
+The working answer is `config/served-denylist.json` - a named exclusion applied
+at SELECTION, downstream of every verdict on this page, described in
+[../contracts/schemas.md](../contracts/schemas.md#served-deny-list-decisions-row-16).
+It is curation, not classification, and it was seeded by reading the top 400
+words of the served set by frequency. That is the whole of its reach, and the
+reach is the point: on 2026-08-17 a player was dealt `\u0b9a\u0baa\u0bbe\u0baa\u0ba4\u0bbf`, `\u0b85\u0b9e\u0bcd\u0b9a\u0ba9\u0bbe` and
+`\u0bae\u0ba3\u0bbf\u0bae\u0bca\u0bb4\u0bbf` - all three given names, all three real Tamil words, and all three
+ranked 4,955, 7,967 and 10,841 in a served set of thirty-two thousand. They were
+added by hand. The next one below them will be found the same way.
+
+Curating the band under the list is not a session-sized task, and a blunt rule
+over it is worse than the gap. Between rank 400 and rank 2,000 sit **646 served
+words tagged only `noun` at 3-4 ezhuthu**, and that band is a genuine MIX rather
+than a pile of names: `\u0bb5\u0bbe\u0bb0\u0bae\u0bcd` (week), `\u0b95\u0bc1\u0bb1\u0bcd\u0bb1\u0bae\u0bcd` (crime) and `\u0bb5\u0bbf\u0bb0\u0bc1\u0ba4\u0bc1` (award)
+sit beside `\u0b86\u0bb2\u0ba9\u0bcd`, `\u0bb5\u0bc8\u0ba4\u0bc7\u0b95\u0bbf`, `\u0b87\u0bb0\u0bbe\u0bae\u0bcd` and `\u0b94\u0bb5\u0bc8\u0baf\u0bbe\u0bb0\u0bcd`, and every one of the
+eight carries the same single part-of-speech tag. Reading 646 rows by hand is
+not a task this layer can absorb in one pass, and a rule keyed on `noun` over
+that band deletes the first four to catch the last four.
+
+### What has not been tried
+
+Three routes remain, listed here so the next attempt starts from the
+measurement rather than from the same first idea:
+
+- **Wikidata's `instance of: human` / `given name` claims.** This is the
+  difference that made the title list fail: an entity-type ASSERTION rather than
+  the mere existence of an article. An encyclopedia writes about `\u0bae\u0bb4\u0bc8` (rain) as
+  readily as about a person, which is why article-existence tops out near 32
+  percent precision; a claim that the entity is a human does not have that
+  failure mode. Wikidata's Tamil LEXEME coverage was measured and rejected as
+  nearly empty (904 entries), but lexemes are not what this needs - the item
+  graph is.
+- **A name-suffix signal.** Tamil personal names cluster on a small set of
+  endings - `-\u0bb5\u0bc7\u0bb2\u0bcd`, `-\u0bb0\u0bbe\u0b9c\u0bcd`, `-\u0bb2\u0bbf\u0b99\u0bcd\u0b95\u0bae\u0bcd`, `-\u0ba8\u0bbe\u0ba4\u0bcd` - and unlike a
+  part-of-speech column, a suffix is a fact about the STRING, which is the kind
+  of evidence every other signal on this page is made of. It has to be measured
+  against the same precision bar the title list failed.
+- **Extending the deny-list down the frequency curve.** Cheap, needs no new
+  mechanism, and is the only one of the three that can ship this week. It buys
+  coverage in proportion to the reading, and nothing more.
+
+## Participial adjectives still reach the board as `headword`
+
+`\u0bae\u0bca\u0bb4\u0bbf\u0baf\u0bbe\u0ba9`, `\u0bae\u0bbf\u0b95\u0bc1\u0ba4\u0bbf\u0baf\u0bbe\u0ba9` and `\u0ba4\u0bb5\u0bb1\u0bbf\u0bb2\u0bcd\u0bb2\u0bbe\u0ba4` are inflected forms, not
+headwords, and days have been baked that served all three. Phase 3's `inflected`
+rule reads `knownVerbForm`, which is DIRECT evidence and therefore only as wide
+as the two collected form lists; a participial adjective those lists happen not
+to contain arrives with a tier-1 listing, a clean shape and nothing to demote
+it.
+
+The size of the gap is known from the other side of the pipeline. The enrichment
+pass declined roughly **65 percent of its top-frequency candidates** on exactly
+these grounds - a form whose only available sense is a grammatical relation to
+another word has no meaning to author - and that decline is currently the only
+thing keeping most of them off a player's screen, because `requireMeaning` is
+what they fail. See
+[../../how-to/enrich-the-lexicon.md](../../how-to/enrich-the-lexicon.md#the-no-hedge-rule).
+Leaning on an authoring pass to enforce a word-hood verdict is backwards: a
+cascade rule that demotes participles would raise the quality of every future
+bake, and would do it for the forms nobody has authored yet.
+
 ## Design rationale
 
 - **The verdict is an ordered cascade, not a weighted score.** Ten classes are

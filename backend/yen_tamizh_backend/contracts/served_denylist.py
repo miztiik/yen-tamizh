@@ -21,7 +21,7 @@ what stops one authority's ranking from erasing another's true fact - and that
 is exactly why it cannot double as a filter.
 
 So the exclusion is NAMED, one word at a time, with the reason written beside
-it. That is the honest shape for a judgement no column carries: a list of 69
+it. That is the honest shape for a judgement no column carries: a list of 72
 words a reviewer can argue with, rather than a rule whose collateral damage is
 invisible until a player meets it.
 
@@ -49,14 +49,31 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from yen_tamizh_backend.contracts.base import ChangelogEntry, SchemaModel
 
-# The initial mint. The file that carries this schema is written by hand, so the
-# date-stamp and its first changelog entry live here: two writers of one schema
-# picking their own dates is the drift CLAUDE.md section 11 exists to stop.
+# The file that carries this schema is written by hand, so the date-stamp and
+# its changelog live here: two writers of one schema picking their own dates is
+# the drift CLAUDE.md section 11 exists to stop.
 # Migration class is build-time rewrite-in-place.
-SERVED_DENYLIST_VERSION = "2026-08-17"
+SERVED_DENYLIST_VERSION = "2026-08-17T22:28"
 SERVED_DENYLIST_CHANGELOG = (
     ChangelogEntry(
         version=SERVED_DENYLIST_VERSION,
+        change=(
+            "Three given names added to properNouns - anjanaa, sabaapathi, "
+            "manimozhi - taking the list from 14 names to 17 and from 69 words "
+            "to 72."
+        ),
+        why=(
+            "A user playing the game was dealt them. All three sit below the "
+            "frequency band the first pass screened: the list was curated from "
+            "the top 400 by frequency and these rank 4,955, 7,967 and 10,841 "
+            "in the served set. Each is also a real Tamil word - the chief of "
+            "an assembly, gem-like speech, kohl - which is exactly why no "
+            "automatic gate reaches them and why the entry has to be named by "
+            "hand."
+        ),
+    ),
+    ChangelogEntry(
+        version="2026-08-17",
         change=(
             "Initial served deny-list: 55 function words and 14 proper nouns, "
             "each with the reason it is off the board."
@@ -118,8 +135,8 @@ class ServedDenylist(SchemaModel):
             entries: list[DeniedWord] = getattr(self, name)
             words = [entry.word for entry in entries]
             # A set written as a list: the order it is written in must not be
-            # information, and sorted order is what makes a 69-line diff
-            # readable when the seventieth word lands.
+            # information, and sorted order is what makes the diff readable
+            # when the next word lands.
             if words != sorted(words):
                 raise ValueError(f"{name} must be sorted by word")
             for entry in entries:

@@ -24,6 +24,8 @@ The shipped bands, and why they overlap on length rather than tiling:
 
 **Length alone is anti-correlated at both tails.** A long Tamil headword is usually a compound that decomposes into recognisable chunks, so it is EASIER than its tile count suggests. A short rare word is brutal: there is nothing to decompose and nothing to recognise. A length-only easy band therefore forces the generator into the shortest words, and short Tamil words are disproportionately literary - which made the old `easy` band the one most likely to serve a museum piece.
 
+**The compound half of that claim is still an assumption.** The lexicon computes a `compound` flag and does not publish it - it had no reader, and an unread provenance column is bytes on every row (see [../architecture/lexicon/pipeline.md](../architecture/lexicon/pipeline.md)) - so the share of served 5-6 ezhuthu answers that actually decompose has never been measured against the share at 3-4. If long headwords turn out not to be mostly compounds, the hard band is mis-specified and its length bounds, not its familiarity bound, are what needs re-tuning. Measuring it costs one publish run with the column restored; nothing else here depends on the answer.
+
 A 3-ezhuthu answer also has only six arrangements against three attempts, so it is **brute-forceable by shuffling** without the player ever recognising the word. That is a hollow win rather than an unfair one, and raising the easy floor to 4 ezhuthu is what makes an easy solve mean something. Three-ezhuthu words are still served, but only in the top familiarity quarter.
 
 A word that no band claims - a short word outside the familiar quarters - is simply never drawn. The wordlist says what is SERVABLE; the bands say what is DRAWABLE.

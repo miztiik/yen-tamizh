@@ -32,6 +32,13 @@ loudly rather than quietly producing a thinner lexicon.
 `madras-lexicon` is permanently **NOT ACQUIRED** - no bulk artifact exists - and
 is deliberately absent from the registry rather than faked.
 
+Seventeen of the twenty-four sources come from the predecessor project
+`yen-tamizh_OLD`, which is not a git repository and is not backed up, and no
+off-repo archive of the raw bytes exists. If that directory is not on the
+machine, those seventeen cannot be re-fetched from anywhere. The ledger states
+the exposure in full under
+[`../../datasets/lexicon/sources/README.md`](../../datasets/lexicon/sources/README.md#there-is-no-off-repo-archive-and-that-is-an-unmet-merge-condition).
+
 ## The whole pipeline
 
 ```bash

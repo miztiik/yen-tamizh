@@ -13,9 +13,9 @@
   ],
   "date": "2026-08-22",
   "items": [
-    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 1, "kind": "category", "text": "வகை: மலர்"}, {"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ஆ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: அடைவு"}], "meaning": "அடைவு", "reveal": 0, "tiles": ["ப", "ஆ", "ல்", "ம்"], "timeLimitSec": 0, "translationEn": "water-lily", "word": "ஆம்பல்"}},
-    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: உ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: கடவுள்"}], "meaning": "கடவுள்", "reveal": 0, "tiles": ["உ", "ன்", "த்", "த", "ம"], "timeLimitSec": 0, "translationEn": "Person of integrity", "word": "உத்தமன்"}},
-    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: பெ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: விரும்பிய பரிசில்"}], "meaning": "விரும்பிய பரிசில்", "reveal": 0, "tiles": ["டா", "ட்", "கு", "பெ", "ங்"], "timeLimitSec": 0, "word": "பெட்டாங்கு"}}
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ம"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: இழக்க"}], "meaning": "இழக்க", "reveal": 0, "tiles": ["க்", "க", "ம", "ற"], "timeLimitSec": 0, "translationEn": "err", "word": "மறக்க"}},
+    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: த"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: தென்னிந்தியாவில் பேசப்படும் செம்மொழி"}], "meaning": "தென்னிந்தியாவில் பேசப்படும் செம்மொழி", "reveal": 0, "tiles": ["மொ", "த", "மி", "ழ்", "ழி"], "timeLimitSec": 0, "translationEn": "Tamil", "word": "தமிழ்மொழி"}},
+    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: த"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: தங்க முத்துக்களாலான மாலை"}], "meaning": "தங்க முத்துக்களாலான மாலை", "reveal": 0, "tiles": ["த", "மா", "ங்", "க", "லை"], "timeLimitSec": 0, "word": "தங்கமாலை"}}
   ],
   "version": "2026-08-17"
 }
