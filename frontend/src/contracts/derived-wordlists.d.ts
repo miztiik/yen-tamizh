@@ -21,12 +21,14 @@ export type Sets = [DerivedSet, ...(DerivedSet)[]]
 export type Gameid = string
 export type Note = (string | null)
 export type Out = string
+export type Categories = ([string, ...(string)[]] | null)
 export type Maxlength = number
 export type Maxwords = (number | null)
 export type Minattestations = number
 export type Minfrequency = number
 export type Minlength = number
 export type Mintier1Attestations = number
+export type Pos = ([("adjective" | "adverb" | "conjunction" | "determiner" | "interjection" | "noun" | "numeral" | "particle" | "postposition" | "pronoun" | "verb"), ...(("adjective" | "adverb" | "conjunction" | "determiner" | "interjection" | "noun" | "numeral" | "particle" | "postposition" | "pronoun" | "verb"))[]] | null)
 export type Requiremeaning = boolean
 /**
  * @minItems 1
@@ -55,7 +57,13 @@ version: Version
 why: Why
 }
 /**
- * One registered per-Game derived set: who consumes it and where it lands.
+ * One registered derived set: who consumes it and where it lands.
+ * 
+ * ``gameId`` is the registry's unique key. A Game that runs themed days
+ * registers more than one set - its ordinary one plus a themed variant per
+ * theme - so a themed set's id names the THEME (``themed-nature``) while the
+ * Game that draws it is named in ``config/daily-generator.json``, which is the
+ * file that decides which set a day is filled from.
  */
 export interface DerivedSet {
 gameId: Gameid
@@ -92,23 +100,31 @@ selection: DerivedSelection
  * two orders of magnitude while selecting for bound stems, because fragments
  * are what collide with real words.
  * 
- * There is no ``categories`` knob either. Only about 1,290 words carry a
- * category, so gating admission on one would cut the served set to roughly a
- * thousand rows and re-create the scarcity the lexicon exists to remove.
- * Categories are a selection DIMENSION for a themed round, never an admission
- * test.
+ * ``categories`` and ``pos`` are the two SELECTION DIMENSIONS, and they are a
+ * different kind of knob from the six gates above. Each keeps the rows whose
+ * own set-valued column INTERSECTS the one named here - a row tagged both
+ * ``birds`` and ``animals`` satisfies a selection naming either. Both are
+ * OPTIONAL, and absent means the dimension is not applied at all: that is the
+ * only honest default, because neither may ever gate admission for an ordinary
+ * set. Fewer than 3,000 published headwords carry a category, and how far
+ * ``pos`` reaches over the served set is unmeasured, so a set that named one by
+ * accident would collapse to a few hundred rows or to none. A set that names
+ * one is a THEMED set, drawn only on the days a whole themed playlist can be
+ * filled from it.
  * 
  * This model is shared: the registry declares it and the emitted wordlist
  * echoes back the selection that produced it, so a reviewer reading a diff can
  * see which knob moved. Defining it once is why the two cannot disagree.
  */
 export interface DerivedSelection {
+categories?: Categories
 maxLength: Maxlength
 maxWords?: Maxwords
 minAttestations: Minattestations
 minFrequency: Minfrequency
 minLength: Minlength
 minTier1Attestations: Mintier1Attestations
+pos?: Pos
 requireMeaning: Requiremeaning
 wordClasses: Wordclasses
 }

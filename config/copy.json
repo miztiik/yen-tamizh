@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-13T20:08",
+  "version": "2026-08-17",
   "changelog": [
+    {
+      "version": "2026-08-17",
+      "change": "Added the theme-nature display name.",
+      "why": "Row 15 - a themed day bakes the theme's SLUG, and the Tamil a player reads for it lives here. A category name is player-facing copy, so it is never baked into a dataset where correcting it would need a rebuild."
+    },
     {
       "version": "2026-08-13T20:08",
       "change": "Added the Home, Daily, and end-of-session strings.",
@@ -38,6 +43,7 @@
     "summary-title": "இன்றைய புதிர் முடிந்தது",
     "summary-score": "மதிப்பெண்",
     "summary-solved": "தீர்த்தவை",
-    "summary-streak": "தொடர் நாட்கள்"
+    "summary-streak": "தொடர் நாட்கள்",
+    "theme-nature": "இயற்கை"
   }
 }

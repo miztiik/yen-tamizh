@@ -42,6 +42,7 @@ from yen_tamizh_backend.contracts.daily_generator import (
     DifficultyBand,
     GameGeneration,
     HintSpec,
+    ThemedSet,
 )
 from yen_tamizh_backend.contracts.derived_wordlists import (
     DerivedSelection,
@@ -202,6 +203,7 @@ __all__ = [
     "SignalName",
     "SourceId",
     "SourceRole",
+    "ThemedSet",
     "TimeTrialConfig",
     "TypoProfile",
     "UiConfig",

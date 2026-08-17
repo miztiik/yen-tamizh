@@ -15,7 +15,13 @@ from typing import Any
 from pydantic import BaseModel, ConfigDict, Field
 
 from yen_tamizh_backend.contracts.base import SchemaModel
-from yen_tamizh_backend.contracts.common import DifficultyId, GameId, Hint, PackId
+from yen_tamizh_backend.contracts.common import (
+    CopySlug,
+    DifficultyId,
+    GameId,
+    Hint,
+    PackId,
+)
 
 # The playlist date (modes.md: Daily is calendar-bound), stored as YYYY-MM-DD.
 _DATE = r"^\d{4}-\d{2}-\d{2}$"
@@ -34,7 +40,17 @@ class PuzzleItem(BaseModel):
 
 
 class PuzzleFile(SchemaModel):
-    """One day's committed, ordered playlist of puzzle items."""
+    """One day's committed, ordered playlist of puzzle items.
+
+    ``theme`` is present only on a THEMED day - the day whose every item was
+    drawn from one theme's wordlist - and it carries the theme's copy SLUG, not
+    its Tamil label. The label is player-facing copy in ``config/copy.json``,
+    which the shell already reads, so baking the words would freeze copy into a
+    committed artifact that only a rebuild could correct. Its absence is the
+    ordinary day, which is why it is optional rather than nullable-and-required:
+    an ordinary day says nothing about themes at all.
+    """
 
     date: str = Field(pattern=_DATE)
+    theme: CopySlug | None = None
     items: list[PuzzleItem] = Field(min_length=1)

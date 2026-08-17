@@ -13,6 +13,12 @@ The rules this module enforces:
   bank are skipped, so a player does not meet the same scramble twice. The
   target date's own file is ignored while collecting them, which is exactly what
   makes a re-run idempotent instead of self-poisoning.
+- **Some days are THEMED.** On the dates the configured cadence allows, if one
+  registered theme can fill every slot from its own wordlist without repeating a
+  word the bank has served, the whole day is drawn from that theme and the day
+  records its copy slug. Otherwise the day is ordinary. A theme is never padded
+  out with an off-theme word - three unrelated anagrams are a list, three that
+  share a theme are a round, and half a theme is neither.
 - **The mix is config, not code.** How many items a day holds and which Games
   fill them come from ``config/app-config.json`` (``daily.playlistLength`` and
   ``daily.mix``); how a word becomes a puzzle comes from
@@ -41,13 +47,25 @@ from yen_tamizh_backend.contracts.puzzle_file import PuzzleFile, PuzzleItem
 from yen_tamizh_backend.generate import anagram
 from yen_tamizh_backend.generate.seed import seeded_index, seeded_shuffle
 
-_PUZZLE_FILE_VERSION = "2026-08-13"
+_PUZZLE_FILE_VERSION = "2026-08-17"
 _PUZZLE_FILE_CHANGELOG = [
     ChangelogEntry(
         version=_PUZZLE_FILE_VERSION,
+        change="Added the optional theme slug to a day.",
+        why=(
+            "Row 15 - a themed day draws every slot from one theme's wordlist, "
+            "and the shell can only announce that if the day says so. The SLUG "
+            "travels rather than the Tamil label, because the label is copy the "
+            "shell already reads and a baked label could only be corrected by a "
+            "rebuild. Absent means an ordinary day, so every day baked before "
+            "this still validates unchanged."
+        ),
+    ),
+    ChangelogEntry(
+        version="2026-08-13",
         change="Initial baked daily playlist.",
         why="Row 13 - the first committed day of the puzzle bank.",
-    )
+    ),
 ]
 
 _BANK_INDEX_VERSION = "2026-08-13"
@@ -73,6 +91,14 @@ class GeneratedDay:
     rel_path: str
     puzzle_file: PuzzleFile
     words: tuple[str, ...]
+
+
+@dataclass(frozen=True)
+class ThemedDraw:
+    """A whole themed day: the theme's copy slug and every Game's picks."""
+
+    copySlug: str
+    picks: dict[str, list[tuple[GameWord, str]]]
 
 
 def day_path(bank_dir: Path, day: str) -> Path:
@@ -206,6 +232,107 @@ def pick_words(
     return chosen
 
 
+def is_theme_date(day: str, generator: DailyGenerator) -> bool:
+    """Whether this date is one the Daily MAY run a theme on.
+
+    The cadence is counted on the proleptic Gregorian day number, so it is a
+    pure function of the date with no phase knob and no reference to when the
+    bank was first baked. ``themeEveryNDays`` of 0 turns themed days off.
+
+    A cadence is needed at all because a theme wide enough to be worth having is
+    also wide enough to fill months of consecutive days, and a Daily that is the
+    same theme every day for months is the opposite of the variety a theme adds.
+    """
+    if generator.themeEveryNDays == 0:
+        return False
+    return date.fromisoformat(day).toordinal() % generator.themeEveryNDays == 0
+
+
+def theme_can_fill(
+    rows: Sequence[GameWord],
+    spec: GameGeneration,
+    day: str,
+    count: int,
+    used: Iterable[str],
+) -> list[tuple[GameWord, str]] | None:
+    """This theme's whole draw for one Game, or ``None`` if it cannot fill it.
+
+    A themed round is OPPORTUNISTIC: it runs on the days a full themed playlist
+    can be drawn and is skipped otherwise, never padded out with an off-theme
+    word, because the round's whole claim is that its words belong together.
+
+    "Can fill" is stricter than what an ordinary day tolerates. An ordinary day
+    repeats a served word rather than shipping short, which is the right trade
+    when the alternative is a playlist that does not add up; a theme has an
+    alternative - be an ordinary day - so a theme that would have to repeat, or
+    that has an empty difficulty bucket, simply does not run.
+    """
+    seen = set(used)
+    buckets = bucket_candidates(rows, spec)
+    bands = [band.id for band in spec.difficulties]
+    if any(not buckets[bands[slot % len(bands)]] for slot in range(count)):
+        return None
+    picks = pick_words(rows, spec, day, count, seen)
+    words = [row.word for row, _ in picks]
+    if len(set(words)) != count or not seen.isdisjoint(words):
+        return None
+    return picks
+
+
+def themed_draw(
+    day: str,
+    app_config: AppConfig,
+    generator: DailyGenerator,
+    wordlists: dict[str, GameWordlist],
+    used: Iterable[str],
+) -> ThemedDraw | None:
+    """The theme this date runs, with its whole playlist - or ``None`` for an
+    ordinary day.
+
+    A theme is registered per Game, but a themed DAY is a claim about the whole
+    playlist, so a theme qualifies only when EVERY Game in the mix registers it
+    under the same ``copySlug`` and every one of them can fill its own slots from
+    that theme's set. Anything less would announce a theme over a day that is
+    partly off-theme.
+
+    Which theme runs on a date with more than one candidate is seeded by the
+    date, so the choice is a pure function of the day like every other decision
+    here, and a theme that cannot fill this date does not block the next one.
+    """
+    if not is_theme_date(day, generator):
+        return None
+    mix = app_config.daily.mix
+    specs = {spec.gameId: spec for spec in generator.games}
+    covered: dict[str, dict[str, str]] = defaultdict(dict)
+    for game_id in mix:
+        for theme in specs[game_id].themes:
+            covered[theme.copySlug][game_id] = theme.wordlist
+    candidates = sorted(slug for slug, games in covered.items() if len(games) == len(mix))
+    if not candidates:
+        return None
+
+    start = seeded_index(len(candidates), day)
+    for offset in range(len(candidates)):
+        slug = candidates[(start + offset) % len(candidates)]
+        seen = set(used)
+        picks: dict[str, list[tuple[GameWord, str]]] = {}
+        for game_id, count in sorted(mix.items()):
+            drawn = theme_can_fill(
+                wordlists[covered[slug][game_id]].words,
+                specs[game_id],
+                day,
+                count,
+                seen,
+            )
+            if drawn is None:
+                break
+            picks[game_id] = drawn
+            seen.update(row.word for row, _ in drawn)
+        else:
+            return ThemedDraw(copySlug=slug, picks=picks)
+    return None
+
+
 def build_item(
     row: GameWord, spec: GameGeneration, day: str, hint_limit: int, difficulty: str
 ) -> PuzzleItem:
@@ -235,7 +362,12 @@ def build_day(
     wordlists: dict[str, GameWordlist],
     used: Iterable[str],
 ) -> PuzzleFile:
-    """Build one day's playlist from the config'd mix. Pure; no I/O, no clock."""
+    """Build one day's playlist from the config'd mix. Pure; no I/O, no clock.
+
+    ``wordlists`` is keyed by the repo-relative PATH each set was written to,
+    because a Game has more than one: its ordinary set and, once it registers
+    themes, one set per theme. A path is what the registry actually names.
+    """
     mix = app_config.daily.mix
     total = sum(mix.values())
     if total != app_config.daily.playlistLength:
@@ -244,26 +376,34 @@ def build_day(
             f"{app_config.daily.playlistLength}"
         )
     specs = {spec.gameId: spec for spec in generator.games}
+    for game_id in sorted(mix):
+        if game_id not in specs:
+            raise ValueError(f"daily.mix names {game_id!r}, which has no generator")
+
+    themed = themed_draw(day, app_config, generator, wordlists, used)
     seen = set(used)
     items: list[PuzzleItem] = []
     # Sorted so the playlist's order depends on the config, never on dict order.
     for game_id, count in sorted(mix.items()):
-        spec = specs.get(game_id)
-        if spec is None:
-            raise ValueError(f"daily.mix names {game_id!r}, which has no generator")
+        spec = specs[game_id]
         # How much help a day may ship is the app config's call, not the
         # generator's: the same switch the shell reads decides what gets baked.
         hint_limit = (
             app_config.hints.perGame.get(game_id, 0) if app_config.hints.enabled else 0
         )
-        wordlist = wordlists[game_id]
-        for row, difficulty in pick_words(wordlist.words, spec, day, count, seen):
+        picks = (
+            themed.picks[game_id]
+            if themed is not None
+            else pick_words(wordlists[spec.wordlist].words, spec, day, count, seen)
+        )
+        for row, difficulty in picks:
             seen.add(row.word)
             items.append(build_item(row, spec, day, hint_limit, difficulty))
     return PuzzleFile(
         version=_PUZZLE_FILE_VERSION,
         changelog=_PUZZLE_FILE_CHANGELOG,
         date=day,
+        theme=None if themed is None else themed.copySlug,
         items=items,
     )
 

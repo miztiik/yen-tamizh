@@ -1,6 +1,11 @@
 {
   "changelog": [
     {
+      "change": "Added the categories and pos SELECTION dimensions to the selection, each keeping the rows whose own set-valued column intersects the one named, and gave each its own ledger bucket - outsideCategories and outsidePos - charged before the four serving gates.",
+      "version": "2026-08-17",
+      "why": "Row 15 of the lexicon pipeline - a themed round is the Daily's variety mechanism, and it costs no new engine because a theme is just a derived set cut on a dimension the lexicon already carries. Neither dimension may ever gate admission for an ordinary set - under 3,000 published headwords carry a category at all - so both are optional and absent means not applied. They get their own buckets because the ledger's whole claim is that every published row is accounted for under exactly one heading, and burying a theme's reach inside an existing gate would make that gate's number a lie."
+    },
+    {
       "change": "Cut the set from the published lexicon instead of the ranked master: source became {metaPath, version, sha256, rows} and lost generatedAt; the ledger became lexiconRows less outsideLength, outsideClass, belowAttestations, belowFrequency, withoutMeaning and capped, retiring masterRows, outsideBand and invalidWordFinal; every row carries frequency and frequencyStratum where it carried freqBand.",
       "version": "2026-08-16T23:30",
       "why": "Row 12 of the lexicon pipeline - the served set is now gated on what the lexicon knows about a word rather than on where it ranked in a scraped corpus. The committed set served a political party and a sitting politician because nothing it read could tell a proper noun from a word; the class gate is what removes them, and a bucket per gate is what makes each gate's cost a number rather than an assertion. A rank-relative band over a population where thousands of rows occur zero times was a different filter wearing the same name, so raw frequency plus an absolute floor replaces it, and the stratum carries the second difficulty axis because length alone is anti-correlated at both tails. The word-final rule goes with them, superseded by the orthotactic signal the classifier already applies."
@@ -26,8 +31,10 @@
     "belowFrequency": 38020,
     "capped": 0,
     "lexiconRows": 163437,
+    "outsideCategories": 0,
     "outsideClass": 1076,
     "outsideLength": 63443,
+    "outsidePos": 0,
     "rowsKept": 32310,
     "withoutMeaning": 10812
   },
@@ -49,7 +56,7 @@
     "sha256": "b4b869df61da02261c8736df8f1f8daf8b7cbe504e34b87db541066d2932d1be",
     "version": "2026-08-17"
   },
-  "version": "2026-08-16T23:30",
+  "version": "2026-08-17",
   "words": [
     {"anagramFanOut": 1, "ezhuthu": ["இ", "த", "ழ்"], "frequency": 5561393, "frequencyStratum": 1, "hints": {"firstEzhuthu": "இ", "length": 3}, "word": "இதழ்"},
     {"anagramFanOut": 1, "ezhuthu": ["எ", "ன்", "று"], "frequency": 963476, "frequencyStratum": 1, "hints": {"firstEzhuthu": "எ", "length": 3}, "word": "என்று"},

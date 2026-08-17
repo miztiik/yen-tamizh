@@ -17,17 +17,21 @@ export type Belowattestations = number
 export type Belowfrequency = number
 export type Capped = number
 export type Lexiconrows = number
+export type Outsidecategories = number
 export type Outsideclass = number
 export type Outsidelength = number
+export type Outsidepos = number
 export type Rowskept = number
 export type Withoutmeaning = number
 export type Gameid = string
+export type Categories = ([string, ...(string)[]] | null)
 export type Maxlength = number
 export type Maxwords = (number | null)
 export type Minattestations = number
 export type Minfrequency = number
 export type Minlength = number
 export type Mintier1Attestations = number
+export type Pos = ([("adjective" | "adverb" | "conjunction" | "determiner" | "interjection" | "noun" | "numeral" | "particle" | "postposition" | "pronoun" | "verb"), ...(("adjective" | "adverb" | "conjunction" | "determiner" | "interjection" | "noun" | "numeral" | "particle" | "postposition" | "pronoun" | "verb"))[]] | null)
 export type Requiremeaning = boolean
 /**
  * @minItems 1
@@ -82,14 +86,22 @@ why: Why
  * from reading those files: selection is an allow-list, so the derived layer
  * opens only the classes it serves, and the classes it will not serve are
  * counted from what the meta document declares about them.
+ * 
+ * ``outsideCategories`` and ``outsidePos`` are the two SELECTION dimensions
+ * rather than gates: they are 0 unless the set asked to be themed, and they
+ * are charged before the gates so a themed ledger reads as "of the rows this
+ * theme covers, here is what each gate then removed" rather than burying the
+ * theme's own reach inside ``outsideLength``.
  */
 export interface DerivedCounters {
 belowAttestations: Belowattestations
 belowFrequency: Belowfrequency
 capped: Capped
 lexiconRows: Lexiconrows
+outsideCategories: Outsidecategories
 outsideClass: Outsideclass
 outsideLength: Outsidelength
+outsidePos: Outsidepos
 rowsKept: Rowskept
 withoutMeaning: Withoutmeaning
 }
@@ -122,23 +134,31 @@ withoutMeaning: Withoutmeaning
  * two orders of magnitude while selecting for bound stems, because fragments
  * are what collide with real words.
  * 
- * There is no ``categories`` knob either. Only about 1,290 words carry a
- * category, so gating admission on one would cut the served set to roughly a
- * thousand rows and re-create the scarcity the lexicon exists to remove.
- * Categories are a selection DIMENSION for a themed round, never an admission
- * test.
+ * ``categories`` and ``pos`` are the two SELECTION DIMENSIONS, and they are a
+ * different kind of knob from the six gates above. Each keeps the rows whose
+ * own set-valued column INTERSECTS the one named here - a row tagged both
+ * ``birds`` and ``animals`` satisfies a selection naming either. Both are
+ * OPTIONAL, and absent means the dimension is not applied at all: that is the
+ * only honest default, because neither may ever gate admission for an ordinary
+ * set. Fewer than 3,000 published headwords carry a category, and how far
+ * ``pos`` reaches over the served set is unmeasured, so a set that named one by
+ * accident would collapse to a few hundred rows or to none. A set that names
+ * one is a THEMED set, drawn only on the days a whole themed playlist can be
+ * filled from it.
  * 
  * This model is shared: the registry declares it and the emitted wordlist
  * echoes back the selection that produced it, so a reviewer reading a diff can
  * see which knob moved. Defining it once is why the two cannot disagree.
  */
 export interface DerivedSelection {
+categories?: Categories
 maxLength: Maxlength
 maxWords?: Maxwords
 minAttestations: Minattestations
 minFrequency: Minfrequency
 minLength: Minlength
 minTier1Attestations: Mintier1Attestations
+pos?: Pos
 requireMeaning: Requiremeaning
 wordClasses: Wordclasses
 }

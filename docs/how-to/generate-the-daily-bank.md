@@ -91,6 +91,45 @@ because the lexicon underneath them had changed, and left 2026-08-13 through
 2026-08-16 byte-for-byte alone. A test that spans the bank must DERIVE that span
 from disk rather than pin it, or it goes red the night the cron adds a day.
 
+## Some days are themed
+
+Three unrelated anagrams are a list; three that share a theme are a round. That
+is the Daily's variety mechanism, and it costs no new engine - a theme is one
+more derived set, cut on the `categories` dimension
+([add-a-derived-wordlist.md](add-a-derived-wordlist.md)), registered under the
+Game that draws it.
+
+A date runs a theme when BOTH hold:
+
+1. The cadence allows it. `themeEveryNDays` is counted on the date's own day
+   number, so which dates qualify is a pure function of the date - no phase knob,
+   no reference to when the bank was first baked, and the same answer on every
+   machine. `0` turns themed days off.
+2. One registered theme can fill the WHOLE day from its own wordlist, without
+   repeating a word the bank has already served, with every difficulty band it
+   needs non-empty. Every Game in `daily.mix` must register that same theme, or
+   the day would be partly off-theme while announcing a theme.
+
+Otherwise the day is ordinary. **A theme that cannot fill the day is skipped, not
+padded** - a round whose third word is off-theme has broken the only promise the
+round made. Which theme runs on a date with more than one candidate is seeded by
+the date, and a theme that cannot fill that date does not block another that can.
+
+A themed day records its theme's `copySlug`, never its Tamil name:
+
+```json
+{ "date": "2026-08-30", "theme": "theme-nature", "items": [ ... ] }
+```
+
+The label lives in [`../../config/copy.json`](../../config/copy.json), which the
+shell already reads. A baked label would be copy frozen into a build artifact,
+correctable only by a rebake of a day that has already shipped. An ordinary day
+carries no `theme` key at all.
+
+A theme's own wordlist is cut with the SAME serving gates as the ordinary set, so
+a themed day can never serve a word an ordinary day could not - the theme
+narrows the selection, it never relaxes it.
+
 ## Re-running is safe
 
 A date is a pure function of its date and its wordlist, so baking one twice from
@@ -116,7 +155,9 @@ Two more consequences:
 | --- | --- |
 | `bankDir` | Where the bank is written. Inside `frontend/public/` so it ships with the bundle. |
 | `daysAhead` | How many days past the run date to bake. |
-| `games[].wordlist` | The derived set this Game draws from - the engine's ONLY word input. |
+| `themeEveryNDays` | How often the Daily MAY run a themed round, counted on the day number so it needs no phase. `0` turns themed days off. |
+| `games[].wordlist` | The derived set this Game draws from - the engine's ONLY word input on an ordinary day. |
+| `games[].themes` | The themed sets this Game may run a WHOLE day from: each a `wordlist` path and the `copySlug` naming its Tamil label in `config/copy.json`. Empty means this Game never runs a themed day. |
 | `games[].attempts` | Tries before a puzzle ends honestly (no purchase, no timer). |
 | `games[].timeLimitSec` | `0` means untimed; time pressure belongs to a Mode, not to the mechanic. |
 | `games[].reveal` | How many leading ezhuthu start already placed. `0` keeps the scramble whole. |

@@ -109,7 +109,7 @@
   "$id": "puzzle-file.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
-  "description": "One day's committed, ordered playlist of puzzle items.",
+  "description": "One day's committed, ordered playlist of puzzle items.\n\n``theme`` is present only on a THEMED day - the day whose every item was\ndrawn from one theme's wordlist - and it carries the theme's copy SLUG, not\nits Tamil label. The label is player-facing copy in ``config/copy.json``,\nwhich the shell already reads, so baking the words would freeze copy into a\ncommitted artifact that only a rebuild could correct. Its absence is the\nordinary day, which is why it is optional rather than nullable-and-required:\nan ordinary day says nothing about themes at all.",
   "properties": {
     "changelog": {
       "items": {
@@ -131,6 +131,19 @@
       "minItems": 1,
       "title": "Items",
       "type": "array"
+    },
+    "theme": {
+      "anyOf": [
+        {
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Theme"
     },
     "version": {
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",

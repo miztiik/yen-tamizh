@@ -1,6 +1,6 @@
 # How to add a derived wordlist
 
-**Last Updated**: 2026-08-16
+**Last Updated**: 2026-08-17
 
 A derived wordlist is one Game's SERVED slice of the published
 [lexicon](../concepts/lexicon.md) - the words its generator is allowed to build
@@ -50,9 +50,11 @@ so a typo fails the run instead of being silently ignored.
 }
 ```
 
-Every knob except `maxWords` is **required**. The defaults ARE the design
-decision, so a registry entry that forgot to say what it serves fails to
-validate rather than quietly serving everything.
+Every knob except `maxWords`, `categories` and `pos` is **required**. The
+defaults ARE the design decision, so a registry entry that forgot to say what it
+serves fails to validate rather than quietly serving everything. The last two are
+the SELECTION DIMENSIONS below, and they are optional because absent has to mean
+"not applied".
 
 Then append a `changelog` entry and set `version` to today, like every schema-
 backed file ([`../../CLAUDE.md`](../../CLAUDE.md) section 11).
@@ -73,6 +75,7 @@ familiarity spread:
 
 ```
 anagram: rowsKept=32310 outsideLength=63443 outsideClass=1076
+  outsideCategories=0 outsidePos=0
   belowAttestations=17776 belowFrequency=38020 withoutMeaning=10812 capped=0
   sharedFanOut=514 lengths[3:5965 4:10287 5:9484 6:6574]
   strata[q1:8078 q2:8077 q3:8078 q4:8077]
@@ -104,10 +107,64 @@ Two more knobs shape the set without judging a word:
 | `minLength` / `maxLength` | Bounds on a word's **ezhuthu** count, not its code points. |
 | `maxWords` | Cap on the committed artifact; `null` means uncapped. A derived set lives in git, so an uncapped one is an unbounded commit. The cap trims from the RARE end, because rows come out most frequent first. |
 
-There is deliberately **no category knob**. Only about 1,290 lexicon rows carry a
-category, so gating admission on one would cut the served set to roughly a
-thousand rows and re-create the scarcity the lexicon exists to remove. A category
-is a selection dimension for a themed round, never an admission test.
+## The two selection dimensions, and the themed set they cut
+
+`categories` and `pos` are a different kind of knob. Each keeps the rows whose
+own set-valued column INTERSECTS the one named - a row tagged both `birds` and
+`animals` is inside a selection naming either - and each is charged to its own
+ledger bucket (`outsideCategories`, `outsidePos`).
+
+**Neither may ever gate admission.** Both are optional and absent means the
+dimension is not applied at all. Of 162,361 published headwords only 2,569 carry
+any category, so a set that named one by accident would collapse from tens of
+thousands of rows to a few hundred - re-creating exactly the scarcity the lexicon
+exists to remove. How far `pos` reaches over the served set is likewise a
+measurement, not an assumption.
+
+A set that DOES name one is a **themed set**: the same serving gates as the
+ordinary set, narrowed. The theme narrows; it never relaxes. That is what lets a
+themed day be drawn without a second look at whether its words were servable.
+
+```json
+{
+  "gameId": "themed-nature",
+  "out": "datasets/wordlists/derived/themed-nature.json",
+  "selection": {
+    "...": "the ordinary set's gates, unchanged",
+    "categories": ["animals", "birds", "flowers", "insects", "nature"]
+  }
+}
+```
+
+Three rules keep a theme worth having:
+
+- **A theme is a GROUP of categories, never one.** The single categories are
+  tiny: over the published headwords, `nature` is 144 rows, `birds` 97,
+  `reptiles` 17, `amphibians` 2 - and that is before the gates. A single-category
+  Daily at three words a day would run out in days. `themed-nature` unions ten of
+  them and keeps 429 rows after the gates, which is 143 themed days.
+- **A theme must EXCLUDE almost everything.** The floor is 90 percent of the
+  servable set; `themed-nature` excludes 98.7 percent. A player told the round is
+  about nature can name five plausible candidates before seeing a tile, and that
+  is only true because the tag rules almost everything out. A tag like "nouns"
+  excludes nothing, narrows nothing, and is not a theme.
+- **The tags are DATA.** The categories named here are the normalized values of
+  `categoryAliases` in
+  [`../../config/lexicon-sources.json`](../../config/lexicon-sources.json), so
+  widening a theme, renaming a tag, or folding a new source's labels into an
+  existing theme is a config edit and a re-run. Growing a theme is likewise data
+  - another category source, or authored categories on already-attested
+  headwords - and neither costs code.
+
+A themed set is not drawn by itself: the Game that uses it registers it under
+`games[].themes` in
+[`../../config/daily-generator.json`](../../config/daily-generator.json), and the
+day loop runs it on the days it can fill a whole playlist. See
+[generate-the-daily-bank.md](generate-the-daily-bank.md).
+
+The Tamil name a player reads for a theme is copy in
+[`../../config/copy.json`](../../config/copy.json), keyed by the theme's
+`copySlug`. A category name is never baked into a dataset.
 
 ## The ledger, and why it has one bucket per gate
 
@@ -123,14 +180,17 @@ tells you what a run did:
 - `selection` - the knobs that produced it, so a reviewer reading a diff can see
   which one moved.
 - `counters` - the reconciliation ledger, which the contract itself enforces:
-  `lexiconRows - outsideLength - outsideClass - belowAttestations -
-  belowFrequency - withoutMeaning - capped == rowsKept == len(words)`.
+  `lexiconRows - outsideClass - outsideCategories - outsidePos - outsideLength -
+  belowAttestations - belowFrequency - withoutMeaning - capped == rowsKept ==
+  len(words)`.
 
 Every published lexicon row is accounted for under exactly one heading, in the
 order the identity is read, and a row that fails several gates is charged to the
 first that stopped it. That is what makes "this gate does the most work" a
 measurement rather than an assertion - and what stops a selection bug from
-quietly dropping words.
+quietly dropping words. The two dimension buckets read first, so a themed
+ledger says how far the theme reaches and then what each gate removed from
+inside it; on an ordinary set both are 0.
 
 `outsideClass` is read off the lexicon's own partition table rather than counted
 line by line: selection is an allow-list, so the derived layer opens only the
@@ -178,8 +238,9 @@ express - "words sharing at least three ezhuthu with another entry", say, for a
 crossword's interlock. Add the predicate and its knob to
 `backend/yen_tamizh_backend/wordsmith/derive.py` and
 `backend/yen_tamizh_backend/contracts/derived_wordlists.py`. Everything else -
-another length range, another evidence threshold, another cap - is the two steps
-above. This is the same line the lexicon layer draws at an unseen source FORMAT.
+another length range, another evidence threshold, another cap, another theme -
+is the two steps above. This is the same line the lexicon layer draws at an
+unseen source FORMAT.
 
 ## See also
 

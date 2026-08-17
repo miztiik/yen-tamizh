@@ -102,6 +102,13 @@
           "title": "Reveal",
           "type": "integer"
         },
+        "themes": {
+          "items": {
+            "$ref": "#/$defs/ThemedSet"
+          },
+          "title": "Themes",
+          "type": "array"
+        },
         "timeLimitSec": {
           "minimum": 0,
           "title": "Timelimitsec",
@@ -152,6 +159,28 @@
       ],
       "title": "HintSpec",
       "type": "object"
+    },
+    "ThemedSet": {
+      "additionalProperties": false,
+      "description": "One themed wordlist this Game may run a whole day from.\n\nA theme is the Daily's VARIETY mechanism, not a Mode and not a Game: three\nunrelated anagrams are a list, three sharing a theme are a round. It costs no\nnew engine - it is one derived set cut on the ``categories`` dimension, and\n``wordlist`` is where that set landed.\n\n``copySlug`` names the theme's player-facing Tamil label in\n``config/copy.json``. The SLUG travels in the baked day, never the label: a\nTamil category name is copy, and copy never gets baked into a dataset where\nit could only be changed by a rebuild.\n\nA themed day is OPPORTUNISTIC. The day runs a theme only when a whole\nplaylist can be drawn from that theme's own wordlist without repeating a\nword the bank has already served; otherwise the day is ordinary. A theme is\nnever padded out with an off-theme word, because the round's whole claim is\nthat the three words belong together.",
+      "properties": {
+        "copySlug": {
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "title": "Copyslug",
+          "type": "string"
+        },
+        "wordlist": {
+          "pattern": "^[A-Za-z0-9._-]+(/[A-Za-z0-9._+-]+)*$",
+          "title": "Wordlist",
+          "type": "string"
+        }
+      },
+      "required": [
+        "wordlist",
+        "copySlug"
+      ],
+      "title": "ThemedSet",
+      "type": "object"
     }
   },
   "$id": "daily-generator.schema.json",
@@ -185,6 +214,11 @@
       "title": "Games",
       "type": "array"
     },
+    "themeEveryNDays": {
+      "minimum": 0,
+      "title": "Themeeveryndays",
+      "type": "integer"
+    },
     "version": {
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
       "title": "Version",
@@ -196,6 +230,7 @@
     "changelog",
     "bankDir",
     "daysAhead",
+    "themeEveryNDays",
     "games"
   ],
   "title": "DailyGenerator",

@@ -25,15 +25,25 @@ export type Cost = number
 export type Kind = string
 export type Text = string
 export type Packid = string
+export type Theme = (string | null)
 export type Version1 = string
 
 /**
  * One day's committed, ordered playlist of puzzle items.
+ * 
+ * ``theme`` is present only on a THEMED day - the day whose every item was
+ * drawn from one theme's wordlist - and it carries the theme's copy SLUG, not
+ * its Tamil label. The label is player-facing copy in ``config/copy.json``,
+ * which the shell already reads, so baking the words would freeze copy into a
+ * committed artifact that only a rebuild could correct. Its absence is the
+ * ordinary day, which is why it is optional rather than nullable-and-required:
+ * an ordinary day says nothing about themes at all.
  */
 export interface PuzzleFile {
 changelog: Changelog
 date: Date
 items: Items
+theme?: Theme
 version: Version1
 }
 /**

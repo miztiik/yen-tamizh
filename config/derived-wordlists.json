@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-16T23:30",
+  "version": "2026-08-17",
   "changelog": [
+    {
+      "version": "2026-08-17",
+      "change": "Added the categories and pos selection dimensions to a set's selection, and registered the first themed set, themed-nature.",
+      "why": "Row 15 of the lexicon pipeline - a themed round is the Daily's variety mechanism: three unrelated anagrams are a list, three that share a theme are a round, and that is a selection constraint rather than a new engine. A theme ships as a GROUP of categories because the single categories are tiny - the largest is a couple of hundred rows before the gates and several are under twenty - so a single-category Daily would last days rather than years. Neither dimension may gate an ordinary set: fewer than 3,000 published headwords carry a category at all, so a set that named one by accident would collapse."
+    },
     {
       "version": "2026-08-16T23:30",
       "change": "Replaced masterPath with lexiconPath and the bands / requireValidWordFinal knobs with the four serving gates: wordClasses, minAttestations with minTier1Attestations, minFrequency and requireMeaning.",
@@ -37,6 +42,33 @@
         "minFrequency": 1,
         "requireMeaning": true,
         "maxWords": null
+      }
+    },
+    {
+      "gameId": "themed-nature",
+      "out": "datasets/wordlists/derived/themed-nature.json",
+      "note": "The anagram's serving gates unchanged, narrowed to the nature theme - so every word here is also a word the ordinary set serves, and a themed day can never be easier or harder to justify than an ordinary one. The theme is a GROUP of ten categories rather than one, because one category is a few dozen rows: Birds alone would run out inside a month. The group also has to be a theme a player can PLAY - someone told the round is about nature can name five plausible candidates before seeing a tile, which is what Nouns or Verbs could never do, and it excludes 98.7 percent of the servable set, so knowing it is worth something. Nothing here is hand picked: change the categories or the aliases they normalize through and re-run the rebuild.",
+      "selection": {
+        "wordClasses": ["headword"],
+        "minLength": 3,
+        "maxLength": 6,
+        "minAttestations": 2,
+        "minTier1Attestations": 1,
+        "minFrequency": 1,
+        "requireMeaning": true,
+        "maxWords": null,
+        "categories": [
+          "amphibians",
+          "animals",
+          "aquatic-animals",
+          "birds",
+          "flowers",
+          "insects",
+          "nature",
+          "parts-of-plants",
+          "reptiles",
+          "types-of-plants"
+        ]
       }
     }
   ]

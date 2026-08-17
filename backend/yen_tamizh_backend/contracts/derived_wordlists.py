@@ -16,9 +16,13 @@ move them without touching Python. What stays in code is the MECHANISM that
 interprets them. A Game whose set needs a predicate these knobs cannot express is
 the one case that costs code.
 
-The knobs deliberately carry NO defaults. The defaults ARE the design decision,
-and a knob that lands unset is the failure mode: a registry entry that forgot to
-say what it serves must fail to validate rather than quietly serve everything.
+The serving GATES deliberately carry NO defaults. The defaults ARE the design
+decision, and a knob that lands unset is the failure mode: a registry entry that
+forgot to say what it serves must fail to validate rather than quietly serve
+everything. The two selection DIMENSIONS are the exception and default to
+absent, because absent means the dimension is not applied - the opposite failure
+mode, where a set that never meant to be themed silently narrows to a few
+hundred rows.
 """
 
 from __future__ import annotations
@@ -29,6 +33,7 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from yen_tamizh_backend.contracts.base import SchemaModel
 from yen_tamizh_backend.contracts.common import GameId, RelPath
+from yen_tamizh_backend.contracts.lexicon import PartOfSpeech
 
 # The word classes a Game may EVER be configured to serve - deliberately a
 # strict subset of the lexicon's ten-member ``WordClass``.
@@ -81,11 +86,17 @@ class DerivedSelection(BaseModel):
     two orders of magnitude while selecting for bound stems, because fragments
     are what collide with real words.
 
-    There is no ``categories`` knob either. Only about 1,290 words carry a
-    category, so gating admission on one would cut the served set to roughly a
-    thousand rows and re-create the scarcity the lexicon exists to remove.
-    Categories are a selection DIMENSION for a themed round, never an admission
-    test.
+    ``categories`` and ``pos`` are the two SELECTION DIMENSIONS, and they are a
+    different kind of knob from the six gates above. Each keeps the rows whose
+    own set-valued column INTERSECTS the one named here - a row tagged both
+    ``birds`` and ``animals`` satisfies a selection naming either. Both are
+    OPTIONAL, and absent means the dimension is not applied at all: that is the
+    only honest default, because neither may ever gate admission for an ordinary
+    set. Fewer than 3,000 published headwords carry a category, and how far
+    ``pos`` reaches over the served set is unmeasured, so a set that named one by
+    accident would collapse to a few hundred rows or to none. A set that names
+    one is a THEMED set, drawn only on the days a whole themed playlist can be
+    filled from it.
 
     This model is shared: the registry declares it and the emitted wordlist
     echoes back the selection that produced it, so a reviewer reading a diff can
@@ -102,6 +113,12 @@ class DerivedSelection(BaseModel):
     minFrequency: int = Field(ge=0)
     requireMeaning: bool
     maxWords: int | None = Field(default=None, ge=1)
+    # The normalized theme tags of config/lexicon-sources.json's categoryAliases
+    # - which is what lets a theme be renamed, widened or narrowed without a
+    # code change (a theme ships as a GROUP of categories, never a single one:
+    # the largest single theme is a couple of hundred rows before the gates).
+    categories: list[str] | None = Field(default=None, min_length=1)
+    pos: list[PartOfSpeech] | None = Field(default=None, min_length=1)
 
     @model_validator(mode="after")
     def _selection_is_coherent(self) -> Self:
@@ -111,6 +128,15 @@ class DerivedSelection(BaseModel):
             )
         if len(set(self.wordClasses)) != len(self.wordClasses):
             raise ValueError(f"wordClasses has a repeated entry: {self.wordClasses}")
+        for name, dimension in (("categories", self.categories), ("pos", self.pos)):
+            if dimension is None:
+                continue
+            # A set written as a list: the order it is written in must not be
+            # information, and a repeat would look like it weighted a tag.
+            if list(dimension) != sorted(set(dimension)):
+                raise ValueError(f"{name} must be sorted and deduped: {dimension}")
+            if any(not str(entry).strip() for entry in dimension):
+                raise ValueError(f"{name} has a blank entry: {dimension}")
         # The row shape already refuses a row whose tier-1 count exceeds its
         # total, so a tier-1 requirement above the total is unsatisfiable
         # arithmetic that would silently serve nothing.
@@ -123,7 +149,14 @@ class DerivedSelection(BaseModel):
 
 
 class DerivedSet(BaseModel):
-    """One registered per-Game derived set: who consumes it and where it lands."""
+    """One registered derived set: who consumes it and where it lands.
+
+    ``gameId`` is the registry's unique key. A Game that runs themed days
+    registers more than one set - its ordinary one plus a themed variant per
+    theme - so a themed set's id names the THEME (``themed-nature``) while the
+    Game that draws it is named in ``config/daily-generator.json``, which is the
+    file that decides which set a day is filled from.
+    """
 
     model_config = ConfigDict(extra="forbid")
 

@@ -63,12 +63,22 @@ def _emit(stream: TextIO, name: str, data: dict[str, Any]) -> None:
 
 
 def load_wordlists(generator: DailyGenerator, repo_root: Path) -> dict[str, GameWordlist]:
-    """Load each Game's derived wordlist - the engine's only word input."""
-    return {
-        spec.gameId: GameWordlist.model_validate_json(
-            (repo_root / spec.wordlist).read_text(encoding="utf-8")
-        )
+    """Load every derived wordlist the engine may draw from, keyed by its path.
+
+    A Game has its ordinary set plus one per registered theme, so the key is the
+    repo-relative path the registry names rather than a ``gameId``: two sets a
+    Game draws from cannot share one key.
+    """
+    paths = {
+        wordlist
         for spec in generator.games
+        for wordlist in (spec.wordlist, *(theme.wordlist for theme in spec.themes))
+    }
+    return {
+        path: GameWordlist.model_validate_json(
+            (repo_root / path).read_text(encoding="utf-8")
+        )
+        for path in sorted(paths)
     }
 
 

@@ -330,9 +330,9 @@ Recorded here rather than closed, because each is measured and none is fixed. Ro
 | 11 | `wordsmith/publish.py` + `pipeline.py` | B | 9b | - | DONE #29 | `../yen-tamizh-pub` | #29 | worker |
 | 12 | Cut the derived layer over; real serving gates; two-axis difficulty | B | 1, 11 | - | DONE #30 | `../yen-tamizh-r12` | #30 | worker |
 | 12a | Publish every sense; human-first field order; collapse to one file per BASE letter | B | 12 | - | DONE #31 | `../yen-tamizh-fix` | #31 | worker + orchestrator |
-| 13 | Retire the corpus layer; purge the retired `master` identifiers | A | 12a | - | DONE #32 | `../yen-tamizh-r13` | #32 | worker |
-| 14 | Rebuild the hint ladder; show a solved word's meaning | B | 13, 15 | - | PENDING | - | - | - |
-| 15 | Themed selection: `categories` + `pos` | B | 13 | - | READY - next | - | - | - |
+| 13 | Retire the corpus layer; purge the retired `master` identifiers | A | 12a | - | DONE #32 | `../yen-tamizh-r13` (removed) | #32 | worker |
+| 14 | Rebuild the hint ladder; show a solved word's meaning | B | 13, 15 | - | READY - last | - | - | - |
+| 15 | Themed selection: `categories` + `pos` | B | 13 | - | DONE #33 | `../yen-tamizh-r15` | #33 | worker |
 
 PR #26 was a first publish attempt (53 files, full-ezhuthu address, single-sense) CLOSED as stale rather than merged; #29 supersedes it.
 
@@ -946,6 +946,34 @@ Rows 3 and 13 change `REGISTRY` in `backend/yen_tamizh_backend/contracts/__init_
 - **Acceptance gates:** `mypy backend` strict; `pytest backend`; drift gate green.
 
 - **Oracle:** The themed set equals EXACTLY the lexicon rows whose alias-normalized `categories` intersect the requested set and which satisfy the serving gates - no more, no fewer - and its counters reconcile against the lexicon row count.
+
+- **MEASURED IN EXECUTION (2026-08-17). Three authored numbers were wrong, all of them low, and decision 10's open caution is DISCHARGED.**
+
+  The estimates in decisions 3, 4 and 12 were counted before rows 4b, 9b and 10a added meanings and categories. The real set is roughly four times the projection:
+
+  | Quantity | Authored | MEASURED |
+  | --- | --- | --- |
+  | `themed-nature` rows, before the serving gates | ~111 | 161,634 candidates carrying a theme category, of which 429 survive the gates |
+  | `themed-nature` rows, SERVED | not estimated | **429** |
+  | Decision 12's growth target (52 weeks x 3 slots) | 156, "the number row 10's authoring aims at" | **ALREADY MET at 429** - 2.75x. A weekly nature day runs for two and a half years without repeating. |
+  | Served rows carrying any category | ~1,290 | **2,133** |
+
+  Decision 11's floor: `themed-nature` excludes **98.67%** of the servable set (429 of 32,310), well past the 90% requirement, and every published themed word is also an ordinary served word - the themed set is a strict subset, so a themed day can never be easier or harder to justify than an ordinary one.
+
+  **Decision 10's caution is DISCHARGED.** It required the verb count before a verbs day could ship. Over the 32,310 SERVED rows, 31,964 carry a `pos` and 2,218 contain `verb`:
+
+  | ezhuthu | verb-containing served rows |
+  | ---: | ---: |
+  | 3 | 571 |
+  | 4 | 699 |
+  | 5 | 595 |
+  | 6 | 353 |
+
+  **3-5 ezhuthu: 1,865, against the 156 target - twelve times over.** The mechanism the caution described is real but its magnitude is not: Tamil verb roots do skew short, and the served set still holds ten times the verbs a weekly verbs day would need. A verbs day is VIABLE. It is not shipped here because decision 11's second leg - a player who knows the theme can name five plausible candidates - is a design question a verbs day has to answer, not an inventory one.
+
+  **One knob the plan did not name: `themeEveryNDays`.** Decision 5 says a themed day runs whenever a full themed playlist can be drawn; decision 12 sizes the growth target at ONE themed day per week. Implemented literally, decision 5 alone would make almost every day a nature day, which is the opposite of the variety a theme exists to add - so the cadence decision 12 assumes is now an explicit config knob (Holy Law #6), set to 7. Measured over 120 days: 17 themed, 103 ordinary. Setting it to 0 turns themed days off.
+
+  **`gameId` on a themed derived set names the THEME, not a Game.** `DerivedSet.gameId` is the registry's unique key, and a Game that runs themed days registers more than one set. Which Game draws a set is decided in `config/daily-generator.json`, and `build_day` keys its wordlists by PATH rather than by `gameId` for exactly this reason - so a baked themed item still carries `gameId: "anagram"` and the shell finds the Game it already knows. Verified over 120 generated days.
 
 - **Decisions:**
 

@@ -20,6 +20,10 @@ Five things are proven:
    a short day.
 5. **The seam.** The engine reads the derived wordlist and nothing above it, and
    a published day survives a changed wordlist untouched.
+6. **Themed days.** On the dates the cadence allows, a theme that can fill every
+   slot from its own wordlist fills all of them and the day records its copy
+   slug; a theme that cannot is skipped entirely rather than padded out with an
+   off-theme word.
 """
 
 from __future__ import annotations
@@ -30,11 +34,13 @@ from datetime import date, timedelta
 from pathlib import Path
 
 import pytest
+from pydantic import ValidationError
 
 from yen_tamizh_backend.contracts.anagram_puzzle import AnagramPuzzle
 from yen_tamizh_backend.contracts.app_config import AppConfig
 from yen_tamizh_backend.contracts.bank_index import BankIndex
-from yen_tamizh_backend.contracts.daily_generator import DailyGenerator
+from yen_tamizh_backend.contracts.copy import Copy
+from yen_tamizh_backend.contracts.daily_generator import DailyGenerator, GameGeneration
 from yen_tamizh_backend.contracts.game_wordlist import GameWordlist
 from yen_tamizh_backend.contracts.puzzle_file import PuzzleFile
 from yen_tamizh_backend.ezhuthu import segment
@@ -45,6 +51,7 @@ from yen_tamizh_backend.wordsmith import derive
 
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 _APP_CONFIG = _REPO_ROOT / "config" / "app-config.json"
+_COPY = _REPO_ROOT / "config" / "copy.json"
 _GENERATOR = _REPO_ROOT / "config" / "daily-generator.json"
 
 # The first day the bank was baked (Row 13). Used as a fixed date so the tests
@@ -54,6 +61,16 @@ FIRST_DAY = "2026-08-13"
 # The first day baked from the lexicon-gated wordlist (row 12). Days before it
 # were baked from the pre-cutover set and the re-bake guard leaves them alone.
 CUTOVER_DAY = "2026-08-23"
+
+# The wordlists are keyed by the path the registry names, because a Game draws
+# from more than one: its ordinary set and one per registered theme.
+ANAGRAM_SET = "datasets/wordlists/derived/anagram.json"
+THEMED_SET = "datasets/wordlists/derived/themed-nature.json"
+
+# A date the configured cadence allows a theme on, and the day after it. Both
+# are past the committed bank, so a themed test bakes into empty ground.
+THEME_DAY = "2026-08-30"
+ORDINARY_DAY = "2026-08-31"
 
 
 @pytest.fixture(scope="module")
@@ -235,8 +252,8 @@ def _reordered(wordlists: dict[str, GameWordlist]) -> dict[str, GameWordlist]:
     reordering the candidates is enough to make every later pick differ.
     """
     return {
-        game_id: wordlist.model_copy(update={"words": list(reversed(wordlist.words))})
-        for game_id, wordlist in wordlists.items()
+        path: wordlist.model_copy(update={"words": list(reversed(wordlist.words))})
+        for path, wordlist in wordlists.items()
     }
 
 
@@ -415,7 +432,11 @@ def test_every_served_word_comes_from_the_derived_wordlist(
     history the re-bake guard deliberately preserves, not a rebuildable
     artifact.
     """
-    allowed = {row.word for row in wordlists["anagram"].words}
+    allowed = {
+        row.word
+        for path in (ANAGRAM_SET, THEMED_SET)
+        for row in wordlists[path].words
+    }
     checked = 0
     for path in _committed_days(bank_dir):
         if path.stem < CUTOVER_DAY:
@@ -472,7 +493,7 @@ def test_difficulty_reads_both_length_and_familiarity(
         for band in spec.difficulties
     }
     claimed = 0
-    for row in wordlists["anagram"].words:
+    for row in wordlists[ANAGRAM_SET].words:
         bucket = anagram.difficulty_of(row, spec)
         if bucket is None:
             # No band claims it, so no slot can draw it - see bucket_candidates.
@@ -495,15 +516,15 @@ def test_a_word_no_band_claims_is_dropped_rather_than_relabelled(
     generator: DailyGenerator, wordlists: dict[str, GameWordlist]
 ) -> None:
     spec = generator.games[0]
-    buckets = daily.bucket_candidates(wordlists["anagram"].words, spec)
+    buckets = daily.bucket_candidates(wordlists[ANAGRAM_SET].words, spec)
     assert set(buckets) == {band.id for band in spec.difficulties}
     bucketed = sum(len(rows) for rows in buckets.values())
     unclaimed = [
         row
-        for row in wordlists["anagram"].words
+        for row in wordlists[ANAGRAM_SET].words
         if anagram.difficulty_of(row, spec) is None
     ]
-    assert bucketed + len(unclaimed) == len(wordlists["anagram"].words)
+    assert bucketed + len(unclaimed) == len(wordlists[ANAGRAM_SET].words)
     for row in unclaimed:
         assert row not in buckets[spec.difficulties[-1].id]
 
@@ -512,7 +533,7 @@ def test_hints_are_capped_by_the_app_config_allowance(
     generator: DailyGenerator, wordlists: dict[str, GameWordlist]
 ) -> None:
     spec = generator.games[0]
-    row = wordlists["anagram"].words[0]
+    row = wordlists[ANAGRAM_SET].words[0]
     assert anagram.build_hints(row, spec, 0) == []
     assert len(anagram.build_hints(row, spec, 1)) == 1
     assert len(anagram.build_hints(row, spec, 99)) == len(spec.hints)
@@ -574,7 +595,7 @@ def test_a_hint_template_naming_an_unknown_field_fails_loudly(
         }
     )
     with pytest.raises(KeyError):
-        anagram.build_hints(wordlists["anagram"].words[0], broken, 1)
+        anagram.build_hints(wordlists[ANAGRAM_SET].words[0], broken, 1)
 
 
 # --------------------------------------------------------------------------
@@ -586,7 +607,7 @@ def test_selection_skips_words_already_served(
     generator: DailyGenerator, wordlists: dict[str, GameWordlist]
 ) -> None:
     spec = generator.games[0]
-    candidates = wordlists["anagram"].words
+    candidates = wordlists[ANAGRAM_SET].words
     plain = daily.pick_words(candidates, spec, FIRST_DAY, 3, used=())
     assert len(plain) == 3
     avoided = daily.pick_words(
@@ -600,7 +621,7 @@ def test_a_day_is_dealt_round_robin_across_the_difficulty_bands(
 ) -> None:
     """A day is a curve, not three rolls of the same dice."""
     spec = generator.games[0]
-    picked = daily.pick_words(wordlists["anagram"].words, spec, FIRST_DAY, 3, used=())
+    picked = daily.pick_words(wordlists[ANAGRAM_SET].words, spec, FIRST_DAY, 3, used=())
     assert [difficulty for _, difficulty in picked] == [
         band.id for band in spec.difficulties
     ]
@@ -613,7 +634,7 @@ def test_the_draw_within_a_band_is_stratified_not_uniform(
 ) -> None:
     """Every window of four holds one word from each quarter, by construction."""
     spec = generator.games[0]
-    pool = daily.bucket_candidates(wordlists["anagram"].words, spec)[
+    pool = daily.bucket_candidates(wordlists[ANAGRAM_SET].words, spec)[
         spec.difficulties[-1].id
     ]
     order = daily.stratified_order(pool, f"{FIRST_DAY}|anagram|hard")
@@ -629,7 +650,7 @@ def test_the_stratified_order_is_a_pure_function_of_its_seed(
     generator: DailyGenerator, wordlists: dict[str, GameWordlist]
 ) -> None:
     spec = generator.games[0]
-    pool = daily.bucket_candidates(wordlists["anagram"].words, spec)["easy"]
+    pool = daily.bucket_candidates(wordlists[ANAGRAM_SET].words, spec)["easy"]
     first = [row.word for row in daily.stratified_order(pool, "seed")]
     assert [row.word for row in daily.stratified_order(pool, "seed")] == first
     assert [row.word for row in daily.stratified_order(pool, "other")] != first
@@ -640,7 +661,7 @@ def test_selection_fills_the_day_even_when_everything_was_served(
 ) -> None:
     """A repeat is a smaller failure than a playlist that does not add up."""
     spec = generator.games[0]
-    candidates = wordlists["anagram"].words
+    candidates = wordlists[ANAGRAM_SET].words
     filled = daily.pick_words(
         candidates, spec, FIRST_DAY, 3, used={row.word for row in candidates}
     )
@@ -659,7 +680,7 @@ def test_a_band_with_an_empty_bucket_is_an_error(
     spec = generator.games[0]
     only_hard = [
         row
-        for row in wordlists["anagram"].words
+        for row in wordlists[ANAGRAM_SET].words
         if anagram.difficulty_of(row, spec) == "hard"
     ]
     with pytest.raises(ValueError, match="easy"):
@@ -700,3 +721,186 @@ def test_the_configured_bank_lives_inside_the_frontend_bundle(
 ) -> None:
     """Same-origin, in-bundle, offline (Holy Law #1) - never a CDN."""
     assert generator.bankDir.startswith("frontend/public/")
+
+
+# --------------------------------------------------------------------------
+# 6. Themed days (row 15)
+# --------------------------------------------------------------------------
+
+
+def test_the_theme_cadence_is_a_pure_function_of_the_date(
+    generator: DailyGenerator,
+) -> None:
+    """Exactly one date in every window, decided by the date and nothing else."""
+    cadence = generator.themeEveryNDays
+    assert cadence > 0
+    start = date.fromisoformat(FIRST_DAY)
+    flags = [
+        daily.is_theme_date((start + timedelta(days=offset)).isoformat(), generator)
+        for offset in range(cadence * 3)
+    ]
+    assert sum(flags) == 3
+    for window in range(3):
+        assert sum(flags[window * cadence : (window + 1) * cadence]) == 1
+    assert daily.is_theme_date(THEME_DAY, generator)
+    assert not daily.is_theme_date(ORDINARY_DAY, generator)
+
+
+def test_a_cadence_of_zero_turns_themed_days_off(generator: DailyGenerator) -> None:
+    """The off switch is a knob, not a code path that has to be deleted."""
+    off = generator.model_copy(update={"themeEveryNDays": 0})
+    start = date.fromisoformat(FIRST_DAY)
+    assert not any(
+        daily.is_theme_date((start + timedelta(days=offset)).isoformat(), off)
+        for offset in range(30)
+    )
+
+
+def test_a_theme_date_draws_the_whole_day_from_one_theme_and_says_so(
+    app_config: AppConfig,
+    generator: DailyGenerator,
+    wordlists: dict[str, GameWordlist],
+) -> None:
+    """THE row 15 mechanism: the themed set is a set the day loop actually reads."""
+    puzzle = daily.build_day(THEME_DAY, app_config, generator, wordlists, used=())
+
+    assert puzzle.theme == "theme-nature"
+    themed = {row.word for row in wordlists[THEMED_SET].words}
+    served = {str(item.payload["word"]) for item in puzzle.items}
+    assert served <= themed
+    assert len(puzzle.items) == app_config.daily.playlistLength
+    assert [item.difficulty for item in puzzle.items] == [
+        band.id for band in generator.games[0].difficulties
+    ]
+
+
+def test_an_ordinary_date_records_no_theme(
+    app_config: AppConfig,
+    generator: DailyGenerator,
+    wordlists: dict[str, GameWordlist],
+) -> None:
+    puzzle = daily.build_day(ORDINARY_DAY, app_config, generator, wordlists, used=())
+
+    assert puzzle.theme is None
+    assert "theme" not in puzzle.model_dump(mode="json", exclude_none=True)
+
+
+def test_a_themed_day_is_a_pure_function_of_its_date(
+    app_config: AppConfig,
+    generator: DailyGenerator,
+    wordlists: dict[str, GameWordlist],
+) -> None:
+    first = daily.build_day(THEME_DAY, app_config, generator, wordlists, used=())
+    second = daily.build_day(THEME_DAY, app_config, generator, wordlists, used=())
+    assert first.model_dump() == second.model_dump()
+
+
+def test_a_theme_that_cannot_fill_the_day_is_skipped_rather_than_padded(
+    app_config: AppConfig,
+    generator: DailyGenerator,
+    wordlists: dict[str, GameWordlist],
+) -> None:
+    """Half a theme is not a round: the day becomes ordinary, whole (decision 5)."""
+    themed = {row.word for row in wordlists[THEMED_SET].words}
+    puzzle = daily.build_day(THEME_DAY, app_config, generator, wordlists, used=themed)
+
+    assert puzzle.theme is None
+    assert len(puzzle.items) == app_config.daily.playlistLength
+    assert {str(item.payload["word"]) for item in puzzle.items}.isdisjoint(themed)
+
+
+def test_a_theme_one_word_short_fills_none_of_the_day(
+    generator: DailyGenerator, wordlists: dict[str, GameWordlist]
+) -> None:
+    """A theme is all-or-nothing: it never contributes a partial playlist."""
+    spec = generator.games[0]
+    rows = wordlists[THEMED_SET].words
+    full = daily.theme_can_fill(rows, spec, THEME_DAY, 3, used=())
+    assert full is not None
+    assert len({row.word for row, _ in full}) == 3
+
+    almost = {row.word for row in rows} - {full[0][0].word}
+    assert daily.theme_can_fill(rows, spec, THEME_DAY, 3, used=almost) is None
+
+
+def test_a_theme_with_an_empty_difficulty_bucket_declines_instead_of_raising(
+    generator: DailyGenerator, wordlists: dict[str, GameWordlist]
+) -> None:
+    """An ordinary day short of a band is an error; a theme has somewhere to go."""
+    spec = generator.games[0]
+    hard_only = [
+        row
+        for row in wordlists[THEMED_SET].words
+        if anagram.difficulty_of(row, spec) == "hard"
+    ]
+    assert hard_only
+
+    assert daily.theme_can_fill(hard_only, spec, THEME_DAY, 3, used=()) is None
+    with pytest.raises(ValueError, match="easy"):
+        daily.pick_words(hard_only, spec, THEME_DAY, 3, used=())
+
+
+def test_a_baked_themed_day_carries_its_slug_on_disk(
+    tmp_path: Path,
+    app_config: AppConfig,
+    generator: DailyGenerator,
+    wordlists: dict[str, GameWordlist],
+) -> None:
+    spec = generator.model_copy(update={"bankDir": "bank", "daysAhead": 0})
+    generate(date.fromisoformat(THEME_DAY), tmp_path, app_config, spec, wordlists)
+
+    raw = json.loads(
+        (tmp_path / "bank" / "2026" / f"{THEME_DAY}.json").read_text(encoding="utf-8")
+    )
+    assert raw["theme"] == "theme-nature"
+    PuzzleFile.model_validate(raw)
+
+
+def test_every_registered_theme_has_player_facing_copy(
+    generator: DailyGenerator,
+) -> None:
+    """A Tamil theme name is copy, so the day bakes the SLUG and copy holds the word."""
+    copy = Copy.model_validate_json(_COPY.read_text(encoding="utf-8"))
+    slugs = [theme.copySlug for spec in generator.games for theme in spec.themes]
+    assert slugs
+    for slug in slugs:
+        assert copy.strings.get(slug), f"{slug} has no player-facing copy"
+
+
+def test_every_registered_theme_names_a_registered_derived_set(
+    generator: DailyGenerator,
+) -> None:
+    registry = derive.load_registry(_REPO_ROOT / "config" / "derived-wordlists.json")
+    registered = {entry.out for entry in registry.sets}
+    for spec in generator.games:
+        assert spec.wordlist in registered
+        for theme in spec.themes:
+            assert theme.wordlist in registered
+
+
+def test_a_theme_pointing_at_the_ordinary_wordlist_is_rejected(
+    generator: DailyGenerator,
+) -> None:
+    """Every day themed is no theme at all, and the header would be a lie."""
+    payload = generator.games[0].model_dump()
+    payload["themes"] = [{"wordlist": payload["wordlist"], "copySlug": "theme-nature"}]
+    with pytest.raises(ValidationError, match="repeated wordlist"):
+        GameGeneration.model_validate(payload)
+
+
+def test_every_committed_themed_day_serves_only_its_own_theme(
+    bank_dir: Path, generator: DailyGenerator, wordlists: dict[str, GameWordlist]
+) -> None:
+    """A day that announces a theme must have drawn every word from it."""
+    by_slug = {
+        theme.copySlug: theme.wordlist
+        for spec in generator.games
+        for theme in spec.themes
+    }
+    for path in _committed_days(bank_dir):
+        puzzle_file = PuzzleFile.model_validate_json(path.read_text(encoding="utf-8"))
+        if puzzle_file.theme is None:
+            continue
+        allowed = {row.word for row in wordlists[by_slug[puzzle_file.theme]].words}
+        for item in puzzle_file.items:
+            assert str(item.payload["word"]) in allowed, path.stem
