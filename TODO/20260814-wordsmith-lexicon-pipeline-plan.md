@@ -331,11 +331,15 @@ Recorded here rather than closed, because each is measured and none is fixed. Ro
 | 12 | Cut the derived layer over; real serving gates; two-axis difficulty | B | 1, 11 | - | DONE #30 | `../yen-tamizh-r12` (removed) | #30 | worker |
 | 12a | Publish every sense; human-first field order; collapse to one file per BASE letter | B | 12 | - | DONE #31 | `../yen-tamizh-fix` (removed) | #31 | worker + orchestrator |
 | 13 | Retire the corpus layer; purge the retired `master` identifiers | A | 12a | - | DONE #32 | `../yen-tamizh-r13` (removed) | #32 | worker |
-| 14 | Rebuild the hint ladder; show a solved word's meaning | B | 13, 15 | - | READY - last row; decision 19 withdrawn | - | - | - |
+| 14 | Rebuild the hint ladder; show a solved word's meaning | B | 13, 15 | - | DONE #35 | `../yen-tamizh-r14` (removed) | #35 | worker x2 |
 | 15 | Themed selection: `categories` + `pos` | B | 13 | - | DONE #33 | `../yen-tamizh-r15` (removed) | #33 | worker |
 | 16 | Keep grammar words and names off the board (the served deny-list) | B | 15 | - | DONE #34 | `../yen-tamizh-r16` (removed) | #34 | worker |
 
-**17 of 18 rows are merged. Row 14 is the only one left**, and it is now UNBLOCKED: decision 19 was withdrawn on 2026-08-17 (see the ruling in section 15). Rows 13 and 15, its two dependencies, are both in.
+**EVERY ROW IS MERGED. The plan is COMPLETE as of 2026-08-17** - 18 rows, PRs #13-#35 (with #26 closed as stale and #35 re-opened after a GitHub outage closed it mid-merge).
+
+What it delivered, measured rather than claimed: 21 registered sources; 6,776,631 surfaces classified; 163,437 rows published across 53 files; 32,241 words served to the anagram game against a floor of 6,000; a hint ladder that discloses its price before the tap and never sells English; and a summary that finally tells a player what the word they solved MEANS.
+
+Six defects are recorded above as still open. None blocks the plan, and each is written down with what was measured rather than what was assumed - the proper-noun problem in particular is PARTLY fixed and honestly scoped. The plan-doc is deleted at closure per `docs/how-to/author-a-plan.md`; the durable rationale already lives on the docs each row shipped alongside its code.
 
 PR #26 was a first publish attempt (53 files, full-ezhuthu address, single-sense) CLOSED as stale rather than merged; #29 supersedes it.
 
