@@ -331,8 +331,10 @@ Recorded here rather than closed, because each is measured and none is fixed. Ro
 | 12 | Cut the derived layer over; real serving gates; two-axis difficulty | B | 1, 11 | - | DONE #30 | `../yen-tamizh-r12` | #30 | worker |
 | 12a | Publish every sense; human-first field order; collapse to one file per BASE letter | B | 12 | - | DONE #31 | `../yen-tamizh-fix` | #31 | worker + orchestrator |
 | 13 | Retire the corpus layer; purge the retired `master` identifiers | A | 12a | - | DONE #32 | `../yen-tamizh-r13` (removed) | #32 | worker |
-| 14 | Rebuild the hint ladder; show a solved word's meaning | B | 13, 15 | - | READY - last | - | - | - |
-| 15 | Themed selection: `categories` + `pos` | B | 13 | - | DONE #33 | `../yen-tamizh-r15` | #33 | worker |
+| 14 | Rebuild the hint ladder; show a solved word's meaning | B | 13, 15 | - | **BLOCKED - decision 19 needs a user ruling (see the blocker note in section 15)** | - | - | - |
+| 15 | Themed selection: `categories` + `pos` | B | 13 | - | DONE #33 | `../yen-tamizh-r15` (removed) | #33 | worker |
+
+**16 of 17 rows are merged. Row 14 is the only one left**, and it is stopped on a question the plan cannot answer for itself: decision 19 forbids SELLING an unreviewed authored meaning, and the field it reads was deleted in row 11. The options are costed in section 15. Nothing else blocks it - rows 13 and 15, its two dependencies, are both in.
 
 PR #26 was a first publish attempt (53 files, full-ezhuthu address, single-sense) CLOSED as stale rather than merged; #29 supersedes it.
 
@@ -917,6 +919,22 @@ Rows 3 and 13 change `REGISTRY` in `backend/yen_tamizh_backend/contracts/__init_
   | 17 | The predecessor's baked bank (`data/puzzles/2026/*.json`) already shipped a `category` hint, and its text was `பெயர்ச்சொல்` - "noun". That is a POS label applied to most words and it narrows nothing, which is exactly the giveaway-in-reverse failure this row must avoid. The `category` rung renders a real theme tag or the rung is omitted; a POS value never reaches it, because row 11 decision 3 routes POS labels to `pos`. | Jony + Palm |
   | 18 | ON A THEMED DAY (row 15) the theme is announced FREE in the round header and the `category` rung is OMITTED from the baked ladder. Otherwise the rung is mispriced both ways: announced up front it returns a fact already on screen - the exact defect that deleted `length`; hidden until the summary, one purchase on word 1 narrows all three. There is a second leak the omission also closes - since `build_hints` skips a rung whose field is missing, a 3-rung ladder on a themed day and 2 on an ordinary one would ANNOUNCE the themed day before the player spent anything. | Palm |
   | 19 | An UNREVIEWED authored value is never SOLD. A `category` whose `categorySource` is not `reviewed`, and a `definitionTa` whose `meaningSource` is not `reviewed`, are skipped by `build_hints` rather than baked as a paid rung - they may still render free on the summary. This is a RENDERING rule, not an admission gate, and it rides decision 13's existing skip at zero new mechanism. | Palm + Fowler |
+
+- **BLOCKER, measured 2026-08-17 before dispatch. Decision 19 CANNOT BE HONOURED AS WRITTEN, and row 14 must not start until this is settled.**
+
+  It names two fields that do not exist. `meaningSource` and `categorySource` were dropped from the published row in row 11 at the user's instruction (provenance does not belong in the dataset; keep the row lean). Verified: `ProvenanceState = Literal["attested", "authored", "reviewed"]` is still declared in `contracts/lexicon.py` and re-exported in `__all__`, and **nothing anywhere assigns or reads it** - it is a dead type. So `build_hints` has nothing to branch on and the rule would silently no-op, which is worse than not having it: the plan would claim a protection the code does not provide.
+
+  The CONCERN behind it is real and the state it guards does exist. Of ~102,307 published rows carrying a Tamil meaning, **6,269 come from the authored pass** (`datasets/lexicon/sources/llm-authored/entries.jsonl`, every line stamped `"model": "claude-opus-5"`), and the rest are attested from dictionaries. Selling a machine-written meaning as a paid hint is exactly what Palm objected to.
+
+  Three ways to settle it. The user picks; this is about what a player is SOLD:
+
+  | # | Option | Cost | Consequence |
+  | --- | --- | --- | --- |
+  | A | **Mark it on the DERIVED row, not the lexicon.** `derive.py` reads the committed authored-entries file (6,269 words, already in the repo) and sets one boolean on the `GameWord` it emits. `build_hints` skips the meaning rung when it is set. | One boolean on a BUILD ARTIFACT | Honours decision 19 exactly, and does NOT put provenance back in the published lexicon - the user's ruling was about the lexicon row, and a derived set is a build artifact that already echoes its own selection. **Recommended.** |
+  | B | **Drop decision 19** and record that every published meaning is either dictionary-attested or authored-and-committed-for-review. | Nothing | Honest only if the 6,269 authored entries are accepted as reviewed by virtue of being committed line-by-line Tamil a person can read. That is a real argument, but nobody has actually read them. |
+  | C | **Restore `meaningSource` on the published row.** | ~1 byte/row x 163,437, and re-runs PUBLISH | Reverses a user ruling for a rule only the hint ladder reads. Rejected unless A proves impossible. |
+
+  Whichever is chosen, `ProvenanceState` must either acquire a reader or be DELETED. A closed vocabulary nothing assigns is a comment wearing a type.
 
 - **Rejected alternatives:**
 
