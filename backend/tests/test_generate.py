@@ -1212,13 +1212,17 @@ def test_a_baked_puzzle_offers_only_partners_the_day_could_have_served(
     bank_dir: Path, generator: DailyGenerator, wordlists: dict[str, GameWordlist]
 ) -> None:
     """On a themed day the partners must come from the THEME's set, not the
-    ordinary one - naming a word the day never serves would be a second lie."""
+    ordinary one - naming a word the day never serves would be a second lie.
+
+    This proves nothing INVALID ships, which is all a committed bank can prove:
+    whether any day offers a partner AT ALL is a draw, so that guarantee is
+    pinned by the deterministic test below instead.
+    """
     by_slug = {
         theme.copySlug: theme.wordlist
         for spec in generator.games
         for theme in spec.themes
     }
-    offered = 0
     for path in _ladder_days(bank_dir):
         puzzle_file = PuzzleFile.model_validate_json(path.read_text(encoding="utf-8"))
         source = (
@@ -1228,11 +1232,95 @@ def test_a_baked_puzzle_offers_only_partners_the_day_could_have_served(
         for item in puzzle_file.items:
             word = str(item.payload["word"])
             for partner in item.payload.get("alsoValid", []):
-                offered += 1
                 assert partner in served, f"{path.stem}: {partner}"
                 assert partner != word
                 assert sorted(segment(partner)) == sorted(segment(word))
-    assert offered, "no committed day offers an alternative arrangement"
+
+
+def _a_set_holding_one_anagram_pair(
+    wordlist: GameWordlist,
+) -> tuple[GameWordlist, GameWord, GameWord, GameWord]:
+    """A three-row served set, two of whose rows are a REAL anagram pair.
+
+    Every row here is a real committed row and the set is a real validated
+    ``GameWordlist`` (Holy Law #7); only ``frequency`` is restated, so that the
+    quartiles this set is scored against - and with them which difficulty band
+    each row lands in - are pinned instead of inherited from a 32,238-row
+    population. One row per band is what lets the day deal all three slots.
+
+    Returned as ``(set, easy filler, pair, pair)``, frequency descending.
+    """
+    rows = {row.word: row for row in wordlist.words}
+    pair = next(
+        words
+        for key, words in sorted(daily.alternatives_of(wordlist).items())
+        if len(words) == 2 and len(key) == 5
+    )
+    # 3 ezhuthu reaches the easy band, 5 the hard one; the pair's second member
+    # is a stratum below its first, so only the harder band can claim it.
+    filler = next(row for row in wordlist.words if len(row.ezhuthu) == 3)
+    ranked = [(filler, 3, 1), (rows[pair[0]], 2, 2), (rows[pair[1]], 1, 2)]
+    words = [
+        GameWord.model_validate(
+            row.model_dump()
+            | {
+                "frequency": frequency,
+                "frequencyStratum": stratum,
+                "anagramFanOut": fan_out,
+            }
+        )
+        for stratum, (row, frequency, fan_out) in enumerate(ranked, start=1)
+    ]
+    counters = {bucket: 0 for bucket in wordlist.counters.model_dump()} | {
+        "lexiconRows": len(words),
+        "rowsKept": len(words),
+    }
+    served = GameWordlist.model_validate(
+        wordlist.model_dump(mode="json")
+        | {
+            "words": [row.model_dump(mode="json") for row in words],
+            "counters": counters,
+            "source": wordlist.source.model_dump(mode="json") | {"rows": len(words)},
+        }
+    )
+    return served, words[0], words[1], words[2]
+
+
+def test_a_day_drawn_from_a_set_holding_an_anagram_pair_offers_the_partner(
+    app_config: AppConfig,
+    generator: DailyGenerator,
+    wordlists: dict[str, GameWordlist],
+) -> None:
+    """A baked payload carries the other served word its own tiles spell.
+
+    The committed bank cannot carry this guarantee, and extending it would not
+    help: only 514 of the 32,238 served words have a partner at all (1.6%), so
+    the ~54 answers an 18-day window holds are a lottery that usually comes up
+    empty - a day that happens to offer one is luck, not proof. The draw is
+    left alone (preferring words with partners would distort what a player is
+    served) and the mechanism is proven here instead, on a set that is KNOWN to
+    hold a pair.
+    """
+    served, filler, first, second = _a_set_holding_one_anagram_pair(
+        wordlists[ANAGRAM_SET]
+    )
+
+    day = daily.build_day(
+        ORDINARY_DAY,
+        app_config,
+        generator,
+        wordlists | {ANAGRAM_SET: served},
+        used=(),
+    )
+
+    offered = {
+        str(item.payload["word"]): item.payload.get("alsoValid") for item in day.items
+    }
+    assert offered == {
+        filler.word: None,
+        first.word: [second.word],
+        second.word: [first.word],
+    }
 
 
 def test_a_puzzle_may_not_list_its_own_answer_as_an_alternative(

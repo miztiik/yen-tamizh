@@ -1,17 +1,20 @@
 # Lexicon sources (raw, not committed)
 
-**Last Updated**: 2026-08-16
+**Last Updated**: 2026-08-17
 
 This directory holds the raw dictionaries, word lists and frequency tables the
-`wordsmith` pipeline streams. The bytes are **gitignored** - roughly 450 MB of
-third-party files - and only two things are committed: the byte-exact fixture
-slices under [`../../fixtures/lexicon/`](../../fixtures/lexicon/) and, later, the
-published lexicon artifacts.
+`wordsmith` pipeline streams. The bytes are **gitignored** - 830 MiB of
+third-party files here, and another 253 MiB the retired corpus layer left under
+[`../../corpus/`](../../corpus/) that this ledger also covers - and only two
+things are committed: the byte-exact fixture slices under
+[`../../fixtures/lexicon/`](../../fixtures/lexicon/) and the published lexicon
+artifacts.
 
-This file is the **acquisition ledger**. It records, for every source in the plan's
-inventory, what the source is, the `role` it is allowed to play, where its bytes
-came from, where they land, how many bytes there are and their sha256. A test
-parses the ledger table below, so the numbers in it cannot go stale silently.
+This file is the **acquisition ledger**, and it is the whole inventory. It
+records, for every source the pipeline may read, what the source is, the `role`
+it is allowed to play, where its bytes came from, where they land, how many
+bytes there are and their sha256. A test parses the ledger table below, so the
+numbers in it cannot go stale silently.
 
 ## Layout
 
@@ -137,7 +140,7 @@ an "About" PDF and front matter, and nothing else. Probed on 2026-08-14:
 | `https://dsal.uchicago.edu/dictionaries/about.html` | 200 `text/html` - no data link |
 | `https://dsal.uchicago.edu/dictionaries/dictionaries.html` | 200 `text/html` - no data link |
 
-No substitute was put in its place. A6 is the plan's only source of
+No substitute was put in its place. A6 is the inventory's only source of
 `definitionEn` at scale, so its absence is a real gap and is reported as one
 rather than papered over: without it, `llm_enrich` authors Tamil meanings from
 A2's glosses, C1's pairs and A7's senses alone. The entry stays in the ledger so
@@ -338,8 +341,8 @@ extraction ever replaces the bytes, which would change its sha256.
 
 ## What was deliberately NOT acquired
 
-The predecessor repository holds a great deal more than the ledger above. Group F
-of the plan's inventory enumerates it with a reason each, so that a later reader
+The predecessor repository holds a great deal more than the ledger above. The
+table below enumerates it with a reason each, so that a later reader
 does not have to re-litigate whether something was missed. In short:
 
 | Not acquired | Why |
@@ -487,9 +490,35 @@ A sha256 that disagrees with the ledger means the upstream file changed. Record
 the new value and say why in the same commit; do not overwrite a recorded hash
 silently, because every downstream artifact's provenance points at the old one.
 
+### There is no off-repo archive, and that is an unmet merge condition
+
+The 1.06 GiB of raw bytes this ledger describes exist in exactly one place: the
+working copy of whoever last ran the pipeline. They are gitignored, so git has
+never held them, and no release asset, bucket or backup holds them either.
+Fowler made an off-repo archive a MERGE CONDITION on the row that first
+published the lexicon. That row merged. The condition was never met. It is
+recorded here rather than closed, because a debt nobody wrote down is a debt
+nobody pays.
+
+What makes it a debt rather than an inconvenience is where the bytes came from.
+**Seventeen of the twenty-four registered sources - 350 MiB, roughly a third of
+the total - carry an `origin` that is a path inside `yen-tamizh_OLD`**, the
+predecessor project. That directory is not a git repository, is not published
+anywhere, and is not backed up. Every other origin in the table is a URL and can
+be fetched again; those seventeen cannot. Lose the directory and A1's curated
+dictionary - 104,073 headwords, and the largest single contributor to the
+published `headword` class - is gone with it.
+
+The `origin` column is therefore the recovery path and the only one there is,
+which is why it is a required field rather than a courtesy. Nothing here
+prescribes a backup procedure, because no procedure has been agreed; what is
+stated is the exposure, so the next person to decide is deciding with the number
+in front of them.
+
 ## See also
 
 - [`../../fixtures/lexicon/`](../../fixtures/lexicon/) - the committed slices.
 - [`../../corpus/README.md`](../../corpus/README.md) - the corpus layer's raw sources, which this ledger also covers.
-- [`../../../TODO/20260814-wordsmith-lexicon-pipeline-plan.md`](../../../TODO/20260814-wordsmith-lexicon-pipeline-plan.md) - the plan, whose section 0 holds the full source inventory.
+- [`../../../config/lexicon-sources.json`](../../../config/lexicon-sources.json) - the registry this ledger describes, and the only machine-read copy of every `origin`.
+- [`../../../docs/how-to/rebuild-the-lexicon.md`](../../../docs/how-to/rebuild-the-lexicon.md) - the operator path that reads these bytes.
 - [`../../README.md`](../../README.md) - what `datasets/` is for.

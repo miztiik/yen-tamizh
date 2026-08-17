@@ -62,6 +62,8 @@ The published artifact carries none of them, because `wordClass` IS their verdic
 
 `spokenRatio` (0-1) is what survives of that split: the subtitle corpus's share of the summed frequency. A word frequent in subtitles and rare in news is everyday spoken Tamil; a word frequent in news and absent from subtitles is written or formal. That is register, concreteness and child-vs-adult vocabulary at once, from data already on disk.
 
+**On the set that reaches a player it separates nothing, and the reason is the inventory rather than the idea.** Exactly one staged source has the spoken role - the OpenSubtitles frequency list, 19,371 words - so a served word the subtitles never counted gets a ratio of zero, and 29,685 of the 32,238 served rows (92.1 percent) are exactly that. A column that is zero on nine rows in ten cannot rank them, so nothing downstream reads it and no gate is keyed on it. Two futures are honest and one is not: acquire a second spoken-register corpus so the column has a population to divide, or delete the column and stop publishing a field that carries no information. Keeping it as a signal nobody may act on is the third, and it is the one that quietly costs a byte per row forever.
+
 There is deliberately no frequency BAND on the lexicon. A rank-relative band computed over a population where thousands of rows have `frequency == 0` is a different filter wearing an old name; the raw count plus an absolute floor at selection time replaces it.
 
 ## Meaning: three fields, three facts

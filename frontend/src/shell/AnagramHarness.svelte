@@ -19,7 +19,7 @@
 
   // "\u0BA4\u0BAE\u0BBF\u0BB4\u0BCD" (tamizh): 3 ezhuthu, the last a mei cluster.
   // Escaped like datasets/fixtures/*, so the fixture is NFC/NFD-unambiguous.
-  const payload = {
+  const SOLO = {
     word: "\u0BA4\u0BAE\u0BBF\u0BB4\u0BCD",
     tiles: ["\u0BA4", "\u0BAE\u0BBF", "\u0BB4\u0BCD"],
     reveal: 1,
@@ -28,12 +28,35 @@
     hints: [{ kind: "reveal-first", text: "\u0BAE\u0BC1\u0BA4\u0BB2\u0BCD: \u0BA4", cost: 2 }],
   };
 
+  // The THIRD STATE's fixture, reached with `&fixture=also-valid`:
+  // "\u0B85\u0BA4\u0BBF\u0B95" (adhiga) and "\u0B85\u0B95\u0BA4\u0BBF" (agadhi)
+  // are a real served anagram PAIR, so an arrangement that is a word but not
+  // today's can be driven on purpose. The committed bank cannot be relied on
+  // for it: only 1.6% of served words have a partner at all, so which days
+  // carry one is a draw the bake is free to re-roll.
+  const PAIRED = {
+    word: "\u0B85\u0BA4\u0BBF\u0B95",
+    tiles: ["\u0B85", "\u0BA4\u0BBF", "\u0B95"],
+    reveal: 0,
+    timeLimitSec: 0,
+    attempts: 3,
+    alsoValid: ["\u0B85\u0B95\u0BA4\u0BBF"],
+  };
+
+  const variant =
+    new URLSearchParams(window.location.search).get("fixture") === "also-valid"
+      ? "also-valid"
+      : "solo";
+  const payload = variant === "also-valid" ? PAIRED : SOLO;
+
   const today = new Date().toISOString().slice(0, 10);
   const session: Session = {
     modeId: "harness-anagram",
     packId: "ta-core",
     gameId: "anagram",
-    sessionId: `harness-anagram-${today}`,
+    // Scoped by variant as well as by date, so one fixture's saved run can
+    // never restore into the other's puzzle.
+    sessionId: `harness-anagram-${variant}-${today}`,
     date: today,
     items: [{ gameId: "anagram", payload }],
   };

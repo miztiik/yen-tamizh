@@ -1,5 +1,7 @@
 import { test, expect, type Page } from "@playwright/test";
 
+import { DEFAULT_LABELS } from "../src/games/anagram/logic";
+
 // Row 12 browser smoke: the FIRST PLAYABLE Game, driven end to end inside the
 // real runtime (CLAUDE.md section 12). It proves the win path, keyboard play,
 // the hint cost, and the state round-trip through a real reload - all against
@@ -9,6 +11,12 @@ import { test, expect, type Page } from "@playwright/test";
 // a mei cluster (zh + pulli) that must arrive as ONE tile.
 const TARGET = ["\u0BA4", "\u0BAE\u0BBF", "\u0BB4\u0BCD"];
 const HARNESS = "/?harness=anagram";
+
+// The harness's second fixture is a real served anagram PAIR: the answer
+// "\u0B85\u0BA4\u0BBF\u0B95" (adhiga) and the OTHER word the same tiles spell,
+// "\u0B85\u0B95\u0BA4\u0BBF" (agadhi), which the payload carries in alsoValid.
+const PAIRED_HARNESS = `${HARNESS}&fixture=also-valid`;
+const ALTERNATIVE = ["\u0B85", "\u0B95", "\u0BA4\u0BBF"];
 
 /** Click the tray tile carrying this ezhuthu. */
 async function placeEzhuthu(page: Page, ezhuthu: string): Promise<void> {
@@ -123,4 +131,47 @@ test("anagram: a wrong arrangement shakes and spends one attempt", async ({ page
   await expect(page.getByTestId("anagram-tile")).toHaveCount(TARGET.length);
   await expect(page.getByTestId("anagram-feedback")).toContainText("\u0BA4\u0BB5\u0BB1\u0BC1");
   await expect(page.getByTestId("session-summary")).toHaveCount(0);
+});
+
+// Row 14's THIRD STATE: an arrangement that is a real served word is told so
+// rather than flatly rejected. It is driven from the harness fixture, not from
+// the committed bank: only 1.6% of served words have a partner at all, so
+// whether any baked day offers one is a draw that every re-bake re-rolls.
+test("anagram: an arrangement that is a real word is answered, not rejected", async ({
+  page,
+}) => {
+  const consoleErrors: string[] = [];
+  page.on("console", (msg) => {
+    if (msg.type() === "error") consoleErrors.push(msg.text());
+  });
+  page.on("pageerror", (err) => consoleErrors.push(`pageerror: ${err.message}`));
+
+  await page.goto(PAIRED_HARNESS, { waitUntil: "load" });
+  await expect(page.getByTestId("anagram-game")).toBeVisible();
+  await expect(page.getByTestId("anagram-attempts")).toContainText("3");
+
+  // The same tiles, arranged into the OTHER word they spell - a full
+  // arrangement, so it auto-submits like any other.
+  for (const ezhuthu of ALTERNATIVE) await placeEzhuthu(page, ezhuthu);
+
+  const feedback = page.getByTestId("anagram-feedback");
+  await expect(feedback).toContainText(DEFAULT_LABELS.alsoValid);
+  const tone = await page.evaluate(() => {
+    const span = document.querySelector('[data-testid="anagram-feedback"] span');
+    return {
+      classes: span?.className ?? "",
+      glyphs: document.querySelectorAll('[data-testid="anagram-feedback"] svg').length,
+    };
+  });
+  // A flip reads as reappraisal where a shake reads as rejection, and the check
+  // glyph stays success's exclusive mark.
+  expect(tone.classes).toContain("anim-flip");
+  expect(tone.classes).toContain("text-warning");
+  expect(tone.glyphs).toBe(0);
+  // It cost an attempt like any other miss - the honesty is in the wording.
+  await expect(page.getByTestId("anagram-attempts")).toContainText("2");
+  // And it persists until the next placement, like the wrong message.
+  await expect(feedback).toContainText(DEFAULT_LABELS.alsoValid);
+
+  expect(consoleErrors, `console errors: ${consoleErrors.join(" | ")}`).toEqual([]);
 });
