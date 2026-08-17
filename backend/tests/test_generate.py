@@ -24,6 +24,10 @@ Five things are proven:
    slot from its own wordlist fills all of them and the day records its copy
    slug; a theme that cannot is skipped entirely rather than padded out with an
    off-theme word.
+7. **The ladder.** A baked ladder never gets cheaper down the array, never sells
+   the meaning first, never answers in English and never spells the answer out;
+   a rung a word cannot honestly fill is skipped rather than raised, and a
+   themed day drops the category rung from every ladder that DAY.
 """
 
 from __future__ import annotations
@@ -32,6 +36,7 @@ import json
 import shutil
 from datetime import date, timedelta
 from pathlib import Path
+from typing import Any, get_args
 
 import pytest
 from pydantic import ValidationError
@@ -41,7 +46,8 @@ from yen_tamizh_backend.contracts.app_config import AppConfig
 from yen_tamizh_backend.contracts.bank_index import BankIndex
 from yen_tamizh_backend.contracts.copy import Copy
 from yen_tamizh_backend.contracts.daily_generator import DailyGenerator, GameGeneration
-from yen_tamizh_backend.contracts.game_wordlist import GameWordlist
+from yen_tamizh_backend.contracts.game_wordlist import GameWord, GameWordlist
+from yen_tamizh_backend.contracts.lexicon import PartOfSpeech
 from yen_tamizh_backend.contracts.puzzle_file import PuzzleFile
 from yen_tamizh_backend.ezhuthu import segment
 from yen_tamizh_backend.generate import anagram, daily
@@ -61,6 +67,10 @@ FIRST_DAY = "2026-08-13"
 # The first day baked from the lexicon-gated wordlist (row 12). Days before it
 # were baked from the pre-cutover set and the re-bake guard leaves them alone.
 CUTOVER_DAY = "2026-08-23"
+
+# The first day baked from the rebuilt hint ladder (row 14). Earlier days shipped
+# the old two-rung ladder and are published history.
+LADDER_DAY = "2026-08-18"
 
 # The wordlists are keyed by the path the registry names, because a Game draws
 # from more than one: its ordinary set and one per registered theme.
@@ -105,6 +115,19 @@ def _committed_span(bank_dir: Path) -> tuple[date, int]:
     """
     days = [date.fromisoformat(path.stem) for path in _committed_days(bank_dir)]
     return days[0], (days[-1] - days[0]).days
+
+
+def _a_row_with_every_rung(spec: GameGeneration, wordlist: GameWordlist) -> GameWord:
+    """A served row the whole configured ladder can be rendered for.
+
+    Only about one served word in fifteen carries a category, so a test about
+    the ALLOWANCE has to pick a row the allowance is the binding constraint on.
+    """
+    return next(
+        row
+        for row in wordlist.words
+        if len(anagram.build_hints(row, spec, 99)) == len(spec.hints)
+    )
 
 
 # --------------------------------------------------------------------------
@@ -533,12 +556,19 @@ def test_hints_are_capped_by_the_app_config_allowance(
     generator: DailyGenerator, wordlists: dict[str, GameWordlist]
 ) -> None:
     spec = generator.games[0]
-    row = wordlists[ANAGRAM_SET].words[0]
+    row = _a_row_with_every_rung(spec, wordlists[ANAGRAM_SET])
     assert anagram.build_hints(row, spec, 0) == []
     assert len(anagram.build_hints(row, spec, 1)) == 1
     assert len(anagram.build_hints(row, spec, 99)) == len(spec.hints)
     assert row.hints is not None
-    assert row.hints.firstEzhuthu in anagram.build_hints(row, spec, 1)[0].text
+    assert row.hints.firstEzhuthu in anagram.build_hints(row, spec, 2)[1].text
+
+
+def test_the_allowance_admits_the_whole_ladder(
+    app_config: AppConfig, generator: DailyGenerator
+) -> None:
+    """Left below the ladder's height, the dearest rung would never be baked."""
+    assert app_config.hints.perGame["anagram"] >= len(generator.games[0].hints)
 
 
 def test_committed_hints_honour_the_app_config(
@@ -586,16 +616,19 @@ def test_a_mix_naming_an_unregistered_game_is_an_error(
 def test_a_hint_template_naming_an_unknown_field_fails_loudly(
     generator: DailyGenerator, wordlists: dict[str, GameWordlist]
 ) -> None:
+    """A typo in config must not vanish into a silently shorter ladder.
+
+    ``{length}`` is the sharpest case: it is a real field on every row and it
+    named the deleted rung, so leaving it fillable would let one config line put
+    the fake hint back.
+    """
     spec = generator.games[0]
-    broken = spec.model_copy(
-        update={
-            "hints": [
-                spec.hints[0].model_copy(update={"template": "{meaning}"}),
-            ]
-        }
-    )
-    with pytest.raises(KeyError):
-        anagram.build_hints(wordlists[ANAGRAM_SET].words[0], broken, 1)
+    for field in ("{length}", "{freqBand}"):
+        broken = spec.model_copy(
+            update={"hints": [spec.hints[0].model_copy(update={"template": field})]}
+        )
+        with pytest.raises(KeyError):
+            anagram.build_hints(wordlists[ANAGRAM_SET].words[0], broken, 1)
 
 
 # --------------------------------------------------------------------------
@@ -904,3 +937,308 @@ def test_every_committed_themed_day_serves_only_its_own_theme(
         allowed = {row.word for row in wordlists[by_slug[puzzle_file.theme]].words}
         for item in puzzle_file.items:
             assert str(item.payload["word"]) in allowed, path.stem
+
+
+# --------------------------------------------------------------------------
+# 7. The hint ladder, the meaning, and the other words the tiles spell (row 14)
+# --------------------------------------------------------------------------
+
+
+def _ladder_days(bank_dir: Path) -> list[Path]:
+    """The committed days baked from the rebuilt ladder.
+
+    Earlier days shipped the old two-hint ladder and are history the re-bake
+    guard leaves alone (row 12 decision 7): rewriting a day a player has already
+    played buys nothing, so the ladder's invariants are asserted over the days
+    it actually reaches.
+    """
+    days = [path for path in _committed_days(bank_dir) if path.stem >= LADDER_DAY]
+    assert days, "no day was baked from the rebuilt ladder"
+    return days
+
+
+def _baked_hints(path: Path) -> list[list[dict[str, Any]]]:
+    puzzle_file = PuzzleFile.model_validate_json(path.read_text(encoding="utf-8"))
+    return [list(item.payload.get("hints", [])) for item in puzzle_file.items]
+
+
+def test_the_baked_ladder_never_gets_cheaper(bank_dir: Path) -> None:
+    """THE row 14 Oracle, over whatever length each day's ladder came out.
+
+    The array is walked in order rather than chosen from, so a rung that cost
+    less than the one before it would be unreachable without buying the dearer
+    one first. The lengths vary - a rung a word cannot answer is skipped - which
+    is exactly why this is asserted over the array as baked rather than over the
+    config alone.
+    """
+    lengths = set()
+    for path in _ladder_days(bank_dir):
+        for hints in _baked_hints(path):
+            costs = [int(hint["cost"]) for hint in hints]
+            assert costs == sorted(costs), f"{path.stem}: {costs}"
+            lengths.add(len(costs))
+    assert len(lengths) > 1, "every ladder came out the same length"
+
+
+def test_the_dearest_rung_is_never_the_first_one_offered(bank_dir: Path) -> None:
+    """A meaning at position 1 is the whole answer sold before anything cheaper."""
+    for path in _ladder_days(bank_dir):
+        for hints in _baked_hints(path):
+            assert not hints or hints[0]["kind"] != "meaning", path.stem
+
+
+def test_the_config_refuses_a_ladder_that_gets_cheaper(
+    generator: DailyGenerator,
+) -> None:
+    payload = generator.games[0].model_dump()
+    payload["hints"] = list(reversed(payload["hints"]))
+    with pytest.raises(ValidationError, match="non-decreasing cost"):
+        GameGeneration.model_validate(payload)
+
+
+def test_the_fake_length_rung_is_gone(generator: DailyGenerator) -> None:
+    """Deleted from the config AND from the vocabulary, so it cannot come back."""
+    assert [hint.kind for hint in generator.games[0].hints] == [
+        "category",
+        "first-ezhuthu",
+        "meaning",
+    ]
+    assert "length" not in anagram.HINT_FIELDS
+
+
+def test_a_rung_this_row_cannot_answer_is_skipped_rather_than_raised(
+    generator: DailyGenerator, wordlists: dict[str, GameWordlist]
+) -> None:
+    """Only about one served word in fifteen carries a category."""
+    spec = generator.games[0]
+    rows = wordlists[ANAGRAM_SET].words
+    without = next(row for row in rows if not row.categories)
+    kinds = [hint.kind for hint in anagram.build_hints(without, spec, 99)]
+    assert "category" not in kinds
+    assert kinds, "skipping one rung emptied the whole ladder"
+    assert kinds == [hint.kind for hint in spec.hints if hint.kind != "category"]
+
+
+def test_most_served_words_get_a_shorter_ladder_than_the_config_offers(
+    generator: DailyGenerator, wordlists: dict[str, GameWordlist]
+) -> None:
+    """A ladder that is sometimes two rungs is correct, and it is the usual case."""
+    spec = generator.games[0]
+    rows = wordlists[ANAGRAM_SET].words
+    shorter = sum(1 for row in rows if len(anagram.build_hints(row, spec, 99)) < 3)
+    assert shorter > len(rows) // 2
+
+
+def test_a_baked_hint_never_answers_in_english(
+    bank_dir: Path, wordlists: dict[str, GameWordlist]
+) -> None:
+    """English is banned on a paid rung: the rung is omitted instead."""
+    served = {row.word: row for row in wordlists[ANAGRAM_SET].words}
+    served.update({row.word: row for row in wordlists[THEMED_SET].words})
+    checked = 0
+    for path in _ladder_days(bank_dir):
+        puzzle_file = PuzzleFile.model_validate_json(path.read_text(encoding="utf-8"))
+        for item in puzzle_file.items:
+            row = served[str(item.payload["word"])]
+            for hint in item.payload.get("hints", []):
+                text = str(hint["text"])
+                assert row.translationEn is None or row.translationEn not in text
+                assert not any("a" <= char.lower() <= "z" for char in text)
+                checked += 1
+    assert checked
+
+
+def test_the_meaning_rung_never_reaches_for_english(
+    generator: DailyGenerator, wordlists: dict[str, GameWordlist]
+) -> None:
+    """Proven where it is decided, not only where it happened not to fire.
+
+    A row stripped of every Tamil meaning still carries an English gloss, and
+    the rung must be dropped rather than answered from it.
+    """
+    spec = generator.games[0]
+    row = next(
+        r for r in wordlists[ANAGRAM_SET].words if r.translationEn and r.definitionTa
+    )
+    stripped = row.model_copy(update={"definitionTa": None, "synonymsTa": None})
+    assert stripped.translationEn
+    assert anagram.sellable_meaning(stripped) is None
+    assert anagram.display_meaning(stripped) is None
+    kinds = [hint.kind for hint in anagram.build_hints(stripped, spec, 99)]
+    assert "meaning" not in kinds
+
+
+def test_a_baked_hint_never_spells_the_answer_out(
+    bank_dir: Path, wordlists: dict[str, GameWordlist]
+) -> None:
+    """A gloss occasionally contains its own headword; a paid rung may not."""
+    for path in _ladder_days(bank_dir):
+        puzzle_file = PuzzleFile.model_validate_json(path.read_text(encoding="utf-8"))
+        for item in puzzle_file.items:
+            word = str(item.payload["word"])
+            for hint in item.payload.get("hints", []):
+                assert word not in str(hint["text"]), f"{path.stem}: {word}"
+
+
+def test_a_themed_day_omits_the_category_rung_from_every_ladder(
+    bank_dir: Path, generator: DailyGenerator, wordlists: dict[str, GameWordlist]
+) -> None:
+    """Decision 18, proved per DAY rather than per word.
+
+    A themed set is cut ON the categories dimension, so every one of its rows
+    carries a category the config names a Tamil tag for. If the omission were
+    per word, every themed day would bake three category rungs; it bakes none.
+    """
+    by_slug = {
+        theme.copySlug: theme.wordlist
+        for spec in generator.games
+        for theme in spec.themes
+    }
+    spec = generator.games[0]
+    themed_days = 0
+    for path in _ladder_days(bank_dir):
+        puzzle_file = PuzzleFile.model_validate_json(path.read_text(encoding="utf-8"))
+        if puzzle_file.theme is None:
+            continue
+        themed_days += 1
+        rows = {
+            row.word: row for row in wordlists[by_slug[puzzle_file.theme]].words
+        }
+        for item in puzzle_file.items:
+            row = rows[str(item.payload["word"])]
+            # The rung WOULD have rendered on an ordinary day - that is what
+            # makes the omission the day's doing rather than the word's.
+            assert anagram.category_tag(row, spec) is not None
+            kinds = [hint["kind"] for hint in item.payload.get("hints", [])]
+            assert "category" not in kinds, path.stem
+    assert themed_days, "no committed themed day to check"
+
+
+def test_an_ordinary_day_still_bakes_a_category_rung(bank_dir: Path) -> None:
+    """The counterpart: the rung is alive, so the themed omission means something."""
+    kinds = {
+        str(hint["kind"])
+        for path in _ladder_days(bank_dir)
+        for hints in _baked_hints(path)
+        for hint in hints
+    }
+    assert "category" in kinds
+
+
+def test_every_category_label_is_one_bare_tamil_word(
+    generator: DailyGenerator,
+) -> None:
+    """The ladder's pricing is legible in the shape of what each rung returns."""
+    labels = generator.games[0].categoryLabels
+    assert labels
+    for slug, label in labels.items():
+        assert label.split() == [label], slug
+        assert not any("a" <= char.lower() <= "z" for char in label), slug
+
+
+def test_a_part_of_speech_can_never_reach_the_category_rung(
+    generator: DailyGenerator,
+) -> None:
+    """The predecessor's category hint was 'noun', which narrows nothing.
+
+    Structural rather than incidental: the labels are keyed on the lexicon's
+    closed category vocabulary, and POS labels are routed to a different column
+    entirely (row 11 decision 3), so no part of speech has a key to be given a
+    tag under.
+    """
+    registry = json.loads(
+        (_REPO_ROOT / "config" / "lexicon-sources.json").read_text(encoding="utf-8")
+    )
+    categories = set(registry["categoryAliases"].values())
+    assert set(generator.games[0].categoryLabels) <= categories
+    assert categories.isdisjoint(get_args(PartOfSpeech))
+
+
+def test_every_served_word_can_say_what_it_means(bank_dir: Path) -> None:
+    """requireMeaning is what makes the summary line unconditional."""
+    for path in _ladder_days(bank_dir):
+        puzzle_file = PuzzleFile.model_validate_json(path.read_text(encoding="utf-8"))
+        for item in puzzle_file.items:
+            meaning = item.payload.get("meaning")
+            assert isinstance(meaning, str) and meaning, (
+                f"{path.stem}: {item.payload['word']}"
+            )
+
+
+def test_the_summary_meaning_is_the_one_the_rung_sold(
+    generator: DailyGenerator, wordlists: dict[str, GameWordlist]
+) -> None:
+    """A player who bought the rung must not meet a second, different gloss."""
+    spec = generator.games[0]
+    agreed = disagreed = 0
+    for row in wordlists[ANAGRAM_SET].words:
+        sellable = anagram.sellable_meaning(row)
+        if sellable is None:
+            # Nothing was sold, so the summary is free to show what it has.
+            assert anagram.display_meaning(row) is not None
+            disagreed += 1
+            continue
+        assert anagram.display_meaning(row) == sellable
+        agreed += 1
+    assert agreed and disagreed
+
+
+def test_the_multiset_key_agrees_with_the_derived_layer(
+    wordlists: dict[str, GameWordlist],
+) -> None:
+    """The engine may not import the lexicon pipeline, so the twin keys are pinned."""
+    for row in wordlists[ANAGRAM_SET].words:
+        assert daily.multiset_key(row.ezhuthu) == derive.multiset_key(row.ezhuthu)
+
+
+def test_also_valid_is_the_other_served_words_the_same_tiles_spell(
+    wordlists: dict[str, GameWordlist],
+) -> None:
+    wordlist = wordlists[ANAGRAM_SET]
+    index = daily.alternatives_of(wordlist)
+    shared = [row for row in wordlist.words if row.anagramFanOut > 1]
+    assert shared, "the served set holds no co-anagram to answer with"
+    for row in shared:
+        partners = index[daily.multiset_key(row.ezhuthu)]
+        # The count the derived layer records and the words baked here are two
+        # views of one fact, so they must agree exactly.
+        assert len(partners) == row.anagramFanOut
+        assert row.word in partners
+        for partner in partners:
+            assert sorted(segment(partner)) == sorted(row.ezhuthu)
+
+
+def test_a_baked_puzzle_offers_only_partners_the_day_could_have_served(
+    bank_dir: Path, generator: DailyGenerator, wordlists: dict[str, GameWordlist]
+) -> None:
+    """On a themed day the partners must come from the THEME's set, not the
+    ordinary one - naming a word the day never serves would be a second lie."""
+    by_slug = {
+        theme.copySlug: theme.wordlist
+        for spec in generator.games
+        for theme in spec.themes
+    }
+    offered = 0
+    for path in _ladder_days(bank_dir):
+        puzzle_file = PuzzleFile.model_validate_json(path.read_text(encoding="utf-8"))
+        source = (
+            ANAGRAM_SET if puzzle_file.theme is None else by_slug[puzzle_file.theme]
+        )
+        served = {row.word for row in wordlists[source].words}
+        for item in puzzle_file.items:
+            word = str(item.payload["word"])
+            for partner in item.payload.get("alsoValid", []):
+                offered += 1
+                assert partner in served, f"{path.stem}: {partner}"
+                assert partner != word
+                assert sorted(segment(partner)) == sorted(segment(word))
+    assert offered, "no committed day offers an alternative arrangement"
+
+
+def test_a_puzzle_may_not_list_its_own_answer_as_an_alternative(
+    generator: DailyGenerator, wordlists: dict[str, GameWordlist]
+) -> None:
+    spec = generator.games[0]
+    row = wordlists[ANAGRAM_SET].words[0]
+    with pytest.raises(ValidationError, match="repeats the answer"):
+        anagram.build_puzzle(row, spec, "seed", 3, False, [row.word])

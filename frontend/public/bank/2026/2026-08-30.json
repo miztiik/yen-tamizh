@@ -13,9 +13,9 @@
   ],
   "date": "2026-08-30",
   "items": [
-    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ப"}, {"cost": 1, "kind": "length", "text": "3 எழுத்துகள்"}], "reveal": 0, "tiles": ["ல்", "ப", "லி"], "timeLimitSec": 0, "word": "பல்லி"}},
-    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: செ"}, {"cost": 1, "kind": "length", "text": "4 எழுத்துகள்"}], "reveal": 0, "tiles": ["ம", "ம்", "செ", "றி"], "timeLimitSec": 0, "word": "செம்மறி"}},
-    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ம"}, {"cost": 1, "kind": "length", "text": "6 எழுத்துகள்"}], "reveal": 0, "tiles": ["வு", "ழி", "ப்", "ம", "ழை", "பொ"], "timeLimitSec": 0, "word": "மழைப்பொழிவு"}}
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ப"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: கௌளி"}], "meaning": "கௌளி", "reveal": 0, "tiles": ["ல்", "ப", "லி"], "timeLimitSec": 0, "translationEn": "Lizard", "word": "பல்லி"}},
+    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: செ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: கொறி"}], "meaning": "கொறி", "reveal": 0, "tiles": ["ம", "ம்", "செ", "றி"], "timeLimitSec": 0, "translationEn": "sheep", "word": "செம்மறி"}},
+    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ம"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: பெய்யும் மழையின் அளவு"}], "meaning": "பெய்யும் மழையின் அளவு", "reveal": 0, "tiles": ["வு", "ழி", "ப்", "ம", "ழை", "பொ"], "timeLimitSec": 0, "translationEn": "rainfall", "word": "மழைப்பொழிவு"}}
   ],
   "theme": "theme-nature",
   "version": "2026-08-17"

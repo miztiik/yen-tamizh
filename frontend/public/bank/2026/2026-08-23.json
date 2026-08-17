@@ -13,9 +13,9 @@
   ],
   "date": "2026-08-23",
   "items": [
-    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: கா"}, {"cost": 1, "kind": "length", "text": "3 எழுத்துகள்"}], "reveal": 0, "tiles": ["க", "கா", "ம்"], "timeLimitSec": 0, "word": "காகம்"}},
-    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: செ"}, {"cost": 1, "kind": "length", "text": "5 எழுத்துகள்"}], "reveal": 0, "tiles": ["செ", "ம", "ந்", "தா", "ரை"], "timeLimitSec": 0, "word": "செந்தாமரை"}},
-    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ம"}, {"cost": 1, "kind": "length", "text": "6 எழுத்துகள்"}], "reveal": 0, "tiles": ["க", "ந்", "ம்", "ர", "த", "ம"], "timeLimitSec": 0, "word": "மகரந்தம்"}}
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: கா"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: காக்கா"}], "meaning": "காக்கா", "reveal": 0, "tiles": ["க", "கா", "ம்"], "timeLimitSec": 0, "translationEn": "Crow", "word": "காகம்"}},
+    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: செ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: சிவப்பு கமலம்"}], "meaning": "சிவப்பு கமலம்", "reveal": 0, "tiles": ["செ", "ம", "ந்", "தா", "ரை"], "timeLimitSec": 0, "translationEn": "red lotus", "word": "செந்தாமரை"}},
+    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ம"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: பராகம்"}], "meaning": "பராகம்", "reveal": 0, "tiles": ["க", "ந்", "ம்", "ர", "த", "ம"], "timeLimitSec": 0, "translationEn": "ambrosia", "word": "மகரந்தம்"}}
   ],
   "theme": "theme-nature",
   "version": "2026-08-17"

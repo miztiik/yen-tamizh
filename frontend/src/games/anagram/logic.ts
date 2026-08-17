@@ -166,6 +166,23 @@ export function isSolved(
   return ezhuthuArraysEqual(placedEzhuthu(tray, state), targetEzhuthu(payload));
 }
 
+/**
+ * Whether the arrangement spells one of the OTHER served words these tiles make
+ * (`payload.alsoValid`, resolved at bake time - a Game may not read a wordlist).
+ * Compared as ezhuthu like every other arrangement check, so a two-part matra
+ * can never make a real word look unreal.
+ */
+export function isAlsoValid(
+  payload: AnagramPayload,
+  tray: readonly AnagramTile[],
+  state: AnagramState,
+): boolean {
+  const arrangement = placedEzhuthu(tray, state);
+  return (payload.alsoValid ?? []).some((word) =>
+    ezhuthuArraysEqual(arrangement, segment(word)),
+  );
+}
+
 /** Attempts left before the puzzle ends (never negative). */
 export function attemptsRemaining(payload: AnagramPayload, state: AnagramState): number {
   return Math.max(0, payload.attempts - state.attempts);
@@ -255,6 +272,15 @@ export interface AttemptOutcome {
   correct: boolean;
   /** True when this attempt ended the puzzle without a win (attempts spent). */
   exhausted: boolean;
+  /**
+   * True when the miss was a REAL served word that is simply not today's - the
+   * third state. It is false on the exhausting attempt even when the
+   * arrangement was a word: the terminal message wins, one message per moment.
+   * It never changes the accounting - an alternative spends an attempt exactly
+   * like any other miss, or shuffling until a word appears becomes a free probe
+   * for which ezhuthu group together and the attempts counter starts lying.
+   */
+  alternative: boolean;
   attemptIndex: number;
   /** The submitted arrangement as a word, for the attempt event. */
   attempt: string;
@@ -282,6 +308,7 @@ export function submitAttempt(
       state: { ...solvedState, score: scoreFor(payload, solvedState, config) },
       correct: true,
       exhausted: false,
+      alternative: false,
       attemptIndex,
       attempt,
     };
@@ -292,6 +319,7 @@ export function submitAttempt(
     state: { ...state, attempts, placedTileIds: [], finished: exhausted },
     correct: false,
     exhausted,
+    alternative: !exhausted && isAlsoValid(payload, tray, state),
     attemptIndex,
     attempt,
   };
@@ -318,6 +346,7 @@ export interface AnagramLabels {
   attemptsLeft: string;
   correct: string;
   wrong: string;
+  alsoValid: string;
   outOfAttempts: string;
   slot: string;
   placedSlot: string;
@@ -334,6 +363,7 @@ export const DEFAULT_LABELS: AnagramLabels = {
   attemptsLeft: "முயற்சி மீதம்",
   correct: "சரி!",
   wrong: "தவறு",
+  alsoValid: "இது ஒரு சொல், ஆனால் இன்றைய சொல் அல்ல",
   outOfAttempts: "முயற்சிகள் முடிந்தன",
   slot: "Slot",
   placedSlot: "Remove tile from slot",

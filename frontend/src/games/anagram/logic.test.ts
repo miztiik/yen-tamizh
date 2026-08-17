@@ -15,6 +15,7 @@ import {
   DEFAULT_POINTS_PER_EZHUTHU,
   ezhuthuArraysEqual,
   initialState,
+  isAlsoValid,
   isFull,
   isSolved,
   keyToAction,
@@ -261,6 +262,88 @@ describe("scoring", () => {
   });
 });
 
+describe("the third state - a real word, but not today's", () => {
+  // A permutation of TAMIZH's ezhuthu, standing in for a co-anagram the bake
+  // found in the served set. Escaped for the same NFC/NFD reason as TAMIZH.
+  const OTHER_WORD = "\u0BAE\u0BBF\u0BA4\u0BB4\u0BCD";
+  const OTHER = ["\u0BAE\u0BBF", "\u0BA4", "\u0BB4\u0BCD"];
+
+  it("recognizes a listed alternative, and nothing else, as ezhuthu", () => {
+    const payload = payloadFor(TAMIZH, { alsoValid: [OTHER_WORD] });
+    const tray = buildTray(payload);
+    expect(isAlsoValid(payload, tray, arrange(payload, OTHER))).toBe(true);
+    // The answer itself is never an alternative, and neither is a third order.
+    expect(isAlsoValid(payload, tray, arrange(payload, targetEzhuthu(payload)))).toBe(false);
+    const third = [OTHER[2] as string, OTHER[1] as string, OTHER[0] as string];
+    expect(isAlsoValid(payload, tray, arrange(payload, third))).toBe(false);
+    // A payload with no alternatives has no third state at all.
+    const plain = payloadFor(TAMIZH);
+    expect(isAlsoValid(plain, buildTray(plain), arrange(plain, OTHER))).toBe(false);
+  });
+
+  it("costs exactly one attempt, the same as any other miss", () => {
+    const payload = payloadFor(TAMIZH, { alsoValid: [OTHER_WORD] });
+    const tray = buildTray(payload);
+    const out = submitAttempt(payload, tray, arrange(payload, OTHER));
+    expect(out.alternative).toBe(true);
+    expect(out.correct).toBe(false);
+    expect(out.exhausted).toBe(false);
+    expect(out.attempt).toBe(OTHER_WORD);
+    // Identical accounting to a plain wrong answer: one attempt spent, board
+    // handed back. If it were free, shuffling until a word appears would be a
+    // free probe and the attempts counter would start lying.
+    const plain = payloadFor(TAMIZH);
+    const wrong = submitAttempt(plain, buildTray(plain), arrange(plain, OTHER));
+    expect(out.state.attempts).toBe(wrong.state.attempts);
+    expect(out.state.placedTileIds).toEqual([]);
+    expect(attemptsRemaining(payload, out.state)).toBe(2);
+  });
+
+  it("yields to the terminal message on the exhausting attempt", () => {
+    const payload = payloadFor(TAMIZH, { attempts: 1, alsoValid: [OTHER_WORD] });
+    const tray = buildTray(payload);
+    const out = submitAttempt(payload, tray, arrange(payload, OTHER));
+    // One message per moment: out-of-attempts wins, so the flip never fires.
+    expect(out.exhausted).toBe(true);
+    expect(out.alternative).toBe(false);
+    expect(out.state.finished).toBe(true);
+  });
+
+  it("never fires on a win", () => {
+    const payload = payloadFor(TAMIZH, { alsoValid: [OTHER_WORD] });
+    const tray = buildTray(payload);
+    const win = submitAttempt(payload, tray, arrange(payload, targetEzhuthu(payload)));
+    expect(win.correct).toBe(true);
+    expect(win.alternative).toBe(false);
+  });
+});
+
+describe("a ladder of 1, 2 or 3 rungs", () => {
+  const RUNGS = [
+    { kind: "category", text: "a", cost: 1 },
+    { kind: "first-ezhuthu", text: "b", cost: 2 },
+    { kind: "meaning", text: "c", cost: 3 },
+  ];
+
+  // build_hints skips a rung the word cannot honestly fill, so a baked ladder is
+  // 3, 2 or 1 rungs - nothing may assume three.
+  it.each([1, 2, 3])("walks a %i-rung ladder in order and then stops", (length) => {
+    const hints = RUNGS.slice(0, length);
+    const payload = payloadFor(TAMIZH, { hints });
+    let state = initialState();
+    for (const rung of hints) {
+      // The price the button discloses BEFORE the tap is the next rung's.
+      expect(nextHint(payload, state)).toEqual(rung);
+      state = revealNextHint(payload, state);
+      expect(revealedHints(payload, state).at(-1)).toEqual(rung);
+    }
+    expect(nextHint(payload, state)).toBeNull();
+    expect(revealedHints(payload, state)).toHaveLength(length);
+    const spent = hints.reduce((sum, rung) => sum + rung.cost, 0);
+    expect(scoreFor(payload, state)).toBe(3 * DEFAULT_POINTS_PER_EZHUTHU - spent);
+  });
+});
+
 describe("keyboard contract", () => {
   it("maps Enter and Space to place, Backspace to undo, Escape to clear", () => {
     expect(keyToAction("Enter")).toBe("place");
@@ -299,5 +382,12 @@ describe("labels", () => {
     expect(resolveLabels({ labels: { hint: "Clue" } }).hint).toBe("Clue");
     expect(resolveLabels({ labels: { hint: "" } }).hint).toBe(DEFAULT_LABELS.hint);
     expect(resolveLabels({ labels: "nope" }).hint).toBe(DEFAULT_LABELS.hint);
+  });
+
+  it("takes the third state's wording from the Mode, which is where copy lives", () => {
+    expect(DEFAULT_LABELS.alsoValid).not.toBe("");
+    expect(resolveLabels({ labels: { alsoValid: "a word, not today's" } }).alsoValid).toBe(
+      "a word, not today's",
+    );
   });
 });

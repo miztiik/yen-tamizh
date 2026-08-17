@@ -99,6 +99,10 @@
       logger: runtime.logger,
       bus: runtime.bus,
       host,
+      // The Mode hands the Game its player-facing wording; the Game never reads
+      // the copy map itself (docs/concepts/ui-shell.md - a Game sees only its
+      // payload and its context).
+      config: { labels: { alsoValid: copyText("anagram-also-valid") } },
     });
     void runner.start();
   });
@@ -154,6 +158,28 @@
         </dd>
       </div>
     </dl>
+    <!-- The dwell content sits LAST, above the exit: the stats are the glance
+         and hold the screenshot, the words are what the player stays to read.
+         A word with nothing to say renders alone - an empty slot would
+         advertise a hole in the data - and a word that was LOST still shows its
+         meaning, or losing it would punish twice. -->
+    {#if summary.result.items.length > 0}
+      <ul class="flex w-full max-w-xs flex-col gap-md text-left" data-testid="summary-words">
+        {#each summary.result.items as item, index (index)}
+          <li class="flex flex-col gap-xs" data-testid="summary-word" data-solved={item.solved}>
+            <span class="font-tamil text-xl font-semibold text-text-primary">{item.word}</span>
+            {#if item.meaning}
+              <span class="font-tamil text-base text-text-secondary">{item.meaning}</span>
+            {/if}
+            {#if item.translationEn}
+              <span class="font-display text-base text-text-tertiary" lang="en"
+                >{item.translationEn}</span
+              >
+            {/if}
+          </li>
+        {/each}
+      </ul>
+    {/if}
     <button
       type="button"
       class="inline-flex items-center gap-xs rounded-lg bg-accent px-lg py-md font-tamil text-bg shadow-sm transition-transform duration-fast ease-spring hover:-translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"

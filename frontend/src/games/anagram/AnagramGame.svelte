@@ -75,8 +75,17 @@
   const { tray, target, labels, revealCount, celebrationMs, startedAt } = setup;
 
   let gameState = $state<AnagramState>(initialState());
-  let feedback = $state<{ tone: "success" | "danger"; text: string } | null>(null);
-  // Bumped on every miss so the shake keyframe re-runs on a repeat wrong answer.
+  // Three tones, not two: a miss that is a REAL served word is neither a win nor
+  // a rejection, so it gets its own tone (warning + a flip that reads as
+  // reappraisal) rather than being flattened into "wrong".
+  type Feedback = { tone: "success" | "warning" | "danger"; text: string };
+  let feedback = $state<Feedback | null>(null);
+  // Bumped on every message so its animation re-runs even when the text repeats;
+  // a placement clears the message and submitting sets a new one in the same
+  // tick, so a class toggle alone would never reach the DOM.
+  let feedbackToken = $state(0);
+  // Bumped on every REJECTED miss so the shake keyframe re-runs. An alternative
+  // word never bumps it: a shake there would read as rejection.
   let shakeToken = $state(0);
 
   let reported = false;
@@ -87,8 +96,13 @@
   const placed = $derived(placedEzhuthu(tray, gameState));
   const trayTiles = $derived(remainingTiles(tray, gameState));
   const shownHints = $derived(revealedHints(payload, gameState));
-  const hintLeft = $derived(nextHint(payload, gameState) !== null);
+  const pendingHint = $derived(nextHint(payload, gameState));
   const attemptsLeft = $derived(attemptsRemaining(payload, gameState));
+
+  function setFeedback(next: Feedback | null): void {
+    feedback = next;
+    feedbackToken += 1;
+  }
 
   untrack(() =>
     logger.emit("puzzle.started", {
@@ -109,12 +123,12 @@
     // already-decided outcome instead of replaying the beat. It is deferred to a
     // microtask so the runner finishes mounting before it hears about it.
     if (gameState.solved) {
-      feedback = { tone: "success", text: `${labels.correct} +${gameState.score}` };
+      setFeedback({ tone: "success", text: `${labels.correct} +${gameState.score}` });
       queueMicrotask(() =>
         report("puzzle.completed", { score: gameState.score, attempts: gameState.attempts }),
       );
     } else {
-      feedback = { tone: "danger", text: `${labels.outOfAttempts} - ${payload.word}` };
+      setFeedback({ tone: "danger", text: `${labels.outOfAttempts} - ${payload.word}` });
       queueMicrotask(() => report("puzzle.abandoned", { reason: "attempts-exhausted" }));
     }
   }
@@ -168,7 +182,7 @@
     });
 
     if (outcome.correct) {
-      feedback = { tone: "success", text: `${labels.correct} +${gameState.score}` };
+      setFeedback({ tone: "success", text: `${labels.correct} +${gameState.score}` });
       reportAfterBeat("puzzle.completed", {
         score: gameState.score,
         attempts: gameState.attempts,
@@ -176,13 +190,29 @@
       return;
     }
 
-    shakeToken += 1;
     if (outcome.exhausted) {
-      feedback = { tone: "danger", text: `${labels.outOfAttempts} - ${payload.word}` };
+      shakeToken += 1;
+      setFeedback({ tone: "danger", text: `${labels.outOfAttempts} - ${payload.word}` });
       reportAfterBeat("puzzle.abandoned", { reason: "attempts-exhausted" });
       return;
     }
-    feedback = { tone: "danger", text: `${labels.wrong} - ${labels.attemptsLeft} ${attemptsLeft}` };
+
+    // A real word, just not today's. It spent an attempt like any other miss -
+    // the honesty is in the wording, not in the accounting - so the message says
+    // what is left, and the board is not shaken.
+    if (outcome.alternative) {
+      setFeedback({
+        tone: "warning",
+        text: `${labels.alsoValid} - ${labels.attemptsLeft} ${attemptsLeft}`,
+      });
+      return;
+    }
+
+    shakeToken += 1;
+    setFeedback({
+      tone: "danger",
+      text: `${labels.wrong} - ${labels.attemptsLeft} ${attemptsLeft}`,
+    });
   }
 
   function place(tileId: string): void {
@@ -190,23 +220,23 @@
     const next = placeTile(payload, gameState, tileId);
     if (next === gameState) return;
     gameState = next;
-    feedback = null;
+    setFeedback(null);
     if (isFull(payload, gameState)) submit();
   }
 
   function unplace(tileId: string): void {
     gameState = removeTile(gameState, tileId);
-    feedback = null;
+    setFeedback(null);
   }
 
   function undo(): void {
     gameState = undoLast(gameState);
-    feedback = null;
+    setFeedback(null);
   }
 
   function clear(): void {
     gameState = clearPlaced(gameState);
-    feedback = null;
+    setFeedback(null);
   }
 
   function onTileKey(event: KeyboardEvent, tileId: string): void {
@@ -243,7 +273,7 @@
   }
 
   function useHint(): void {
-    const hint = nextHint(payload, gameState);
+    const hint = pendingHint;
     if (hint === null) return;
     gameState = revealNextHint(payload, gameState);
     logger.emit("puzzle.hint.used", { data: { kind: hint.kind, cost: hint.cost } });
@@ -307,17 +337,25 @@
 
   <p
     class="min-h-6 text-center font-display"
-    class:anim-pop={feedback !== null}
-    class:text-success={feedback?.tone === "success"}
-    class:text-danger={feedback?.tone === "danger"}
     data-testid="anagram-feedback"
     role="status"
     aria-live="polite"
   >
     {#if feedback}
-      {#if feedback.tone === "success"}
-        <Glyph id="check" class="mr-xs inline-block align-text-bottom" />
-      {/if}{feedback.text}
+      {#key feedbackToken}
+        <span
+          class="inline-block"
+          class:anim-pop={feedback.tone !== "warning"}
+          class:anim-flip={feedback.tone === "warning"}
+          class:text-success={feedback.tone === "success"}
+          class:text-warning={feedback.tone === "warning"}
+          class:text-danger={feedback.tone === "danger"}
+        >
+          {#if feedback.tone === "success"}
+            <Glyph id="check" class="mr-xs inline-block align-text-bottom" />
+          {/if}{feedback.text}
+        </span>
+      {/key}
     {/if}
   </p>
 
@@ -346,25 +384,33 @@
 
   {#if (payload.hints ?? []).length > 0}
     <div class="flex flex-col items-center gap-sm">
+      <!-- The price rides the BUTTON, not the revealed pill: a cost disclosed
+           after the purchase is not a price, it is a receipt. -->
       <button
         type="button"
         class="inline-flex items-center gap-xs rounded-md border border-border bg-bg-elevated px-md py-sm text-text-secondary shadow-sm transition-colors duration-fast ease-smooth hover:text-text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40"
         data-testid="anagram-hint"
-        disabled={!hintLeft || gameState.finished}
+        disabled={pendingHint === null || gameState.finished}
         onclick={useHint}
       >
         <Glyph id="hint" />
-        {hintLeft ? labels.hint : labels.hintsSpent}
+        {pendingHint === null ? labels.hintsSpent : labels.hint}
+        {#if pendingHint !== null}
+          <span class="font-mono text-warning" data-testid="anagram-hint-cost">
+            -{pendingHint.cost}
+          </span>
+        {/if}
       </button>
 
       {#if shownHints.length > 0}
-        <ul class="flex flex-wrap justify-center gap-xs" data-testid="anagram-hint-list">
+        <!-- One rung per line: a bought meaning can be a whole phrase, and a row
+             of pills would push it off a 360px screen. -->
+        <ul class="flex w-full flex-col items-center gap-xs" data-testid="anagram-hint-list">
           {#each shownHints as hint, index (index)}
             <li
-              class="anim-toast-in inline-flex items-center gap-xs rounded-full bg-bg-elevated px-md py-xs text-text-secondary shadow-sm"
+              class="anim-toast-in max-w-full rounded-lg bg-bg-elevated px-md py-xs text-center font-tamil text-text-secondary shadow-sm"
             >
-              <span class="font-tamil">{hint.text}</span>
-              <span class="font-mono text-warning">-{hint.cost}</span>
+              {hint.text}
             </li>
           {/each}
         </ul>

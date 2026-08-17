@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-17",
+  "version": "2026-08-17T20:00",
   "changelog": [
+    {
+      "version": "2026-08-17T20:00",
+      "change": "Added the anagram third-state wording.",
+      "why": "Row 14 - an arrangement that is a real served word but not today's answer gets its own sentence, and a sentence a player reads is copy. It reaches the Game through the Mode's config slice, never an import, so the Game still sees nothing but its payload and context."
+    },
     {
       "version": "2026-08-17",
       "change": "Added the theme-nature display name.",
@@ -44,6 +49,7 @@
     "summary-score": "மதிப்பெண்",
     "summary-solved": "தீர்த்தவை",
     "summary-streak": "தொடர் நாட்கள்",
+    "anagram-also-valid": "இது ஒரு சொல், ஆனால் இன்றைய சொல் அல்ல",
     "theme-nature": "இயற்கை"
   }
 }

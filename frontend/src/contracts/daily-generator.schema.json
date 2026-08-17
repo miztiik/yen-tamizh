@@ -72,6 +72,17 @@
           "title": "Attempts",
           "type": "integer"
         },
+        "categoryLabels": {
+          "patternProperties": {
+            "^[a-z][a-z0-9-]*$": {
+              "minLength": 1,
+              "pattern": "^\\S+$",
+              "type": "string"
+            }
+          },
+          "title": "Categorylabels",
+          "type": "object"
+        },
         "difficulties": {
           "items": {
             "$ref": "#/$defs/DifficultyBand"
@@ -134,7 +145,7 @@
     },
     "HintSpec": {
       "additionalProperties": false,
-      "description": "One offered hint: its kind, its wording, and what revealing it costs.\n\n``template`` is a Python format string over the wordlist row's honest hint\nfields (``{firstEzhuthu}``, ``{length}``). The rendered TEXT is per-puzzle\ndata and ships inside the puzzle payload, but the WORDING is player-facing\ncopy - so it lives in config, not in a Python literal, and the generator\nonly fills in the values.",
+      "description": "One rung of the ladder: its kind, its wording, and what it costs.\n\n``template`` is a Python format string over the CLOSED vocabulary of fields\nthe generator can fill from a served row - ``{firstEzhuthu}``,\n``{category}`` and ``{meaning}``. The rendered TEXT is per-puzzle data and\nships inside the puzzle payload, but the WORDING is player-facing copy, so\nit lives here and the generator only fills in the values.\n\nA template naming a field OUTSIDE that vocabulary fails the bake loudly; a\ntemplate naming one INSIDE it that a particular row cannot fill has its rung\nskipped for that row. Those are different mistakes: the first is a typo in\nconfig, the second is the honest state of a lexicon where barely one word in\nfifteen carries a category.\n\n``{length}`` is deliberately NOT in the vocabulary. A rung charging for the\ntile count already on the player's screen was deleted, and leaving the field\nfillable would let one config line put it back.",
       "properties": {
         "cost": {
           "minimum": 0,

@@ -13,9 +13,9 @@
   ],
   "date": "2026-08-22",
   "items": [
-    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ஆ"}, {"cost": 1, "kind": "length", "text": "4 எழுத்துகள்"}], "reveal": 0, "tiles": ["ப", "ஆ", "ல்", "ம்"], "timeLimitSec": 0, "word": "ஆம்பல்"}},
-    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: உ"}, {"cost": 1, "kind": "length", "text": "5 எழுத்துகள்"}], "reveal": 0, "tiles": ["உ", "ன்", "த்", "த", "ம"], "timeLimitSec": 0, "word": "உத்தமன்"}},
-    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: பெ"}, {"cost": 1, "kind": "length", "text": "5 எழுத்துகள்"}], "reveal": 0, "tiles": ["டா", "ட்", "கு", "பெ", "ங்"], "timeLimitSec": 0, "word": "பெட்டாங்கு"}}
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 1, "kind": "category", "text": "வகை: மலர்"}, {"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ஆ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: அடைவு"}], "meaning": "அடைவு", "reveal": 0, "tiles": ["ப", "ஆ", "ல்", "ம்"], "timeLimitSec": 0, "translationEn": "water-lily", "word": "ஆம்பல்"}},
+    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: உ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: கடவுள்"}], "meaning": "கடவுள்", "reveal": 0, "tiles": ["உ", "ன்", "த்", "த", "ம"], "timeLimitSec": 0, "translationEn": "Person of integrity", "word": "உத்தமன்"}},
+    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: பெ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: விரும்பிய பரிசில்"}], "meaning": "விரும்பிய பரிசில்", "reveal": 0, "tiles": ["டா", "ட்", "கு", "பெ", "ங்"], "timeLimitSec": 0, "word": "பெட்டாங்கு"}}
   ],
   "version": "2026-08-17"
 }

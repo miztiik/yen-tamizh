@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-13",
+  "version": "2026-08-17",
   "changelog": [
+    {
+      "version": "2026-08-17",
+      "change": "Raised hints.perGame.anagram from 2 to 3.",
+      "why": "Row 14 of the lexicon pipeline - the anagram ladder is now three rungs (category, first ezhuthu, meaning) and this allowance is what caps how many a day may bake. Left at 2 the dearest rung, the one that says what the word means, would never reach a puzzle. It is a ceiling rather than a promise: a rung a word cannot honestly answer is skipped, so most days still bake two."
+    },
     {
       "version": "2026-08-13",
       "change": "Initial core app-config: daily, hints, infinite, timeTrial, and ui knobs with sane defaults.",
@@ -8,7 +13,7 @@
     }
   ],
   "daily": { "playlistLength": 3, "mix": { "anagram": 3 } },
-  "hints": { "enabled": true, "perGame": { "anagram": 2 } },
+  "hints": { "enabled": true, "perGame": { "anagram": 3 } },
   "infinite": { "lruWindow": 200, "defaultDifficulty": "medium" },
   "timeTrial": { "durationSec": 120 },
   "ui": { "enabledModes": ["daily"], "defaultMode": "daily", "defaultTheme": "light" }

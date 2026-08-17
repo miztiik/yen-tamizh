@@ -18,7 +18,13 @@ The rules this module enforces:
   word the bank has served, the whole day is drawn from that theme and the day
   records its copy slug. Otherwise the day is ordinary. A theme is never padded
   out with an off-theme word - three unrelated anagrams are a list, three that
-  share a theme are a round, and half a theme is neither.
+  share a theme are a round, and half a theme is neither. A themed day also
+  drops the ``category`` rung from every ladder it bakes, because the theme is
+  already announced free in the round header.
+- **What else the tiles spell is answered HERE.** This is the only layer holding
+  a whole served wordlist, so it is the only layer that can tell a puzzle which
+  other served words share its ezhuthu multiset. Partners come from the set the
+  day actually drew from, which on a themed day is the theme's own.
 - **The mix is config, not code.** How many items a day holds and which Games
   fill them come from ``config/app-config.json`` (``daily.playlistLength`` and
   ``daily.mix``); how a word becomes a puzzle comes from
@@ -81,6 +87,13 @@ _BANK_INDEX_CHANGELOG = [
 # schema stamp, so echoing one inside every item is noise the player downloads.
 _STAMP_KEYS = ("version", "changelog")
 
+# The order-free key two words share exactly when one's tiles spell the other.
+# Deliberately a local definition: the derived layer computes the same key when
+# it counts fan-out, but the daily engine may not import from the lexicon
+# pipeline (see test_the_engine_reads_only_the_derived_layer), and a test pins
+# the two against each other over the whole served set.
+MultisetKey = tuple[str, ...]
+
 
 @dataclass(frozen=True)
 class GeneratedDay:
@@ -95,10 +108,18 @@ class GeneratedDay:
 
 @dataclass(frozen=True)
 class ThemedDraw:
-    """A whole themed day: the theme's copy slug and every Game's picks."""
+    """A whole themed day: the theme's copy slug, every Game's picks, and where
+    each of those picks came from.
+
+    ``sources`` is what lets the rest of the bake stay honest about a themed
+    day: the alternative arrangements a puzzle offers must come from the set the
+    day actually drew from, and on a themed day that is the theme's wordlist,
+    not the Game's ordinary one.
+    """
 
     copySlug: str
     picks: dict[str, list[tuple[GameWord, str]]]
+    sources: dict[str, str]
 
 
 def day_path(bank_dir: Path, day: str) -> Path:
@@ -134,6 +155,25 @@ def words_used_before(bank_dir: Path, exclude_day: str) -> set[str]:
             if isinstance(word, str):
                 used.add(word)
     return used
+
+
+def multiset_key(ezhuthu: Iterable[str]) -> MultisetKey:
+    """Return the order-free key two words share exactly when they are anagrams."""
+    return tuple(sorted(ezhuthu))
+
+
+def alternatives_of(wordlist: GameWordlist) -> dict[MultisetKey, tuple[str, ...]]:
+    """Index one served set by ezhuthu multiset - what each scramble can spell.
+
+    Built ONCE per set per day rather than per puzzle, and over the SERVED rows
+    only, because that is the population a Game can say anything true about:
+    telling a player their arrangement is another word only helps when the game
+    would actually serve that word.
+    """
+    groups: dict[MultisetKey, list[str]] = defaultdict(list)
+    for row in wordlist.words:
+        groups[multiset_key(row.ezhuthu)].append(row.word)
+    return {key: tuple(sorted(words)) for key, words in groups.items()}
 
 
 def bucket_candidates(
@@ -329,12 +369,18 @@ def themed_draw(
             picks[game_id] = drawn
             seen.update(row.word for row, _ in drawn)
         else:
-            return ThemedDraw(copySlug=slug, picks=picks)
+            return ThemedDraw(copySlug=slug, picks=picks, sources=dict(covered[slug]))
     return None
 
 
 def build_item(
-    row: GameWord, spec: GameGeneration, day: str, hint_limit: int, difficulty: str
+    row: GameWord,
+    spec: GameGeneration,
+    day: str,
+    hint_limit: int,
+    difficulty: str,
+    themed: bool,
+    also_valid: Sequence[str],
 ) -> PuzzleItem:
     """One playlist entry: the Game's validated payload plus its framing.
 
@@ -343,7 +389,9 @@ def build_item(
     be bytes the player downloads to learn nothing (Carmack). Building the model
     first is still what proves the payload obeys ``anagram-puzzle``.
     """
-    puzzle = anagram.build_puzzle(row, spec, f"{day}|{row.word}", hint_limit)
+    puzzle = anagram.build_puzzle(
+        row, spec, f"{day}|{row.word}", hint_limit, themed, also_valid
+    )
     payload = puzzle.model_dump(mode="json", exclude_none=True)
     for key in _STAMP_KEYS:
         payload.pop(key, None)
@@ -383,6 +431,7 @@ def build_day(
     themed = themed_draw(day, app_config, generator, wordlists, used)
     seen = set(used)
     items: list[PuzzleItem] = []
+    alternatives: dict[str, dict[MultisetKey, tuple[str, ...]]] = {}
     # Sorted so the playlist's order depends on the config, never on dict order.
     for game_id, count in sorted(mix.items()):
         spec = specs[game_id]
@@ -391,6 +440,12 @@ def build_day(
         hint_limit = (
             app_config.hints.perGame.get(game_id, 0) if app_config.hints.enabled else 0
         )
+        # Which set the day drew from is also which set may answer "what else do
+        # these tiles spell": offering a partner from the ordinary set on a
+        # themed day would name a word the day never serves.
+        source = spec.wordlist if themed is None else themed.sources[game_id]
+        if source not in alternatives:
+            alternatives[source] = alternatives_of(wordlists[source])
         picks = (
             themed.picks[game_id]
             if themed is not None
@@ -398,7 +453,22 @@ def build_day(
         )
         for row, difficulty in picks:
             seen.add(row.word)
-            items.append(build_item(row, spec, day, hint_limit, difficulty))
+            partners = [
+                word
+                for word in alternatives[source].get(multiset_key(row.ezhuthu), ())
+                if word != row.word
+            ]
+            items.append(
+                build_item(
+                    row,
+                    spec,
+                    day,
+                    hint_limit,
+                    difficulty,
+                    themed is not None,
+                    partners,
+                )
+            )
     return PuzzleFile(
         version=_PUZZLE_FILE_VERSION,
         changelog=_PUZZLE_FILE_CHANGELOG,

@@ -256,12 +256,41 @@
     },
     "GameWord": {
       "additionalProperties": false,
-      "description": "One word a Game may build a puzzle from.\n\n``frequency`` is the lexicon's raw count, carried through unchanged. It is\nwhat ``minFrequency`` gates on and what the difficulty curve reads, and it\nreplaces the old rank-relative band: a band computed over a population where\nthousands of rows appear zero times is a different filter wearing the same\nname.\n\n``frequencyStratum`` is which quarter of THIS SET the row's frequency puts\nit in, 1 being the most familiar. It is computed over the SERVED rows and\nnothing wider - a quartile taken over millions of lexicon surfaces would say\nnothing about the words a player is actually offered. It is the second axis\nof difficulty: length alone is anti-correlated at both tails, because long\nTamil headwords are mostly compounds that decompose while short rare words\nare brutal.\n\n``anagramFanOut`` counts how many SERVED rows share this row's ezhuthu\nmultiset, including the row itself - so a word whose tiles spell nothing\nelse carries ``1``, never ``0``. It is a recorded signal, not an admission\ntest: a Game that knows a submitted arrangement is a different served word\ncan answer \"that is a word, but not today's\" instead of a flat rejection,\nwhich is the difference between a player learning something and a player\nconcluding the game cheated.",
+      "description": "One word a Game may build a puzzle from.\n\n``frequency`` is the lexicon's raw count, carried through unchanged. It is\nwhat ``minFrequency`` gates on and what the difficulty curve reads, and it\nreplaces the old rank-relative band: a band computed over a population where\nthousands of rows appear zero times is a different filter wearing the same\nname.\n\n``frequencyStratum`` is which quarter of THIS SET the row's frequency puts\nit in, 1 being the most familiar. It is computed over the SERVED rows and\nnothing wider - a quartile taken over millions of lexicon surfaces would say\nnothing about the words a player is actually offered. It is the second axis\nof difficulty: length alone is anti-correlated at both tails, because long\nTamil headwords are mostly compounds that decompose while short rare words\nare brutal.\n\n``anagramFanOut`` counts how many SERVED rows share this row's ezhuthu\nmultiset, including the row itself - so a word whose tiles spell nothing\nelse carries ``1``, never ``0``. It is a recorded signal, not an admission\ntest: a Game that knows a submitted arrangement is a different served word\ncan answer \"that is a word, but not today's\" instead of a flat rejection,\nwhich is the difference between a player learning something and a player\nconcluding the game cheated. It is a COUNT and stays one - the partner WORDS\nare computed at bake time, because a row carrying its own partner list would\nduplicate thousands of word lists into a committed artifact.\n\nThe four MEANING columns are what a hint and a summary are rendered from.\nThey are carried raw so the RULE that turns them into one display string\nlives in the generator, where the wording already lives, rather than being\nfrozen into this artifact:\n\n- ``definitionTa`` is the lexicon's FIRST sense, not its list of senses. The\n  lexicon orders senses most-authoritative-first and a Game has exactly one\n  display slot, so senses two and beyond have no reader here while costing\n  4.89 MB across the served set - a build artifact holding 34 senses so that\n  one can be shown is bytes for nothing.\n- ``synonymsTa`` travels WHOLE, because it is not a ranked list: every\n  member is an equally correct answer to \"what does this mean\", so there is\n  no principled first element to keep and no principled remainder to drop -\n  and the generator reads down it, because a synonym that spells out the\n  answer or carries a Latin-script romanisation cannot be sold as a hint.\n- ``categories`` are the lexicon's own English slugs. The Tamil a player\n  reads is hint WORDING and lives in ``config/daily-generator.json`` beside\n  the templates, never here: baking a Tamil label into a dataset would mean\n  correcting a word by rebuilding the set.\n- ``translationEn`` is carried for the summary's demoted second line. It is\n  never a hint: a paid rung the player cannot read is a rung that stole\n  score, so the meaning rung is omitted rather than answered in English.",
       "properties": {
         "anagramFanOut": {
           "minimum": 1,
           "title": "Anagramfanout",
           "type": "integer"
+        },
+        "categories": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Categories"
+        },
+        "definitionTa": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Definitionta"
         },
         "ezhuthu": {
           "items": {
@@ -293,6 +322,35 @@
           ],
           "default": null
         },
+        "synonymsTa": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Synonymsta"
+        },
+        "translationEn": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Translationen"
+        },
         "word": {
           "minLength": 1,
           "title": "Word",
@@ -311,7 +369,7 @@
     },
     "GameWordHints": {
       "additionalProperties": false,
-      "description": "The honest, derivable hint material for one word.\n\nBoth fields are recomputed from ``ezhuthu`` on every rebuild and validated\nagainst it, so precomputing them cannot drift.\n\nA category hint is deliberately absent. Only about 1,290 lexicon rows carry\na category at all, and a Tamil category name is player-facing COPY, which\nlives in ``config/copy.json`` and never inside a dataset. Inventing Tamil\ncategory strings here would be a dishonest field.",
+      "description": "The honest hint material a word's own SPELLING yields.\n\nBoth fields are recomputed from ``ezhuthu`` on every rebuild and validated\nagainst it, so precomputing them cannot drift.\n\n``length`` no longer feeds a hint - a rung that charges for the tile count\nalready on screen was deleted - but it stays as the cheapest integrity check\nthe row has: it is validated against the live segmentation, so a row whose\nparts and count disagree can never reach a generator.\n\nWhat a word MEANS is not spelling, so it is not here: those fields sit on\n``GameWord`` itself, where the generator resolves them into rendered text.",
       "properties": {
         "firstEzhuthu": {
           "minLength": 1,

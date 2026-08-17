@@ -22,12 +22,29 @@ const bankDir = resolve(here, "../public/bank");
 
 interface BankItem {
   gameId: string;
-  payload: { word: string; tiles: string[] };
+  payload: {
+    word: string;
+    tiles: string[];
+    meaning?: string;
+    translationEn?: string;
+    alsoValid?: string[];
+    hints?: { kind: string; text: string; cost: number }[];
+  };
 }
 
 const day = JSON.parse(
   readFileSync(resolve(bankDir, PLAY_DAY.slice(0, 4), `${PLAY_DAY}.json`), "utf-8"),
 ) as { date: string; items: BankItem[] };
+
+// Row 14's day: its easy word is one of the ~500 served words whose tiles spell
+// a SECOND real word, which is the only way to reach the third state for real.
+const LADDER_DAY = "2026-08-27";
+const ladderDay = JSON.parse(
+  readFileSync(resolve(bankDir, LADDER_DAY.slice(0, 4), `${LADDER_DAY}.json`), "utf-8"),
+) as { date: string; items: BankItem[] };
+const copy = JSON.parse(readFileSync(resolve(here, "../../config/copy.json"), "utf-8")) as {
+  strings: Record<string, string>;
+};
 
 /** Click the tray tile carrying exactly this ezhuthu (never a prefix of one). */
 async function placeEzhuthu(page: Page, ezhuthu: string): Promise<void> {
@@ -182,4 +199,106 @@ test("a bank with no day for today is a sentence, not a blank screen", async ({ 
   await expect(page.getByTestId("daily-unavailable")).not.toBeEmpty();
 
   expect(watched.errors, `console errors: ${watched.errors.join(" | ")}`).toEqual([]);
+});
+
+// Row 14, end to end: the price is disclosed BEFORE the tap, an arrangement that
+// is a real word gets told so instead of being flatly rejected, and the summary
+// teaches every word of the day - the one that was lost included.
+test("the hint ladder discloses its price, answers a real word honestly, and teaches", async ({
+  page,
+}) => {
+  const watched = watchConsole(page);
+  await page.clock.setFixedTime(new Date(`${LADDER_DAY}T12:00:00Z`));
+  await page.setViewportSize({ width: 360, height: 780 }); // a mid-tier Android
+
+  await page.goto("/?mode=daily", { waitUntil: "load" });
+  await expect(page.getByTestId("anagram-game")).toBeVisible();
+
+  const [first, second, third] = ladderDay.items as [BankItem, BankItem, BankItem];
+  const ladder = first.payload.hints ?? [];
+  expect(ladder.length).toBeGreaterThan(1);
+
+  // 1. THE PRICE RIDES THE BUTTON. Each rung's cost is on the control that buys
+  //    it, so it is read before the tap, never after.
+  const hintButton = page.getByTestId("anagram-hint");
+  for (const rung of ladder) {
+    await expect(page.getByTestId("anagram-hint-cost")).toHaveText(`-${rung.cost}`);
+    await page.evaluate(() => {
+      document.querySelector<HTMLButtonElement>('[data-testid="anagram-hint"]')?.click();
+    });
+    await expect(page.getByTestId("anagram-hint-list").locator("li")).toContainText([rung.text]);
+  }
+  // A spent ladder names itself and drops the badge - there is no price left.
+  await expect(hintButton).toBeDisabled();
+  await expect(page.getByTestId("anagram-hint-cost")).toHaveCount(0);
+  // The revealed rung carries its TEXT only; the cost stayed on the button.
+  await expect(page.getByTestId("anagram-hint-list")).not.toContainText(/-\d/);
+  // A long meaning wraps instead of pushing the stage sideways.
+  expect(
+    await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
+  ).toBe(true);
+
+  // 2. THE THIRD STATE. These tiles also spell a different served word.
+  const alternative = (first.payload.alsoValid ?? [])[0] as string;
+  expect(alternative).toBeTruthy();
+  await expect(page.getByTestId("anagram-attempts")).toContainText("3");
+  for (const ezhuthu of segment(alternative)) await placeEzhuthu(page, ezhuthu);
+
+  const feedback = page.getByTestId("anagram-feedback");
+  await expect(feedback).toContainText(copy.strings["anagram-also-valid"] as string);
+  const tone = await page.evaluate(() => {
+    const span = document.querySelector('[data-testid="anagram-feedback"] span');
+    return {
+      classes: span?.className ?? "",
+      glyphs: document.querySelectorAll('[data-testid="anagram-feedback"] svg').length,
+    };
+  });
+  // A flip reads as reappraisal where a shake reads as rejection, and the check
+  // glyph stays success's exclusive mark.
+  expect(tone.classes).toContain("anim-flip");
+  expect(tone.classes).toContain("text-warning");
+  expect(tone.glyphs).toBe(0);
+  // It cost an attempt like any other miss - the honesty is in the wording.
+  await expect(page.getByTestId("anagram-attempts")).toContainText("2");
+  // And it persists until the next placement, like the wrong message.
+  await expect(feedback).toContainText(copy.strings["anagram-also-valid"] as string);
+
+  // 3. PLAY THE DAY OUT: solve, LOSE one on purpose, solve.
+  for (const ezhuthu of segment(first.payload.word)) await placeEzhuthu(page, ezhuthu);
+  await expect(feedback).toContainText("+");
+
+  await expect
+    .poll(async () => (await page.getByTestId("anagram-tile").allInnerTexts()).length, {
+      timeout: 15_000,
+    })
+    .toBe(second.payload.tiles.length);
+  const backwards = [...segment(second.payload.word)].reverse();
+  for (let round = 0; round < 3; round += 1) {
+    for (const ezhuthu of backwards) await placeEzhuthu(page, ezhuthu);
+  }
+  await expect(feedback).toContainText(second.payload.word); // out of attempts
+
+  await solve(page, third);
+
+  // 4. THE SUMMARY TEACHES. Every word of the day, in play order, the lost one
+  //    with its meaning intact - hiding it would punish twice.
+  await expect(page.getByTestId("session-summary")).toBeVisible({ timeout: 15_000 });
+  const words = page.getByTestId("summary-word");
+  await expect(words).toHaveCount(3);
+  await expect(words.nth(0)).toContainText(first.payload.word);
+  await expect(words.nth(1)).toHaveAttribute("data-solved", "false");
+  await expect(words.nth(1)).toContainText(second.payload.meaning as string);
+  await expect(words.nth(2)).toContainText(third.payload.meaning as string);
+  // English is a demoted second line, never the meaning line, and never badged
+  // with how the gloss was authored.
+  await expect(words.nth(0).locator('[lang="en"]')).toHaveText(
+    first.payload.translationEn as string,
+  );
+  await expect(page.getByTestId("session-summary")).not.toContainText("AI");
+  expect(
+    await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
+  ).toBe(true);
+
+  expect(watched.errors, `console errors: ${watched.errors.join(" | ")}`).toEqual([]);
+  expect(watched.failures, `failed responses: ${watched.failures.join(" | ")}`).toEqual([]);
 });

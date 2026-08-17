@@ -13,9 +13,9 @@
   ],
   "date": "2026-08-24",
   "items": [
-    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ச"}, {"cost": 1, "kind": "length", "text": "4 எழுத்துகள்"}], "reveal": 0, "tiles": ["ல்", "ர்", "வா", "ச"], "timeLimitSec": 0, "word": "சல்வார்"}},
-    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: வெ"}, {"cost": 1, "kind": "length", "text": "4 எழுத்துகள்"}], "reveal": 0, "tiles": ["ட", "ல்", "ட்", "வெ"], "timeLimitSec": 0, "word": "வெட்டல்"}},
-    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ஊ"}, {"cost": 1, "kind": "length", "text": "5 எழுத்துகள்"}], "reveal": 0, "tiles": ["ஊ", "க", "ள்", "மு", "ள"], "timeLimitSec": 0, "word": "ஊகமுள்ள"}}
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ச"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: முக்கியமாக பஞ்சாப் மற்றும் அதன் மேற்கு பகுதிகளில் அணியப்படும் ஒரு வகை மிகவும் மெல்லிய பைஜாமா"}], "meaning": "முக்கியமாக பஞ்சாப் மற்றும் அதன் மேற்கு பகுதிகளில் அணியப்படும் ஒரு வகை மிகவும் மெல்லிய பைஜாமா", "reveal": 0, "tiles": ["ல்", "ர்", "வா", "ச"], "timeLimitSec": 0, "translationEn": "salwar", "word": "சல்வார்"}},
+    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: வெ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: வெட்டுதல்"}], "meaning": "வெட்டுதல்", "reveal": 0, "tiles": ["ட", "ல்", "ட்", "வெ"], "timeLimitSec": 0, "translationEn": "clipping", "word": "வெட்டல்"}},
+    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ஊ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: அகவுணர்விருக்கக்கூடிய"}], "meaning": "அகவுணர்விருக்கக்கூடிய", "reveal": 0, "tiles": ["ஊ", "க", "ள்", "மு", "ள"], "timeLimitSec": 0, "translationEn": "politic", "word": "ஊகமுள்ள"}}
   ],
   "version": "2026-08-17"
 }

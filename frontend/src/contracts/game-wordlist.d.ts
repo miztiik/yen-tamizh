@@ -44,6 +44,8 @@ export type Sha256 = string
 export type Version1 = string
 export type Version2 = string
 export type Anagramfanout = number
+export type Categories1 = ([string, ...(string)[]] | null)
+export type Definitionta = (string | null)
 /**
  * @minItems 1
  */
@@ -52,6 +54,8 @@ export type Frequency = number
 export type Frequencystratum = number
 export type Firstezhuthu = string
 export type Length = number
+export type Synonymsta = ([string, ...(string)[]] | null)
+export type Translationen = (string | null)
 export type Word = string
 export type Words = GameWord[]
 
@@ -209,26 +213,58 @@ version: Version1
  * test: a Game that knows a submitted arrangement is a different served word
  * can answer "that is a word, but not today's" instead of a flat rejection,
  * which is the difference between a player learning something and a player
- * concluding the game cheated.
+ * concluding the game cheated. It is a COUNT and stays one - the partner WORDS
+ * are computed at bake time, because a row carrying its own partner list would
+ * duplicate thousands of word lists into a committed artifact.
+ * 
+ * The four MEANING columns are what a hint and a summary are rendered from.
+ * They are carried raw so the RULE that turns them into one display string
+ * lives in the generator, where the wording already lives, rather than being
+ * frozen into this artifact:
+ * 
+ * - ``definitionTa`` is the lexicon's FIRST sense, not its list of senses. The
+ *   lexicon orders senses most-authoritative-first and a Game has exactly one
+ *   display slot, so senses two and beyond have no reader here while costing
+ *   4.89 MB across the served set - a build artifact holding 34 senses so that
+ *   one can be shown is bytes for nothing.
+ * - ``synonymsTa`` travels WHOLE, because it is not a ranked list: every
+ *   member is an equally correct answer to "what does this mean", so there is
+ *   no principled first element to keep and no principled remainder to drop -
+ *   and the generator reads down it, because a synonym that spells out the
+ *   answer or carries a Latin-script romanisation cannot be sold as a hint.
+ * - ``categories`` are the lexicon's own English slugs. The Tamil a player
+ *   reads is hint WORDING and lives in ``config/daily-generator.json`` beside
+ *   the templates, never here: baking a Tamil label into a dataset would mean
+ *   correcting a word by rebuilding the set.
+ * - ``translationEn`` is carried for the summary's demoted second line. It is
+ *   never a hint: a paid rung the player cannot read is a rung that stole
+ *   score, so the meaning rung is omitted rather than answered in English.
  */
 export interface GameWord {
 anagramFanOut: Anagramfanout
+categories?: Categories1
+definitionTa?: Definitionta
 ezhuthu: Ezhuthu
 frequency: Frequency
 frequencyStratum: Frequencystratum
 hints?: (GameWordHints | null)
+synonymsTa?: Synonymsta
+translationEn?: Translationen
 word: Word
 }
 /**
- * The honest, derivable hint material for one word.
+ * The honest hint material a word's own SPELLING yields.
  * 
  * Both fields are recomputed from ``ezhuthu`` on every rebuild and validated
  * against it, so precomputing them cannot drift.
  * 
- * A category hint is deliberately absent. Only about 1,290 lexicon rows carry
- * a category at all, and a Tamil category name is player-facing COPY, which
- * lives in ``config/copy.json`` and never inside a dataset. Inventing Tamil
- * category strings here would be a dishonest field.
+ * ``length`` no longer feeds a hint - a rung that charges for the tile count
+ * already on screen was deleted - but it stays as the cheapest integrity check
+ * the row has: it is validated against the live segmentation, so a row whose
+ * parts and count disagree can never reach a generator.
+ * 
+ * What a word MEANS is not spelling, so it is not here: those fields sit on
+ * ``GameWord`` itself, where the generator resolves them into rendered text.
  */
 export interface GameWordHints {
 firstEzhuthu: Firstezhuthu
