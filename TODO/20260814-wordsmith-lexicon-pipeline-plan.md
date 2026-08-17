@@ -316,20 +316,20 @@ Recorded here rather than closed, because each is measured and none is fixed. Ro
 | 3 | `lexicon` + `lexicon-sources` contracts | A | 2, 4 | - | DONE #16 | `../yen-tamizh-lex3` (removed) | #16 | worker |
 | 4 | Source acquisition + committed fixtures | B | - | A | DONE #15 | `../yen-tamizh-lex4` (removed) | #15 | worker |
 | 5 | `wordsmith/extract.py` + `config/lexicon-sources.json` | A | 3, 4 | - | DONE #17 | `../yen-tamizh-lex5` (removed) | #17 | worker |
-| 6 | `wordsmith/stage.py` - the delta store | A | 5 | - | DONE #18 | `../yen-tamizh-lex6` (kept as warm-cache donor) | #18 | worker |
-| 7 | Word-hood exact signals (attestation, orthotactics, breadth) | A | 6 | B | DONE #19 | `../yen-tamizh-lex7` | #19 | worker |
-| 8 | Word-hood inexact signals (n-gram, neighbour, Zipf) | A | 6 | B | DONE #20 | `../yen-tamizh-lex8` | #20 | worker |
-| 9 | `wordsmith/wordhood.py` - the classifier | A | 7, 8 | - | DONE #21 | `../yen-tamizh-lex9` | #21 | worker |
+| 6 | `wordsmith/stage.py` - the delta store | A | 5 | - | DONE #18 | `../yen-tamizh-lex6` (removed) | #18 | worker |
+| 7 | Word-hood exact signals (attestation, orthotactics, breadth) | A | 6 | B | DONE #19 | `../yen-tamizh-lex7` (removed) | #19 | worker |
+| 8 | Word-hood inexact signals (n-gram, neighbour, Zipf) | A | 6 | B | DONE #20 | `../yen-tamizh-lex8` (removed) | #20 | worker |
+| 9 | `wordsmith/wordhood.py` - the classifier | A | 7, 8 | - | DONE #21 | `../yen-tamizh-lex9` (removed) | #21 | worker |
 | 10 | `wordsmith/llm_enrich.py` - meaning + synonym authoring | B | 9 | - | DONE #22 | `../yen-tamizh-lex10` (removed) | #22 | worker |
-| 4a | Acquire `ta.wiktionary` titles (410,074) as an authority | C | 4 | - | DONE #23 | `../yen-tamizh-lex4a` | #23 | worker |
-| 9a | Fix the entry test + mint `notAWord` (Level 4) | C | 4a | - | DONE #24 | `../yen-tamizh-lex9a` | #24 | worker |
-| 10a | Enrichment loop - frequency-ordered, 1-10 ezhuthu, cross-validated | C | 9a | - | DONE #25 | `../yen-tamizh-lex10a` | #25 | worker |
-| 4b | Acquire the `ta.wiktionary` CONTENT dump; parse wikitext for meaning | C | 4a | - | DONE #27 | `../yen-tamizh-lex4b` | #27 | worker |
-| 9b | Dedup A8/A9 titles; split `glossPeer` off `synonymsTa`; IndoWordNet; wire the `notAWord` veto | C | 4b | - | DONE #28 | `../yen-tamizh-lex9b` | #28 | worker |
+| 4a | Acquire `ta.wiktionary` titles (410,074) as an authority | C | 4 | - | DONE #23 | `../yen-tamizh-lex4a` (removed) | #23 | worker |
+| 9a | Fix the entry test + mint `notAWord` (Level 4) | C | 4a | - | DONE #24 | `../yen-tamizh-lex9a` (removed) | #24 | worker |
+| 10a | Enrichment loop - frequency-ordered, 1-10 ezhuthu, cross-validated | C | 9a | - | DONE #25 | `../yen-tamizh-lex10a` (removed) | #25 | worker |
+| 4b | Acquire the `ta.wiktionary` CONTENT dump; parse wikitext for meaning | C | 4a | - | DONE #27 | `../yen-tamizh-lex4b` (removed) | #27 | worker |
+| 9b | Dedup A8/A9 titles; split `glossPeer` off `synonymsTa`; IndoWordNet; wire the `notAWord` veto | C | 4b | - | DONE #28 | `../yen-tamizh-lex9b` (removed) | #28 | worker |
 | - | **REMEASURE + re-decide the layout with the personas** | C | 9b | - | DONE - see the SETTLED block above | - | - | orchestrator |
-| 11 | `wordsmith/publish.py` + `pipeline.py` | B | 9b | - | DONE #29 | `../yen-tamizh-pub` | #29 | worker |
-| 12 | Cut the derived layer over; real serving gates; two-axis difficulty | B | 1, 11 | - | DONE #30 | `../yen-tamizh-r12` | #30 | worker |
-| 12a | Publish every sense; human-first field order; collapse to one file per BASE letter | B | 12 | - | DONE #31 | `../yen-tamizh-fix` | #31 | worker + orchestrator |
+| 11 | `wordsmith/publish.py` + `pipeline.py` | B | 9b | - | DONE #29 | `../yen-tamizh-pub` (removed) | #29 | worker |
+| 12 | Cut the derived layer over; real serving gates; two-axis difficulty | B | 1, 11 | - | DONE #30 | `../yen-tamizh-r12` (removed) | #30 | worker |
+| 12a | Publish every sense; human-first field order; collapse to one file per BASE letter | B | 12 | - | DONE #31 | `../yen-tamizh-fix` (removed) | #31 | worker + orchestrator |
 | 13 | Retire the corpus layer; purge the retired `master` identifiers | A | 12a | - | DONE #32 | `../yen-tamizh-r13` (removed) | #32 | worker |
 | 14 | Rebuild the hint ladder; show a solved word's meaning | B | 13, 15 | - | **BLOCKED - decision 19 needs a user ruling (see the blocker note in section 15)** | - | - | - |
 | 15 | Themed selection: `categories` + `pos` | B | 13 | - | DONE #33 | `../yen-tamizh-r15` (removed) | #33 | worker |
