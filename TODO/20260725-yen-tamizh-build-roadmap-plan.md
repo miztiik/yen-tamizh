@@ -53,13 +53,13 @@ Envelope `{ ts, src, v, session, name, level, ctx, data }`. Game: `puzzle.starte
 | 5 | Evolutionary contract pipeline (Pydantic -> JSON Schema -> TS/ajv) | 5 | 3 | B | DONE | - | #5 | worker |
 | 6 | Ezhuthu library (Python + TS twins) | 4 | 3 | B | DONE | - | #3 | worker |
 | 7 | Core schemas (app-config/event-envelope/save/puzzle-file/bank-index/anagram) | 5 | 5,6 | C | DONE | - | #7 | worker |
-| 8 | Corpus ingest + master wordlist | 4 | 5,6 | C | DONE | - | #10 | worker |
-| 9 | Derived-wordlist framework + anagram set | 3 | 8 | - | DONE | - | #11 | worker |
+| 8 | Corpus ingest + master wordlist | 4 | 5,6 | C | DONE (#10); SUPERSEDED by the lexicon, corpus layer retired in #32 | - | #10 | worker |
+| 9 | Derived-wordlist framework + anagram set | 3 | 8 | - | DONE (#11); now derives from the lexicon, not the corpus (#30) | - | #11 | worker |
 | 10 | Design system (tokens + animation + glyph bake + manifest) | 3 | 5 | - | DONE | - | #6 | worker |
 | 11 | Shell + runtime (SessionShell/Runner/registry/storage/bus) | 4 | 7,10 | - | DONE | - | #8 | worker |
 | 12 | AnagramGame | 3 | 11 | - | DONE | - | #9 | worker |
 | 13 | DailyMode + daily bank generator + Home | 4 | 9,12 | - | DONE | - | #12 | worker |
-| 14 | Daily playlist + hints (changelog evolution) | 3 | 13 | - | READY | - | - | - |
+| 14 | Daily playlist + hints (changelog evolution) | 3 | 13 | - | DONE (delivered by the wordsmith plan: themed rounds #33, hint ladder + meanings #35) | - | #33,#35 | worker |
 | 15 | Ladder graph builder + word-ladder schema | 5 | 7,8 | - | PENDING | - | - | - |
 | 16 | WordLadderGame + share-result card | 3 | 11,15 | - | PENDING | - | - | - |
 | 17 | JourneyMode + winding-path home | 4 | 10,16 | - | PENDING | - | - | - |
@@ -537,7 +537,7 @@ Dependency spine: `1(done) -> {2,3} -> {4,5,6} -> {7,8} -> {9,10} -> 11 -> 12 ->
 
 ## 3. Execution stamp
 
-`Execute per docs/how-to/execute-a-plan.md: orchestrator dispatches one worktree-isolated worker subagent per row; workers consult personas (Fowler/Carmack/Jony/Palm/Player/Explore) on ambiguity; AUTO-merge on green gates; parallel N = 2; honor the ESCALATE triggers in section 0. EXECUTING (user-authorized 2026-08-13). Rows 1-13 DONE (PRs #1-#12, all green on CI). MILESTONE: the game is PLAYABLE end-to-end - Home -> Daily -> three baked ezhuthu anagram puzzles -> summary -> streak, offline-capable, deployed to GitHub Pages. Frontier (all AUTO, next ESCALATE is Row 15): Row 14 (daily playlist + hints + the winCelebrationMs config home). Known content constraint: the anagram derived set is 163 words (~54 days at 3/day) because true Tamil co-anagrams are rare (247 ezhuthu vs 26 Latin letters); it grows with the corpus, and Rows 18-21 add Games that do not need co-anagram tension.`
+`Execute per docs/how-to/execute-a-plan.md: orchestrator dispatches one worktree-isolated worker subagent per row; workers consult personas (Fowler/Carmack/Jony/Palm/Player/Explore) on ambiguity; AUTO-merge on green gates; parallel N = 2; honor the ESCALATE triggers in section 0. EXECUTING (user-authorized 2026-08-13). Rows 1-14 DONE (PRs #1-#12 for rows 1-13; row 14 delivered by the wordsmith plan via #33 and #35). MILESTONE: the game is PLAYABLE and LIVE - Home -> Daily -> a three-item easy/medium/hard round with hints and meanings -> summary -> streak, offline-capable, deployed to GitHub Pages, and re-baked nightly by the daily cron. SUPERSESSION (2026-08-14..18): the wordsmith lexicon pipeline (PRs #13-#36) replaced the row-8 corpus layer with a cross-validated lexicon; the corpus modules were retired in #32 and the served wordlist now derives from the lexicon (#30). Its plan-doc was closed and deleted at #36 with its rationale moved into docs/architecture/lexicon/ and docs/how-to/rebuild-the-lexicon.md; six measured open defects are recorded there, not here. Frontier: Row 15 (ladder graph builder, Level 5) is the next row and an ESCALATE pause; Rows 18-21 (Games) are AUTO and unblocked. Content note: rows 18-21 need no co-anagram tension, which is the scarce resource in Tamil.`
 
 ## See also
 
