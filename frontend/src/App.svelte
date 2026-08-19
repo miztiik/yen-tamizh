@@ -55,6 +55,10 @@
       Harness = (await import("./shell/AnagramHarness.svelte")).default;
       return;
     }
+    if (harness === "missing-letters") {
+      Harness = (await import("./shell/MissingLettersHarness.svelte")).default;
+      return;
+    }
     Harness = null;
     if (params.get("mode") === "daily") {
       await openDaily();

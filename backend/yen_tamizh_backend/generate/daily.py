@@ -23,8 +23,13 @@ The rules this module enforces:
   already announced free in the round header.
 - **What else the tiles spell is answered HERE.** This is the only layer holding
   a whole served wordlist, so it is the only layer that can tell a puzzle which
-  other served words share its ezhuthu multiset. Partners come from the set the
-  day actually drew from, which on a themed day is the theme's own.
+  other served words it could be confused with - the ones its tiles also spell,
+  or the ones its mask also admits. Partners come from the set the day actually
+  drew from, which on a themed day is the theme's own.
+- **A second Game is a REGISTRATION, not a branch.** ``BUILDERS`` maps a
+  ``gameId`` to the pair of functions the loop needs: how to index one served
+  set, and how to turn one row into that Game's validated payload. The loop
+  below never asks which Game it is holding.
 - **The mix is config, not code.** How many items a day holds and which Games
   fill them come from ``config/app-config.json`` (``daily.playlistLength`` and
   ``daily.mix``); how a word becomes a puzzle comes from
@@ -39,18 +44,25 @@ from __future__ import annotations
 
 import json
 from collections import defaultdict
-from collections.abc import Iterable, Sequence
+from collections.abc import Callable, Iterable, Sequence
 from dataclasses import dataclass
 from datetime import date, timedelta
 from pathlib import Path
+from typing import Any
+
+from pydantic import BaseModel
 
 from yen_tamizh_backend.contracts.app_config import AppConfig
 from yen_tamizh_backend.contracts.bank_index import BankDay, BankIndex
 from yen_tamizh_backend.contracts.base import ChangelogEntry
-from yen_tamizh_backend.contracts.daily_generator import DailyGenerator, GameGeneration
+from yen_tamizh_backend.contracts.daily_generator import (
+    DailyGenerator,
+    DifficultyBand,
+    GameGeneration,
+)
 from yen_tamizh_backend.contracts.game_wordlist import GameWord, GameWordlist
 from yen_tamizh_backend.contracts.puzzle_file import PuzzleFile, PuzzleItem
-from yen_tamizh_backend.generate import anagram
+from yen_tamizh_backend.generate import anagram, missing_letters
 from yen_tamizh_backend.generate.seed import seeded_index, seeded_shuffle
 
 _PUZZLE_FILE_VERSION = "2026-08-17"
@@ -176,6 +188,109 @@ def alternatives_of(wordlist: GameWordlist) -> dict[MultisetKey, tuple[str, ...]
     return {key: tuple(sorted(words)) for key, words in groups.items()}
 
 
+def difficulty_of(row: GameWord, spec: GameGeneration) -> str | None:
+    """The first configured band that covers the word's LENGTH and its FAMILIARITY.
+
+    Two axes, because length alone is anti-correlated at both tails: a long
+    headword is usually a compound that decomposes and is easier than its tile
+    count suggests, while a short rare word is brutal and a 3-ezhuthu one is
+    brute-forceable by shuffling. Bands overlap on length and tile on
+    familiarity, so which band claims a word is mostly a question of how well the
+    player knows it.
+
+    ``None`` when no band claims the row - typically a short word outside the
+    familiar quarters. That is a real answer, not a failure: the wordlist says
+    what is SERVABLE and the bands say what is DRAWABLE, and inventing a
+    difficulty for a row no band wants would put exactly the museum piece on the
+    board that the second axis exists to keep off it.
+
+    It lives with the day loop rather than with a Game because it is the loop's
+    question: every Game deals its slots across the same bands.
+    """
+    length = len(row.ezhuthu)
+    for band in spec.difficulties:
+        if (
+            band.minLength <= length <= band.maxLength
+            and row.frequencyStratum <= band.maxStratum
+        ):
+            return band.id
+    return None
+
+
+@dataclass(frozen=True)
+class GameBuilder:
+    """How the day loop turns served rows into one Game's payloads.
+
+    ``prepare`` indexes a whole served set once per day - the only place a Game
+    may learn about words other than the one it is building - and ``build``
+    turns one row into a validated payload. Registering a pair here is the whole
+    cost of adding a Game to the day loop, which is the promise the generator
+    registry's docstring makes.
+    """
+
+    prepare: Callable[[GameWordlist, GameGeneration], Any]
+    build: Callable[
+        [GameWord, GameGeneration, str, int, DifficultyBand, bool, Any], BaseModel
+    ]
+
+
+def _prepare_anagram(wordlist: GameWordlist, spec: GameGeneration) -> Any:
+    del spec
+    return alternatives_of(wordlist)
+
+
+def _build_anagram(
+    row: GameWord,
+    spec: GameGeneration,
+    day: str,
+    hint_limit: int,
+    band: DifficultyBand,
+    themed: bool,
+    prepared: Any,
+) -> BaseModel:
+    del band
+    index: dict[MultisetKey, tuple[str, ...]] = prepared
+    partners = [
+        word for word in index.get(multiset_key(row.ezhuthu), ()) if word != row.word
+    ]
+    return anagram.build_puzzle(
+        row, spec, f"{day}|{row.word}", hint_limit, themed, partners
+    )
+
+
+def _build_missing_letters(
+    row: GameWord,
+    spec: GameGeneration,
+    day: str,
+    hint_limit: int,
+    band: DifficultyBand,
+    themed: bool,
+    prepared: Any,
+) -> BaseModel:
+    return missing_letters.build_puzzle(
+        row, spec, f"{day}|{row.word}", hint_limit, band.blanks, prepared, themed
+    )
+
+
+# The registered Games, keyed by the ``gameId`` config names in `daily.mix`.
+BUILDERS: dict[str, GameBuilder] = {
+    "anagram": GameBuilder(prepare=_prepare_anagram, build=_build_anagram),
+    missing_letters.GAME_ID: GameBuilder(
+        prepare=missing_letters.index_by_length, build=_build_missing_letters
+    ),
+}
+
+
+def builder_for(game_id: str) -> GameBuilder:
+    """The registered builder for a Game, or a loud failure naming what exists."""
+    builder = BUILDERS.get(game_id)
+    if builder is None:
+        raise ValueError(
+            f"{game_id!r} has no registered puzzle builder: {sorted(BUILDERS)}"
+        )
+    return builder
+
+
 def bucket_candidates(
     candidates: Iterable[GameWord], spec: GameGeneration
 ) -> dict[str, list[GameWord]]:
@@ -188,7 +303,7 @@ def bucket_candidates(
     """
     buckets: dict[str, list[GameWord]] = {band.id: [] for band in spec.difficulties}
     for row in candidates:
-        bucket = anagram.difficulty_of(row, spec)
+        bucket = difficulty_of(row, spec)
         if bucket is not None:
             buckets[bucket].append(row)
     return buckets
@@ -380,17 +495,18 @@ def build_item(
     hint_limit: int,
     difficulty: str,
     themed: bool,
-    also_valid: Sequence[str],
+    prepared: Any,
 ) -> PuzzleItem:
     """One playlist entry: the Game's validated payload plus its framing.
 
     The payload drops the schema stamp the model carries: the day file has its
     own ``version`` + ``changelog``, and repeating one inside every item would
     be bytes the player downloads to learn nothing (Carmack). Building the model
-    first is still what proves the payload obeys ``anagram-puzzle``.
+    first is still what proves the payload obeys its own per-Game contract.
     """
-    puzzle = anagram.build_puzzle(
-        row, spec, f"{day}|{row.word}", hint_limit, themed, also_valid
+    band = next(entry for entry in spec.difficulties if entry.id == difficulty)
+    puzzle = builder_for(spec.gameId).build(
+        row, spec, day, hint_limit, band, themed, prepared
     )
     payload = puzzle.model_dump(mode="json", exclude_none=True)
     for key in _STAMP_KEYS:
@@ -431,7 +547,7 @@ def build_day(
     themed = themed_draw(day, app_config, generator, wordlists, used)
     seen = set(used)
     items: list[PuzzleItem] = []
-    alternatives: dict[str, dict[MultisetKey, tuple[str, ...]]] = {}
+    prepared: dict[tuple[str, str], Any] = {}
     # Sorted so the playlist's order depends on the config, never on dict order.
     for game_id, count in sorted(mix.items()):
         spec = specs[game_id]
@@ -440,12 +556,13 @@ def build_day(
         hint_limit = (
             app_config.hints.perGame.get(game_id, 0) if app_config.hints.enabled else 0
         )
-        # Which set the day drew from is also which set may answer "what else do
-        # these tiles spell": offering a partner from the ordinary set on a
-        # themed day would name a word the day never serves.
+        # Which set the day drew from is also which set may answer "what else
+        # could this have been": offering an alternative from the ordinary set on
+        # a themed day would name a word the day never serves.
         source = spec.wordlist if themed is None else themed.sources[game_id]
-        if source not in alternatives:
-            alternatives[source] = alternatives_of(wordlists[source])
+        key = (game_id, source)
+        if key not in prepared:
+            prepared[key] = builder_for(game_id).prepare(wordlists[source], spec)
         picks = (
             themed.picks[game_id]
             if themed is not None
@@ -453,11 +570,6 @@ def build_day(
         )
         for row, difficulty in picks:
             seen.add(row.word)
-            partners = [
-                word
-                for word in alternatives[source].get(multiset_key(row.ezhuthu), ())
-                if word != row.word
-            ]
             items.append(
                 build_item(
                     row,
@@ -466,7 +578,7 @@ def build_day(
                     hint_limit,
                     difficulty,
                     themed is not None,
-                    partners,
+                    prepared[key],
                 )
             )
     return PuzzleFile(

@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-17T18:00",
+  "version": "2026-08-19T18:00",
   "changelog": [
+    {
+      "version": "2026-08-19T18:00",
+      "change": "Registered the missing-letters generator, and gave a difficulty band a blanks count and a Game a choiceCount.",
+      "why": "Row 18 - the second Game, and the first proof that adding one is a registry entry plus a payload builder rather than a rewrite of the day loop. Both new knobs carry defaults that leave every day baked before them valid and the anagram's entry untouched. blanks sits on the BAND because hiding a second ezhuthu is a difficulty dial and the bands are where difficulty is declared; it is the honest way to make a band harder, since it multiplies the guess space instead of reaching for a rarer word, and the contract refuses a band that could hide every ezhuthu of its shortest word. It is 2 only on hard, and hard starts at five ezhuthu, because measured over the 25,210-row served set a two-blank mask has a single answer for 96.7 percent of five-ezhuthu words and 100 percent of six, against 42.0 percent at four. choiceCount is a real balance number rather than a layout preference: there is no Tamil keyboard in this game, so the bank is how a hidden ezhuthu is entered at all, and its size is the odds a player who knows nothing still guesses right inside the allowed attempts - 8 puts that at 3 in 8 for a one-blank puzzle and 3 in 56 for a two-blank one. The ladder is two rungs, not three: firstEzhuthu cannot be sold here because this board has already printed every ezhuthu it is not hiding, so the rung is either a fact on the screen or the answer itself. categoryLabels is restated rather than shared because hint wording is per-Game by contract - it lives beside the templates - and this Game's is identical today only because nothing has asked it to differ."
+    },
     {
       "version": "2026-08-17T18:00",
       "change": "Rebuilt the hint ladder: deleted the length rung, added a category rung at cost 1 and a meaning rung at cost 3 either side of the existing first-ezhuthu rung at cost 2, and added categoryLabels holding the Tamil tag the category rung renders for each lexicon category slug.",
@@ -93,6 +98,64 @@
           "copySlug": "theme-nature"
         }
       ]
+    },
+    {
+      "gameId": "missing-letters",
+      "packId": "ta-core",
+      "wordlist": "datasets/wordlists/derived/missing-letters.json",
+      "attempts": 3,
+      "timeLimitSec": 0,
+      "reveal": 0,
+      "choiceCount": 8,
+      "difficulties": [
+        { "id": "easy", "minLength": 4, "maxLength": 5, "maxStratum": 1, "blanks": 1 },
+        { "id": "medium", "minLength": 4, "maxLength": 6, "maxStratum": 2, "blanks": 1 },
+        { "id": "hard", "minLength": 5, "maxLength": 6, "maxStratum": 4, "blanks": 2 }
+      ],
+      "hints": [
+        { "kind": "category", "template": "வகை: {category}", "cost": 1 },
+        { "kind": "meaning", "template": "பொருள்: {meaning}", "cost": 3 }
+      ],
+      "categoryLabels": {
+        "amphibians": "நீர்நிலவாழ்வன",
+        "animals": "விலங்கு",
+        "aquatic-animals": "நீர்வாழ்வன",
+        "arts": "கலை",
+        "bathroom": "குளியலறை",
+        "bedroom": "படுக்கையறை",
+        "birds": "பறவை",
+        "colours": "நிறம்",
+        "days": "நாள்",
+        "dresses-and-accessories": "உடை",
+        "emotions": "உணர்வு",
+        "flowers": "மலர்",
+        "food": "உணவு",
+        "fruits": "பழம்",
+        "functions": "விழா",
+        "games": "விளையாட்டு",
+        "garden": "தோட்டம்",
+        "hall": "கூடம்",
+        "hobby": "பொழுதுபோக்கு",
+        "hospital": "மருத்துவமனை",
+        "house": "வீடு",
+        "insects": "பூச்சி",
+        "kitchen": "சமையலறை",
+        "nature": "இயற்கை",
+        "parts-of-plants": "தாவரப்பகுதி",
+        "places": "இடம்",
+        "profession": "தொழில்",
+        "relations": "உறவு",
+        "reptiles": "ஊர்வன",
+        "school": "பள்ளி",
+        "space": "விண்வெளி",
+        "spices": "நறுமணப்பொருள்",
+        "symbols-shapes": "வடிவம்",
+        "tools": "கருவி",
+        "transport": "போக்குவரத்து",
+        "trees": "மரம்",
+        "types-of-plants": "தாவரம்",
+        "vegetables": "காய்கறி"
+      }
     }
   ]
 }

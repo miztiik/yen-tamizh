@@ -7,6 +7,7 @@ import bankIndexSchema from "./bank-index.schema.json";
 import copySchema from "./copy.schema.json";
 import eventEnvelopeSchema from "./event-envelope.schema.json";
 import exampleSchema from "./example.schema.json";
+import missingLettersPuzzleSchema from "./missing-letters-puzzle.schema.json";
 import puzzleFileSchema from "./puzzle-file.schema.json";
 import saveSchema from "./save.schema.json";
 import type { AnagramPuzzle } from "./anagram-puzzle";
@@ -15,6 +16,7 @@ import type { BankIndex } from "./bank-index";
 import type { Copy } from "./copy";
 import type { EventEnvelope } from "./event-envelope";
 import type { Example } from "./example";
+import type { MissingLettersPuzzle } from "./missing-letters-puzzle";
 import type { PuzzleFile } from "./puzzle-file";
 import type { Save } from "./save";
 
@@ -32,6 +34,7 @@ const validators = {
   copy: ajv.compile<Copy>(copySchema),
   "event-envelope": ajv.compile<EventEnvelope>(eventEnvelopeSchema),
   example: ajv.compile<Example>(exampleSchema),
+  "missing-letters-puzzle": ajv.compile<MissingLettersPuzzle>(missingLettersPuzzleSchema),
   "puzzle-file": ajv.compile<PuzzleFile>(puzzleFileSchema),
   save: ajv.compile<Save>(saveSchema),
 } as const;
@@ -47,6 +50,7 @@ export interface SchemaPayload {
   copy: Copy;
   "event-envelope": EventEnvelope;
   example: Example;
+  "missing-letters-puzzle": MissingLettersPuzzle;
   "puzzle-file": PuzzleFile;
   save: Save;
 }

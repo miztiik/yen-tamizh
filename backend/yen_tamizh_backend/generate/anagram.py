@@ -16,22 +16,20 @@ Three guarantees this module owns:
 - **A hint is honest, Tamil, and never the answer.** A rung this row cannot
   answer is dropped rather than invented, a phrase carrying Latin script is
   never sold, and a rendered rung that would spell the answer out is dropped
-  too.
-
-Difficulty lives here too, and it reads TWO axes: how many tiles a word has and
-how familiar it is. Length alone is anti-correlated at both tails.
+  too. The machinery for that lives in ``generate/hints.py``, shared with every
+  other Game; what belongs HERE is which fields the anagram is allowed to sell.
 """
 
 from __future__ import annotations
 
 from collections.abc import Iterable
-from string import Formatter
 
 from yen_tamizh_backend.contracts.anagram_puzzle import AnagramPuzzle
 from yen_tamizh_backend.contracts.base import ChangelogEntry
 from yen_tamizh_backend.contracts.common import Hint
 from yen_tamizh_backend.contracts.daily_generator import GameGeneration
 from yen_tamizh_backend.contracts.game_wordlist import GameWord
+from yen_tamizh_backend.generate import hints as hint_ladder
 from yen_tamizh_backend.generate.seed import seeded_shuffle
 
 _SCHEMA_VERSION = "2026-08-17T18:00"
@@ -66,9 +64,10 @@ _CHANGELOG = [
     ),
 ]
 
-# The CLOSED vocabulary a hint template may name. A template naming anything
-# else is a typo in config and fails the bake; a template naming one of these
-# that a particular ROW cannot fill has its rung skipped for that row.
+# The CLOSED vocabulary a hint template may name for THIS Game. A template
+# naming anything else is a typo in config and fails the bake; a template naming
+# one of these that a particular ROW cannot fill has its rung skipped for that
+# row.
 #
 # ``length`` is deliberately absent. The rung that charged for the tile count
 # already on the player's screen was deleted, and leaving the field fillable
@@ -91,91 +90,6 @@ def scramble(ezhuthu: list[str], seed_text: str) -> list[str]:
     return order
 
 
-def _template_fields(template: str) -> set[str]:
-    """Every field name a hint template names, positional ones included as ``""``."""
-    return {name for _, name, _, _ in Formatter().parse(template) if name is not None}
-
-
-def category_tag(row: GameWord, spec: GameGeneration) -> str | None:
-    """The bare Tamil tag for this row's category, or ``None`` if it has no rung.
-
-    The lexicon's categories are English slugs, so the Tamil comes from the
-    generator config beside the hint wording. Categories are read in the row's
-    own sorted order and the first one the config names AND that does not spell
-    the answer out wins, so which tag a word gets is a pure function of the data
-    rather than of dict order.
-
-    ``None`` is the common answer: barely one served word in fifteen carries a
-    category at all, which is exactly why a missing rung is skipped rather than
-    raised.
-    """
-    for slug in row.categories or ():
-        label = spec.categoryLabels.get(slug)
-        if label is not None and row.word not in label:
-            return label
-    return None
-
-
-def _meaning_candidates(row: GameWord) -> list[str]:
-    """What this row could display as its meaning, best first.
-
-    A Tamil SYNONYM leads, because it is the shortest true answer to "what does
-    this mean" and it reads as Tamil rather than as a dictionary. The sense
-    follows. English never appears: ``translationEn`` is not a candidate here at
-    all, since a rung the player cannot read is a rung that stole score.
-    """
-    candidates = list(row.synonymsTa or ())
-    if row.definitionTa is not None:
-        candidates.append(row.definitionTa)
-    return candidates
-
-
-def _is_sellable(value: str, word: str) -> bool:
-    """Whether this phrase may be CHARGED for as the meaning of ``word``.
-
-    Two disqualifications, both of them "the player pays and gets nothing":
-
-    - it spells the answer out, which is the ladder taking three points for the
-      word the player is trying to build;
-    - it carries Latin script. Some lexicon glosses glue a romanisation onto the
-      Tamil - ``aruke`` beside its own headword - and English on a paid rung is
-      banned outright, because a hint half the audience cannot read is a hint
-      that stole score. The rung is dropped rather than answered in English.
-    """
-    if word in value:
-        return False
-    return not any(char.isascii() and char.isalpha() for char in value)
-
-
-def sellable_meaning(row: GameWord) -> str | None:
-    """The meaning this row may be CHARGED for, or ``None`` if it has none.
-
-    Candidates are read in order and the first sellable one wins, so a single
-    unusable synonym costs the rung nothing - only a row where EVERY candidate
-    is unusable loses it.
-    """
-    return next(
-        (value for value in _meaning_candidates(row) if _is_sellable(value, row.word)),
-        None,
-    )
-
-
-def display_meaning(row: GameWord) -> str | None:
-    """The meaning shown FREE on the summary once the word is already revealed.
-
-    It is the sellable one whenever there is one, so a player who bought the
-    rung meets the same words again rather than a second, different gloss. When
-    nothing is sellable there is nothing left to protect - the word is on the
-    screen and the summary is not charging for it - so the first candidate is
-    shown as it stands.
-    """
-    sellable = sellable_meaning(row)
-    if sellable is not None:
-        return sellable
-    candidates = _meaning_candidates(row)
-    return candidates[0] if candidates else None
-
-
 def hint_values(row: GameWord, spec: GameGeneration, themed: bool) -> dict[str, str]:
     """Exactly the hint fields this row can honestly fill, on this kind of day.
 
@@ -190,10 +104,10 @@ def hint_values(row: GameWord, spec: GameGeneration, themed: bool) -> dict[str, 
     if row.hints is not None:
         values["firstEzhuthu"] = row.hints.firstEzhuthu
     if not themed:
-        category = category_tag(row, spec)
+        category = hint_ladder.category_tag(row, spec)
         if category is not None:
             values["category"] = category
-    meaning = sellable_meaning(row)
+    meaning = hint_ladder.sellable_meaning(row)
     if meaning is not None:
         values["meaning"] = meaning
     return values
@@ -204,45 +118,12 @@ def build_hints(
 ) -> list[Hint]:
     """Render the first ``limit`` rungs this row can HONESTLY answer.
 
-    Not the first ``limit`` CONFIGURED rungs. A rung whose template names a
-    field this row cannot fill is skipped, and the next rung moves up - a ladder
-    that is sometimes two rungs is correct, because only about one served word
-    in fifteen carries a category and a raising template would fail the bake on
-    the other fourteen.
-
-    A template naming a field outside ``HINT_FIELDS`` still fails loudly. The
-    two mistakes are different: a row lacking a known field is the honest state
-    of the lexicon, while a template naming an unknown one is a typo in config
-    that would otherwise vanish into a silently shorter ladder.
-
-    A rendered rung containing the answer word is dropped as well. Tamil
-    synonymy is dense enough that a gloss occasionally spells its own headword,
-    and a paid hint that prints the answer is worse than no hint at all.
-
-    ``limit`` is the app config's per-Game allowance, so a day never bakes more
-    help than the game is willing to offer.
+    The rendering rules are shared (``generate/hints.py``); what this adds is
+    the anagram's own field vocabulary and the values a row can fill.
     """
-    if limit <= 0:
-        return []
-    values = hint_values(row, spec, themed)
-    hints: list[Hint] = []
-    for spec_hint in spec.hints:
-        fields = _template_fields(spec_hint.template)
-        unknown = fields - HINT_FIELDS
-        if unknown:
-            raise KeyError(
-                f"hint {spec_hint.kind!r} names {sorted(unknown)}, which is not a "
-                f"hint field: {sorted(HINT_FIELDS)}"
-            )
-        if not fields <= values.keys():
-            continue
-        text = spec_hint.template.format(**values)
-        if row.word in text:
-            continue
-        hints.append(Hint(kind=spec_hint.kind, text=text, cost=spec_hint.cost))
-        if len(hints) == limit:
-            break
-    return hints
+    return hint_ladder.build_hints(
+        row, spec, limit, hint_values(row, spec, themed), HINT_FIELDS
+    )
 
 
 def build_puzzle(
@@ -269,34 +150,7 @@ def build_puzzle(
         timeLimitSec=spec.timeLimitSec,
         attempts=spec.attempts,
         hints=build_hints(row, spec, hint_limit, themed) or None,
-        meaning=display_meaning(row),
+        meaning=hint_ladder.display_meaning(row),
         translationEn=row.translationEn,
         alsoValid=sorted(also_valid) or None,
     )
-
-
-
-def difficulty_of(row: GameWord, spec: GameGeneration) -> str | None:
-    """The first configured band that covers the word's LENGTH and its FAMILIARITY.
-
-    Two axes, because length alone is anti-correlated at both tails: a long
-    headword is usually a compound that decomposes and is easier than its tile
-    count suggests, while a short rare word is brutal and a 3-ezhuthu one is
-    brute-forceable by shuffling. Bands overlap on length and tile on
-    familiarity, so which band claims a word is mostly a question of how well the
-    player knows it.
-
-    ``None`` when no band claims the row - typically a short word outside the
-    familiar quarters. That is a real answer, not a failure: the wordlist says
-    what is SERVABLE and the bands say what is DRAWABLE, and inventing a
-    difficulty for a row no band wants would put exactly the museum piece on the
-    board that the second axis exists to keep off it.
-    """
-    length = len(row.ezhuthu)
-    for band in spec.difficulties:
-        if (
-            band.minLength <= length <= band.maxLength
-            and row.frequencyStratum <= band.maxStratum
-        ):
-            return band.id
-    return None

@@ -1403,11 +1403,34 @@ def test_registered_paths_are_relative_and_posix() -> None:
 
 def test_the_committed_registry_validates() -> None:
     registry = derive.load_registry(_REGISTRY)
-    assert [spec.gameId for spec in registry.sets] == ["anagram", _THEMED_GAME_ID]
+    assert [spec.gameId for spec in registry.sets] == [
+        "anagram",
+        "missing-letters",
+        _THEMED_GAME_ID,
+    ]
     assert registry.lexiconPath == "datasets/lexicon/lexicon.meta.json"
     assert registry.denylistPath == "config/served-denylist.json"
     for spec in registry.sets:
         assert spec.selection.wordClasses == ["headword"]
+
+
+def test_the_missing_letters_set_moves_only_its_length_floor() -> None:
+    """What makes a word fair to be ASKED FOR does not depend on the board.
+
+    Every serving gate is the anagram's; the one knob that moves is the length
+    floor, and it moves because the mechanic changes what the player is given -
+    blanking one ezhuthu of a three-ezhuthu word leaves two letters of context,
+    and fewer than half of those masks have a single served answer.
+    """
+    registry = derive.load_registry(_REGISTRY)
+    ordinary = next(entry for entry in registry.sets if entry.gameId == "anagram")
+    missing = next(entry for entry in registry.sets if entry.gameId == "missing-letters")
+
+    assert missing.selection.minLength == 4
+    assert ordinary.selection.minLength == 3
+    assert missing.selection.model_dump(exclude={"minLength"}) == (
+        ordinary.selection.model_dump(exclude={"minLength"})
+    )
 
 
 def test_the_themed_set_narrows_the_ordinary_selection_and_relaxes_nothing() -> None:

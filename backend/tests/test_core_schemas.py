@@ -38,6 +38,7 @@ from yen_tamizh_backend.contracts import (
     Lexicon,
     LexiconEntry,
     LexiconSources,
+    MissingLettersPuzzle,
     PartOfSpeech,
     PuzzleFile,
     Save,
@@ -60,6 +61,7 @@ _CORE: tuple[tuple[type[SchemaModel], str], ...] = (
     (PuzzleFile, "puzzle-file"),
     (BankIndex, "bank-index"),
     (AnagramPuzzle, "anagram-puzzle"),
+    (MissingLettersPuzzle, "missing-letters-puzzle"),
     (Copy, "copy"),
 )
 

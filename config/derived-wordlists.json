@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-19",
+  "version": "2026-08-19T18:00",
   "changelog": [
+    {
+      "version": "2026-08-19T18:00",
+      "change": "Registered the missing-letters set: the anagram's serving gates with the length floor raised from 3 to 4.",
+      "why": "Row 18 - a second Game is a registry entry plus a payload builder, never a rewrite of the layers above or below it, and this is the entry. Every gate is the anagram's unchanged, because what makes a word fair to be ASKED for does not depend on how it is asked: a word nobody can attest, nobody uses, or nobody can explain is a bad answer either way. The one knob that moves is minLength, and it moves because the mechanic changes what the player is given: an anagram shows every ezhuthu and asks for an order, while this shows all but one and asks which is missing, so the context a 3-ezhuthu word can offer is two letters. Measured over the 31,055-row served set, only 46.4 percent of 3-ezhuthu words have any single-blank mask that no OTHER served word also fits, against 94.8 percent at four, 99.9 at five and 100 at six - so a length floor of 4 is what turns per-blank ambiguity from the common case into the exception. wordClasses stays headword alone even though the contract offers colloquial for the recognition Games: the published lexicon holds exactly one colloquial row, so naming it would be a gesture with no rows behind it, and adding it later is a one-word edit here."
+    },
     {
       "version": "2026-08-19",
       "change": "Added servingRules, holding the participial suffixes every set demotes and the gloss labels that mark a row as an obscenity.",
@@ -71,6 +76,21 @@
       "selection": {
         "wordClasses": ["headword"],
         "minLength": 3,
+        "maxLength": 6,
+        "minAttestations": 2,
+        "minTier1Attestations": 1,
+        "minFrequency": 1,
+        "requireMeaning": true,
+        "maxWords": null
+      }
+    },
+    {
+      "gameId": "missing-letters",
+      "out": "datasets/wordlists/derived/missing-letters.json",
+      "note": "The anagram's serving gates unchanged, with the length floor at 4. The gates do not move because they answer a question the mechanic does not change - is this a word a player can be asked for at all - and the floor does because the mechanic changes what the player is holding: blanking one ezhuthu of a 3-ezhuthu word leaves two letters of context, and over the served set fewer than half of those masks have a single answer, against 94.8 percent at four ezhuthu. Which ezhuthu is hidden is the GENERATOR's decision, not a selection knob: a word is admitted here on what it IS, and a mask that admits a second real word is picked around rather than filtered on, because a mask is a property of the deal and not of the word.",
+      "selection": {
+        "wordClasses": ["headword"],
+        "minLength": 4,
         "maxLength": 6,
         "minAttestations": 2,
         "minTier1Attestations": 1,
