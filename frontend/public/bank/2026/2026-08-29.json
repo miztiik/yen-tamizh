@@ -13,9 +13,9 @@
   ],
   "date": "2026-08-29",
   "items": [
-    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: மா"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: புரணான"}], "meaning": "புரணான", "reveal": 0, "tiles": ["றா", "மா", "ன"], "timeLimitSec": 0, "translationEn": "adversative", "word": "மாறான"}},
-    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ஆ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: மொழிபெயர்ப்புகள்"}], "meaning": "மொழிபெயர்ப்புகள்", "reveal": 0, "tiles": ["நா", "ஆ", "ன்", "தி", "த"], "timeLimitSec": 0, "word": "ஆதிநாதன்"}},
-    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: இ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: அறுகு"}], "meaning": "அறுகு", "reveal": 0, "tiles": ["ல்", "இ", "ம்", "ள", "பு"], "timeLimitSec": 0, "word": "இளம்புல்"}}
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"alsoValid": ["வாசரி"], "attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ச"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: வாகனம் அல்லது விலங்கின் மீது ஏறிச் செல்லும் பயணம்"}], "meaning": "வாகனம் அல்லது விலங்கின் மீது ஏறிச் செல்லும் பயணம்", "reveal": 0, "tiles": ["ரி", "வா", "ச"], "timeLimitSec": 0, "translationEn": "hack", "word": "சவாரி"}},
+    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ஏ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: இயேசு"}], "meaning": "இயேசு", "reveal": 0, "tiles": ["சு", "த", "ஏ", "ர்", "நா"], "timeLimitSec": 0, "translationEn": "Jesus", "word": "ஏசுநாதர்"}},
+    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: சி"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: சுவர்க்கோழி"}], "meaning": "சுவர்க்கோழி", "reveal": 0, "tiles": ["ள்", "ண்", "சி", "டு", "வ"], "timeLimitSec": 0, "translationEn": "cicades", "word": "சிள்வண்டு"}}
   ],
   "version": "2026-08-17"
 }

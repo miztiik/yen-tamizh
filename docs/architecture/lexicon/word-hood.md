@@ -772,9 +772,13 @@ the Chinese currency and a Tamil music director.
 **On 2026-08-19 the list was extended by reading the top 3,000** - 7.5 times the
 first pass's reach - which added **68 function words and 48 proper nouns**,
 taking the file from 72 entries to **188** and the served set from 32,238 rows to
-**32,122**. Every one of the 188 reaches the deny-list gate under its own steam:
-the ledger's `denylisted` bucket is charged last, so 188 is what the list ALONE
-removed rather than what some other gate would have removed anyway.
+**32,122**. Every one of the 188 reached the deny-list gate under its own steam:
+the ledger's `denylisted` bucket is charged last, so 188 was what the list ALONE
+removed rather than what some other gate would have removed anyway. Later the
+same day the participial rule below landed and took two of them - `\u0b85\u0bb2\u0bcd\u0bb2\u0bbe\u0ba4`
+and `\u0bae\u0bc1\u0ba4\u0bb2\u0bbe\u0ba9`, both peyareccham - first, so the bucket now reads 186 while
+nothing has been un-denied. That is the bucket working: it measures what
+curation still buys once everything derivable has run.
 
 The pass applied one test per candidate, and the file's `note` records both the
 test and what it declined to take. A proper noun is off the board when the
@@ -848,25 +852,70 @@ rather than from the same first idea:
 Until then, extending the deny-list down the frequency curve is the whole
 mechanism, and it buys coverage in proportion to the reading and nothing more.
 
-## Participial adjectives still reach the board as `headword`
+## Participial adjectives are still classified `headword`, and are no longer served
 
-`\u0bae\u0bca\u0bb4\u0bbf\u0baf\u0bbe\u0ba9`, `\u0bae\u0bbf\u0b95\u0bc1\u0ba4\u0bbf\u0baf\u0bbe\u0ba9` and `\u0ba4\u0bb5\u0bb1\u0bbf\u0bb2\u0bcd\u0bb2\u0bbe\u0ba4` are inflected forms, not
-headwords, and days have been baked that served all three. Phase 3's `inflected`
-rule reads `knownVerbForm`, which is DIRECT evidence and therefore only as wide
-as the two collected form lists; a participial adjective those lists happen not
-to contain arrives with a tier-1 listing, a clean shape and nothing to demote
-it.
+`\u0bae\u0bca\u0bb4\u0bbf\u0baf\u0bbe\u0ba9`, `\u0bae\u0bbf\u0b95\u0bc1\u0ba4\u0bbf\u0baf\u0bbe\u0ba9`, `\u0b89\u0bb0\u0bc1\u0ba3\u0bcd\u0b9f\u0bc8\u0baf\u0bbe\u0ba9` and `\u0ba4\u0bb5\u0bb1\u0bbf\u0bb2\u0bcd\u0bb2\u0bbe\u0ba4` are inflected
+forms, not headwords, and days were baked that served all four. Phase 3's
+`inflected` rule reads `knownVerbForm`, which is DIRECT evidence and therefore
+only as wide as the two collected form lists; a participial adjective those
+lists happen not to contain arrives with a tier-1 listing, a clean shape and
+nothing to demote it.
 
 The size of the gap is known from the other side of the pipeline. The enrichment
-pass declined roughly **65 percent of its top-frequency candidates** on exactly
+pass declines roughly **65 percent of its top-frequency candidates** on exactly
 these grounds - a form whose only available sense is a grammatical relation to
-another word has no meaning to author - and that decline is currently the only
-thing keeping most of them off a player's screen, because `requireMeaning` is
-what they fail. See
+another word has no meaning to author - so `requireMeaning` was the only thing
+keeping most of them off a player's screen. See
 [../../how-to/enrich-the-lexicon.md](../../how-to/enrich-the-lexicon.md#the-no-hedge-rule).
-Leaning on an authoring pass to enforce a word-hood verdict is backwards: a
-cascade rule that demotes participles would raise the quality of every future
-bake, and would do it for the forms nobody has authored yet.
+
+**The fix landed at SELECTION, not in the cascade.** On 2026-08-19 the derived
+registry gained `participialSuffixes`, and the derived layer now refuses to
+serve a surface that ends in a participial suffix over a stem of at least one
+ezhuthu - 1,065 of the 32,122 rows the anagram served, taking it to 31,055.
+Three endings are registered: `-\u0b86\u0ba9` (721 rows), `-\u0b86\u0ba4` (218, including every
+`-\u0b87\u0bb2\u0bcd\u0bb2\u0bbe\u0ba4` compound) and `-\u0b89\u0bb3\u0bcd\u0bb3` (124). Every match was read; none is a
+surface a Tamil dictionary lists as a headword. The knobs and the two shapes
+measured and rejected beside them are in
+[../../how-to/add-a-derived-wordlist.md](../../how-to/add-a-derived-wordlist.md#the-serving-rules-a-participle-and-an-obscenity).
+
+The classifier is UNCHANGED, and that is the ruling rather than an omission. A
+peyareccham really is an inflected form, so demoting it in the cascade would be
+the truer statement - but the cascade is what the published lexicon records
+about a surface, and the evidence available here is a string ending rather than
+a verdict any of the eight signals carries. A `wordClass` moved on the strength
+of a suffix would put a guess where the artifact promises evidence, and would
+take the row out of `headword` for every future consumer - a dictionary lookup,
+a frequency study, a Game where the player RECOGNISES rather than produces a
+spelling - to fix a problem only one of them has. So the statement is made where
+it is true: this is not a fair puzzle ANSWER. It sits beside the deny-list, on
+the same terms - the word keeps its class and its facts and is simply never
+dealt. What would move it into the cascade is a morphological analyser or a
+wider collected-form list, either of which would replace the string test with
+evidence.
+
+## An obscenity reached the board, and the source had already said so
+
+Rank 1,968 of the served set was `\u0baa\u0bc1\u0ba3\u0bcd\u0b9f\u0bc8`, which the lexicon's own gloss ends
+with `(\u0b86\u0baa\u0bbe\u0b9a\u0b9a\u0bcd\u0b9a\u0bca\u0bb2\u0bcd)` - "obscene word". No column says a word is coarse, but
+Tamil lexicography writes the judgement into the gloss as a usage LABEL, so the
+signal was in the published data all along and needed no curated list of rude
+words to reach it.
+
+The derived registry's `obscenityMarkers` names the labels. It matches the FIRST
+sense only, and it matches the whole label rather than its stem, because both
+looser readings were measured over the served set:
+
+- a bare `\u0b86\u0baa\u0bbe\u0b9a` substring matches 12 rows and exactly one is an obscenity - the
+  other eleven are ordinary words like `\u0b85\u0bb0\u0bc1\u0bb5\u0bb0\u0bc1\u0baa\u0bcd\u0baa\u0bc1` (disgust) and `\u0baa\u0b9a\u0bcd\u0b9a\u0bc8`
+  (green) whose gloss merely DISCUSSES coarse speech;
+- reading every sense instead of sense zero adds `\u0bb5\u0ba9\u0bcd\u0bae\u0bc8` (harshness) and
+  `\u0ba4\u0bc0\u0b9f\u0bcd\u0b9f\u0bc1`, whose later senses do the same.
+
+Two labels ship - `\u0b86\u0baa\u0bbe\u0b9a\u0b9a\u0bcd\u0b9a\u0bca\u0bb2\u0bcd` and `\u0bb5\u0b9a\u0bc8\u0b9a\u0bcd\u0b9a\u0bca\u0bb2\u0bcd` - and they remove four rows.
+`\u0b87\u0bb4\u0bbf\u0b9a\u0bca\u0bb2\u0bcd` was measured and rejected at 0 true hits in 2: it catches `\u0baa\u0bbe\u0b9a\u0bbf\u0b9a\u0bae\u0bcd`
+(fascism), whose gloss says the word BECAME a term of abuse, and a grammar term
+for one of the four kinds of worthless speech. Like the deny-list, the exclusion
+is on SERVING: `\u0baa\u0bc1\u0ba3\u0bcd\u0b9f\u0bc8` is a real Tamil word and stays in the published lexicon.
 
 ## Design rationale
 
@@ -1041,6 +1090,12 @@ bake, and would do it for the forms nobody has authored yet.
 | "Begins with an attested headword" as an inflection rule | It labels `vaayppu` an inflection of `vaay`, and `vaayppu` is one of this layer's own reference headwords. A rule that costs a real headword to catch an inflected form trades away the only class that is served. | Row 9 |
 | Reading `zipf` anywhere in the cascade | Frequency and word-hood are independent axes. A rule keyed on a frequency residual re-imports the exact defect the lexicon exists to remove. | User |
 | Deleting a surface the classifier cannot place | Word-hood classifies; it does not delete. `unclassified` is a legal verdict and the queue the enrichment pass reads, and selection is an allow-list so it can never be served by omission. | User + Player |
+| Demoting a participial adjective to `inflected` on the strength of its ending | A suffix is a fact about the STRING, and a `wordClass` is what the published artifact promises about the WORD. Moving a class on a string test puts a guess where the artifact promises evidence, and takes the row out of `headword` for every future consumer to fix a problem only the Daily has. The refusal lives at SELECTION instead, beside the deny-list. | Fowler + Player |
+| Requiring the stripped stem to be an attested headword before demoting | Sounds stricter, measures weaker: sandhi rewrites the stem when the suffix lands, so undoing it means guessing which spelling the writer started from. It left 186 of 1,063 served matches on the board, `mozhiyaana` and `thavaRillaadha` among them. | Row on defect 2 |
+| The `-iya` participial ending | 202 served rows, and they include `indhiya`, `dhesiya`, `ilakkiya`, `pudhiya`, `siRiya`, `periya`, `ariya` and `iniya` - ordinary vocabulary a dictionary lists. Deleting real words is the worse defect. | Player |
+| A bare `aabaasa` substring as the obscenity marker | 12 served rows, one of them an obscenity. The other eleven are words like `aruvaruppu` (disgust) whose gloss DISCUSSES coarse speech. The marker is the whole usage label. | Row on defect 2 |
+| Reading every sense for the obscenity label rather than sense zero | Adds `vanmai` (harshness) and `theettu`, labelled on their twelfth and second senses - a label there marks a marginal reading, not the word. Sense zero is what the lexicon ranks most authoritative and what a Game displays. | Fowler |
+| A hand-curated list of rude words | The source already carries the judgement as a usage label, so a second list would be a thing to maintain that the data already says - and a list of obscenities is the one kind of deny-list nobody wants to review. | User |
 
 ## See also
 

@@ -17,12 +17,12 @@ digest still pins a partitioned input, because ``lexicon.meta.json`` itself
 carries the sha256 of every published file.
 
 ``counters`` is the integrity Oracle, enforced by the model itself, with one
-bucket per serving gate, one per selection dimension, and one for the curated
-deny-list that runs last::
+bucket per serving gate, one per selection dimension, one for each of the two
+derivable exclusions, and one for the curated deny-list that runs last::
 
     lexiconRows - outsideClass - outsideCategories - outsidePos - outsideLength
                 - belowAttestations - belowFrequency - withoutMeaning
-                - denylisted - capped
+                - obscene - participial - denylisted - capped
                 == rowsKept == len(words)
 
 Every published lexicon row is accounted for by exactly one outcome, so a
@@ -185,6 +185,15 @@ class DerivedCounters(BaseModel):
     theme covers, here is what each gate then removed" rather than burying the
     theme's own reach inside ``outsideLength``.
 
+    ``obscene`` and ``participial`` are the two exclusions the registry's
+    ``servingRules`` derive from the row itself, charged after every gate and
+    before the curated list. ``obscene`` runs first of the two because it is the
+    graver reason: a surface that is both an obscenity and a participle should
+    be counted where the stronger refusal is. Both sit BEFORE ``denylisted`` so
+    the hand-curated list is charged only for what nothing automatic caught,
+    which is what makes its number the honest measure of how much curation the
+    set still needs.
+
     ``denylisted`` is the curated exclusion, and it is charged LAST of the
     row-level buckets - after every automatic gate and before the cap. A word an
     automatic gate already stopped is charged to that gate, so this bucket
@@ -203,6 +212,8 @@ class DerivedCounters(BaseModel):
     belowAttestations: int = Field(ge=0)
     belowFrequency: int = Field(ge=0)
     withoutMeaning: int = Field(ge=0)
+    obscene: int = Field(ge=0)
+    participial: int = Field(ge=0)
     denylisted: int = Field(ge=0)
     capped: int = Field(ge=0)
     rowsKept: int = Field(ge=0)
@@ -217,6 +228,8 @@ class DerivedCounters(BaseModel):
             + self.belowAttestations
             + self.belowFrequency
             + self.withoutMeaning
+            + self.obscene
+            + self.participial
             + self.denylisted
             + self.capped
             + self.rowsKept
@@ -227,7 +240,8 @@ class DerivedCounters(BaseModel):
                 f"{self.outsideClass} + outsideCategories {self.outsideCategories} "
                 f"+ outsidePos {self.outsidePos} + belowAttestations "
                 f"{self.belowAttestations} + belowFrequency {self.belowFrequency} "
-                f"+ withoutMeaning {self.withoutMeaning} + denylisted "
+                f"+ withoutMeaning {self.withoutMeaning} + obscene {self.obscene} "
+                f"+ participial {self.participial} + denylisted "
                 f"{self.denylisted} + capped {self.capped} "
                 f"+ rowsKept {self.rowsKept} != lexiconRows {self.lexiconRows}"
             )

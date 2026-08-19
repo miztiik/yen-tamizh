@@ -1,6 +1,6 @@
 # How to add a derived wordlist
 
-**Last Updated**: 2026-08-17
+**Last Updated**: 2026-08-19
 
 A derived wordlist is one Game's SERVED slice of the published
 [lexicon](../concepts/lexicon.md) - the words its generator is allowed to build
@@ -16,8 +16,8 @@ datasets/lexicon/**  ->  published lexicon  ->  per-Game sets  ->  daily puzzles
 The lexicon is everything the pipeline knows: every surface any source ever
 showed us, with its class and every fact asserted about it. A derived wordlist is
 the far smaller set a player is actually asked to spell. **PRESENT and SERVED are
-different populations**, and the selection knobs on this page - plus the curated
-deny-list below them - are the whole difference.
+different populations**, and the selection knobs on this page - plus the two
+serving rules and the curated deny-list below them - are the whole difference.
 
 Derived sets are **build artifacts**. They are regenerated in full by one
 command, they are a pure function of the lexicon plus the registry, and they are
@@ -74,12 +74,12 @@ its rows share their tiles with another served row, and its length and
 familiarity spread:
 
 ```
-anagram: rowsKept=32241 outsideLength=63443 outsideClass=1076
+anagram: rowsKept=31055 outsideLength=63443 outsideClass=1076
   outsideCategories=0 outsidePos=0
   belowAttestations=17776 belowFrequency=38020 withoutMeaning=10812
-  denylisted=69 capped=0
-  sharedFanOut=514 lengths[3:5928 4:10260 5:9479 6:6574]
-  strata[q1:8061 q2:8060 q3:8060 q4:8060]
+  obscene=4 participial=1065 denylisted=186 capped=0
+  sharedFanOut=510 lengths[3:5845 4:9995 5:9055 6:6160]
+  strata[q1:7764 q2:7764 q3:7764 q4:7763]
   -> datasets/wordlists/derived/anagram.json
 ```
 
@@ -108,9 +108,10 @@ Two more knobs shape the set without judging a word:
 | `minLength` / `maxLength` | Bounds on a word's **ezhuthu** count, not its code points. |
 | `maxWords` | Cap on the committed artifact; `null` means uncapped. A derived set lives in git, so an uncapped one is an unbounded commit. The cap trims from the RARE end, because rows come out most frequent first. |
 
-One admission test is not a knob and is not per-set: the curated deny-list, which
-runs after all of these. See [the deny-list](#the-deny-list-and-how-to-grow-it)
-below.
+Three admission tests are not knobs and are not per-set: the two `servingRules`
+and the curated deny-list, all of which run after every gate above. See
+[the serving rules](#the-serving-rules-a-participle-and-an-obscenity) and
+[the deny-list](#the-deny-list-and-how-to-grow-it) below.
 
 ## The two selection dimensions, and the themed set they cut
 
@@ -171,10 +172,76 @@ The Tamil name a player reads for a theme is copy in
 [`../../config/copy.json`](../../config/copy.json), keyed by the theme's
 `copySlug`. A category name is never baked into a dataset.
 
+## The serving rules: a participle and an obscenity
+
+Two exclusions need no curation, because the published data already carries the
+signal. They live under `servingRules` in
+[`../../config/derived-wordlists.json`](../../config/derived-wordlists.json),
+hang off the REGISTRY for the same reason `denylistPath` does, and are charged
+after every gate above and before the deny-list.
+
+### `participialSuffixes` - a peyareccham is not a headword
+
+Tamil derives an adjective from almost any noun or verb, so `mozhi` (language)
+gives `mozhiyaana` (linguistic) and `thavaRu` (fault) gives `thavaRillaadha`
+(faultless). Those are INFLECTED forms; a dictionary lists the stem. Word-hood's
+`inflected` rule cannot reach them - it labels inflection from the two collected
+verb-form lists, which is direct evidence and therefore only as wide as those
+lists - so a participial adjective they happen not to contain arrives with a
+tier-1 listing, a clean shape, and nothing to demote it. Four of them were dealt
+as Daily answers.
+
+A suffix is written the way Tamil actually builds one, because the ending is not
+a fixed string: the suffix rewrites the stem's last ezhuthu when it lands.
+
+| Field | Meaning |
+| --- | --- |
+| `tail` | The literal ezhuthu the surface ends in. |
+| `linkVowel` | The matra the ezhuthu immediately BEFORE `tail` must carry - the `aa` of every `-aana` form, the `u` of every `-ulla` one. This is what makes the match a claim about morphology rather than about a run of letters. |
+| `minStemEzhuthu` | How many ezhuthu must remain in front of the whole pattern. Without it the rule takes `vaan` (sky) and `kolla`. |
+
+Three endings ship, and between them they removed **1,065** of the 32,122 rows
+the set served on 2026-08-19: `-aana` (721 rows), `-aadha` (218, including every
+`-illaadha` compound), and `-ulla` (124). Every match was read by hand and none
+is a surface a Tamil dictionary lists as a headword.
+
+Two shapes were measured and REJECTED, and they are the guard rails for the next
+suffix somebody proposes:
+
+- **Requiring the stripped stem to be an attested headword.** It sounds stricter
+  and is weaker. Sandhi rewrites the stem, so undoing it means guessing which of
+  several spellings the writer started from, and each miss keeps a participle on
+  the board: the guess left 186 of the 1,063 served matches there, `mozhiyaana`
+  and `thavaRillaadha` among them.
+- **The `-iya` ending.** It matches 202 served rows, and they include `indhiya`,
+  `dhesiya`, `ilakkiya`, `pudhiya`, `siRiya`, `periya`, `ariya` and `iniya` -
+  ordinary vocabulary a dictionary lists. Deleting real words is the worse
+  defect, so the ending is not registered.
+
+### `obscenityMarkers` - the source already said so
+
+A daily puzzle for casual players must not deal an obscenity as the answer, and
+nothing has to be curated to prevent it: Tamil lexicography writes the judgement
+into the gloss as a usage label. The rule refuses any row whose FIRST sense
+carries one of the named labels.
+
+Sense zero only, and the marker is the whole LABEL rather than its stem. Both
+narrowings were measured:
+
+- a bare `aabaasa` substring matches 12 served rows and exactly one of them is an
+  obscenity - the other eleven are words like `aruvaruppu` (disgust) whose gloss
+  merely DISCUSSES coarse speech;
+- reading every sense rather than sense zero adds `vanmai` (harshness) and
+  `theettu`, whose twelfth and second senses discuss it.
+
+The two labels that ship - `aabaasa-c-chol` and `vasai-c-chol` - remove **four**
+rows between them, and the removal is on SERVING only: each word keeps its
+published class and its published facts, exactly as a denied word does.
+
 ## The deny-list, and how to grow it
 
-One exclusion is not derivable from the lexicon and runs after every gate above:
-the curated list in
+One exclusion is not derivable from the lexicon at all, and it runs last: the
+curated list in
 [`../../config/served-denylist.json`](../../config/served-denylist.json),
 schema-validated against
 [`../../schemas/served-denylist.schema.json`](../../schemas/served-denylist.schema.json)
@@ -242,8 +309,8 @@ tells you what a run did:
   which one moved.
 - `counters` - the reconciliation ledger, which the contract itself enforces:
   `lexiconRows - outsideClass - outsideCategories - outsidePos - outsideLength -
-  belowAttestations - belowFrequency - withoutMeaning - denylisted - capped ==
-  rowsKept == len(words)`.
+  belowAttestations - belowFrequency - withoutMeaning - obscene - participial -
+  denylisted - capped == rowsKept == len(words)`.
 
 Every published lexicon row is accounted for under exactly one heading, in the
 order the identity is read, and a row that fails several gates is charged to the
@@ -251,8 +318,10 @@ first that stopped it. That is what makes "this gate does the most work" a
 measurement rather than an assertion - and what stops a selection bug from
 quietly dropping words. The two dimension buckets read first, so a themed
 ledger says how far the theme reaches and then what each gate removed from
-inside it; on an ordinary set both are 0. `denylisted` reads LAST, so its number
-is what the deny-list ALONE removed.
+inside it; on an ordinary set both are 0. `obscene` and `participial` read after
+every automatic gate, `obscene` first of the two because it is the graver
+refusal; `denylisted` reads LAST, so its number is what hand curation ALONE
+removed once everything derivable had run.
 
 `outsideClass` is read off the lexicon's own partition table rather than counted
 line by line: selection is an allow-list, so the derived layer opens only the

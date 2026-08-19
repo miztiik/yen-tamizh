@@ -18,10 +18,12 @@ export type Belowfrequency = number
 export type Capped = number
 export type Denylisted = number
 export type Lexiconrows = number
+export type Obscene = number
 export type Outsidecategories = number
 export type Outsideclass = number
 export type Outsidelength = number
 export type Outsidepos = number
+export type Participial = number
 export type Rowskept = number
 export type Withoutmeaning = number
 export type Gameid = string
@@ -98,6 +100,15 @@ why: Why
  * theme covers, here is what each gate then removed" rather than burying the
  * theme's own reach inside ``outsideLength``.
  * 
+ * ``obscene`` and ``participial`` are the two exclusions the registry's
+ * ``servingRules`` derive from the row itself, charged after every gate and
+ * before the curated list. ``obscene`` runs first of the two because it is the
+ * graver reason: a surface that is both an obscenity and a participle should
+ * be counted where the stronger refusal is. Both sit BEFORE ``denylisted`` so
+ * the hand-curated list is charged only for what nothing automatic caught,
+ * which is what makes its number the honest measure of how much curation the
+ * set still needs.
+ * 
  * ``denylisted`` is the curated exclusion, and it is charged LAST of the
  * row-level buckets - after every automatic gate and before the cap. A word an
  * automatic gate already stopped is charged to that gate, so this bucket
@@ -111,10 +122,12 @@ belowFrequency: Belowfrequency
 capped: Capped
 denylisted: Denylisted
 lexiconRows: Lexiconrows
+obscene: Obscene
 outsideCategories: Outsidecategories
 outsideClass: Outsideclass
 outsideLength: Outsidelength
 outsidePos: Outsidepos
+participial: Participial
 rowsKept: Rowskept
 withoutMeaning: Withoutmeaning
 }

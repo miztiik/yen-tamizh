@@ -13,9 +13,9 @@
   ],
   "date": "2026-08-28",
   "items": [
-    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: மு"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: முஷ்டி"}], "meaning": "முஷ்டி", "reveal": 0, "tiles": ["ட்", "மு", "டி"], "timeLimitSec": 0, "translationEn": "bump", "word": "முட்டி"}},
-    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: இ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: தங்குவதற்குக் கிடைக்கும் இடப் போதுமை"}], "meaning": "தங்குவதற்குக் கிடைக்கும் இடப் போதுமை", "reveal": 0, "tiles": ["வ", "ட", "ச", "தி", "இ"], "timeLimitSec": 0, "translationEn": "accommodation", "word": "இடவசதி"}},
-    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: க"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: உவர்நிலம்"}], "meaning": "உவர்நிலம்", "reveal": 0, "tiles": ["ள", "ர்", "க", "ம்", "ல", "நி"], "timeLimitSec": 0, "translationEn": "saline soil", "word": "களர்நிலம்"}}
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ஒ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: ஒப்பானது"}], "meaning": "ஒப்பானது", "reveal": 0, "tiles": ["த்", "த", "ஒ", "து"], "timeLimitSec": 0, "word": "ஒத்தது"}},
+    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: அ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: உதவி"}], "meaning": "உதவி", "reveal": 0, "tiles": ["னு", "அ", "ர", "ச", "ணை"], "timeLimitSec": 0, "translationEn": "support", "word": "அனுசரணை"}},
+    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ம"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: நாவிதன் ( )"}], "meaning": "நாவிதன் ( )", "reveal": 0, "tiles": ["ஞ்", "ன்", "க", "ம", "சி"], "timeLimitSec": 0, "word": "மஞ்சிகன்"}}
   ],
   "version": "2026-08-17"
 }

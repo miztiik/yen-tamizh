@@ -27,6 +27,13 @@ hundred rows.
 ``denylistPath`` names the one input the knobs cannot express: the curated list
 of words that are real Tamil and still make a bad puzzle (row 16). It hangs off
 the registry rather than off a set, because it is true of every Game.
+
+``servingRules`` names the two exclusions that ARE derivable - from a surface's
+own ezhuthu and from its own first sense - so neither needs a hand-written list
+(defect 2). They hang off the registry for the same reason ``denylistPath``
+does: a participial adjective is not a headword and an obscenity is not a Daily
+answer whichever Game is asking, and a per-set knob would let the next set opt
+out of both by omission.
 """
 
 from __future__ import annotations
@@ -170,6 +177,96 @@ class DerivedSet(BaseModel):
     note: str | None = None
 
 
+class ParticipialSuffix(BaseModel):
+    """One participial ending, written the way Tamil actually builds it.
+
+    A peyareccham is not glued on as a fixed string. ``mozhi`` + ``-aana``
+    surfaces as ``mozhiyaana`` with a glide, ``azhagu`` + ``-aana`` as
+    ``azhagaana`` with the stem's final vowel replaced - so the only part that
+    is CONSTANT across every formation is the last ezhuthu or two plus the VOWEL
+    the ezhuthu in front of them carries. That is what this states:
+
+    - ``tail`` is the literal ezhuthu the surface ends in;
+    - ``linkVowel`` is the matra the ezhuthu immediately before ``tail`` must
+      carry - the ``aa`` of every ``-aana`` form, the ``u`` of every
+      ``-ulla`` one - which is what makes the match a claim about Tamil
+      morphology rather than about a run of letters;
+    - ``minStemEzhuthu`` is how many ezhuthu must remain in FRONT of the whole
+      pattern. It is the guard that keeps the rule off short words that merely
+      end that way: ``vaan`` (sky) and ``kolla`` are two and three ezhuthu, and
+      a rule with no floor would delete both.
+
+    A suffix is stated in ezhuthu rather than code points because the linking
+    vowel is written as a mark ON the preceding consonant, so a code-point rule
+    would be reading half a syllable.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    linkVowel: str = Field(min_length=1)
+    tail: list[str] = Field(min_length=1)
+    minStemEzhuthu: int = Field(ge=1)
+    note: str = Field(min_length=1)
+
+    @model_validator(mode="after")
+    def _pattern_is_stated(self) -> Self:
+        if not self.linkVowel.strip():
+            raise ValueError("linkVowel is blank")
+        if any(not part.strip() for part in self.tail):
+            raise ValueError(f"tail has a blank ezhuthu: {self.tail}")
+        return self
+
+
+class ServingRules(BaseModel):
+    """The two exclusions the lexicon's own data can express, applied to SERVING.
+
+    Both are the same KIND of statement as ``config/served-denylist.json`` -
+    the word stays in the published lexicon and is only kept off the board - and
+    both are here rather than in that file because neither needs curation: each
+    is derivable from something every published row already carries.
+
+    ``participialSuffixes`` demotes the participial adjective. Tamil derives one
+    from almost any noun or verb, so a form like ``mozhiyaana`` arrives with a
+    dictionary listing, a clean shape and nothing to demote it - and the
+    word-hood classifier's ``inflected`` rule cannot reach it, because that rule
+    reads collected verb-form lists and a peyareccham the lists happen not to
+    contain is invisible to it. This is a SERVING rule rather than a word-hood
+    verdict for exactly that reason: it is a statement about what makes a fair
+    puzzle answer, and the lexicon's own truth about the surface is untouched.
+
+    ``obscenityMarkers`` refuses a row the SOURCE ITSELF labelled. Tamil
+    lexicography writes the judgement into the gloss as a usage label -
+    ``(aabaasa-c-chol)``, ``(vasai-c-chol)`` - so the signal is already in the
+    published data and needs no list of rude words to be maintained by hand.
+    The marker matches the FIRST sense only: sense zero is the one the lexicon
+    ranks most authoritative and the one a Game displays, while a label buried
+    in sense twelve marks a marginal reading and, measured, catches ordinary
+    vocabulary whose gloss merely DISCUSSES coarse speech.
+
+    Both lists carry no defaults for the same reason the serving gates do not:
+    an empty rule and a forgotten one produce identical output, and the failure
+    mode worth refusing is the forgotten one.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    note: str = Field(min_length=1)
+    obscenityMarkers: list[str] = Field(min_length=1)
+    participialSuffixes: list[ParticipialSuffix] = Field(min_length=1)
+
+    @model_validator(mode="after")
+    def _markers_are_sorted_and_stated(self) -> Self:
+        if any(not marker.strip() for marker in self.obscenityMarkers):
+            raise ValueError(f"obscenityMarkers has a blank entry: {self.obscenityMarkers}")
+        # A set written as a list: the order it is written in must not be
+        # information, and a repeat would look like it weighted a marker.
+        if list(self.obscenityMarkers) != sorted(set(self.obscenityMarkers)):
+            raise ValueError(
+                f"obscenityMarkers must be sorted and deduped: {self.obscenityMarkers}"
+            )
+        return self
+
+
 class DerivedWordlists(SchemaModel):
     """The registry: one lexicon in, one derived set out per registered Game."""
 
@@ -184,6 +281,10 @@ class DerivedWordlists(SchemaModel):
     # out of it by omission. Config rather than a Python literal for the same
     # reason ``lexiconPath`` is (Holy Law #6).
     denylistPath: RelPath
+    # The two exclusions no curation can keep up with, on the registry for the
+    # same reason (Holy Law #6): what an ending MEANS and what a usage label
+    # SAYS are facts about the language and the source, not per-Game taste.
+    servingRules: ServingRules
     sets: list[DerivedSet] = Field(min_length=1)
 
     @model_validator(mode="after")

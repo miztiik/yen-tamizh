@@ -15,12 +15,28 @@ export type Version = string
 export type Why = string
 export type Denylistpath = string
 export type Lexiconpath = string
+export type Note = string
+/**
+ * @minItems 1
+ */
+export type Obscenitymarkers = [string, ...(string)[]]
+/**
+ * @minItems 1
+ */
+export type Participialsuffixes = [ParticipialSuffix, ...(ParticipialSuffix)[]]
+export type Linkvowel = string
+export type Minstemezhuthu = number
+export type Note1 = string
+/**
+ * @minItems 1
+ */
+export type Tail = [string, ...(string)[]]
 /**
  * @minItems 1
  */
 export type Sets = [DerivedSet, ...(DerivedSet)[]]
 export type Gameid = string
-export type Note = (string | null)
+export type Note2 = (string | null)
 export type Out = string
 export type Categories = ([string, ...(string)[]] | null)
 export type Maxlength = number
@@ -44,6 +60,7 @@ export interface DerivedWordlists {
 changelog: Changelog
 denylistPath: Denylistpath
 lexiconPath: Lexiconpath
+servingRules: ServingRules
 sets: Sets
 version: Version1
 }
@@ -59,6 +76,70 @@ version: Version
 why: Why
 }
 /**
+ * The two exclusions the lexicon's own data can express, applied to SERVING.
+ * 
+ * Both are the same KIND of statement as ``config/served-denylist.json`` -
+ * the word stays in the published lexicon and is only kept off the board - and
+ * both are here rather than in that file because neither needs curation: each
+ * is derivable from something every published row already carries.
+ * 
+ * ``participialSuffixes`` demotes the participial adjective. Tamil derives one
+ * from almost any noun or verb, so a form like ``mozhiyaana`` arrives with a
+ * dictionary listing, a clean shape and nothing to demote it - and the
+ * word-hood classifier's ``inflected`` rule cannot reach it, because that rule
+ * reads collected verb-form lists and a peyareccham the lists happen not to
+ * contain is invisible to it. This is a SERVING rule rather than a word-hood
+ * verdict for exactly that reason: it is a statement about what makes a fair
+ * puzzle answer, and the lexicon's own truth about the surface is untouched.
+ * 
+ * ``obscenityMarkers`` refuses a row the SOURCE ITSELF labelled. Tamil
+ * lexicography writes the judgement into the gloss as a usage label -
+ * ``(aabaasa-c-chol)``, ``(vasai-c-chol)`` - so the signal is already in the
+ * published data and needs no list of rude words to be maintained by hand.
+ * The marker matches the FIRST sense only: sense zero is the one the lexicon
+ * ranks most authoritative and the one a Game displays, while a label buried
+ * in sense twelve marks a marginal reading and, measured, catches ordinary
+ * vocabulary whose gloss merely DISCUSSES coarse speech.
+ * 
+ * Both lists carry no defaults for the same reason the serving gates do not:
+ * an empty rule and a forgotten one produce identical output, and the failure
+ * mode worth refusing is the forgotten one.
+ */
+export interface ServingRules {
+note: Note
+obscenityMarkers: Obscenitymarkers
+participialSuffixes: Participialsuffixes
+}
+/**
+ * One participial ending, written the way Tamil actually builds it.
+ * 
+ * A peyareccham is not glued on as a fixed string. ``mozhi`` + ``-aana``
+ * surfaces as ``mozhiyaana`` with a glide, ``azhagu`` + ``-aana`` as
+ * ``azhagaana`` with the stem's final vowel replaced - so the only part that
+ * is CONSTANT across every formation is the last ezhuthu or two plus the VOWEL
+ * the ezhuthu in front of them carries. That is what this states:
+ * 
+ * - ``tail`` is the literal ezhuthu the surface ends in;
+ * - ``linkVowel`` is the matra the ezhuthu immediately before ``tail`` must
+ *   carry - the ``aa`` of every ``-aana`` form, the ``u`` of every
+ *   ``-ulla`` one - which is what makes the match a claim about Tamil
+ *   morphology rather than about a run of letters;
+ * - ``minStemEzhuthu`` is how many ezhuthu must remain in FRONT of the whole
+ *   pattern. It is the guard that keeps the rule off short words that merely
+ *   end that way: ``vaan`` (sky) and ``kolla`` are two and three ezhuthu, and
+ *   a rule with no floor would delete both.
+ * 
+ * A suffix is stated in ezhuthu rather than code points because the linking
+ * vowel is written as a mark ON the preceding consonant, so a code-point rule
+ * would be reading half a syllable.
+ */
+export interface ParticipialSuffix {
+linkVowel: Linkvowel
+minStemEzhuthu: Minstemezhuthu
+note: Note1
+tail: Tail
+}
+/**
  * One registered derived set: who consumes it and where it lands.
  * 
  * ``gameId`` is the registry's unique key. A Game that runs themed days
@@ -69,7 +150,7 @@ why: Why
  */
 export interface DerivedSet {
 gameId: Gameid
-note?: Note
+note?: Note2
 out: Out
 selection: DerivedSelection
 }
