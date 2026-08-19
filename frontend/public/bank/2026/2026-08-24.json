@@ -13,9 +13,9 @@
   ],
   "date": "2026-08-24",
   "items": [
-    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 1, "kind": "category", "text": "வகை: உறவு"}, {"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: க"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: கணவன்"}], "meaning": "கணவன்", "reveal": 0, "tiles": ["ர்", "வ", "க", "ண"], "timeLimitSec": 0, "translationEn": "lord", "word": "கணவர்"}},
-    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 1, "kind": "category", "text": "வகை: மருத்துவமனை"}, {"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: கொ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: கட்டி"}], "meaning": "கட்டி", "reveal": 0, "tiles": ["பு", "ப்", "ள", "ம்", "கொ"], "timeLimitSec": 0, "translationEn": "blister", "word": "கொப்புளம்"}},
-    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ஊ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: அகவுணர்விருக்கக்கூடிய"}], "meaning": "அகவுணர்விருக்கக்கூடிய", "reveal": 0, "tiles": ["ஊ", "க", "ள்", "மு", "ள"], "timeLimitSec": 0, "translationEn": "politic", "word": "ஊகமுள்ள"}}
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: கே"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: திருமால்"}], "meaning": "திருமால்", "reveal": 0, "tiles": ["ன்", "வ", "கே", "ச"], "timeLimitSec": 0, "word": "கேசவன்"}},
+    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: நா"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: சதுர்வேதம்"}], "meaning": "சதுர்வேதம்", "reveal": 0, "tiles": ["ம", "றை", "நா", "ன்"], "timeLimitSec": 0, "word": "நான்மறை"}},
+    {"difficulty": "hard", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: அ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: காடு"}], "meaning": "காடு", "reveal": 0, "tiles": ["த்", "வா", "ள", "த", "அ", "ம்"], "timeLimitSec": 0, "word": "அத்தவாளம்"}}
   ],
   "version": "2026-08-17"
 }

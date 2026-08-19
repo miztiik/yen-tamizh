@@ -13,9 +13,11 @@ Six things are proven:
    reconcile against the lexicon's published row count with no silent drops -
    **the two selection dimensions**, ``categories`` and ``pos``, which keep
    the rows their own set-valued column intersects, are charged before the
-   gates, and never apply to a set that did not ask for them - and **the
-   curated deny-list**, which runs after every automatic gate, matches a WHOLE
-   word and never a prefix, and carries its own ledger bucket.
+   gates, and never apply to a set that did not ask for them - **the two
+   derivable exclusions** of defect 2, the participial suffix and the source's
+   own obscenity label, each with its own bucket and each asserted against the
+   words it must NOT take - and **the curated deny-list**, which runs last,
+   matches a WHOLE word and never a prefix, and carries its own ledger bucket.
 2. **Resolution by the meta document** - the derived layer opens the files the
    partition table names and NOTHING else, so a stray file in the published
    directory cannot reach a player and a class the lexicon does not publish is a
@@ -26,8 +28,9 @@ Six things are proven:
    assertion is the hand-edit gate: a derived set is a build artifact, so any
    hand edit fails here.
 4. **The Oracles over the REAL committed artifacts** - every row satisfies all
-   four gates; the three words this cutover exists to remove are absent; no
-   denied word survives in either set while every word deliberately KEPT is
+   four gates; the three words this cutover exists to remove are absent, as are
+   the four participial adjectives and the one labelled obscenity of defect 2;
+   no denied word survives in either set while every word deliberately KEPT is
    still served; every ``anagramFanOut`` equals the number of served rows
    sharing its ezhuthu multiset; every ``frequencyStratum`` is the quartile of
    THIS set; and the themed set is EXACTLY the rows the theme covers that the
@@ -36,9 +39,11 @@ Six things are proven:
 5. **Coverage + schema** - the committed set is non-empty at every target ezhuthu
    length, clears the served-set floor, and validates row by row.
 6. **Rejection** - a malformed row, an incoherent selection, an unsorted
-   dimension, a colliding registry, a registry naming no deny-list, an unsorted
-   or duplicated or unexplained deny-list, and a class no Game may ever serve
-   all fail validation rather than being silently accepted.
+   dimension, a colliding registry, a registry naming no deny-list or no
+   serving rules, an unsorted or blank obscenity marker, a suffix with a blank
+   ezhuthu or no stem floor, an unsorted or duplicated or unexplained deny-list,
+   and a class no Game may ever serve all fail validation rather than being
+   silently accepted.
 """
 
 from __future__ import annotations
@@ -56,7 +61,9 @@ from yen_tamizh_backend.contracts.common import QUARTILES
 from yen_tamizh_backend.contracts.derived_wordlists import (
     DerivedSelection,
     DerivedSet,
+    ParticipialSuffix,
     ServableWordClass,
+    ServingRules,
 )
 from yen_tamizh_backend.contracts.game_wordlist import (
     DerivedCounters,
@@ -113,6 +120,52 @@ ORU = "\u0b92\u0bb0\u0bc1"
 ASURA = "\u0b85\u0b9a\u0bc1\u0bb0"
 DMK = "\u0ba4\u0bbf\u0bae\u0bc1\u0b95"
 STALIN = "\u0bb8\u0bcd\u0b9f\u0bbe\u0bb2\u0bbf\u0ba9\u0bcd"
+
+# Defect 2's own four: participial adjectives the board dealt as answers.
+# mozhiyaana (linguistic), migudhiyaana (abundant), urundaiyaana (round) and
+# thavaRillaadha (faultless) are peyareccham built on mozhi, migudhi, urundai
+# and thavaRu - inflected forms, not headwords a dictionary lists.
+MOZHIYAANA = "\u0bae\u0bca\u0bb4\u0bbf\u0baf\u0bbe\u0ba9"
+MIGUDHIYAANA = "\u0bae\u0bbf\u0b95\u0bc1\u0ba4\u0bbf\u0baf\u0bbe\u0ba9"
+URUNDAIYAANA = "\u0b89\u0bb0\u0bc1\u0ba3\u0bcd\u0b9f\u0bc8\u0baf\u0bbe\u0ba9"
+THAVARILLAADHA = "\u0ba4\u0bb5\u0bb1\u0bbf\u0bb2\u0bcd\u0bb2\u0bbe\u0ba4"
+PAYANULLA = "\u0baa\u0baf\u0ba9\u0bc1\u0bb3\u0bcd\u0bb3"  # payanulla - useful
+
+# Real vocabulary that ENDS the same way and must survive the suffix rule.
+# vaan (sky) and aakiya are inside the -aana / -iya shapes; kolla, mella, kulla
+# and kalla are the words a bare -lla match would have taken; indhiya, pudhiya,
+# periya, siRiya, ariya, iniya and dhesiya are why the -iya ending was measured
+# and rejected outright.
+VAAN = "\u0bb5\u0bbe\u0ba9"
+KOLLA = "\u0b95\u0bca\u0bb3\u0bcd\u0bb3"
+MELLA = "\u0bae\u0bc6\u0bb3\u0bcd\u0bb3"
+KULLA = "\u0b95\u0bc1\u0bb3\u0bcd\u0bb3"
+KALLA = "\u0b95\u0bb3\u0bcd\u0bb3"
+_ENDS_THE_SAME_WAY = (
+    KOLLA,
+    MELLA,
+    KULLA,
+    KALLA,
+    "\u0b87\u0ba8\u0bcd\u0ba4\u0bbf\u0baf",  # indhiya
+    "\u0baa\u0bc1\u0ba4\u0bbf\u0baf",  # pudhiya
+    "\u0baa\u0bc6\u0bb0\u0bbf\u0baf",  # periya
+    "\u0b9a\u0bbf\u0bb1\u0bbf\u0baf",  # siRiya
+    "\u0b85\u0bb0\u0bbf\u0baf",  # ariya
+    "\u0b87\u0ba9\u0bbf\u0baf",  # iniya
+    "\u0ba4\u0bc7\u0b9a\u0bbf\u0baf",  # dhesiya
+)
+
+# The obscenity the source labels, and the four surfaces a looser marker takes
+# with it: aruvaruppu (disgust) and pachchai (green) whose glosses MENTION
+# obscenity, vanmai (harshness) whose later sense discusses coarse speech, and
+# paasisam (fascism) whose gloss says the word became a term of abuse.
+PUNDAI = "\u0baa\u0bc1\u0ba3\u0bcd\u0b9f\u0bc8"
+_NOT_OBSCENE = (
+    "\u0b85\u0bb0\u0bc1\u0bb5\u0bb0\u0bc1\u0baa\u0bcd\u0baa\u0bc1",  # aruvaruppu
+    "\u0baa\u0b9a\u0bcd\u0b9a\u0bc8",  # pachchai
+    "\u0bb5\u0ba9\u0bcd\u0bae\u0bc8",  # vanmai
+    "\u0baa\u0bbe\u0b9a\u0bbf\u0b9a\u0bae\u0bcd",  # paasisam
+)
 
 # The 27 words reviewed alongside the row 16 deny-list and deliberately KEPT -
 # appa, amma, arasu, pakkam, maathiri, konjam, niraiya, the numerals one to five
@@ -301,10 +354,16 @@ def _spec(out: str, **overrides: Any) -> dict[str, Any]:
     }
 
 
+# The REAL shipped serving rules, so a fixture cut is refused exactly what the
+# committed set is refused - and so tuning the config moves the tests with it.
+_RULES = derive.load_registry(_REGISTRY).servingRules
+
+
 def _cut(
     repo_root: Path,
     rows: list[LexiconEntry],
     denied: frozenset[str] = frozenset(),
+    rules: ServingRules = _RULES,
     **overrides: Any,
 ) -> GameWordlist:
     """Publish a fixture lexicon and cut one set out of it, end to end."""
@@ -317,7 +376,7 @@ def _cut(
         meta, meta_path, "datasets/lexicon/lexicon.meta.json"
     )
     streamed = derive.read_rows(meta, repo_root, spec.selection.wordClasses)
-    return derive.derive(meta, streamed, source, spec, denied)
+    return derive.derive(meta, streamed, source, spec, denied, rules)
 
 
 @pytest.fixture(scope="module")
@@ -406,6 +465,56 @@ def test_two_bare_attestations_without_a_dictionary_are_not_enough(
 
     assert [row.word for row in wordlist.words] == [VAASAL]
     assert wordlist.counters.belowAttestations == 1
+
+
+def test_a_participial_adjective_is_demoted_and_a_lookalike_is_not(
+    tmp_path: Path,
+) -> None:
+    """Defect 2's own four, beside the words that merely END the same way.
+
+    Both halves matter. A rule that keeps mozhiyaana off the board and takes
+    vaan (sky) or kolla with it has traded one defect for a worse one, so the
+    lookalikes are asserted as loudly as the participles.
+    """
+    participles = [
+        MOZHIYAANA,
+        MIGUDHIYAANA,
+        URUNDAIYAANA,
+        THAVARILLAADHA,
+        PAYANULLA,
+    ]
+    lookalikes = [VAAN, KOLLA, MELLA, KULLA, KALLA]
+    wordlist = _cut(
+        tmp_path,
+        [_entry(word) for word in (*participles, *lookalikes)],
+        minLength=2,
+    )
+
+    assert {row.word for row in wordlist.words} == set(lookalikes)
+    assert wordlist.counters.participial == len(participles)
+
+
+def test_an_obscenity_the_source_labels_is_never_served(tmp_path: Path) -> None:
+    """The refusal reads the SOURCE's own usage label, not a curated rude-word list.
+
+    Two near misses are asserted with it, because both were measured as real
+    false positives of the looser markers that were rejected: a gloss that
+    MENTIONS obscenity is not an obscenity, and a label on a later sense marks a
+    marginal reading rather than the word.
+    """
+    labelled = f"{MEANING} (\u0b86\u0baa\u0bbe\u0b9a\u0b9a\u0bcd\u0b9a\u0bca\u0bb2\u0bcd)"
+    discusses = f"\u0b86\u0baa\u0bbe\u0b9a\u0bae\u0bcd {MEANING}"
+    wordlist = _cut(
+        tmp_path,
+        [
+            _entry(PUNDAI, definitionTa=[labelled]),
+            _entry(VAASAL, definitionTa=[discusses]),
+            _entry(ITHAZH, definitionTa=[MEANING, labelled]),
+        ],
+    )
+
+    assert {row.word for row in wordlist.words} == {VAASAL, ITHAZH}
+    assert wordlist.counters.obscene == 1
 
 
 def test_rows_come_out_most_frequent_first(tmp_path: Path) -> None:
@@ -730,6 +839,7 @@ def _tmp_repo(
                 ],
                 "lexiconPath": "datasets/lexicon/lexicon.meta.json",
                 "denylistPath": "config/served-denylist.json",
+                "servingRules": _RULES.model_dump(),
                 "sets": sets,
             }
         ),
@@ -781,7 +891,9 @@ def test_committed_anagram_set_is_exactly_what_a_rebuild_produces(
     rows = derive.read_rows(committed_meta, _REPO_ROOT, spec.selection.wordClasses)
     denied = derive.load_denylist(_REPO_ROOT / registry.denylistPath).words()
 
-    rebuilt = derive.render(derive.derive(committed_meta, rows, source, spec, denied))
+    rebuilt = derive.render(
+        derive.derive(committed_meta, rows, source, spec, denied, registry.servingRules)
+    )
 
     assert rebuilt == _ANAGRAM.read_text(encoding="utf-8")
 
@@ -806,7 +918,9 @@ def test_committed_themed_set_is_exactly_what_a_rebuild_produces(
     rows = derive.read_rows(committed_meta, _REPO_ROOT, spec.selection.wordClasses)
     denied = derive.load_denylist(_REPO_ROOT / registry.denylistPath).words()
 
-    rebuilt = derive.render(derive.derive(committed_meta, rows, source, spec, denied))
+    rebuilt = derive.render(
+        derive.derive(committed_meta, rows, source, spec, denied, registry.servingRules)
+    )
 
     assert rebuilt == _THEMED.read_text(encoding="utf-8")
 
@@ -829,6 +943,7 @@ def test_the_themed_set_is_exactly_the_rows_the_theme_covers_and_the_gates_keep(
     assert selection.categories is not None
     wanted = set(selection.categories)
     denied = derive.load_denylist(_DENYLIST).words()
+    rules = derive.load_registry(_REGISTRY).servingRules
     expected = {
         row.word
         for row in derive.read_rows(committed_meta, _REPO_ROOT, selection.wordClasses)
@@ -838,6 +953,10 @@ def test_the_themed_set_is_exactly_the_rows_the_theme_covers_and_the_gates_keep(
         and row.tier1Attestations >= selection.minTier1Attestations
         and row.frequency >= selection.minFrequency
         and row.definitionTa is not None
+        and not derive.is_marked_obscene(row.definitionTa, rules.obscenityMarkers)
+        and not derive.ends_in_participial_suffix(
+            segment(row.word), rules.participialSuffixes
+        )
         and row.word not in denied
     }
 
@@ -920,6 +1039,103 @@ def test_the_three_words_this_cutover_removes_are_absent(
         assert word not in served, f"{word} is still served"
 
 
+def test_the_four_participial_adjectives_the_board_dealt_are_absent(
+    committed_anagram: GameWordlist,
+) -> None:
+    """Defect 2, named rather than sampled - baked days served all four."""
+    served = {row.word for row in committed_anagram.words}
+    for word in (MOZHIYAANA, MIGUDHIYAANA, URUNDAIYAANA, THAVARILLAADHA):
+        assert word not in served, f"{word} is still served"
+
+
+def test_no_committed_row_ends_in_a_participial_suffix(
+    committed_anagram: GameWordlist, committed_themed: GameWordlist
+) -> None:
+    """THE defect-2 Oracle for the suffix rule, over both committed sets."""
+    rules = derive.load_registry(_REGISTRY).servingRules
+    for wordlist in (committed_anagram, committed_themed):
+        left = [
+            row.word
+            for row in wordlist.words
+            if derive.ends_in_participial_suffix(row.ezhuthu, rules.participialSuffixes)
+        ]
+        assert left == [], f"{wordlist.gameId} still serves {left[:10]}"
+
+
+def test_a_word_that_merely_ends_the_same_way_is_still_served(
+    committed_anagram: GameWordlist,
+) -> None:
+    """What the rule must NOT have cost: real vocabulary sharing the ending.
+
+    kolla, mella, kulla and kalla are why -ulla carries a linking vowel and a
+    stem floor; indhiya, pudhiya, periya, siRiya, ariya, iniya and dhesiya are
+    why the -iya ending was measured at 202 served rows and rejected outright.
+    """
+    served = {row.word for row in committed_anagram.words}
+    missing = [word for word in _ENDS_THE_SAME_WAY if word not in served]
+    assert missing == [], f"the suffix rule took real vocabulary with it: {missing}"
+
+
+def test_no_committed_row_carries_an_obscenity_label(
+    committed_anagram: GameWordlist, committed_themed: GameWordlist
+) -> None:
+    """THE defect-2 Oracle for the obscenity rule: the board is not a place for one."""
+    rules = derive.load_registry(_REGISTRY).servingRules
+    for wordlist in (committed_anagram, committed_themed):
+        left = [
+            row.word
+            for row in wordlist.words
+            if row.definitionTa
+            and derive.is_marked_obscene([row.definitionTa], rules.obscenityMarkers)
+        ]
+        assert left == [], f"{wordlist.gameId} still serves {left}"
+    assert PUNDAI not in {row.word for row in committed_anagram.words}
+
+
+def test_a_word_that_merely_discusses_obscenity_is_still_served(
+    committed_anagram: GameWordlist,
+) -> None:
+    """A bare aabaasa substring was measured at 1 true hit in 12; these are four
+    of the eleven it would have taken, and vanmai is why the marker reads sense
+    zero rather than every sense."""
+    served = {row.word for row in committed_anagram.words}
+    missing = [word for word in _NOT_OBSCENE if word not in served]
+    assert missing == [], f"the obscenity marker took ordinary vocabulary: {missing}"
+
+
+def test_the_two_derivable_rules_did_the_work_the_ledger_claims(
+    committed_anagram: GameWordlist,
+) -> None:
+    """Both buckets are measurements, recomputed here without calling select()."""
+    rules = derive.load_registry(_REGISTRY).servingRules
+    selection = committed_anagram.selection
+    obscene = participial = 0
+    for row in derive.read_rows(
+        derive.load_meta(_META), _REPO_ROOT, selection.wordClasses
+    ):
+        if not (
+            selection.minLength <= row.length <= selection.maxLength
+            and row.attestations >= selection.minAttestations
+            and row.tier1Attestations >= selection.minTier1Attestations
+            and row.frequency >= selection.minFrequency
+            and row.definitionTa is not None
+        ):
+            continue
+        if derive.is_marked_obscene(row.definitionTa, rules.obscenityMarkers):
+            obscene += 1
+        elif derive.ends_in_participial_suffix(
+            segment(row.word), rules.participialSuffixes
+        ):
+            participial += 1
+
+    assert committed_anagram.counters.obscene == obscene
+    assert committed_anagram.counters.participial == participial
+    # The reach both rules were reviewed at, counted rather than sampled: 1,065
+    # participles and 4 labelled rows out of the 32,122 served before them.
+    assert committed_anagram.counters.participial == 1065
+    assert committed_anagram.counters.obscene == 4
+
+
 def test_the_committed_deny_list_validates_at_the_size_it_was_reviewed_at() -> None:
     """123 grammar words and 65 names - a curated list, counted, not sampled."""
     denylist = derive.load_denylist(_DENYLIST)
@@ -966,8 +1182,14 @@ def test_every_kept_word_is_still_served(committed_anagram: GameWordlist) -> Non
 def test_the_deny_list_did_the_work_the_ledger_claims(
     committed_anagram: GameWordlist,
 ) -> None:
-    """The bucket is a measurement: it equals the denied words the gates let through."""
+    """The bucket is a measurement: it equals the denied words the gates let through.
+
+    The two derivable rules run BEFORE the deny-list, so a denied surface they
+    already stopped is charged to them - which is what keeps this bucket the
+    honest measure of what hand curation ALONE still buys.
+    """
     denied = derive.load_denylist(_DENYLIST).words()
+    rules = derive.load_registry(_REGISTRY).servingRules
     selection = committed_anagram.selection
     stopped_here = {
         row.word
@@ -980,6 +1202,10 @@ def test_the_deny_list_did_the_work_the_ledger_claims(
         and row.tier1Attestations >= selection.minTier1Attestations
         and row.frequency >= selection.minFrequency
         and row.definitionTa is not None
+        and not derive.is_marked_obscene(row.definitionTa, rules.obscenityMarkers)
+        and not derive.ends_in_participial_suffix(
+            segment(row.word), rules.participialSuffixes
+        )
     }
 
     assert committed_anagram.counters.denylisted == len(stopped_here)
@@ -1044,6 +1270,8 @@ def test_committed_counters_account_for_every_published_lexicon_row(
             + counters.belowAttestations
             + counters.belowFrequency
             + counters.withoutMeaning
+            + counters.obscene
+            + counters.participial
             + counters.denylisted
             + counters.capped
             + counters.rowsKept
@@ -1304,6 +1532,8 @@ def test_counters_that_do_not_reconcile_are_rejected() -> None:
             belowAttestations=1,
             belowFrequency=1,
             withoutMeaning=1,
+            obscene=0,
+            participial=0,
             denylisted=0,
             capped=0,
             rowsKept=1,
@@ -1333,6 +1563,8 @@ def _wordlist_payload(**overrides: Any) -> dict[str, Any]:
             "belowAttestations": 0,
             "belowFrequency": 0,
             "withoutMeaning": 0,
+            "obscene": 0,
+            "participial": 0,
             "denylisted": 0,
             "capped": 0,
             "rowsKept": 1,
@@ -1444,6 +1676,7 @@ def test_two_sets_writing_to_one_path_are_rejected() -> None:
         ],
         "lexiconPath": "datasets/lexicon/lexicon.meta.json",
         "denylistPath": "config/served-denylist.json",
+        "servingRules": _RULES.model_dump(),
     }
     with pytest.raises(ValidationError, match="repeated out"):
         DerivedWordlists.model_validate(
@@ -1480,6 +1713,7 @@ def test_an_absolute_output_path_is_rejected() -> None:
                 ],
                 "lexiconPath": "datasets/lexicon/lexicon.meta.json",
                 "denylistPath": "config/served-denylist.json",
+                "servingRules": _RULES.model_dump(),
                 "sets": [_spec("/tmp/anagram.json")],
             }
         )
@@ -1500,10 +1734,63 @@ def test_a_registry_that_names_no_deny_list_is_rejected() -> None:
             {"version": "2026-08-16T23:30", "change": "test", "why": "test"}
         ],
         "lexiconPath": "datasets/lexicon/lexicon.meta.json",
+        "servingRules": _RULES.model_dump(),
         "sets": [_spec("datasets/wordlists/derived/anagram.json")],
     }
     with pytest.raises(ValidationError, match="denylistPath"):
         DerivedWordlists.model_validate(payload)
+
+
+def test_a_registry_that_names_no_serving_rules_is_rejected() -> None:
+    """Same discipline as the deny-list: a forgotten rule serves what it refuses."""
+    payload = {
+        "version": "2026-08-16T23:30",
+        "changelog": [
+            {"version": "2026-08-16T23:30", "change": "test", "why": "test"}
+        ],
+        "lexiconPath": "datasets/lexicon/lexicon.meta.json",
+        "denylistPath": "config/served-denylist.json",
+        "sets": [_spec("datasets/wordlists/derived/anagram.json")],
+    }
+    with pytest.raises(ValidationError, match="servingRules"):
+        DerivedWordlists.model_validate(payload)
+
+
+def test_incoherent_serving_rules_are_rejected() -> None:
+    payload = _RULES.model_dump()
+    with pytest.raises(ValidationError, match="obscenityMarkers must be sorted"):
+        ServingRules.model_validate({**payload, "obscenityMarkers": ["\u0baa", "\u0b85"]})
+    with pytest.raises(ValidationError, match="obscenityMarkers must be sorted"):
+        ServingRules.model_validate({**payload, "obscenityMarkers": ["\u0b85", "\u0b85"]})
+    with pytest.raises(ValidationError, match="obscenityMarkers has a blank entry"):
+        ServingRules.model_validate({**payload, "obscenityMarkers": [" "]})
+    with pytest.raises(ValidationError):
+        ServingRules.model_validate({**payload, "obscenityMarkers": []})
+    with pytest.raises(ValidationError):
+        ServingRules.model_validate({**payload, "participialSuffixes": []})
+    with pytest.raises(ValidationError, match="tail has a blank ezhuthu"):
+        ParticipialSuffix.model_validate(
+            {"linkVowel": "\u0bbe", "tail": [" "], "minStemEzhuthu": 1, "note": "x"}
+        )
+    with pytest.raises(ValidationError, match="linkVowel is blank"):
+        ParticipialSuffix.model_validate(
+            {
+                "linkVowel": " ",
+                "tail": ["\u0ba9"],
+                "minStemEzhuthu": 1,
+                "note": "x",
+            }
+        )
+    with pytest.raises(ValidationError):
+        # A stem floor of zero would delete vaan (sky) along with the participles.
+        ParticipialSuffix.model_validate(
+            {
+                "linkVowel": "\u0bbe",
+                "tail": ["\u0ba9"],
+                "minStemEzhuthu": 0,
+                "note": "x",
+            }
+        )
 
 
 def _denylist_payload(**overrides: Any) -> dict[str, Any]:

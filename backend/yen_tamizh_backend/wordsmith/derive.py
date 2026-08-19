@@ -32,6 +32,15 @@ make bad puzzle answers even though both are attested, frequent, and carry a
 dictionary sense. Matching is WHOLE-WORD and exact, and the exclusion is on
 SERVING only - every denied word stays in the published lexicon.
 
+Two more exclusions ARE derivable, and they run just before it. A participial
+adjective - ``mozhiyaana`` from ``mozhi`` - is an inflected form wearing a
+headword's clothes, and the surface says so: it ends in a participial suffix
+over a stem long enough to be a word. A row the SOURCE labelled obscene says so
+too, in its own first sense. Both are stated in
+``config/derived-wordlists.json`` under ``servingRules`` (Holy Law #6) and both
+are SERVING decisions on the same terms as the deny-list: the word keeps its
+published class and its published facts, and is simply never dealt.
+
 Adding a Game's set is a DATA change (see docs/how-to/add-a-derived-wordlist.md):
 append an entry to ``config/derived-wordlists.json`` and re-run
 ``python -m yen_tamizh_backend.scripts.rebuild_wordlists``. The gates are config
@@ -56,6 +65,8 @@ from yen_tamizh_backend.contracts.derived_wordlists import (
     DerivedSelection,
     DerivedSet,
     DerivedWordlists,
+    ParticipialSuffix,
+    ServingRules,
 )
 from yen_tamizh_backend.contracts.game_wordlist import (
     DerivedCounters,
@@ -69,10 +80,33 @@ from yen_tamizh_backend.contracts.served_denylist import ServedDenylist
 from yen_tamizh_backend.ezhuthu import segment
 from yen_tamizh_backend.wordsmith.artifact import render_document, sha256_of
 
-_SCHEMA_VERSION = "2026-08-17T18:00"
+_SCHEMA_VERSION = "2026-08-19"
 _CHANGELOG = [
     ChangelogEntry(
         version=_SCHEMA_VERSION,
+        change=(
+            "Added the obscene and participial ledger buckets, charged after "
+            "every automatic gate and before the deny-list, for the rows the "
+            "registry's servingRules refuse."
+        ),
+        why=(
+            "Defect 2 - the board dealt mozhiyaana, migudhiyaana, "
+            "urundaiyaana and thavaRillaadha, which are participial adjectives "
+            "rather than headwords, and it dealt a surface the source itself "
+            "glosses as an obscene word. Neither is reachable from the existing "
+            "knobs: the word-hood classifier labels inflection from collected "
+            "verb-form lists, and a peyareccham those lists do not contain "
+            "arrives with a tier-1 listing and a clean shape, while no column "
+            "says a word is coarse - the source writes that into the gloss as a "
+            "usage label. Both get their own bucket because the ledger's whole "
+            "claim is that every published row is accounted for under exactly "
+            "one heading, and they are charged before the deny-list so that "
+            "list's number stays the honest measure of what curation ALONE "
+            "removed."
+        ),
+    ),
+    ChangelogEntry(
+        version="2026-08-17T18:00",
         change=(
             "Every served row now carries definitionTa, translationEn, "
             "synonymsTa and categories from the published lexicon. "
@@ -268,11 +302,61 @@ def read_rows(
                 yield LexiconEntry.model_validate_json(line)
 
 
+def ends_in_participial_suffix(
+    ezhuthu: Sequence[str], suffixes: Iterable[ParticipialSuffix]
+) -> bool:
+    """True when a surface is a participial adjective built on a real stem.
+
+    The test is the SHAPE of the ending, not a lookup of the stem. Requiring the
+    stem to be an attested headword was measured over the committed set and
+    rejected: Tamil's sandhi rewrites the stem's last ezhuthu when the suffix
+    lands - ``azhagu`` becomes ``azhagaana``, ``mozhi`` takes a glide - so
+    undoing it means guessing which of several spellings the writer started
+    from, and every guess that misses keeps a participle on the board. It left
+    186 of 1,063 matches there, ``mozhiyaana`` and ``thavaRillaadha`` among
+    them, and those are two of the four surfaces this rule exists to remove.
+
+    What the ending alone catches is far cleaner than a suffix rule usually is,
+    and the reason is structural: a participial suffix is a statement about
+    Tamil MORPHOLOGY, where a name suffix is a statement about a referent. The
+    linking vowel plus ``minStemEzhuthu`` is what keeps it honest - it is the
+    difference between ``mozhiyaana`` and ``vaan`` (sky).
+    """
+    for suffix in suffixes:
+        span = len(suffix.tail) + 1
+        if len(ezhuthu) < span + suffix.minStemEzhuthu:
+            continue
+        if list(ezhuthu[-len(suffix.tail) :]) != suffix.tail:
+            continue
+        link = ezhuthu[-span]
+        # A one-code-point ezhuthu is a bare uyir or mei and carries no matra,
+        # so it can never be the consonant-plus-vowel a suffix links through.
+        if len(link) > 1 and link[1:] == suffix.linkVowel:
+            return True
+    return False
+
+
+def is_marked_obscene(senses: Sequence[str] | None, markers: Iterable[str]) -> bool:
+    """True when the row's FIRST sense carries a lexicographic obscenity label.
+
+    Sense zero only. The lexicon orders senses most-authoritative-first and it is
+    the sense a Game displays, so a label there is the source labelling the WORD.
+    Reading every sense was measured and rejected: it turns ``vanmai``
+    (harshness) and ``theettu`` into obscenities because a later sense of each
+    DISCUSSES coarse speech, which is the same failure a bare ``aabaasa``
+    substring makes on ``aruvaruppu`` (disgust).
+    """
+    if not senses:
+        return False
+    return any(marker in senses[0] for marker in markers)
+
+
 def select(
     meta: Lexicon,
     rows: Iterable[LexiconEntry],
     selection: DerivedSelection,
     denied: frozenset[str],
+    rules: ServingRules,
 ) -> tuple[list[LexiconEntry], DerivedCounters]:
     """Apply one Game's selection dimensions and serving gates; return the ledger.
 
@@ -287,6 +371,11 @@ def select(
     dimension serves only rows the lexicon actually tagged. Reading them first is
     what makes a themed ledger legible: it says how far the theme reaches, and
     then what each gate removed from inside it.
+
+    ``rules`` runs after every gate and before the deny-list. The obscenity
+    label is read first of the two because it is the graver refusal, and both
+    are read before ``denied`` so the curated list is charged only for what
+    nothing derivable caught.
 
     ``denied`` is read LAST, and the match is WHOLE-WORD: a denied surface must
     not take its inflections with it, and a stem match over an agglutinative
@@ -308,7 +397,7 @@ def select(
     wanted_pos = set(selection.pos or ())
     outside_categories = outside_pos = 0
     outside_length = below_attestations = below_frequency = without_meaning = 0
-    denylisted = 0
+    obscene = participial = denylisted = 0
     kept: list[LexiconEntry] = []
     for row in rows:
         if wanted_categories and not wanted_categories.intersection(row.categories or ()):
@@ -332,6 +421,12 @@ def select(
         if selection.requireMeaning and row.definitionTa is None:
             without_meaning += 1
             continue
+        if is_marked_obscene(row.definitionTa, rules.obscenityMarkers):
+            obscene += 1
+            continue
+        if ends_in_participial_suffix(segment(row.word), rules.participialSuffixes):
+            participial += 1
+            continue
         if row.word in denied:
             denylisted += 1
             continue
@@ -353,6 +448,8 @@ def select(
         belowAttestations=below_attestations,
         belowFrequency=below_frequency,
         withoutMeaning=without_meaning,
+        obscene=obscene,
+        participial=participial,
         denylisted=denylisted,
         capped=capped,
         rowsKept=len(kept),
@@ -366,14 +463,15 @@ def derive(
     source: DerivedSource,
     spec: DerivedSet,
     denied: frozenset[str],
+    rules: ServingRules,
 ) -> GameWordlist:
     """Cut one Game's wordlist out of the published lexicon.
 
-    ``denied`` is required rather than defaulted: an empty deny-list and a
-    forgotten one produce identical output, and the one this layer exists to
-    prevent is the forgotten one.
+    ``denied`` and ``rules`` are required rather than defaulted: an empty
+    deny-list and a forgotten one produce identical output, and the one this
+    layer exists to prevent is the forgotten one.
     """
-    kept, counters = select(meta, rows, spec.selection, denied)
+    kept, counters = select(meta, rows, spec.selection, denied, rules)
     # Both derived signals are counted AFTER the cap, over the rows this set
     # really serves: a partner nobody is served cannot be the word a Game offers
     # back, and a quartile over a population wider than the served set would say

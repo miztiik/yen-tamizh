@@ -1,6 +1,11 @@
 {
   "changelog": [
     {
+      "change": "Added the obscene and participial ledger buckets, charged after every automatic gate and before the deny-list, for the rows the registry's servingRules refuse.",
+      "version": "2026-08-19",
+      "why": "Defect 2 - the board dealt mozhiyaana, migudhiyaana, urundaiyaana and thavaRillaadha, which are participial adjectives rather than headwords, and it dealt a surface the source itself glosses as an obscene word. Neither is reachable from the existing knobs: the word-hood classifier labels inflection from collected verb-form lists, and a peyareccham those lists do not contain arrives with a tier-1 listing and a clean shape, while no column says a word is coarse - the source writes that into the gloss as a usage label. Both get their own bucket because the ledger's whole claim is that every published row is accounted for under exactly one heading, and they are charged before the deny-list so that list's number stays the honest measure of what curation ALONE removed."
+    },
+    {
       "change": "Every served row now carries definitionTa, translationEn, synonymsTa and categories from the published lexicon. definitionTa is the FIRST sense rather than the lexicon's list of senses.",
       "version": "2026-08-17T18:00",
       "why": "Row 14 of the lexicon pipeline - the hint ladder's dearest rung is what a word MEANS and the summary shows the same phrase free once the word is solved, so the meaning columns have to reach the layer that bakes a puzzle. They are carried raw, not resolved, so the rule that turns them into one display string lives in the generator beside the wording rather than frozen into this artifact. definitionTa keeps only sense zero because the lexicon orders senses most-authoritative-first and a Game has exactly one display slot: the other senses have no reader and cost 4.89 MB across the served set. synonymsTa travels whole instead, because it is not a ranked list - every member is an equally correct answer - and the generator reads down it to step over a synonym that would spell the answer out."
@@ -42,10 +47,12 @@
     "capped": 0,
     "denylisted": 0,
     "lexiconRows": 163437,
+    "obscene": 0,
     "outsideCategories": 161803,
     "outsideClass": 1076,
     "outsideLength": 91,
     "outsidePos": 0,
+    "participial": 0,
     "rowsKept": 429,
     "withoutMeaning": 23
   },
@@ -79,7 +86,7 @@
     "sha256": "8b910de9692d2f1adf658a62a4f0138b3bb3e09beab291d861941357ccdf8537",
     "version": "2026-08-17"
   },
-  "version": "2026-08-17T18:00",
+  "version": "2026-08-19",
   "words": [
     {"anagramFanOut": 1, "categories": ["parts-of-plants"], "definitionTa": "மலர்த்தாது", "ezhuthu": ["ம", "க", "ர", "ந்", "த", "ம்"], "frequency": 112160, "frequencyStratum": 1, "hints": {"firstEzhuthu": "ம", "length": 6}, "synonymsTa": ["பராகம்", "பூந்தாது", "மகரந்தகேசரம்", "மலர்த்தாது", "வீ"], "translationEn": "ambrosia", "word": "மகரந்தம்"},
     {"anagramFanOut": 1, "categories": ["nature"], "definitionTa": "இதமான மென்காற்று", "ezhuthu": ["தெ", "ன்", "ற", "ல்"], "frequency": 58761, "frequencyStratum": 1, "hints": {"firstEzhuthu": "தெ", "length": 4}, "synonymsTa": ["இளங்காற்று", "தென்காற்று", "பூங்காற்று"], "translationEn": "Auster", "word": "தென்றல்"},

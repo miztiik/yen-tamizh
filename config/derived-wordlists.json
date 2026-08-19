@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-17T12:00",
+  "version": "2026-08-19",
   "changelog": [
+    {
+      "version": "2026-08-19",
+      "change": "Added servingRules, holding the participial suffixes every set demotes and the gloss labels that mark a row as an obscenity.",
+      "why": "Defect 2 - the board dealt mozhiyaana, migudhiyaana, urundaiyaana and thavaRillaadha, which are participial adjectives rather than headwords, and at rank 1,968 it dealt a surface the source itself glosses as an obscene word. Neither is reachable from the six gates: word-hood labels inflection from collected verb-form lists, so a peyareccham those lists do not contain arrives with a tier-1 listing and a clean shape, and no lexicon column says a word is coarse - the source writes that into the gloss as a usage label. The knobs hang off the REGISTRY beside denylistPath rather than off a set, because a participle is not a headword and an obscenity is not a Daily answer whichever Game is asking. Requiring the stripped stem to be an attested headword was measured and REJECTED: sandhi rewrites the stem when the suffix lands, so undoing it means guessing which spelling the writer started from, and the guess left 186 of the 1,063 matches on the board including mozhiyaana and thavaRillaadha - two of the four surfaces this rule exists to remove. The suffix ending alone, with a linking vowel and a stem floor, removed 1,063 rows of which hand inspection found none a Tamil dictionary lists as a headword. The -iya ending was measured and REJECTED at 202 rows, because indhiya, dhesiya, pudhiya, siRiya, periya, ariya and iniya are all real vocabulary."
+    },
     {
       "version": "2026-08-17T12:00",
       "change": "Added denylistPath, naming the curated served deny-list every set is cut against.",
@@ -34,6 +39,30 @@
   ],
   "lexiconPath": "datasets/lexicon/lexicon.meta.json",
   "denylistPath": "config/served-denylist.json",
+  "servingRules": {
+    "note": "The two exclusions that need no curation, because the published data already carries the signal. Both are SERVING decisions on the same terms as the deny-list: every row named here keeps its published class and its published facts and is only kept off the board. Numbers below are over the 32,122-row anagram set committed on 2026-08-19.",
+    "obscenityMarkers": ["ஆபாசச்சொல்", "வசைச்சொல்"],
+    "participialSuffixes": [
+      {
+        "linkVowel": "ா",
+        "tail": ["ன"],
+        "minStemEzhuthu": 1,
+        "note": "The -aana peyareccham: any noun or verb plus -aana becomes an adjective, so thevai gives thevaiyaana and azhagu gives azhagaana. 721 served rows, every one of them a participial or attributive form; the closest calls are four Sanskrit -aana borrowings whose Tamil dictionary headword carries -am (piradhaanam, vinjnjaanam). minStemEzhuthu 1 is what keeps vaan (sky) and aana on the board."
+      },
+      {
+        "linkVowel": "ா",
+        "tail": ["த"],
+        "minStemEzhuthu": 1,
+        "note": "The -aadha negative peyareccham, which also swallows the -illaadha compound: 218 served rows including illaadha itself and thavaRillaadha. Every one is a negated form of a verb or a noun; none is a dictionary headword."
+      },
+      {
+        "linkVowel": "ு",
+        "tail": ["ள்", "ள"],
+        "minStemEzhuthu": 1,
+        "note": "The -ulla possessive participle - 'having X' - as in payanulla and uyirulla: 124 served rows. The linking u is load-bearing here, not decoration: without it the pattern also matches kolla, mella and kulla, which are ordinary words. minStemEzhuthu 1 then holds the same line one ezhuthu further out."
+      }
+    ]
+  },
   "sets": [
     {
       "gameId": "anagram",

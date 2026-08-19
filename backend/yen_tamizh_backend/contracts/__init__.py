@@ -49,6 +49,8 @@ from yen_tamizh_backend.contracts.derived_wordlists import (
     DerivedSelection,
     DerivedSet,
     DerivedWordlists,
+    ParticipialSuffix,
+    ServingRules,
 )
 from yen_tamizh_backend.contracts.event_envelope import EventEnvelope
 from yen_tamizh_backend.contracts.example import Example
@@ -118,7 +120,9 @@ from yen_tamizh_backend.contracts.wordhood import (
 # engine's own registry. The lexicon layer that replaced the retired corpus one
 # registers its meta document, its source registry and the word-hood knobs its
 # enrich stage reads; row 16 adds the served deny-list the derived layer applies
-# after every automatic gate. ``LexiconEntry`` is NOT here - a data row carries
+# after every automatic gate, and defect 2 adds the derivable pair beside it -
+# the participial suffixes and the obscenity labels - inside the derived
+# registry's own schema. ``LexiconEntry`` is NOT here - a data row carries
 # no ``version`` / ``changelog``, so it is not a ``SchemaModel``, and it reaches
 # the schema through ``Lexicon.rowSchema``.
 REGISTRY: tuple[type[SchemaModel], ...] = (
@@ -203,6 +207,7 @@ __all__ = [
     "OutputFormat",
     "PackId",
     "PartOfSpeech",
+    "ParticipialSuffix",
     "PosAlias",
     "PosRejection",
     "PuzzleFile",
@@ -211,6 +216,7 @@ __all__ = [
     "Save",
     "SchemaModel",
     "ServedDenylist",
+    "ServingRules",
     "SignalName",
     "SourceId",
     "SourceRole",
