@@ -1406,6 +1406,7 @@ def test_the_committed_registry_validates() -> None:
     assert [spec.gameId for spec in registry.sets] == [
         "anagram",
         "missing-letters",
+        "wordle",
         _THEMED_GAME_ID,
     ]
     assert registry.lexiconPath == "datasets/lexicon/lexicon.meta.json"
@@ -1430,6 +1431,26 @@ def test_the_missing_letters_set_moves_only_its_length_floor() -> None:
     assert ordinary.selection.minLength == 3
     assert missing.selection.model_dump(exclude={"minLength"}) == (
         ordinary.selection.model_dump(exclude={"minLength"})
+    )
+
+
+def test_the_wordle_set_moves_only_its_length_bounds() -> None:
+    """Same gates again, and a length PINNED at both ends rather than ranged.
+
+    A wordle's board, its keyboard readout and its shareable grid all assume one
+    fixed width, so the set may not hold two. Six rather than the roadmap's five
+    is a measurement that runs opposite to English: Tamil's alphabet stays
+    effectively constant across lengths, so an extra position is an extra
+    constraint rather than an extra degree of freedom, and the simulated median
+    solve falls from 10 guesses at four ezhuthu to 7 at five and 5 at six.
+    """
+    registry = derive.load_registry(_REGISTRY)
+    ordinary = next(entry for entry in registry.sets if entry.gameId == "anagram")
+    wordle_set = next(entry for entry in registry.sets if entry.gameId == "wordle")
+
+    assert wordle_set.selection.minLength == wordle_set.selection.maxLength == 6
+    assert wordle_set.selection.model_dump(exclude={"minLength", "maxLength"}) == (
+        ordinary.selection.model_dump(exclude={"minLength", "maxLength"})
     )
 
 

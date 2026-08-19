@@ -1,0 +1,14 @@
+{
+  "version": "2026-08-19",
+  "changelog": [
+    {
+      "version": "2026-08-19",
+      "change": "Initial wordle-puzzle fixture.",
+      "why": "Row 19 contract Oracle - the valid wordle payload shape."
+    }
+  ],
+  "word": "\u0BAE\u0BC7\u0BB1\u0BCD\u0B95\u0BCB\u0BB3\u0BCD\u0B95\u0BB3\u0BCD",
+  "attempts": 8,
+  "hints": [{ "kind": "meaning", "text": "Meaning: a quotation", "cost": 3 }],
+  "translationEn": "Citation"
+}

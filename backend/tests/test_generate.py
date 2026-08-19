@@ -52,8 +52,9 @@ from yen_tamizh_backend.contracts.game_wordlist import GameWord, GameWordlist
 from yen_tamizh_backend.contracts.lexicon import PartOfSpeech
 from yen_tamizh_backend.contracts.missing_letters_puzzle import MissingLettersPuzzle
 from yen_tamizh_backend.contracts.puzzle_file import PuzzleFile
-from yen_tamizh_backend.ezhuthu import segment
-from yen_tamizh_backend.generate import anagram, daily, missing_letters
+from yen_tamizh_backend.contracts.wordle_puzzle import WordlePuzzle
+from yen_tamizh_backend.ezhuthu import EZHUTHU_INVENTORY, segment
+from yen_tamizh_backend.generate import anagram, daily, missing_letters, wordle
 from yen_tamizh_backend.generate import hints as hint_ladder
 from yen_tamizh_backend.generate.seed import hash_seed, seeded_index, seeded_shuffle
 from yen_tamizh_backend.scripts.generate_today import generate, load_wordlists
@@ -1611,7 +1612,10 @@ def test_a_day_can_be_dealt_from_more_than_one_game(
     mixed = app_config.model_copy(
         update={
             "daily": app_config.daily.model_copy(
-                update={"playlistLength": 3, "mix": {"anagram": 2, "missing-letters": 1}}
+                update={
+                    "playlistLength": 3,
+                    "mix": {"anagram": 1, "missing-letters": 1, "wordle": 1},
+                }
             )
         }
     )
@@ -1624,13 +1628,21 @@ def test_a_day_can_be_dealt_from_more_than_one_game(
     assert len(run.written) == 2
     for day in run.written:
         games = [item.gameId for item in day.puzzle_file.items]
-        assert sorted(games) == ["anagram", "anagram", "missing-letters"]
+        assert sorted(games) == ["anagram", "missing-letters", "wordle"]
         item = next(i for i in day.puzzle_file.items if i.gameId == "missing-letters")
         # The payload validates against ITS OWN schema, not the anagram's.
         MissingLettersPuzzle.model_validate(
             {"version": "2026-08-19", "changelog": [_STAMP], **item.payload}
         )
         assert "tiles" not in item.payload
+        guessed = next(i for i in day.puzzle_file.items if i.gameId == "wordle")
+        WordlePuzzle.model_validate(
+            {"version": "2026-08-19", "changelog": [_STAMP], **guessed.payload}
+        )
+        # Three Games, three payload shapes, one unchanged puzzle-file.
+        assert "tiles" not in guessed.payload
+        assert "blanks" not in guessed.payload
+        assert "choices" not in guessed.payload
 
 
 def test_an_unregistered_game_fails_loudly(generator: DailyGenerator) -> None:
@@ -1653,4 +1665,164 @@ def test_the_committed_missing_letters_set_is_servable(
         assert buckets[band.id], f"the {band.id} bucket is empty"
         for row in buckets[band.id]:
             assert band.blanks < len(row.ezhuthu)
+
+
+# --------------------------------------------------------------------------
+# 9. wordle (Row 19)
+#
+# The third Game, and the THINNEST builder in the engine: a wordle's puzzle is
+# the word, so there is no scramble, no mask and no bank to arrange. What these
+# cover is therefore what the payload cannot be allowed to be - a board wider
+# than its answer, an answer nobody can type, or a set holding two widths.
+# --------------------------------------------------------------------------
+
+
+@pytest.fixture(scope="module")
+def wd_spec(generator: DailyGenerator) -> GameGeneration:
+    return next(spec for spec in generator.games if spec.gameId == wordle.GAME_ID)
+
+
+def test_every_served_answer_can_be_typed_on_the_composer(
+    wd_spec: GameGeneration, wordlists: dict[str, GameWordlist]
+) -> None:
+    """The unwinnable-puzzle guard, over the WHOLE served set rather than a sample.
+
+    The keyboard produces exactly the 247 ezhuthu. An answer holding a grantha
+    letter, a digit or a Latin character would validate everywhere else and
+    arrive as a player running out of attempts, so the contract refuses it - and
+    this asserts the property the contract is protecting really does hold for
+    every row the Game can ever be dealt. Its frontend twin makes the same claim
+    from the keyboard's side, which is what keeps the two inventories honest.
+    """
+    typeable = set(EZHUTHU_INVENTORY)
+    assert len(typeable) == 247
+    outside: set[str] = set()
+    for row in wordlists[wd_spec.wordlist].words:
+        outside.update(unit for unit in segment(row.word) if unit not in typeable)
+    assert not outside, f"{len(outside)} served ezhuthu cannot be composed: {sorted(outside)}"
+
+
+def test_the_board_width_is_derived_and_never_shipped(
+    wd_spec: GameGeneration, wordlists: dict[str, GameWordlist]
+) -> None:
+    """`len(segment(word))` is the width; a stored one would be a drift surface."""
+    for row in wordlists[wd_spec.wordlist].words[:200]:
+        puzzle = wordle.build_puzzle(row, wd_spec, f"{FIRST_DAY}|{row.word}", 2)
+        payload = puzzle.model_dump(mode="json", exclude_none=True)
+        for absent in ("length", "ezhuthu", "tiles", "alphabet", "accept", "timeLimitSec"):
+            assert absent not in payload, f"{absent} has no reader and must not travel"
+        assert len(segment(puzzle.word)) == 6
+
+
+def test_a_one_ezhuthu_answer_is_refused() -> None:
+    """A board with one cell has no position anything can be in the wrong place."""
+    with pytest.raises(ValidationError, match="at least two positions"):
+        WordlePuzzle(
+            version="2026-08-19",
+            changelog=[_STAMP],
+            word="\u0b95",
+            attempts=6,
+        )
+
+
+def test_an_answer_the_composer_cannot_produce_is_refused() -> None:
+    """Grantha is not among the 247, so a word needing one is unwinnable."""
+    with pytest.raises(ValidationError, match="composer cannot produce"):
+        WordlePuzzle(
+            version="2026-08-19",
+            changelog=[_STAMP],
+            # ja + ka: the first base is grantha, borrowed for Sanskrit sounds.
+            word="\u0b9c\u0b95",
+            attempts=6,
+        )
+
+
+def test_a_single_attempt_board_is_refused() -> None:
+    """Marks on the last row can never be acted on, so one row is not a game."""
+    with pytest.raises(ValidationError, match="greater than or equal to 2"):
+        WordlePuzzle(
+            version="2026-08-19",
+            changelog=[_STAMP],
+            word="\u0b95\u0bcb\u0baf\u0bbf",
+            attempts=1,
+        )
+
+
+def test_the_wordle_ladder_never_sells_the_first_ezhuthu(
+    wd_spec: GameGeneration, wordlists: dict[str, GameWordlist]
+) -> None:
+    """The player can buy that fact with a guess, and a guess answers five more.
+
+    The missing-letters board refuses the rung because the ezhuthu is already
+    printed; here it is refused because the move it competes with is strictly
+    better. Same closed vocabulary, opposite reason.
+    """
+    assert "firstEzhuthu" not in wordle.HINT_FIELDS
+    assert wordle.HINT_FIELDS < anagram.HINT_FIELDS
+    assert [hint.kind for hint in wd_spec.hints] == ["category", "meaning"]
+    broken = wd_spec.model_copy(
+        update={
+            "hints": [
+                wd_spec.hints[0].model_copy(
+                    update={"template": "{firstEzhuthu}", "kind": "first-ezhuthu"}
+                )
+            ]
+        }
+    )
+    with pytest.raises(KeyError, match="firstEzhuthu"):
+        wordle.build_hints(wordlists[wd_spec.wordlist].words[0], broken, 1)
+
+
+def test_the_payload_is_a_pure_function_of_its_inputs(
+    wd_spec: GameGeneration, wordlists: dict[str, GameWordlist]
+) -> None:
+    """This builder makes no random choice, so the seed cannot move the bytes.
+
+    That is a stronger statement than the other two Games can make and it is
+    asserted rather than assumed: if a shuffle were ever added here, a day would
+    stop being reproducible from its date alone.
+    """
+    rows = wordlists[wd_spec.wordlist].words[:60]
+
+    def bake(seed_day: str) -> list[dict[str, Any]]:
+        return [
+            wordle.build_puzzle(row, wd_spec, f"{seed_day}|{row.word}", 2).model_dump(
+                mode="json"
+            )
+            for row in rows
+        ]
+
+    assert bake(FIRST_DAY) == bake(FIRST_DAY) == bake(ORDINARY_DAY)
+
+
+def test_the_committed_wordle_set_is_servable(
+    wd_spec: GameGeneration, wordlists: dict[str, GameWordlist]
+) -> None:
+    """One width, every band filled, and enough words to keep going for years."""
+    rows = wordlists[wd_spec.wordlist].words
+    assert {len(row.ezhuthu) for row in rows} == {6}
+    assert len(rows) > 5000
+    buckets = daily.bucket_candidates(rows, wd_spec)
+    for band in wd_spec.difficulties:
+        assert buckets[band.id], f"the {band.id} bucket is empty"
+    # Every band covers the one width, so what separates them is familiarity
+    # alone - the honest shape once the length is pinned.
+    for band in wd_spec.difficulties:
+        assert band.minLength == band.maxLength == 6
+    assert sorted(band.maxStratum for band in wd_spec.difficulties) == [1, 2, 4]
+
+
+def test_the_attempt_budget_is_the_one_that_was_measured(
+    wd_spec: GameGeneration, app_config: AppConfig
+) -> None:
+    """8 rows, and the ladder's ceiling matches the two rungs it can render.
+
+    The number is a config knob and it is pinned here because it is the one
+    that makes the board winnable: at seven guesses the simulated hard band is
+    solved 71.5 percent of the time against 85.5 at eight, and a hard word is
+    one slot of every three.
+    """
+    assert wd_spec.attempts == 8
+    assert wd_spec.reveal == 0
+    assert app_config.hints.perGame[wordle.GAME_ID] == len(wd_spec.hints) == 2
 

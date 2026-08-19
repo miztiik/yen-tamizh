@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-19T18:00",
+  "version": "2026-08-19T21:00",
   "changelog": [
+    {
+      "version": "2026-08-19T21:00",
+      "change": "Registered the wordle generator: 6-ezhuthu answers, 8 attempts, three bands separated on familiarity alone, and a two-rung ladder.",
+      "why": "Row 19 - the third Game, and the first whose knobs were set by simulating the game rather than by porting a convention. attempts is 8 and it is the load-bearing number. Modelled against a player who guesses a familiar word still consistent with every mark so far, a 6-ezhuthu board is solved within 8 guesses 94.5 percent of the time on the easy band, 93.5 on medium and 85.5 on hard - against 86.2 / 84.5 / 71.5 at seven. Seven is the N+1 the English wordles use and it would lose better than one hard day in four, and a hard day is one slot of every three. Tamil earns the extra row honestly: its alphabet is 247 ezhuthu against English's 26, 203 of them are in play in this set, and the best fixed opening word among 400 candidates averages 1.13 marks a game where a good English opener averages about two. Narrowing the hard band to drop the rarest quarter was measured as the alternative and REJECTED: q3 alone solves 75.0 percent within 7 and q4 alone 74.0, so the quarter costs a quarter of the vocabulary and buys one point - once the length is pinned, what decides whether a board is winnable is information per guess, not how rare the answer is. The bands are therefore all 6 to 6 and separate on maxStratum alone, which is the honest shape once the width is fixed: with one width the only thing left that makes a word hard is how well the player knows it, and the set splits 1,540 / 1,540 / 3,080 across the bands so every one of them fills. reveal stays 0 - handing over the first ezhuthu would be the strongest hint in the game given away for nothing, and this ladder deliberately refuses to sell even that. The ladder is two rungs: firstEzhuthu is refused because the player can buy the same fact by spending a guess, and one guess answers five other positions at the same time, so the rung is strictly worse than the move it competes with. choiceCount is untouched and unread - there is no bank in this Game; the keyboard is a composer over the 247-ezhuthu inventory, which is a fact about Tamil rather than a per-puzzle knob. categoryLabels is restated rather than shared because hint wording is per-Game by contract."
+    },
     {
       "version": "2026-08-19T18:00",
       "change": "Registered the missing-letters generator, and gave a difficulty band a blanks count and a Game a choiceCount.",
@@ -111,6 +116,63 @@
         { "id": "easy", "minLength": 4, "maxLength": 5, "maxStratum": 1, "blanks": 1 },
         { "id": "medium", "minLength": 4, "maxLength": 6, "maxStratum": 2, "blanks": 1 },
         { "id": "hard", "minLength": 5, "maxLength": 6, "maxStratum": 4, "blanks": 2 }
+      ],
+      "hints": [
+        { "kind": "category", "template": "வகை: {category}", "cost": 1 },
+        { "kind": "meaning", "template": "பொருள்: {meaning}", "cost": 3 }
+      ],
+      "categoryLabels": {
+        "amphibians": "நீர்நிலவாழ்வன",
+        "animals": "விலங்கு",
+        "aquatic-animals": "நீர்வாழ்வன",
+        "arts": "கலை",
+        "bathroom": "குளியலறை",
+        "bedroom": "படுக்கையறை",
+        "birds": "பறவை",
+        "colours": "நிறம்",
+        "days": "நாள்",
+        "dresses-and-accessories": "உடை",
+        "emotions": "உணர்வு",
+        "flowers": "மலர்",
+        "food": "உணவு",
+        "fruits": "பழம்",
+        "functions": "விழா",
+        "games": "விளையாட்டு",
+        "garden": "தோட்டம்",
+        "hall": "கூடம்",
+        "hobby": "பொழுதுபோக்கு",
+        "hospital": "மருத்துவமனை",
+        "house": "வீடு",
+        "insects": "பூச்சி",
+        "kitchen": "சமையலறை",
+        "nature": "இயற்கை",
+        "parts-of-plants": "தாவரப்பகுதி",
+        "places": "இடம்",
+        "profession": "தொழில்",
+        "relations": "உறவு",
+        "reptiles": "ஊர்வன",
+        "school": "பள்ளி",
+        "space": "விண்வெளி",
+        "spices": "நறுமணப்பொருள்",
+        "symbols-shapes": "வடிவம்",
+        "tools": "கருவி",
+        "transport": "போக்குவரத்து",
+        "trees": "மரம்",
+        "types-of-plants": "தாவரம்",
+        "vegetables": "காய்கறி"
+      }
+    },
+    {
+      "gameId": "wordle",
+      "packId": "ta-core",
+      "wordlist": "datasets/wordlists/derived/wordle.json",
+      "attempts": 8,
+      "timeLimitSec": 0,
+      "reveal": 0,
+      "difficulties": [
+        { "id": "easy", "minLength": 6, "maxLength": 6, "maxStratum": 1 },
+        { "id": "medium", "minLength": 6, "maxLength": 6, "maxStratum": 2 },
+        { "id": "hard", "minLength": 6, "maxLength": 6, "maxStratum": 4 }
       ],
       "hints": [
         { "kind": "category", "template": "வகை: {category}", "cost": 1 },

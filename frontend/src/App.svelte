@@ -59,6 +59,10 @@
       Harness = (await import("./shell/MissingLettersHarness.svelte")).default;
       return;
     }
+    if (harness === "wordle") {
+      Harness = (await import("./shell/WordleHarness.svelte")).default;
+      return;
+    }
     Harness = null;
     if (params.get("mode") === "daily") {
       await openDaily();

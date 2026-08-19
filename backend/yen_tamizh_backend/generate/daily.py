@@ -62,7 +62,7 @@ from yen_tamizh_backend.contracts.daily_generator import (
 )
 from yen_tamizh_backend.contracts.game_wordlist import GameWord, GameWordlist
 from yen_tamizh_backend.contracts.puzzle_file import PuzzleFile, PuzzleItem
-from yen_tamizh_backend.generate import anagram, missing_letters
+from yen_tamizh_backend.generate import anagram, missing_letters, wordle
 from yen_tamizh_backend.generate.seed import seeded_index, seeded_shuffle
 
 _PUZZLE_FILE_VERSION = "2026-08-17"
@@ -272,12 +272,39 @@ def _build_missing_letters(
     )
 
 
+def _prepare_wordle(wordlist: GameWordlist, spec: GameGeneration) -> Any:
+    """A wordle needs to know nothing about the other served words.
+
+    The anagram has to be told what else its tiles spell and the missing-letters
+    board what else its mask admits, because both input methods can produce only
+    a handful of strings and some of those are other words. A wordle guess is
+    one of 247**N strings and is answered by its own per-position marks, so
+    there is no index to build.
+    """
+    del wordlist, spec
+    return None
+
+
+def _build_wordle(
+    row: GameWord,
+    spec: GameGeneration,
+    day: str,
+    hint_limit: int,
+    band: DifficultyBand,
+    themed: bool,
+    prepared: Any,
+) -> BaseModel:
+    del band, prepared
+    return wordle.build_puzzle(row, spec, f"{day}|{row.word}", hint_limit, themed)
+
+
 # The registered Games, keyed by the ``gameId`` config names in `daily.mix`.
 BUILDERS: dict[str, GameBuilder] = {
     "anagram": GameBuilder(prepare=_prepare_anagram, build=_build_anagram),
     missing_letters.GAME_ID: GameBuilder(
         prepare=missing_letters.index_by_length, build=_build_missing_letters
     ),
+    wordle.GAME_ID: GameBuilder(prepare=_prepare_wordle, build=_build_wordle),
 }
 
 

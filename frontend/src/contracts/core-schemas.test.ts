@@ -48,6 +48,7 @@ const CORE_SCHEMAS: SchemaName[] = [
   "bank-index",
   "anagram-puzzle",
   "missing-letters-puzzle",
+  "wordle-puzzle",
   "copy",
 ];
 

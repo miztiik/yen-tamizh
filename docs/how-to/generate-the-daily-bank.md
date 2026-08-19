@@ -160,11 +160,11 @@ Two more consequences:
 | `games[].themes` | The themed sets this Game may run a WHOLE day from: each a `wordlist` path and the `copySlug` naming its Tamil label in `config/copy.json`. Empty means this Game never runs a themed day. |
 | `games[].attempts` | Tries before a puzzle ends honestly (no purchase, no timer). |
 | `games[].timeLimitSec` | `0` means untimed; time pressure belongs to a Mode, not to the mechanic. |
-| `games[].reveal` | How many leading ezhuthu start already placed. `0` keeps the scramble whole. Read by the anagram; a Game that places nothing ignores it. |
-| `games[].choiceCount` | How many ezhuthu the choice bank holds, for the Games that offer one. Defaults to 8. It is a balance number, not a layout preference: there is no Tamil keyboard, so the bank is how a hidden ezhuthu is entered at all, and its size IS the odds a player who knows nothing still guesses right inside `attempts`. |
-| `games[].difficulties` | The difficulty bands, each bounding TWO axes: an ezhuthu-length range and a `maxStratum` familiarity ceiling. A day's slots are dealt round-robin across them and drawn frequency-stratified within one; a word no band claims is never drawn. See [`../concepts/difficulty-and-scoring.md`](../concepts/difficulty-and-scoring.md). |
+| `games[].reveal` | How many leading ezhuthu start already placed. `0` keeps the scramble whole. Read by the anagram; a Game that places nothing ignores it. The wordle pins it at `0` deliberately - the first ezhuthu is the strongest fact on that board and its own ladder refuses to sell it. |
+| `games[].choiceCount` | How many ezhuthu the choice bank holds, for the Games that offer one. Defaults to 8. It is a balance number, not a layout preference: there is no Tamil keyboard, so the bank is how a hidden ezhuthu is entered at all, and its size IS the odds a player who knows nothing still guesses right inside `attempts`. The wordle never reads it: its keyboard is a composer over the closed 247-ezhuthu inventory, which is a fact about Tamil rather than a per-puzzle knob. |
+| `games[].difficulties` | The difficulty bands, each bounding TWO axes: an ezhuthu-length range and a `maxStratum` familiarity ceiling. A day's slots are dealt round-robin across them and drawn frequency-stratified within one; a word no band claims is never drawn. See [`../concepts/difficulty-and-scoring.md`](../concepts/difficulty-and-scoring.md). The wordle's three bands are all the same width and separate on familiarity alone, which is the only honest axis left once a Game pins its length. |
 | `games[].difficulties[].blanks` | How many ezhuthu the band HIDES, for the Games whose mechanic hides letters. Defaults to 1, and must be less than the band's `minLength` or its shortest word would have nothing showing. |
-| `games[].hints` | Each offered hint's `kind`, `cost`, and Tamil `template` over the fields THAT Game may sell. `{category}` and `{meaning}` are common; `{firstEzhuthu}` is the anagram's alone, because a missing-letters board has already printed every ezhuthu it is not hiding. A template naming a field outside its Game's vocabulary fails the bake. |
+| `games[].hints` | Each offered hint's `kind`, `cost`, and Tamil `template` over the fields THAT Game may sell. `{category}` and `{meaning}` are common; `{firstEzhuthu}` is the anagram's alone. A missing-letters board has already printed every ezhuthu it is not hiding, and a wordle player can buy the same fact with a guess that answers five other positions at the same time. A template naming a field outside its Game's vocabulary fails the bake. |
 
 How many items a day holds and which Games fill them are NOT here - they are
 `daily.playlistLength` and `daily.mix` in
@@ -196,7 +196,12 @@ Three things, and none of them is the day loop:
 3. A payload builder under `backend/yen_tamizh_backend/generate/`, registered in
    `daily.BUILDERS` as a pair: how to INDEX one served set (the only place a
    Game may learn about words other than the one it is building), and how to
-   turn one row into that Game's validated payload.
+   turn one row into that Game's validated payload. A Game that needs to know
+   nothing about the other served words registers a `prepare` that returns
+   nothing, which is what the wordle does.
+
+Three Games are registered this way today, and none of them cost an edit to
+`puzzle-file` or to the day loop.
 
 Then it can be named in `daily.mix`. A `gameId` in the mix with no registered
 builder fails loudly rather than baking a silently short day - and note that a

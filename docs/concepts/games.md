@@ -42,6 +42,19 @@ Three things are true of it that are not true of the anagram, and each one shape
 
 Scoring counts HOLES, not the word's length: this Game hands the player most of the answer, so a one-blank win is worth 20 against the anagram's 40 to 60 ([difficulty-and-scoring.md](difficulty-and-scoring.md)).
 
+## wordle
+
+A board six ezhuthu wide and eight rows tall. Compose a row, submit it, and every cell comes back marked: the right ezhuthu in the right place, the right ezhuthu somewhere else, or not in the word at all. The marks accumulate on the keyboard as well as on the board, and the answer is shown when the last row is spent.
+
+Four things about it are Tamil-specific, and each one is a decision rather than a port of the English game:
+
+- **A "letter" is an ezhuthu, and so is a mark.** `கா` is one cell, not two, so a guess playing `கா` where the answer holds `கோ` is ABSENT - they are different letters that happen to share a base. A marker walking code points would find the `க` in both and say "present", which is a lie the player would build three more guesses on.
+- **Duplicates are marked in two passes.** Exact positions are taken first and only what is left can be marked present, so an answer holding one `க` never lights up two of them. See [../architecture/contracts/schemas.md](../architecture/contracts/schemas.md) for the worked table.
+- **The keyboard is a COMPOSER, not 247 keys.** Thirty-one keys commit one ezhuthu each - twelve uyir, the aytham, and each consonant in its bare form - and a thirteen-key form row RE-SPELLS the cell just placed into any of that consonant's shapes, mei first and then the twelve uyirmei. That row IS the Tamil letter chart, which is why it needs no tutorial. Every key is coloured by the exact ezhuthu it would commit right now, so the form row is a live per-letter readout; rolling twelve forms up into one verdict on the base key has no honest answer, because `கா` being absent says nothing about `கு`.
+- **Every complete row is accepted; there is no accept list.** A word check can only ever REJECT, and the best list this repo could build - the published headword class - withholds 1,395,218 classified `inflected` surfaces, which is exactly what a speaker of an agglutinative language types. Rejecting is also a favour, since it hands the row back, so accepting everything is the strictly harsher setting and the only one that can never tell a player their real word is not a word.
+
+The answer is six ezhuthu because that was measured, not assumed - in Tamil a LONGER answer is easier, the reverse of English ([difficulty-and-scoring.md](difficulty-and-scoring.md)). Its ladder is two rungs: `firstEzhuthu` is refused because a guess buys the same fact and answers five other positions at the same time.
+
 ## Pack
 
 A **Pack** (`packId`) is the content and language pack a Game draws from. It is a data dimension, orthogonal to the Game and the Mode. Today there is one Pack, `ta-core` (Tamil); other Packs may follow. A play session is **one Mode x one-or-more Games x a Pack**.
