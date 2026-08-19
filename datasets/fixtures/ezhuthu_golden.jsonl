@@ -1,34 +1,34 @@
-{"word": "\u0b85", "ezhuthu": ["\u0b85"], "note": "uyir a - single independent vowel"}
-{"word": "\u0b85\u0b86\u0b87", "ezhuthu": ["\u0b85", "\u0b86", "\u0b87"], "note": "uyir a/aa/i - consecutive independent vowels, each its own ezhuthu"}
-{"word": "\u0b94", "ezhuthu": ["\u0b94"], "note": "uyir au - the diphthong vowel (NFC single code point)"}
-{"word": "\u0b8e\u0b8f\u0b90", "ezhuthu": ["\u0b8e", "\u0b8f", "\u0b90"], "note": "uyir e/ee/ai"}
-{"word": "\u0b92\u0b93", "ezhuthu": ["\u0b92", "\u0b93"], "note": "uyir o/oo"}
-{"word": "\u0b95", "ezhuthu": ["\u0b95"], "note": "uyirmei ka - bare consonant carries the inherent /a/ vowel"}
-{"word": "\u0b95\u0bbe", "ezhuthu": ["\u0b95\u0bbe"], "note": "uyirmei kaa - consonant + aa matra"}
-{"word": "\u0b95\u0bbf", "ezhuthu": ["\u0b95\u0bbf"], "note": "uyirmei ki - consonant + i matra"}
-{"word": "\u0b95\u0bc0", "ezhuthu": ["\u0b95\u0bc0"], "note": "uyirmei kii - consonant + ii matra"}
-{"word": "\u0b95\u0bc1", "ezhuthu": ["\u0b95\u0bc1"], "note": "uyirmei ku - consonant + u matra"}
-{"word": "\u0b95\u0bc2", "ezhuthu": ["\u0b95\u0bc2"], "note": "uyirmei kuu - consonant + uu matra"}
-{"word": "\u0b95\u0bc6", "ezhuthu": ["\u0b95\u0bc6"], "note": "uyirmei ke - consonant + e matra (left-side glyph, logically after)"}
-{"word": "\u0b95\u0bc7", "ezhuthu": ["\u0b95\u0bc7"], "note": "uyirmei kee - consonant + ee matra"}
-{"word": "\u0b95\u0bc8", "ezhuthu": ["\u0b95\u0bc8"], "note": "uyirmei kai - consonant + ai matra"}
-{"word": "\u0b95\u0bca", "ezhuthu": ["\u0b95\u0bca"], "note": "uyirmei ko - two-part o matra (NFC single code point U+0BCA)"}
-{"word": "\u0b95\u0bcb", "ezhuthu": ["\u0b95\u0bcb"], "note": "uyirmei koo - two-part oo matra (NFC single code point U+0BCB)"}
-{"word": "\u0b95\u0bcc", "ezhuthu": ["\u0b95\u0bcc"], "note": "uyirmei kau - two-part au matra (NFC single code point U+0BCC)"}
-{"word": "\u0b95\u0bcd", "ezhuthu": ["\u0b95\u0bcd"], "note": "mei k - consonant + pulli (pure consonant, vowel killed)"}
-{"word": "\u0ba3\u0bcd", "ezhuthu": ["\u0ba3\u0bcd"], "note": "mei nn - retroflex consonant + pulli"}
-{"word": "\u0b83", "ezhuthu": ["\u0b83"], "note": "aytham - the single aytham character"}
-{"word": "\u0b9c", "ezhuthu": ["\u0b9c"], "note": "Grantha ja (uyirmei) - borrowed consonant"}
-{"word": "\u0bb7", "ezhuthu": ["\u0bb7"], "note": "Grantha ssa (uyirmei)"}
-{"word": "\u0bb8", "ezhuthu": ["\u0bb8"], "note": "Grantha sa (uyirmei)"}
-{"word": "\u0bb9", "ezhuthu": ["\u0bb9"], "note": "Grantha ha (uyirmei)"}
-{"word": "\u0bb6", "ezhuthu": ["\u0bb6"], "note": "Grantha sha (uyirmei) - as in shri"}
-{"word": "\u0b95\u0bcd\u0bb7", "ezhuthu": ["\u0b95\u0bcd", "\u0bb7"], "note": "ksha - mei k + Grantha ssa segments into two ezhuthu (pulli breaks the cluster)"}
-{"word": "\u0ba4\u0bae\u0bbf\u0bb4\u0bcd", "ezhuthu": ["\u0ba4", "\u0bae\u0bbf", "\u0bb4\u0bcd"], "note": "tamizh -> ta / mi / zh - the canonical multi-syllable example"}
-{"word": "\u0bb5\u0ba3\u0b95\u0bcd\u0b95\u0bae\u0bcd", "ezhuthu": ["\u0bb5", "\u0ba3", "\u0b95\u0bcd", "\u0b95", "\u0bae\u0bcd"], "note": "vanakkam (hello) -> va / nna / k / ka / m"}
-{"word": "\u0ba8\u0ba9\u0bcd\u0bb1\u0bbf", "ezhuthu": ["\u0ba8", "\u0ba9\u0bcd", "\u0bb1\u0bbf"], "note": "nanri (thanks) -> na / n / ri"}
-{"word": "\u0b85\u0b83\u0ba4\u0bc1", "ezhuthu": ["\u0b85", "\u0b83", "\u0ba4\u0bc1"], "note": "ahdu (that) -> a / aytham / tu - aytham inside a word"}
-{"word": "\u0bb2\u0b95\u0bcd\u0bb7\u0bcd\u0bae\u0bbf", "ezhuthu": ["\u0bb2", "\u0b95\u0bcd", "\u0bb7\u0bcd", "\u0bae\u0bbf"], "note": "lakshmi -> la / k / sh / mi - ksh conjunct with two pulli"}
-{"word": "\u0ba4\u0bae\u0bbf\u0bb4\u0bcd 2024", "ezhuthu": ["\u0ba4", "\u0bae\u0bbf", "\u0bb4\u0bcd", " ", "2", "0", "2", "4"], "note": "mixed - tamizh + space + ASCII digits, each non-Tamil char its own unit"}
+{"word": "அ", "ezhuthu": ["அ"], "note": "uyir a - single independent vowel"}
+{"word": "அஆஇ", "ezhuthu": ["அ", "ஆ", "இ"], "note": "uyir a/aa/i - consecutive independent vowels, each its own ezhuthu"}
+{"word": "ஔ", "ezhuthu": ["ஔ"], "note": "uyir au - the diphthong vowel (NFC single code point)"}
+{"word": "எஏஐ", "ezhuthu": ["எ", "ஏ", "ஐ"], "note": "uyir e/ee/ai"}
+{"word": "ஒஓ", "ezhuthu": ["ஒ", "ஓ"], "note": "uyir o/oo"}
+{"word": "க", "ezhuthu": ["க"], "note": "uyirmei ka - bare consonant carries the inherent /a/ vowel"}
+{"word": "கா", "ezhuthu": ["கா"], "note": "uyirmei kaa - consonant + aa matra"}
+{"word": "கி", "ezhuthu": ["கி"], "note": "uyirmei ki - consonant + i matra"}
+{"word": "கீ", "ezhuthu": ["கீ"], "note": "uyirmei kii - consonant + ii matra"}
+{"word": "கு", "ezhuthu": ["கு"], "note": "uyirmei ku - consonant + u matra"}
+{"word": "கூ", "ezhuthu": ["கூ"], "note": "uyirmei kuu - consonant + uu matra"}
+{"word": "கெ", "ezhuthu": ["கெ"], "note": "uyirmei ke - consonant + e matra (left-side glyph, logically after)"}
+{"word": "கே", "ezhuthu": ["கே"], "note": "uyirmei kee - consonant + ee matra"}
+{"word": "கை", "ezhuthu": ["கை"], "note": "uyirmei kai - consonant + ai matra"}
+{"word": "கொ", "ezhuthu": ["கொ"], "note": "uyirmei ko - two-part o matra (NFC single code point U+0BCA)"}
+{"word": "கோ", "ezhuthu": ["கோ"], "note": "uyirmei koo - two-part oo matra (NFC single code point U+0BCB)"}
+{"word": "கௌ", "ezhuthu": ["கௌ"], "note": "uyirmei kau - two-part au matra (NFC single code point U+0BCC)"}
+{"word": "க்", "ezhuthu": ["க்"], "note": "mei k - consonant + pulli (pure consonant, vowel killed)"}
+{"word": "ண்", "ezhuthu": ["ண்"], "note": "mei nn - retroflex consonant + pulli"}
+{"word": "ஃ", "ezhuthu": ["ஃ"], "note": "aytham - the single aytham character"}
+{"word": "ஜ", "ezhuthu": ["ஜ"], "note": "Grantha ja (uyirmei) - borrowed consonant"}
+{"word": "ஷ", "ezhuthu": ["ஷ"], "note": "Grantha ssa (uyirmei)"}
+{"word": "ஸ", "ezhuthu": ["ஸ"], "note": "Grantha sa (uyirmei)"}
+{"word": "ஹ", "ezhuthu": ["ஹ"], "note": "Grantha ha (uyirmei)"}
+{"word": "ஶ", "ezhuthu": ["ஶ"], "note": "Grantha sha (uyirmei) - as in shri"}
+{"word": "க்ஷ", "ezhuthu": ["க்", "ஷ"], "note": "ksha - mei k + Grantha ssa segments into two ezhuthu (pulli breaks the cluster)"}
+{"word": "தமிழ்", "ezhuthu": ["த", "மி", "ழ்"], "note": "tamizh -> ta / mi / zh - the canonical multi-syllable example"}
+{"word": "வணக்கம்", "ezhuthu": ["வ", "ண", "க்", "க", "ம்"], "note": "vanakkam (hello) -> va / nna / k / ka / m"}
+{"word": "நன்றி", "ezhuthu": ["ந", "ன்", "றி"], "note": "nanri (thanks) -> na / n / ri"}
+{"word": "அஃது", "ezhuthu": ["அ", "ஃ", "து"], "note": "ahdu (that) -> a / aytham / tu - aytham inside a word"}
+{"word": "லக்ஷ்மி", "ezhuthu": ["ல", "க்", "ஷ்", "மி"], "note": "lakshmi -> la / k / sh / mi - ksh conjunct with two pulli"}
+{"word": "தமிழ் 2024", "ezhuthu": ["த", "மி", "ழ்", " ", "2", "0", "2", "4"], "note": "mixed - tamizh + space + ASCII digits, each non-Tamil char its own unit"}
 {"word": "abc", "ezhuthu": ["a", "b", "c"], "note": "pure ASCII passthrough - each character its own unit"}
-{"word": "\u0b95\u0bcb2", "ezhuthu": ["\u0b95\u0bcb", "2"], "note": "uyirmei koo directly followed by a digit - cluster then digit boundary"}
+{"word": "கோ2", "ezhuthu": ["கோ", "2"], "note": "uyirmei koo directly followed by a digit - cluster then digit boundary"}

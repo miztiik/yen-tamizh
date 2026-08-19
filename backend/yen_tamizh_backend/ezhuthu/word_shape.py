@@ -8,7 +8,12 @@ it. Each is a fact about the script rather than a preference any Game holds:
   one of the other eight consonants (``d``, ``N``, ``r``, ``l``, ``zh``, ``L``,
   ``tr``, ``n``);
 - **which ezhuthu may END a word** - a vowel-bearing ezhuthu, or one of eight
-  mei (``FINAL_MEI``, Tolkappiyam's word-final set);
+  mei (``FINAL_MEI``). This eight is MODERN usage, not the classical set: the
+  grammarians' mozhi-irudhi admits eleven mei, and the three left out here -
+  ``nj``, ``nh`` and ``v`` - survive in living Tamil only as bound sandhi stems
+  (``av``, ``iv``, ``ev``) rather than as words, so a token ending in one is a
+  fragment. Narrowing is deliberate; attributing the narrower set to the
+  classical grammars would not be;
 - **which mei may be followed by which consonant** - the cluster table, stated
   over the three consonant classes the way Tamil grammar states it, rather than
   pair by pair.

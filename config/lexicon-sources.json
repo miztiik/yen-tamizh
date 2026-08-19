@@ -443,8 +443,8 @@
       "attestationTier": "lexicographic",
       "kind": "jsonl",
       "path": "datasets/lexicon/sources/llm-authored/entries.jsonl",
-      "bytes": 1767398,
-      "sha256": "5e236b960ea674183cd6f93c81a20f0cd3d5632ea398adb46f7e6785adf5385b",
+      "bytes": 1767395,
+      "sha256": "3bbd2058a4153768fe9736effa33857533c85f16625f3b19314b9dd7e20a905c",
       "precedence": 19,
       "wordField": "word",
       "note": "The only source whose bytes are COMMITTED rather than acquired, and the only one whose reader validates a shape: see wordsmith/llm_enrich.py. Last precedence on purpose - an authored English translation must lose the single display slot to every attested one. No posField or categoryField is mapped: an authored row writes the closed pos and category vocabularies natively, so it has no raw orthography for posAliases or categoryAliases to translate."

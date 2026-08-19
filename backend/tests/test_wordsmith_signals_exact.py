@@ -131,6 +131,69 @@ def test_the_word_initial_rule_covers_the_whole_inventory() -> None:
     assert len(EZHUTHU_INVENTORY) - len(legal) == 115
 
 
+# The Nannul word-initial partition, as an EXTERNAL check on the ten consonants.
+# Indexed by a Tamil etymology dictionary that groups its headwords into the
+# mozhi-mudhal series - twelve uyir, nine uyirmei, and one section named for the
+# letters that cannot open a word at all.
+_MOZHI_MUDHAL = (
+    Path(__file__).resolve().parents[2] / "datasets" / "fixtures" / "mozhi_mudhal_golden.jsonl"
+)
+_CANNOT_OPEN = "cannot-open"
+
+
+def _mozhi_mudhal_rows() -> list[dict[str, Any]]:
+    return [
+        json.loads(line)
+        for line in _MOZHI_MUDHAL.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+
+
+def test_the_word_initial_rule_agrees_with_an_independent_nannul_partition() -> None:
+    """The ten opening consonants, checked against a table this repo did not write.
+
+    The partition test above is exhaustive but circular: it compares
+    ``begins_like_a_word`` with ``INITIAL_CONSONANTS``, the set the function is
+    built from, so adding an eleventh consonant to that set - or dropping ng or
+    nj from it - passes every other test in this suite. Nothing anywhere else
+    asserts the ten are the RIGHT ten; that claim is carried by a comment.
+
+    This fixture supplies the missing half. Its sections are somebody else's
+    reading of the same rule, so agreement is evidence about Tamil rather than
+    about our own table. The negative section is the valuable one: 72 words the
+    source itself files under 'does not come word-initially'.
+
+    Measured reach, so the guarantee is not overstated: admitting ra costs 49
+    disagreements, dropping ya 16, dropping nj 3 - but dropping ng costs ZERO,
+    because the source has no ngara section to disagree with. That is correct
+    lexicography rather than a hole in the fixture (the grammars permit ng and
+    the lexicon barely instantiates it), but it does mean this test fences nine
+    of the ten openings, and ng rests on the partition test above alone.
+    """
+    rows = _mozhi_mudhal_rows()
+    named = [row for row in rows if row["sectionRoman"] != _CANNOT_OPEN]
+    barred = [row for row in rows if row["sectionRoman"] == _CANNOT_OPEN]
+    assert (len(named), len(barred)) == (1975, 72)
+
+    # A row carrying a note is a defect in the SOURCE, pinned by name with the
+    # verdict it should get, so the oracle has no unexplained residue.
+    noted = [row for row in named if "note" in row]
+    assert len(noted) == 1 and noted[0]["initialLegal"] is False
+
+    for row in named:
+        expected = "note" not in row
+        assert begins_like_a_word(segment(row["word"])) is expected, row["word"]
+    for row in barred:
+        assert not begins_like_a_word(segment(row["word"])), row["word"]
+
+
+def test_the_nannul_partition_fixture_records_the_verdict_it_asserts() -> None:
+    # Keeps the fixture honest: a hand-edited initialLegal would otherwise let
+    # the test above pass while the file said something else.
+    for row in _mozhi_mudhal_rows():
+        assert row["initialLegal"] is begins_like_a_word(segment(row["word"])), row["word"]
+
+
 def test_the_word_final_rule_covers_the_whole_inventory() -> None:
     # The same partition over the other end of the word: only ten of the
     # eighteen mei are refused, and every vowel-bearing ezhuthu is admitted.

@@ -440,8 +440,8 @@
       "wordClass": "headword",
       "baseEzhuthu": "0ba4",
       "rows": 14580,
-      "bytes": 4826288,
-      "sha256": "83db5b2147d3dd0db5ae7934ffcc1b15f7ee5dce9c9ea4a3ffb9226e4bb74959"
+      "bytes": 4826285,
+      "sha256": "029ff8a028e38f295d7f0f9e0daa8a6a7e03db4a9ded6aebc70db3d49ab71113"
     },
     {
       "path": "datasets/lexicon/by-class/headword/0ba8.ndjson",
