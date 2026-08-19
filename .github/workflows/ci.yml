@@ -10,6 +10,9 @@ jobs:
   # production build, and the Playwright e2e smoke.
   frontend:
     runs-on: ubuntu-latest
+    # A hung step must fail fast and visibly; without this a stuck install burns
+    # the 6-hour default and blocks the deploy (which only runs on ci success).
+    timeout-minutes: 20
     defaults:
       run:
         working-directory: frontend
@@ -36,8 +39,21 @@ jobs:
       - run: npm run check
       - run: npm run test
       - run: npm run build
+      # Browsers are keyed on the lockfile because @playwright/test's version
+      # pins the browser build it expects.
+      - name: cache Playwright browsers
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('frontend/package-lock.json') }}
+      # No --with-deps: it shells out to apt-get, which hung for hours on the
+      # runner. The ubuntu-latest image already ships the libraries headless
+      # Chromium needs, and a genuinely missing one now fails in seconds at
+      # launch instead of stalling the whole pipeline.
       - name: install Playwright browser
-        run: npx playwright install --with-deps chromium
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: npx playwright install chromium
       - name: e2e smoke
         run: npm run test:e2e
 
@@ -45,6 +61,7 @@ jobs:
   # type-check (mypy strict) and run the pytest smoke suite.
   backend:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     defaults:
       run:
         working-directory: backend
@@ -65,6 +82,7 @@ jobs:
   # the committed schema, types, and validators can never drift from the models.
   contracts:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
         with:
