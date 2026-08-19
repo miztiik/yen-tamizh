@@ -37,9 +37,9 @@ afterEach(() => {
   vi.unstubAllGlobals();
 });
 
-// The six core contracts plus copy. Each ships a valid and a malformed fixture
-// under datasets/fixtures/contracts/; the malformed one omits or mistypes a
-// required field the backend rejects too.
+// The six core contracts plus copy, and one payload schema per Game. Each ships
+// a valid and a malformed fixture under datasets/fixtures/contracts/; the
+// malformed one omits or mistypes a required field the backend rejects too.
 const CORE_SCHEMAS: SchemaName[] = [
   "app-config",
   "event-envelope",
@@ -47,6 +47,7 @@ const CORE_SCHEMAS: SchemaName[] = [
   "puzzle-file",
   "bank-index",
   "anagram-puzzle",
+  "missing-letters-puzzle",
   "copy",
 ];
 

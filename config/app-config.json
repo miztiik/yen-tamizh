@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-17",
+  "version": "2026-08-19",
   "changelog": [
+    {
+      "version": "2026-08-19",
+      "change": "Added hints.perGame.missing-letters at 2.",
+      "why": "Row 18 - this allowance caps how many rungs a day may bake for a Game, and the missing-letters ladder is two rungs rather than three. It is not a smaller budget for the same ladder: the first-ezhuthu rung cannot exist on a board that has already printed every ezhuthu it is not hiding, because the rung would either charge for a fact on the screen or be the answer. daily.mix is deliberately NOT changed in the same edit - see the PR - so nothing about today's Daily moves."
+    },
     {
       "version": "2026-08-17",
       "change": "Raised hints.perGame.anagram from 2 to 3.",
@@ -13,7 +18,7 @@
     }
   ],
   "daily": { "playlistLength": 3, "mix": { "anagram": 3 } },
-  "hints": { "enabled": true, "perGame": { "anagram": 3 } },
+  "hints": { "enabled": true, "perGame": { "anagram": 3, "missing-letters": 2 } },
   "infinite": { "lruWindow": 200, "defaultDifficulty": "medium" },
   "timeTrial": { "durationSec": 120 },
   "ui": { "enabledModes": ["daily"], "defaultMode": "daily", "defaultTheme": "light" }

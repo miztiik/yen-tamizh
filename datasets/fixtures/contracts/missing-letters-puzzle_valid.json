@@ -1,0 +1,15 @@
+{
+  "version": "2026-08-19",
+  "changelog": [
+    {
+      "version": "2026-08-19",
+      "change": "Initial missing-letters-puzzle fixture.",
+      "why": "Row 18 contract Oracle - the valid missing-letters payload shape."
+    }
+  ],
+  "word": "\u0BB5\u0BBE\u0BAF\u0BCD\u0BAA\u0BCD\u0BAA\u0BC1",
+  "blanks": [2],
+  "choices": ["\u0BA4\u0BCD", "\u0BAA\u0BCD", "\u0B95\u0BCD", "\u0BB1\u0BCD"],
+  "attempts": 3,
+  "hints": [{ "kind": "meaning", "text": "Meaning: an opportunity", "cost": 3 }]
+}

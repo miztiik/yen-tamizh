@@ -25,10 +25,22 @@ The `gameId` values are the locked identifiers used in code, schemas, config, an
 | --- | --- | --- | --- |
 | `word-ladder` | சொல் ஏணி (add one ezhuthu) | Add exactly one ezhuthu and rearrange to reach the next valid word. | Rungs are counted in ezhuthu, not codepoints. The reachability graph is proven at build time so the browser only plays a valid ladder. |
 | `anagram` | சொல் கலைப்பு | Unscramble ezhuthu tiles into the target word. | The proven starter mechanic, ported from the prior generation. |
-| `missing-letters` | இடைவெளி நிரப்பு | Fill the blanked ezhuthu of a partially shown word. | A blank is a whole ezhuthu, never half a cluster. |
+| `missing-letters` | இடைவெளி நிரப்பு | Fill the blanked ezhuthu of a partially shown word. | A blank is a whole ezhuthu, never half a cluster. The blanks are POSITIONS in the answer's segmentation, so the payload ships no ezhuthu array of its own. |
 | `wordle` | சொல் யூகி | Guess an N-ezhuthu word in N tries; per-tile present / correct / absent feedback. | "Letter" = ezhuthu; the keyboard is an ezhuthu picker (uyir + mei + uyirmei). |
 | `word-search` | சொல் தேடல் | Trace hidden words in an ezhuthu grid, 8 directions. | Grid cells are ezhuthu; tracing is drag or keyboard. |
 | `crossword` | சொற்கட்டம் | Fill a mini crossword from clues; entries interlock on shared ezhuthu. | Interlock is on ezhuthu identity. A build-time solver in `backend/` places the words. |
+
+## missing-letters
+
+A word is printed with one or more whole ezhuthu punched out of it, and a bank of ezhuthu sits below. Tap one and it drops into the next hole; tap a filled hole to take it back. The board auto-submits the moment the last hole fills, so there is no check button and nothing to read before the first move.
+
+Three things are true of it that are not true of the anagram, and each one shapes the contract:
+
+- **There is no Tamil keyboard, so the bank is the input method.** Its size is therefore a balance number rather than a layout preference - it is the odds a player who knows nothing still guesses right inside the allowed attempts - and it lives in `config/daily-generator.json` as `choiceCount` (Holy Law #6).
+- **The generator CHOOSES the mask.** An anagram is handed the tiles it must work with; this Game gets to pick which ezhuthu to hide, so it scores every candidate mask against the served set and takes one no other served word answers. See [../architecture/contracts/schemas.md](../architecture/contracts/schemas.md) for the measured trade-off and what happens on the words where no such mask exists.
+- **The first ezhuthu can never be a hint.** The board has already printed every ezhuthu it is not hiding, so that rung is either a fact on the screen or the answer itself. Its ladder is two rungs - a category, then a meaning - where the anagram's is three.
+
+Scoring counts HOLES, not the word's length: this Game hands the player most of the answer, so a one-blank win is worth 20 against the anagram's 40 to 60 ([difficulty-and-scoring.md](difficulty-and-scoring.md)).
 
 ## Pack
 

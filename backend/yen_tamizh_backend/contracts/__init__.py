@@ -91,6 +91,7 @@ from yen_tamizh_backend.contracts.lexicon_sources import (
     SourceRole,
     WordClassEvidence,
 )
+from yen_tamizh_backend.contracts.missing_letters_puzzle import MissingLettersPuzzle
 from yen_tamizh_backend.contracts.puzzle_file import PuzzleFile, PuzzleItem
 from yen_tamizh_backend.contracts.save import Save, compute_day_key
 from yen_tamizh_backend.contracts.served_denylist import (
@@ -124,7 +125,9 @@ from yen_tamizh_backend.contracts.wordhood import (
 # the participial suffixes and the obscenity labels - inside the derived
 # registry's own schema. ``LexiconEntry`` is NOT here - a data row carries
 # no ``version`` / ``changelog``, so it is not a ``SchemaModel``, and it reaches
-# the schema through ``Lexicon.rowSchema``.
+# the schema through ``Lexicon.rowSchema``. Row 18 adds the second per-Game
+# payload beside the anagram's, which is the whole point of one schema per Game:
+# a new Game costs a payload schema, never an edit to ``puzzle-file``.
 REGISTRY: tuple[type[SchemaModel], ...] = (
     AnagramPuzzle,
     AppConfig,
@@ -138,6 +141,7 @@ REGISTRY: tuple[type[SchemaModel], ...] = (
     GlyphManifest,
     Lexicon,
     LexiconSources,
+    MissingLettersPuzzle,
     PuzzleFile,
     Save,
     ServedDenylist,
@@ -199,6 +203,7 @@ __all__ = [
     "LexiconSource",
     "LexiconSourceKind",
     "LexiconSources",
+    "MissingLettersPuzzle",
     "ModeId",
     "NeighbourSettings",
     "NgramSettings",

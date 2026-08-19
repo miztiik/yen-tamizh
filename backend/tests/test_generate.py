@@ -34,6 +34,8 @@ from __future__ import annotations
 
 import json
 import shutil
+from collections import Counter
+from collections.abc import Sequence
 from datetime import date, timedelta
 from pathlib import Path
 from typing import Any, get_args
@@ -48,9 +50,11 @@ from yen_tamizh_backend.contracts.copy import Copy
 from yen_tamizh_backend.contracts.daily_generator import DailyGenerator, GameGeneration
 from yen_tamizh_backend.contracts.game_wordlist import GameWord, GameWordlist
 from yen_tamizh_backend.contracts.lexicon import PartOfSpeech
+from yen_tamizh_backend.contracts.missing_letters_puzzle import MissingLettersPuzzle
 from yen_tamizh_backend.contracts.puzzle_file import PuzzleFile
 from yen_tamizh_backend.ezhuthu import segment
-from yen_tamizh_backend.generate import anagram, daily
+from yen_tamizh_backend.generate import anagram, daily, missing_letters
+from yen_tamizh_backend.generate import hints as hint_ladder
 from yen_tamizh_backend.generate.seed import hash_seed, seeded_index, seeded_shuffle
 from yen_tamizh_backend.scripts.generate_today import generate, load_wordlists
 from yen_tamizh_backend.wordsmith import derive
@@ -81,6 +85,14 @@ THEMED_SET = "datasets/wordlists/derived/themed-nature.json"
 # are past the committed bank, so a themed test bakes into empty ground.
 THEME_DAY = "2026-08-30"
 ORDINARY_DAY = "2026-08-31"
+
+# A baked item's payload DROPS version + changelog (the day file carries its
+# own), so re-validating one against its per-Game contract needs a stand-in.
+_STAMP = {
+    "version": "2026-08-19",
+    "change": "re-validation stamp",
+    "why": "a baked item drops the stamp the model carries",
+}
 
 
 @pytest.fixture(scope="module")
@@ -517,7 +529,7 @@ def test_difficulty_reads_both_length_and_familiarity(
     }
     claimed = 0
     for row in wordlists[ANAGRAM_SET].words:
-        bucket = anagram.difficulty_of(row, spec)
+        bucket = daily.difficulty_of(row, spec)
         if bucket is None:
             # No band claims it, so no slot can draw it - see bucket_candidates.
             continue
@@ -545,7 +557,7 @@ def test_a_word_no_band_claims_is_dropped_rather_than_relabelled(
     unclaimed = [
         row
         for row in wordlists[ANAGRAM_SET].words
-        if anagram.difficulty_of(row, spec) is None
+        if daily.difficulty_of(row, spec) is None
     ]
     assert bucketed + len(unclaimed) == len(wordlists[ANAGRAM_SET].words)
     for row in unclaimed:
@@ -659,7 +671,7 @@ def test_a_day_is_dealt_round_robin_across_the_difficulty_bands(
         band.id for band in spec.difficulties
     ]
     for row, difficulty in picked:
-        assert anagram.difficulty_of(row, spec) == difficulty
+        assert daily.difficulty_of(row, spec) == difficulty
 
 
 def test_the_draw_within_a_band_is_stratified_not_uniform(
@@ -714,7 +726,7 @@ def test_a_band_with_an_empty_bucket_is_an_error(
     only_hard = [
         row
         for row in wordlists[ANAGRAM_SET].words
-        if anagram.difficulty_of(row, spec) == "hard"
+        if daily.difficulty_of(row, spec) == "hard"
     ]
     with pytest.raises(ValueError, match="easy"):
         daily.pick_words(only_hard, spec, FIRST_DAY, 3, used=())
@@ -723,15 +735,19 @@ def test_a_band_with_an_empty_bucket_is_an_error(
 def test_the_engine_reads_only_the_derived_layer() -> None:
     """The lexicon and the daily puzzle are different layers (user directive)."""
     forbidden = ("yen_tamizh_backend.wordsmith",)
-    for module in ("daily.py", "anagram.py", "seed.py", "__init__.py"):
-        source = (
-            _REPO_ROOT / "backend" / "yen_tamizh_backend" / "generate" / module
-        ).read_text(encoding="utf-8")
+    # Derived from disk, never pinned: a module a later Game adds is covered by
+    # this Oracle without anyone remembering to list it.
+    package = _REPO_ROOT / "backend" / "yen_tamizh_backend" / "generate"
+    modules = sorted(package.glob("*.py"))
+    assert len(modules) >= 4, f"only {len(modules)} modules - has the package moved?"
+    for module in modules:
         body = "\n".join(
-            line for line in source.splitlines() if line.startswith(("import", "from"))
+            line
+            for line in module.read_text(encoding="utf-8").splitlines()
+            if line.startswith(("import", "from"))
         )
         for name in forbidden:
-            assert name not in body, f"{module} imports {name}"
+            assert name not in body, f"{module.name} imports {name}"
 
 
 def test_generated_paths_are_relative_and_posix(
@@ -864,7 +880,7 @@ def test_a_theme_with_an_empty_difficulty_bucket_declines_instead_of_raising(
     hard_only = [
         row
         for row in wordlists[THEMED_SET].words
-        if anagram.difficulty_of(row, spec) == "hard"
+        if daily.difficulty_of(row, spec) == "hard"
     ]
     assert hard_only
 
@@ -1074,8 +1090,8 @@ def test_the_meaning_rung_never_reaches_for_english(
     )
     stripped = row.model_copy(update={"definitionTa": None, "synonymsTa": None})
     assert stripped.translationEn
-    assert anagram.sellable_meaning(stripped) is None
-    assert anagram.display_meaning(stripped) is None
+    assert hint_ladder.sellable_meaning(stripped) is None
+    assert hint_ladder.display_meaning(stripped) is None
     kinds = [hint.kind for hint in anagram.build_hints(stripped, spec, 99)]
     assert "meaning" not in kinds
 
@@ -1120,7 +1136,7 @@ def test_a_themed_day_omits_the_category_rung_from_every_ladder(
             row = rows[str(item.payload["word"])]
             # The rung WOULD have rendered on an ordinary day - that is what
             # makes the omission the day's doing rather than the word's.
-            assert anagram.category_tag(row, spec) is not None
+            assert hint_ladder.category_tag(row, spec) is not None
             kinds = [hint["kind"] for hint in item.payload.get("hints", [])]
             assert "category" not in kinds, path.stem
     assert themed_days, "no committed themed day to check"
@@ -1184,13 +1200,13 @@ def test_the_summary_meaning_is_the_one_the_rung_sold(
     spec = generator.games[0]
     agreed = disagreed = 0
     for row in wordlists[ANAGRAM_SET].words:
-        sellable = anagram.sellable_meaning(row)
+        sellable = hint_ladder.sellable_meaning(row)
         if sellable is None:
             # Nothing was sold, so the summary is free to show what it has.
-            assert anagram.display_meaning(row) is not None
+            assert hint_ladder.display_meaning(row) is not None
             disagreed += 1
             continue
-        assert anagram.display_meaning(row) == sellable
+        assert hint_ladder.display_meaning(row) == sellable
         agreed += 1
     assert agreed and disagreed
 
@@ -1342,3 +1358,299 @@ def test_a_puzzle_may_not_list_its_own_answer_as_an_alternative(
     row = wordlists[ANAGRAM_SET].words[0]
     with pytest.raises(ValidationError, match="repeats the answer"):
         anagram.build_puzzle(row, spec, "seed", 3, False, [row.word])
+
+
+# --------------------------------------------------------------------------
+# 8. missing-letters (row 18)
+#
+# The second Game, and the first test of the claim that adding one costs a
+# registration rather than a rewrite. The generator's own decision - WHICH
+# ezhuthu to hide - is what these cover, because it is the only place a mask
+# that admits a second real word can be avoided.
+# --------------------------------------------------------------------------
+
+
+@pytest.fixture(scope="module")
+def ml_spec(generator: DailyGenerator) -> GameGeneration:
+    return next(
+        spec for spec in generator.games if spec.gameId == missing_letters.GAME_ID
+    )
+
+
+@pytest.fixture(scope="module")
+def ml_served(
+    ml_spec: GameGeneration, wordlists: dict[str, GameWordlist]
+) -> missing_letters.ServedByLength:
+    return missing_letters.index_by_length(wordlists[ml_spec.wordlist], ml_spec)
+
+
+@pytest.fixture(scope="module")
+def ml_masks(
+    ml_spec: GameGeneration, wordlists: dict[str, GameWordlist]
+) -> tuple[list[GameWord], list[GameWord]]:
+    """Split the served set by whether ANY one-blank mask has a single answer.
+
+    Built with an independent mask INDEX rather than the generator's own
+    difference-bitmask scan, so the two implementations cross-check each other -
+    and once for the whole module, because the interesting rows are a couple of
+    percent of the set and hunting them per test would scan it repeatedly.
+    """
+    index: Counter[tuple[str | None, ...]] = Counter()
+    rows = wordlists[ml_spec.wordlist].words
+
+    def key(ezhuthu: Sequence[str], hole: int) -> tuple[str | None, ...]:
+        return tuple(None if i == hole else unit for i, unit in enumerate(ezhuthu))
+
+    for row in rows:
+        for hole in range(len(row.ezhuthu)):
+            index[key(row.ezhuthu, hole)] += 1
+    unique: list[GameWord] = []
+    shared: list[GameWord] = []
+    for row in rows:
+        fewest = min(index[key(row.ezhuthu, hole)] for hole in range(len(row.ezhuthu)))
+        (unique if fewest == 1 else shared).append(row)
+    return unique, shared
+
+
+def _ml_rows(
+    ml_spec: GameGeneration, wordlists: dict[str, GameWordlist], limit: int
+) -> list[GameWord]:
+    """A fixed prefix of the served set - a real sample, not a synthetic one."""
+    return list(wordlists[ml_spec.wordlist].words[:limit])
+
+
+def test_every_blank_hides_exactly_one_whole_ezhuthu(
+    ml_spec: GameGeneration,
+    ml_served: missing_letters.ServedByLength,
+    wordlists: dict[str, GameWordlist],
+) -> None:
+    """A hole is a cluster, never half of one - the invariant the Game rests on."""
+    for row in _ml_rows(ml_spec, wordlists, 120):
+        for blanks in (1, 2):
+            if blanks >= len(row.ezhuthu):
+                continue
+            puzzle = missing_letters.build_puzzle(
+                row, ml_spec, f"{FIRST_DAY}|{row.word}", 2, blanks, ml_served
+            )
+            units = segment(puzzle.word)
+            assert len(units) == len(row.ezhuthu)
+            assert puzzle.blanks == sorted(set(puzzle.blanks))
+            assert len(puzzle.blanks) == blanks
+            assert max(puzzle.blanks) < len(units)
+            # The hidden units rejoin the shown ones into exactly the answer,
+            # which is what "whole ezhuthu" means operationally.
+            assert "".join(units) == row.word
+            for index in puzzle.blanks:
+                assert units[index] in puzzle.choices
+
+
+def test_the_bank_can_fill_the_blanks_and_still_offers_a_choice(
+    ml_spec: GameGeneration,
+    ml_served: missing_letters.ServedByLength,
+    wordlists: dict[str, GameWordlist],
+) -> None:
+    for row in _ml_rows(ml_spec, wordlists, 120):
+        puzzle = missing_letters.build_puzzle(
+            row, ml_spec, f"{FIRST_DAY}|{row.word}", 2, 1, ml_served
+        )
+        assert len(puzzle.choices) == ml_spec.choiceCount
+        assert len(puzzle.choices) > len(puzzle.blanks)
+        # Every decoy is an ezhuthu, not a fragment: a bank tile the player taps
+        # has to be a unit the answer's own alphabet contains.
+        for choice in puzzle.choices:
+            assert segment(choice) == [choice]
+
+
+def test_the_generator_prefers_a_mask_no_other_served_word_fits(
+    ml_spec: GameGeneration,
+    ml_served: missing_letters.ServedByLength,
+    ml_masks: tuple[list[GameWord], list[GameWord]],
+) -> None:
+    """The row-18 ruling: ambiguity is designed AROUND, then recorded.
+
+    Unlike the anagram - which is handed the tiles it must work with - this
+    generator chooses which ezhuthu to hide, so it scores every candidate mask
+    and takes one no other served word answers. What it may not do is REFUSE the
+    word when no such mask exists: that is the co-anagram mistake, and the
+    settled precedent is to record the alternatives instead
+    (docs/architecture/contracts/schemas.md).
+    """
+    unique, shared = ml_masks
+    # The served set really does hold confusable words, or the preference below
+    # would prove nothing - and the overwhelming majority still have a way out.
+    assert shared, "no ambiguous row in the served set"
+    assert len(unique) / (len(unique) + len(shared)) > 0.9
+
+    # Where a unique mask exists the generator finds it, every time.
+    for row in unique[:200]:
+        puzzle = missing_letters.build_puzzle(
+            row, ml_spec, f"{FIRST_DAY}|{row.word}", 2, 1, ml_served
+        )
+        assert puzzle.alsoValid is None, f"{row.word} had a unique mask and missed it"
+
+    # And where none exists the word is still dealt, carrying what it admits.
+    dealt = 0
+    for row in shared[:40]:
+        puzzle = missing_letters.build_puzzle(
+            row, ml_spec, f"{FIRST_DAY}|{row.word}", 2, 1, ml_served
+        )
+        assert len(segment(puzzle.word)) > len(puzzle.blanks)
+        dealt += 1
+    assert dealt > 0
+
+
+def test_an_ambiguous_mask_records_the_words_it_admits(
+    ml_spec: GameGeneration,
+    ml_served: missing_letters.ServedByLength,
+    ml_masks: tuple[list[GameWord], list[GameWord]],
+) -> None:
+    """A player who fills a real served word is told so, not told "wrong"."""
+    _, shared = ml_masks
+    recorded = 0
+    for row in shared[:60]:
+        puzzle = missing_letters.build_puzzle(
+            row, ml_spec, f"{FIRST_DAY}|{row.word}", 2, 1, ml_served
+        )
+        if puzzle.alsoValid is None:
+            # The mask admits another word the BANK cannot spell; recording it
+            # would be a message that can never fire.
+            continue
+        recorded += 1
+        units = segment(puzzle.word)
+        hidden = set(puzzle.blanks)
+        served_words = {word for word, _ in ml_served[len(units)]}
+        for other in puzzle.alsoValid:
+            parts = segment(other)
+            assert other != puzzle.word
+            assert len(parts) == len(units)
+            # It fits the mask ...
+            assert all(parts[i] == units[i] for i in range(len(units)) if i not in hidden)
+            # ... it is a word this Game would really deal ...
+            assert other in served_words
+            # ... and the player can actually enter it, counting the bank with
+            # multiplicity: two holes needing the same ezhuthu need two of it.
+            assert not Counter(parts[i] for i in hidden) - Counter(puzzle.choices)
+    assert recorded > 0, "no ambiguous mask in the sample - the check proved nothing"
+
+
+def test_the_missing_letters_ladder_never_sells_the_first_ezhuthu(
+    ml_spec: GameGeneration, wordlists: dict[str, GameWordlist]
+) -> None:
+    """The rung would be a fact already printed, or the answer itself."""
+    assert "firstEzhuthu" not in missing_letters.HINT_FIELDS
+    assert missing_letters.HINT_FIELDS < anagram.HINT_FIELDS
+    broken = ml_spec.model_copy(
+        update={
+            "hints": [
+                ml_spec.hints[0].model_copy(
+                    update={"template": "{firstEzhuthu}", "kind": "first-ezhuthu"}
+                )
+            ]
+        }
+    )
+    with pytest.raises(KeyError, match="firstEzhuthu"):
+        missing_letters.build_hints(wordlists[ml_spec.wordlist].words[0], broken, 1)
+
+
+def test_a_hint_never_spells_the_answer_out(
+    ml_spec: GameGeneration, wordlists: dict[str, GameWordlist]
+) -> None:
+    checked = 0
+    for row in wordlists[ml_spec.wordlist].words[:2000]:
+        for hint in missing_letters.build_hints(row, ml_spec, 99):
+            assert row.word not in hint.text
+            checked += 1
+    assert checked > 0
+
+
+def test_the_mask_and_the_bank_are_a_pure_function_of_the_seed(
+    ml_spec: GameGeneration,
+    ml_served: missing_letters.ServedByLength,
+    wordlists: dict[str, GameWordlist],
+) -> None:
+    """Two runs of the same date must bake the same bytes, forever."""
+    rows = _ml_rows(ml_spec, wordlists, 60)
+
+    def bake(seed_day: str) -> list[dict[str, Any]]:
+        return [
+            missing_letters.build_puzzle(
+                row, ml_spec, f"{seed_day}|{row.word}", 2, 1, ml_served
+            ).model_dump(mode="json")
+            for row in rows
+        ]
+
+    assert bake(FIRST_DAY) == bake(FIRST_DAY)
+    # A different seed really does move the board, or "deterministic" would just
+    # mean "constant".
+    assert bake(ORDINARY_DAY) != bake(FIRST_DAY)
+
+
+def test_the_blank_count_comes_from_the_band(ml_spec: GameGeneration) -> None:
+    bands = {band.id: band for band in ml_spec.difficulties}
+    assert bands["hard"].blanks == 2
+    assert bands["easy"].blanks == 1
+    # A band may never hide every ezhuthu of its own shortest word.
+    for band in ml_spec.difficulties:
+        assert band.blanks < band.minLength
+
+
+
+def test_a_day_can_be_dealt_from_more_than_one_game(
+    tmp_path: Path,
+    app_config: AppConfig,
+    generator: DailyGenerator,
+    wordlists: dict[str, GameWordlist],
+) -> None:
+    """The registry claim: a second Game costs a registration, not a day-loop edit.
+
+    ``config/app-config.json`` deliberately still deals three anagrams - changing
+    what today's players get is its own reviewed decision - so this proves the
+    wiring against a mix the config COULD hold rather than against the one it
+    does.
+    """
+    mixed = app_config.model_copy(
+        update={
+            "daily": app_config.daily.model_copy(
+                update={"playlistLength": 3, "mix": {"anagram": 2, "missing-letters": 1}}
+            )
+        }
+    )
+    spec = generator.model_copy(
+        update={"bankDir": tmp_path.name, "daysAhead": 1, "themeEveryNDays": 0}
+    )
+    run = generate(
+        date.fromisoformat(ORDINARY_DAY), tmp_path.parent, mixed, spec, wordlists
+    )
+    assert len(run.written) == 2
+    for day in run.written:
+        games = [item.gameId for item in day.puzzle_file.items]
+        assert sorted(games) == ["anagram", "anagram", "missing-letters"]
+        item = next(i for i in day.puzzle_file.items if i.gameId == "missing-letters")
+        # The payload validates against ITS OWN schema, not the anagram's.
+        MissingLettersPuzzle.model_validate(
+            {"version": "2026-08-19", "changelog": [_STAMP], **item.payload}
+        )
+        assert "tiles" not in item.payload
+
+
+def test_an_unregistered_game_fails_loudly(generator: DailyGenerator) -> None:
+    """A mix naming a Game with no builder must not bake a silently empty day."""
+    with pytest.raises(ValueError, match="no registered puzzle builder"):
+        daily.builder_for("word-ladder")
+    # Every registered generator has a builder, and every builder has a
+    # generator: a spare entry on either side is a Game half added.
+    assert set(daily.BUILDERS) == {spec.gameId for spec in generator.games}
+
+
+def test_the_committed_missing_letters_set_is_servable(
+    ml_spec: GameGeneration, wordlists: dict[str, GameWordlist]
+) -> None:
+    """The length floor is the mechanic's, and the bands can all be filled."""
+    rows = wordlists[ml_spec.wordlist].words
+    assert min(len(row.ezhuthu) for row in rows) >= 4
+    buckets = daily.bucket_candidates(rows, ml_spec)
+    for band in ml_spec.difficulties:
+        assert buckets[band.id], f"the {band.id} bucket is empty"
+        for row in buckets[band.id]:
+            assert band.blanks < len(row.ezhuthu)
+

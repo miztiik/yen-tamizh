@@ -30,8 +30,14 @@
     },
     "DifficultyBand": {
       "additionalProperties": false,
-      "description": "One difficulty bucket: the ezhuthu lengths and the familiarity it covers.\n\nDifficulty is TWO-AXIS - length and familiarity - because length alone is\nanti-correlated at both tails. A long Tamil headword is usually a compound\nthat decomposes into recognisable chunks and is EASIER than its ezhuthu\ncount suggests, while a short rare word is brutal; a length-only easy bucket\ntherefore forces the generator into the shortest words, which are\ndisproportionately literary. A 3-ezhuthu answer also has only six\narrangements against three attempts, so it is brute-forceable by shuffling\nwithout the player ever recognising the word.\n\n``maxStratum`` is the coarsest frequency quarter the band admits, 1 being\nthe most familiar quarter of the SERVED set. Bands deliberately OVERLAP on\nlength and tile on familiarity: what separates easy from hard is mostly how\nwell the player knows the word, not how many tiles it has.\n\nWhere the cuts fall is a game-balance number, so it lives here rather than\nin Python (Holy Law #6).",
+      "description": "One difficulty bucket: the ezhuthu lengths and the familiarity it covers.\n\nDifficulty is TWO-AXIS - length and familiarity - because length alone is\nanti-correlated at both tails. A long Tamil headword is usually a compound\nthat decomposes into recognisable chunks and is EASIER than its ezhuthu\ncount suggests, while a short rare word is brutal; a length-only easy bucket\ntherefore forces the generator into the shortest words, which are\ndisproportionately literary. A 3-ezhuthu answer also has only six\narrangements against three attempts, so it is brute-forceable by shuffling\nwithout the player ever recognising the word.\n\n``maxStratum`` is the coarsest frequency quarter the band admits, 1 being\nthe most familiar quarter of the SERVED set. Bands deliberately OVERLAP on\nlength and tile on familiarity: what separates easy from hard is mostly how\nwell the player knows the word, not how many tiles it has.\n\n``blanks`` is how many ezhuthu a band HIDES, and it is read only by the\nGames whose mechanic hides letters. It defaults to 1 so a Game that shows\nevery tile - the anagram - never has to mention it, and so every day baked\nbefore this knob existed still validates. Hiding a second ezhuthu is the\nhonest way to make a band harder without reaching for a rarer word: it\nmultiplies the guess space instead of narrowing the vocabulary.\n\nWhere the cuts fall is a game-balance number, so it lives here rather than\nin Python (Holy Law #6).",
       "properties": {
+        "blanks": {
+          "default": 1,
+          "minimum": 1,
+          "title": "Blanks",
+          "type": "integer"
+        },
         "id": {
           "pattern": "^[a-z][a-z0-9-]*$",
           "title": "Id",
@@ -82,6 +88,12 @@
           },
           "title": "Categorylabels",
           "type": "object"
+        },
+        "choiceCount": {
+          "default": 8,
+          "minimum": 2,
+          "title": "Choicecount",
+          "type": "integer"
         },
         "difficulties": {
           "items": {
@@ -145,7 +157,7 @@
     },
     "HintSpec": {
       "additionalProperties": false,
-      "description": "One rung of the ladder: its kind, its wording, and what it costs.\n\n``template`` is a Python format string over the CLOSED vocabulary of fields\nthe generator can fill from a served row - ``{firstEzhuthu}``,\n``{category}`` and ``{meaning}``. The rendered TEXT is per-puzzle data and\nships inside the puzzle payload, but the WORDING is player-facing copy, so\nit lives here and the generator only fills in the values.\n\nA template naming a field OUTSIDE that vocabulary fails the bake loudly; a\ntemplate naming one INSIDE it that a particular row cannot fill has its rung\nskipped for that row. Those are different mistakes: the first is a typo in\nconfig, the second is the honest state of a lexicon where barely one word in\nfifteen carries a category.\n\n``{length}`` is deliberately NOT in the vocabulary. A rung charging for the\ntile count already on the player's screen was deleted, and leaving the field\nfillable would let one config line put it back.",
+      "description": "One rung of the ladder: its kind, its wording, and what it costs.\n\n``template`` is a Python format string over the CLOSED vocabulary of fields\nthe Game it is registered under can fill from a served row. The vocabulary\nis PER GAME and lives in that Game's builder, because what counts as a hint\ndepends on the board: the anagram sells ``{firstEzhuthu}`` because its tiles\nare shuffled and knowing which one leads is real progress, while a\nmissing-letters board has already printed every ezhuthu it is not hiding, so\nthe same field is either a fact on the screen or the answer. ``{category}``\nand ``{meaning}`` are common to both. The rendered TEXT is per-puzzle data\nand ships inside the puzzle payload, but the WORDING is player-facing copy,\nso it lives here and the generator only fills in the values.\n\nA template naming a field OUTSIDE its Game's vocabulary fails the bake\nloudly; a template naming one INSIDE it that a particular row cannot fill\nhas its rung skipped for that row. Those are different mistakes: the first is\na typo in config, the second is the honest state of a lexicon where barely\none word in fifteen carries a category.\n\n``{length}`` is deliberately in NO Game's vocabulary. A rung charging for the\ntile count already on the player's screen was deleted, and leaving the field\nfillable would let one config line put it back.",
       "properties": {
         "cost": {
           "minimum": 0,

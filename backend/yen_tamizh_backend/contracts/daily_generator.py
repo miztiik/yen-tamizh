@@ -56,6 +56,13 @@ class DifficultyBand(BaseModel):
     length and tile on familiarity: what separates easy from hard is mostly how
     well the player knows the word, not how many tiles it has.
 
+    ``blanks`` is how many ezhuthu a band HIDES, and it is read only by the
+    Games whose mechanic hides letters. It defaults to 1 so a Game that shows
+    every tile - the anagram - never has to mention it, and so every day baked
+    before this knob existed still validates. Hiding a second ezhuthu is the
+    honest way to make a band harder without reaching for a rarer word: it
+    multiplies the guess space instead of narrowing the vocabulary.
+
     Where the cuts fall is a game-balance number, so it lives here rather than
     in Python (Holy Law #6).
     """
@@ -66,12 +73,20 @@ class DifficultyBand(BaseModel):
     minLength: int = Field(ge=1)
     maxLength: int = Field(ge=1)
     maxStratum: int = Field(ge=1, le=QUARTILES)
+    blanks: int = Field(default=1, ge=1)
 
     @model_validator(mode="after")
     def _band_is_coherent(self) -> Self:
         if self.minLength > self.maxLength:
             raise ValueError(
                 f"minLength {self.minLength} must be <= maxLength {self.maxLength}"
+            )
+        if self.blanks >= self.minLength:
+            # A band that could hide every ezhuthu of its shortest word would
+            # deal a row of empty boxes, which is not a puzzle about a word.
+            raise ValueError(
+                f"blanks {self.blanks} must be < minLength {self.minLength}, or the "
+                f"band's shortest word has nothing showing"
             )
         return self
 
@@ -80,18 +95,23 @@ class HintSpec(BaseModel):
     """One rung of the ladder: its kind, its wording, and what it costs.
 
     ``template`` is a Python format string over the CLOSED vocabulary of fields
-    the generator can fill from a served row - ``{firstEzhuthu}``,
-    ``{category}`` and ``{meaning}``. The rendered TEXT is per-puzzle data and
-    ships inside the puzzle payload, but the WORDING is player-facing copy, so
-    it lives here and the generator only fills in the values.
+    the Game it is registered under can fill from a served row. The vocabulary
+    is PER GAME and lives in that Game's builder, because what counts as a hint
+    depends on the board: the anagram sells ``{firstEzhuthu}`` because its tiles
+    are shuffled and knowing which one leads is real progress, while a
+    missing-letters board has already printed every ezhuthu it is not hiding, so
+    the same field is either a fact on the screen or the answer. ``{category}``
+    and ``{meaning}`` are common to both. The rendered TEXT is per-puzzle data
+    and ships inside the puzzle payload, but the WORDING is player-facing copy,
+    so it lives here and the generator only fills in the values.
 
-    A template naming a field OUTSIDE that vocabulary fails the bake loudly; a
-    template naming one INSIDE it that a particular row cannot fill has its rung
-    skipped for that row. Those are different mistakes: the first is a typo in
-    config, the second is the honest state of a lexicon where barely one word in
-    fifteen carries a category.
+    A template naming a field OUTSIDE its Game's vocabulary fails the bake
+    loudly; a template naming one INSIDE it that a particular row cannot fill
+    has its rung skipped for that row. Those are different mistakes: the first is
+    a typo in config, the second is the honest state of a lexicon where barely
+    one word in fifteen carries a category.
 
-    ``{length}`` is deliberately NOT in the vocabulary. A rung charging for the
+    ``{length}`` is deliberately in NO Game's vocabulary. A rung charging for the
     tile count already on the player's screen was deleted, and leaving the field
     fillable would let one config line put it back.
     """
@@ -142,6 +162,13 @@ class GameGeneration(BaseModel):
     # How many leading ezhuthu the puzzle starts with already placed. 0 keeps the
     # scramble whole; a positive value is the gentlest honest difficulty dial.
     reveal: int = Field(ge=0)
+    # How many ezhuthu the choice bank holds, for the Games that offer one. It
+    # is a real balance number and not a layout preference: there is no Tamil
+    # keyboard in this game, so the bank is how a hidden ezhuthu gets entered at
+    # all, and its size IS the odds a player who knows nothing can still guess
+    # the answer inside the allowed attempts. Games that hand out no bank - the
+    # anagram, whose tiles are the word's own - never read it.
+    choiceCount: int = Field(default=8, ge=2)
     difficulties: list[DifficultyBand] = Field(min_length=1)
     hints: list[HintSpec] = Field(default_factory=list)
     # The Tamil tag the ``category`` rung renders for each lexicon category
