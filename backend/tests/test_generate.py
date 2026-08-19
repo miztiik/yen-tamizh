@@ -1032,20 +1032,32 @@ def test_most_served_words_get_a_shorter_ladder_than_the_config_offers(
 def test_a_baked_hint_never_answers_in_english(
     bank_dir: Path, wordlists: dict[str, GameWordlist]
 ) -> None:
-    """English is banned on a paid rung: the rung is omitted instead."""
+    """English is banned on a paid rung: the rung is omitted instead.
+
+    The no-Latin half is asserted over EVERY baked rung. The gloss half needs
+    the served row, and a baked day is history rather than a derivation of the
+    current wordlist (row 1's re-bake guard), so a word a later deny-list took
+    off the board is no longer there to compare against. Those items keep the
+    cheap check and skip the lookup, and both counters must be non-zero so an
+    emptied loop cannot pass as a green test.
+    """
     served = {row.word: row for row in wordlists[ANAGRAM_SET].words}
     served.update({row.word: row for row in wordlists[THEMED_SET].words})
     checked = 0
+    compared = 0
     for path in _ladder_days(bank_dir):
         puzzle_file = PuzzleFile.model_validate_json(path.read_text(encoding="utf-8"))
         for item in puzzle_file.items:
-            row = served[str(item.payload["word"])]
+            row = served.get(str(item.payload["word"]))
             for hint in item.payload.get("hints", []):
                 text = str(hint["text"])
-                assert row.translationEn is None or row.translationEn not in text
+                if row is not None:
+                    assert row.translationEn is None or row.translationEn not in text
+                    compared += 1
                 assert not any("a" <= char.lower() <= "z" for char in text)
                 checked += 1
     assert checked
+    assert compared
 
 
 def test_the_meaning_rung_never_reaches_for_english(

@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-17T22:28",
+  "version": "2026-08-19",
   "changelog": [
+    {
+      "version": "2026-08-19",
+      "change": "68 function words and 48 proper nouns added, taking the list from 72 words to 188.",
+      "why": "The first pass read the top 400 of the served set by frequency and the second added three names a player was dealt; below that cut the grammar and the names went on being served, and on 2026-08-18 the easy word was yuvaan - a music director and the Chinese currency. This pass read the top 3,000 by hand, 7.5 times the first pass's reach, and named what it found. It is still curation and it still buys coverage only in proportion to the reading: rank 3,000 is not a boundary in the language, it is where this session stopped. The name-suffix rule word-hood.md listed as untried was measured first and REJECTED - the four endings catch 24 served rows between them, -raaj and -naath catch none at all, and of the 24 not one is a personal name. They are trees, a trident, a dart and the grammar term for masculine gender. The served set is already cut on requireMeaning, so a surface that is only a name never reaches it; what survives to carry a name suffix is precisely the ordinary vocabulary such a rule would delete."
+    },
     {
       "version": "2026-08-17T22:28",
       "change": "Three given names added to properNouns - anjanaa, sabaapathi, manimozhi - taking the list from 14 names to 17 and from 69 words to 72.",
@@ -12,8 +17,12 @@
       "why": "Row 16 - the 32,310 words the anagram served included Tamil's grammar and the personal names and mastheads a news corpus makes frequent, and because frequency is a difficulty axis they landed in the EASY band, which is the band a player meets most. No gate the lexicon can express separates them: a part-of-speech rule was measured and rejected because pos is a union across 21 sources, so appa and arasu both carry interjection. A named list with a reason per entry is the honest shape for a judgement no column carries."
     }
   ],
-  "note": "Every word here is real Tamil, is attested, and STAYS in the published lexicon - the exclusion is on SERVING only. The list is named one word at a time because no lexicon column separates grammar from vocabulary: pos is a UNION across 21 sources, so அப்பா (father) and அரசு (government) both carry interjection, and a part-of-speech rule would have deleted them. These 27 were reviewed alongside the denied words and deliberately KEPT - do not add them: அப்பா, அம்மா, அரசு, பக்கம், மாதிரி, கொஞ்சம், நிறைய, ஒன்று, இரண்டு, மூன்று, நான்கு, ஐந்து, ஆயிரம், இன்று, பிறகு, அடுத்து, அருகில், எதிராக, காரணமாக, உடனடியாக, இப்படி, எப்படி, செல்வன், ஆதவன், நம்பி, அகில், இந்து. Add an entry only when the WORD ITSELF makes a bad puzzle answer, never because it looked grammatical, and write the reason beside it.",
+  "note": "Every word here is real Tamil, is attested, and STAYS in the published lexicon - the exclusion is on SERVING only. The list is named one word at a time because no lexicon column separates grammar from vocabulary: pos is a UNION across 21 sources, so அப்பா (father) and அரசு (government) both carry interjection, and a part-of-speech rule would have deleted them. These 27 were reviewed alongside the denied words and deliberately KEPT - do not add them: அப்பா, அம்மா, அரசு, பக்கம், மாதிரி, கொஞ்சம், நிறைய, ஒன்று, இரண்டு, மூன்று, நான்கு, ஐந்து, ஆயிரம், இன்று, பிறகு, அடுத்து, அருகில், எதிராக, காரணமாக, உடனடியாக, இப்படி, எப்படி, செல்வன், ஆதவன், நம்பி, அகில், இந்து. Add an entry only when the WORD ITSELF makes a bad puzzle answer, never because it looked grammatical, and write the reason beside it. The 2026-08-19 pass read the top 3,000 by frequency and applied one test to each candidate: a proper noun is off the board when the string's PRINCIPAL modern use is to name a particular person, place or organisation, and a function word is off the board when its lemma belongs to a closed grammatical class - pronoun, determiner, quantifier, conjunction, postposition, copula, auxiliary or particle. Everything else stays, and these were read in the same pass and deliberately KEPT. Deity references rather than modern given names: விநாயகர், ஆஞ்சநேயர், பிரம்மா, பைரவர், வைரவன், ஐயப்பன். Names that are also the ordinary word a speaker reads first: முரளி, மாரன், நாதன், மன்னன், ஆலன், சிம்பு, வாசன், பாண்டி, முல்லை, கமலா. Adverbs with lexical content, which are not a closed class however deictic they look: எவ்வாறு, அவ்வாறு, இப்பொழுது, அப்பொழுது, ஏற்கனவே.",
   "functionWords": [
+    {
+      "word": "அங்கே",
+      "reason": "distal locative pro-form, there"
+    },
     {
       "word": "அதனால்",
       "reason": "instrumental of the distal pronoun, because of that"
@@ -27,8 +36,20 @@
       "reason": "locative of the distal pronoun, in that"
     },
     {
+      "word": "அத்தனை",
+      "reason": "distal quantifier, that many"
+    },
+    {
+      "word": "அத்துடன்",
+      "reason": "additive connective, furthermore"
+    },
+    {
       "word": "அந்த",
       "reason": "distal demonstrative adjective, that"
+    },
+    {
+      "word": "அந்தந்த",
+      "reason": "distributive determiner, respective"
     },
     {
       "word": "அனைத்து",
@@ -43,8 +64,32 @@
       "reason": "temporal deictic, on that day; also the literary negative copula"
     },
     {
+      "word": "அன்றே",
+      "reason": "tag-question particle, is it not"
+    },
+    {
+      "word": "அப்பால்",
+      "reason": "postposition, beyond"
+    },
+    {
+      "word": "அற்ற",
+      "reason": "negative relative participle, without or -less"
+    },
+    {
       "word": "அல்லது",
       "reason": "disjunctive conjunction, or"
+    },
+    {
+      "word": "அல்லவா",
+      "reason": "tag-question particle, is it not"
+    },
+    {
+      "word": "அல்லாத",
+      "reason": "negative relative participle, not being"
+    },
+    {
+      "word": "அல்லாமல்",
+      "reason": "negative postposition, other than"
     },
     {
       "word": "அவன்",
@@ -63,20 +108,80 @@
       "reason": "third-person feminine singular pronoun"
     },
     {
+      "word": "அவ்வளவு",
+      "reason": "distal quantifier, that much"
+    },
+    {
+      "word": "ஆகவே",
+      "reason": "conjunctive adverb, therefore"
+    },
+    {
       "word": "ஆகும்",
       "reason": "copular auxiliary, is"
+    },
+    {
+      "word": "ஆகையால்",
+      "reason": "conjunctive adverb, therefore"
+    },
+    {
+      "word": "ஆதலால்",
+      "reason": "conjunctive adverb, therefore"
+    },
+    {
+      "word": "ஆனது",
+      "reason": "nominalising copular particle attached to a noun"
+    },
+    {
+      "word": "ஆனாலும்",
+      "reason": "concessive conjunction, however"
     },
     {
       "word": "ஆனால்",
       "reason": "adversative conjunction, but"
     },
     {
+      "word": "ஆமாம்",
+      "reason": "affirmative particle, yes"
+    },
+    {
+      "word": "ஆயினும்",
+      "reason": "concessive conjunction, even so"
+    },
+    {
+      "word": "ஆவது",
+      "reason": "ordinal-forming particle, the -th of a numeral"
+    },
+    {
+      "word": "இதர",
+      "reason": "determiner, other"
+    },
+    {
+      "word": "இதுபோன்ற",
+      "reason": "demonstrative comparative determiner, such"
+    },
+    {
+      "word": "இத்தனை",
+      "reason": "proximal quantifier, this many"
+    },
+    {
       "word": "இந்த",
       "reason": "proximal demonstrative adjective, this"
     },
     {
+      "word": "இன்றி",
+      "reason": "negative postposition, without"
+    },
+    {
       "word": "இருந்து",
       "reason": "ablative postposition, from"
+    },
+    {
+      "word": "இருந்தும்",
+      "reason": "concessive verbal participle, even so"
+    },
+    {
+      "word": "இருப்பினும்",
+      "reason": "concessive conjunction, nevertheless"
     },
     {
       "word": "இல்லாமல்",
@@ -87,6 +192,10 @@
       "reason": "negative existential, is not"
     },
     {
+      "word": "இவன்",
+      "reason": "proximal masculine singular pronoun"
+    },
+    {
       "word": "இவர்",
       "reason": "proximal honorific pronoun, this person"
     },
@@ -95,8 +204,24 @@
       "reason": "proximal third-person plural pronoun"
     },
     {
+      "word": "இவள்",
+      "reason": "proximal feminine singular pronoun"
+    },
+    {
+      "word": "இவ்வளவு",
+      "reason": "proximal quantifier, this much"
+    },
+    {
       "word": "உங்கள்",
       "reason": "second-person plural possessive pronoun"
+    },
+    {
+      "word": "உடன்",
+      "reason": "comitative postposition, with"
+    },
+    {
+      "word": "உடைய",
+      "reason": "genitive postposition, of"
     },
     {
       "word": "உள்ள",
@@ -107,8 +232,28 @@
       "reason": "locative adverb, inside"
     },
     {
+      "word": "எங்களுடைய",
+      "reason": "first-person plural possessive pronoun"
+    },
+    {
       "word": "எங்கள்",
       "reason": "first-person plural possessive pronoun"
+    },
+    {
+      "word": "எங்கு",
+      "reason": "interrogative locative pro-form, where"
+    },
+    {
+      "word": "எங்கும்",
+      "reason": "universal locative pro-form, everywhere"
+    },
+    {
+      "word": "எங்கே",
+      "reason": "interrogative locative pro-form, where"
+    },
+    {
+      "word": "எத்தகைய",
+      "reason": "interrogative determiner, what kind"
     },
     {
       "word": "எத்தனை",
@@ -131,8 +276,16 @@
       "reason": "concessive conjunction, even so"
     },
     {
+      "word": "எனில்",
+      "reason": "conditional conjunction, if"
+    },
+    {
       "word": "என்ன",
       "reason": "interrogative pronoun, what"
+    },
+    {
+      "word": "என்னுடைய",
+      "reason": "first-person singular possessive pronoun"
     },
     {
       "word": "என்பது",
@@ -141,6 +294,10 @@
     {
       "word": "என்ற",
       "reason": "relative participle of the quotative, which is called"
+    },
+    {
+      "word": "என்றாலும்",
+      "reason": "concessive conjunction, although"
     },
     {
       "word": "என்றால்",
@@ -159,8 +316,52 @@
       "reason": "universal quantifier, everything"
     },
     {
+      "word": "எல்லாரும்",
+      "reason": "universal quantifier, everyone"
+    },
+    {
+      "word": "எல்லோரும்",
+      "reason": "universal quantifier, everyone"
+    },
+    {
+      "word": "எவரும்",
+      "reason": "indefinite pronoun, anyone"
+    },
+    {
+      "word": "எவர்",
+      "reason": "interrogative pronoun, who"
+    },
+    {
       "word": "எவ்வளவு",
       "reason": "interrogative quantifier, how much"
+    },
+    {
+      "word": "ஏதாவது",
+      "reason": "indefinite determiner, any or something"
+    },
+    {
+      "word": "ஏனென்றால்",
+      "reason": "causal conjunction, because"
+    },
+    {
+      "word": "ஏனைய",
+      "reason": "determiner, the other or the rest"
+    },
+    {
+      "word": "ஏற்ப",
+      "reason": "postposition, according to"
+    },
+    {
+      "word": "ஒருசில",
+      "reason": "quantifier, a few"
+    },
+    {
+      "word": "ஒருபோதும்",
+      "reason": "negative polarity adverb, never"
+    },
+    {
+      "word": "ஒருவன்",
+      "reason": "indefinite pronoun, one man"
     },
     {
       "word": "ஒருவர்",
@@ -171,8 +372,16 @@
       "reason": "distributive determiner, each"
     },
     {
+      "word": "காட்டிலும்",
+      "reason": "comparative postposition, than"
+    },
+    {
       "word": "குறித்து",
       "reason": "postposition, regarding"
+    },
+    {
+      "word": "கூடும்",
+      "reason": "modal auxiliary, may"
     },
     {
       "word": "கொண்டு",
@@ -195,6 +404,14 @@
       "reason": "postposition, except"
     },
     {
+      "word": "தாங்கள்",
+      "reason": "second-person honorific pronoun"
+    },
+    {
+      "word": "தோறும்",
+      "reason": "distributive particle, every"
+    },
+    {
       "word": "நாங்கள்",
       "reason": "first-person plural exclusive pronoun"
     },
@@ -215,6 +432,18 @@
       "reason": "indefinite quantifier, many people"
     },
     {
+      "word": "பிறர்",
+      "reason": "indefinite pronoun, others"
+    },
+    {
+      "word": "பொருட்டு",
+      "reason": "postposition, for the sake of"
+    },
+    {
+      "word": "பொறுத்து",
+      "reason": "postposition, depending on"
+    },
+    {
       "word": "போதும்",
       "reason": "finite form of the verb to suffice, enough"
     },
@@ -223,12 +452,60 @@
       "reason": "comparative relative participle, like"
     },
     {
+      "word": "போன்று",
+      "reason": "comparative postposition, like"
+    },
+    {
+      "word": "போலவே",
+      "reason": "comparative particle, just like"
+    },
+    {
+      "word": "போலும்",
+      "reason": "dubitative particle, perhaps"
+    },
+    {
+      "word": "மற்றவர்",
+      "reason": "indefinite pronoun, the others"
+    },
+    {
       "word": "மற்றும்",
       "reason": "coordinating conjunction, and"
     },
     {
+      "word": "மற்றொன்று",
+      "reason": "indefinite pronoun, another one"
+    },
+    {
+      "word": "மாத்திரம்",
+      "reason": "restrictive particle, only"
+    },
+    {
+      "word": "முதலான",
+      "reason": "list-closing particle, and such"
+    },
+    {
+      "word": "முதலிய",
+      "reason": "list-closing particle, and so on"
+    },
+    {
+      "word": "மூலமாக",
+      "reason": "postposition, by means of"
+    },
+    {
       "word": "மூலம்",
       "reason": "postposition, by means of"
+    },
+    {
+      "word": "யாருடைய",
+      "reason": "interrogative possessive pronoun, whose"
+    },
+    {
+      "word": "யாவரும்",
+      "reason": "universal pronoun, everyone"
+    },
+    {
+      "word": "யாவும்",
+      "reason": "universal quantifier, everything"
     },
     {
       "word": "விட்டு",
@@ -245,8 +522,40 @@
       "reason": "given name Anjana; the kohl sense is real Tamil and is not what its frequency counts"
     },
     {
+      "word": "அபிராமி",
+      "reason": "given name Abirami, the goddess of the Thirukkadaiyur temple"
+    },
+    {
+      "word": "அமராவதி",
+      "reason": "Amaravathi, a river and a town"
+    },
+    {
+      "word": "அமுதன்",
+      "reason": "given name Amudhan; the nectar sense is a deity epithet, not vocabulary"
+    },
+    {
+      "word": "அருணகிரி",
+      "reason": "Arunagiri, the Tiruvannamalai hill and the poet Arunagirinathar"
+    },
+    {
       "word": "அருண்",
       "reason": "given name Arun"
+    },
+    {
+      "word": "அரேபியா",
+      "reason": "Arabia"
+    },
+    {
+      "word": "ஆத்தூர்",
+      "reason": "Athur, a town in Tamil Nadu"
+    },
+    {
+      "word": "ஆனந்தி",
+      "reason": "given name Anandhi, an epithet of Parvathi"
+    },
+    {
+      "word": "ஆரூர்",
+      "reason": "Aroor, that is Thiruvarur, a town in Tamil Nadu"
     },
     {
       "word": "இந்திரா",
@@ -257,6 +566,42 @@
       "reason": "Imayam, a Tamil novelist's pen name"
     },
     {
+      "word": "இராமநாதன்",
+      "reason": "given name Ramanathan"
+    },
+    {
+      "word": "இராம்",
+      "reason": "given name Ram"
+    },
+    {
+      "word": "ஔவையார்",
+      "reason": "Avvaiyar, the classical Tamil poetess"
+    },
+    {
+      "word": "கண்ணதாசன்",
+      "reason": "Kannadasan, the Tamil lyricist"
+    },
+    {
+      "word": "கமல்",
+      "reason": "given name Kamal, after the actor; the tree sense is obscure and is not what its frequency counts"
+    },
+    {
+      "word": "கருணாநிதி",
+      "reason": "Karunanidhi, a chief minister of Tamil Nadu"
+    },
+    {
+      "word": "கல்யாணி",
+      "reason": "given name Kalyani, also a raga"
+    },
+    {
+      "word": "கவுதம்",
+      "reason": "given name Gautham"
+    },
+    {
+      "word": "காரைக்கால்",
+      "reason": "Karaikal, a town in Puducherry"
+    },
+    {
       "word": "குமார்",
       "reason": "given name Kumar; the dictionary sense prince is not what its frequency counts"
     },
@@ -265,8 +610,16 @@
       "reason": "Kumudam, a Tamil weekly magazine masthead; the water-lily sense is not what its frequency counts"
     },
     {
+      "word": "கொல்கத்தா",
+      "reason": "Kolkata, the capital of West Bengal"
+    },
+    {
       "word": "கோசலா",
       "reason": "Kosala, an ancient kingdom on the Sarayu"
+    },
+    {
+      "word": "சபரிமலை",
+      "reason": "Sabarimala, a pilgrimage site in Kerala"
     },
     {
       "word": "சபாபதி",
@@ -277,8 +630,40 @@
       "reason": "given name Shanti; the peace sense is not what its frequency counts"
     },
     {
+      "word": "சாரதா",
+      "reason": "given name Saradha, an epithet of Saraswati"
+    },
+    {
+      "word": "சாவித்திரி",
+      "reason": "given name Savithri, an epithet of Saraswati"
+    },
+    {
+      "word": "சிதம்பரம்",
+      "reason": "Chidambaram, a temple town and a serving politician's surname"
+    },
+    {
+      "word": "சிறிலங்கா",
+      "reason": "Sri Lanka"
+    },
+    {
+      "word": "சிவகாமி",
+      "reason": "given name Sivakami, the goddess of the Chidambaram temple"
+    },
+    {
+      "word": "சுந்தரேசன்",
+      "reason": "given name Sundaresan, an epithet of the Madurai Siva"
+    },
+    {
+      "word": "சுவாமிநாதன்",
+      "reason": "given name Swaminathan, an epithet of Murugan"
+    },
+    {
       "word": "செந்தில்",
       "reason": "given name Senthil, after the Tiruchendur shrine"
+    },
+    {
+      "word": "தாமோதரன்",
+      "reason": "given name Damodaran, an epithet of Krishna"
     },
     {
       "word": "தினமணி",
@@ -289,12 +674,88 @@
       "reason": "given name Natesan"
     },
     {
+      "word": "நந்தினி",
+      "reason": "given name Nandhini; the divine-calf sense is not what its frequency counts"
+    },
+    {
+      "word": "நரேந்திரன்",
+      "reason": "given name Narendran; the king-of-men sense is not what its frequency counts"
+    },
+    {
+      "word": "நிர்மலா",
+      "reason": "given name Nirmala; the spotless sense is not what its frequency counts"
+    },
+    {
+      "word": "பஞ்சநதம்",
+      "reason": "Panchanatham, the classical name of Thiruvaiyaru"
+    },
+    {
+      "word": "பரஞ்சோதி",
+      "reason": "given name Paranjothi; the supreme-light sense is a deity epithet, not vocabulary"
+    },
+    {
+      "word": "பர்மா",
+      "reason": "Burma, now Myanmar"
+    },
+    {
+      "word": "பழனி",
+      "reason": "Palani, a temple town in Tamil Nadu"
+    },
+    {
+      "word": "பவானி",
+      "reason": "given name Bhavani, also a river and a town"
+    },
+    {
+      "word": "பாரதி",
+      "reason": "Bharathi, the poet Subramania Bharati"
+    },
+    {
+      "word": "பார்வதி",
+      "reason": "given name Parvathi, also the goddess"
+    },
+    {
+      "word": "பாலமுரளி",
+      "reason": "given name Balamurali"
+    },
+    {
+      "word": "பிரான்சு",
+      "reason": "France"
+    },
+    {
+      "word": "பிரிட்டன்",
+      "reason": "Britain"
+    },
+    {
+      "word": "புதுடில்லி",
+      "reason": "New Delhi, the capital of India"
+    },
+    {
+      "word": "புதுவை",
+      "reason": "Puduvai, the Tamil name of Puducherry"
+    },
+    {
       "word": "மணிமொழி",
       "reason": "given name Manimozhi; the gem-like-speech sense is real Tamil and is not what its frequency counts"
     },
     {
+      "word": "மதிமுக",
+      "reason": "MDMK, the acronym of a Tamil Nadu political party"
+    },
+    {
+      "word": "மதுரா",
+      "reason": "Mathura, an ancient city on the Yamuna"
+    },
+    {
+      "word": "முகம்மது",
+      "reason": "Muhammad"
+    },
+    {
       "word": "மோகன்",
       "reason": "given name Mohan"
+    },
+    {
+      "word": "யூவான்",
+      "reason": "Yuvan, the Chinese currency and a Tamil music director; a player was dealt it on 2026-08-18"
     },
     {
       "word": "வாரணாசி",
@@ -303,6 +764,14 @@
     {
       "word": "விகடன்",
       "reason": "Vikatan, a Tamil weekly magazine masthead"
+    },
+    {
+      "word": "வேணுகோபாலன்",
+      "reason": "given name Venugopalan, an epithet of Krishna"
+    },
+    {
+      "word": "வைதேகி",
+      "reason": "given name Vaidehi, an epithet of Sita"
     }
   ]
 }
