@@ -3031,7 +3031,7 @@
 {"authoredOn": "2026-08-15", "categories": ["relations"], "definitionTa": "பெற்ற ஆண் பெற்றோர்", "model": "claude-opus-5", "pos": ["noun"], "promptVersion": "2026-08-15", "synonymsTa": ["அப்பன்", "பிதா"], "translationEn": "father", "word": "தந்தை"}
 {"authoredOn": "2026-08-16", "definitionTa": "தனியாகப் பிரிந்த குழு", "model": "claude-opus-5", "pos": ["noun"], "promptVersion": "2026-08-16", "translationEn": "separate group", "word": "தனிக்குழு"}
 {"authoredOn": "2026-08-16", "definitionTa": "வேறுபட்டுத் தனியே நிற்கும்", "model": "claude-opus-5", "pos": ["adjective"], "promptVersion": "2026-08-16", "translationEn": "distinct", "word": "தனித்த"}
-{"authoredOn": "2026-08-16", "definitionTa": "ஒன்றோடொன்று கலவாமல் வேறுவேறான", "model": "claude-opus-5", "pos": ["adjective"], "promptVersion": "2026-08-16", "synonymsTa": ["தனித்த"], "translationEn": "separate", "word": "தனித்தனி"}
+{"authoredOn": "2026-08-16", "definitionTa": "ஒன்றோடொன்று கலவாமல் வேறுவேறான", "model": "claude-opus-5", "pos": ["adjective"], "promptVersion": "2026-08-16", "synonymsTa": ["தனித்த"], "translationEn": "separate", "word": "தனித்தனி"}
 {"authoredOn": "2026-08-16", "definitionTa": "தனக்கே உரிய சிறப்புப் பண்பு", "model": "claude-opus-5", "pos": ["noun"], "promptVersion": "2026-08-16", "translationEn": "individuality", "word": "தனித்தன்மை"}
 {"authoredOn": "2026-08-16", "definitionTa": "வேறு எதற்கும் இல்லாத தனிப் பண்பு", "model": "claude-opus-5", "pos": ["noun"], "promptVersion": "2026-08-16", "translationEn": "uniqueness", "word": "தனித்துவம்"}
 {"authoredOn": "2026-08-16", "definitionTa": "தனித்து நிற்கும் நிலை", "model": "claude-opus-5", "pos": ["noun"], "promptVersion": "2026-08-16", "translationEn": "solitariness", "word": "தனிநிலை"}

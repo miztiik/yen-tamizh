@@ -114,6 +114,24 @@ def themes_of(registry: LexiconSources) -> frozenset[str]:
     return frozenset(registry.categoryAliases.values())
 
 
+def _refuse_decomposed(payload: Mapping[str, Any], where: str) -> None:
+    """Refuse any string on the row that is not NFC.
+
+    Checked over EVERY value rather than over ``word`` alone. A decomposed
+    ``word`` would never join the store's rows for the same surface, which is
+    loud; a decomposed gloss is silent, and PUBLISH copies it verbatim into the
+    committed lexicon - which is how a two-part matra reached a served meaning.
+    """
+    for key, value in payload.items():
+        for item in value if isinstance(value, list) else [value]:
+            if isinstance(item, str) and unicodedata.normalize("NFC", item) != item:
+                raise AuthoredEntryError(
+                    f"{where}: {key} is not NFC-normalized ("
+                    f"{' '.join(f'{ord(c):04x}' for c in item)}), so one spelling of "
+                    f"it would be published and another would be matched"
+                )
+
+
 def _text(payload: Mapping[str, Any], key: str, where: str) -> str:
     value = payload.get(key)
     if not isinstance(value, str) or not value.strip():
@@ -161,12 +179,9 @@ def parse_entry(
             f"silent drop, so the reader refuses it rather than ignoring it"
         )
 
+    _refuse_decomposed(payload, where)
+
     word = _text(payload, "word", where)
-    if unicodedata.normalize("NFC", word) != word:
-        raise AuthoredEntryError(
-            f"{where}: {word!r} is not NFC-normalized, so it would never join the "
-            f"store's rows for the same surface"
-        )
     if any(character.isspace() for character in word):
         raise AuthoredEntryError(f"{where}: {word!r} holds whitespace - a row is one surface")
     if previous is not None and word <= previous:

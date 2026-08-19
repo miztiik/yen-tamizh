@@ -78,7 +78,7 @@
 {"word": "தனம்", "translationEn": "footle", "frequency": 0, "length": 3, "wordClass": "headword", "attestations": 1, "tier1Attestations": 1}
 {"word": "தனிக்குழு", "definitionTa": ["தனியாகப் பிரிந்த குழு"], "translationEn": "separate group", "pos": ["noun"], "frequency": 0, "length": 5, "wordClass": "headword", "attestations": 1, "tier1Attestations": 1}
 {"word": "தனித்த", "definitionTa": ["வேறுபட்டுத் தனியே நிற்கும்"], "translationEn": "distinct", "pos": ["adjective"], "frequency": 0, "length": 4, "wordClass": "headword", "attestations": 1, "tier1Attestations": 1}
-{"word": "தனித்தனி", "definitionTa": ["ஒன்றோடொன்று கலவாமல் வேறுவேறான"], "translationEn": "separate", "synonymsTa": ["தனித்த"], "pos": ["adjective"], "frequency": 0, "length": 5, "wordClass": "headword", "attestations": 1, "tier1Attestations": 1}
+{"word": "தனித்தனி", "definitionTa": ["ஒன்றோடொன்று கலவாமல் வேறுவேறான"], "translationEn": "separate", "synonymsTa": ["தனித்த"], "pos": ["adjective"], "frequency": 0, "length": 5, "wordClass": "headword", "attestations": 1, "tier1Attestations": 1}
 {"word": "தனித்தன்மை", "definitionTa": ["தனக்கே உரிய சிறப்புப் பண்பு"], "translationEn": "individuality", "pos": ["noun"], "frequency": 0, "length": 6, "wordClass": "headword", "attestations": 1, "tier1Attestations": 1}
 {"word": "தனித்துவம்", "definitionTa": ["வேறு எதற்கும் இல்லாத தனிப் பண்பு"], "translationEn": "uniqueness", "pos": ["noun"], "frequency": 0, "length": 6, "wordClass": "headword", "attestations": 1, "tier1Attestations": 1}
 {"word": "தனிநிலை", "definitionTa": ["தனித்து நிற்கும் நிலை"], "translationEn": "solitariness", "pos": ["noun"], "frequency": 0, "length": 4, "wordClass": "headword", "attestations": 1, "tier1Attestations": 1}

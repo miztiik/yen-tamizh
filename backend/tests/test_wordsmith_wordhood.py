@@ -161,7 +161,7 @@ def _render_expected(records: list[dict[str, Any]]) -> bytes:
     lines = [
         json.dumps(
             {"word": record["word"], "wordClass": classify_surface(_surface(record), CONFIG)},
-            ensure_ascii=True,
+            ensure_ascii=False,
         )
         for record in records
     ]

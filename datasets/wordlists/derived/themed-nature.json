@@ -76,7 +76,7 @@
   "source": {
     "metaPath": "datasets/lexicon/lexicon.meta.json",
     "rows": 163437,
-    "sha256": "b4b869df61da02261c8736df8f1f8daf8b7cbe504e34b87db541066d2932d1be",
+    "sha256": "8b910de9692d2f1adf658a62a4f0138b3bb3e09beab291d861941357ccdf8537",
     "version": "2026-08-17"
   },
   "version": "2026-08-17T18:00",

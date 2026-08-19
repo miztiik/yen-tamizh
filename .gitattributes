@@ -19,11 +19,13 @@ assets/glyphs/*.svg text eol=lf
 # store and check them out unchanged.
 datasets/fixtures/lexicon/** -text
 
-# The golden fixtures are the opposite case: they are hand-written, ASCII-only
-# (Tamil is escaped) and LF-only, and a test byte-compares one against a fresh
-# render. `-text` would leave them at the mercy of whatever the author's editor
-# wrote, so they are pinned to LF instead - the same rule the generated contract
-# artifacts above use, and for the same reason.
+# The golden fixtures are the opposite case: they are LF-only UTF-8 Tamil, and a
+# test byte-compares one against a fresh render. `-text` would leave them at the
+# mercy of whatever the author's editor wrote, so they are pinned to LF instead -
+# the same rule the generated contract artifacts above use, and for the same
+# reason. They hold Tamil script rather than `\uXXXX` escapes: escapes buy
+# nothing here (no fixture carries a non-NFC sequence - the decomposed cases are
+# Python literals in the tests) and cost a reader the ability to check the data.
 datasets/fixtures/*.jsonl text eol=lf
 
 # The authored lexicon source is hand-written UTF-8 Tamil whose sha256 and byte
