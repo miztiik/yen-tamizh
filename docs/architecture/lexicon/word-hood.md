@@ -1,6 +1,6 @@
 # Word-hood
 
-**Last Updated**: 2026-08-17
+**Last Updated**: 2026-08-19
 
 How the pipeline decides what KIND of thing a Tamil surface is. The vocabulary -
 what a `wordClass` is, why observation is not attestation, why `length` counts
@@ -756,31 +756,85 @@ title: the Wikipedia category graph says which articles are about people, and
 that lives in a different dump. Recorded here as the next thing to try, with the
 measurement above as the baseline it has to beat.
 
-### What holds the line today is a hand-written list, and it does not reach far
+### What holds the line today is a hand-written list, and it reaches as far as somebody has read
 
 The working answer is `config/served-denylist.json` - a named exclusion applied
 at SELECTION, downstream of every verdict on this page, described in
 [../contracts/schemas.md](../contracts/schemas.md#served-deny-list-decisions-row-16).
-It is curation, not classification, and it was seeded by reading the top 400
-words of the served set by frequency. That is the whole of its reach, and the
-reach is the point: on 2026-08-17 a player was dealt `\u0b9a\u0baa\u0bbe\u0baa\u0ba4\u0bbf`, `\u0b85\u0b9e\u0bcd\u0b9a\u0ba9\u0bbe` and
-`\u0bae\u0ba3\u0bbf\u0bae\u0bca\u0bb4\u0bbf` - all three given names, all three real Tamil words, and all three
-ranked 4,955, 7,967 and 10,841 in a served set of thirty-two thousand. They were
-added by hand. The next one below them will be found the same way.
+It is curation, not classification, and its reach is a property of the reading
+rather than of the language. It was seeded by reading the top 400 words of the
+served set by frequency, and that reach was the point: on 2026-08-17 a player was
+dealt `\u0b9a\u0baa\u0bbe\u0baa\u0ba4\u0bbf`, `\u0b85\u0b9e\u0bcd\u0b9a\u0ba9\u0bbe` and `\u0bae\u0ba3\u0bbf\u0bae\u0bca\u0bb4\u0bbf` - all three given names, all
+three real Tamil words, and all three ranked 4,955, 7,967 and 10,841 in a served
+set of thirty-two thousand. On 2026-08-18 the easy word was `\u0baf\u0bc2\u0bb5\u0bbe\u0ba9\u0bcd`, which is
+the Chinese currency and a Tamil music director.
 
-Curating the band under the list is not a session-sized task, and a blunt rule
-over it is worse than the gap. Between rank 400 and rank 2,000 sit **646 served
-words tagged only `noun` at 3-4 ezhuthu**, and that band is a genuine MIX rather
-than a pile of names: `\u0bb5\u0bbe\u0bb0\u0bae\u0bcd` (week), `\u0b95\u0bc1\u0bb1\u0bcd\u0bb1\u0bae\u0bcd` (crime) and `\u0bb5\u0bbf\u0bb0\u0bc1\u0ba4\u0bc1` (award)
-sit beside `\u0b86\u0bb2\u0ba9\u0bcd`, `\u0bb5\u0bc8\u0ba4\u0bc7\u0b95\u0bbf`, `\u0b87\u0bb0\u0bbe\u0bae\u0bcd` and `\u0b94\u0bb5\u0bc8\u0baf\u0bbe\u0bb0\u0bcd`, and every one of the
-eight carries the same single part-of-speech tag. Reading 646 rows by hand is
-not a task this layer can absorb in one pass, and a rule keyed on `noun` over
-that band deletes the first four to catch the last four.
+**On 2026-08-19 the list was extended by reading the top 3,000** - 7.5 times the
+first pass's reach - which added **68 function words and 48 proper nouns**,
+taking the file from 72 entries to **188** and the served set from 32,238 rows to
+**32,122**. Every one of the 188 reaches the deny-list gate under its own steam:
+the ledger's `denylisted` bucket is charged last, so 188 is what the list ALONE
+removed rather than what some other gate would have removed anyway.
+
+The pass applied one test per candidate, and the file's `note` records both the
+test and what it declined to take. A proper noun is off the board when the
+string's PRINCIPAL modern use is to name a particular person, place or
+organisation - so `\u0b95\u0bb0\u0bc1\u0ba3\u0bbe\u0ba8\u0bbf\u0ba4\u0bbf` (a chief minister), `\u0b95\u0bca\u0bb2\u0bcd\u0b95\u0ba4\u0bcd\u0ba4\u0bbe` (Kolkata) and
+`\u0bae\u0ba4\u0bbf\u0bae\u0bc1\u0b95` (a political party's acronym) go, while a deity reference that is not
+also an ordinary given name stays. A function word is off the board when its
+lemma belongs to a closed grammatical class - pronoun, determiner, quantifier,
+conjunction, postposition, copula, auxiliary or particle - which takes the rest
+of the pronoun paradigm and the postpositions the first pass missed, and leaves
+adverbs with lexical content alone however deictic they look. What survives is
+the same trade the title list failed: a name that is ALSO the word a speaker
+reads first is KEPT, because deleting real vocabulary is the worse defect.
+
+Rank 3,000 is not a boundary in the language, and there is no knob for it. The
+next name below it will be found the same way - by reading, or by a player.
+
+Between rank 400 and rank 2,000 sit **646 served words tagged only `noun` at 3-4
+ezhuthu**, and that band is a genuine MIX rather than a pile of names: `\u0bb5\u0bbe\u0bb0\u0bae\u0bcd`
+(week), `\u0b95\u0bc1\u0bb1\u0bcd\u0bb1\u0bae\u0bcd` (crime) and `\u0bb5\u0bbf\u0bb0\u0bc1\u0ba4\u0bc1` (award) sit beside `\u0b86\u0bb2\u0ba9\u0bcd`, `\u0bb5\u0bc8\u0ba4\u0bc7\u0b95\u0bbf`,
+`\u0b87\u0bb0\u0bbe\u0bae\u0bcd` and `\u0b94\u0bb5\u0bc8\u0baf\u0bbe\u0bb0\u0bcd`, and every one of the eight carries the same single
+part-of-speech tag. That is why the band was read one row at a time rather than
+ruled on: a rule keyed on `noun` over it deletes the first four to catch the
+last four.
+
+### The name-suffix signal was measured and REJECTED
+
+The suffix idea was the better-shaped of the two routes this page had left,
+because unlike a part-of-speech column a suffix is a fact about the STRING,
+which is the kind of evidence every other signal here is made of. Measured over
+the 32,238 served rows, the four endings this page named catch **24 rows between
+them**, and **not one of the 24 is a personal name**:
+
+| Suffix | Served rows caught | Personal names among them |
+| --- | ---: | ---: |
+| `-\u0bb5\u0bc7\u0bb2\u0bcd` | 8 | 0 |
+| `-\u0bb2\u0bbf\u0b99\u0bcd\u0b95\u0bae\u0bcd` | 16 | 0 |
+| `-\u0bb0\u0bbe\u0b9c\u0bcd` | 0 | 0 |
+| `-\u0ba8\u0bbe\u0ba4\u0bcd` | 0 | 0 |
+
+The `-\u0bb5\u0bc7\u0bb2\u0bcd` bucket is a spear and six trees and a trident - `\u0bb5\u0b9f\u0bbf\u0bb5\u0bc7\u0bb2\u0bcd` (a sharp
+spear), `\u0b95\u0bb0\u0bc1\u0bb5\u0bc7\u0bb2\u0bcd` (an acacia), `\u0bae\u0bc2\u0bb5\u0bbf\u0bb2\u0bc8\u0bb5\u0bc7\u0bb2\u0bcd` (a trident). The `-\u0bb2\u0bbf\u0b99\u0bcd\u0b95\u0bae\u0bcd`
+bucket is aniconic Siva imagery, a sparrow, a pigment, and `\u0baa\u0bc1\u0bb2\u0bcd\u0bb2\u0bbf\u0b99\u0bcd\u0b95\u0bae\u0bcd` -
+the grammatical term for MASCULINE GENDER. So the rule would take between 0 and
+2 names for 24 deletions, which is worse than the 32 percent the title list
+already failed at, and it fails for a structural reason worth keeping:
+
+**The served set is already cut on `requireMeaning`, so a surface that is ONLY a
+name never reaches it.** What survives the serving gates carrying a name suffix
+is precisely the ordinary vocabulary that shares the ending, because the ending
+is not a name marker at all - `\u0bb5\u0bc7\u0bb2\u0bcd` is a spear and `\u0bb2\u0bbf\u0b99\u0bcd\u0b95\u0bae\u0bcd` is a form. The
+suffixes name people BECAUSE they are words, which is the same reason
+`\u0b85\u0b9e\u0bcd\u0b9a\u0ba9\u0bbe` and `\u0bae\u0ba3\u0bbf\u0bae\u0bca\u0bb4\u0bbf` are names. A string-shaped signal cannot escape that;
+only a statement about the referent can. No knob was added, on the same terms as
+the title list: a knob nothing reads would be a lie in the config.
 
 ### What has not been tried
 
-Three routes remain, listed here so the next attempt starts from the
-measurement rather than from the same first idea:
+One route remains, listed here so the next attempt starts from the measurement
+rather than from the same first idea:
 
 - **Wikidata's `instance of: human` / `given name` claims.** This is the
   difference that made the title list fail: an entity-type ASSERTION rather than
@@ -790,14 +844,9 @@ measurement rather than from the same first idea:
   failure mode. Wikidata's Tamil LEXEME coverage was measured and rejected as
   nearly empty (904 entries), but lexemes are not what this needs - the item
   graph is.
-- **A name-suffix signal.** Tamil personal names cluster on a small set of
-  endings - `-\u0bb5\u0bc7\u0bb2\u0bcd`, `-\u0bb0\u0bbe\u0b9c\u0bcd`, `-\u0bb2\u0bbf\u0b99\u0bcd\u0b95\u0bae\u0bcd`, `-\u0ba8\u0bbe\u0ba4\u0bcd` - and unlike a
-  part-of-speech column, a suffix is a fact about the STRING, which is the kind
-  of evidence every other signal on this page is made of. It has to be measured
-  against the same precision bar the title list failed.
-- **Extending the deny-list down the frequency curve.** Cheap, needs no new
-  mechanism, and is the only one of the three that can ship this week. It buys
-  coverage in proportion to the reading, and nothing more.
+
+Until then, extending the deny-list down the frequency curve is the whole
+mechanism, and it buys coverage in proportion to the reading and nothing more.
 
 ## Participial adjectives still reach the board as `headword`
 

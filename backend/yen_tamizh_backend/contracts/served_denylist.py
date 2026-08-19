@@ -21,9 +21,11 @@ what stops one authority's ranking from erasing another's true fact - and that
 is exactly why it cannot double as a filter.
 
 So the exclusion is NAMED, one word at a time, with the reason written beside
-it. That is the honest shape for a judgement no column carries: a list of 72
+it. That is the honest shape for a judgement no column carries: a list of 188
 words a reviewer can argue with, rather than a rule whose collateral damage is
-invisible until a player meets it.
+invisible until a player meets it. It reaches exactly as far down the frequency
+curve as somebody has read - the top 400 first, the top 3,000 as of 2026-08-19 -
+and that reach is a property of the reading, not of the language.
 
 Two properties follow from what this file is NOT:
 
@@ -53,10 +55,35 @@ from yen_tamizh_backend.contracts.base import ChangelogEntry, SchemaModel
 # its changelog live here: two writers of one schema picking their own dates is
 # the drift CLAUDE.md section 11 exists to stop.
 # Migration class is build-time rewrite-in-place.
-SERVED_DENYLIST_VERSION = "2026-08-17T22:28"
+SERVED_DENYLIST_VERSION = "2026-08-19"
 SERVED_DENYLIST_CHANGELOG = (
     ChangelogEntry(
         version=SERVED_DENYLIST_VERSION,
+        change=(
+            "68 function words and 48 proper nouns added, taking the list from "
+            "72 words to 188."
+        ),
+        why=(
+            "The first pass read the top 400 of the served set by frequency and "
+            "the second added three names a player was dealt; below that cut the "
+            "grammar and the names went on being served, and on 2026-08-18 the "
+            "easy word was yuvaan - a music director and the Chinese currency. "
+            "This pass read the top 3,000 by hand, 7.5 times the first pass's "
+            "reach, and named what it found. It is still curation and it still "
+            "buys coverage only in proportion to the reading: rank 3,000 is not "
+            "a boundary in the language, it is where this session stopped. The "
+            "name-suffix rule word-hood.md listed as untried was measured first "
+            "and REJECTED - the four endings catch 24 served rows between them, "
+            "-raaj and -naath catch none at all, and of the 24 not one is a "
+            "personal name. They are trees, a trident, a dart and the grammar "
+            "term for masculine gender. The served set is already cut on "
+            "requireMeaning, so a surface that is only a name never reaches it; "
+            "what survives to carry a name suffix is precisely the ordinary "
+            "vocabulary such a rule would delete."
+        ),
+    ),
+    ChangelogEntry(
+        version="2026-08-17T22:28",
         change=(
             "Three given names added to properNouns - anjanaa, sabaapathi, "
             "manimozhi - taking the list from 14 names to 17 and from 69 words "
