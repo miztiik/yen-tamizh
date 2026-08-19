@@ -10,6 +10,7 @@ import exampleSchema from "./example.schema.json";
 import missingLettersPuzzleSchema from "./missing-letters-puzzle.schema.json";
 import puzzleFileSchema from "./puzzle-file.schema.json";
 import saveSchema from "./save.schema.json";
+import wordlePuzzleSchema from "./wordle-puzzle.schema.json";
 import type { AnagramPuzzle } from "./anagram-puzzle";
 import type { AppConfig } from "./app-config";
 import type { BankIndex } from "./bank-index";
@@ -19,6 +20,7 @@ import type { Example } from "./example";
 import type { MissingLettersPuzzle } from "./missing-letters-puzzle";
 import type { PuzzleFile } from "./puzzle-file";
 import type { Save } from "./save";
+import type { WordlePuzzle } from "./wordle-puzzle";
 
 // One draft 2020-12 validator instance for every generated contract. The
 // <name>.schema.json files are byte-copies of the backend-exported
@@ -37,6 +39,7 @@ const validators = {
   "missing-letters-puzzle": ajv.compile<MissingLettersPuzzle>(missingLettersPuzzleSchema),
   "puzzle-file": ajv.compile<PuzzleFile>(puzzleFileSchema),
   save: ajv.compile<Save>(saveSchema),
+  "wordle-puzzle": ajv.compile<WordlePuzzle>(wordlePuzzleSchema),
 } as const;
 
 /** Names of the generated contracts that can be validated at the boundary. */
@@ -53,6 +56,7 @@ export interface SchemaPayload {
   "missing-letters-puzzle": MissingLettersPuzzle;
   "puzzle-file": PuzzleFile;
   save: Save;
+  "wordle-puzzle": WordlePuzzle;
 }
 
 /**
@@ -91,4 +95,5 @@ export type {
   Example,
   PuzzleFile,
   Save,
+  WordlePuzzle,
 };

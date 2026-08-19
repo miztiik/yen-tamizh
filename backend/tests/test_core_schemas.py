@@ -43,6 +43,7 @@ from yen_tamizh_backend.contracts import (
     PuzzleFile,
     Save,
     WordClass,
+    WordlePuzzle,
 )
 from yen_tamizh_backend.contracts.base import SchemaModel
 from yen_tamizh_backend.contracts.save import compute_day_key
@@ -62,6 +63,7 @@ _CORE: tuple[tuple[type[SchemaModel], str], ...] = (
     (BankIndex, "bank-index"),
     (AnagramPuzzle, "anagram-puzzle"),
     (MissingLettersPuzzle, "missing-letters-puzzle"),
+    (WordlePuzzle, "wordle-puzzle"),
     (Copy, "copy"),
 )
 

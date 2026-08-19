@@ -1,0 +1,12 @@
+{
+  "version": "2026-08-19",
+  "changelog": [
+    {
+      "version": "2026-08-19",
+      "change": "Malformed wordle-puzzle fixture.",
+      "why": "Row 19 contract Oracle - 'attempts' is below the minimum of 2, because a board whose only row can never be acted on shows feedback about a puzzle that is already over; rejected by both sides."
+    }
+  ],
+  "word": "\u0BAE\u0BC7\u0BB1\u0BCD\u0B95\u0BCB\u0BB3\u0BCD\u0B95\u0BB3\u0BCD",
+  "attempts": 1
+}

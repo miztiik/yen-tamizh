@@ -61,6 +61,15 @@
   --tile-present: #eab308;
   --tile-correct: #22c55e;
   --tile-absent: #94a3b8;
+  /*
+   * The ink on a FILLED feedback tile, and the one colour token that is
+   * deliberately absent from every theme override below. --tile-correct and
+   * --tile-present do not change between light and dark, so a foreground that
+   * followed the theme would be near-black on green in one and near-white on
+   * the same green in the other - 8.3:1 against 2.1:1. The ink is pinned
+   * because its background is (Row 19).
+   */
+  --tile-ink: #0f172a;
 
   /* Motion - a utility ease, a spring ease, and a duration scale. */
   --ease: cubic-bezier(0.4, 0, 0.2, 1);

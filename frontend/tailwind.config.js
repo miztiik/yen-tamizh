@@ -26,6 +26,7 @@ export default {
         "tile-present": "var(--tile-present)",
         "tile-correct": "var(--tile-correct)",
         "tile-absent": "var(--tile-absent)",
+        "tile-ink": "var(--tile-ink)",
       },
       spacing: {
         xs: "var(--space-xs)",

@@ -1,0 +1,138 @@
+{
+  "$defs": {
+    "ChangelogEntry": {
+      "additionalProperties": false,
+      "description": "One dated entry in a schema's in-file change log (newest first).\n\n``version`` is the date-stamp of the change; ``change`` is what changed;\n``why`` is the reason it changed (CLAUDE.md section 11).",
+      "properties": {
+        "change": {
+          "minLength": 1,
+          "title": "Change",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+          "title": "Version",
+          "type": "string"
+        },
+        "why": {
+          "minLength": 1,
+          "title": "Why",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "change",
+        "why"
+      ],
+      "title": "ChangelogEntry",
+      "type": "object"
+    },
+    "Hint": {
+      "additionalProperties": false,
+      "description": "One optional, honest hint: its kind, its text, and its score cost.\n\n``text`` is per-puzzle generated DATA (the next honest step for this\npuzzle), not a static UI label - so it lives in the puzzle payload, not in\n``config/copy.json``. A hint never sells a power-up (a project non-goal); it\nreveals the next honest step (core-loop.md).",
+      "properties": {
+        "cost": {
+          "minimum": 0,
+          "title": "Cost",
+          "type": "integer"
+        },
+        "kind": {
+          "minLength": 1,
+          "title": "Kind",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "text",
+        "cost"
+      ],
+      "title": "Hint",
+      "type": "object"
+    }
+  },
+  "$id": "wordle-puzzle.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "One wordle puzzle: the answer, how many rows to find it in, and its framing.\n\n``attempts`` is the number of guesses. It is at least 2 because the marks on\nthe FINAL row can never be acted on - a one-attempt board shows a player\nfeedback about a puzzle that is already over, which is a scoreboard rather\nthan a deduction game.\n\n``meaning`` and ``translationEn`` are resolved at bake time and read by the\nsummary, exactly as they are for the other two Games: the player downloads\nfinished display strings, never the lexicon columns they came from.\n``translationEn`` is the summary's demoted second line and never a hint - a\npaid rung the player cannot read is a rung that stole score.",
+  "properties": {
+    "attempts": {
+      "minimum": 2,
+      "title": "Attempts",
+      "type": "integer"
+    },
+    "changelog": {
+      "items": {
+        "$ref": "#/$defs/ChangelogEntry"
+      },
+      "minItems": 1,
+      "title": "Changelog",
+      "type": "array"
+    },
+    "hints": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/Hint"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Hints"
+    },
+    "meaning": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Meaning"
+    },
+    "translationEn": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Translationen"
+    },
+    "version": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+      "title": "Version",
+      "type": "string"
+    },
+    "word": {
+      "minLength": 1,
+      "title": "Word",
+      "type": "string"
+    }
+  },
+  "required": [
+    "version",
+    "changelog",
+    "word",
+    "attempts"
+  ],
+  "title": "WordlePuzzle",
+  "type": "object"
+}

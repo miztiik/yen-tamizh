@@ -88,6 +88,20 @@ The prices are set by **how much of the answer each rung hands over**, and the e
 
 A fourth rung, `length`, was **deleted**. It charged a point for the tile count already on the player's screen, which reads as the game short-changing them - and it was one of only two rungs offered, so half the ladder returned nothing. The reach column above is why the ladder is variable-length rather than always three: a rung this word cannot honestly answer is skipped and the next one moves up. See [core-loop.md](core-loop.md) for the three honesty rules that drop a rung.
 
+### In Tamil a LONGER answer is easier, which is the reverse of English
+
+The roadmap sketched the wordle at five ezhuthu on the English game's proportions. Simulated against a player who guesses a familiar word still consistent with every mark so far, the median solve is **15 guesses at 3 ezhuthu, 10 at 4, 7 at 5 and 5 at 6**.
+
+The cause is the alphabet. English has 26 letters and a longer word is a larger space to search; Tamil has 247 ezhuthu, of which **203 to 217 are in play at every length**, so the alphabet is effectively constant and an extra position is an extra CONSTRAINT rather than an extra degree of freedom. The same arithmetic explains why a guess buys so little at the short end: over the shipped six-ezhuthu set the best fixed opening word measured across 400 candidates averages **1.13 marks a game**, and at five ezhuthu the same measurement gives 0.92, where a good English opener averages about two.
+
+That is why the wordle serves exactly six ezhuthu and allows **eight** attempts, and why both numbers are config. At eight guesses the simulated solve rate is 94.5 percent on the easy band, 93.5 on medium and 85.5 on hard, against 86.2 / 84.5 / 71.5 at seven - and a hard word is one slot of every three. Narrowing the hard band to drop the rarest frequency quarter was measured as the alternative and rejected: q3 alone solves 75.0 percent within seven and q4 alone 74.0, so the quarter costs a quarter of the vocabulary and buys one point. Once the length is pinned, what decides whether a board is winnable is information per guess, not how rare the answer is.
+
+### The wordle's ladder, and the rung it refuses
+
+Two rungs - `category` at 1 and `meaning` at 3 - because `firstEzhuthu` cannot be honest on this board. The missing-letters board refuses it because the ezhuthu is already printed; the wordle refuses it for the opposite reason. A player can buy the same fact by spending a guess, and one guess answers five other positions at the same time, so the rung is strictly worse than the move it competes with. A rung that loses to the move the player was going to make anyway charges for nothing, which is the `length` rung in a different costume.
+
+Scoring is the anagram's rate unchanged: 10 points an ezhuthu, so a six-ezhuthu win is 60 before hints. The same word is worth the same on both boards because the score is a property of the WORD; how few rows a win took is the wordle's own brag and it is already derivable from `puzzle.attempt.submitted`, so paying for it in the score would count it twice.
+
 ## The share moment
 
 The end-of-session summary ([ui-shell.md](ui-shell.md)) is designed to look good in a screenshot - the score, the stars, the streak, and a small game name - because players share screenshots, not links (Player worldview #8). The share card carries no spoiler and no tracking link.

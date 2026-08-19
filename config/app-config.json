@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-19",
+  "version": "2026-08-19T21:00",
   "changelog": [
+    {
+      "version": "2026-08-19T21:00",
+      "change": "Added hints.perGame.wordle at 2.",
+      "why": "Row 19 - the wordle ladder is two rungs rather than three, and this allowance is the ceiling on how many a day may bake. The missing rung is firstEzhuthu, refused for the opposite reason to the missing-letters board's: there the answer's other ezhuthu are already printed, here the player can buy the same fact by spending a guess - and one guess answers five other positions at the same time, so the rung is strictly worse than the move it competes with. daily.mix is again deliberately NOT changed, on Row 18's terms: widening it without a matching themed set silently turns every themed day off."
+    },
     {
       "version": "2026-08-19",
       "change": "Added hints.perGame.missing-letters at 2.",
@@ -18,7 +23,7 @@
     }
   ],
   "daily": { "playlistLength": 3, "mix": { "anagram": 3 } },
-  "hints": { "enabled": true, "perGame": { "anagram": 3, "missing-letters": 2 } },
+  "hints": { "enabled": true, "perGame": { "anagram": 3, "missing-letters": 2, "wordle": 2 } },
   "infinite": { "lruWindow": 200, "defaultDifficulty": "medium" },
   "timeTrial": { "durationSec": 120 },
   "ui": { "enabledModes": ["daily"], "defaultMode": "daily", "defaultTheme": "light" }

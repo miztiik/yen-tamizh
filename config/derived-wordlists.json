@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-19T18:00",
+  "version": "2026-08-19T21:00",
   "changelog": [
+    {
+      "version": "2026-08-19T21:00",
+      "change": "Registered the wordle set: the anagram's serving gates with the length pinned to exactly 6 ezhuthu.",
+      "why": "Row 19 - the gates are the anagram's unchanged, for the third time, because what makes a word fair to be ASKED for does not depend on how it is asked. The length is the whole decision, and it went the opposite way to the plan's guess of 5. In English a longer answer is harder; in Tamil it is measurably EASIER, because the alphabet is 247 ezhuthu rather than 26 letters and stays effectively constant across lengths - 203 to 217 distinct ezhuthu are in play at every length - so an extra position is an extra constraint against a near-fixed alphabet rather than an extra degree of freedom. Simulated against a player who guesses a familiar word still consistent with every mark, the median solve is 15 guesses at 3 ezhuthu, 10 at 4, 7 at 5 and 5 at 6. A 5-ezhuthu board - the roadmap's suggestion - is lost more often than it is won at any sane attempt budget, and a 3-ezhuthu one is not a game. 6 is also the CEILING as well as the floor: a wordle's keyboard readout and its shareable grid both assume one fixed width, so a Daily that was five ezhuthu on Monday and six on Tuesday would throw away the only thing that makes accumulated key state worth reading. The set is 6,160 rows - 16.9 years at one a day - and its own frequency quarters are 1,540 apiece, so all three difficulty bands fill. No accept-list set is registered beside it: the Game accepts any complete row of ezhuthu, so there is nothing for one to hold."
+    },
     {
       "version": "2026-08-19T18:00",
       "change": "Registered the missing-letters set: the anagram's serving gates with the length floor raised from 3 to 4.",
@@ -91,6 +96,21 @@
       "selection": {
         "wordClasses": ["headword"],
         "minLength": 4,
+        "maxLength": 6,
+        "minAttestations": 2,
+        "minTier1Attestations": 1,
+        "minFrequency": 1,
+        "requireMeaning": true,
+        "maxWords": null
+      }
+    },
+    {
+      "gameId": "wordle",
+      "out": "datasets/wordlists/derived/wordle.json",
+      "note": "The anagram's serving gates unchanged, with the length pinned to exactly 6 ezhuthu at both ends. The gates do not move because they answer a question the mechanic does not change - is this a word a player can be asked for at all. The length is pinned rather than ranged because a wordle's board, its keyboard readout and its shareable grid all assume ONE width; a Daily that was five ezhuthu on Monday and six on Tuesday would throw away the only thing that makes the accumulated keyboard state worth reading. Six rather than the five the roadmap sketched, and the reason is a measurement that runs opposite to English: Tamil's alphabet is 247 ezhuthu and effectively constant across lengths, so an extra position is an extra constraint against a fixed alphabet rather than an extra degree of freedom, and the simulated median solve falls from 15 guesses at 3 ezhuthu to 10 at 4, 7 at 5 and 5 at 6. wordClasses stays headword alone on the same terms as the other two sets.",
+      "selection": {
+        "wordClasses": ["headword"],
+        "minLength": 6,
         "maxLength": 6,
         "minAttestations": 2,
         "minTier1Attestations": 1,
