@@ -66,7 +66,7 @@ Envelope `{ ts, src, v, session, name, level, ctx, data }`. Game: `puzzle.starte
 | 18 | MissingLettersGame + gen + derived set | 3 | 9,11 | G | DONE | - | #41 | worker |
 | 19 | WordleGame + gen + derived set | 3 | 9,11 | G | DONE | - | #42 | worker |
 | 20 | WordSearchGame + gen + derived set | 3 | 9,11 | G | DONE | - | #43 | worker |
-| 21 | CrosswordGame + placement solver + derived set | 5 | 9,11 | G | IN-FLIGHT (uncommitted in ../yen-tamizh-row21) | ../yen-tamizh-row21 | - | worker |
+| 21 | CrosswordGame + placement solver + derived set | 5 | 9,11 | G | DONE | - | #44 | worker |
 | 22 | InfiniteMode + bulk pool + index | 4 | 12,13 | H | PENDING | - | - | - |
 | 23 | TimeTrialMode | 3 | 12,22 | H | PENDING | - | - | - |
 
