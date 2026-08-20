@@ -63,10 +63,10 @@ Envelope `{ ts, src, v, session, name, level, ctx, data }`. Game: `puzzle.starte
 | 15 | Ladder graph builder + word-ladder schema | 5 | 7,8 | - | PENDING | - | - | - |
 | 16 | WordLadderGame + share-result card | 3 | 11,15 | - | PENDING | - | - | - |
 | 17 | JourneyMode + winding-path home | 4 | 10,16 | - | PENDING | - | - | - |
-| 18 | MissingLettersGame + gen + derived set | 3 | 9,11 | G | PENDING | - | - | - |
-| 19 | WordleGame + gen + derived set | 3 | 9,11 | G | PENDING | - | - | - |
-| 20 | WordSearchGame + gen + derived set | 3 | 9,11 | G | PENDING | - | - | - |
-| 21 | CrosswordGame + placement solver + derived set | 5 | 9,11 | G | PENDING | - | - | - |
+| 18 | MissingLettersGame + gen + derived set | 3 | 9,11 | G | DONE | - | #41 | worker |
+| 19 | WordleGame + gen + derived set | 3 | 9,11 | G | DONE | - | #42 | worker |
+| 20 | WordSearchGame + gen + derived set | 3 | 9,11 | G | DONE | - | #43 | worker |
+| 21 | CrosswordGame + placement solver + derived set | 5 | 9,11 | G | IN-FLIGHT (uncommitted in ../yen-tamizh-row21) | ../yen-tamizh-row21 | - | worker |
 | 22 | InfiniteMode + bulk pool + index | 4 | 12,13 | H | PENDING | - | - | - |
 | 23 | TimeTrialMode | 3 | 12,22 | H | PENDING | - | - | - |
 
