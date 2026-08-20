@@ -1,6 +1,6 @@
 # Difficulty and Scoring
 
-**Last Updated**: 2026-08-17
+**Last Updated**: 2026-08-20
 
 The tuning vocabulary: how hard a puzzle is, how a result is scored, and how the streak and stats are derived. This page fixes the terms; the concrete numbers are config-driven ([config.md](config.md)) so tuning never touches code (Holy Law #6). Difficulty as a designed experience is Palm's altitude ([../../.github/agents/palm.agent.md](../../.github/agents/palm.agent.md)).
 
@@ -109,6 +109,14 @@ The word-search inverts the rule the other three Games share. A longer word cove
 That board sells no rungs. Every hint the ladder can render - a category, a first ezhuthu, a meaning - is a fact about a word the player is already reading off the list, so the whole ladder fails the same test that deleted `length`. The only thing a player lacks is a LOCATION, and a baked location rung has to name one particular word, so it is worth nothing if that word is already found; a rung that can be worthless by timing charges for nothing.
 
 What the board sells instead is a **reveal**, priced in the word it hands over. Scoring is the anagram's rate, applied per word found: a board of 19 ezhuthu is worth 190, and a player who traces four ezhuthu and reveals the rest scores 40. That is the first PARTIAL score in the repo, and it is what the mechanic makes possible - a wordle is solved or it is not, but a search board is 4 to 6 independent finds. It is also what keeps a player from being trapped: there is no attempt budget and no way to lose, so without a reveal one word nobody can see would stall the whole day.
+
+### On a crossword the MASK is the difficulty dial
+
+A crossword's answers constrain each other, so the honest axes are how many answers the board asks for and how much of each one the crossings give away - which is exactly what a mask states. `DifficultyBand.grid` is therefore the dial: easy is 5x5 and asks four five-ezhuthu answers across four crossings; medium is 6x6 and asks six six-ezhuthu answers across nine, the biggest board and the best crossed; hard is 6x5 and asks five answers of five and six ezhuthu across only six crossings, from the whole vocabulary including the rarest quarter. Fewer crossings is less help.
+
+Familiarity is spent where it still buys something: on the ANCHOR, the word the day loop picks, which is gated by `maxStratum` in the ordinary way. Narrowing the REST of the board to the band's own frequency quarter was tried first and does not survive contact with an interlock - an entry pinned at three of its five positions already leaves a median of one candidate word across the whole served set, and cutting the pool to the most familiar quarter takes it to none: the easy band then filled 26 boards in 120 instead of every one. A crossword whose other answers had to be equally familiar is a crossword that cannot be built.
+
+Scoring is the anagram's rate again, per entry: a 5x5 board of 20 ezhuthu is worth 200, and a player who works out one five-ezhuthu answer and reveals the other three scores 50. Like the search board it is partial, for the same reason - the board is several independent answers - and there is no attempt budget, because writing a wrong letter is how a player thinks on a crossword and charging for it would make the board a quiz.
 
 ## The share moment
 

@@ -86,9 +86,15 @@ class DerivedSelection(BaseModel):
     co-occurs with nearly any orthographically legal string. ``minFrequency`` is
     the absolute floor that keeps a museum piece off the board.
     ``requireMeaning`` keeps out words the game could not explain once the
-    player had solved them. ``maxWords`` caps the committed artifact (``null``
-    means uncapped); a derived set is a build artifact in git, so an uncapped one
-    is an unbounded commit.
+    player had solved them. ``requireClueableMeaning`` and ``maxMeaningChars``
+    go one step further and ask whether that meaning can be PRINTED as the
+    question rather than as the answer, which is what a crossword needs: a
+    definition that contains its own headword hands the word over, and one
+    carrying Latin script answers a Tamil grid in English. Both default to off,
+    because for every other Game the meaning is a reward shown after the fact
+    and its wording costs nothing. ``maxWords`` caps the committed artifact
+    (``null`` means uncapped); a derived set is a build artifact in git, so an
+    uncapped one is an unbounded commit.
 
     There is deliberately no anagram knob. Whether a word's tiles also spell
     something else is RECORDED on the emitted row as ``anagramFanOut``, never
@@ -123,6 +129,8 @@ class DerivedSelection(BaseModel):
     minTier1Attestations: int = Field(ge=0)
     minFrequency: int = Field(ge=0)
     requireMeaning: bool
+    requireClueableMeaning: bool = False
+    maxMeaningChars: int | None = Field(default=None, ge=1)
     maxWords: int | None = Field(default=None, ge=1)
     # The normalized theme tags of config/lexicon-sources.json's categoryAliases
     # - which is what lets a theme be renamed, widened or narrowed without a

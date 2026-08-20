@@ -1,6 +1,6 @@
 # Games
 
-**Last Updated**: 2026-07-29
+**Last Updated**: 2026-08-20
 
 The catalog of Game mechanics and the contract every Game honours. A **Game** (`gameId`) is the verb - the puzzle mechanic. It is one of the two orthogonal axes of a play session (the other is the [Mode](modes.md)); the content it draws from is a [Pack](#pack). The verb itself is defined once in [core-loop.md](core-loop.md); this page catalogs its six concrete forms.
 
@@ -67,6 +67,19 @@ Four things are true of it that are not true of the other three Games:
 - **There is no hint ladder at all.** This board prints the words it is asking for, so a category, a first ezhuthu and a meaning are all facts already on the screen. The only thing a player lacks is a LOCATION, and a baked location rung would have to name one particular word - making it worthless if that word were already found, which is the same test that deleted the `length` rung and refused `firstEzhuthu` twice. The help this Game gives instead is a REVEAL priced in the word it hands over: the player forfeits that word's points and keeps every other one, so a player stuck on the last word is never trapped and never loses what they earned.
 
 Both input methods are one mechanic. A pointer press and the keyboard's first Enter drop the same anchor; dragging and the arrow keys move the same cursor; releasing and the second Enter submit the same line. A trace is judged by what it SPELLS, so a word placed backwards is found by reading it either way, and a word the filler happened to spell a second time is found where the player traced it. A mechanic only playable by drag would fail this repo's keyboard bar (CLAUDE.md section 0a), so the two paths resolve through one definition of what is selected and cannot disagree.
+
+## crossword
+
+A small board of numbered squares beside a numbered list of meanings. Write a word into a square and it goes into the answer running across AND the answer running down at once; write every answer and the board is solved. There is no attempt budget - writing is how a player thinks on a crossword - and the only price is a REVEAL, which hands over one answer and forfeits exactly its points.
+
+Four things are true of it that are not true of the four Games before it:
+
+- **The answers are not independent of each other, and a build-time solver is what makes that safe.** Every other Game's payload is a function of one word; here each answer is constrained by every answer crossing it. The search that satisfies all of them at once runs in `backend/` at bake time, so the browser is handed a finished board and never searches for anything (Holy Law #1, Holy Law #2). The payload's contract then rebuilds the grid from the entries and reads every answer back out of it, so a placement bug fails the bake rather than shipping a board whose across and down answers contradict each other.
+- **A Tamil grid can be interlocked but not fully CHECKED, and that was measured.** Pinning one position of an answer leaves a median of 103 to 556 candidate words, two positions leave 3 to 11, and three leave a median of ONE. So an American-style board where every square belongs to two answers is impossible past three by three: a 3x3 word square fills every time, a 4x4 twice in twelve, and a 5x5 never. The shipped masks are therefore British-style lattices with unchecked squares, where each answer crosses two or three others rather than all of them.
+- **The clue is the lexicon's own Tamil sense, never an invention and never a translation.** This is the first Game that prints the meaning and asks for the WORD, which is the reverse of every Game before it - and that turns two harmless properties of a gloss into disqualifications. A sense containing its own headword hands the answer over; a sense carrying Latin script clues a Tamil grid in English. Both are cut from the derived set rather than clued badly here, and the payload's contract refuses a clue that spells its answer as an independent second check.
+- **There is no hint ladder, for the opposite reason to the search board's.** This board already SELLS meanings - that is what a clue is - and prints one per answer, free, before the player has written anything. Every rung the shared ladder can render is therefore a fact on the screen or a fact about one of six to eight answers, whose worth depends on whether that answer is still outstanding when it is bought. The help is a per-entry reveal instead, priced in the answer it hands over.
+
+The keyboard and the pointer are one mechanic here too. Tapping a square and arrowing to it move the same caret; tapping the square you are on and pressing Enter both turn the corner; a composer key and the arrow keys drive the same state. Landing on a square adopts the direction that square really runs, so the highlighted answer is always the answer being written. The composer is the wordle's letter chart re-used as a mechanic rather than as code - one tap on a base writes its a-form and steps along, one tap on a form re-spells the square just written - because a Game reaching into another Game is what one-schema-per-Game exists to prevent, and the two keyboards answer different questions.
 
 Filling the cells the words do not use makes UNINTENDED words - measured at 50.4 percent of boards, mean 0.70, maximum 5 - and those are recorded rather than designed out, on the anagram's `alsoValid` precedent. A player who traces a real Tamil word and is told "wrong" concludes the game cheated; "that is a word, but not on today's list" teaches them one.
 

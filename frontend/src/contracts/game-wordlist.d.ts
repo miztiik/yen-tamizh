@@ -25,16 +25,19 @@ export type Outsidelength = number
 export type Outsidepos = number
 export type Participial = number
 export type Rowskept = number
+export type Withoutclue = number
 export type Withoutmeaning = number
 export type Gameid = string
 export type Categories = ([string, ...(string)[]] | null)
 export type Maxlength = number
+export type Maxmeaningchars = (number | null)
 export type Maxwords = (number | null)
 export type Minattestations = number
 export type Minfrequency = number
 export type Minlength = number
 export type Mintier1Attestations = number
 export type Pos = ([("adjective" | "adverb" | "conjunction" | "determiner" | "interjection" | "noun" | "numeral" | "particle" | "postposition" | "pronoun" | "verb"), ...(("adjective" | "adverb" | "conjunction" | "determiner" | "interjection" | "noun" | "numeral" | "particle" | "postposition" | "pronoun" | "verb"))[]] | null)
+export type Requireclueablemeaning = boolean
 export type Requiremeaning = boolean
 /**
  * @minItems 1
@@ -100,6 +103,13 @@ why: Why
  * theme covers, here is what each gate then removed" rather than burying the
  * theme's own reach inside ``outsideLength``.
  * 
+ * ``withoutClue`` is the crossword's gate and only the crossword's: it counts
+ * the rows whose own sense cannot be printed as the QUESTION - because it
+ * spells the answer, carries Latin script, or runs longer than a phone-sized
+ * clue list can hold. It is charged straight after ``withoutMeaning`` because
+ * it is the same question asked one step further, and a set that leaves both
+ * new knobs off charges zero to it.
+ * 
  * ``obscene`` and ``participial`` are the two exclusions the registry's
  * ``servingRules`` derive from the row itself, charged after every gate and
  * before the curated list. ``obscene`` runs first of the two because it is the
@@ -129,6 +139,7 @@ outsideLength: Outsidelength
 outsidePos: Outsidepos
 participial: Participial
 rowsKept: Rowskept
+withoutClue?: Withoutclue
 withoutMeaning: Withoutmeaning
 }
 /**
@@ -149,9 +160,15 @@ withoutMeaning: Withoutmeaning
  * co-occurs with nearly any orthographically legal string. ``minFrequency`` is
  * the absolute floor that keeps a museum piece off the board.
  * ``requireMeaning`` keeps out words the game could not explain once the
- * player had solved them. ``maxWords`` caps the committed artifact (``null``
- * means uncapped); a derived set is a build artifact in git, so an uncapped one
- * is an unbounded commit.
+ * player had solved them. ``requireClueableMeaning`` and ``maxMeaningChars``
+ * go one step further and ask whether that meaning can be PRINTED as the
+ * question rather than as the answer, which is what a crossword needs: a
+ * definition that contains its own headword hands the word over, and one
+ * carrying Latin script answers a Tamil grid in English. Both default to off,
+ * because for every other Game the meaning is a reward shown after the fact
+ * and its wording costs nothing. ``maxWords`` caps the committed artifact
+ * (``null`` means uncapped); a derived set is a build artifact in git, so an
+ * uncapped one is an unbounded commit.
  * 
  * There is deliberately no anagram knob. Whether a word's tiles also spell
  * something else is RECORDED on the emitted row as ``anagramFanOut``, never
@@ -179,12 +196,14 @@ withoutMeaning: Withoutmeaning
 export interface DerivedSelection {
 categories?: Categories
 maxLength: Maxlength
+maxMeaningChars?: Maxmeaningchars
 maxWords?: Maxwords
 minAttestations: Minattestations
 minFrequency: Minfrequency
 minLength: Minlength
 minTier1Attestations: Mintier1Attestations
 pos?: Pos
+requireClueableMeaning?: Requireclueablemeaning
 requireMeaning: Requiremeaning
 wordClasses: Wordclasses
 }

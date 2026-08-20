@@ -50,6 +50,7 @@ const CORE_SCHEMAS: SchemaName[] = [
   "missing-letters-puzzle",
   "wordle-puzzle",
   "word-search-puzzle",
+  "crossword-puzzle",
   "copy",
 ];
 

@@ -67,6 +67,10 @@
       Harness = (await import("./shell/WordSearchHarness.svelte")).default;
       return;
     }
+    if (harness === "crossword") {
+      Harness = (await import("./shell/CrosswordHarness.svelte")).default;
+      return;
+    }
     Harness = null;
     if (params.get("mode") === "daily") {
       await openDaily();

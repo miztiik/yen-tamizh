@@ -30,13 +30,31 @@
     },
     "DifficultyBand": {
       "additionalProperties": false,
-      "description": "One difficulty bucket: the ezhuthu lengths and the familiarity it covers.\n\nDifficulty is TWO-AXIS - length and familiarity - because length alone is\nanti-correlated at both tails. A long Tamil headword is usually a compound\nthat decomposes into recognisable chunks and is EASIER than its ezhuthu\ncount suggests, while a short rare word is brutal; a length-only easy bucket\ntherefore forces the generator into the shortest words, which are\ndisproportionately literary. A 3-ezhuthu answer also has only six\narrangements against three attempts, so it is brute-forceable by shuffling\nwithout the player ever recognising the word.\n\n``maxStratum`` is the coarsest frequency quarter the band admits, 1 being\nthe most familiar quarter of the SERVED set. Bands deliberately OVERLAP on\nlength and tile on familiarity: what separates easy from hard is mostly how\nwell the player knows the word, not how many tiles it has.\n\n``blanks`` is how many ezhuthu a band HIDES, and it is read only by the\nGames whose mechanic hides letters. It defaults to 1 so a Game that shows\nevery tile - the anagram - never has to mention it, and so every day baked\nbefore this knob existed still validates. Hiding a second ezhuthu is the\nhonest way to make a band harder without reaching for a rarer word: it\nmultiplies the guess space instead of narrowing the vocabulary.\n\n``targets`` is how many WORDS a band hides, read only by the Games whose\nboard holds more than one. It defaults to 1, which is what every other Game\ndeals. On a search board it is the main difficulty dial, and the reason is\nan inversion worth stating: length is NOT a difficulty axis here. A longer\nword occupies more cells and is more distinctive, so it is EASIER to spot\nthan a short one, which is the opposite of what length does to a scramble or\na wordle board. What makes a search harder is how many words are still\noutstanding and how well the player knows them.\n\nWhere the cuts fall is a game-balance number, so it lives here rather than\nin Python (Holy Law #6).",
+      "description": "One difficulty bucket: the ezhuthu lengths and the familiarity it covers.\n\nDifficulty is TWO-AXIS - length and familiarity - because length alone is\nanti-correlated at both tails. A long Tamil headword is usually a compound\nthat decomposes into recognisable chunks and is EASIER than its ezhuthu\ncount suggests, while a short rare word is brutal; a length-only easy bucket\ntherefore forces the generator into the shortest words, which are\ndisproportionately literary. A 3-ezhuthu answer also has only six\narrangements against three attempts, so it is brute-forceable by shuffling\nwithout the player ever recognising the word.\n\n``maxStratum`` is the coarsest frequency quarter the band admits, 1 being\nthe most familiar quarter of the SERVED set. Bands deliberately OVERLAP on\nlength and tile on familiarity: what separates easy from hard is mostly how\nwell the player knows the word, not how many tiles it has.\n\n``blanks`` is how many ezhuthu a band HIDES, and it is read only by the\nGames whose mechanic hides letters. It defaults to 1 so a Game that shows\nevery tile - the anagram - never has to mention it, and so every day baked\nbefore this knob existed still validates. Hiding a second ezhuthu is the\nhonest way to make a band harder without reaching for a rarer word: it\nmultiplies the guess space instead of narrowing the vocabulary.\n\n``targets`` is how many WORDS a band hides, read only by the Games whose\nboard holds more than one. It defaults to 1, which is what every other Game\ndeals. On a search board it is the main difficulty dial, and the reason is\nan inversion worth stating: length is NOT a difficulty axis here. A longer\nword occupies more cells and is more distinctive, so it is EASIER to spot\nthan a short one, which is the opposite of what length does to a scramble or\na wordle board. What makes a search harder is how many words are still\noutstanding and how well the player knows them.\n\n``grid`` is the crossword's MASK - one string per row, ``.`` for a cell a\nword runs through and ``#`` for a blocked one - and it is the crossword's\ndifficulty dial for the same reason ``targets`` is the search board's: what\nmakes a grid harder is how many answers it asks for and how much of each one\nthe crossings give away, not how long the words are. It is a band's own\nfield rather than one shape for the whole Game because those two things are\nexactly what a band is allowed to change. Games with no crossings never read\nit.\n\nWhere the cuts fall is a game-balance number, so it lives here rather than\nin Python (Holy Law #6).",
       "properties": {
         "blanks": {
           "default": 1,
           "minimum": 1,
           "title": "Blanks",
           "type": "integer"
+        },
+        "grid": {
+          "anyOf": [
+            {
+              "items": {
+                "minLength": 2,
+                "pattern": "^[.#]+$",
+                "type": "string"
+              },
+              "minItems": 2,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Grid"
         },
         "id": {
           "pattern": "^[a-z][a-z0-9-]*$",

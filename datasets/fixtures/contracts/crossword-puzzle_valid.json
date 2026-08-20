@@ -1,0 +1,42 @@
+{
+  "version": "2026-08-19",
+  "changelog": [
+    {
+      "version": "2026-08-19",
+      "change": "Initial crossword-puzzle fixture.",
+      "why": "Row 21 contract Oracle - the valid crossword payload shape."
+    }
+  ],
+  "rows": 5,
+  "cols": 5,
+  "entries": [
+    {
+      "number": 3,
+      "direction": "across",
+      "start": { "row": 1, "col": 0 },
+      "word": "\u0ba4\u0bc0\u0b9a\u0bcd\u0b9a\u0bc1\u0b9f\u0bb0\u0bcd",
+      "clue": "\u0b9a\u0bc1\u0bb5\u0bbe\u0bb2\u0bc8"
+    },
+    {
+      "number": 4,
+      "direction": "across",
+      "start": { "row": 3, "col": 0 },
+      "word": "\u0bae\u0bb2\u0b95\u0bcd\u0b95\u0bae\u0bcd",
+      "clue": "\u0bae\u0bb2\u0b95\u0bcd\u0b95\u0b9f\u0bbf"
+    },
+    {
+      "number": 1,
+      "direction": "down",
+      "start": { "row": 0, "col": 1 },
+      "word": "\u0b95\u0bc8\u0b9a\u0bcd\u0b9a\u0bc6\u0bb2\u0bb5\u0bc1",
+      "clue": "\u0b9a\u0bca\u0ba8\u0bcd\u0ba4\u0b9a\u0bcd \u0b9a\u0bc6\u0bb2\u0bb5\u0bc1"
+    },
+    {
+      "number": 2,
+      "direction": "down",
+      "start": { "row": 0, "col": 3 },
+      "word": "\u0ba4\u0bca\u0b9f\u0b95\u0bcd\u0b95\u0bae\u0bcd",
+      "clue": "\u0b86\u0bb0\u0bae\u0bcd\u0baa\u0bae\u0bcd"
+    }
+  ]
+}

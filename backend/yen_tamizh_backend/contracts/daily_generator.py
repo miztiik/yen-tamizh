@@ -21,6 +21,7 @@ than a branch in the day loop.
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from typing import Annotated, Self
 
 from pydantic import BaseModel, ConfigDict, Field, StringConstraints, model_validator
@@ -37,6 +38,44 @@ from yen_tamizh_backend.contracts.common import (
 
 # A bare one-word tag: non-empty and holding no whitespace of any kind.
 BareTag = Annotated[str, StringConstraints(min_length=1, pattern=r"^\S+$")]
+
+# One row of a crossword mask: open cells and blocked ones, nothing else.
+MaskRow = Annotated[str, StringConstraints(min_length=2, pattern=r"^[.#]+$")]
+
+# What a mask writes for a cell a word may run through.
+OPEN_CELL = "."
+
+
+def mask_entries(grid: Sequence[str]) -> list[list[tuple[int, int]]]:
+    """Every maximal run of open cells in a crossword mask, longer than one.
+
+    Defined once, here beside the mask itself, because three readers have to
+    agree about it: the validator that refuses an unusable mask, the solver that
+    fills it, and the test that reads a baked board back. A run of ONE open cell
+    is not an entry - it is an unchecked cell, the square a British-style grid
+    leaves for one word alone - so it is skipped rather than reported.
+    """
+    rows, cols = len(grid), len(grid[0]) if grid else 0
+    entries: list[list[tuple[int, int]]] = []
+    for row in range(rows):
+        run: list[tuple[int, int]] = []
+        for col in range(cols + 1):
+            if col < cols and grid[row][col] == OPEN_CELL:
+                run.append((row, col))
+            else:
+                if len(run) > 1:
+                    entries.append(run)
+                run = []
+    for col in range(cols):
+        run = []
+        for row in range(rows + 1):
+            if row < rows and grid[row][col] == OPEN_CELL:
+                run.append((row, col))
+            else:
+                if len(run) > 1:
+                    entries.append(run)
+                run = []
+    return entries
 
 
 class DifficultyBand(BaseModel):
@@ -72,6 +111,15 @@ class DifficultyBand(BaseModel):
     a wordle board. What makes a search harder is how many words are still
     outstanding and how well the player knows them.
 
+    ``grid`` is the crossword's MASK - one string per row, ``.`` for a cell a
+    word runs through and ``#`` for a blocked one - and it is the crossword's
+    difficulty dial for the same reason ``targets`` is the search board's: what
+    makes a grid harder is how many answers it asks for and how much of each one
+    the crossings give away, not how long the words are. It is a band's own
+    field rather than one shape for the whole Game because those two things are
+    exactly what a band is allowed to change. Games with no crossings never read
+    it.
+
     Where the cuts fall is a game-balance number, so it lives here rather than
     in Python (Holy Law #6).
     """
@@ -84,6 +132,7 @@ class DifficultyBand(BaseModel):
     maxStratum: int = Field(ge=1, le=QUARTILES)
     blanks: int = Field(default=1, ge=1)
     targets: int = Field(default=1, ge=1)
+    grid: list[MaskRow] | None = Field(default=None, min_length=2)
 
     @model_validator(mode="after")
     def _band_is_coherent(self) -> Self:
@@ -97,6 +146,87 @@ class DifficultyBand(BaseModel):
             raise ValueError(
                 f"blanks {self.blanks} must be < minLength {self.minLength}, or the "
                 f"band's shortest word has nothing showing"
+            )
+        return self
+
+    @model_validator(mode="after")
+    def _the_mask_is_a_crossword(self) -> Self:
+        """Refuse a mask that cannot become a fair grid, before anything fills it.
+
+        Five conditions, and each of them is a way a mask can look fine and be
+        unusable:
+
+        - **Rectangular.** A ragged mask has no columns to run a down entry
+          through.
+        - **Every run is one cell or an entry the band can fill.** A run of two
+          when the band's floor is four is a slot no word can enter and no clue
+          can describe; a run longer than the band's ceiling is the same failure
+          from the other side. A run of exactly ONE cell is legal and is what
+          makes this a British-style lattice rather than an American grid -
+          measured, a fully-checked Tamil grid is impossible past three by three.
+        - **Every length the band admits really occurs.** The day loop picks one
+          word per slot by length and familiarity, and that word has to fit
+          somewhere on this board; a band admitting a length its own grid never
+          asks for would deal an answer with nowhere to go.
+        - **Every entry crosses another.** An entry crossing nothing is a
+          standalone word printed on a crossword.
+        - **Connected.** Two clusters that never meet are two puzzles on one
+          sheet.
+        """
+        if self.grid is None:
+            return self
+        widths = {len(row) for row in self.grid}
+        if len(widths) != 1:
+            raise ValueError(
+                f"band {self.id!r} has a ragged grid: rows are {sorted(widths)} wide"
+            )
+        entries = mask_entries(self.grid)
+        covered = {cell for entry in entries for cell in entry}
+        stranded = [
+            (row, col)
+            for row, line in enumerate(self.grid)
+            for col, cell in enumerate(line)
+            if cell == OPEN_CELL and (row, col) not in covered
+        ]
+        if stranded:
+            raise ValueError(
+                f"band {self.id!r} leaves {len(stranded)} open cell(s) in no entry at "
+                f"all, starting at {stranded[0]}; nothing on the board can fill them"
+            )
+        allowed = set(range(self.minLength, self.maxLength + 1))
+        lengths = {len(entry) for entry in entries}
+        bad = sorted(length for length in lengths if length not in allowed)
+        if bad:
+            raise ValueError(
+                f"band {self.id!r} has runs of {bad} cells, which its words "
+                f"({self.minLength}-{self.maxLength} ezhuthu) cannot fill"
+            )
+        missing = sorted(allowed - lengths)
+        if missing:
+            raise ValueError(
+                f"band {self.id!r} admits {missing}-ezhuthu words its grid never "
+                f"asks for, so a word the day picks would have nowhere to go"
+            )
+        if len(entries) < 2:
+            raise ValueError(f"band {self.id!r} has {len(entries)} entries; a crossword needs two")
+        cells = [set(entry) for entry in entries]
+        for index, entry in enumerate(cells):
+            if not any(entry & other for pos, other in enumerate(cells) if pos != index):
+                raise ValueError(
+                    f"band {self.id!r} has an entry at {sorted(entries[index])[0]} that "
+                    f"crosses nothing"
+                )
+        seen, frontier = {0}, [0]
+        while frontier:
+            index = frontier.pop()
+            for other in range(len(cells)):
+                if other not in seen and cells[other] & cells[index]:
+                    seen.add(other)
+                    frontier.append(other)
+        if len(seen) != len(cells):
+            raise ValueError(
+                f"band {self.id!r} has {len(cells) - len(seen)} entries that never "
+                f"reach the rest of the board"
             )
         return self
 
@@ -241,6 +371,18 @@ class GameGeneration(BaseModel):
         # only refuses the configuration that is impossible by counting.
         cells = self.gridRows * self.gridCols
         for band in self.difficulties:
+            if band.grid is not None:
+                # A crossword's own mask states its shape, so the Game-wide grid
+                # knob is read here as the CEILING that shape has to fit inside -
+                # which is what keeps the phone-screen number in one place
+                # instead of once per band.
+                height, width = len(band.grid), len(band.grid[0])
+                if height > self.gridRows or width > self.gridCols:
+                    raise ValueError(
+                        f"band {band.id!r} lays out a {height}x{width} grid, which does "
+                        f"not fit the {self.gridRows}x{self.gridCols} board"
+                    )
+                continue
             needed = band.targets * band.maxLength
             if needed > cells:
                 raise ValueError(

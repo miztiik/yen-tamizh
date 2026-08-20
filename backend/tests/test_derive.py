@@ -1408,6 +1408,7 @@ def test_the_committed_registry_validates() -> None:
         "missing-letters",
         "wordle",
         "word-search",
+        "crossword",
         _THEMED_GAME_ID,
     ]
     assert registry.lexiconPath == "datasets/lexicon/lexicon.meta.json"

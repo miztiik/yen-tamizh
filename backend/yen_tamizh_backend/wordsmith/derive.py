@@ -80,10 +80,31 @@ from yen_tamizh_backend.contracts.served_denylist import ServedDenylist
 from yen_tamizh_backend.ezhuthu import segment
 from yen_tamizh_backend.wordsmith.artifact import render_document, sha256_of
 
-_SCHEMA_VERSION = "2026-08-19"
+_SCHEMA_VERSION = "2026-08-20"
 _CHANGELOG = [
     ChangelogEntry(
         version=_SCHEMA_VERSION,
+        change=(
+            "Added the withoutClue ledger bucket, charged between withoutMeaning "
+            "and the servingRules exclusions, for the rows whose own sense "
+            "cannot be printed as a question."
+        ),
+        why=(
+            "Row 21 - a crossword prints the meaning and asks for the word, "
+            "which is the reverse of every Game before it, and that turns two "
+            "harmless properties of a lexicon gloss into disqualifications: a "
+            "sense containing its own headword hands the answer over (3.7 "
+            "percent of the served set), and one carrying Latin script clues a "
+            "Tamil grid in English. A ceiling on its length is the third, and "
+            "the only one that is a number: 4.3 percent of served senses run "
+            "past 60 characters and the longest is 738, which on a phone pushes "
+            "the board off the screen. The bucket is additive and every set "
+            "that leaves the knobs off charges zero to it, so the four sets "
+            "before this one are unmoved."
+        ),
+    ),
+    ChangelogEntry(
+        version="2026-08-19",
         change=(
             "Added the obscene and participial ledger buckets, charged after "
             "every automatic gate and before the deny-list, for the rows the "
@@ -351,6 +372,36 @@ def is_marked_obscene(senses: Sequence[str] | None, markers: Iterable[str]) -> b
     return any(marker in senses[0] for marker in markers)
 
 
+def is_clueable(word: str, definition: str | None, max_chars: int | None) -> bool:
+    """Whether this row's own sense can be printed as the QUESTION, not the answer.
+
+    A crossword prints the meaning first and asks for the word, which is the
+    reverse of every other Game in this repo - and it turns two harmless
+    properties of a lexicon gloss into disqualifications:
+
+    - **it must not contain the word.** Tamil synonymy is dense enough that a
+      dictionary sense occasionally spells its own headword; measured over the
+      served set, 3.7 percent of definitions do. Printed as a clue that is not a
+      hint, it is the answer.
+    - **it must carry no Latin script.** Some glosses glue a romanisation onto
+      the Tamil. On a paid hint that rung is dropped; as a clue there is nothing
+      to drop back to, and a Tamil grid clued in English is a puzzle in a
+      language the board is not written in.
+
+    ``max_chars`` is the third disqualification and the only one that is a
+    number: a clue list is read on a phone beside a grid, and a sense running to
+    several hundred characters pushes the board off the screen. ``None`` means
+    no ceiling.
+    """
+    if definition is None:
+        return False
+    if word in definition:
+        return False
+    if max_chars is not None and len(definition) > max_chars:
+        return False
+    return not any(char.isascii() and char.isalpha() for char in definition)
+
+
 def select(
     meta: Lexicon,
     rows: Iterable[LexiconEntry],
@@ -397,6 +448,7 @@ def select(
     wanted_pos = set(selection.pos or ())
     outside_categories = outside_pos = 0
     outside_length = below_attestations = below_frequency = without_meaning = 0
+    without_clue = 0
     obscene = participial = denylisted = 0
     kept: list[LexiconEntry] = []
     for row in rows:
@@ -420,6 +472,15 @@ def select(
             continue
         if selection.requireMeaning and row.definitionTa is None:
             without_meaning += 1
+            continue
+        if (
+            selection.requireClueableMeaning or selection.maxMeaningChars is not None
+        ) and not is_clueable(
+            row.word,
+            None if row.definitionTa is None else row.definitionTa[0],
+            selection.maxMeaningChars,
+        ):
+            without_clue += 1
             continue
         if is_marked_obscene(row.definitionTa, rules.obscenityMarkers):
             obscene += 1
@@ -448,6 +509,7 @@ def select(
         belowAttestations=below_attestations,
         belowFrequency=below_frequency,
         withoutMeaning=without_meaning,
+        withoutClue=without_clue,
         obscene=obscene,
         participial=participial,
         denylisted=denylisted,

@@ -5,6 +5,7 @@ import anagramPuzzleSchema from "./anagram-puzzle.schema.json";
 import appConfigSchema from "./app-config.schema.json";
 import bankIndexSchema from "./bank-index.schema.json";
 import copySchema from "./copy.schema.json";
+import crosswordPuzzleSchema from "./crossword-puzzle.schema.json";
 import eventEnvelopeSchema from "./event-envelope.schema.json";
 import exampleSchema from "./example.schema.json";
 import missingLettersPuzzleSchema from "./missing-letters-puzzle.schema.json";
@@ -16,6 +17,7 @@ import type { AnagramPuzzle } from "./anagram-puzzle";
 import type { AppConfig } from "./app-config";
 import type { BankIndex } from "./bank-index";
 import type { Copy } from "./copy";
+import type { CrosswordPuzzle } from "./crossword-puzzle";
 import type { EventEnvelope } from "./event-envelope";
 import type { Example } from "./example";
 import type { MissingLettersPuzzle } from "./missing-letters-puzzle";
@@ -36,6 +38,7 @@ const validators = {
   "app-config": ajv.compile<AppConfig>(appConfigSchema),
   "bank-index": ajv.compile<BankIndex>(bankIndexSchema),
   copy: ajv.compile<Copy>(copySchema),
+  "crossword-puzzle": ajv.compile<CrosswordPuzzle>(crosswordPuzzleSchema),
   "event-envelope": ajv.compile<EventEnvelope>(eventEnvelopeSchema),
   example: ajv.compile<Example>(exampleSchema),
   "missing-letters-puzzle": ajv.compile<MissingLettersPuzzle>(missingLettersPuzzleSchema),
@@ -54,6 +57,7 @@ export interface SchemaPayload {
   "app-config": AppConfig;
   "bank-index": BankIndex;
   copy: Copy;
+  "crossword-puzzle": CrosswordPuzzle;
   "event-envelope": EventEnvelope;
   example: Example;
   "missing-letters-puzzle": MissingLettersPuzzle;

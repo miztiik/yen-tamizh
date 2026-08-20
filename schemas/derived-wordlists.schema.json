@@ -30,7 +30,7 @@
     },
     "DerivedSelection": {
       "additionalProperties": false,
-      "description": "Which lexicon rows a derived set SERVES. Every knob is tunable data.\n\nThe lexicon is everything the pipeline knows; this is the far smaller set a\nplayer is actually asked to spell. PRESENT and SERVED are different\npopulations on purpose, and these knobs are the whole difference.\n\n``wordClasses`` is an ALLOW-LIST, never a deny-list, so a word the\nclassifier could not place cannot reach a player by omission.\n``minLength`` / ``maxLength`` count EZHUTHU, not code points - the unit\nevery Game plays in (Row 6). ``minAttestations`` together with\n``minTier1Attestations`` is the composition rule: how many word-hood\nauthorities called this a word, and how many of those were dictionaries\nrather than bare listings. Two bare wordlists agreeing is not evidence - a\nspellchecker list is several times the size of the largest dictionary and\nco-occurs with nearly any orthographically legal string. ``minFrequency`` is\nthe absolute floor that keeps a museum piece off the board.\n``requireMeaning`` keeps out words the game could not explain once the\nplayer had solved them. ``maxWords`` caps the committed artifact (``null``\nmeans uncapped); a derived set is a build artifact in git, so an uncapped one\nis an unbounded commit.\n\nThere is deliberately no anagram knob. Whether a word's tiles also spell\nsomething else is RECORDED on the emitted row as ``anagramFanOut``, never\nused to admit or reject: a scramble of a word with no second arrangement is\na perfectly ordinary puzzle, and demanding a partner cut the served set by\ntwo orders of magnitude while selecting for bound stems, because fragments\nare what collide with real words.\n\n``categories`` and ``pos`` are the two SELECTION DIMENSIONS, and they are a\ndifferent kind of knob from the six gates above. Each keeps the rows whose\nown set-valued column INTERSECTS the one named here - a row tagged both\n``birds`` and ``animals`` satisfies a selection naming either. Both are\nOPTIONAL, and absent means the dimension is not applied at all: that is the\nonly honest default, because neither may ever gate admission for an ordinary\nset. Fewer than 3,000 published headwords carry a category, and how far\n``pos`` reaches over the served set is unmeasured, so a set that named one by\naccident would collapse to a few hundred rows or to none. A set that names\none is a THEMED set, drawn only on the days a whole themed playlist can be\nfilled from it.\n\nThis model is shared: the registry declares it and the emitted wordlist\nechoes back the selection that produced it, so a reviewer reading a diff can\nsee which knob moved. Defining it once is why the two cannot disagree.",
+      "description": "Which lexicon rows a derived set SERVES. Every knob is tunable data.\n\nThe lexicon is everything the pipeline knows; this is the far smaller set a\nplayer is actually asked to spell. PRESENT and SERVED are different\npopulations on purpose, and these knobs are the whole difference.\n\n``wordClasses`` is an ALLOW-LIST, never a deny-list, so a word the\nclassifier could not place cannot reach a player by omission.\n``minLength`` / ``maxLength`` count EZHUTHU, not code points - the unit\nevery Game plays in (Row 6). ``minAttestations`` together with\n``minTier1Attestations`` is the composition rule: how many word-hood\nauthorities called this a word, and how many of those were dictionaries\nrather than bare listings. Two bare wordlists agreeing is not evidence - a\nspellchecker list is several times the size of the largest dictionary and\nco-occurs with nearly any orthographically legal string. ``minFrequency`` is\nthe absolute floor that keeps a museum piece off the board.\n``requireMeaning`` keeps out words the game could not explain once the\nplayer had solved them. ``requireClueableMeaning`` and ``maxMeaningChars``\ngo one step further and ask whether that meaning can be PRINTED as the\nquestion rather than as the answer, which is what a crossword needs: a\ndefinition that contains its own headword hands the word over, and one\ncarrying Latin script answers a Tamil grid in English. Both default to off,\nbecause for every other Game the meaning is a reward shown after the fact\nand its wording costs nothing. ``maxWords`` caps the committed artifact\n(``null`` means uncapped); a derived set is a build artifact in git, so an\nuncapped one is an unbounded commit.\n\nThere is deliberately no anagram knob. Whether a word's tiles also spell\nsomething else is RECORDED on the emitted row as ``anagramFanOut``, never\nused to admit or reject: a scramble of a word with no second arrangement is\na perfectly ordinary puzzle, and demanding a partner cut the served set by\ntwo orders of magnitude while selecting for bound stems, because fragments\nare what collide with real words.\n\n``categories`` and ``pos`` are the two SELECTION DIMENSIONS, and they are a\ndifferent kind of knob from the six gates above. Each keeps the rows whose\nown set-valued column INTERSECTS the one named here - a row tagged both\n``birds`` and ``animals`` satisfies a selection naming either. Both are\nOPTIONAL, and absent means the dimension is not applied at all: that is the\nonly honest default, because neither may ever gate admission for an ordinary\nset. Fewer than 3,000 published headwords carry a category, and how far\n``pos`` reaches over the served set is unmeasured, so a set that named one by\naccident would collapse to a few hundred rows or to none. A set that names\none is a THEMED set, drawn only on the days a whole themed playlist can be\nfilled from it.\n\nThis model is shared: the registry declares it and the emitted wordlist\nechoes back the selection that produced it, so a reviewer reading a diff can\nsee which knob moved. Defining it once is why the two cannot disagree.",
       "properties": {
         "categories": {
           "anyOf": [
@@ -52,6 +52,19 @@
           "minimum": 1,
           "title": "Maxlength",
           "type": "integer"
+        },
+        "maxMeaningChars": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Maxmeaningchars"
         },
         "maxWords": {
           "anyOf": [
@@ -114,6 +127,11 @@
           ],
           "default": null,
           "title": "Pos"
+        },
+        "requireClueableMeaning": {
+          "default": false,
+          "title": "Requireclueablemeaning",
+          "type": "boolean"
         },
         "requireMeaning": {
           "title": "Requiremeaning",

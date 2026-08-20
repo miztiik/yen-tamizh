@@ -47,10 +47,13 @@ from yen_tamizh_backend.contracts.anagram_puzzle import AnagramPuzzle
 from yen_tamizh_backend.contracts.app_config import AppConfig
 from yen_tamizh_backend.contracts.bank_index import BankIndex
 from yen_tamizh_backend.contracts.copy import Copy
+from yen_tamizh_backend.contracts.crossword_puzzle import CrosswordEntry, CrosswordPuzzle
 from yen_tamizh_backend.contracts.daily_generator import (
     DailyGenerator,
+    DifficultyBand,
     GameGeneration,
     HintSpec,
+    mask_entries,
 )
 from yen_tamizh_backend.contracts.game_wordlist import GameWord, GameWordlist
 from yen_tamizh_backend.contracts.lexicon import PartOfSpeech
@@ -63,7 +66,15 @@ from yen_tamizh_backend.contracts.word_search_puzzle import (
 )
 from yen_tamizh_backend.contracts.wordle_puzzle import WordlePuzzle
 from yen_tamizh_backend.ezhuthu import EZHUTHU_INVENTORY, segment
-from yen_tamizh_backend.generate import anagram, daily, missing_letters, word_search, wordle
+from yen_tamizh_backend.generate import (
+    Unbuildable,
+    anagram,
+    crossword,
+    daily,
+    missing_letters,
+    word_search,
+    wordle,
+)
 from yen_tamizh_backend.generate import hints as hint_ladder
 from yen_tamizh_backend.generate.seed import hash_seed, seeded_index, seeded_shuffle
 from yen_tamizh_backend.scripts.generate_today import generate, load_wordlists
@@ -1622,12 +1633,13 @@ def test_a_day_can_be_dealt_from_more_than_one_game(
         update={
             "daily": app_config.daily.model_copy(
                 update={
-                    "playlistLength": 4,
+                    "playlistLength": 5,
                     "mix": {
                         "anagram": 1,
                         "missing-letters": 1,
                         "wordle": 1,
                         "word-search": 1,
+                        "crossword": 1,
                     },
                 }
             )
@@ -1644,6 +1656,7 @@ def test_a_day_can_be_dealt_from_more_than_one_game(
         games = [item.gameId for item in day.puzzle_file.items]
         assert sorted(games) == [
             "anagram",
+            "crossword",
             "missing-letters",
             "word-search",
             "wordle",
@@ -1662,16 +1675,26 @@ def test_a_day_can_be_dealt_from_more_than_one_game(
         WordSearchPuzzle.model_validate(
             {"version": "2026-08-19", "changelog": [_STAMP], **traced.payload}
         )
-        # Four Games, four payload shapes, one unchanged puzzle-file.
+        crossed = next(i for i in day.puzzle_file.items if i.gameId == "crossword")
+        CrosswordPuzzle.model_validate(
+            {"version": "2026-08-19", "changelog": [_STAMP], **crossed.payload}
+        )
+        # Five Games, five payload shapes, one unchanged puzzle-file.
         assert "tiles" not in guessed.payload
         assert "blanks" not in guessed.payload
         assert "choices" not in guessed.payload
         assert "word" not in traced.payload
         assert "attempts" not in traced.payload
+        assert "grid" not in crossed.payload
+        assert "word" not in crossed.payload
         # A day's own record of what it served has to see every word, or the
         # anti-repeat ledger deals a search board's words again next week.
         assert set(day.words) >= {
             target["word"] for target in traced.payload["targets"]
+        }
+        # The same claim for the board whose answers all arrived together.
+        assert set(day.words) >= {
+            entry["word"] for entry in crossed.payload["entries"]
         }
 
 
@@ -2246,17 +2269,21 @@ def test_an_alternative_that_is_not_in_the_grid_is_refused() -> None:
         )
 
 
-def test_the_day_ledger_reads_both_payload_shapes() -> None:
+def test_the_day_ledger_reads_every_payload_shape() -> None:
     """One definition of "the words this payload asked for", used by both readers.
 
-    Three Games put one answer under ``word`` and this one puts several under
-    ``targets``. The anti-repeat ledger and the bake's own record of what a day
-    served must agree, or a search board's words come back a week later because
-    the ledger could not see them.
+    Three Games put one answer under ``word``, the search board puts several
+    under ``targets`` and the crossword puts its own under ``entries``. The
+    anti-repeat ledger and the bake's own record of what a day served must
+    agree, or a board's words come back a week later because the ledger could
+    not see them.
     """
     assert daily.answer_words({"word": "\u0b85"}) == ["\u0b85"]
     assert daily.answer_words(
         {"targets": [{"word": "\u0b85"}, {"word": "\u0b86"}]}
+    ) == ["\u0b85", "\u0b86"]
+    assert daily.answer_words(
+        {"entries": [{"word": "\u0b85"}, {"word": "\u0b86"}]}
     ) == ["\u0b85", "\u0b86"]
     assert daily.answer_words({"choices": ["\u0b85"]}) == []
 
@@ -2284,4 +2311,484 @@ def test_a_band_that_cannot_fit_on_the_board_is_refused(
     cramped["gridRows"] = cramped["gridCols"] = 5
     with pytest.raises(ValidationError, match="do not fit"):
         GameGeneration.model_validate(cramped)
+
+
+# --------------------------------------------------------------------------
+# 11. crossword (Row 21)
+#
+# The fifth Game, and the first whose answers are not independent of each other:
+# an entry's letters are decided partly by every entry crossing it. Its central
+# correctness property is therefore one sentence long - every crossing cell
+# holds exactly one ezhuthu that satisfies BOTH the answer running across it and
+# the answer running down it - and everything below either checks that or checks
+# the thing it makes possible.
+#
+# THE SOLVER IS BUILD-TIME. Everything in this section runs the real placement
+# search over the real committed served set, because the browser never runs it:
+# the shipped payload is a finished board, and a bug in the fill has exactly one
+# place left to be caught, which is here.
+#
+# As in the search board's section, the Oracle walks the grid with its OWN step
+# table rather than calling the helper the generator and the contract share. An
+# Oracle that reuses the implementation it is checking proves the implementation
+# is self-consistent, which is not the claim.
+# --------------------------------------------------------------------------
+
+# The two directions, written out here so the Oracle owes the implementation
+# nothing. If these ever disagree with contracts.crossword_puzzle.STEPS, one of
+# the two is wrong and the tests below say which.
+_CW_STEPS: dict[str, tuple[int, int]] = {"across": (0, 1), "down": (1, 0)}
+
+
+def _cw_cells(entry: CrosswordEntry) -> list[tuple[int, int]]:
+    """The cells one entry claims, walked from its own recorded start."""
+    step_row, step_col = _CW_STEPS[entry.direction]
+    return [
+        (entry.start.row + step_row * index, entry.start.col + step_col * index)
+        for index in range(len(segment(entry.word)))
+    ]
+
+
+def _cw_grid(puzzle: CrosswordPuzzle) -> dict[tuple[int, int], list[tuple[str, str]]]:
+    """Every open cell, and what each entry through it claims that cell holds.
+
+    Built as a LIST of claims rather than a resolved letter on purpose: the
+    interlock Oracle's whole question is whether the claims agree, and a dict
+    that kept only the last one would answer it by construction.
+    """
+    board: dict[tuple[int, int], list[tuple[str, str]]] = {}
+    for entry in puzzle.entries:
+        for cell, unit in zip(_cw_cells(entry), segment(entry.word)):
+            board.setdefault(cell, []).append((unit, entry.word))
+    return board
+
+
+@pytest.fixture(scope="module")
+def cw_spec(generator: DailyGenerator) -> GameGeneration:
+    return next(spec for spec in generator.games if spec.gameId == crossword.GAME_ID)
+
+
+@pytest.fixture(scope="module")
+def cw_served(
+    cw_spec: GameGeneration, wordlists: dict[str, GameWordlist]
+) -> crossword.ServedIndex:
+    return crossword.index_served(wordlists[cw_spec.wordlist], cw_spec)
+
+
+def _crosswords(
+    spec: GameGeneration, served: crossword.ServedIndex, count: int
+) -> list[tuple[str, DifficultyBand, GameWord, CrosswordPuzzle]]:
+    """Solve ``count`` boards per band from real rows, real bands and real dates.
+
+    A row the search cannot cross is SKIPPED rather than failed, which is what
+    the day loop does with it: ``Unbuildable`` is the builder's way of asking for
+    the next candidate. How often that happens is measured by its own test
+    below, so a silent collapse to a handful of boards cannot hide here.
+    """
+    pools = {
+        band.id: crossword.band_pool(served, band).by_length
+        for band in spec.difficulties
+    }
+    out: list[tuple[str, DifficultyBand, GameWord, CrosswordPuzzle]] = []
+    for offset in range(count):
+        day = (date.fromisoformat(ORDINARY_DAY) + timedelta(days=offset)).isoformat()
+        for band in spec.difficulties:
+            rows = [row for pool in pools[band.id].values() for row in pool]
+            anchor = rows[(offset * 1319 + len(band.id) * 7919) % len(rows)]
+            seed = f"{day}|{anchor.word}"
+            try:
+                built = crossword.build_puzzle(anchor, spec, seed, 0, band, served)
+            except crossword.SolverExhausted:
+                continue
+            out.append((seed, band, anchor, built))
+    return out
+
+
+def test_every_crossing_cell_satisfies_both_of_its_answers(
+    cw_spec: GameGeneration, cw_served: crossword.ServedIndex
+) -> None:
+    """ORACLE (a) - the interlock, over real solver output.
+
+    For every board the real search produced, every cell two entries share must
+    carry exactly ONE ezhuthu, and that ezhuthu has to be the one BOTH of them
+    spell at that offset. The claims are collected per cell from each entry's
+    own recorded start and direction, so a board that recorded a start it did
+    not fill, or ran an answer off its own edge, or wrote two different letters
+    into one square, fails here rather than in the renderer.
+
+    A crossing is also checked to be one across and one down. Two entries
+    running the same way through one cell would be a stacked pair, not a
+    crossing, and the letter they agree on would prove nothing.
+    """
+    letters = set(EZHUTHU_INVENTORY)
+    boards = _crosswords(cw_spec, cw_served, 40)
+    assert len(boards) >= 100, f"only {len(boards)} boards solved - the Oracle is thin"
+    crossings = cells = 0
+    for seed, _, _, puzzle in boards:
+        board = _cw_grid(puzzle)
+        for cell, claims in board.items():
+            units = {unit for unit, _ in claims}
+            assert len(units) == 1, (
+                f"{seed}: cell {cell} is claimed as {sorted(units)} by "
+                f"{sorted(word for _, word in claims)}"
+            )
+            unit = claims[0][0]
+            assert segment(unit) == [unit], f"{seed}: {unit!r} is not one ezhuthu"
+            assert unit in letters, f"{seed}: {unit!r} is not a letter of Tamil"
+            cells += 1
+            if len(claims) > 1:
+                assert len(claims) == 2, f"{seed}: cell {cell} carries {len(claims)}"
+                ways = {
+                    entry.direction
+                    for entry in puzzle.entries
+                    if cell in _cw_cells(entry)
+                }
+                assert ways == {"across", "down"}, (
+                    f"{seed}: cell {cell} is shared by two {sorted(ways)} entries, "
+                    f"which is a stack rather than a crossing"
+                )
+                crossings += 1
+    # Every board is interlocked, not merely valid: an uncrossed board would
+    # pass every per-cell claim above and be a word list on squared paper.
+    assert crossings > 0
+    assert cells > 0
+
+
+def test_every_answer_is_recoverable_from_the_grid_it_helped_build(
+    cw_spec: GameGeneration, cw_served: crossword.ServedIndex
+) -> None:
+    """ORACLE (b) - read each answer back OUT of the board the player sees.
+
+    The grid is not shipped: it is the union of the entries. So the Oracle
+    builds it from every entry at once and then reads each answer back out of
+    the finished thing, which is the only reading that can catch an answer
+    written correctly into cells another answer later overwrote.
+    """
+    checked = 0
+    for seed, _, _, puzzle in _crosswords(cw_spec, cw_served, 40):
+        board = _cw_grid(puzzle)
+        for entry in puzzle.entries:
+            spelled = "".join(board[cell][0][0] for cell in _cw_cells(entry))
+            assert spelled == entry.word, (
+                f"{seed}: reading from ({entry.start.row},{entry.start.col}) "
+                f"{entry.direction} spells {spelled!r}, not {entry.word!r}"
+            )
+            checked += 1
+    assert checked > 0
+
+
+def test_every_board_fills_the_mask_its_band_configured(
+    cw_spec: GameGeneration, cw_served: crossword.ServedIndex
+) -> None:
+    """The board is exactly the shape config asked for - no more, no fewer.
+
+    The mask is the difficulty dial, so a solver that quietly dropped an entry
+    it could not fill would be changing the difficulty rather than failing. The
+    entries' cells are compared to the mask's own open cells as SETS, which
+    catches both a missing entry and a cell filled that the mask blocked.
+    """
+    seen = set()
+    for seed, band, _, puzzle in _crosswords(cw_spec, cw_served, 20):
+        assert band.grid is not None
+        assert (puzzle.rows, puzzle.cols) == (len(band.grid), len(band.grid[0]))
+        wanted = mask_entries(band.grid)
+        assert len(puzzle.entries) == len(wanted), (
+            f"{seed}: {band.id} asks for {len(wanted)} entries, the board has "
+            f"{len(puzzle.entries)}"
+        )
+        assert {frozenset(cells) for cells in wanted} == {
+            frozenset(_cw_cells(entry)) for entry in puzzle.entries
+        }, f"{seed}: the board's entries are not the mask's runs"
+        seen.add(band.id)
+    assert seen == {band.id for band in cw_spec.difficulties}
+
+
+def test_the_word_the_day_picked_is_the_word_that_lands_on_the_board(
+    cw_spec: GameGeneration, cw_served: crossword.ServedIndex
+) -> None:
+    """The anchor is placed, and every other answer is a served word too.
+
+    The day loop chose the anchor against the whole bank's history and the
+    difficulty curve; a solver free to drop it would throw that away. The rest
+    of the board is drawn by the search itself, so it is checked against the
+    served set rather than against the loop.
+    """
+    served = {
+        row.word for pool in cw_served.by_length.values() for row in pool
+    }
+    for seed, band, anchor, puzzle in _crosswords(cw_spec, cw_served, 20):
+        answers = [entry.word for entry in puzzle.entries]
+        assert anchor.word in answers, f"{seed}: the anchor was not placed"
+        assert len(set(answers)) == len(answers), f"{seed}: an answer repeats"
+        for word in answers:
+            assert word in served, f"{seed}: {word!r} is not in the served set"
+            assert band.minLength <= len(segment(word)) <= band.maxLength
+
+
+def test_a_crossword_is_a_pure_function_of_its_seed(
+    cw_spec: GameGeneration, cw_served: crossword.ServedIndex
+) -> None:
+    """ORACLE (c) - determinism, asserted on the BYTES.
+
+    Every choice this search makes - which entry it fills next, which candidate
+    it tries first, which restart it is on - comes from the shared FNV-1a and
+    mulberry32 pair, never from ``random``. So two solves of one seed have to
+    serialise identically, or a bank baked locally on 3.14 and re-baked by CI on
+    3.12 could differ.
+    """
+    band = cw_spec.difficulties[-1]
+    pool = crossword.band_pool(cw_served, band)
+    rows = [row for words in pool.by_length.values() for row in words]
+    compared = moved = 0
+    for index in range(0, 4000, 331):
+        anchor = rows[index % len(rows)]
+        seed = f"{ORDINARY_DAY}|{anchor.word}"
+        try:
+            first = crossword.build_puzzle(anchor, cw_spec, seed, 0, band, cw_served)
+        except crossword.SolverExhausted:
+            continue
+        again = crossword.build_puzzle(anchor, cw_spec, seed, 0, band, cw_served)
+        assert first.model_dump_json() == again.model_dump_json()
+        compared += 1
+        # A different date must be able to move the board, or the seed is
+        # decoration. It is counted rather than asserted per row: on a mask this
+        # tight one anchor really can have only one fill.
+        other = crossword.build_puzzle(
+            anchor, cw_spec, f"{FIRST_DAY}|{anchor.word}", 0, band, cw_served
+        )
+        if [e.word for e in other.entries] != [e.word for e in first.entries]:
+            moved += 1
+    assert compared >= 8, f"only {compared} boards compared"
+    assert moved > 0, "no seed changed any board - the seed is being ignored"
+
+
+def test_a_day_bakes_the_same_bytes_twice(
+    tmp_path: Path,
+    app_config: AppConfig,
+    generator: DailyGenerator,
+    wordlists: dict[str, GameWordlist],
+) -> None:
+    """The Row 13 Oracle, through the day loop, with the crossword in the mix.
+
+    The solver is the only part of this repo that SEARCHES, and a search is
+    where an accidental dependence on set or dict iteration order hides. So the
+    determinism claim is made again one layer up: two full bakes of the same
+    date into two empty banks must produce byte-identical files.
+    """
+    mixed = app_config.model_copy(
+        update={
+            "daily": app_config.daily.model_copy(
+                update={"playlistLength": 2, "mix": {"anagram": 1, "crossword": 1}}
+            )
+        }
+    )
+    baked = []
+    for run in ("a", "b"):
+        root = tmp_path / run
+        (root / "bank").mkdir(parents=True)
+        spec = generator.model_copy(
+            update={"bankDir": "bank", "daysAhead": 2, "themeEveryNDays": 0}
+        )
+        generate(date.fromisoformat(ORDINARY_DAY), root, mixed, spec, wordlists)
+        days = sorted((root / "bank").rglob("*.json"))
+        baked.append({path.name: path.read_bytes() for path in days})
+    assert baked[0] == baked[1]
+    assert len(baked[0]) >= 3, f"only {sorted(baked[0])} were baked"
+
+
+def test_a_word_the_search_cannot_cross_is_skipped_rather_than_failing_the_day(
+    cw_spec: GameGeneration, cw_served: crossword.ServedIndex
+) -> None:
+    """``Unbuildable`` is a request for the next candidate, not a bake failure.
+
+    It also MEASURES how often that happens: the whole design rests on a Tamil
+    grid being interlockable, so a fill rate that quietly collapsed would be the
+    row's central claim failing while every other test still passed.
+    """
+    assert issubclass(crossword.SolverExhausted, Unbuildable)
+    tried = filled = 0
+    for band in cw_spec.difficulties:
+        pool = crossword.band_pool(cw_served, band)
+        rows = [row for words in pool.by_length.values() for row in words]
+        for index in range(0, 2000, 97):
+            anchor = rows[index % len(rows)]
+            tried += 1
+            try:
+                crossword.build_puzzle(
+                    anchor, cw_spec, f"{ORDINARY_DAY}|{anchor.word}", 0, band, cw_served
+                )
+            except crossword.SolverExhausted:
+                continue
+            filled += 1
+    assert tried > 0
+    assert filled / tried >= 0.90, f"only {filled} of {tried} anchors could be crossed"
+
+
+def test_a_word_the_mask_has_no_room_for_is_unbuildable_not_a_crash(
+    cw_spec: GameGeneration, cw_served: crossword.ServedIndex
+) -> None:
+    """A length no run on this mask has must be refused by the shared vocabulary."""
+    band = cw_spec.difficulties[0]
+    assert band.grid is not None
+    lengths = {len(cells) for cells in mask_entries(band.grid)}
+    wrong = next(
+        row
+        for words in cw_served.by_length.items()
+        for row in words[1]
+        if len(row.ezhuthu) not in lengths
+    )
+    with pytest.raises(Unbuildable, match="no entry"):
+        crossword.build_puzzle(
+            wrong, cw_spec, f"{ORDINARY_DAY}|{wrong.word}", 0, band, cw_served
+        )
+
+
+def test_every_clue_asks_for_its_answer_without_spelling_it(
+    cw_spec: GameGeneration, cw_served: crossword.ServedIndex
+) -> None:
+    """The clue is the lexicon's own sense, and it is printable as a question.
+
+    Three properties, and the derived set's ``requireClueableMeaning`` gate is
+    what makes them hold - so this is the gate checked from the far end, against
+    the boards a player would actually be handed.
+    """
+    ceiling = 60
+    for seed, _, _, puzzle in _crosswords(cw_spec, cw_served, 20):
+        for entry in puzzle.entries:
+            assert entry.clue, f"{seed}: {entry.word!r} has no clue"
+            assert entry.word not in entry.clue, f"{seed}: the clue spells {entry.word!r}"
+            assert not any(
+                char.isascii() and char.isalpha() for char in entry.clue
+            ), f"{seed}: {entry.clue!r} clues a Tamil grid in Latin script"
+            assert len(entry.clue) <= ceiling, f"{seed}: {entry.clue!r} is too long"
+
+
+def test_the_numbers_a_player_reads_are_the_ones_on_the_board(
+    cw_spec: GameGeneration, cw_served: crossword.ServedIndex
+) -> None:
+    """Numbering is reading order over the starting cells, computed here again.
+
+    An across and a down beginning on one square share a number, which is what
+    lets the clue list say "3 across" and "3 down" of the same cell.
+    """
+    for seed, _, _, puzzle in _crosswords(cw_spec, cw_served, 10):
+        starts = sorted({(e.start.row, e.start.col) for e in puzzle.entries})
+        expected = {cell: index for index, cell in enumerate(starts, start=1)}
+        for entry in puzzle.entries:
+            assert entry.number == expected[(entry.start.row, entry.start.col)], (
+                f"{seed}: {entry.word!r} is numbered {entry.number}"
+            )
+        assert sorted({e.number for e in puzzle.entries}) == list(
+            range(1, len(starts) + 1)
+        )
+
+
+def test_every_alternative_fits_the_crossings_and_means_the_same_thing(
+    cw_spec: GameGeneration, cw_served: crossword.ServedIndex
+) -> None:
+    """``alsoValid`` is narrow here: a rival that fits AND is a listed synonym.
+
+    A word that merely fits the crossings answers a DIFFERENT clue and marking
+    it right would make the clue list decoration, so this checks BOTH halves -
+    that the rival really is enterable, and that the answer's own lexicon row
+    calls it a synonym.
+    """
+    synonyms = {
+        row.word: set(row.synonymsTa or ())
+        for pool in cw_served.by_length.values()
+        for row in pool
+    }
+    offered = 0
+    for seed, _, _, puzzle in _crosswords(cw_spec, cw_served, 20):
+        board = _cw_grid(puzzle)
+        answers = {entry.word for entry in puzzle.entries}
+        for entry in puzzle.entries:
+            for rival in entry.alsoValid or ():
+                offered += 1
+                assert rival not in answers, f"{seed}: {rival!r} is already an answer"
+                units, spare = segment(rival), segment(entry.word)
+                assert len(units) == len(spare)
+                for index, cell in enumerate(_cw_cells(entry)):
+                    if len(board[cell]) > 1:
+                        assert units[index] == spare[index], (
+                            f"{seed}: {rival!r} breaks the word crossing "
+                            f"{entry.word!r} at {cell}"
+                        )
+                assert rival in synonyms[entry.word], (
+                    f"{seed}: {rival!r} is not a listed synonym of {entry.word!r}"
+                )
+    assert offered > 0, "no board offered an alternative - the narrowing is total"
+
+
+def test_the_crossword_ladder_refuses_every_rung(
+    cw_spec: GameGeneration, wordlists: dict[str, GameWordlist]
+) -> None:
+    """A board that PRINTS a meaning per answer has no rung left to sell.
+
+    The empty vocabulary is not decoration: a hint template registered against
+    this Game names a field it cannot sell, and the bake has to fail loudly
+    rather than ship a rung that says nothing.
+    """
+    assert crossword.HINT_FIELDS == frozenset()
+    assert cw_spec.hints == []
+    row = wordlists[cw_spec.wordlist].words[0]
+    broken = cw_spec.model_copy(
+        update={"hints": [HintSpec(kind="meaning", template="{meaning}", cost=3)]}
+    )
+    with pytest.raises(KeyError, match="meaning"):
+        crossword.build_hints(row, broken, 1)
+
+
+def test_the_committed_crossword_set_and_masks_agree(
+    cw_spec: GameGeneration, wordlists: dict[str, GameWordlist]
+) -> None:
+    """Every run on every mask is a length the set can fill, and vice versa.
+
+    The two are configured in different files - the mask in the generator, the
+    length range in the wordlist registry - so nothing but this check stops them
+    drifting apart into a band that deals a word with nowhere to go.
+    """
+    words = wordlists[cw_spec.wordlist].words
+    assert words, "the committed crossword set is empty"
+    lengths = Counter(len(row.ezhuthu) for row in words)
+    for band in cw_spec.difficulties:
+        assert band.grid is not None, f"band {band.id} lays out no mask"
+        runs = {len(cells) for cells in mask_entries(band.grid)}
+        assert runs == set(range(band.minLength, band.maxLength + 1))
+        for length in runs:
+            assert lengths[length] > 0, f"no {length}-ezhuthu word for band {band.id}"
+        assert len(band.grid) <= cw_spec.gridRows
+        assert len(band.grid[0]) <= cw_spec.gridCols
+    # This Game sells no rungs, so it needs no allowance - and a missing entry
+    # already reads as zero.
+    assert crossword.GAME_ID not in AppConfig.model_validate_json(
+        _APP_CONFIG.read_text(encoding="utf-8")
+    ).hints.perGame
+
+
+def test_a_mask_that_could_never_become_a_crossword_is_refused(
+    cw_spec: GameGeneration,
+) -> None:
+    """Five ways a mask can look fine and be unusable, refused when it is READ.
+
+    A mask is config, so it is a persisted surface, and the contract is where it
+    has to fail - not in the solver, which would only discover it on the day the
+    cron reached that band.
+    """
+    band = cw_spec.difficulties[0].model_dump()
+
+    def refuse(grid: list[str], match: str) -> None:
+        with pytest.raises(ValidationError, match=match):
+            DifficultyBand.model_validate({**band, "grid": grid})
+
+    refuse(["#.#.#", "...."], "ragged")
+    # A run of two on a band whose words are five ezhuthu.
+    refuse(["..#..", ".....", "#.#.#", ".....", "#.#.#"], "cannot fill")
+    # Two five-cell entries that never meet.
+    refuse([".....", "#####", "....."], "crosses nothing")
+    # Nothing but unchecked cells: every open cell is isolated, so no run is
+    # longer than one and there is nothing on the board to fill.
+    refuse([".#.#.", "#####", ".#.#."], "no entry at all")
+    # A perfectly good five-cell run on a board with nothing else on it.
+    refuse([".....", "#####"], "entries; a crossword needs two")
 
