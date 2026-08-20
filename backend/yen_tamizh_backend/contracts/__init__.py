@@ -117,6 +117,11 @@ from yen_tamizh_backend.contracts.wordhood import (
     TypoProfile,
     Wordhood,
 )
+from yen_tamizh_backend.contracts.word_ladder_puzzle import (
+    LadderRung,
+    WordLadderPuzzle,
+    added_ezhuthu,
+)
 from yen_tamizh_backend.contracts.word_search_puzzle import (
     GridPoint,
     WordSearchPuzzle,
@@ -139,7 +144,10 @@ from yen_tamizh_backend.contracts.wordle_puzzle import WordlePuzzle
 # the schema through ``Lexicon.rowSchema``. Row 18 adds the second per-Game
 # payload beside the anagram's, Row 19 the third and Row 20 the fourth, which is
 # the whole point of one schema per Game: a new Game costs a payload schema,
-# never an edit to ``puzzle-file``.
+# never an edit to ``puzzle-file``. Row 15 adds the sixth and last of them, and
+# it is the only one registered before its Game: the ladder is PROVED at build
+# time, so the graph and the contract that checks its climb land a row ahead of
+# the board that renders it.
 REGISTRY: tuple[type[SchemaModel], ...] = (
     AnagramPuzzle,
     AppConfig,
@@ -159,6 +167,7 @@ REGISTRY: tuple[type[SchemaModel], ...] = (
     Save,
     ServedDenylist,
     Wordhood,
+    WordLadderPuzzle,
     WordSearchPuzzle,
     WordlePuzzle,
 )
@@ -213,6 +222,7 @@ __all__ = [
     "HintSpec",
     "HintsConfig",
     "InfiniteConfig",
+    "LadderRung",
     "Lexicon",
     "LexiconCensus",
     "LexiconCounters",
@@ -250,9 +260,11 @@ __all__ = [
     "UiConfig",
     "WordClass",
     "WordClassEvidence",
+    "WordLadderPuzzle",
     "WordSearchPuzzle",
     "WordSearchTarget",
     "Wordhood",
     "WordlePuzzle",
+    "added_ezhuthu",
     "compute_day_key",
 ]

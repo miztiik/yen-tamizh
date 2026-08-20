@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-20",
+  "version": "2026-08-21",
   "changelog": [
+    {
+      "version": "2026-08-21",
+      "change": "Registered the word-ladder set: the anagram's serving gates with the length range 2 to 7.",
+      "why": "Row 15 - the gates are the anagram's unchanged, for the sixth time, because what makes a word fair to be ASKED for does not depend on how it is asked. Only the range moves, and it moves at BOTH ends because a ladder is the one Game whose board is a range rather than a length: every rung is one ezhuthu taller than the one below it, so the set has to hold the whole climb. The floor is 2 rather than the anagram's 3 because the bottom of the graph is where the edges are - 1,384 of the 1,812 two-ezhuthu multisets can be climbed from (76.4 percent) against 2,405 of the 5,747 three-ezhuthu ones (41.8) and none of the 3,381 seven-ezhuthu ones - and it is not 1 because a band cannot admit a one-ezhuthu word at all (a difficulty band refuses blanks >= minLength, and blanks defaults to 1). The ceiling is 7 rather than 6 because it is the TOP of a climb rather than the width of a puzzle, and a seventh rung still fits the phone: a tile is 36px at a readable size and seven of them with a 4px gutter is 276px against the 328px a 360px screen leaves after its margins, where eight is 340px and does not. It buys real content - 7 turns 592 four-rung starts into 623 and 119 five-rung ones into 149, and it is what makes a six-rung ladder exist at all (0 becomes 24). Going on to 8 was measured and REJECTED for the opposite reason: it adds 1,621 words and exactly ONE four-rung start, no five-rung ones and no six-rung ones, because a word that long is almost never one letter above another word the set serves. wordClasses stays headword alone on the same terms as the other five sets, and it matters more here than anywhere: a ladder asks for three to five words in a row, so one unsettled spelling does not cost a puzzle, it costs the rest of the climb."
+    },
     {
       "version": "2026-08-20",
       "change": "Registered the crossword set, and added the requireClueableMeaning and maxMeaningChars selection knobs it is the first to use.",
@@ -158,6 +163,21 @@
         "requireMeaning": true,
         "requireClueableMeaning": true,
         "maxMeaningChars": 60,
+        "maxWords": null
+      }
+    },
+    {
+      "gameId": "word-ladder",
+      "out": "datasets/wordlists/derived/ladder.json",
+      "note": "The anagram's serving gates unchanged, with the length range widened to 2 to 7. The gates do not move because they answer a question the mechanic does not change - is this a word a player can be asked for at all. The range moves at both ends because this is the one Game whose board is a RANGE: a ladder's rungs are one, two and three ezhuthu taller than the word it starts on, so a set cut to one length would hold a start and no climb. The floor is 2 because that is where the graph's edges are - three quarters of the two-ezhuthu multisets have a word one letter above them and two fifths of the three-ezhuthu ones do - and the ceiling is 7 because that is the tallest rung a 360px phone can print in one row. Which words a climb passes through, and which letters pad the bank it is climbed from, are the GENERATOR's decisions rather than selection knobs: a word is admitted here on what it IS, and whether it can be climbed from is a property of the whole set rather than of the word.",
+      "selection": {
+        "wordClasses": ["headword"],
+        "minLength": 2,
+        "maxLength": 7,
+        "minAttestations": 2,
+        "minTier1Attestations": 1,
+        "minFrequency": 1,
+        "requireMeaning": true,
         "maxWords": null
       }
     },

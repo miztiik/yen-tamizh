@@ -1,0 +1,127 @@
+{
+  "$defs": {
+    "ChangelogEntry": {
+      "additionalProperties": false,
+      "description": "One dated entry in a schema's in-file change log (newest first).\n\n``version`` is the date-stamp of the change; ``change`` is what changed;\n``why`` is the reason it changed (CLAUDE.md section 11).",
+      "properties": {
+        "change": {
+          "minLength": 1,
+          "title": "Change",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+          "title": "Version",
+          "type": "string"
+        },
+        "why": {
+          "minLength": 1,
+          "title": "Why",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "change",
+        "why"
+      ],
+      "title": "ChangelogEntry",
+      "type": "object"
+    },
+    "LadderRung": {
+      "additionalProperties": false,
+      "description": "One step of the climb: the word, what it means, and what else reaches it.\n\n``meaning`` is resolved at bake time and shown FREE beside the rung once the\nplayer has climbed it (the Row 14 rule that a solved word explains itself).\nIt rides the RUNG rather than the puzzle because a ladder asks for several\nwords at once and the session summary carries one line per item, so this\nboard is the only place these meanings can ever be read - the same reasoning\nthe search board's ``WordSearchTarget`` made. ``translationEn`` does not\ntravel for the same reason it does not travel there: an English gloss under\nevery rung of a Tamil ladder doubles the board's height to say something the\npaid ladder is banned from selling anyway.",
+      "properties": {
+        "alsoValid": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Alsovalid"
+        },
+        "meaning": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Meaning"
+        },
+        "word": {
+          "minLength": 1,
+          "title": "Word",
+          "type": "string"
+        }
+      },
+      "required": [
+        "word"
+      ],
+      "title": "LadderRung",
+      "type": "object"
+    }
+  },
+  "$id": "word-ladder-puzzle.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "One climb: the rungs in order, the bank they are built from, and the clock.\n\n``rungs`` are ordered from the shortest word up, and the first one is GIVEN -\nit is the ledge the player starts on rather than a word they are asked for.\nA ladder of two would be a single question, so three is the floor.",
+  "properties": {
+    "changelog": {
+      "items": {
+        "$ref": "#/$defs/ChangelogEntry"
+      },
+      "minItems": 1,
+      "title": "Changelog",
+      "type": "array"
+    },
+    "choices": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 2,
+      "title": "Choices",
+      "type": "array"
+    },
+    "rungs": {
+      "items": {
+        "$ref": "#/$defs/LadderRung"
+      },
+      "minItems": 3,
+      "title": "Rungs",
+      "type": "array"
+    },
+    "timeLimitSec": {
+      "minimum": 0,
+      "title": "Timelimitsec",
+      "type": "integer"
+    },
+    "version": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "version",
+    "changelog",
+    "rungs",
+    "choices",
+    "timeLimitSec"
+  ],
+  "title": "WordLadderPuzzle",
+  "type": "object"
+}

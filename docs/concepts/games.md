@@ -1,6 +1,6 @@
 # Games
 
-**Last Updated**: 2026-08-20
+**Last Updated**: 2026-08-21
 
 The catalog of Game mechanics and the contract every Game honours. A **Game** (`gameId`) is the verb - the puzzle mechanic. It is one of the two orthogonal axes of a play session (the other is the [Mode](modes.md)); the content it draws from is a [Pack](#pack). The verb itself is defined once in [core-loop.md](core-loop.md); this page catalogs its six concrete forms.
 
@@ -83,13 +83,27 @@ The keyboard and the pointer are one mechanic here too. Tapping a square and arr
 
 Filling the cells the words do not use makes UNINTENDED words - measured at 50.4 percent of boards, mean 0.70, maximum 5 - and those are recorded rather than designed out, on the anagram's `alsoValid` precedent. A player who traces a real Tamil word and is told "wrong" concludes the game cheated; "that is a word, but not on today's list" teaches them one.
 
+## word-ladder
+
+A short Tamil word sits at the bottom of a column, with a bank of ezhuthu beside it. Take one letter from the bank, drop it into the word, and arrange the tiles into another real word - then do it again on the word you just made. Three to five rungs and the climb is done. The first rung is GIVEN: it is the ledge you start on, not a word you are asked for.
+
+Five things are true of it that are not true of the five Games above, and each one is a decision this Game's build-time half already made:
+
+- **The ladder is PROVEN before it is dealt, which is why its schema ships a row ahead of its board.** Whether a word can be climbed from is a fact about the whole served set rather than about the word, and a browser may never search for one (Holy Law #1). So the reachability graph is built in `backend/` at bake time and the player is handed a climb somebody already walked. A ladder that stopped short would not be a harder puzzle, it would be an unanswerable one.
+- **A rung adds exactly one ezhuthu and rearranging is free.** Formally the multiset of the next word's ezhuthu minus the multiset of this one's is a single letter, and nothing goes the other way - so `கம்` climbs to `அகம்` and to `கரம்`, and the letters may land anywhere. Over EZHUTHU, never over code points: `கா` is one letter, and a code-point walk that read it as `க` plus a floating vowel sign would let a "climb" from `கம்` to `காம்` claim to have added nothing at all.
+- **The bank is the input method, and there is one for the whole climb.** There is no Tamil keyboard here either, so a letter has to be picked from something; pooling one bank across the ladder makes choosing WHICH letter to spend now part of the puzzle rather than a fresh eight-way guess at every rung. It always holds what the climb needs and always more.
+- **Tamil's short-word graph is thin, and the measurement is what shaped the Game.** 35,991 ezhuthu multisets carry 16,983 add-one edges - under half an edge a node - but the edges concentrate at the bottom: three quarters of two-ezhuthu multisets can be climbed from, two fifths of three-ezhuthu ones, and none of the seven-ezhuthu ones. That still leaves 6,218 distinct four-rung climbs, which is seventeen years of Dailies, so the curated seed list the plan allowed for was not needed. See [../architecture/contracts/schemas.md](../architecture/contracts/schemas.md) for the numbers and for how the builder picks between them.
+- **The climb is chosen to protect its WEAKEST rung.** One word nobody knows ends the ladder however good the rest is, so each step is taken to leave the rarest rung of the finished climb as familiar as it can be - which more than doubles the ladders whose every rung is a word a player actually meets, and costs no ladders at all.
+
+There is no attempt budget: this is the one board whose progress is a chain, so ending it mid-way would take away the rungs already earned. There is no hint ladder either, for the crossword's reason turned inside out - every rung the shared ladder could sell is a fact about the next word, which on a three-letter answer is most of it. The help is a per-rung reveal, priced in the rung it hands over.
+
 ## Pack
 
 A **Pack** (`packId`) is the content and language pack a Game draws from. It is a data dimension, orthogonal to the Game and the Mode. Today there is one Pack, `ta-core` (Tamil); other Packs may follow. A play session is **one Mode x one-or-more Games x a Pack**.
 
 ## Why these six
 
-The set spans the casual word-game space with one shared atom (the ezhuthu) and one shared contract, so a second Game costs a mechanic and a schema, not a new engine. The first Game to ship is `anagram` under [Daily](modes.md) - a proven mechanic that exercises the whole shell (payload load, verb, submit, save, share) end to end. Word Ladder is the headline [Journey](journeys.md) but ships after the build-time ladder graph exists. Authority: Palm ([../../.github/agents/palm.agent.md](../../.github/agents/palm.agent.md)) on the verb-per-Game; Fowler on the pure-mechanic contract.
+The set spans the casual word-game space with one shared atom (the ezhuthu) and one shared contract, so a second Game costs a mechanic and a schema, not a new engine. The first Game to ship is `anagram` under [Daily](modes.md) - a proven mechanic that exercises the whole shell (payload load, verb, submit, save, share) end to end. Word Ladder is the headline [Journey](journeys.md); its reachability graph and its payload schema exist, and its board is the one piece still outstanding. Authority: Palm ([../../.github/agents/palm.agent.md](../../.github/agents/palm.agent.md)) on the verb-per-Game; Fowler on the pure-mechanic contract.
 
 ## See also
 
