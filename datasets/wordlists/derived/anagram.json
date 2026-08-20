@@ -1,6 +1,11 @@
 {
   "changelog": [
     {
+      "change": "Added the withoutClue ledger bucket, charged between withoutMeaning and the servingRules exclusions, for the rows whose own sense cannot be printed as a question.",
+      "version": "2026-08-20",
+      "why": "Row 21 - a crossword prints the meaning and asks for the word, which is the reverse of every Game before it, and that turns two harmless properties of a lexicon gloss into disqualifications: a sense containing its own headword hands the answer over (3.7 percent of the served set), and one carrying Latin script clues a Tamil grid in English. A ceiling on its length is the third, and the only one that is a number: 4.3 percent of served senses run past 60 characters and the longest is 738, which on a phone pushes the board off the screen. The bucket is additive and every set that leaves the knobs off charges zero to it, so the four sets before this one are unmoved."
+    },
+    {
       "change": "Added the obscene and participial ledger buckets, charged after every automatic gate and before the deny-list, for the rows the registry's servingRules refuse.",
       "version": "2026-08-19",
       "why": "Defect 2 - the board dealt mozhiyaana, migudhiyaana, urundaiyaana and thavaRillaadha, which are participial adjectives rather than headwords, and it dealt a surface the source itself glosses as an obscene word. Neither is reachable from the existing knobs: the word-hood classifier labels inflection from collected verb-form lists, and a peyareccham those lists do not contain arrives with a tier-1 listing and a clean shape, while no column says a word is coarse - the source writes that into the gloss as a usage label. Both get their own bucket because the ledger's whole claim is that every published row is accounted for under exactly one heading, and they are charged before the deny-list so that list's number stays the honest measure of what curation ALONE removed."
@@ -54,6 +59,7 @@
     "outsidePos": 0,
     "participial": 1065,
     "rowsKept": 31055,
+    "withoutClue": 0,
     "withoutMeaning": 10812
   },
   "gameId": "anagram",
@@ -63,6 +69,7 @@
     "minFrequency": 1,
     "minLength": 3,
     "minTier1Attestations": 1,
+    "requireClueableMeaning": false,
     "requireMeaning": true,
     "wordClasses": [
       "headword"
@@ -74,7 +81,7 @@
     "sha256": "8b910de9692d2f1adf658a62a4f0138b3bb3e09beab291d861941357ccdf8537",
     "version": "2026-08-17"
   },
-  "version": "2026-08-19",
+  "version": "2026-08-20",
   "words": [
     {"anagramFanOut": 1, "definitionTa": "இரண்டாகப் பிரிந்து பற்களை மூடியுள்ள வாயின் மேற்பகுதி.", "ezhuthu": ["இ", "த", "ழ்"], "frequency": 5561393, "frequencyStratum": 1, "hints": {"firstEzhuthu": "இ", "length": 3}, "synonymsTa": ["அதரம்.", "உதடு", "கண்ணிமை", "செய்தித்தாள்", "பத்திரிக்கை", "பாளை", "பூவிதழ்", "பூவின்தோடு", "மாலை"], "translationEn": "depreciate", "word": "இதழ்"},
     {"anagramFanOut": 1, "categories": ["arts"], "definitionTa": "சிறிய கதை; குறுங்கதை", "ezhuthu": ["சி", "று", "க", "தை"], "frequency": 902007, "frequencyStratum": 1, "hints": {"firstEzhuthu": "சி", "length": 4}, "synonymsTa": ["கதை"], "translationEn": "conte", "word": "சிறுகதை"},

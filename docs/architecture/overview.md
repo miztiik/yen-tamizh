@@ -1,6 +1,6 @@
 # Architecture Overview
 
-**Last Updated**: 2026-07-29
+**Last Updated**: 2026-08-20
 
 Why yen-tamizh is split into two runtimes that never meet at run time, and how data crosses the gap between them. This is the top of the architecture tier; the subsystem docs (the runtime, the generator pipeline, the design pipeline) land with their code and describe *how* each half is built. This page fixes *why* the split exists and what the boundary is. The vocabulary it uses is defined in [../concepts/vision.md](../concepts/vision.md) and [../concepts/principles.md](../concepts/principles.md).
 
@@ -41,7 +41,7 @@ The prior-generation proposal served puzzle JSON from `raw.githubusercontent.com
 
 ## Determinism and the CI gate
 
-Generation is **date-seeded and idempotent** - same input, same output - which makes bugs and tests tractable. **Validation gates CI**: a generated puzzle that is unsolvable, non-unique (where uniqueness applies, e.g. crossword), or malformed fails CI and never ships. This is what lets the game trust the committed JSON blindly and carry zero solver logic.
+Generation is **date-seeded and idempotent** - same input, same output - which makes bugs and tests tractable. **Validation gates CI**: a generated puzzle that is unsolvable or malformed fails CI and never ships. Whether a board also admits something ELSE is a per-Game ruling rather than a blanket rule: every Game so far RECORDS its alternatives (`alsoValid`, `anagramFanOut`) instead of requiring uniqueness, and the crossword measured what requiring it would cost - see [contracts/schemas.md](contracts/schemas.md). This is what lets the game trust the committed JSON blindly and carry zero solver logic.
 
 ## The contract pipeline
 

@@ -34,6 +34,7 @@ from yen_tamizh_backend.contracts import (
     AppConfig,
     BankIndex,
     Copy,
+    CrosswordPuzzle,
     EventEnvelope,
     Lexicon,
     LexiconEntry,
@@ -66,6 +67,7 @@ _CORE: tuple[tuple[type[SchemaModel], str], ...] = (
     (MissingLettersPuzzle, "missing-letters-puzzle"),
     (WordlePuzzle, "wordle-puzzle"),
     (WordSearchPuzzle, "word-search-puzzle"),
+    (CrosswordPuzzle, "crossword-puzzle"),
     (Copy, "copy"),
 )
 

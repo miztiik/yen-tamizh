@@ -1,6 +1,6 @@
 # Generate the daily bank
 
-**Last Updated**: 2026-08-17
+**Last Updated**: 2026-08-20
 
 How today's puzzles get made, and what to do when you need to bake, re-bake, or
 back-fill a day. The generator is the DAILY PUZZLE ENGINE: it consumes a per-Game
@@ -166,6 +166,7 @@ Two more consequences:
 | `games[].difficulties` | The difficulty bands, each bounding TWO axes: an ezhuthu-length range and a `maxStratum` familiarity ceiling. A day's slots are dealt round-robin across them and drawn frequency-stratified within one; a word no band claims is never drawn. See [`../concepts/difficulty-and-scoring.md`](../concepts/difficulty-and-scoring.md). The wordle's three bands are all the same width and separate on familiarity alone, which is the only honest axis left once a Game pins its length. |
 | `games[].difficulties[].blanks` | How many ezhuthu the band HIDES, for the Games whose mechanic hides letters. Defaults to 1, and must be less than the band's `minLength` or its shortest word would have nothing showing. |
 | `games[].difficulties[].targets` | How many WORDS the band hides, for the Games whose board holds more than one. Defaults to 1, which is what every other Game deals. On a search grid it is the main difficulty dial, because length is not one there - a longer word covers more cells and is easier to spot. A band asking for more cells than the grid has, or for words longer than its longest line, fails to validate. |
+| `games[].difficulties[].grid` | The crossword's MASK - one string per row, `.` for a square a word runs through and `#` for a blocked one. It is the crossword's difficulty dial for the same reason `targets` is the search board's: what makes a grid harder is how many answers it asks for and how much of each one the crossings give away. It is a band's own field because those two things are exactly what a band may change, and it is validated before anything fills it - rectangular, every run fillable by the band's own words, every length the band admits really occurring, every entry crossing another, and the whole board connected. `gridRows` and `gridCols` are read as the ceiling it must fit inside. Games with no crossings never read it. |
 | `games[].hints` | Each offered hint's `kind`, `cost`, and Tamil `template` over the fields THAT Game may sell. `{category}` and `{meaning}` are common; `{firstEzhuthu}` is the anagram's alone. A missing-letters board has already printed every ezhuthu it is not hiding, and a wordle player can buy the same fact with a guess that answers five other positions at the same time. The word-search sells NOTHING - it prints the words it is asking for, so every rung would name a fact on the screen - and its list is empty. A template naming a field outside its Game's vocabulary fails the bake. |
 
 How many items a day holds and which Games fill them are NOT here - they are
@@ -202,9 +203,13 @@ Three things, and none of them is the day loop:
    nothing about the other served words registers a `prepare` that returns
    nothing, which is what the wordle does; a Game whose board holds SEVERAL
    words takes the row the loop picked as its anchor and draws the rest from
-   the index, which is what the word-search does.
+   the index, which is what the word-search and the crossword do. A builder
+   that can be handed a row it cannot use raises `generate.Unbuildable`, and the
+   loop deals the next candidate from the same band rather than failing the day
+   - which today only the crossword needs, because only an interlocked board
+   can refuse a word.
 
-Four Games are registered this way today, and none of them cost an edit to
+Five Games are registered this way today, and none of them cost an edit to
 `puzzle-file` or to the day loop.
 
 Then it can be named in `daily.mix`. A `gameId` in the mix with no registered

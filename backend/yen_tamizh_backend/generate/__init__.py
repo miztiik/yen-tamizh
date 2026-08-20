@@ -17,3 +17,22 @@ files) and the bank it writes into ``frontend/public/``.
 """
 
 from __future__ import annotations
+
+
+class Unbuildable(ValueError):
+    """This ROW cannot become a puzzle, though the wordlist and band are fine.
+
+    The shared vocabulary between the day loop and every builder, which is why
+    it lives on the package rather than inside one Game. The loop already drops
+    a row no band claims - the wordlist says what is SERVABLE and the bands say
+    what is DRAWABLE - and this is the third question, asked one layer further
+    in: can this particular word become this particular board.
+
+    Only the crossword can answer no. Its board is an interlock, so an answer
+    has to share letters with everything crossing it, and roughly one served
+    word in a hundred has a letter at a crossed position that no other word in
+    the set carries at the position it would have to. Raising rather than
+    returning is what keeps a half-filled grid from ever being baked; the loop
+    answers by dealing the next candidate from the same band, which is what
+    keeps a rare unlucky word from failing a whole day's bake.
+    """

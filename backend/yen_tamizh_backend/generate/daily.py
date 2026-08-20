@@ -62,7 +62,14 @@ from yen_tamizh_backend.contracts.daily_generator import (
 )
 from yen_tamizh_backend.contracts.game_wordlist import GameWord, GameWordlist
 from yen_tamizh_backend.contracts.puzzle_file import PuzzleFile, PuzzleItem
-from yen_tamizh_backend.generate import anagram, missing_letters, word_search, wordle
+from yen_tamizh_backend.generate import (
+    Unbuildable,
+    anagram,
+    crossword,
+    missing_letters,
+    word_search,
+    wordle,
+)
 from yen_tamizh_backend.generate.seed import seeded_index, seeded_shuffle
 
 _PUZZLE_FILE_VERSION = "2026-08-17"
@@ -154,10 +161,11 @@ def baked_days(bank_dir: Path) -> list[str]:
 def answer_words(payload: Mapping[str, Any]) -> list[str]:
     """Every word one baked payload asks the player for, in payload order.
 
-    A payload names its answers in one of two ways and both are read here.
-    Three of the four Games hide ONE word and put it under ``word``; a search
-    board hides several and lists them under ``targets``, and every one of those
-    has been met by the player just as surely as a scramble's answer has.
+    A payload names its answers in one of three ways and all three are read
+    here. Three of the five Games hide ONE word and put it under ``word``; a
+    search board lists what it hid under ``targets``, and a crossword lists what
+    it asks for under ``entries``. Every one of those has been met by the player
+    just as surely as a scramble's answer has.
 
     It is one function rather than a key lookup at each call site because the
     two readers - the anti-repeat ledger and the bake's own record of what a day
@@ -168,12 +176,14 @@ def answer_words(payload: Mapping[str, Any]) -> list[str]:
     single = payload.get("word")
     if isinstance(single, str):
         words.append(single)
-    targets = payload.get("targets")
-    if isinstance(targets, list):
-        for target in targets:
-            hidden = target.get("word") if isinstance(target, Mapping) else None
-            if isinstance(hidden, str):
-                words.append(hidden)
+    for key in ("targets", "entries"):
+        listed = payload.get(key)
+        if not isinstance(listed, list):
+            continue
+        for item in listed:
+            named = item.get("word") if isinstance(item, Mapping) else None
+            if isinstance(named, str):
+                words.append(named)
     return words
 
 
@@ -346,6 +356,27 @@ def _build_word_search(
     )
 
 
+def _build_crossword(
+    row: GameWord,
+    spec: GameGeneration,
+    day: str,
+    hint_limit: int,
+    band: DifficultyBand,
+    themed: bool,
+    prepared: Any,
+) -> BaseModel:
+    """The second builder that draws more words than the day loop picked.
+
+    A crossword's answers are not independent of each other - each one is
+    constrained by every answer that crosses it - so the row the loop picked
+    becomes the word the solver must place, and the rest of the board is solved
+    around it from the same served index and the same band.
+    """
+    return crossword.build_puzzle(
+        row, spec, f"{day}|{row.word}", hint_limit, band, prepared, themed
+    )
+
+
 # The registered Games, keyed by the ``gameId`` config names in `daily.mix`.
 BUILDERS: dict[str, GameBuilder] = {
     "anagram": GameBuilder(prepare=_prepare_anagram, build=_build_anagram),
@@ -355,6 +386,9 @@ BUILDERS: dict[str, GameBuilder] = {
     wordle.GAME_ID: GameBuilder(prepare=_prepare_wordle, build=_build_wordle),
     word_search.GAME_ID: GameBuilder(
         prepare=word_search.index_served, build=_build_word_search
+    ),
+    crossword.GAME_ID: GameBuilder(
+        prepare=crossword.index_served, build=_build_crossword
     ),
 }
 
@@ -427,6 +461,7 @@ def pick_words(
     day: str,
     count: int,
     used: Iterable[str],
+    buildable: Callable[[GameWord, str], bool] | None = None,
 ) -> list[tuple[GameWord, str]]:
     """Choose one day's words and their difficulties, skipping words already served.
 
@@ -440,9 +475,21 @@ def pick_words(
     a band's whole bucket, the day repeats from that same order rather than
     shipping short: a repeat is a much smaller failure than a playlist that does
     not add up.
+
+    ``buildable`` is the third question, after "is this word servable" and "does
+    a band claim it": can this Game actually build a puzzle out of it. Only an
+    interlocked board can answer no - a crossword answer has to share letters
+    with everything crossing it - so the default is that every row is buildable
+    and the loop is unchanged for the four Games that were here first. A refused
+    row is stepped over exactly like a row the bank has already served, so the
+    day stays a pure function of its date. It narrows all three fallbacks rather
+    than replacing them: repeating a word is still a smaller failure than a
+    short playlist, and only a band whose every word this Game refuses is an
+    error.
     """
     if not candidates:
         raise ValueError(f"no candidate words for {spec.gameId!r} on {day}")
+    accepts = buildable if buildable is not None else (lambda row, band: True)
     buckets = bucket_candidates(candidates, spec)
     bands = [band.id for band in spec.difficulties]
     seen = set(used)
@@ -457,9 +504,21 @@ def pick_words(
         order = stratified_order(pool, f"{day}|{spec.gameId}|{band_id}")
         picked = {row.word for row, _ in chosen}
         row = next(
-            (row for row in order if row.word not in seen),
-            next((row for row in order if row.word not in picked), order[0]),
+            (row for row in order if row.word not in seen and accepts(row, band_id)),
+            None,
         )
+        if row is None:
+            row = next(
+                (row for row in order if row.word not in picked and accepts(row, band_id)),
+                None,
+            )
+        if row is None:
+            row = next((row for row in order if accepts(row, band_id)), None)
+        if row is None:
+            raise ValueError(
+                f"{spec.gameId!r} could not build any of the {len(order)} words in its "
+                f"{band_id!r} bucket on {day}"
+            )
         seen.add(row.word)
         chosen.append((row, band_id))
     return chosen
@@ -641,15 +700,40 @@ def build_day(
         key = (game_id, source)
         if key not in prepared:
             prepared[key] = builder_for(game_id).prepare(wordlists[source], spec)
+        # Built here, not after the pick, because "can this Game build this row"
+        # can only be answered by building it - and building it twice would let
+        # the answer and the item disagree. Every accepted row's item is kept.
+        made: dict[tuple[str, str], PuzzleItem] = {}
+
+        def buildable(
+            row: GameWord,
+            difficulty: str,
+            spec: GameGeneration = spec,
+            key: tuple[str, str] = key,
+            hint_limit: int = hint_limit,
+            made: dict[tuple[str, str], PuzzleItem] = made,
+        ) -> bool:
+            try:
+                made[(row.word, difficulty)] = build_item(
+                    row, spec, day, hint_limit, difficulty, themed is not None,
+                    prepared[key],
+                )
+            except Unbuildable:
+                return False
+            return True
+
         picks = (
             themed.picks[game_id]
             if themed is not None
-            else pick_words(wordlists[spec.wordlist].words, spec, day, count, seen)
+            else pick_words(
+                wordlists[spec.wordlist].words, spec, day, count, seen, buildable
+            )
         )
         for row, difficulty in picks:
             seen.add(row.word)
             items.append(
-                build_item(
+                made.get((row.word, difficulty))
+                or build_item(
                     row,
                     spec,
                     day,

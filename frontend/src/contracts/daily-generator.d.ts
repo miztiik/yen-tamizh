@@ -26,6 +26,7 @@ export type Choicecount = number
  */
 export type Difficulties = [DifficultyBand, ...(DifficultyBand)[]]
 export type Blanks = number
+export type Grid = ([string, string, ...(string)[]] | null)
 export type Id = string
 export type Maxlength = number
 export type Maxstratum = number
@@ -128,11 +129,21 @@ export interface Categorylabels {
  * a wordle board. What makes a search harder is how many words are still
  * outstanding and how well the player knows them.
  * 
+ * ``grid`` is the crossword's MASK - one string per row, ``.`` for a cell a
+ * word runs through and ``#`` for a blocked one - and it is the crossword's
+ * difficulty dial for the same reason ``targets`` is the search board's: what
+ * makes a grid harder is how many answers it asks for and how much of each one
+ * the crossings give away, not how long the words are. It is a band's own
+ * field rather than one shape for the whole Game because those two things are
+ * exactly what a band is allowed to change. Games with no crossings never read
+ * it.
+ * 
  * Where the cuts fall is a game-balance number, so it lives here rather than
  * in Python (Holy Law #6).
  */
 export interface DifficultyBand {
 blanks?: Blanks
+grid?: Grid
 id: Id
 maxLength: Maxlength
 maxStratum: Maxstratum

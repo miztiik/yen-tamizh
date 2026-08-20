@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-19T23:00",
+  "version": "2026-08-20",
   "changelog": [
+    {
+      "version": "2026-08-20",
+      "change": "Registered the crossword generator: three interlocking masks, one per band, and gave a difficulty band a grid.",
+      "why": "Row 21 - the fifth Game, and the first whose answers constrain each other. The grid is the difficulty dial and it is a band's own field, because how many answers a board asks for and how much of each one the crossings give away is exactly what a band is allowed to change. Two measurements shaped every mask here. FIRST, a Tamil grid can be interlocked but not fully checked: over the served set a single pinned position leaves a median of 103 to 556 candidate words and two leave 3 to 11, but THREE leave a median of one, so a 3x3 full word square fills 12 times out of 12, a 4x4 twice, and a 5x5, a 6x6 and a 5x5 with blocked corners never once. Every mask here is therefore a British-style lattice with unchecked cells. SECOND, and this is the one that decided the layout: 24.1 percent of served words open with an INDEPENDENT VOWEL and essentially none carries one anywhere else - 0.0 to 0.1 percent at every other offset - so a word beginning with a vowel letter cannot be crossed on its first letter, because no other word in the language can carry that letter at the position it would need. A lattice whose crossings land on other entries' first cells therefore refuses about a quarter of the vocabulary outright, and it measured 74.8 percent fills against 99.3 for the masks below, whose entries every one BEGIN on an unchecked cell. easy is 5x5 and asks four answers of five ezhuthu across four crossings, from the familiar half. medium is 6x6 and asks six answers of six ezhuthu across nine crossings, from the familiar half - the biggest board, and the best crossed. hard is 6x5 and asks five answers of five and six ezhuthu across six crossings, from anywhere including the rarest quarter: fewer crossings is less help, and its vocabulary is the whole set. The three length ranges do not overlap, so every servable row is claimed by exactly one band. gridRows and gridCols stay 8 and are read here as the CEILING every mask must fit inside, which keeps the phone-screen number in one place. attempts is 1 and UNREAD: writing a wrong letter into a square costs nothing on paper and should not here. hints is empty and that is a ruling - a crossword already prints a meaning per entry, free, before the player has written anything, so every rung the shared ladder can render is either that same fact or a fact about one of six answers, which makes its worth depend on whether that answer is still open. The help this Game gives instead is a per-entry reveal priced in the answer it hands over."
+    },
     {
       "version": "2026-08-19T23:00",
       "change": "Registered the word-search generator: an 8x8 grid, four to six hidden words by band, no attempt limit and no hint ladder; gave a Game a gridRows and gridCols and a difficulty band a targets count.",
@@ -237,6 +242,40 @@
         { "id": "easy", "minLength": 4, "maxLength": 6, "maxStratum": 1, "targets": 4 },
         { "id": "medium", "minLength": 4, "maxLength": 6, "maxStratum": 2, "targets": 5 },
         { "id": "hard", "minLength": 4, "maxLength": 6, "maxStratum": 4, "targets": 6 }
+      ],
+      "hints": []
+    },
+    {
+      "gameId": "crossword",
+      "packId": "ta-core",
+      "wordlist": "datasets/wordlists/derived/crossword.json",
+      "attempts": 1,
+      "timeLimitSec": 0,
+      "reveal": 0,
+      "gridRows": 8,
+      "gridCols": 8,
+      "difficulties": [
+        {
+          "id": "easy",
+          "minLength": 5,
+          "maxLength": 5,
+          "maxStratum": 2,
+          "grid": ["#.#.#", ".....", "#.#.#", ".....", "#.#.#"]
+        },
+        {
+          "id": "medium",
+          "minLength": 6,
+          "maxLength": 6,
+          "maxStratum": 2,
+          "grid": ["#.#.#.", "......", "#.#.#.", "......", "#.#.#.", "......"]
+        },
+        {
+          "id": "hard",
+          "minLength": 5,
+          "maxLength": 6,
+          "maxStratum": 4,
+          "grid": ["#.#.#", ".....", "#.#.#", ".....", "#.#.#", "....."]
+        }
       ],
       "hints": []
     }

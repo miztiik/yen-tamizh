@@ -22,7 +22,7 @@ derivable exclusions, and one for the curated deny-list that runs last::
 
     lexiconRows - outsideClass - outsideCategories - outsidePos - outsideLength
                 - belowAttestations - belowFrequency - withoutMeaning
-                - obscene - participial - denylisted - capped
+                - withoutClue - obscene - participial - denylisted - capped
                 == rowsKept == len(words)
 
 Every published lexicon row is accounted for by exactly one outcome, so a
@@ -185,6 +185,13 @@ class DerivedCounters(BaseModel):
     theme covers, here is what each gate then removed" rather than burying the
     theme's own reach inside ``outsideLength``.
 
+    ``withoutClue`` is the crossword's gate and only the crossword's: it counts
+    the rows whose own sense cannot be printed as the QUESTION - because it
+    spells the answer, carries Latin script, or runs longer than a phone-sized
+    clue list can hold. It is charged straight after ``withoutMeaning`` because
+    it is the same question asked one step further, and a set that leaves both
+    new knobs off charges zero to it.
+
     ``obscene`` and ``participial`` are the two exclusions the registry's
     ``servingRules`` derive from the row itself, charged after every gate and
     before the curated list. ``obscene`` runs first of the two because it is the
@@ -212,6 +219,7 @@ class DerivedCounters(BaseModel):
     belowAttestations: int = Field(ge=0)
     belowFrequency: int = Field(ge=0)
     withoutMeaning: int = Field(ge=0)
+    withoutClue: int = Field(default=0, ge=0)
     obscene: int = Field(ge=0)
     participial: int = Field(ge=0)
     denylisted: int = Field(ge=0)
@@ -228,6 +236,7 @@ class DerivedCounters(BaseModel):
             + self.belowAttestations
             + self.belowFrequency
             + self.withoutMeaning
+            + self.withoutClue
             + self.obscene
             + self.participial
             + self.denylisted
@@ -240,7 +249,8 @@ class DerivedCounters(BaseModel):
                 f"{self.outsideClass} + outsideCategories {self.outsideCategories} "
                 f"+ outsidePos {self.outsidePos} + belowAttestations "
                 f"{self.belowAttestations} + belowFrequency {self.belowFrequency} "
-                f"+ withoutMeaning {self.withoutMeaning} + obscene {self.obscene} "
+                f"+ withoutMeaning {self.withoutMeaning} + withoutClue "
+                f"{self.withoutClue} + obscene {self.obscene} "
                 f"+ participial {self.participial} + denylisted "
                 f"{self.denylisted} + capped {self.capped} "
                 f"+ rowsKept {self.rowsKept} != lexiconRows {self.lexiconRows}"

@@ -38,6 +38,11 @@ from yen_tamizh_backend.contracts.common import (
     SourceId,
 )
 from yen_tamizh_backend.contracts.copy import Copy
+from yen_tamizh_backend.contracts.crossword_puzzle import (
+    CrosswordCell,
+    CrosswordEntry,
+    CrosswordPuzzle,
+)
 from yen_tamizh_backend.contracts.daily_generator import (
     DailyGenerator,
     DifficultyBand,
@@ -140,6 +145,7 @@ REGISTRY: tuple[type[SchemaModel], ...] = (
     AppConfig,
     BankIndex,
     Copy,
+    CrosswordPuzzle,
     DailyGenerator,
     DerivedWordlists,
     EventEnvelope,
@@ -177,6 +183,9 @@ __all__ = [
     "ClassifierSettings",
     "Copy",
     "CopySlug",
+    "CrosswordCell",
+    "CrosswordEntry",
+    "CrosswordPuzzle",
     "DailyConfig",
     "DailyGenerator",
     "DeniedWord",

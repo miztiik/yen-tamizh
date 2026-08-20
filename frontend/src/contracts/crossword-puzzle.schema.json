@@ -1,0 +1,157 @@
+{
+  "$defs": {
+    "ChangelogEntry": {
+      "additionalProperties": false,
+      "description": "One dated entry in a schema's in-file change log (newest first).\n\n``version`` is the date-stamp of the change; ``change`` is what changed;\n``why`` is the reason it changed (CLAUDE.md section 11).",
+      "properties": {
+        "change": {
+          "minLength": 1,
+          "title": "Change",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+          "title": "Version",
+          "type": "string"
+        },
+        "why": {
+          "minLength": 1,
+          "title": "Why",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "change",
+        "why"
+      ],
+      "title": "ChangelogEntry",
+      "type": "object"
+    },
+    "CrosswordCell": {
+      "additionalProperties": false,
+      "description": "One cell address: a row and a column, both counted from the top-left.",
+      "properties": {
+        "col": {
+          "minimum": 0,
+          "title": "Col",
+          "type": "integer"
+        },
+        "row": {
+          "minimum": 0,
+          "title": "Row",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "row",
+        "col"
+      ],
+      "title": "CrosswordCell",
+      "type": "object"
+    },
+    "CrosswordEntry": {
+      "additionalProperties": false,
+      "description": "One answer on the board: where it starts, which way it runs, and its clue.\n\n``clue`` is resolved at bake time from the lexicon's own Tamil sense for the\nanswer. It is not invented and it is not translated: an English gloss under\na Tamil grid asks the player to solve a puzzle in a language the board is\nnot written in. A word whose only recorded sense spells the word out, or\ncarries Latin script, is not servable to this Game at all and is cut from\nthe wordlist rather than clued badly here.\n\n``alsoValid`` holds the words that fit this entry's CROSSED cells and are a\nlisted synonym of the answer - the only rivals that can be said to answer\nthe same clue. It travels so the Game can say \"that is a word for the same\nthing, but not the one this grid was built on\" instead of a red cross.",
+      "properties": {
+        "alsoValid": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Alsovalid"
+        },
+        "clue": {
+          "minLength": 1,
+          "title": "Clue",
+          "type": "string"
+        },
+        "direction": {
+          "enum": [
+            "across",
+            "down"
+          ],
+          "title": "Direction",
+          "type": "string"
+        },
+        "number": {
+          "minimum": 1,
+          "title": "Number",
+          "type": "integer"
+        },
+        "start": {
+          "$ref": "#/$defs/CrosswordCell"
+        },
+        "word": {
+          "minLength": 1,
+          "title": "Word",
+          "type": "string"
+        }
+      },
+      "required": [
+        "number",
+        "direction",
+        "start",
+        "word",
+        "clue"
+      ],
+      "title": "CrosswordEntry",
+      "type": "object"
+    }
+  },
+  "$id": "crossword-puzzle.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "One mini crossword: how big the board is, and every answer on it.\n\nBlocked cells are not listed. A cell is OPEN exactly when some entry covers\nit, so the mask is the union of the entries and there is no second statement\nof it that could disagree with the first.",
+  "properties": {
+    "changelog": {
+      "items": {
+        "$ref": "#/$defs/ChangelogEntry"
+      },
+      "minItems": 1,
+      "title": "Changelog",
+      "type": "array"
+    },
+    "cols": {
+      "minimum": 2,
+      "title": "Cols",
+      "type": "integer"
+    },
+    "entries": {
+      "items": {
+        "$ref": "#/$defs/CrosswordEntry"
+      },
+      "minItems": 2,
+      "title": "Entries",
+      "type": "array"
+    },
+    "rows": {
+      "minimum": 2,
+      "title": "Rows",
+      "type": "integer"
+    },
+    "version": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "version",
+    "changelog",
+    "rows",
+    "cols",
+    "entries"
+  ],
+  "title": "CrosswordPuzzle",
+  "type": "object"
+}

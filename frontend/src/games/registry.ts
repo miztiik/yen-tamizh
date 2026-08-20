@@ -23,10 +23,10 @@ export type GameRegistry = Readonly<Record<string, GameRegistryEntry>>;
 /**
  * The production registry. Games register here as their rows land; `anagram` is
  * the first (Row 12), `missing-letters` the second (Row 18), `wordle` the third
- * (Row 19) and `word-search` the fourth (Row 20). Each entry stays a lazy
- * `import()` so a Game's bytes arrive only when it is first opened; the runner
- * resolves against whatever registry it is given, so tests and harnesses supply
- * their own.
+ * (Row 19), `word-search` the fourth (Row 20) and `crossword` the fifth (Row
+ * 21). Each entry stays a lazy `import()` so a Game's bytes arrive only when it
+ * is first opened; the runner resolves against whatever registry it is given,
+ * so tests and harnesses supply their own.
  */
 export const GAME_REGISTRY: GameRegistry = {
   anagram: { load: () => import("./anagram").then((m) => m.anagramGameFactory) },
@@ -36,6 +36,9 @@ export const GAME_REGISTRY: GameRegistry = {
   wordle: { load: () => import("./wordle").then((m) => m.wordleGameFactory) },
   "word-search": {
     load: () => import("./word-search").then((m) => m.wordSearchGameFactory),
+  },
+  crossword: {
+    load: () => import("./crossword").then((m) => m.crosswordGameFactory),
   },
 };
 
