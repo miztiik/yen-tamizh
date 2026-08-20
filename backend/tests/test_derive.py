@@ -1407,6 +1407,7 @@ def test_the_committed_registry_validates() -> None:
         "anagram",
         "missing-letters",
         "wordle",
+        "word-search",
         _THEMED_GAME_ID,
     ]
     assert registry.lexiconPath == "datasets/lexicon/lexicon.meta.json"
@@ -1452,6 +1453,31 @@ def test_the_wordle_set_moves_only_its_length_bounds() -> None:
     assert wordle_set.selection.model_dump(exclude={"minLength", "maxLength"}) == (
         ordinary.selection.model_dump(exclude={"minLength", "maxLength"})
     )
+
+
+def test_the_word_search_set_is_the_missing_letters_selection_and_says_so() -> None:
+    """Two Games, one selection - a duplicate artifact ON PURPOSE.
+
+    The gates answer "is this a word a player can be asked for at all", and
+    neither board changes that question, so the two selections are identical
+    down to the length floor. Sharing one file was the obvious saving - 9.78 MB
+    raw, 1.36 MB packed - and it was REJECTED: a shared path would make the
+    missing-letters floor a hidden input to the search board, so raising one
+    Game's floor would silently retune another Game nobody edited. The
+    duplication buys a diff that shows up in the right file the day the two
+    diverge, and the bytes are build-time only - the browser fetches baked
+    puzzles, never a wordlist.
+
+    This test is what makes the duplication a decision rather than an accident:
+    it fails the moment the two drift, so a real divergence has to be written
+    down here.
+    """
+    registry = derive.load_registry(_REGISTRY)
+    missing = next(entry for entry in registry.sets if entry.gameId == "missing-letters")
+    search = next(entry for entry in registry.sets if entry.gameId == "word-search")
+
+    assert search.selection.model_dump() == missing.selection.model_dump()
+    assert search.out != missing.out
 
 
 def test_the_themed_set_narrows_the_ordinary_selection_and_relaxes_nothing() -> None:

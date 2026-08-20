@@ -117,7 +117,11 @@ def generate(
                 # Paths leaving the process are relative + POSIX (CLAUDE.md section 2).
                 rel_path=path.resolve().relative_to(repo_root).as_posix(),
                 puzzle_file=puzzle_file,
-                words=tuple(str(item.payload["word"]) for item in puzzle_file.items),
+                words=tuple(
+                    word
+                    for item in puzzle_file.items
+                    for word in daily.answer_words(item.payload)
+                ),
             )
         )
 

@@ -63,6 +63,15 @@ class DifficultyBand(BaseModel):
     honest way to make a band harder without reaching for a rarer word: it
     multiplies the guess space instead of narrowing the vocabulary.
 
+    ``targets`` is how many WORDS a band hides, read only by the Games whose
+    board holds more than one. It defaults to 1, which is what every other Game
+    deals. On a search board it is the main difficulty dial, and the reason is
+    an inversion worth stating: length is NOT a difficulty axis here. A longer
+    word occupies more cells and is more distinctive, so it is EASIER to spot
+    than a short one, which is the opposite of what length does to a scramble or
+    a wordle board. What makes a search harder is how many words are still
+    outstanding and how well the player knows them.
+
     Where the cuts fall is a game-balance number, so it lives here rather than
     in Python (Holy Law #6).
     """
@@ -74,6 +83,7 @@ class DifficultyBand(BaseModel):
     maxLength: int = Field(ge=1)
     maxStratum: int = Field(ge=1, le=QUARTILES)
     blanks: int = Field(default=1, ge=1)
+    targets: int = Field(default=1, ge=1)
 
     @model_validator(mode="after")
     def _band_is_coherent(self) -> Self:
@@ -169,6 +179,16 @@ class GameGeneration(BaseModel):
     # the answer inside the allowed attempts. Games that hand out no bank - the
     # anagram, whose tiles are the word's own - never read it.
     choiceCount: int = Field(default=8, ge=2)
+    # The board a Game that hides words in a grid lays them out on. Both are
+    # phone-screen numbers rather than taste: a cell has to be wide enough for
+    # the widest ezhuthu, which is 36px at a readable size, and eight of those
+    # with a 4px gutter is 316px against the 328px a 360px phone leaves after
+    # its margins - a ninth column is 356px and does not fit. The row count
+    # follows the column count because a square grid is the shape whose
+    # diagonals are as long as its sides, which is what makes all eight
+    # directions equally usable. Games with no grid never read either.
+    gridRows: int = Field(default=8, ge=2)
+    gridCols: int = Field(default=8, ge=2)
     difficulties: list[DifficultyBand] = Field(min_length=1)
     hints: list[HintSpec] = Field(default_factory=list)
     # The Tamil tag the ``category`` rung renders for each lexicon category
@@ -209,6 +229,30 @@ class GameGeneration(BaseModel):
         costs = [hint.cost for hint in self.hints]
         if costs != sorted(costs):
             raise ValueError(f"hints must be ordered by non-decreasing cost: {costs}")
+        return self
+
+    @model_validator(mode="after")
+    def _a_band_fits_on_the_board(self) -> Self:
+        # A floor, not a packing model: a band whose words need more cells than
+        # the grid HAS can never be dealt, whatever the placement does. What the
+        # grid can really take is lower and was measured rather than derived (an
+        # 8x8 board places up to seven words every time and eight words 88.5
+        # percent of the time), so the number that matters is in config; this
+        # only refuses the configuration that is impossible by counting.
+        cells = self.gridRows * self.gridCols
+        for band in self.difficulties:
+            needed = band.targets * band.maxLength
+            if needed > cells:
+                raise ValueError(
+                    f"band {band.id!r} hides {band.targets} words of up to "
+                    f"{band.maxLength} ezhuthu, which needs {needed} cells on a "
+                    f"{self.gridRows}x{self.gridCols} grid of {cells}"
+                )
+            if band.maxLength > max(self.gridRows, self.gridCols):
+                raise ValueError(
+                    f"band {band.id!r} admits {band.maxLength}-ezhuthu words, which do "
+                    f"not fit a {self.gridRows}x{self.gridCols} grid in any direction"
+                )
         return self
 
 

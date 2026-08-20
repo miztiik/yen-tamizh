@@ -102,6 +102,14 @@ Two rungs - `category` at 1 and `meaning` at 3 - because `firstEzhuthu` cannot b
 
 Scoring is the anagram's rate unchanged: 10 points an ezhuthu, so a six-ezhuthu win is 60 before hints. The same word is worth the same on both boards because the score is a property of the WORD; how few rows a win took is the wordle's own brag and it is already derivable from `puzzle.attempt.submitted`, so paying for it in the score would count it twice.
 
+### On a search grid, length is not a difficulty axis at all
+
+The word-search inverts the rule the other three Games share. A longer word covers more cells and is more distinctive, so it is EASIER to spot, not harder - which means the only honest difficulty dials are how many words are outstanding and how well the player knows them. All three bands therefore span the same 4 to 6 ezhuthu and separate on `targets` (4 easy, 5 medium, 6 hard) and on `maxStratum` (the most familiar quarter, the top half, anywhere). Six is the ceiling because placement was measured on the 8x8 board: four, five, six and seven words placed on every one of 200 draws and eight on 88.5 percent, so six leaves a real margin.
+
+That board sells no rungs. Every hint the ladder can render - a category, a first ezhuthu, a meaning - is a fact about a word the player is already reading off the list, so the whole ladder fails the same test that deleted `length`. The only thing a player lacks is a LOCATION, and a baked location rung has to name one particular word, so it is worth nothing if that word is already found; a rung that can be worthless by timing charges for nothing.
+
+What the board sells instead is a **reveal**, priced in the word it hands over. Scoring is the anagram's rate, applied per word found: a board of 19 ezhuthu is worth 190, and a player who traces four ezhuthu and reveals the rest scores 40. That is the first PARTIAL score in the repo, and it is what the mechanic makes possible - a wordle is solved or it is not, but a search board is 4 to 6 independent finds. It is also what keeps a player from being trapped: there is no attempt budget and no way to lose, so without a reveal one word nobody can see would stall the whole day.
+
 ## The share moment
 
 The end-of-session summary ([ui-shell.md](ui-shell.md)) is designed to look good in a screenshot - the score, the stars, the streak, and a small game name - because players share screenshots, not links (Player worldview #8). The share card carries no spoiler and no tracking link.

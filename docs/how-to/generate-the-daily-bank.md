@@ -162,9 +162,11 @@ Two more consequences:
 | `games[].timeLimitSec` | `0` means untimed; time pressure belongs to a Mode, not to the mechanic. |
 | `games[].reveal` | How many leading ezhuthu start already placed. `0` keeps the scramble whole. Read by the anagram; a Game that places nothing ignores it. The wordle pins it at `0` deliberately - the first ezhuthu is the strongest fact on that board and its own ladder refuses to sell it. |
 | `games[].choiceCount` | How many ezhuthu the choice bank holds, for the Games that offer one. Defaults to 8. It is a balance number, not a layout preference: there is no Tamil keyboard, so the bank is how a hidden ezhuthu is entered at all, and its size IS the odds a player who knows nothing still guesses right inside `attempts`. The wordle never reads it: its keyboard is a composer over the closed 247-ezhuthu inventory, which is a fact about Tamil rather than a per-puzzle knob. |
+| `games[].gridRows` / `games[].gridCols` | The board a Game that HIDES words in a grid lays them out on. Both default to 8, and the 8 is a phone measurement: a cell has to hold the widest ezhuthu legibly at 36px, and eight of those with a 4px gutter is 316px against the 328px a 360px screen leaves after its margins. Rows follow columns because a square is the only shape whose diagonals are as long as its sides. Games with no grid never read either. |
 | `games[].difficulties` | The difficulty bands, each bounding TWO axes: an ezhuthu-length range and a `maxStratum` familiarity ceiling. A day's slots are dealt round-robin across them and drawn frequency-stratified within one; a word no band claims is never drawn. See [`../concepts/difficulty-and-scoring.md`](../concepts/difficulty-and-scoring.md). The wordle's three bands are all the same width and separate on familiarity alone, which is the only honest axis left once a Game pins its length. |
 | `games[].difficulties[].blanks` | How many ezhuthu the band HIDES, for the Games whose mechanic hides letters. Defaults to 1, and must be less than the band's `minLength` or its shortest word would have nothing showing. |
-| `games[].hints` | Each offered hint's `kind`, `cost`, and Tamil `template` over the fields THAT Game may sell. `{category}` and `{meaning}` are common; `{firstEzhuthu}` is the anagram's alone. A missing-letters board has already printed every ezhuthu it is not hiding, and a wordle player can buy the same fact with a guess that answers five other positions at the same time. A template naming a field outside its Game's vocabulary fails the bake. |
+| `games[].difficulties[].targets` | How many WORDS the band hides, for the Games whose board holds more than one. Defaults to 1, which is what every other Game deals. On a search grid it is the main difficulty dial, because length is not one there - a longer word covers more cells and is easier to spot. A band asking for more cells than the grid has, or for words longer than its longest line, fails to validate. |
+| `games[].hints` | Each offered hint's `kind`, `cost`, and Tamil `template` over the fields THAT Game may sell. `{category}` and `{meaning}` are common; `{firstEzhuthu}` is the anagram's alone. A missing-letters board has already printed every ezhuthu it is not hiding, and a wordle player can buy the same fact with a guess that answers five other positions at the same time. The word-search sells NOTHING - it prints the words it is asking for, so every rung would name a fact on the screen - and its list is empty. A template naming a field outside its Game's vocabulary fails the bake. |
 
 How many items a day holds and which Games fill them are NOT here - they are
 `daily.playlistLength` and `daily.mix` in
@@ -198,9 +200,11 @@ Three things, and none of them is the day loop:
    Game may learn about words other than the one it is building), and how to
    turn one row into that Game's validated payload. A Game that needs to know
    nothing about the other served words registers a `prepare` that returns
-   nothing, which is what the wordle does.
+   nothing, which is what the wordle does; a Game whose board holds SEVERAL
+   words takes the row the loop picked as its anchor and draws the rest from
+   the index, which is what the word-search does.
 
-Three Games are registered this way today, and none of them cost an edit to
+Four Games are registered this way today, and none of them cost an edit to
 `puzzle-file` or to the day loop.
 
 Then it can be named in `daily.mix`. A `gameId` in the mix with no registered
