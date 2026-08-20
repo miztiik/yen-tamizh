@@ -7,7 +7,11 @@
       "why": "Row 7 contract Oracle - the valid app-config shape."
     }
   ],
-  "daily": { "playlistLength": 3, "mix": { "anagram": 3 } },
+  "daily": {
+    "playlistLength": 3,
+    "games": ["anagram", "crossword", "missing-letters"],
+    "themedGames": ["anagram"]
+  },
   "hints": { "enabled": true, "perGame": { "anagram": 2 } },
   "infinite": { "lruWindow": 200, "defaultDifficulty": "medium" },
   "timeTrial": { "durationSec": 120 },

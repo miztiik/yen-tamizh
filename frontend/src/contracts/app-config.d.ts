@@ -13,7 +13,15 @@ export type Changelog = [ChangelogEntry, ...(ChangelogEntry)[]]
 export type Change = string
 export type Version = string
 export type Why = string
+/**
+ * @minItems 1
+ */
+export type Games = [string, ...(string)[]]
 export type Playlistlength = number
+/**
+ * @minItems 1
+ */
+export type Themedgames = [string, ...(string)[]]
 export type Enabled = boolean
 export type Defaultdifficulty = string
 export type Lruwindow = number
@@ -50,18 +58,29 @@ version: Version
 why: Why
 }
 /**
- * The Daily playlist: how many items and the per-Game mix (modes.md).
+ * The Daily playlist: how long a day is, and which Games fill it (modes.md).
+ * 
+ * ``games`` is a RING rather than a set. A day takes the ``playlistLength``
+ * window that starts at its own date, so every Game reaches a player without
+ * any day holding all of them - which is what keeps the Daily a burst rather
+ * than a sitting. The order of the ring is therefore a real knob: it decides
+ * which Games co-occur, not which comes first (that is ``dailyRank``, in
+ * ``config/daily-generator.json``).
+ * 
+ * ``games`` must be at least as long as the playlist, so an ordinary day can
+ * never deal the same Game twice.
+ * 
+ * ``themedGames`` is the ring a THEMED day draws from, and it is deliberately
+ * allowed to be SHORTER than the playlist. The two rings answer different
+ * questions: an ordinary day's claim is variety of GAMES, so it never repeats
+ * one; a themed day's claim is that its WORDS belong together, so it holds
+ * only the Games that theme can honestly fill and repeats one rather than
+ * reaching for a Game whose slots the theme cannot fill without padding.
  */
 export interface DailyConfig {
-mix: Mix
+games: Games
 playlistLength: Playlistlength
-}
-export interface Mix {
-/**
- * This interface was referenced by `Mix`'s JSON-Schema definition
- * via the `patternProperty` "^[a-z][a-z0-9-]*$".
- */
-[k: string]: number
+themedGames: Themedgames
 }
 /**
  * Hint availability: a global switch and a per-Game allowance.

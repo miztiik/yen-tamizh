@@ -35,7 +35,7 @@ from __future__ import annotations
 import json
 import shutil
 from collections import Counter
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from datetime import date, timedelta
 from pathlib import Path
 from typing import Any, get_args
@@ -53,6 +53,7 @@ from yen_tamizh_backend.contracts.daily_generator import (
     DifficultyBand,
     GameGeneration,
     HintSpec,
+    ThemedSet,
     mask_entries,
 )
 from yen_tamizh_backend.contracts.game_wordlist import GameWord, GameWordlist
@@ -97,13 +98,19 @@ CUTOVER_DAY = "2026-08-23"
 # the old two-rung ladder and are published history.
 LADDER_DAY = "2026-08-18"
 
+# The first day baked from the two Daily rings - the first day that holds more
+# than one Game. Everything before it is three anagrams and is published
+# history the re-bake guard leaves alone.
+MIX_DAY = "2026-08-21"
+
 # The wordlists are keyed by the path the registry names, because a Game draws
 # from more than one: its ordinary set and one per registered theme.
 ANAGRAM_SET = "datasets/wordlists/derived/anagram.json"
 THEMED_SET = "datasets/wordlists/derived/themed-nature.json"
 
 # A date the configured cadence allows a theme on, and the day after it. Both
-# are past the committed bank, so a themed test bakes into empty ground.
+# are at or past the end of the committed bank, and every test using them bakes
+# from an empty ledger or into a tmp bank, so neither reads committed state.
 THEME_DAY = "2026-08-30"
 ORDINARY_DAY = "2026-08-31"
 
@@ -419,11 +426,21 @@ def test_every_committed_day_validates_against_puzzle_file(bank_dir: Path) -> No
 def test_every_committed_payload_validates_against_anagram_puzzle(
     bank_dir: Path,
 ) -> None:
-    """The item payload carries no schema stamp, so validation supplies one."""
+    """The item payload carries no schema stamp, so validation supplies one.
+
+    Per-Game, because a day now holds several: each item is validated against
+    ITS OWN contract, which is the whole point of the payload being a Game's own
+    shape rather than one shared row (the other four are covered by their own
+    Game's section).
+    """
+    checked = 0
     for path in _committed_days(bank_dir):
         puzzle_file = PuzzleFile.model_validate_json(path.read_text(encoding="utf-8"))
         for item in puzzle_file.items:
             assert set(item.payload) & {"version", "changelog"} == set()
+            if item.gameId != "anagram":
+                continue
+            checked += 1
             AnagramPuzzle.model_validate(
                 {
                     "version": "2026-08-13",
@@ -433,6 +450,7 @@ def test_every_committed_payload_validates_against_anagram_puzzle(
                     **item.payload,
                 }
             )
+    assert checked, "the bank baked no anagram"
 
 
 def test_the_committed_index_matches_the_committed_days(bank_dir: Path) -> None:
@@ -459,6 +477,8 @@ def test_tiles_rejoin_to_the_answer_and_are_never_pre_solved(bank_dir: Path) -> 
     for path in _committed_days(bank_dir):
         puzzle_file = PuzzleFile.model_validate_json(path.read_text(encoding="utf-8"))
         for item in puzzle_file.items:
+            if item.gameId != "anagram":
+                continue
             word = str(item.payload["word"])
             tiles = [str(tile) for tile in item.payload["tiles"]]
             solved = segment(word)
@@ -468,13 +488,16 @@ def test_tiles_rejoin_to_the_answer_and_are_never_pre_solved(bank_dir: Path) -> 
 
 
 def test_no_word_is_served_twice_across_the_bank(bank_dir: Path) -> None:
+    """Every ANSWER, not every headline word: a board with several is several."""
     seen: dict[str, str] = {}
     for path in _committed_days(bank_dir):
         puzzle_file = PuzzleFile.model_validate_json(path.read_text(encoding="utf-8"))
         for item in puzzle_file.items:
-            word = str(item.payload["word"])
-            assert word not in seen, f"{word} repeats ({seen.get(word)} and {path.stem})"
-            seen[word] = path.stem
+            for word in daily.answer_words(item.payload):
+                assert word not in seen, (
+                    f"{word} repeats ({seen.get(word)} and {path.stem})"
+                )
+                seen[word] = path.stem
 
 
 def test_every_served_word_comes_from_the_derived_wordlist(
@@ -488,11 +511,7 @@ def test_every_served_word_comes_from_the_derived_wordlist(
     history the re-bake guard deliberately preserves, not a rebuildable
     artifact.
     """
-    allowed = {
-        row.word
-        for path in (ANAGRAM_SET, THEMED_SET)
-        for row in wordlists[path].words
-    }
+    allowed = {row.word for words in wordlists.values() for row in words.words}
     checked = 0
     for path in _committed_days(bank_dir):
         if path.stem < CUTOVER_DAY:
@@ -500,7 +519,8 @@ def test_every_served_word_comes_from_the_derived_wordlist(
         checked += 1
         puzzle_file = PuzzleFile.model_validate_json(path.read_text(encoding="utf-8"))
         for item in puzzle_file.items:
-            assert str(item.payload["word"]) in allowed
+            for word in daily.answer_words(item.payload):
+                assert word in allowed
     assert checked, "no day was baked from the current wordlist"
 
 
@@ -521,18 +541,26 @@ def test_no_day_baked_since_the_cutover_serves_a_proper_noun(bank_dir: Path) -> 
             continue
         puzzle_file = PuzzleFile.model_validate_json(path.read_text(encoding="utf-8"))
         for item in puzzle_file.items:
-            word = str(item.payload["word"])
-            assert word not in proper_nouns, f"{path.stem} serves {word}"
+            for word in daily.answer_words(item.payload):
+                assert word not in proper_nouns, f"{path.stem} serves {word}"
 
 
 def test_a_day_holds_exactly_the_configured_playlist(
     bank_dir: Path, app_config: AppConfig
 ) -> None:
+    """Every committed day is the configured length and holds only served Games.
+
+    The per-Game COUNT is deliberately not asserted here: which Games a day
+    holds is a window that walks with the date, so a fixed count would be a
+    claim about one date rather than about the bank. What every day owes is its
+    length and its membership.
+    """
+    known = set(app_config.daily.games) | set(app_config.daily.themedGames)
     for path in _committed_days(bank_dir):
         puzzle_file = PuzzleFile.model_validate_json(path.read_text(encoding="utf-8"))
         assert len(puzzle_file.items) == app_config.daily.playlistLength
-        for game_id, count in app_config.daily.mix.items():
-            assert sum(1 for item in puzzle_file.items if item.gameId == game_id) == count
+        for item in puzzle_file.items:
+            assert item.gameId in known, f"{path.stem} serves {item.gameId}"
 
 
 # --------------------------------------------------------------------------
@@ -607,30 +635,43 @@ def test_the_allowance_admits_the_whole_ladder(
 def test_committed_hints_honour_the_app_config(
     bank_dir: Path, app_config: AppConfig
 ) -> None:
-    allowance = app_config.hints.perGame.get("anagram", 0)
     for path in _committed_days(bank_dir):
         puzzle_file = PuzzleFile.model_validate_json(path.read_text(encoding="utf-8"))
         for item in puzzle_file.items:
+            allowance = app_config.hints.perGame.get(item.gameId, 0)
             hints = item.payload.get("hints", [])
             assert len(hints) <= allowance
             assert app_config.hints.enabled or hints == []
             for hint in hints:
-                assert str(item.payload["word"]) not in hint["text"]
+                for word in daily.answer_words(item.payload):
+                    assert word not in hint["text"]
 
 
-def test_a_mix_that_does_not_add_up_is_an_error(
+def test_a_playlist_longer_than_the_ring_is_refused_by_the_contract(
     app_config: AppConfig,
-    generator: DailyGenerator,
-    wordlists: dict[str, GameWordlist],
 ) -> None:
-    broken = app_config.model_copy(
-        update={"daily": app_config.daily.model_copy(update={"playlistLength": 99})}
-    )
-    with pytest.raises(ValueError, match="playlistLength"):
-        daily.build_day(FIRST_DAY, broken, generator, wordlists, used=())
+    """An ordinary day that had to deal the same Game twice is a config error.
+
+    The ring is what makes variety structural rather than hoped for, so the
+    refusal lives in the contract: a config that could not honour it never
+    reaches the day loop.
+    """
+    payload = app_config.daily.model_dump()
+    payload["playlistLength"] = len(payload["games"]) + 1
+    with pytest.raises(ValidationError, match="would deal one twice"):
+        type(app_config.daily).model_validate(payload)
 
 
-def test_a_mix_naming_an_unregistered_game_is_an_error(
+def test_a_ring_repeating_a_game_is_refused_by_the_contract(
+    app_config: AppConfig,
+) -> None:
+    payload = app_config.daily.model_dump()
+    payload["games"] = [payload["games"][0], *payload["games"]]
+    with pytest.raises(ValidationError, match="repeated Game"):
+        type(app_config.daily).model_validate(payload)
+
+
+def test_a_ring_naming_an_unregistered_game_is_an_error(
     app_config: AppConfig,
     generator: DailyGenerator,
     wordlists: dict[str, GameWordlist],
@@ -638,12 +679,201 @@ def test_a_mix_naming_an_unregistered_game_is_an_error(
     broken = app_config.model_copy(
         update={
             "daily": app_config.daily.model_copy(
-                update={"playlistLength": 1, "mix": {"word-ladder": 1}}
+                update={"playlistLength": 1, "games": ["word-ladder"]}
             )
         }
     )
     with pytest.raises(ValueError, match="no generator"):
         daily.build_day(FIRST_DAY, broken, generator, wordlists, used=())
+
+
+# --------------------------------------------------------------------------
+# 4a. The Daily's two rings: which Games reach a player, and in what order
+# --------------------------------------------------------------------------
+
+
+def test_every_registered_game_reaches_a_player(
+    app_config: AppConfig, generator: DailyGenerator
+) -> None:
+    """A Game that ships, registers a builder and is never dealt is dark.
+
+    Asserted as an EQUALITY rather than a subset in both directions of one
+    claim: a Game missing from the ring never reaches a Daily player, and a ring
+    naming a Game with no generator fails the bake, so the two lists have to be
+    the same list.
+    """
+    assert set(app_config.daily.games) == {spec.gameId for spec in generator.games}
+    assert set(app_config.daily.themedGames) <= set(app_config.daily.games)
+
+
+def test_the_window_walks_the_ring_and_covers_every_game(
+    app_config: AppConfig,
+) -> None:
+    """The variety rule: three different Games a day, and a different three daily."""
+    ring = app_config.daily.games
+    length = app_config.daily.playlistLength
+    start = date.fromisoformat(FIRST_DAY)
+    met: set[str] = set()
+    previous: list[str] | None = None
+    for offset in range(len(ring) * 2):
+        day = (start + timedelta(days=offset)).isoformat()
+        window = daily.playlist_games(ring, length, day)
+        assert len(window) == length
+        assert len(set(window)) == length, f"{day} deals a Game twice"
+        assert set(window) <= set(ring)
+        if previous is not None:
+            assert set(window) != set(previous), f"{day} repeats the day before"
+        previous = window
+        met.update(window)
+    assert met == set(ring), "a registered Game never came round"
+
+
+def test_the_window_is_a_pure_function_of_its_date(app_config: AppConfig) -> None:
+    ring = app_config.daily.games
+    length = app_config.daily.playlistLength
+    assert daily.playlist_games(ring, length, FIRST_DAY) == daily.playlist_games(
+        ring, length, FIRST_DAY
+    )
+
+
+def test_a_ring_shorter_than_the_playlist_wraps_rather_than_shipping_short(
+    app_config: AppConfig,
+) -> None:
+    """What lets a themed day be honest about holding fewer Games than slots."""
+    window = daily.playlist_games(["anagram"], app_config.daily.playlistLength, THEME_DAY)
+    assert window == ["anagram"] * app_config.daily.playlistLength
+
+
+def test_a_day_opens_on_the_lightest_board_and_ends_on_the_heaviest(
+    app_config: AppConfig, generator: DailyGenerator
+) -> None:
+    """THE ordering rule, over every window the ring can produce.
+
+    Two claims in one schedule, because a mixed day has two difficulty dials:
+    the Games rise by ``dailyRank`` down the playlist, so the heaviest board is
+    never the first thing a player meets, and each slot is dealt the band at its
+    own position, so the day still opens on the easiest band it has.
+    """
+    specs = {spec.gameId: spec for spec in generator.games}
+    start = date.fromisoformat(FIRST_DAY)
+    for offset in range(len(app_config.daily.games) * 2):
+        day = (start + timedelta(days=offset)).isoformat()
+        slots = daily.day_slots(
+            app_config.daily.games, app_config.daily.playlistLength, day, specs
+        )
+        ranks = [specs[slot.gameId].dailyRank for slot in slots]
+        assert ranks == sorted(ranks), f"{day}: {ranks}"
+        heaviest = max(specs[slot.gameId].dailyRank for slot in slots)
+        assert specs[slots[0].gameId].dailyRank < heaviest or len(set(ranks)) == 1
+        for position, slot in enumerate(slots):
+            assert slot.position == position
+            bands = [band.id for band in specs[slot.gameId].difficulties]
+            assert slot.difficulty == bands[position % len(bands)]
+
+
+def test_every_committed_mixed_day_is_a_curve_of_different_games(
+    bank_dir: Path, generator: DailyGenerator
+) -> None:
+    """The rules, read back off the bank the player actually downloads.
+
+    Scoped to the days baked from the two rings: everything before them is three
+    anagrams and is published history.
+    """
+    specs = {spec.gameId: spec for spec in generator.games}
+    checked = 0
+    for path in _committed_days(bank_dir):
+        if path.stem < MIX_DAY:
+            continue
+        checked += 1
+        puzzle_file = PuzzleFile.model_validate_json(path.read_text(encoding="utf-8"))
+        ranks = [specs[item.gameId].dailyRank for item in puzzle_file.items]
+        assert ranks == sorted(ranks), f"{path.stem}: {ranks}"
+        for position, item in enumerate(puzzle_file.items):
+            bands = [band.id for band in specs[item.gameId].difficulties]
+            assert item.difficulty == bands[position % len(bands)], path.stem
+        if puzzle_file.theme is None:
+            games = [item.gameId for item in puzzle_file.items]
+            assert len(set(games)) == len(games), f"{path.stem} repeats a Game"
+    assert checked, "no day was baked from the two rings"
+
+
+def test_the_committed_bank_serves_every_registered_game(
+    bank_dir: Path, generator: DailyGenerator
+) -> None:
+    """The measurement that started this row, asserted so it cannot regress.
+
+    Four finished Games shipped dark because the Daily dealt three anagrams
+    every day. The claim is not that any ONE day holds all five - a day is three
+    slots - but that the bank a player downloads reaches every one of them.
+    """
+    served: set[str] = set()
+    for path in _committed_days(bank_dir):
+        if path.stem < MIX_DAY:
+            continue
+        puzzle_file = PuzzleFile.model_validate_json(path.read_text(encoding="utf-8"))
+        served.update(item.gameId for item in puzzle_file.items)
+    assert served == {spec.gameId for spec in generator.games}
+
+
+def test_widening_the_themed_ring_costs_a_themed_day_and_never_a_bake(
+    app_config: AppConfig,
+    generator: DailyGenerator,
+    wordlists: dict[str, GameWordlist],
+) -> None:
+    """THE tension this row exists to resolve, pinned from the failing side.
+
+    A theme's set is a few hundred rows. Register it for a Game whose board
+    cannot be built from that many - measured, the crossword solver fills four
+    of themed-nature's 28 easy rows and NONE of its 14 medium ones - and the
+    honest outcome is an ordinary day of the configured length, not a themed day
+    padded out with an off-theme word and not a bake that dies on the date.
+    """
+    crossword_spec = next(
+        spec for spec in generator.games if spec.gameId == "crossword"
+    )
+    registered = generator.model_copy(
+        update={
+            "games": [
+                spec.model_copy(
+                    update={
+                        "themes": [
+                            ThemedSet(wordlist=THEMED_SET, copySlug="theme-nature")
+                        ]
+                    }
+                )
+                if spec.gameId == crossword_spec.gameId
+                else spec
+                for spec in generator.games
+            ]
+        }
+    )
+    widened = app_config.model_copy(
+        update={"daily": app_config.daily.model_copy(update={"themedGames": ["crossword"]})}
+    )
+
+    assert daily.is_theme_date(THEME_DAY, registered)
+    puzzle = daily.build_day(THEME_DAY, widened, registered, wordlists, used=())
+    assert puzzle.theme is None
+    assert len(puzzle.items) == app_config.daily.playlistLength
+    # And it falls back to the ORDINARY ring, so the day the theme declined is a
+    # whole ordinary day rather than a themed shape with the theme taken out.
+    assert {item.gameId for item in puzzle.items} <= set(app_config.daily.games)
+
+
+def test_the_committed_themed_ring_still_runs_a_themed_day(
+    app_config: AppConfig,
+    generator: DailyGenerator,
+    wordlists: dict[str, GameWordlist],
+) -> None:
+    """The other half of the resolution: widening the ordinary ring did not
+    turn themed days off, because the themed ring is its own list.
+    """
+    puzzle = daily.build_day(THEME_DAY, app_config, generator, wordlists, used=())
+    assert puzzle.theme == "theme-nature"
+    assert {item.gameId for item in puzzle.items} <= set(app_config.daily.themedGames)
+    assert len({item.gameId for item in puzzle.items}) > 1, (
+        "a themed day fell back to a single Game"
+    )
 
 
 def test_a_hint_template_naming_an_unknown_field_fails_loudly(
@@ -673,11 +903,12 @@ def test_selection_skips_words_already_served(
     generator: DailyGenerator, wordlists: dict[str, GameWordlist]
 ) -> None:
     spec = generator.games[0]
+    bands = [band.id for band in spec.difficulties]
     candidates = wordlists[ANAGRAM_SET].words
-    plain = daily.pick_words(candidates, spec, FIRST_DAY, 3, used=())
+    plain = daily.pick_words(candidates, spec, FIRST_DAY, bands, used=())
     assert len(plain) == 3
     avoided = daily.pick_words(
-        candidates, spec, FIRST_DAY, 3, used={row.word for row, _ in plain}
+        candidates, spec, FIRST_DAY, bands, used={row.word for row, _ in plain}
     )
     assert {row.word for row, _ in avoided}.isdisjoint({row.word for row, _ in plain})
 
@@ -687,10 +918,9 @@ def test_a_day_is_dealt_round_robin_across_the_difficulty_bands(
 ) -> None:
     """A day is a curve, not three rolls of the same dice."""
     spec = generator.games[0]
-    picked = daily.pick_words(wordlists[ANAGRAM_SET].words, spec, FIRST_DAY, 3, used=())
-    assert [difficulty for _, difficulty in picked] == [
-        band.id for band in spec.difficulties
-    ]
+    bands = [band.id for band in spec.difficulties]
+    picked = daily.pick_words(wordlists[ANAGRAM_SET].words, spec, FIRST_DAY, bands, used=())
+    assert [difficulty for _, difficulty in picked] == bands
     for row, difficulty in picked:
         assert daily.difficulty_of(row, spec) == difficulty
 
@@ -729,14 +959,18 @@ def test_selection_fills_the_day_even_when_everything_was_served(
     spec = generator.games[0]
     candidates = wordlists[ANAGRAM_SET].words
     filled = daily.pick_words(
-        candidates, spec, FIRST_DAY, 3, used={row.word for row in candidates}
+        candidates,
+        spec,
+        FIRST_DAY,
+        [band.id for band in spec.difficulties],
+        used={row.word for row in candidates},
     )
     assert len(filled) == 3
 
 
 def test_selection_with_no_candidates_is_an_error(generator: DailyGenerator) -> None:
     with pytest.raises(ValueError, match="no candidate words"):
-        daily.pick_words([], generator.games[0], FIRST_DAY, 1, used=())
+        daily.pick_words([], generator.games[0], FIRST_DAY, ["easy"], used=())
 
 
 def test_a_band_with_an_empty_bucket_is_an_error(
@@ -750,7 +984,9 @@ def test_a_band_with_an_empty_bucket_is_an_error(
         if daily.difficulty_of(row, spec) == "hard"
     ]
     with pytest.raises(ValueError, match="easy"):
-        daily.pick_words(only_hard, spec, FIRST_DAY, 3, used=())
+        daily.pick_words(
+            only_hard, spec, FIRST_DAY, [band.id for band in spec.difficulties], used=()
+        )
 
 
 def test_the_engine_reads_only_the_derived_layer() -> None:
@@ -836,12 +1072,35 @@ def test_a_theme_date_draws_the_whole_day_from_one_theme_and_says_so(
 
     assert puzzle.theme == "theme-nature"
     themed = {row.word for row in wordlists[THEMED_SET].words}
-    served = {str(item.payload["word"]) for item in puzzle.items}
+    served = {
+        word for item in puzzle.items for word in daily.answer_words(item.payload)
+    }
     assert served <= themed
     assert len(puzzle.items) == app_config.daily.playlistLength
+    specs = {spec.gameId: spec for spec in generator.games}
+    slots = daily.day_slots(
+        app_config.daily.themedGames, app_config.daily.playlistLength, THEME_DAY, specs
+    )
+    assert [item.gameId for item in puzzle.items] == [slot.gameId for slot in slots]
     assert [item.difficulty for item in puzzle.items] == [
-        band.id for band in generator.games[0].difficulties
+        slot.difficulty for slot in slots
     ]
+
+
+def test_a_themed_day_draws_from_the_themed_ring_not_the_ordinary_one(
+    app_config: AppConfig,
+    generator: DailyGenerator,
+    wordlists: dict[str, GameWordlist],
+) -> None:
+    """The two rings are the whole resolution: a themed day is its own shape.
+
+    Every Game on a themed day must be one the theme can honestly fill, so the
+    themed window is drawn from ``daily.themedGames`` - and a Game the ordinary
+    ring would have dealt that date is simply not on the board.
+    """
+    puzzle = daily.build_day(THEME_DAY, app_config, generator, wordlists, used=())
+    assert puzzle.theme is not None
+    assert {item.gameId for item in puzzle.items} <= set(app_config.daily.themedGames)
 
 
 def test_an_ordinary_date_records_no_theme(
@@ -876,7 +1135,10 @@ def test_a_theme_that_cannot_fill_the_day_is_skipped_rather_than_padded(
 
     assert puzzle.theme is None
     assert len(puzzle.items) == app_config.daily.playlistLength
-    assert {str(item.payload["word"]) for item in puzzle.items}.isdisjoint(themed)
+    served = {
+        word for item in puzzle.items for word in daily.answer_words(item.payload)
+    }
+    assert served.isdisjoint(themed)
 
 
 def test_a_theme_one_word_short_fills_none_of_the_day(
@@ -884,13 +1146,14 @@ def test_a_theme_one_word_short_fills_none_of_the_day(
 ) -> None:
     """A theme is all-or-nothing: it never contributes a partial playlist."""
     spec = generator.games[0]
+    bands = [band.id for band in spec.difficulties]
     rows = wordlists[THEMED_SET].words
-    full = daily.theme_can_fill(rows, spec, THEME_DAY, 3, used=())
+    full = daily.theme_can_fill(rows, spec, THEME_DAY, bands, used=())
     assert full is not None
     assert len({row.word for row, _ in full}) == 3
 
     almost = {row.word for row in rows} - {full[0][0].word}
-    assert daily.theme_can_fill(rows, spec, THEME_DAY, 3, used=almost) is None
+    assert daily.theme_can_fill(rows, spec, THEME_DAY, bands, used=almost) is None
 
 
 def test_a_theme_with_an_empty_difficulty_bucket_declines_instead_of_raising(
@@ -898,6 +1161,7 @@ def test_a_theme_with_an_empty_difficulty_bucket_declines_instead_of_raising(
 ) -> None:
     """An ordinary day short of a band is an error; a theme has somewhere to go."""
     spec = generator.games[0]
+    bands = [band.id for band in spec.difficulties]
     hard_only = [
         row
         for row in wordlists[THEMED_SET].words
@@ -905,9 +1169,31 @@ def test_a_theme_with_an_empty_difficulty_bucket_declines_instead_of_raising(
     ]
     assert hard_only
 
-    assert daily.theme_can_fill(hard_only, spec, THEME_DAY, 3, used=()) is None
+    assert daily.theme_can_fill(hard_only, spec, THEME_DAY, bands, used=()) is None
     with pytest.raises(ValueError, match="easy"):
-        daily.pick_words(hard_only, spec, THEME_DAY, 3, used=())
+        daily.pick_words(hard_only, spec, THEME_DAY, bands, used=())
+
+
+def test_a_theme_whose_rows_this_game_cannot_build_declines_the_day(
+    generator: DailyGenerator, wordlists: dict[str, GameWordlist]
+) -> None:
+    """Buildability is part of "can this theme fill the day", not a bake surprise.
+
+    A theme's set is a few hundred rows, which is thin enough that an interlocked
+    board can refuse every one of them - measured, the crossword solver fills
+    four of themed-nature's 28 easy rows and none of its medium or hard ones. If
+    the question were asked after the theme had been chosen, that date would
+    raise mid-bake instead of quietly being an ordinary day.
+    """
+    spec = generator.games[0]
+    bands = [band.id for band in spec.difficulties]
+    rows = wordlists[THEMED_SET].words
+    assert daily.theme_can_fill(rows, spec, THEME_DAY, bands, used=()) is not None
+    refuse_all: Callable[[GameWord, str], bool] = lambda row, band: False
+    assert (
+        daily.theme_can_fill(rows, spec, THEME_DAY, bands, used=(), buildable=refuse_all)
+        is None
+    )
 
 
 def test_a_baked_themed_day_carries_its_slug_on_disk(
@@ -973,7 +1259,8 @@ def test_every_committed_themed_day_serves_only_its_own_theme(
             continue
         allowed = {row.word for row in wordlists[by_slug[puzzle_file.theme]].words}
         for item in puzzle_file.items:
-            assert str(item.payload["word"]) in allowed, path.stem
+            for word in daily.answer_words(item.payload):
+                assert word in allowed, path.stem
 
 
 # --------------------------------------------------------------------------
@@ -1018,10 +1305,19 @@ def test_the_baked_ladder_never_gets_cheaper(bank_dir: Path) -> None:
 
 
 def test_the_dearest_rung_is_never_the_first_one_offered(bank_dir: Path) -> None:
-    """A meaning at position 1 is the whole answer sold before anything cheaper."""
+    """A meaning at position 1 is the whole answer sold before anything cheaper.
+
+    Unless nothing cheaper exists. Two of the five ladders are two rungs -
+    category then meaning - because the boards that print the answer's other
+    ezhuthu cannot honestly sell a first-ezhuthu rung, so a word carrying no
+    category leaves the meaning ALONE on that ladder. A rung that is the only
+    rung was not sold ahead of anything.
+    """
     for path in _ladder_days(bank_dir):
         for hints in _baked_hints(path):
-            assert not hints or hints[0]["kind"] != "meaning", path.stem
+            if not hints or hints[0]["kind"] != "meaning":
+                continue
+            assert len(hints) == 1, f"{path.stem}: {[h['kind'] for h in hints]}"
 
 
 def test_the_config_refuses_a_ladder_that_gets_cheaper(
@@ -1085,7 +1381,7 @@ def test_a_baked_hint_never_answers_in_english(
     for path in _ladder_days(bank_dir):
         puzzle_file = PuzzleFile.model_validate_json(path.read_text(encoding="utf-8"))
         for item in puzzle_file.items:
-            row = served.get(str(item.payload["word"]))
+            row = served.get(str(item.payload.get("word", "")))
             for hint in item.payload.get("hints", []):
                 text = str(hint["text"])
                 if row is not None:
@@ -1124,9 +1420,9 @@ def test_a_baked_hint_never_spells_the_answer_out(
     for path in _ladder_days(bank_dir):
         puzzle_file = PuzzleFile.model_validate_json(path.read_text(encoding="utf-8"))
         for item in puzzle_file.items:
-            word = str(item.payload["word"])
             for hint in item.payload.get("hints", []):
-                assert word not in str(hint["text"]), f"{path.stem}: {word}"
+                for word in daily.answer_words(item.payload):
+                    assert word not in str(hint["text"]), f"{path.stem}: {word}"
 
 
 def test_a_themed_day_omits_the_category_rung_from_every_ladder(
@@ -1204,14 +1500,23 @@ def test_a_part_of_speech_can_never_reach_the_category_rung(
 
 
 def test_every_served_word_can_say_what_it_means(bank_dir: Path) -> None:
-    """requireMeaning is what makes the summary line unconditional."""
+    """requireMeaning is what makes the summary line unconditional.
+
+    Read per ANSWER rather than per item, because the two boards that ask for
+    several words carry the text on each answer: a search target states its
+    meaning, and a crossword entry states it as the clue it is asked behind,
+    which is the same fact in the shape that board reads it.
+    """
     for path in _ladder_days(bank_dir):
         puzzle_file = PuzzleFile.model_validate_json(path.read_text(encoding="utf-8"))
         for item in puzzle_file.items:
-            meaning = item.payload.get("meaning")
-            assert isinstance(meaning, str) and meaning, (
-                f"{path.stem}: {item.payload['word']}"
-            )
+            payload = item.payload
+            if "word" in payload:
+                assert payload.get("meaning"), f"{path.stem}: {payload['word']}"
+            for target in payload.get("targets", []):
+                assert target.get("meaning"), f"{path.stem}: {target['word']}"
+            for entry in payload.get("entries", []):
+                assert entry.get("clue"), f"{path.stem}: {entry['word']}"
 
 
 def test_the_summary_meaning_is_the_one_the_rung_sold(
@@ -1279,6 +1584,8 @@ def test_a_baked_puzzle_offers_only_partners_the_day_could_have_served(
         )
         served = {row.word for row in wordlists[source].words}
         for item in puzzle_file.items:
+            if item.gameId != "anagram":
+                continue
             word = str(item.payload["word"])
             for partner in item.payload.get("alsoValid", []):
                 assert partner in served, f"{path.stem}: {partner}"
@@ -1353,15 +1660,22 @@ def test_a_day_drawn_from_a_set_holding_an_anagram_pair_offers_the_partner(
     served, filler, first, second = _a_set_holding_one_anagram_pair(
         wordlists[ANAGRAM_SET]
     )
+    # Dealt through the THEMED ring, which is the one a whole day may draw from a
+    # single Game: an ordinary day is refused a repeated Game by contract, and
+    # the three-row set above is built to fill exactly three anagram slots.
+    scrambles = app_config.model_copy(
+        update={"daily": app_config.daily.model_copy(update={"themedGames": ["anagram"]})}
+    )
 
     day = daily.build_day(
-        ORDINARY_DAY,
-        app_config,
+        THEME_DAY,
+        scrambles,
         generator,
-        wordlists | {ANAGRAM_SET: served},
+        wordlists | {THEMED_SET: served},
         used=(),
     )
 
+    assert day.theme == "theme-nature"
     offered = {
         str(item.payload["word"]): item.payload.get("alsoValid") for item in day.items
     }
@@ -1622,25 +1936,25 @@ def test_a_day_can_be_dealt_from_more_than_one_game(
     generator: DailyGenerator,
     wordlists: dict[str, GameWordlist],
 ) -> None:
-    """The registry claim: a second Game costs a registration, not a day-loop edit.
+    """The registry claim: a Game costs a registration, not a day-loop edit.
 
-    ``config/app-config.json`` deliberately still deals three anagrams - changing
-    what today's players get is its own reviewed decision - so this proves the
-    wiring against a mix the config COULD hold rather than against the one it
-    does.
+    A five-slot day is not a shape the shipped config takes - three is what a
+    Daily is - so this proves the wiring against a playlist long enough to hold
+    every registered Game at once, which is the only way to assert all five
+    payload shapes travel through one unchanged puzzle-file.
     """
     mixed = app_config.model_copy(
         update={
             "daily": app_config.daily.model_copy(
                 update={
                     "playlistLength": 5,
-                    "mix": {
-                        "anagram": 1,
-                        "missing-letters": 1,
-                        "wordle": 1,
-                        "word-search": 1,
-                        "crossword": 1,
-                    },
+                    "games": [
+                        "anagram",
+                        "crossword",
+                        "missing-letters",
+                        "word-search",
+                        "wordle",
+                    ],
                 }
             )
         }
@@ -1699,7 +2013,7 @@ def test_a_day_can_be_dealt_from_more_than_one_game(
 
 
 def test_an_unregistered_game_fails_loudly(generator: DailyGenerator) -> None:
-    """A mix naming a Game with no builder must not bake a silently empty day."""
+    """A ring naming a Game with no builder must not bake a silently empty day."""
     with pytest.raises(ValueError, match="no registered puzzle builder"):
         daily.builder_for("word-ladder")
     # Every registered generator has a builder, and every builder has a
@@ -2568,7 +2882,7 @@ def test_a_day_bakes_the_same_bytes_twice(
     generator: DailyGenerator,
     wordlists: dict[str, GameWordlist],
 ) -> None:
-    """The Row 13 Oracle, through the day loop, with the crossword in the mix.
+    """The Row 13 Oracle, through the day loop, with the crossword in the ring.
 
     The solver is the only part of this repo that SEARCHES, and a search is
     where an accidental dependence on set or dict iteration order hides. So the
@@ -2578,7 +2892,7 @@ def test_a_day_bakes_the_same_bytes_twice(
     mixed = app_config.model_copy(
         update={
             "daily": app_config.daily.model_copy(
-                update={"playlistLength": 2, "mix": {"anagram": 1, "crossword": 1}}
+                update={"playlistLength": 2, "games": ["anagram", "crossword"]}
             )
         }
     )

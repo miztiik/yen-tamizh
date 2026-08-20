@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-19T21:00",
+  "version": "2026-08-20T12:00",
   "changelog": [
+    {
+      "version": "2026-08-20T12:00",
+      "change": "Replaced daily.mix with daily.games and daily.themedGames.",
+      "why": "Rows 18 to 21 shipped four more Games and every one of them stayed dark, because a mix of {anagram: 3} is the only shape a fixed per-Game count can take on a three-item day: five Games do not fit in three slots, so a mix that names them all is impossible and a mix that names three leaves two unreachable forever. games is a RING instead, and a day takes the playlist-length window that starts at its own date - so every Game comes round within one turn of the ring, consecutive days share only the Game the window carries over, and no day ever holds the same Game twice. Its ORDER decides which Games co-occur rather than which comes first (that is dailyRank, in the generator registry), and this order was chosen by measuring what a day asks of a player: counted as answers per board it gives days of 7, 7, 8, 8 and 11 answers, against 3 to 11 for the ramp order, so no day is a slog and none is over in a minute. themedGames is a SECOND ring, and the reason it exists is the whole reason daily.mix was never widened before: a themed day needs every Game in it to register the same theme AND to be able to build a puzzle from that theme's few hundred rows, so widening one ring to five would have turned every themed day off in silence. Measured against themed-nature's 429 rows, the anagram and the missing-letters board each fill it honestly for 62 consecutive themed days - more than a year at one a week - while the wordle runs dry after 37 (its easy bucket holds two words), the search board repeats an already-served word on the third themed day, and the crossword cannot build a single board from the set. So the themed ring holds the two that can, and it is allowed to be shorter than the playlist and deal one of them twice: an ordinary day's claim is variety of Games, a themed day's claim is that its words belong together, and padding a theme with an off-theme word to reach three Games would break the only claim that matters."
+    },
     {
       "version": "2026-08-19T21:00",
       "change": "Added hints.perGame.wordle at 2.",
@@ -22,7 +27,11 @@
       "why": "Row 7 core schemas - a fresh clone runs on these defaults (Holy Law #6)."
     }
   ],
-  "daily": { "playlistLength": 3, "mix": { "anagram": 3 } },
+  "daily": {
+    "playlistLength": 3,
+    "games": ["anagram", "crossword", "missing-letters", "word-search", "wordle"],
+    "themedGames": ["anagram", "missing-letters"]
+  },
   "hints": { "enabled": true, "perGame": { "anagram": 3, "missing-letters": 2, "wordle": 2 } },
   "infinite": { "lruWindow": 200, "defaultDifficulty": "medium" },
   "timeTrial": { "durationSec": 120 },

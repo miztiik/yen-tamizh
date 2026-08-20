@@ -32,11 +32,29 @@ A word that no band claims - a short word outside the familiar quarters - is sim
 
 ## A day is dealt across the bands, and drawn stratified within one
 
-A Daily's slots are dealt round-robin across the configured bands, so a three-item day is easy, then medium, then hard - a curve rather than three rolls of the same dice. Because the easy band admits only the most familiar quarter, **a day can never be three words nobody knows**. That is a structural guarantee, not a tuning hope.
+A Daily's slots are dealt the configured bands in order, so a three-item day is easy, then medium, then hard - a curve rather than three rolls of the same dice. Because the easy band admits only the most familiar quarter, **a day can never be three words nobody knows**. That is a structural guarantee, not a tuning hope.
 
 Within a band the draw is **stratified**, not a uniform shuffle: each frequency quarter is shuffled on its own and the quarters are then interleaved, so every window of four picks holds one word from each. A uniform shuffle has the right mix on average and still hands out three unfamiliar words on a bad day - and a bad day is the day a player stops. Which quarter leads is seeded by the date, so the draw stays a pure function of the day.
 
 The tolerance this is tuned against, in the player's own terms: one unknown word in a day of three is the GOOD day - it is the one worth telling someone about. Two is annoying. Three of three, twice in a week, ends the habit.
+
+### A mixed day has two dials, and they rise together
+
+Once a day holds three DIFFERENT [Games](games.md) ([modes.md](modes.md)) the band is no longer the only thing that makes slot three harder than slot one: a crossword asking for five interlocking answers is heavier work than a scramble whose every ezhuthu is already on the screen, whatever band either is dealt. So the day is ordered on both dials at once, and the rule is one sentence:
+
+> A day's slots are dealt the difficulty bands in order - easy, then medium, then hard - and the Games that fill them are dealt in ascending `dailyRank`, so the lightest board opens the day on its easiest band and the heaviest closes it on its hardest.
+
+`dailyRank` lives per Game in `config/daily-generator.json` and is a declared design order rather than a derived one, because what makes a board heavy is how many answers it asks for AND whether the player can lose it, and no single column says both:
+
+| Game | `dailyRank` | Why it sits there |
+| --- | --- | --- |
+| anagram | 10 | One word, its every ezhuthu already on screen, and the three-rung ladder - the fastest win in the game, and therefore the day's opener. |
+| missing-letters | 20 | One word with most of it printed, but an ezhuthu to produce from a bank of eight rather than tiles to rearrange. |
+| wordle | 30 | One word from nothing, and the only board a player can spend eight guesses on and still lose. Never an opener. |
+| word-search | 40 | Four to six answers - the first board that asks for more than one thing - though none of them can be lost. |
+| crossword | 50 | Four to six answers that constrain each other, each behind a clue that has to be read. The heaviest board, and the one a day should end on. |
+
+The consequence is deliberate and worth stating: because the rank order is total, a Game's band in the Daily follows the company it keeps. The anagram is globally lightest, so whenever the window deals it, it opens the day on the easy band; the crossword is globally heaviest, so it always closes on the hard one. The crossword's easy and medium masks and the wordle's easy and hard bands therefore do not reach a Daily player under the shipped ring - they are still what [Infinite and Time Trial](modes.md) read, and a different ring changes which bands the three middle Games see. That was accepted rather than overlooked: what a player perceives is that the day opens on a quick win and ends on the board worth coming back for, and no rule that lets every Game visit every band can also promise the heaviest board is never first.
 
 ## What a player is asked to spell: the four serving gates
 

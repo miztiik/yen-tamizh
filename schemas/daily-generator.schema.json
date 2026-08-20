@@ -119,6 +119,12 @@
           "title": "Choicecount",
           "type": "integer"
         },
+        "dailyRank": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Dailyrank",
+          "type": "integer"
+        },
         "difficulties": {
           "items": {
             "$ref": "#/$defs/DifficultyBand"

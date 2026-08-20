@@ -107,8 +107,21 @@ A date runs a theme when BOTH hold:
    machine. `0` turns themed days off.
 2. One registered theme can fill the WHOLE day from its own wordlist, without
    repeating a word the bank has already served, with every difficulty band it
-   needs non-empty. Every Game in `daily.mix` must register that same theme, or
-   the day would be partly off-theme while announcing a theme.
+   needs non-empty and every row it draws actually BUILDABLE by the Game holding
+   it. Every Game in `daily.themedGames` must register that same theme, or the
+   day would be partly off-theme while announcing a theme.
+
+That second condition is why a themed day has its OWN ring. A theme's set is a
+few hundred rows, which is thin enough that a Game can register it and still be
+unable to fill a slot from it - measured over `themed-nature`'s 429 rows, the
+crossword solver builds four boards from the 28 easy rows and none at all from
+the 14 medium ones. If the ordinary ring decided a themed day's shape, widening
+it to five Games would have turned every themed day off in silence. So
+`daily.games` says what an ordinary day holds and `daily.themedGames` says what a
+themed day holds, and the themed ring may be SHORTER than the playlist: an
+ordinary day claims variety of Games and never repeats one, a themed day claims
+its words belong together and repeats a Game rather than reaching for one the
+theme cannot fill.
 
 Otherwise the day is ordinary. **A theme that cannot fill the day is skipped, not
 padded** - a round whose third word is off-theme has broken the only promise the
@@ -163,18 +176,21 @@ Two more consequences:
 | `games[].reveal` | How many leading ezhuthu start already placed. `0` keeps the scramble whole. Read by the anagram; a Game that places nothing ignores it. The wordle pins it at `0` deliberately - the first ezhuthu is the strongest fact on that board and its own ladder refuses to sell it. |
 | `games[].choiceCount` | How many ezhuthu the choice bank holds, for the Games that offer one. Defaults to 8. It is a balance number, not a layout preference: there is no Tamil keyboard, so the bank is how a hidden ezhuthu is entered at all, and its size IS the odds a player who knows nothing still guesses right inside `attempts`. The wordle never reads it: its keyboard is a composer over the closed 247-ezhuthu inventory, which is a fact about Tamil rather than a per-puzzle knob. |
 | `games[].gridRows` / `games[].gridCols` | The board a Game that HIDES words in a grid lays them out on. Both default to 8, and the 8 is a phone measurement: a cell has to hold the widest ezhuthu legibly at 36px, and eight of those with a 4px gutter is 316px against the 328px a 360px screen leaves after its margins. Rows follow columns because a square is the only shape whose diagonals are as long as its sides. Games with no grid never read either. |
-| `games[].difficulties` | The difficulty bands, each bounding TWO axes: an ezhuthu-length range and a `maxStratum` familiarity ceiling. A day's slots are dealt round-robin across them and drawn frequency-stratified within one; a word no band claims is never drawn. See [`../concepts/difficulty-and-scoring.md`](../concepts/difficulty-and-scoring.md). The wordle's three bands are all the same width and separate on familiarity alone, which is the only honest axis left once a Game pins its length. |
+| `games[].difficulties` | The difficulty bands, each bounding TWO axes: an ezhuthu-length range and a `maxStratum` familiarity ceiling. A day deals its slots these bands in order and draws frequency-stratified within one; a word no band claims is never drawn. See [`../concepts/difficulty-and-scoring.md`](../concepts/difficulty-and-scoring.md). The wordle's three bands are all the same width and separate on familiarity alone, which is the only honest axis left once a Game pins its length. |
+| `games[].dailyRank` | Where this Game sits on the DAY's ramp. A day's Games are dealt in ascending rank, so the lightest board opens the day on its easiest band and the heaviest closes it on its hardest. Defaults to 0. It is a declared design order rather than a derived one, because what makes a board heavy is how many answers it asks for AND whether the player can lose it, and no single column says both. |
 | `games[].difficulties[].blanks` | How many ezhuthu the band HIDES, for the Games whose mechanic hides letters. Defaults to 1, and must be less than the band's `minLength` or its shortest word would have nothing showing. |
 | `games[].difficulties[].targets` | How many WORDS the band hides, for the Games whose board holds more than one. Defaults to 1, which is what every other Game deals. On a search grid it is the main difficulty dial, because length is not one there - a longer word covers more cells and is easier to spot. A band asking for more cells than the grid has, or for words longer than its longest line, fails to validate. |
 | `games[].difficulties[].grid` | The crossword's MASK - one string per row, `.` for a square a word runs through and `#` for a blocked one. It is the crossword's difficulty dial for the same reason `targets` is the search board's: what makes a grid harder is how many answers it asks for and how much of each one the crossings give away. It is a band's own field because those two things are exactly what a band may change, and it is validated before anything fills it - rectangular, every run fillable by the band's own words, every length the band admits really occurring, every entry crossing another, and the whole board connected. `gridRows` and `gridCols` are read as the ceiling it must fit inside. Games with no crossings never read it. |
 | `games[].hints` | Each offered hint's `kind`, `cost`, and Tamil `template` over the fields THAT Game may sell. `{category}` and `{meaning}` are common; `{firstEzhuthu}` is the anagram's alone. A missing-letters board has already printed every ezhuthu it is not hiding, and a wordle player can buy the same fact with a guess that answers five other positions at the same time. The word-search sells NOTHING - it prints the words it is asking for, so every rung would name a fact on the screen - and its list is empty. A template naming a field outside its Game's vocabulary fails the bake. |
 
-How many items a day holds and which Games fill them are NOT here - they are
-`daily.playlistLength` and `daily.mix` in
+How long a day is and which Games fill it are NOT here - they are
+`daily.playlistLength`, `daily.games` and `daily.themedGames` in
 [`../../config/app-config.json`](../../config/app-config.json), because the shell
-reads the same numbers. A mix that does not sum to the playlist length is an
-error, not a short day. How many hints a day bakes is `hints.perGame` there too,
-so the switch the shell reads is the switch the generator obeys.
+reads the same numbers. `daily.games` is a RING and a day takes the window that
+starts at its own date, so a ring shorter than the playlist is refused by the
+contract rather than dealing an ordinary day the same Game twice. How many hints
+a day bakes is `hints.perGame` there too, so the switch the shell reads is the
+switch the generator obeys.
 
 ## Why the bank is baked days ahead
 
@@ -212,11 +228,12 @@ Three things, and none of them is the day loop:
 Five Games are registered this way today, and none of them cost an edit to
 `puzzle-file` or to the day loop.
 
-Then it can be named in `daily.mix`. A `gameId` in the mix with no registered
-builder fails loudly rather than baking a silently short day - and note that a
-mix with more than one Game only runs THEMED days when every Game in it
-registers the same theme, so widening the mix without widening the themes turns
-themed rounds off.
+Then it can be named in `daily.games`. A `gameId` in either ring with no
+registered builder fails loudly rather than baking a silently short day. Adding
+it to `daily.themedGames` is a SEPARATE decision and needs its own evidence: a
+themed day only runs when every Game on that ring registers the same theme AND
+can build from it, so a Game added there without a theme it can actually fill
+turns themed rounds off rather than failing anything.
 
 ## In CI
 

@@ -21,12 +21,23 @@ export interface SessionItem {
 export interface Session {
   readonly modeId: string;
   readonly packId: string;
-  /** The primary gameId (single-game sessions for now); part of the day key. */
+  /**
+   * The gameId the save's day key is scoped by. A Daily day holds several
+   * Games, so this is the FIRST item's - which is stable for a given baked day
+   * and is all the key needs it to be. Each item still names its own Game; the
+   * runner mounts per item and never reads this.
+   */
   readonly gameId: string;
   /** Stable id for telemetry + storage scoping. */
   readonly sessionId: string;
   /** The calendar day (YYYY-MM-DD) this session is anchored to. */
   readonly date: string;
+  /**
+   * The copy slug of the theme every word in this session shares, when it has
+   * one. The slug travels rather than the Tamil label, because the label is
+   * copy the shell already reads.
+   */
+  readonly theme?: string;
   readonly items: readonly SessionItem[];
 }
 
