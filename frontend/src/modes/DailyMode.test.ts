@@ -67,6 +67,38 @@ describe("DailyMode over the committed bank", () => {
     expect(outcome.session.packId).toBe(day.items[0]?.packId);
   });
 
+  test("a day's theme reaches the Session, and an ordinary day carries none", () => {
+    // The slug travels, never the Tamil label: the shell already reads copy,
+    // and a baked label could only be corrected by a rebuild.
+    const dates = committedIndex.days.map((day) => day.date);
+    const days = dates.map((date) =>
+      readJson<PuzzleFile>(resolve(bankDir, date.slice(0, 4), `${date}.json`)),
+    );
+    const themed = days.find((day) => day.theme !== undefined);
+    const ordinary = days.find((day) => day.theme === undefined);
+    expect(themed, "the committed bank holds no themed day").toBeDefined();
+    expect(ordinary, "the committed bank holds no ordinary day").toBeDefined();
+
+    expect(toSession(themed!, themed!.date).theme).toBe(themed!.theme);
+    expect(toSession(ordinary!, ordinary!.date).theme).toBeUndefined();
+  });
+
+  test("a day holds several Games and each item keeps its own", () => {
+    const dates = committedIndex.days.map((day) => day.date);
+    const mixed = dates
+      .map((date) => readJson<PuzzleFile>(resolve(bankDir, date.slice(0, 4), `${date}.json`)))
+      .find((day) => new Set(day.items.map((item) => item.gameId)).size > 1);
+    expect(mixed, "the committed bank holds no multi-Game day").toBeDefined();
+
+    const session = toSession(mixed!, mixed!.date);
+    expect(session.items.map((item) => item.gameId)).toEqual(
+      mixed!.items.map((item) => item.gameId),
+    );
+    // The day key is scoped by the FIRST item's Game; every other item still
+    // names its own, which is what the runner mounts on.
+    expect(session.gameId).toBe(mixed!.items[0]?.gameId);
+  });
+
   test("a player whose calendar ran ahead still gets the newest baked day", async () => {
     const outcome = await loadDailySession({ today: "2999-01-01", load: diskLoader() });
     expect(outcome.status).toBe("ready");

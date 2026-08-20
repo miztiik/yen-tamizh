@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-17T20:00",
+  "version": "2026-08-20",
   "changelog": [
+    {
+      "version": "2026-08-20",
+      "change": "Added a Tamil name for each of the five Games, and the themed-round label.",
+      "why": "A Daily day now holds three DIFFERENT Games, and until this the shell named none of them: a player finished a scramble and the next screen was a grid with no word for what it was. Five Games in one session must not read as five apps, so the session rail names the board the player is on - one Tamil word, in the same slot every time, changing as the day moves. The themed label is the other half of the same gap: the generator has dropped the category rung from every themed day since Row 15 on the stated grounds that 'the theme is already announced free in the round header', and no header announced it, so a themed day silently gave up a hint rung and returned nothing for it. The Game names are copy rather than identifiers - the gameId is what travels in the baked day - so they live here, and a slug with no entry renders its own slug rather than a blank."
+    },
     {
       "version": "2026-08-17T20:00",
       "change": "Added the anagram third-state wording.",
@@ -28,6 +33,12 @@
     "mode-daily-title": "இன்றைய புதிர்",
     "mode-daily-title-en": "Daily",
     "mode-daily-note": "இன்றைய சொற்கள்",
+    "game-anagram-title": "சொல் கலைப்பு",
+    "game-missing-letters-title": "விடுபட்ட எழுத்து",
+    "game-wordle-title": "சொல் யூகம்",
+    "game-word-search-title": "சொல் தேடல்",
+    "game-crossword-title": "குறுக்கெழுத்து",
+    "daily-theme-label": "கருப்பொருள்",
     "mode-journey-title": "பயணம்",
     "mode-journey-title-en": "Journey",
     "mode-journey-note": "படிப்படியாக ஒரு பாதை",

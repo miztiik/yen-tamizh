@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-20",
+  "version": "2026-08-20T12:00",
   "changelog": [
+    {
+      "version": "2026-08-20T12:00",
+      "change": "Gave every Game a dailyRank, and registered themed-nature under the missing-letters board as well as the anagram.",
+      "why": "The Daily now holds three different Games a day, so something has to say which of them the player meets first, and dailyRank is that statement. A day deals its slots the difficulty bands in order and fills them with its Games in ascending rank, so both dials rise together and the day opens on the lightest board at its easiest band and closes on the heaviest at its hardest - which is what 'a day opens easy and ends harder' has to mean once a day is no longer three of the same Game. The numbers are a design order rather than a derived one, because what makes a board heavy is how many answers it asks for AND whether the player can lose it, and no single column says both: 10 the anagram, one word with every one of its ezhuthu already on the screen and a three-rung ladder, the fastest win in the game and therefore the day's opener; 20 the missing-letters board, one word with most of it printed but an ezhuthu to produce from a bank of eight rather than tiles to rearrange; 30 the wordle, one word from nothing and the only board a player can spend eight guesses on and still lose, so it is never an opener; 40 the search grid, four to six answers - the first board that asks for more than one thing - though none of them can be lost; 50 the crossword, four to six answers that constrain each other, each behind a clue that has to be read, the heaviest board in the game and the one a day should end on. Registering the theme under the missing-letters board is what lets a themed day hold more than one Game, and it was chosen by measurement rather than by symmetry: over themed-nature's 429 rows the anagram and this board together fill 62 consecutive themed dates without repeating a word, against 58 for the anagram alone, because two Games spread the draw across two sets of difficulty buckets instead of exhausting one. The other three stay unregistered for reasons that are equally measured and are the whole argument for a separate themed ring - the wordle's easy bucket on this theme holds TWO words, the search board draws four to six words a board and repeats an already-served one by the third themed date, and the crossword's solver cannot build a single board from a set this thin (four of 28 easy rows, none of the 14 medium, none of 60 hard tried)."
+    },
     {
       "version": "2026-08-20",
       "change": "Registered the crossword generator: three interlocking masks, one per band, and gave a difficulty band a grid.",
@@ -53,6 +58,7 @@
       "attempts": 3,
       "timeLimitSec": 0,
       "reveal": 0,
+      "dailyRank": 10,
       "difficulties": [
         { "id": "easy", "minLength": 3, "maxLength": 4, "maxStratum": 1 },
         { "id": "medium", "minLength": 4, "maxLength": 5, "maxStratum": 2 },
@@ -122,6 +128,7 @@
       "timeLimitSec": 0,
       "reveal": 0,
       "choiceCount": 8,
+      "dailyRank": 20,
       "difficulties": [
         { "id": "easy", "minLength": 4, "maxLength": 5, "maxStratum": 1, "blanks": 1 },
         { "id": "medium", "minLength": 4, "maxLength": 6, "maxStratum": 2, "blanks": 1 },
@@ -170,7 +177,13 @@
         "trees": "மரம்",
         "types-of-plants": "தாவரம்",
         "vegetables": "காய்கறி"
-      }
+      },
+      "themes": [
+        {
+          "wordlist": "datasets/wordlists/derived/themed-nature.json",
+          "copySlug": "theme-nature"
+        }
+      ]
     },
     {
       "gameId": "wordle",
@@ -179,6 +192,7 @@
       "attempts": 8,
       "timeLimitSec": 0,
       "reveal": 0,
+      "dailyRank": 30,
       "difficulties": [
         { "id": "easy", "minLength": 6, "maxLength": 6, "maxStratum": 1 },
         { "id": "medium", "minLength": 6, "maxLength": 6, "maxStratum": 2 },
@@ -238,6 +252,7 @@
       "reveal": 0,
       "gridRows": 8,
       "gridCols": 8,
+      "dailyRank": 40,
       "difficulties": [
         { "id": "easy", "minLength": 4, "maxLength": 6, "maxStratum": 1, "targets": 4 },
         { "id": "medium", "minLength": 4, "maxLength": 6, "maxStratum": 2, "targets": 5 },
@@ -254,6 +269,7 @@
       "reveal": 0,
       "gridRows": 8,
       "gridCols": 8,
+      "dailyRank": 50,
       "difficulties": [
         {
           "id": "easy",

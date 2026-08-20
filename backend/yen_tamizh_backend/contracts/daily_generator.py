@@ -319,6 +319,14 @@ class GameGeneration(BaseModel):
     # directions equally usable. Games with no grid never read either.
     gridRows: int = Field(default=8, ge=2)
     gridCols: int = Field(default=8, ge=2)
+    # Where this Game sits on the DAY's ramp. A day deals its slots the
+    # difficulty bands in order, easy first, and fills them with its Games in
+    # ascending rank - so the lightest board opens the day on its easiest band
+    # and the heaviest closes it on its hardest. The number is a design order
+    # rather than a derived one: what makes a board heavy is how many answers it
+    # asks for AND whether the player can lose it, and no single column says
+    # both. Ties break on gameId so a day stays a pure function of its date.
+    dailyRank: int = Field(default=0, ge=0)
     difficulties: list[DifficultyBand] = Field(min_length=1)
     hints: list[HintSpec] = Field(default_factory=list)
     # The Tamil tag the ``category`` rung renders for each lexicon category

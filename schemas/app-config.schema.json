@@ -30,26 +30,36 @@
     },
     "DailyConfig": {
       "additionalProperties": false,
-      "description": "The Daily playlist: how many items and the per-Game mix (modes.md).",
+      "description": "The Daily playlist: how long a day is, and which Games fill it (modes.md).\n\n``games`` is a RING rather than a set. A day takes the ``playlistLength``\nwindow that starts at its own date, so every Game reaches a player without\nany day holding all of them - which is what keeps the Daily a burst rather\nthan a sitting. The order of the ring is therefore a real knob: it decides\nwhich Games co-occur, not which comes first (that is ``dailyRank``, in\n``config/daily-generator.json``).\n\n``games`` must be at least as long as the playlist, so an ordinary day can\nnever deal the same Game twice.\n\n``themedGames`` is the ring a THEMED day draws from, and it is deliberately\nallowed to be SHORTER than the playlist. The two rings answer different\nquestions: an ordinary day's claim is variety of GAMES, so it never repeats\none; a themed day's claim is that its WORDS belong together, so it holds\nonly the Games that theme can honestly fill and repeats one rather than\nreaching for a Game whose slots the theme cannot fill without padding.",
       "properties": {
-        "mix": {
-          "patternProperties": {
-            "^[a-z][a-z0-9-]*$": {
-              "type": "integer"
-            }
+        "games": {
+          "items": {
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "type": "string"
           },
-          "title": "Mix",
-          "type": "object"
+          "minItems": 1,
+          "title": "Games",
+          "type": "array"
         },
         "playlistLength": {
           "minimum": 1,
           "title": "Playlistlength",
           "type": "integer"
+        },
+        "themedGames": {
+          "items": {
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Themedgames",
+          "type": "array"
         }
       },
       "required": [
         "playlistLength",
-        "mix"
+        "games",
+        "themedGames"
       ],
       "title": "DailyConfig",
       "type": "object"

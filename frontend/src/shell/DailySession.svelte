@@ -38,9 +38,19 @@
   let progress = $state<{ completed: number; total: number } | null>(null);
   let summary = $state<{ result: SessionResult; streak: number } | null>(null);
   let stageEl = $state<HTMLElement | undefined>();
-  let session: Session | null = null;
+  // Reactive because the rail reads it: the Game's name and the day's theme are
+  // drawn from the loaded session, not from the outcome.
+  let session = $state<Session | null>(null);
   let runner: SessionRunner | null = null;
   let started = false;
+
+  // A day holds three DIFFERENT Games, so the rail names the board the player
+  // is on - one word, in the same slot every time. `progress.completed` is the
+  // index of the item being played, and it runs one past the last item at the
+  // end of the day, which is why an absent name renders nothing at all.
+  const currentGame = $derived(
+    progress === null ? undefined : session?.items[progress.completed]?.gameId,
+  );
 
   void (async () => {
     const loaded = await loadDailySession({ today: todayIso() });
@@ -124,6 +134,19 @@
     onExit={leave}
   >
     {#snippet rail()}
+      {#if currentGame !== undefined}
+        <p
+          class="font-tamil text-sm font-semibold text-text-secondary"
+          data-testid="daily-game-name"
+        >
+          {copyText(`game-${currentGame}-title`)}
+        </p>
+      {/if}
+      {#if session?.theme !== undefined}
+        <p class="font-tamil text-sm text-text-tertiary" data-testid="daily-theme">
+          {copyText("daily-theme-label")}: {copyText(session.theme)}
+        </p>
+      {/if}
       {#if outcome?.status === "ready" && !outcome.isToday}
         <p class="font-tamil text-sm text-text-tertiary" data-testid="daily-older-day">
           {copyText("daily-older-day")}: {outcome.date}

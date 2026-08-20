@@ -35,16 +35,30 @@ const day = JSON.parse(
   readFileSync(resolve(bankDir, PLAY_DAY.slice(0, 4), `${PLAY_DAY}.json`), "utf-8"),
 ) as { date: string; items: BankItem[] };
 
-// Row 14's day: the first one baked from the three-rung ladder.
+// Row 14's ladder, on an ANAGRAM-only day. Every day the Daily bakes now holds
+// three different Games, so the one board whose three-rung ladder this covers
+// appears at most once a day - and this test plays a whole day through the
+// anagram's own controls. A published day from before the mix is therefore the
+// right fixture: it is three anagrams, it is frozen (the re-bake guard leaves
+// published days alone), and it was baked from the rebuilt ladder.
 //
 // The THIRD STATE - "that is a word, but not today's" - is deliberately NOT
 // tested here. Only 1.6% of served words have a partner at all, so whether any
 // committed day offers one is a draw that every re-bake re-rolls; it is proven
 // against the harness fixture instead (tests/anagram.spec.ts).
-const LADDER_DAY = "2026-08-27";
+const LADDER_DAY = "2026-08-19";
 const ladderDay = JSON.parse(
   readFileSync(resolve(bankDir, LADDER_DAY.slice(0, 4), `${LADDER_DAY}.json`), "utf-8"),
 ) as { date: string; items: BankItem[] };
+
+// A day from the two rings: three DIFFERENT Games, and one of the themed days
+// the wider ring had to be built not to kill.
+const MIXED_DAY = "2026-08-21";
+const THEMED_DAY = "2026-08-23";
+const readDay = (date: string) =>
+  JSON.parse(
+    readFileSync(resolve(bankDir, date.slice(0, 4), `${date}.json`), "utf-8"),
+  ) as { date: string; theme?: string; items: { gameId: string }[] };
 
 /** Click the tray tile carrying exactly this ezhuthu (never a prefix of one). */
 async function placeEzhuthu(page: Page, ezhuthu: string): Promise<void> {
@@ -161,6 +175,55 @@ test("first load to playable: Home -> Daily -> a won day -> a streak", async ({ 
   await page.getByTestId("summary-home").click();
   await expect(page.getByTestId("app-shell")).toBeVisible();
   await expect(page.getByTestId("home-streak")).toContainText("1");
+
+  expect(watched.errors, `console errors: ${watched.errors.join(" | ")}`).toEqual([]);
+  expect(watched.failures, `failed responses: ${watched.failures.join(" | ")}`).toEqual([]);
+});
+
+// The mix, end to end: a day is three different Games and the shell says which
+// one the player is looking at. Without that name, item 2 is simply a different
+// board with no explanation - five Games in one session reading as five apps.
+test("a mixed day is three different Games, and the rail names the one on screen", async ({
+  page,
+}) => {
+  const watched = watchConsole(page);
+  const mixed = readDay(MIXED_DAY);
+  const games = mixed.items.map((item) => item.gameId);
+  expect(new Set(games).size, `${MIXED_DAY} repeats a Game`).toBe(games.length);
+  expect(mixed.theme).toBeUndefined();
+
+  await page.clock.setFixedTime(new Date(`${MIXED_DAY}T12:00:00Z`));
+  await page.goto("/?mode=daily", { waitUntil: "load" });
+
+  await expect(page.getByTestId(`${games[0]}-game`)).toBeVisible();
+  const name = page.getByTestId("daily-game-name");
+  await expect(name).toBeVisible();
+  await expect(name).not.toBeEmpty();
+  // The name is copy, so it must never render its own slug back at the player.
+  await expect(name).not.toHaveText(new RegExp(`^game-${games[0]}-title$`));
+  // An ordinary day announces no theme.
+  await expect(page.getByTestId("daily-theme")).toHaveCount(0);
+
+  expect(watched.errors, `console errors: ${watched.errors.join(" | ")}`).toEqual([]);
+  expect(watched.failures, `failed responses: ${watched.failures.join(" | ")}`).toEqual([]);
+});
+
+// The round header the generator has been paying for since Row 15: a themed day
+// drops the category rung from every ladder it bakes BECAUSE the theme is
+// announced free here, so an unannounced themed day is a rung given up for
+// nothing.
+test("a themed day announces its theme in the session rail", async ({ page }) => {
+  const watched = watchConsole(page);
+  const themed = readDay(THEMED_DAY);
+  expect(themed.theme, `${THEMED_DAY} is not a themed day`).toBeTruthy();
+
+  await page.clock.setFixedTime(new Date(`${THEMED_DAY}T12:00:00Z`));
+  await page.goto("/?mode=daily", { waitUntil: "load" });
+  await expect(page.getByTestId(`${themed.items[0]!.gameId}-game`)).toBeVisible();
+
+  const banner = page.getByTestId("daily-theme");
+  await expect(banner).toBeVisible();
+  await expect(banner).not.toContainText(themed.theme as string);
 
   expect(watched.errors, `console errors: ${watched.errors.join(" | ")}`).toEqual([]);
   expect(watched.failures, `failed responses: ${watched.failures.join(" | ")}`).toEqual([]);

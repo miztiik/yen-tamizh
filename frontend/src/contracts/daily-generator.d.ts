@@ -21,6 +21,7 @@ export type Daysahead = number
 export type Games = [GameGeneration, ...(GameGeneration)[]]
 export type Attempts = number
 export type Choicecount = number
+export type Dailyrank = number
 /**
  * @minItems 1
  */
@@ -78,6 +79,7 @@ export interface GameGeneration {
 attempts: Attempts
 categoryLabels?: Categorylabels
 choiceCount?: Choicecount
+dailyRank?: Dailyrank
 difficulties: Difficulties
 gameId: Gameid
 gridCols?: Gridcols

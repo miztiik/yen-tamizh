@@ -1,6 +1,6 @@
 # Config
 
-**Last Updated**: 2026-08-13
+**Last Updated**: 2026-08-20
 
 Where tunable behaviour and player-facing copy live, and the rule that separates a knob from an identifier. Config-driven with sane defaults is a project principle ([principles.md](principles.md), Holy Law #6): a fresh clone runs on the defaults, and no game-balance number is hardcoded in code.
 
@@ -13,7 +13,7 @@ Where tunable behaviour and player-facing copy live, and the rule that separates
 The main config surface is `app-config`. It carries, at least:
 
 - **Enabled Modes and Games** - which [`modeId`](modes.md) and [`gameId`](games.md) values are live vs "coming soon".
-- **Daily playlist** - length N and the Game mix ([modes.md](modes.md)).
+- **Daily playlist** - how long a day is, the ring of Games an ordinary day draws its window from, and the ring a themed day draws from ([modes.md](modes.md)).
 - **Hints** - per-Game visibility, count, and cost ([core-loop.md](core-loop.md), [difficulty-and-scoring.md](difficulty-and-scoring.md)).
 - **Infinite** - the anti-repeat LRU window size.
 - **Time Trial** - the run duration.

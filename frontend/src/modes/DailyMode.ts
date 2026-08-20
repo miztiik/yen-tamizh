@@ -81,12 +81,15 @@ export function toSession(puzzleFile: PuzzleFile, date: string): Session {
   const first = puzzleFile.items[0];
   return {
     modeId: DAILY_MODE_ID,
-    // A day is single-pack and (today) single-Game; the first item names both,
-    // and they become part of the save's day key.
+    // A day is single-pack but holds several Games; the first item names the
+    // pack and the gameId the save's day key is scoped by.
     packId: first?.packId ?? "ta-core",
     gameId: first?.gameId ?? "anagram",
     sessionId: `${DAILY_MODE_ID}-${date}`,
     date,
+    // A day with no theme omits the key rather than carrying an empty one, so a
+    // reader can ask `theme !== undefined` and never render a hole.
+    ...(puzzleFile.theme == null ? {} : { theme: puzzleFile.theme }),
     items: puzzleFile.items.map((item) => ({
       gameId: item.gameId,
       payload: item.payload,

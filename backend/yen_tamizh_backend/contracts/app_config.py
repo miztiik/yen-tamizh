@@ -9,19 +9,52 @@ lives in ``config/copy.json`` (the identifier-and-copy split, guardrails).
 
 from __future__ import annotations
 
-from pydantic import BaseModel, ConfigDict, Field
+from typing import Self
+
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from yen_tamizh_backend.contracts.base import SchemaModel
 from yen_tamizh_backend.contracts.common import DifficultyId, GameId, ModeId
 
 
 class DailyConfig(BaseModel):
-    """The Daily playlist: how many items and the per-Game mix (modes.md)."""
+    """The Daily playlist: how long a day is, and which Games fill it (modes.md).
+
+    ``games`` is a RING rather than a set. A day takes the ``playlistLength``
+    window that starts at its own date, so every Game reaches a player without
+    any day holding all of them - which is what keeps the Daily a burst rather
+    than a sitting. The order of the ring is therefore a real knob: it decides
+    which Games co-occur, not which comes first (that is ``dailyRank``, in
+    ``config/daily-generator.json``).
+
+    ``games`` must be at least as long as the playlist, so an ordinary day can
+    never deal the same Game twice.
+
+    ``themedGames`` is the ring a THEMED day draws from, and it is deliberately
+    allowed to be SHORTER than the playlist. The two rings answer different
+    questions: an ordinary day's claim is variety of GAMES, so it never repeats
+    one; a themed day's claim is that its WORDS belong together, so it holds
+    only the Games that theme can honestly fill and repeats one rather than
+    reaching for a Game whose slots the theme cannot fill without padding.
+    """
 
     model_config = ConfigDict(extra="forbid")
 
     playlistLength: int = Field(ge=1)
-    mix: dict[GameId, int]
+    games: list[GameId] = Field(min_length=1)
+    themedGames: list[GameId] = Field(min_length=1)
+
+    @model_validator(mode="after")
+    def _the_rings_are_usable(self) -> Self:
+        for name, ring in (("games", self.games), ("themedGames", self.themedGames)):
+            if len(set(ring)) != len(ring):
+                raise ValueError(f"daily.{name} has a repeated Game: {ring}")
+        if len(self.games) < self.playlistLength:
+            raise ValueError(
+                f"daily.games has {len(self.games)} Games for a playlist of "
+                f"{self.playlistLength}: an ordinary day would deal one twice"
+            )
+        return self
 
 
 class HintsConfig(BaseModel):
