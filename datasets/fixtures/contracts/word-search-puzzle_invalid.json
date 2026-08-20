@@ -1,0 +1,89 @@
+{
+  "version": "2026-08-19",
+  "changelog": [
+    {
+      "version": "2026-08-19",
+      "change": "Malformed word-search-puzzle fixture.",
+      "why": "Row 20 contract Oracle - one grid cell is empty. A cell must hold exactly one ezhuthu, and an empty one is what a generator that walked code points instead of clusters leaves behind when a vowel sign is stripped off its base; rejected by both sides."
+    }
+  ],
+  "grid": [
+    [
+      "",
+      "\u0ba3\u0bcd",
+      "\u0b85",
+      "\u0ba8\u0bcd",
+      "\u0bae\u0bcd",
+      "\u0ba8\u0bbf"
+    ],
+    [
+      "\u0b85",
+      "\u0b83",
+      "\u0b95",
+      "\u0bae\u0bcd",
+      "\u0b9f\u0bc1",
+      "\u0b85"
+    ],
+    [
+      "\u0b85",
+      "\u0bae\u0bcd",
+      "\u0ba8\u0bbf",
+      "\u0b95",
+      "\u0ba3\u0bcd",
+      "\u0b9f\u0bc1"
+    ],
+    [
+      "\u0b85",
+      "\u0ba8\u0bcd",
+      "\u0ba4",
+      "\u0bae\u0bcd",
+      "\u0bae\u0bcd",
+      "\u0ba4"
+    ],
+    [
+      "\u0ba8\u0bbf",
+      "\u0b95",
+      "\u0ba4",
+      "\u0b83",
+      "\u0b83",
+      "\u0ba8\u0bcd"
+    ],
+    [
+      "\u0b95",
+      "\u0b95",
+      "\u0b85",
+      "\u0bae\u0bcd",
+      "\u0b9f\u0bc1",
+      "\u0ba3\u0bcd"
+    ]
+  ],
+  "targets": [
+    {
+      "word": "\u0b85\u0b83\u0b95\u0bae\u0bcd",
+      "start": {
+        "row": 1,
+        "col": 0
+      },
+      "direction": "right",
+      "meaning": "\u0ba4\u0bbe\u0ba9\u0bbf\u0baf\u0bae\u0bcd"
+    },
+    {
+      "word": "\u0b85\u0ba8\u0bcd\u0ba4\u0bae\u0bcd",
+      "start": {
+        "row": 2,
+        "col": 0
+      },
+      "direction": "down-right",
+      "meaning": "\u0b85\u0b9e\u0bcd\u0b9e\u0bbe\u0ba9\u0bae\u0bcd"
+    },
+    {
+      "word": "\u0ba8\u0bbf\u0b95\u0ba3\u0bcd\u0b9f\u0bc1",
+      "start": {
+        "row": 2,
+        "col": 2
+      },
+      "direction": "right",
+      "meaning": "\u0b85\u0b95\u0bb0\u0bbe\u0ba4\u0bbf"
+    }
+  ]
+}

@@ -63,6 +63,10 @@
       Harness = (await import("./shell/WordleHarness.svelte")).default;
       return;
     }
+    if (harness === "word-search") {
+      Harness = (await import("./shell/WordSearchHarness.svelte")).default;
+      return;
+    }
     Harness = null;
     if (params.get("mode") === "daily") {
       await openDaily();

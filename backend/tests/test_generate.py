@@ -47,14 +47,23 @@ from yen_tamizh_backend.contracts.anagram_puzzle import AnagramPuzzle
 from yen_tamizh_backend.contracts.app_config import AppConfig
 from yen_tamizh_backend.contracts.bank_index import BankIndex
 from yen_tamizh_backend.contracts.copy import Copy
-from yen_tamizh_backend.contracts.daily_generator import DailyGenerator, GameGeneration
+from yen_tamizh_backend.contracts.daily_generator import (
+    DailyGenerator,
+    GameGeneration,
+    HintSpec,
+)
 from yen_tamizh_backend.contracts.game_wordlist import GameWord, GameWordlist
 from yen_tamizh_backend.contracts.lexicon import PartOfSpeech
 from yen_tamizh_backend.contracts.missing_letters_puzzle import MissingLettersPuzzle
 from yen_tamizh_backend.contracts.puzzle_file import PuzzleFile
+from yen_tamizh_backend.contracts.word_search_puzzle import (
+    GridPoint,
+    WordSearchPuzzle,
+    WordSearchTarget,
+)
 from yen_tamizh_backend.contracts.wordle_puzzle import WordlePuzzle
 from yen_tamizh_backend.ezhuthu import EZHUTHU_INVENTORY, segment
-from yen_tamizh_backend.generate import anagram, daily, missing_letters, wordle
+from yen_tamizh_backend.generate import anagram, daily, missing_letters, word_search, wordle
 from yen_tamizh_backend.generate import hints as hint_ladder
 from yen_tamizh_backend.generate.seed import hash_seed, seeded_index, seeded_shuffle
 from yen_tamizh_backend.scripts.generate_today import generate, load_wordlists
@@ -1613,8 +1622,13 @@ def test_a_day_can_be_dealt_from_more_than_one_game(
         update={
             "daily": app_config.daily.model_copy(
                 update={
-                    "playlistLength": 3,
-                    "mix": {"anagram": 1, "missing-letters": 1, "wordle": 1},
+                    "playlistLength": 4,
+                    "mix": {
+                        "anagram": 1,
+                        "missing-letters": 1,
+                        "wordle": 1,
+                        "word-search": 1,
+                    },
                 }
             )
         }
@@ -1628,7 +1642,12 @@ def test_a_day_can_be_dealt_from_more_than_one_game(
     assert len(run.written) == 2
     for day in run.written:
         games = [item.gameId for item in day.puzzle_file.items]
-        assert sorted(games) == ["anagram", "missing-letters", "wordle"]
+        assert sorted(games) == [
+            "anagram",
+            "missing-letters",
+            "word-search",
+            "wordle",
+        ]
         item = next(i for i in day.puzzle_file.items if i.gameId == "missing-letters")
         # The payload validates against ITS OWN schema, not the anagram's.
         MissingLettersPuzzle.model_validate(
@@ -1639,10 +1658,21 @@ def test_a_day_can_be_dealt_from_more_than_one_game(
         WordlePuzzle.model_validate(
             {"version": "2026-08-19", "changelog": [_STAMP], **guessed.payload}
         )
-        # Three Games, three payload shapes, one unchanged puzzle-file.
+        traced = next(i for i in day.puzzle_file.items if i.gameId == "word-search")
+        WordSearchPuzzle.model_validate(
+            {"version": "2026-08-19", "changelog": [_STAMP], **traced.payload}
+        )
+        # Four Games, four payload shapes, one unchanged puzzle-file.
         assert "tiles" not in guessed.payload
         assert "blanks" not in guessed.payload
         assert "choices" not in guessed.payload
+        assert "word" not in traced.payload
+        assert "attempts" not in traced.payload
+        # A day's own record of what it served has to see every word, or the
+        # anti-repeat ledger deals a search board's words again next week.
+        assert set(day.words) >= {
+            target["word"] for target in traced.payload["targets"]
+        }
 
 
 def test_an_unregistered_game_fails_loudly(generator: DailyGenerator) -> None:
@@ -1825,4 +1855,433 @@ def test_the_attempt_budget_is_the_one_that_was_measured(
     assert wd_spec.attempts == 8
     assert wd_spec.reveal == 0
     assert app_config.hints.perGame[wordle.GAME_ID] == len(wd_spec.hints) == 2
+
+
+# --------------------------------------------------------------------------
+# 10. word-search (Row 20)
+#
+# The fourth Game, and the first whose board holds more than one answer. Its
+# central correctness property is one sentence long - every grid cell is exactly
+# one ezhuthu - and everything below either checks that or checks the thing it
+# makes possible: that each word the board asks for can really be traced out of
+# the grid the player is looking at.
+#
+# The placement Oracle deliberately walks the grid with its OWN step table
+# rather than calling the helper the generator and the contract share. An Oracle
+# that reuses the implementation it is checking proves the implementation is
+# self-consistent, which is not the claim.
+# --------------------------------------------------------------------------
+
+# The eight directions, written out here so the Oracle owes the implementation
+# nothing. If these ever disagree with contracts.word_search_puzzle.STEPS, one of
+# the two is wrong and the tests below say which.
+_ORACLE_STEPS: dict[str, tuple[int, int]] = {
+    "right": (0, 1),
+    "down-right": (1, 1),
+    "down": (1, 0),
+    "down-left": (1, -1),
+    "left": (0, -1),
+    "up-left": (-1, -1),
+    "up": (-1, 0),
+    "up-right": (-1, 1),
+}
+
+
+def _trace(grid: list[list[str]], row: int, col: int, direction: str, length: int) -> str:
+    """Read ``length`` cells out of the grid, or "" when the line leaves it."""
+    step_row, step_col = _ORACLE_STEPS[direction]
+    units: list[str] = []
+    for step in range(length):
+        y, x = row + step_row * step, col + step_col * step
+        if not (0 <= y < len(grid) and 0 <= x < len(grid[y])):
+            return ""
+        units.append(grid[y][x])
+    return "".join(units)
+
+
+@pytest.fixture(scope="module")
+def ws_spec(generator: DailyGenerator) -> GameGeneration:
+    return next(spec for spec in generator.games if spec.gameId == word_search.GAME_ID)
+
+
+@pytest.fixture(scope="module")
+def ws_served(
+    ws_spec: GameGeneration, wordlists: dict[str, GameWordlist]
+) -> word_search.ServedIndex:
+    return word_search.index_served(wordlists[ws_spec.wordlist], ws_spec)
+
+
+def _boards(
+    spec: GameGeneration, served: word_search.ServedIndex, count: int
+) -> list[tuple[str, WordSearchPuzzle]]:
+    """Generate ``count`` boards per band from real rows and real dates."""
+    pools = {
+        band.id: word_search.band_candidates(served, band) for band in spec.difficulties
+    }
+    out: list[tuple[str, WordSearchPuzzle]] = []
+    for offset in range(count):
+        day = date.fromisoformat(ORDINARY_DAY) + timedelta(days=offset)
+        for band in spec.difficulties:
+            rows = pools[band.id]
+            anchor = rows[(offset * 37 + len(band.id)) % len(rows)]
+            seed = f"{day.isoformat()}|{anchor.word}"
+            out.append((seed, word_search.build_puzzle(anchor, spec, seed, 0, band, served)))
+    return out
+
+
+def test_every_grid_cell_is_exactly_one_ezhuthu(
+    ws_spec: GameGeneration, ws_served: word_search.ServedIndex
+) -> None:
+    """The row's central property, over every cell of many generated boards.
+
+    Two claims and they are not the same one. ``segment(cell) == [cell]`` says
+    the cell holds ONE cluster, so no cell carries half of one and no cell
+    carries two crammed together. Membership in the 247 says that cluster is a
+    LETTER: a lone vowel sign - exactly what a generator walking code points
+    leaves behind when it splits a cluster across two cells - survives
+    segmentation as a single unit and would pass the first check while being
+    unreadable and untraceable in a grid.
+    """
+    letters = set(EZHUTHU_INVENTORY)
+    assert len(letters) == 247
+    cells = 0
+    for _, puzzle in _boards(ws_spec, ws_served, 10):
+        for line in puzzle.grid:
+            for cell in line:
+                assert segment(cell) == [cell], f"{cell!r} is not one ezhuthu"
+                assert cell in letters, f"{cell!r} is not a letter of Tamil"
+                cells += 1
+    assert cells == 10 * len(ws_spec.difficulties) * ws_spec.gridRows * ws_spec.gridCols
+
+
+def test_every_target_is_recoverable_by_tracing_the_grid(
+    ws_spec: GameGeneration, ws_served: word_search.ServedIndex
+) -> None:
+    """ORACLE (a) - the placement claim, read back out of the grid.
+
+    For every target on every generated board, walking ``len(segment(word))``
+    cells from its recorded start in its recorded direction must spell that word
+    exactly. The walk uses this module's own step table and reads the grid the
+    player is given, so nothing the generator believes about where it put a word
+    is taken on trust - a board that recorded a start it did not use, or ran a
+    word off the edge, or crossed two words onto a cell holding a third letter,
+    fails here.
+    """
+    checked = 0
+    for seed, puzzle in _boards(ws_spec, ws_served, 20):
+        for target in puzzle.targets:
+            units = segment(target.word)
+            traced = _trace(
+                puzzle.grid,
+                target.start.row,
+                target.start.col,
+                target.direction,
+                len(units),
+            )
+            assert traced == target.word, (
+                f"{seed}: {target.word!r} is not at ({target.start.row}, "
+                f"{target.start.col}) going {target.direction} - the grid spells "
+                f"{traced!r}"
+            )
+            checked += 1
+    assert checked == 20 * (4 + 5 + 6), "the bands did not deal the words they declare"
+
+
+def test_every_direction_including_the_reversed_and_diagonal_ones_gets_used(
+    ws_spec: GameGeneration, ws_served: word_search.ServedIndex
+) -> None:
+    """A generator that only ever ran left to right would pass every other test."""
+    used = {target.direction for _, p in _boards(ws_spec, ws_served, 10) for target in p.targets}
+    assert used == set(_ORACLE_STEPS), f"unused directions: {sorted(set(_ORACLE_STEPS) - used)}"
+
+
+def test_a_board_is_a_pure_function_of_its_seed(
+    ws_spec: GameGeneration, ws_served: word_search.ServedIndex
+) -> None:
+    """Two runs of one date bake the same bytes - the Row 13 Oracle, again.
+
+    Every choice this builder makes is seeded: which companions join the anchor,
+    which of the 512 starts each word takes, and which letter falls in which
+    empty cell. ``random`` appears nowhere, so a bank baked on 3.14 and re-baked
+    by CI on 3.12 cannot differ.
+    """
+    band = ws_spec.difficulties[-1]
+    rows = word_search.band_candidates(ws_served, band)
+    for anchor in rows[:8]:
+        seed = f"{ORDINARY_DAY}|{anchor.word}"
+        first = word_search.build_puzzle(anchor, ws_spec, seed, 0, band, ws_served)
+        again = word_search.build_puzzle(anchor, ws_spec, seed, 0, band, ws_served)
+        assert first.model_dump(mode="json") == again.model_dump(mode="json")
+        # A different date must move the board, or the seed is being ignored.
+        other = word_search.build_puzzle(
+            anchor, ws_spec, f"{FIRST_DAY}|{anchor.word}", 0, band, ws_served
+        )
+        assert other.grid != first.grid
+
+
+def test_the_filler_never_leaks_a_letter_no_target_uses(
+    ws_spec: GameGeneration, ws_served: word_search.ServedIndex
+) -> None:
+    """The filler ruling, asserted rather than described.
+
+    Empty cells are dealt from the multiset of the PLACED words' own ezhuthu, so
+    every cell in the grid holds a letter some target really uses. The rejected
+    alternative - sampling the whole served set's letter distribution - leaves
+    30.7 percent of all cells holding a letter that appears in no target, and a
+    player can strike those out on sight without searching for anything.
+    """
+    for seed, puzzle in _boards(ws_spec, ws_served, 10):
+        wanted = {unit for target in puzzle.targets for unit in segment(target.word)}
+        present = {cell for line in puzzle.grid for cell in line}
+        assert present <= wanted, f"{seed}: {sorted(present - wanted)} appear in no target"
+
+
+def test_an_unintended_word_is_recorded_and_traceable_never_a_target(
+    ws_spec: GameGeneration, ws_served: word_search.ServedIndex
+) -> None:
+    """The accidental-word ruling: RECORD, do not require (schemas.md).
+
+    Filling the cells the targets do not use makes unintended words, and the
+    measurement is that half of all boards hold at least one - 50.4 percent over
+    720 generated boards, a mean of 0.70 and a maximum of 5, rising with the
+    word count from 41.2 percent on easy to 58.8 on hard. That is not a defect
+    to design out: a player who traces a real Tamil word and is told "wrong"
+    concludes the game cheated, while "that is a word, but not on today's list"
+    teaches them one. What IS required is that every recorded word can actually
+    be traced and is not already on the list.
+    """
+    boards = _boards(ws_spec, ws_served, 12)
+    with_extra = 0
+    for seed, puzzle in boards:
+        asked = {target.word for target in puzzle.targets}
+        for other in puzzle.alsoValid or ():
+            assert other not in asked, f"{seed}: {other!r} is already on the list"
+            assert other in ws_served.words, f"{seed}: {other!r} is not a served word"
+            units = segment(other)
+            places = [
+                (row, col, direction)
+                for row in range(len(puzzle.grid))
+                for col in range(len(puzzle.grid[row]))
+                for direction in _ORACLE_STEPS
+                if _trace(puzzle.grid, row, col, direction, len(units)) == other
+            ]
+            assert places, f"{seed}: {other!r} cannot be traced anywhere"
+        with_extra += 1 if puzzle.alsoValid else 0
+    # The rate is a measured property of the design, not an accident: if it ever
+    # went to zero the field would be dead weight, and if it went to every board
+    # the list would stop being what the puzzle is about.
+    assert 0 < with_extra < len(boards)
+
+
+def test_the_payload_carries_nothing_it_can_derive_or_cannot_read(
+    ws_spec: GameGeneration, ws_served: word_search.ServedIndex
+) -> None:
+    """Four fields refused, each for a reason Rows 18 and 19 already settled."""
+    _, puzzle = _boards(ws_spec, ws_served, 1)[0]
+    payload = puzzle.model_dump(mode="json", exclude_none=True)
+    for absent in ("rows", "cols", "ezhuthu", "attempts", "hints", "translationEn", "word"):
+        assert absent not in payload, f"{absent} has no reader and must not travel"
+    assert len(puzzle.grid) == ws_spec.gridRows
+    assert {len(line) for line in puzzle.grid} == {ws_spec.gridCols}
+
+
+def test_the_word_search_ladder_refuses_every_rung(
+    ws_spec: GameGeneration, ws_served: word_search.ServedIndex
+) -> None:
+    """An empty vocabulary, and it is a ruling rather than an oversight.
+
+    This board PRINTS the words it is asking for, so category, first-ezhuthu and
+    meaning are all facts already on the screen. The one thing a player lacks is
+    a location, and a baked location rung has to name one particular word - so
+    whether it is worth anything depends on whether that word is still unfound,
+    and a rung that can be worthless by timing charges for nothing. Same test
+    that deleted ``length`` and refused ``firstEzhuthu`` twice, applied to the
+    whole ladder.
+    """
+    assert word_search.HINT_FIELDS == frozenset()
+    assert ws_spec.hints == []
+    row = ws_served.rows[0]
+    broken = ws_spec.model_copy(
+        update={"hints": [HintSpec(kind="meaning", template="{meaning}", cost=3)]}
+    )
+    with pytest.raises(KeyError, match="meaning"):
+        word_search.build_hints(row, broken, 1)
+
+
+def test_the_committed_word_search_set_and_bands_fit_the_board(
+    ws_spec: GameGeneration, wordlists: dict[str, GameWordlist]
+) -> None:
+    """One width the phone allows, three bands that fill, and a floor that fits.
+
+    Eight columns is a phone measurement: a 36px cell with a 4px gutter is 316px
+    across eight, against the 328px a 360px screen leaves after its margins, and
+    a ninth column is 356px. Placement was measured against that board - four,
+    five, six and seven words placed on every one of 200 draws, eight words on
+    88.5 percent - so six targets on the hardest band leaves a real margin.
+    """
+    rows = wordlists[ws_spec.wordlist].words
+    assert ws_spec.gridRows == ws_spec.gridCols == 8
+    assert min(len(row.ezhuthu) for row in rows) >= 4
+    assert max(len(row.ezhuthu) for row in rows) <= min(ws_spec.gridRows, ws_spec.gridCols)
+    buckets = daily.bucket_candidates(rows, ws_spec)
+    for band in ws_spec.difficulties:
+        assert buckets[band.id], f"the {band.id} bucket is empty"
+        # Length is NOT the difficulty axis here: a longer word covers more
+        # cells and is easier to spot, so all three bands span the same range
+        # and separate on how many words are hidden and how familiar they are.
+        assert (band.minLength, band.maxLength) == (4, 6)
+    assert [band.targets for band in ws_spec.difficulties] == [4, 5, 6]
+    assert [band.maxStratum for band in ws_spec.difficulties] == [1, 2, 4]
+    # This Game sells nothing, so it needs no allowance - and the day loop reads
+    # a missing entry as zero rather than raising.
+    assert word_search.GAME_ID not in AppConfig.model_validate_json(
+        _APP_CONFIG.read_text(encoding="utf-8")
+    ).hints.perGame
+
+
+def test_a_ragged_grid_is_refused() -> None:
+    """A short row has no column for a vertical or diagonal trace to run down."""
+    with pytest.raises(ValidationError, match="ragged grid"):
+        WordSearchPuzzle(
+            version="2026-08-19",
+            changelog=[_STAMP],
+            grid=[["\u0b95", "\u0bb5"], ["\u0b95"]],
+            targets=[
+                WordSearchTarget(
+                    word="\u0b95\u0bb5",
+                    start=GridPoint(row=0, col=0),
+                    direction="right",
+                )
+            ],
+        )
+
+
+def test_a_cell_that_is_not_one_ezhuthu_is_refused() -> None:
+    """The code-point bug, caught at the boundary rather than by a player.
+
+    A lone vowel sign is what splitting a cluster across two cells leaves in the
+    second of them. It survives segmentation as a single unit, so only the
+    inventory check rejects it - which is exactly why the contract makes both
+    claims instead of one.
+    """
+    with pytest.raises(ValidationError, match="not among the 247"):
+        WordSearchPuzzle(
+            version="2026-08-19",
+            changelog=[_STAMP],
+            grid=[["\u0b95", "\u0bbe"], ["\u0bb5", "\u0b95"]],
+            targets=[
+                WordSearchTarget(
+                    word="\u0b95\u0bb5",
+                    start=GridPoint(row=0, col=0),
+                    direction="down",
+                )
+            ],
+        )
+    with pytest.raises(ValidationError, match="not single ezhuthu"):
+        WordSearchPuzzle(
+            version="2026-08-19",
+            changelog=[_STAMP],
+            grid=[["\u0b95\u0bbe\u0bb5", "\u0bb5"], ["\u0bb5", "\u0b95"]],
+            targets=[
+                WordSearchTarget(
+                    word="\u0bb5\u0b95",
+                    start=GridPoint(row=0, col=1),
+                    direction="down",
+                )
+            ],
+        )
+
+
+def test_a_target_that_is_not_where_it_says_is_refused() -> None:
+    """The contract states the placement Oracle itself, so a bug cannot ship.
+
+    The grid deliberately repeats its first column, so reading DOWN from the
+    corner spells something else rather than the same word again - a symmetric
+    grid would accept the wrong placement and prove nothing.
+    """
+    grid = [["\u0b95", "\u0bb5"], ["\u0b95", "\u0bb5"]]
+    with pytest.raises(ValidationError, match="spells"):
+        WordSearchPuzzle(
+            version="2026-08-19",
+            changelog=[_STAMP],
+            grid=grid,
+            targets=[
+                WordSearchTarget(
+                    word="\u0b95\u0bb5",
+                    start=GridPoint(row=0, col=0),
+                    direction="down",
+                )
+            ],
+        )
+    with pytest.raises(ValidationError, match="runs off the grid"):
+        WordSearchPuzzle(
+            version="2026-08-19",
+            changelog=[_STAMP],
+            grid=grid,
+            targets=[
+                WordSearchTarget(
+                    word="\u0b95\u0bb5",
+                    start=GridPoint(row=1, col=1),
+                    direction="right",
+                )
+            ],
+        )
+
+
+def test_an_alternative_that_is_not_in_the_grid_is_refused() -> None:
+    """Row 18's lesson: an answer the input method cannot reach can never fire."""
+    with pytest.raises(ValidationError, match="cannot be traced"):
+        WordSearchPuzzle(
+            version="2026-08-19",
+            changelog=[_STAMP],
+            grid=[["\u0b95", "\u0bb5"], ["\u0bb5", "\u0b95"]],
+            targets=[
+                WordSearchTarget(
+                    word="\u0b95\u0bb5",
+                    start=GridPoint(row=0, col=0),
+                    direction="right",
+                )
+            ],
+            alsoValid=["\u0ba4\u0bae\u0bbf\u0bb4\u0bcd"],
+        )
+
+
+def test_the_day_ledger_reads_both_payload_shapes() -> None:
+    """One definition of "the words this payload asked for", used by both readers.
+
+    Three Games put one answer under ``word`` and this one puts several under
+    ``targets``. The anti-repeat ledger and the bake's own record of what a day
+    served must agree, or a search board's words come back a week later because
+    the ledger could not see them.
+    """
+    assert daily.answer_words({"word": "\u0b85"}) == ["\u0b85"]
+    assert daily.answer_words(
+        {"targets": [{"word": "\u0b85"}, {"word": "\u0b86"}]}
+    ) == ["\u0b85", "\u0b86"]
+    assert daily.answer_words({"choices": ["\u0b85"]}) == []
+
+
+def test_a_band_that_cannot_fit_on_the_board_is_refused(
+    ws_spec: GameGeneration,
+) -> None:
+    """A configuration that could never bake fails when it is read, not when it runs.
+
+    It is a floor rather than a packing model - what the grid can really take was
+    measured and lives in config - but a band asking for more cells than the grid
+    has, or for a word longer than its longest line, is impossible by counting
+    and should never reach the bake.
+    """
+    dumped = ws_spec.model_dump()
+    greedy = dict(dumped)
+    greedy["difficulties"] = [{**dumped["difficulties"][0], "targets": 20}]
+    with pytest.raises(ValidationError, match="which needs"):
+        GameGeneration.model_validate(greedy)
+    # 24 cells of board for a band that needs 24 - and a longest line of five,
+    # so a six-ezhuthu word fits nowhere. The two refusals are different
+    # arithmetic, and this is the shape that reaches the second one.
+    cramped = dict(dumped)
+    cramped["difficulties"] = [dumped["difficulties"][0]]
+    cramped["gridRows"] = cramped["gridCols"] = 5
+    with pytest.raises(ValidationError, match="do not fit"):
+        GameGeneration.model_validate(cramped)
 

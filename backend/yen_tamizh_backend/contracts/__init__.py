@@ -112,6 +112,11 @@ from yen_tamizh_backend.contracts.wordhood import (
     TypoProfile,
     Wordhood,
 )
+from yen_tamizh_backend.contracts.word_search_puzzle import (
+    GridPoint,
+    WordSearchPuzzle,
+    WordSearchTarget,
+)
 from yen_tamizh_backend.contracts.wordle_puzzle import WordlePuzzle
 
 # Explicit registry (not auto-discovery) so the exporter's output set is
@@ -127,9 +132,9 @@ from yen_tamizh_backend.contracts.wordle_puzzle import WordlePuzzle
 # registry's own schema. ``LexiconEntry`` is NOT here - a data row carries
 # no ``version`` / ``changelog``, so it is not a ``SchemaModel``, and it reaches
 # the schema through ``Lexicon.rowSchema``. Row 18 adds the second per-Game
-# payload beside the anagram's and Row 19 the third, which is the whole point of
-# one schema per Game: a new Game costs a payload schema, never an edit to
-# ``puzzle-file``.
+# payload beside the anagram's, Row 19 the third and Row 20 the fourth, which is
+# the whole point of one schema per Game: a new Game costs a payload schema,
+# never an edit to ``puzzle-file``.
 REGISTRY: tuple[type[SchemaModel], ...] = (
     AnagramPuzzle,
     AppConfig,
@@ -148,6 +153,7 @@ REGISTRY: tuple[type[SchemaModel], ...] = (
     Save,
     ServedDenylist,
     Wordhood,
+    WordSearchPuzzle,
     WordlePuzzle,
 )
 
@@ -193,6 +199,7 @@ __all__ = [
     "GameWordlist",
     "GlyphManifest",
     "GlyphShape",
+    "GridPoint",
     "Hint",
     "HintSpec",
     "HintsConfig",
@@ -234,6 +241,8 @@ __all__ = [
     "UiConfig",
     "WordClass",
     "WordClassEvidence",
+    "WordSearchPuzzle",
+    "WordSearchTarget",
     "Wordhood",
     "WordlePuzzle",
     "compute_day_key",

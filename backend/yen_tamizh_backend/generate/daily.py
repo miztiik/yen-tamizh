@@ -44,7 +44,7 @@ from __future__ import annotations
 
 import json
 from collections import defaultdict
-from collections.abc import Callable, Iterable, Sequence
+from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from datetime import date, timedelta
 from pathlib import Path
@@ -62,7 +62,7 @@ from yen_tamizh_backend.contracts.daily_generator import (
 )
 from yen_tamizh_backend.contracts.game_wordlist import GameWord, GameWordlist
 from yen_tamizh_backend.contracts.puzzle_file import PuzzleFile, PuzzleItem
-from yen_tamizh_backend.generate import anagram, missing_letters, wordle
+from yen_tamizh_backend.generate import anagram, missing_letters, word_search, wordle
 from yen_tamizh_backend.generate.seed import seeded_index, seeded_shuffle
 
 _PUZZLE_FILE_VERSION = "2026-08-17"
@@ -151,6 +151,32 @@ def baked_days(bank_dir: Path) -> list[str]:
     return sorted(path.stem for path in bank_dir.glob("*/*.json"))
 
 
+def answer_words(payload: Mapping[str, Any]) -> list[str]:
+    """Every word one baked payload asks the player for, in payload order.
+
+    A payload names its answers in one of two ways and both are read here.
+    Three of the four Games hide ONE word and put it under ``word``; a search
+    board hides several and lists them under ``targets``, and every one of those
+    has been met by the player just as surely as a scramble's answer has.
+
+    It is one function rather than a key lookup at each call site because the
+    two readers - the anti-repeat ledger and the bake's own record of what a day
+    served - must agree about what a day served. A day whose words the ledger
+    could not see would be dealt again a week later.
+    """
+    words: list[str] = []
+    single = payload.get("word")
+    if isinstance(single, str):
+        words.append(single)
+    targets = payload.get("targets")
+    if isinstance(targets, list):
+        for target in targets:
+            hidden = target.get("word") if isinstance(target, Mapping) else None
+            if isinstance(hidden, str):
+                words.append(hidden)
+    return words
+
+
 def words_used_before(bank_dir: Path, exclude_day: str) -> set[str]:
     """Every answer word the bank has already served on some OTHER day.
 
@@ -161,11 +187,9 @@ def words_used_before(bank_dir: Path, exclude_day: str) -> set[str]:
     for day in baked_days(bank_dir):
         if day == exclude_day:
             continue
-        payload = json.loads(day_path(bank_dir, day).read_text(encoding="utf-8"))
-        for item in payload.get("items", []):
-            word = item.get("payload", {}).get("word")
-            if isinstance(word, str):
-                used.add(word)
+        document = json.loads(day_path(bank_dir, day).read_text(encoding="utf-8"))
+        for item in document.get("items", []):
+            used.update(answer_words(item.get("payload", {})))
     return used
 
 
@@ -298,6 +322,30 @@ def _build_wordle(
     return wordle.build_puzzle(row, spec, f"{day}|{row.word}", hint_limit, themed)
 
 
+def _build_word_search(
+    row: GameWord,
+    spec: GameGeneration,
+    day: str,
+    hint_limit: int,
+    band: DifficultyBand,
+    themed: bool,
+    prepared: Any,
+) -> BaseModel:
+    """The one builder that draws MORE words than the day loop picked.
+
+    A search board hides several words and the loop deals one slot at a time, so
+    the row it picked becomes the board's anchor and the builder draws the rest
+    from the same prepared set and the same band. That is why this Game's
+    ``prepare`` hands over the whole served index rather than a lookup table: it
+    is the only layer holding a served set, and the alternative - teaching the
+    loop to deal several rows into one slot - would put one Game's arithmetic
+    into the loop that is supposed to know nothing about which Game it holds.
+    """
+    return word_search.build_puzzle(
+        row, spec, f"{day}|{row.word}", hint_limit, band, prepared, themed
+    )
+
+
 # The registered Games, keyed by the ``gameId`` config names in `daily.mix`.
 BUILDERS: dict[str, GameBuilder] = {
     "anagram": GameBuilder(prepare=_prepare_anagram, build=_build_anagram),
@@ -305,6 +353,9 @@ BUILDERS: dict[str, GameBuilder] = {
         prepare=missing_letters.index_by_length, build=_build_missing_letters
     ),
     wordle.GAME_ID: GameBuilder(prepare=_prepare_wordle, build=_build_wordle),
+    word_search.GAME_ID: GameBuilder(
+        prepare=word_search.index_served, build=_build_word_search
+    ),
 }
 
 

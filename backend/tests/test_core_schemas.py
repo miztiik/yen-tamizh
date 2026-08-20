@@ -43,6 +43,7 @@ from yen_tamizh_backend.contracts import (
     PuzzleFile,
     Save,
     WordClass,
+    WordSearchPuzzle,
     WordlePuzzle,
 )
 from yen_tamizh_backend.contracts.base import SchemaModel
@@ -64,6 +65,7 @@ _CORE: tuple[tuple[type[SchemaModel], str], ...] = (
     (AnagramPuzzle, "anagram-puzzle"),
     (MissingLettersPuzzle, "missing-letters-puzzle"),
     (WordlePuzzle, "wordle-puzzle"),
+    (WordSearchPuzzle, "word-search-puzzle"),
     (Copy, "copy"),
 )
 

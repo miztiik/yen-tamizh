@@ -10,6 +10,7 @@ import exampleSchema from "./example.schema.json";
 import missingLettersPuzzleSchema from "./missing-letters-puzzle.schema.json";
 import puzzleFileSchema from "./puzzle-file.schema.json";
 import saveSchema from "./save.schema.json";
+import wordSearchPuzzleSchema from "./word-search-puzzle.schema.json";
 import wordlePuzzleSchema from "./wordle-puzzle.schema.json";
 import type { AnagramPuzzle } from "./anagram-puzzle";
 import type { AppConfig } from "./app-config";
@@ -20,6 +21,7 @@ import type { Example } from "./example";
 import type { MissingLettersPuzzle } from "./missing-letters-puzzle";
 import type { PuzzleFile } from "./puzzle-file";
 import type { Save } from "./save";
+import type { WordSearchPuzzle } from "./word-search-puzzle";
 import type { WordlePuzzle } from "./wordle-puzzle";
 
 // One draft 2020-12 validator instance for every generated contract. The
@@ -39,6 +41,7 @@ const validators = {
   "missing-letters-puzzle": ajv.compile<MissingLettersPuzzle>(missingLettersPuzzleSchema),
   "puzzle-file": ajv.compile<PuzzleFile>(puzzleFileSchema),
   save: ajv.compile<Save>(saveSchema),
+  "word-search-puzzle": ajv.compile<WordSearchPuzzle>(wordSearchPuzzleSchema),
   "wordle-puzzle": ajv.compile<WordlePuzzle>(wordlePuzzleSchema),
 } as const;
 
@@ -56,6 +59,7 @@ export interface SchemaPayload {
   "missing-letters-puzzle": MissingLettersPuzzle;
   "puzzle-file": PuzzleFile;
   save: Save;
+  "word-search-puzzle": WordSearchPuzzle;
   "wordle-puzzle": WordlePuzzle;
 }
 
@@ -95,5 +99,6 @@ export type {
   Example,
   PuzzleFile,
   Save,
+  WordSearchPuzzle,
   WordlePuzzle,
 };

@@ -55,6 +55,21 @@ Four things about it are Tamil-specific, and each one is a decision rather than 
 
 The answer is six ezhuthu because that was measured, not assumed - in Tamil a LONGER answer is easier, the reverse of English ([difficulty-and-scoring.md](difficulty-and-scoring.md)). Its ladder is two rungs: `firstEzhuthu` is refused because a guess buys the same fact and answers five other positions at the same time.
 
+## word-search
+
+An eight-by-eight grid of ezhuthu with four to six words hidden in it, and the list of those words printed beside the grid. Draw a straight line through a word - in any of the eight directions, forwards or backwards - and it is struck off the list with its meaning beside it. Every word found ends the board; nothing else does.
+
+Four things are true of it that are not true of the other three Games:
+
+- **A grid cell is a WHOLE ezhuthu.** This is the mechanic's central correctness property, not a nicety: a cell holding half a cluster is a cell no Tamil reader can name, and no straight line through it spells anything. The payload's contract checks every cell twice - that it is one cluster, and that the cluster is one of the 247 - because a lone vowel sign, which is what splitting a cluster leaves behind, survives segmentation as a single unit and would pass the first check alone.
+- **Length is not the difficulty axis.** A longer word covers more cells and is more distinctive, so it is EASIER to spot - the inverse of what length does to a scramble or a wordle board. What makes a search harder is how many words are outstanding and how well the player knows them, so all three bands span the same 4 to 6 ezhuthu and separate on the word count (4 / 5 / 6) and the frequency quarter.
+- **A wrong trace costs nothing.** Tracing is how a player LOOKS, and charging for looking would turn the one exploratory mechanic in the game into a guessing game. There is no attempt budget and no way to lose - so the payload carries no `attempts` field for nobody to read.
+- **There is no hint ladder at all.** This board prints the words it is asking for, so a category, a first ezhuthu and a meaning are all facts already on the screen. The only thing a player lacks is a LOCATION, and a baked location rung would have to name one particular word - making it worthless if that word were already found, which is the same test that deleted the `length` rung and refused `firstEzhuthu` twice. The help this Game gives instead is a REVEAL priced in the word it hands over: the player forfeits that word's points and keeps every other one, so a player stuck on the last word is never trapped and never loses what they earned.
+
+Both input methods are one mechanic. A pointer press and the keyboard's first Enter drop the same anchor; dragging and the arrow keys move the same cursor; releasing and the second Enter submit the same line. A trace is judged by what it SPELLS, so a word placed backwards is found by reading it either way, and a word the filler happened to spell a second time is found where the player traced it. A mechanic only playable by drag would fail this repo's keyboard bar (CLAUDE.md section 0a), so the two paths resolve through one definition of what is selected and cannot disagree.
+
+Filling the cells the words do not use makes UNINTENDED words - measured at 50.4 percent of boards, mean 0.70, maximum 5 - and those are recorded rather than designed out, on the anagram's `alsoValid` precedent. A player who traces a real Tamil word and is told "wrong" concludes the game cheated; "that is a word, but not on today's list" teaches them one.
+
 ## Pack
 
 A **Pack** (`packId`) is the content and language pack a Game draws from. It is a data dimension, orthogonal to the Game and the Mode. Today there is one Pack, `ta-core` (Tamil); other Packs may follow. A play session is **one Mode x one-or-more Games x a Pack**.

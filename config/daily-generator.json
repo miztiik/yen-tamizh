@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-19T21:00",
+  "version": "2026-08-19T23:00",
   "changelog": [
+    {
+      "version": "2026-08-19T23:00",
+      "change": "Registered the word-search generator: an 8x8 grid, four to six hidden words by band, no attempt limit and no hint ladder; gave a Game a gridRows and gridCols and a difficulty band a targets count.",
+      "why": "Row 20 - the fourth Game, and the first whose board holds more than one answer. The grid is 8x8 and the 8 is a phone measurement rather than a preference: a cell has to hold the widest ezhuthu legibly, which is 36px, and eight of those with a 4px gutter is 316px against the 328px a 360px phone leaves after its margins - a ninth column is 356px and does not fit. The row count follows the column count because a square is the only shape whose diagonals are as long as its sides, and a diagonal shorter than a row would make two of the eight directions second-class. targets is the difficulty dial and length deliberately is not, which inverts what length does everywhere else in this repo: a longer word covers more cells and is more distinctive, so it is EASIER to spot, while a four-ezhuthu word hides in the filler. All three bands therefore span 4 to 6 ezhuthu and separate on how many words are hidden and how well the player knows them - 4 words from the most familiar quarter, 5 from the top half, 6 from anywhere. Six is the ceiling because placement was measured: an 8x8 grid takes four, five, six and seven words on every one of 200 draws and eight words on 88.5 percent of them, so seven is the last count that never fails and six leaves a margin. attempts is 1 and is UNREAD - a wrong trace on a word search costs nothing anywhere in the world and should not here, because tracing IS how a player looks and charging for looking would turn the one exploratory mechanic in the game into a guessing game. hints is empty and that is a ruling rather than an omission: this board prints the words it is asking for, so category, first-ezhuthu and meaning are all facts already on the screen, and the one thing a player lacks - a location - cannot be a baked rung, because its text has to name one particular word and would be worth nothing if that word were already found. The help this Game gives instead is a reveal priced in the word it hands over, which lives in the Game because its cost depends on what is still unfound."
+    },
     {
       "version": "2026-08-19T21:00",
       "change": "Registered the wordle generator: 6-ezhuthu answers, 8 attempts, three bands separated on familiarity alone, and a two-rung ladder.",
@@ -218,6 +223,22 @@
         "types-of-plants": "தாவரம்",
         "vegetables": "காய்கறி"
       }
+    },
+    {
+      "gameId": "word-search",
+      "packId": "ta-core",
+      "wordlist": "datasets/wordlists/derived/word-search.json",
+      "attempts": 1,
+      "timeLimitSec": 0,
+      "reveal": 0,
+      "gridRows": 8,
+      "gridCols": 8,
+      "difficulties": [
+        { "id": "easy", "minLength": 4, "maxLength": 6, "maxStratum": 1, "targets": 4 },
+        { "id": "medium", "minLength": 4, "maxLength": 6, "maxStratum": 2, "targets": 5 },
+        { "id": "hard", "minLength": 4, "maxLength": 6, "maxStratum": 4, "targets": 6 }
+      ],
+      "hints": []
     }
   ]
 }

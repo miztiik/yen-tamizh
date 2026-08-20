@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-19T21:00",
+  "version": "2026-08-19T23:00",
   "changelog": [
+    {
+      "version": "2026-08-19T23:00",
+      "change": "Registered the word-search set: the anagram's serving gates with the length floor at 4, the same floor the missing-letters set uses.",
+      "why": "Row 20 - the gates are the anagram's unchanged for the fourth time, because what makes a word fair to be ASKED for does not depend on how it is asked. Only the floor moves, and it moves for a reason particular to a grid: a 4-ezhuthu word covers four cells, and an 8x8 grid holds 512 straight runs of that length in its eight directions, so a short word is nearly as likely to turn up in the filler as it is to be placed on purpose. Measured over 300 generated boards, scanning for served words of 4 to 6 ezhuthu finds an unintended one on 74.2 percent of grids, and dropping the scan to 5 and 6 ezhuthu drops that to 7.7 - so almost every accidental hit is a short word. The floor of 4 is kept rather than raised to 5 because an unintended word is RECORDED and answered, not refused (the anagram's anagramFanOut precedent), and because 6,160 of the 25,210 four-plus rows are 6 ezhuthu: raising the floor would throw away the length that packs a grid loosest. The ceiling stays at 6 because a 7-ezhuthu word leaves one spare cell on an 8-wide board, so it can only ever be placed along a full row, column or main diagonal, which a player learns to look for once and then never searches for again. wordClasses stays headword alone on the same terms as the other three sets."
+    },
     {
       "version": "2026-08-19T21:00",
       "change": "Registered the wordle set: the anagram's serving gates with the length pinned to exactly 6 ezhuthu.",
@@ -111,6 +116,21 @@
       "selection": {
         "wordClasses": ["headword"],
         "minLength": 6,
+        "maxLength": 6,
+        "minAttestations": 2,
+        "minTier1Attestations": 1,
+        "minFrequency": 1,
+        "requireMeaning": true,
+        "maxWords": null
+      }
+    },
+    {
+      "gameId": "word-search",
+      "out": "datasets/wordlists/derived/word-search.json",
+      "note": "The anagram's serving gates unchanged, with the length floor at 4 and the ceiling at 6. The gates do not move because they answer a question the mechanic does not change - is this a word a player can be asked for at all. The floor moves for a reason particular to a grid: a 4-ezhuthu word is four cells, and an 8x8 board holds hundreds of straight runs that long, so a shorter word turns up in the filler about as often as it is placed on purpose - measured, an unintended served word appears on 74.2 percent of boards when 4-ezhuthu words count and on 7.7 percent when only 5 and 6 do. It is a floor rather than a rejection because an unintended word is RECORDED and answered ('that is a word, but not on today's list'), never treated as a defect. The ceiling holds at 6 because a 7-ezhuthu word fits an 8-wide grid only along a full row, column or main diagonal, and a word that can only ever be in one of those places stops being hidden. Which words share a board, and where each one lands, are the GENERATOR's decisions rather than selection knobs: a word is admitted here on what it IS.",
+      "selection": {
+        "wordClasses": ["headword"],
+        "minLength": 4,
         "maxLength": 6,
         "minAttestations": 2,
         "minTier1Attestations": 1,

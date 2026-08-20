@@ -30,7 +30,10 @@ export type Id = string
 export type Maxlength = number
 export type Maxstratum = number
 export type Minlength = number
+export type Targets = number
 export type Gameid = string
+export type Gridcols = number
+export type Gridrows = number
 export type Cost = number
 export type Kind = string
 export type Template = string
@@ -76,6 +79,8 @@ categoryLabels?: Categorylabels
 choiceCount?: Choicecount
 difficulties: Difficulties
 gameId: Gameid
+gridCols?: Gridcols
+gridRows?: Gridrows
 hints?: Hints
 packId: Packid
 reveal: Reveal
@@ -114,6 +119,15 @@ export interface Categorylabels {
  * honest way to make a band harder without reaching for a rarer word: it
  * multiplies the guess space instead of narrowing the vocabulary.
  * 
+ * ``targets`` is how many WORDS a band hides, read only by the Games whose
+ * board holds more than one. It defaults to 1, which is what every other Game
+ * deals. On a search board it is the main difficulty dial, and the reason is
+ * an inversion worth stating: length is NOT a difficulty axis here. A longer
+ * word occupies more cells and is more distinctive, so it is EASIER to spot
+ * than a short one, which is the opposite of what length does to a scramble or
+ * a wordle board. What makes a search harder is how many words are still
+ * outstanding and how well the player knows them.
+ * 
  * Where the cuts fall is a game-balance number, so it lives here rather than
  * in Python (Holy Law #6).
  */
@@ -123,6 +137,7 @@ id: Id
 maxLength: Maxlength
 maxStratum: Maxstratum
 minLength: Minlength
+targets?: Targets
 }
 /**
  * One rung of the ladder: its kind, its wording, and what it costs.
