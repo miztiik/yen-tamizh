@@ -1409,6 +1409,7 @@ def test_the_committed_registry_validates() -> None:
         "wordle",
         "word-search",
         "crossword",
+        "word-ladder",
         _THEMED_GAME_ID,
     ]
     assert registry.lexiconPath == "datasets/lexicon/lexicon.meta.json"
@@ -1479,6 +1480,28 @@ def test_the_word_search_set_is_the_missing_letters_selection_and_says_so() -> N
 
     assert search.selection.model_dump() == missing.selection.model_dump()
     assert search.out != missing.out
+
+
+def test_the_word_ladder_set_moves_only_its_length_bounds() -> None:
+    """The same gates a sixth time, and the only set whose range widens at BOTH ends.
+
+    A ladder is the one board that is a RANGE rather than a length: its rungs
+    are one, two and three ezhuthu taller than the word it starts on, so a set
+    cut to one length would hold a start and no climb. The floor drops to 2
+    because that is where the graph's edges are - three quarters of two-ezhuthu
+    multisets have a word one letter above them - and the ceiling rises to 7
+    because that is the tallest rung a 360px phone prints in one row.
+    """
+    registry = derive.load_registry(_REGISTRY)
+    ordinary = next(entry for entry in registry.sets if entry.gameId == "anagram")
+    ladder = next(entry for entry in registry.sets if entry.gameId == "word-ladder")
+
+    assert (ladder.selection.minLength, ladder.selection.maxLength) == (2, 7)
+    assert (ordinary.selection.minLength, ordinary.selection.maxLength) == (3, 6)
+    assert ladder.selection.model_dump(exclude={"minLength", "maxLength"}) == (
+        ordinary.selection.model_dump(exclude={"minLength", "maxLength"})
+    )
+    assert ladder.out == "datasets/wordlists/derived/ladder.json"
 
 
 def test_the_themed_set_narrows_the_ordinary_selection_and_relaxes_nothing() -> None:

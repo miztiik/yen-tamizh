@@ -60,6 +60,10 @@ from yen_tamizh_backend.contracts.game_wordlist import GameWord, GameWordlist
 from yen_tamizh_backend.contracts.lexicon import PartOfSpeech
 from yen_tamizh_backend.contracts.missing_letters_puzzle import MissingLettersPuzzle
 from yen_tamizh_backend.contracts.puzzle_file import PuzzleFile
+from yen_tamizh_backend.contracts.word_ladder_puzzle import (
+    WordLadderPuzzle,
+    added_ezhuthu,
+)
 from yen_tamizh_backend.contracts.word_search_puzzle import (
     GridPoint,
     WordSearchPuzzle,
@@ -73,6 +77,7 @@ from yen_tamizh_backend.generate import (
     crossword,
     daily,
     missing_letters,
+    word_ladder,
     word_search,
     wordle,
 )
@@ -3106,3 +3111,533 @@ def test_a_mask_that_could_never_become_a_crossword_is_refused(
     # A perfectly good five-cell run on a board with nothing else on it.
     refuse([".....", "#####"], "entries; a crossword needs two")
 
+
+
+# --------------------------------------------------------------------------
+# 12. word-ladder (Row 15)
+#
+# The sixth Game, and the only one whose payload lands a row BEFORE its board.
+# The reason is the mechanic: a ladder is a chain of proofs, and the proof is
+# the expensive half. Every other Game's builder deals a word; this one has to
+# know, before it deals anything, that the word can be climbed from - which is a
+# fact about the whole served set rather than about the row. That search runs at
+# build time because the browser may never run one (Holy Law #1), so it is the
+# graph and the contract that ship here and the board that ships in Row 16.
+#
+# NOTHING IS ADDED TO config/daily-generator.json. A generator entry there would
+# make the cron bake a payload no Game can render. So the spec these tests run
+# against is built HERE, out of the same knobs a real entry would carry, and the
+# committed config is left alone until the Game exists.
+#
+# As in the two sections above, the Oracle states the rung rule in its OWN
+# arithmetic rather than calling the helper the generator and the contract
+# share. An Oracle that reuses the implementation it is checking proves the
+# implementation is self-consistent, which is not the claim.
+# --------------------------------------------------------------------------
+
+LADDER_SET = "datasets/wordlists/derived/ladder.json"
+
+
+def _rung_rule(below: str, above: str) -> str:
+    """The Oracle's own reading of "one added ezhuthu, rearranging allowed".
+
+    Written out of ``Counter`` rather than out of ``added_ezhuthu`` so the
+    implementation owes it nothing. Raises when the pair is not a legal step, so
+    a caller need only call it to have asserted the rule.
+    """
+    low, high = Counter(segment(below)), Counter(segment(above))
+    gained = sorted((high - low).elements())
+    lost = sorted((low - high).elements())
+    assert not lost, f"{above!r} drops {lost} from {below!r}"
+    assert len(gained) == 1, f"{above!r} adds {gained} to {below!r}"
+    return gained[0]
+
+
+@pytest.fixture(scope="module")
+def wl_wordlist() -> GameWordlist:
+    return GameWordlist.model_validate_json(
+        (_REPO_ROOT / LADDER_SET).read_text(encoding="utf-8")
+    )
+
+
+@pytest.fixture(scope="module")
+def wl_spec() -> GameGeneration:
+    """The generator entry the ladder WOULD carry, built here rather than committed.
+
+    Its three bands separate on rung count, which is what a ladder's difficulty
+    is: a longer climb is more steps to survive, where a rarer word is only a
+    harder step. ``targets`` is the knob, borrowed unchanged from the search
+    board, because on both boards the number of words IS the difficulty.
+    """
+    return GameGeneration(
+        gameId=word_ladder.GAME_ID,
+        packId="ta-core",
+        wordlist=LADDER_SET,
+        attempts=1,
+        timeLimitSec=0,
+        reveal=0,
+        choiceCount=8,
+        dailyRank=15,
+        difficulties=[
+            DifficultyBand(id="easy", minLength=2, maxLength=3, maxStratum=2, targets=3),
+            DifficultyBand(id="medium", minLength=2, maxLength=4, maxStratum=3, targets=4),
+            DifficultyBand(id="hard", minLength=2, maxLength=4, maxStratum=4, targets=5),
+        ],
+    )
+
+
+@pytest.fixture(scope="module")
+def wl_graph(
+    wl_spec: GameGeneration, wl_wordlist: GameWordlist
+) -> word_ladder.LadderGraph:
+    return word_ladder.index_served(wl_wordlist, wl_spec)
+
+
+def _band_rows(
+    graph: word_ladder.LadderGraph, band: DifficultyBand
+) -> list[GameWord]:
+    """Every served row this band would deal, in a stable order."""
+    return sorted(
+        (
+            row
+            for rows in graph.words.values()
+            for row in rows
+            if band.minLength <= len(row.ezhuthu) <= band.maxLength
+            and row.frequencyStratum <= band.maxStratum
+        ),
+        key=lambda row: row.word,
+    )
+
+
+def _ladders(
+    spec: GameGeneration, graph: word_ladder.LadderGraph, per_band: int
+) -> list[tuple[str, DifficultyBand, GameWord, WordLadderPuzzle]]:
+    """Build ``per_band`` real ladders per band, from real rows and real dates.
+
+    A row the graph cannot climb from is SKIPPED rather than failed, which is
+    what the day loop does with it: ``Unbuildable`` is the builder's way of
+    asking for the next candidate. How often that happens is measured by its own
+    test below, so a silent collapse to a handful of ladders cannot hide here.
+    """
+    out: list[tuple[str, DifficultyBand, GameWord, WordLadderPuzzle]] = []
+    for band in spec.difficulties:
+        made = 0
+        for offset, anchor in enumerate(_band_rows(graph, band)):
+            if made >= per_band:
+                break
+            day = (
+                date.fromisoformat(ORDINARY_DAY) + timedelta(days=offset)
+            ).isoformat()
+            seed = f"{day}|{anchor.word}"
+            try:
+                built = word_ladder.build_puzzle(anchor, spec, seed, 0, band, graph)
+            except word_ladder.NoLadder:
+                continue
+            out.append((seed, band, anchor, built))
+            made += 1
+    return out
+
+
+def test_every_rung_adds_exactly_one_ezhuthu_to_the_one_below(
+    wl_spec: GameGeneration, wl_graph: word_ladder.LadderGraph
+) -> None:
+    """ORACLE (a) - the rung rule, over real generator output.
+
+    For every ladder the real graph produced, each consecutive pair is checked
+    with the Oracle's own multiset arithmetic: exactly one ezhuthu arrives and
+    none leaves. Rearrangement is therefore free and substitution impossible,
+    both stated in one comparison rather than as two rules that could disagree.
+    Strictly increasing length is asserted separately even though it follows,
+    because it is the property a reader of the board would notice first.
+    """
+    ladders = _ladders(wl_spec, wl_graph, 60)
+    assert len(ladders) >= 150, f"only {len(ladders)} ladders built - the Oracle is thin"
+    steps = 0
+    for seed, band, _, puzzle in ladders:
+        assert len(puzzle.rungs) == band.targets, seed
+        for below, above in zip(puzzle.rungs, puzzle.rungs[1:]):
+            _rung_rule(below.word, above.word)
+            assert len(segment(above.word)) == len(segment(below.word)) + 1, (
+                f"{seed}: {above.word!r} is not one ezhuthu taller than {below.word!r}"
+            )
+            steps += 1
+    assert steps >= 300
+
+
+def test_every_rung_is_a_word_the_set_really_serves(
+    wl_spec: GameGeneration,
+    wl_graph: word_ladder.LadderGraph,
+    wl_wordlist: GameWordlist,
+) -> None:
+    """ORACLE (b) - a climb only ever passes through SERVED words.
+
+    Checked against the committed wordlist rather than against the graph the
+    builder was handed, so an index built from the wrong set, or a rung invented
+    somewhere between the graph and the payload, fails here. Every alternative
+    the payload records is checked the same way: telling a player that what they
+    spelled is a word only helps when it is a word this game would deal.
+    """
+    served = {row.word for row in wl_wordlist.words}
+    for seed, _, anchor, puzzle in _ladders(wl_spec, wl_graph, 40):
+        assert puzzle.rungs[0].word == anchor.word, seed
+        for rung in puzzle.rungs:
+            assert rung.word in served, f"{seed}: {rung.word!r} is not served"
+            for other in rung.alsoValid or ():
+                assert other in served, f"{seed}: alsoValid {other!r} is not served"
+
+
+def test_every_alternative_is_reachable_from_the_rung_below_using_the_bank(
+    wl_spec: GameGeneration, wl_graph: word_ladder.LadderGraph
+) -> None:
+    """ORACLE (c) - what is recorded is what the player can actually reach.
+
+    An alternative is a promise that a particular arrangement will be answered
+    rather than crossed out, so it has to be one the bank can really produce:
+    one added ezhuthu above the rung below, with that ezhuthu in the bank. The
+    first rung is given, so it carries none.
+    """
+    recorded = 0
+    for seed, _, _, puzzle in _ladders(wl_spec, wl_graph, 40):
+        bank = set(puzzle.choices)
+        assert puzzle.rungs[0].alsoValid is None, seed
+        for below, above in zip(puzzle.rungs, puzzle.rungs[1:]):
+            for other in above.alsoValid or ():
+                assert other != above.word, seed
+                unit = _rung_rule(below.word, other)
+                assert unit in bank, f"{seed}: {other!r} needs {unit!r}, not in the bank"
+                recorded += 1
+    # A ladder whose every rung had one answer would make the field dead weight;
+    # the graph branches enough that it does not.
+    assert recorded > 0
+
+
+def test_the_bank_can_climb_the_whole_ladder_and_still_hold_a_decision(
+    wl_spec: GameGeneration, wl_graph: word_ladder.LadderGraph
+) -> None:
+    """ORACLE (d) - the ladder is playable with no Tamil keyboard.
+
+    Every ezhuthu the climb adds has to be in the bank, counted with
+    multiplicity so a ladder adding the same letter twice really is offered two
+    of them, and the bank has to be strictly bigger than the climb needs or it
+    is an answer rather than a choice. Every tile is checked to be one ezhuthu
+    AND a letter of Tamil: a lone vowel sign passes the first and fails the
+    second.
+    """
+    letters = set(EZHUTHU_INVENTORY)
+    for seed, _, _, puzzle in _ladders(wl_spec, wl_graph, 40):
+        needed = Counter(
+            _rung_rule(below.word, above.word)
+            for below, above in zip(puzzle.rungs, puzzle.rungs[1:])
+        )
+        available = Counter(puzzle.choices)
+        for unit, count in needed.items():
+            assert available[unit] >= count, f"{seed}: the bank is short of {unit!r}"
+        assert len(puzzle.choices) == wl_spec.choiceCount, seed
+        assert len(puzzle.choices) > sum(needed.values()), seed
+        for unit in puzzle.choices:
+            assert segment(unit) == [unit], f"{seed}: {unit!r} is not one ezhuthu"
+            assert unit in letters, f"{seed}: {unit!r} is not a letter of Tamil"
+
+
+def test_two_runs_of_one_ladder_are_byte_identical(
+    wl_spec: GameGeneration, wl_wordlist: GameWordlist
+) -> None:
+    """ORACLE (e) - determinism, from the graph up.
+
+    Both halves are rebuilt from the committed wordlist, so the index, the
+    climb, the bank and the recorded alternatives all have to land the same way
+    twice. Compared as serialized BYTES rather than as models, because that is
+    what a bake commits and what a drift gate would compare.
+    """
+    first = word_ladder.index_served(wl_wordlist, wl_spec)
+    second = word_ladder.index_served(wl_wordlist, wl_spec)
+    assert first.reach == second.reach
+    assert first.up == second.up
+    band = wl_spec.difficulties[1]
+    made = 0
+    for anchor in _band_rows(first, band)[:400]:
+        seed = f"{ORDINARY_DAY}|{anchor.word}"
+        try:
+            left = word_ladder.build_puzzle(anchor, wl_spec, seed, 0, band, first)
+        except word_ladder.NoLadder:
+            continue
+        right = word_ladder.build_puzzle(anchor, wl_spec, seed, 0, band, second)
+        assert left.model_dump_json() == right.model_dump_json(), seed
+        made += 1
+    assert made > 0
+
+
+def test_the_graph_is_the_add_one_ezhuthu_relation_and_nothing_else(
+    wl_graph: word_ladder.LadderGraph, wl_wordlist: GameWordlist
+) -> None:
+    """Every edge is a legal step, and no legal step is missing.
+
+    Both directions matter and they fail differently. A wrong edge ships a
+    ladder that does not climb; a missing one silently throws content away, and
+    that is the failure this row's whole risk is about. Completeness is checked
+    by asking, for a sample of signatures, which OTHER signatures are one letter
+    above them under the Oracle's own arithmetic, and comparing that set to the
+    edges the index recorded.
+    """
+    by_key: dict[tuple[str, ...], list[str]] = {}
+    for row in wl_wordlist.words:
+        by_key.setdefault(tuple(sorted(row.ezhuthu)), []).append(row.word)
+    assert set(by_key) == set(wl_graph.words)
+    for below, above_keys in wl_graph.up.items():
+        for above in above_keys:
+            gained = Counter(above) - Counter(below)
+            assert sum(gained.values()) == 1, (below, above)
+            assert not (Counter(below) - Counter(above)), (below, above)
+    sample = sorted(by_key)[::400]
+    by_size: dict[int, list[tuple[str, ...]]] = {}
+    for key in by_key:
+        by_size.setdefault(len(key), []).append(key)
+    for key in sample:
+        expected = {
+            other
+            for other in by_size.get(len(key) + 1, ())
+            if sum((Counter(other) - Counter(key)).values()) == 1
+            and not (Counter(key) - Counter(other))
+        }
+        assert set(wl_graph.up.get(key, ())) == expected, key
+
+
+def test_reach_is_the_longest_climb_and_a_shorter_one_always_fits_inside_it(
+    wl_graph: word_ladder.LadderGraph
+) -> None:
+    """``reach`` is what lets the climb never backtrack, so it has to be exact.
+
+    Recomputed here from the edges alone. Its two claims are that a signature
+    with ``reach`` r really has a chain of r, and that it has no chain of r + 1 -
+    the second being the one that would let the builder step onto a dead end.
+    """
+    for key, deep in wl_graph.reach.items():
+        above = wl_graph.up.get(key, ())
+        assert deep == 1 + max((wl_graph.reach[nxt] for nxt in above), default=0), key
+        if deep == 1:
+            assert not above, key
+
+
+def test_a_word_the_graph_cannot_climb_from_is_refused_rather_than_shortened(
+    wl_spec: GameGeneration, wl_graph: word_ladder.LadderGraph
+) -> None:
+    """The thin-graph case, which is the COMMON case, and how it is answered.
+
+    Most served words start no ladder: a builder that quietly returned a short
+    climb would ship a two-rung "ladder" under a three-rung band. ``NoLadder``
+    is an ``Unbuildable``, which is the day loop's signal to deal the next
+    candidate - the same contract the crossword's exhausted solver has.
+    """
+    band = wl_spec.difficulties[2]
+    rows = _band_rows(wl_graph, band)
+    refused = [
+        row
+        for row in rows
+        if wl_graph.reach.get(word_ladder.signature(row.ezhuthu), 0) < band.targets
+    ]
+    assert refused, "the band has no unclimbable word, so this test proves nothing"
+    with pytest.raises(word_ladder.NoLadder):
+        word_ladder.build_puzzle(refused[0], wl_spec, "seed", 0, band, wl_graph)
+    assert issubclass(word_ladder.NoLadder, Unbuildable)
+    built = sum(
+        1
+        for row in rows
+        if wl_graph.reach.get(word_ladder.signature(row.ezhuthu), 0) >= band.targets
+    )
+    # The measured density this row exists to report: the hardest band's pool is
+    # thousands of rows and about one in a hundred of them can be climbed from.
+    assert 0 < built < len(rows)
+
+
+def test_the_signature_step_and_the_contract_agree_on_what_was_added(
+    wl_spec: GameGeneration, wl_graph: word_ladder.LadderGraph
+) -> None:
+    """The generator reads the added letter off multisets; the contract off words.
+
+    They have to be the same value, and the module says so in prose - a
+    signature IS ``sorted(segment(word))``. This is where that claim is checked
+    rather than asserted, over real climbs, because the generator deliberately
+    does NOT round-trip a signature back into a string to reuse the contract's
+    reading.
+    """
+    checked = 0
+    for seed, _, _, puzzle in _ladders(wl_spec, wl_graph, 30):
+        for below, above in zip(puzzle.rungs, puzzle.rungs[1:]):
+            keys = (
+                word_ladder.signature(segment(below.word)),
+                word_ladder.signature(segment(above.word)),
+            )
+            assert word_ladder.step(*keys) == added_ezhuthu(below.word, above.word)
+            assert word_ladder.step(*keys) == _rung_rule(below.word, above.word)
+            checked += 1
+    assert checked > 0
+
+
+def test_the_climb_maximises_the_weakest_rung_rather_than_taking_any_step(
+    wl_spec: GameGeneration, wl_graph: word_ladder.LadderGraph
+) -> None:
+    """The one quality decision in the builder, checked as a property.
+
+    A ladder is played by guessing each next word, so one word nobody knows ends
+    the climb however good the rest is. Every step is therefore taken to leave
+    the RAREST rung of the finished ladder as familiar as it can be. Checked by
+    replaying each choice: no neighbour that could still finish the climb offers
+    a better guaranteed floor than the one the builder took.
+    """
+    checked = 0
+    for seed, band, anchor, _ in _ladders(wl_spec, wl_graph, 25):
+        chain = word_ladder.climb(
+            wl_graph, word_ladder.signature(anchor.ezhuthu), band.targets, seed
+        )
+        for index, (below, above) in enumerate(zip(chain, chain[1:])):
+            left = band.targets - index - 1
+            taken = min(
+                float(wl_graph.best_word(above).frequency), wl_graph.promise[above][left]
+            )
+            for other in wl_graph.up[below]:
+                if wl_graph.reach[other] < left:
+                    continue
+                offered = min(
+                    float(wl_graph.best_word(other).frequency),
+                    wl_graph.promise[other][left],
+                )
+                assert offered <= taken, f"{seed}: {other} was a better step"
+            checked += 1
+    assert checked > 0
+
+
+def test_a_ladder_that_substitutes_or_drops_an_ezhuthu_is_refused(
+    wl_spec: GameGeneration, wl_graph: word_ladder.LadderGraph
+) -> None:
+    """The rejection half: the contract refuses what the generator cannot build.
+
+    Three ways a chain can look like a ladder and not be one, each stated
+    against the payload rather than against the builder, because the payload is
+    what a future Game and a future generator both read.
+    """
+    seed, _, _, good = _ladders(wl_spec, wl_graph, 1)[0]
+    payload = good.model_dump(mode="json", exclude_none=True)
+
+    def refuse(rungs: list[dict[str, Any]], match: str) -> None:
+        with pytest.raises(ValidationError, match=match):
+            WordLadderPuzzle.model_validate({**payload, "rungs": rungs})
+
+    # Two ezhuthu added at once: a legal-looking climb that skips a rung.
+    skipped = [dict(rung) for rung in payload["rungs"]]
+    skipped[1]["word"] = good.rungs[2].word
+    skipped[1].pop("alsoValid", None)
+    refuse(skipped, "exactly one ezhuthu")
+    # An ezhuthu swapped rather than added: the same length change, a different
+    # word underneath it.
+    swapped = [dict(rung) for rung in payload["rungs"]]
+    units = segment(good.rungs[1].word)
+    swapped[1]["word"] = "".join([*units[:-1], segment(good.rungs[0].word)[0], units[-1]])
+    swapped[1].pop("alsoValid", None)
+    with pytest.raises(ValidationError):
+        WordLadderPuzzle.model_validate({**payload, "rungs": swapped})
+    # The climb run backwards, which drops letters instead of adding them.
+    refuse([dict(rung) for rung in reversed(payload["rungs"])], "may only add")
+
+
+def test_a_bank_that_cannot_climb_or_offers_no_choice_is_refused(
+    wl_spec: GameGeneration, wl_graph: word_ladder.LadderGraph
+) -> None:
+    """Without a Tamil keyboard the bank IS the input method, so it is checked."""
+    _, _, _, good = _ladders(wl_spec, wl_graph, 1)[0]
+    payload = good.model_dump(mode="json", exclude_none=True)
+    needed = [
+        added_ezhuthu(below.word, above.word)
+        for below, above in zip(good.rungs, good.rungs[1:])
+    ]
+    with pytest.raises(ValidationError, match="cannot climb the ladder"):
+        WordLadderPuzzle.model_validate(
+            {**payload, "choices": [u for u in payload["choices"] if u != needed[0]]}
+        )
+    with pytest.raises(ValidationError, match="rather than a choice"):
+        WordLadderPuzzle.model_validate({**payload, "choices": needed})
+    with pytest.raises(ValidationError, match="not a letter of Tamil"):
+        WordLadderPuzzle.model_validate(
+            {**payload, "choices": [*payload["choices"], "z"]}
+        )
+
+
+def test_an_alternative_the_bank_cannot_spell_is_refused(
+    wl_spec: GameGeneration, wl_graph: word_ladder.LadderGraph
+) -> None:
+    """An alternative nobody can enter is a message that can never fire."""
+    ladders = [
+        entry
+        for entry in _ladders(wl_spec, wl_graph, 40)
+        if any(rung.alsoValid for rung in entry[3].rungs[1:])
+    ]
+    assert ladders, "no ladder recorded an alternative, so this test proves nothing"
+    good = ladders[0][3]
+    payload = good.model_dump(mode="json", exclude_none=True)
+    spent = {
+        added_ezhuthu(below.word, other)
+        for below, above in zip(good.rungs, good.rungs[1:])
+        for other in above.alsoValid or ()
+    }
+    with pytest.raises(ValidationError, match="which the bank does not hold"):
+        WordLadderPuzzle.model_validate(
+            {
+                **payload,
+                "choices": [
+                    unit
+                    for unit in payload["choices"]
+                    if unit not in spent
+                    or unit
+                    in {
+                        added_ezhuthu(a.word, b.word)
+                        for a, b in zip(good.rungs, good.rungs[1:])
+                    }
+                ],
+            }
+        )
+    first = [dict(rung) for rung in payload["rungs"]]
+    first[0]["alsoValid"] = [good.rungs[1].word]
+    with pytest.raises(ValidationError, match="is given"):
+        WordLadderPuzzle.model_validate({**payload, "rungs": first})
+
+
+def test_the_ladder_set_is_registered_but_no_day_bakes_it_yet(
+    generator: DailyGenerator, wl_wordlist: GameWordlist
+) -> None:
+    """Row 15 ships the proof; Row 16 ships the board, and the seam is config.
+
+    The derived set is committed and the payload schema is registered, but no
+    ``games`` entry names the ladder - so the cron cannot bake a payload that
+    nothing can render. Adding the Game is then a config entry plus a builder
+    registration, which is the same one-Game-one-registration claim the five
+    Games before it made.
+    """
+    assert wl_wordlist.gameId == word_ladder.GAME_ID
+    assert word_ladder.GAME_ID not in {spec.gameId for spec in generator.games}
+    assert word_ladder.GAME_ID not in daily.BUILDERS
+    registry = derive.load_registry(_REPO_ROOT / "config" / "derived-wordlists.json")
+    entry = next(one for one in registry.sets if one.gameId == word_ladder.GAME_ID)
+    assert entry.out == LADDER_SET
+    assert (entry.selection.minLength, entry.selection.maxLength) == (2, 7)
+
+
+def test_this_game_bakes_no_hint_and_a_registered_rung_would_fail_the_bake(
+    wl_spec: GameGeneration, wl_wordlist: GameWordlist
+) -> None:
+    """The empty vocabulary is a refusal, not an oversight.
+
+    Every rung the shared ladder can render is a fact about the NEXT word, which
+    on a three-letter answer is most of it - so the help this Game gives is a
+    per-rung reveal the Game prices at play time, and the payload carries no
+    hints at all. A config that registered a rung against it names a field this
+    Game cannot sell and fails the bake loudly.
+    """
+    row = wl_wordlist.words[0]
+    assert word_ladder.HINT_FIELDS == frozenset()
+    assert word_ladder.build_hints(row, wl_spec, 3) == []
+    with_rung = wl_spec.model_copy(
+        update={
+            "hints": [HintSpec(kind="meaning", template="{meaning}", cost=5)],
+        }
+    )
+    with pytest.raises(KeyError, match="cannot sell"):
+        word_ladder.build_hints(row, with_rung, 3)
