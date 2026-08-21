@@ -179,3 +179,54 @@ describe("the streak ticks once per completed day", () => {
     expect(svc.tickStreak(DAY)).toEqual({ before: 2, after: 1, ticked: true });
   });
 });
+
+describe("StorageService day-independent Mode progress", () => {
+  const JOURNEY: DayContext = {
+    date: "2026-08-21",
+    modeId: "journey",
+    gameId: "anagram",
+    packId: "ta-core",
+  };
+
+  test("absent progress reads as null, never as an empty promise", () => {
+    expect(new StorageService({ store: memStore() }).readModeProgress("journey")).toBeNull();
+  });
+
+  test("round-trips a record and survives a later DAY", () => {
+    const svc = new StorageService({ store: memStore() });
+    svc.writeModeProgress(JOURNEY, { completed: { path: ["one"] } });
+    expect(svc.readModeProgress("journey")).toEqual({ completed: { path: ["one"] } });
+    // A session state written on ANOTHER date is refused (the Daily's rule);
+    // the progress record is not, because a path is not a calendar.
+    svc.writeSessionState({ ...JOURNEY, date: "2026-09-01" }, {
+      itemIndex: 0,
+      completedCount: 0,
+      totalScore: 0,
+      currentGameState: null,
+    });
+    expect(svc.readSessionState({ ...JOURNEY, date: "2026-08-21" })).toBeNull();
+    expect(svc.readModeProgress("journey")).toEqual({ completed: { path: ["one"] } });
+  });
+
+  test("progress and session state occupy different perMode keys", () => {
+    const svc = new StorageService({ store: memStore() });
+    svc.writeModeProgress(JOURNEY, { completed: { path: ["one"] } });
+    svc.writeSessionState(JOURNEY, {
+      itemIndex: 1,
+      completedCount: 1,
+      totalScore: 10,
+      currentGameState: null,
+    });
+    const save = svc.loadSave();
+    expect(Object.keys(save?.perMode ?? {}).sort()).toEqual(["journey", "journey-progress"]);
+    expect(svc.readModeProgress("journey")).toEqual({ completed: { path: ["one"] } });
+  });
+
+  test("one Mode's progress leaves another Mode's alone", () => {
+    const svc = new StorageService({ store: memStore() });
+    svc.writeModeProgress(JOURNEY, { completed: { path: ["one"] } });
+    svc.writeModeProgress({ ...JOURNEY, modeId: "infinite" }, { seen: 3 });
+    expect(svc.readModeProgress("journey")).toEqual({ completed: { path: ["one"] } });
+    expect(svc.readModeProgress("infinite")).toEqual({ seen: 3 });
+  });
+});

@@ -41,6 +41,11 @@ ModeId = Annotated[str, StringConstraints(pattern=_SLUG)]
 PackId = Annotated[str, StringConstraints(pattern=_SLUG)]
 DifficultyId = Annotated[str, StringConstraints(pattern=_SLUG)]
 CopySlug = Annotated[str, StringConstraints(pattern=_SLUG)]
+# A Journey's id, which is also the stem of its file under datasets/journeys/.
+# It lives here rather than in journey.py because two contracts speak it: the
+# Journey names itself with it, and app-config names which Journey the Mode
+# opens - the same reason SourceId and RelPath sit here.
+JourneyId = Annotated[str, StringConstraints(pattern=_SLUG)]
 
 # A stable source identifier slug, matching the guardrails identifier discipline
 # used by the core contracts: "wiki", "ta-dedup", "opensubtitles-ta".

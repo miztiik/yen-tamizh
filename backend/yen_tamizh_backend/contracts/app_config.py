@@ -14,7 +14,12 @@ from typing import Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from yen_tamizh_backend.contracts.base import SchemaModel
-from yen_tamizh_backend.contracts.common import DifficultyId, GameId, ModeId
+from yen_tamizh_backend.contracts.common import (
+    DifficultyId,
+    GameId,
+    JourneyId,
+    ModeId,
+)
 
 
 class DailyConfig(BaseModel):
@@ -84,13 +89,23 @@ class TimeTrialConfig(BaseModel):
 
 
 class UiConfig(BaseModel):
-    """UI shell: which Modes are live, and the default Mode and theme."""
+    """UI shell: which Modes are live, the default Mode, theme, and Journey.
+
+    ``defaultJourney`` is the id of the path the Journey Mode opens - the stem
+    of a file under ``datasets/journeys/``. It is a knob rather than a constant
+    in the Mode for the reason every asset path in this repo is (Holy Law #6):
+    a Journey is content, more than one can ship at once, and which one a player
+    lands on is a curation decision that must not need a code change. It is
+    REQUIRED rather than optional-with-a-default, because a default would put
+    the name of one particular content file inside the schema.
+    """
 
     model_config = ConfigDict(extra="forbid")
 
     enabledModes: list[ModeId] = Field(min_length=1)
     defaultMode: ModeId
     defaultTheme: str = Field(min_length=1)
+    defaultJourney: JourneyId
 
 
 class AppConfig(SchemaModel):

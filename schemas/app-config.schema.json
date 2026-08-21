@@ -129,8 +129,13 @@
     },
     "UiConfig": {
       "additionalProperties": false,
-      "description": "UI shell: which Modes are live, and the default Mode and theme.",
+      "description": "UI shell: which Modes are live, the default Mode, theme, and Journey.\n\n``defaultJourney`` is the id of the path the Journey Mode opens - the stem\nof a file under ``datasets/journeys/``. It is a knob rather than a constant\nin the Mode for the reason every asset path in this repo is (Holy Law #6):\na Journey is content, more than one can ship at once, and which one a player\nlands on is a curation decision that must not need a code change. It is\nREQUIRED rather than optional-with-a-default, because a default would put\nthe name of one particular content file inside the schema.",
       "properties": {
+        "defaultJourney": {
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "title": "Defaultjourney",
+          "type": "string"
+        },
         "defaultMode": {
           "pattern": "^[a-z][a-z0-9-]*$",
           "title": "Defaultmode",
@@ -154,7 +159,8 @@
       "required": [
         "enabledModes",
         "defaultMode",
-        "defaultTheme"
+        "defaultTheme",
+        "defaultJourney"
       ],
       "title": "UiConfig",
       "type": "object"

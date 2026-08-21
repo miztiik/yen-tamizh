@@ -32,6 +32,7 @@ _COVERED: tuple[str, ...] = (
     "datasets/lexicon/by-class/**/*.ndjson",
     "datasets/lexicon/lexicon.meta.json",
     "datasets/lexicon/sources/llm-authored/entries.jsonl",
+    "datasets/journeys/*.json",
     "datasets/wordlists/derived/*.json",
     "frontend/public/bank/**/*.json",
 )

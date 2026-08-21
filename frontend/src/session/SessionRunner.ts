@@ -151,7 +151,15 @@ export class SessionRunner {
     });
 
     const resumed = this.deps.storage.readSessionState(this.dayCtx);
-    if (resumed !== null) {
+    // A snapshot from ANOTHER session of the same Mode is not a resume - it is
+    // a different puzzle's progress. A Journey runs one session per node, so
+    // without this check the record a cleared node left behind would finish the
+    // next node the instant it opened.
+    const mine =
+      resumed !== null &&
+      (resumed.sessionId === undefined ||
+        resumed.sessionId === this.deps.session.sessionId);
+    if (resumed !== null && mine) {
       this.itemIndex = resumed.itemIndex;
       this.completedCount = resumed.completedCount;
       this.totalScore = resumed.totalScore;
@@ -278,6 +286,7 @@ export class SessionRunner {
       completedCount: this.completedCount,
       totalScore: this.totalScore,
       currentGameState,
+      sessionId: this.deps.session.sessionId,
       resolved: [...this.resolved],
     };
     this.deps.storage.writeSessionState(this.dayCtx, state);

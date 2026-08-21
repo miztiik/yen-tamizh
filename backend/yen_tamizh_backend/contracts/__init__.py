@@ -32,6 +32,7 @@ from yen_tamizh_backend.contracts.common import (
     DifficultyId,
     GameId,
     Hint,
+    JourneyId,
     ModeId,
     PackId,
     RelPath,
@@ -67,6 +68,11 @@ from yen_tamizh_backend.contracts.game_wordlist import (
     GameWordlist,
 )
 from yen_tamizh_backend.contracts.glyph_manifest import GlyphManifest, GlyphShape
+from yen_tamizh_backend.contracts.journey import (
+    Journey,
+    JourneyNode,
+    UnlockRule,
+)
 from yen_tamizh_backend.contracts.lexicon import (
     LEXICON_CHANGELOG,
     LEXICON_VERSION,
@@ -147,7 +153,9 @@ from yen_tamizh_backend.contracts.wordle_puzzle import WordlePuzzle
 # never an edit to ``puzzle-file``. Row 15 adds the sixth and last of them, and
 # it is the only one registered before its Game: the ladder is PROVED at build
 # time, so the graph and the contract that checks its climb land a row ahead of
-# the board that renders it.
+# the board that renders it. Row 17 adds the first surface that is neither a
+# knob nor a Game payload but a MODE's own content: a Journey is an ordered path
+# of nodes, and registering it here is what makes authoring one a data change.
 REGISTRY: tuple[type[SchemaModel], ...] = (
     AnagramPuzzle,
     AppConfig,
@@ -160,6 +168,7 @@ REGISTRY: tuple[type[SchemaModel], ...] = (
     Example,
     GameWordlist,
     GlyphManifest,
+    Journey,
     Lexicon,
     LexiconSources,
     MissingLettersPuzzle,
@@ -222,6 +231,9 @@ __all__ = [
     "HintSpec",
     "HintsConfig",
     "InfiniteConfig",
+    "Journey",
+    "JourneyId",
+    "JourneyNode",
     "LadderRung",
     "Lexicon",
     "LexiconCensus",
@@ -258,6 +270,7 @@ __all__ = [
     "TimeTrialConfig",
     "TypoProfile",
     "UiConfig",
+    "UnlockRule",
     "WordClass",
     "WordClassEvidence",
     "WordLadderPuzzle",

@@ -13,6 +13,7 @@ Where tunable behaviour and player-facing copy live, and the rule that separates
 The main config surface is `app-config`. It carries, at least:
 
 - **Enabled Modes and Games** - which [`modeId`](modes.md) and [`gameId`](games.md) values are live vs "coming soon".
+- **The default [Journey](journeys.md)** - the id of the path the Journey Mode opens, which is the stem of a file under `datasets/journeys/`. It is a knob for the same reason every asset path is one: a Journey is content, more than one can ship at once, and which path a player lands on must never need a code change.
 - **Daily playlist** - how long a day is, the ring of Games an ordinary day draws its window from, and the ring a themed day draws from ([modes.md](modes.md)).
 - **Hints** - per-Game visibility, count, and cost ([core-loop.md](core-loop.md), [difficulty-and-scoring.md](difficulty-and-scoring.md)).
 - **Infinite** - the anti-repeat LRU window size.

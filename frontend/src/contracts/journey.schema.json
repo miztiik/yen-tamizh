@@ -1,0 +1,133 @@
+{
+  "$defs": {
+    "ChangelogEntry": {
+      "additionalProperties": false,
+      "description": "One dated entry in a schema's in-file change log (newest first).\n\n``version`` is the date-stamp of the change; ``change`` is what changed;\n``why`` is the reason it changed (CLAUDE.md section 11).",
+      "properties": {
+        "change": {
+          "minLength": 1,
+          "title": "Change",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+          "title": "Version",
+          "type": "string"
+        },
+        "why": {
+          "minLength": 1,
+          "title": "Why",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "change",
+        "why"
+      ],
+      "title": "ChangelogEntry",
+      "type": "object"
+    },
+    "JourneyNode": {
+      "additionalProperties": false,
+      "description": "One level of the path: which Game, how hard, when it opens, and its board.\n\n``gameId``/``packId``/``difficulty``/``payload`` are deliberately the same\nfour fields a ``puzzle-file`` item carries, because a node IS one item - the\ndifference between a Journey and a Daily is which order they are met in and\nwhat decides that, not what a puzzle is.",
+      "properties": {
+        "difficulty": {
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "title": "Difficulty",
+          "type": "string"
+        },
+        "gameId": {
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "title": "Gameid",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "packId": {
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "title": "Packid",
+          "type": "string"
+        },
+        "payload": {
+          "additionalProperties": true,
+          "title": "Payload",
+          "type": "object"
+        },
+        "unlockRule": {
+          "enum": [
+            "open",
+            "previous-complete"
+          ],
+          "title": "Unlockrule",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "gameId",
+        "packId",
+        "difficulty",
+        "unlockRule",
+        "payload"
+      ],
+      "title": "JourneyNode",
+      "type": "object"
+    }
+  },
+  "$id": "journey.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "One curated path: its title, its palette, and its nodes in walking order.",
+  "properties": {
+    "changelog": {
+      "items": {
+        "$ref": "#/$defs/ChangelogEntry"
+      },
+      "minItems": 1,
+      "title": "Changelog",
+      "type": "array"
+    },
+    "id": {
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "title": "Id",
+      "type": "string"
+    },
+    "nodes": {
+      "items": {
+        "$ref": "#/$defs/JourneyNode"
+      },
+      "minItems": 1,
+      "title": "Nodes",
+      "type": "array"
+    },
+    "theme": {
+      "minLength": 1,
+      "title": "Theme",
+      "type": "string"
+    },
+    "titleTa": {
+      "minLength": 1,
+      "title": "Titleta",
+      "type": "string"
+    },
+    "version": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "version",
+    "changelog",
+    "id",
+    "titleTa",
+    "theme",
+    "nodes"
+  ],
+  "title": "Journey",
+  "type": "object"
+}

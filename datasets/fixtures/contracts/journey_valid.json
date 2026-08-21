@@ -1,0 +1,42 @@
+{
+  "version": "2026-08-21T18:00",
+  "changelog": [
+    {
+      "version": "2026-08-21T18:00",
+      "change": "Initial journey fixture.",
+      "why": "Row 17 contract Oracle - the valid Journey shape: a path that opens on its first node, waits for it on the second, and carries a real per-Game payload on each."
+    }
+  ],
+  "id": "two-steps",
+  "titleTa": "\u0B87\u0BB0\u0BA3\u0BCD\u0B9F\u0BC1 \u0BAA\u0B9F\u0BBF\u0B95\u0BB3\u0BCD",
+  "theme": "light",
+  "nodes": [
+    {
+      "id": "first-scramble",
+      "gameId": "anagram",
+      "packId": "ta-core",
+      "difficulty": "easy",
+      "unlockRule": "open",
+      "payload": {
+        "word": "\u0BA4\u0BAE\u0BBF\u0BB4\u0BCD",
+        "tiles": ["\u0BA4", "\u0BAE\u0BBF", "\u0BB4\u0BCD"],
+        "reveal": 0,
+        "timeLimitSec": 0,
+        "attempts": 3
+      }
+    },
+    {
+      "id": "first-blank",
+      "gameId": "missing-letters",
+      "packId": "ta-core",
+      "difficulty": "easy",
+      "unlockRule": "previous-complete",
+      "payload": {
+        "word": "\u0BB5\u0BBE\u0BAF\u0BCD\u0BAA\u0BCD\u0BAA\u0BC1",
+        "blanks": [2],
+        "choices": ["\u0BA4\u0BCD", "\u0BAA\u0BCD", "\u0B95\u0BCD", "\u0BB1\u0BCD"],
+        "attempts": 3
+      }
+    }
+  ]
+}

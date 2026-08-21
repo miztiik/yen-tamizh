@@ -1,0 +1,23 @@
+{
+  "changelog": [
+    {
+      "change": "Initial Journey definition: an ordered path of nodes with their boards.",
+      "version": "2026-08-21T18:00",
+      "why": "Row 17 - the Journey Mode walks a hand-authored path, and the path is data so that adding one is a file rather than a release. A node carries its own payload because there is no runtime generator (Holy Law #1) and a second baked file could disagree with the definition about how many nodes the path has."
+    }
+  ],
+  "id": "beginners-ladder",
+  "nodes": [
+    {"difficulty": "easy", "gameId": "anagram", "id": "first-scramble", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: யூ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: அனுமானம்"}], "meaning": "அனுமானம்", "reveal": 0, "tiles": ["க", "ம்", "யூ"], "timeLimitSec": 0, "translationEn": "Tamil source.ape", "word": "யூகம்"}, "unlockRule": "open"},
+    {"difficulty": "easy", "gameId": "missing-letters", "id": "first-blank", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [2], "choices": ["ழு", "நு", "ணே", "மா", "டூ", "ய்", "ணா", "ழா"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: தள்ளாடிய"}], "meaning": "தள்ளாடிய", "translationEn": "tottering", "word": "தடுமாறிய"}, "unlockRule": "previous-complete"},
+    {"difficulty": "easy", "gameId": "wordle", "id": "first-guess", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: பௌத்த சமயம்"}], "meaning": "பௌத்த சமயம்", "translationEn": "Buddhism", "word": "புத்தமதம்"}, "unlockRule": "previous-complete"},
+    {"difficulty": "easy", "gameId": "word-search", "id": "first-search", "packId": "ta-core", "payload": {"grid": [["யி", "லை", "கு", "க", "ய", "ன்", "ம", "ன்"], ["மா", "லை", "யி", "ட்", "மா", "ட்", "மா", "ம"], ["நா", "லி", "ற", "ய", "கு", "பி", "ற", "ய"], ["ம", "ம", "லை", "டி", "க", "டி", "லை", "ட்"], ["ள்", "ம", "யி", "நா", "ய", "ட்", "ள்", "லி"], ["ட்", "க", "ட்", "லி", "ம", "ர", "ட்", "யி"], ["ம", "க", "நா", "மா", "ற", "பி", "ர", "ன்"], ["ள்", "பி", "லி", "கு", "டி", "கு", "ர", "ம"]], "targets": [{"direction": "down-right", "meaning": "மயில்இறகு", "start": {"col": 1, "row": 3}, "word": "மயிலிறகு"}, {"direction": "up-right", "meaning": "சேரன்", "start": {"col": 1, "row": 4}, "word": "மலையமான்"}, {"direction": "down-left", "meaning": "ஒன்றுக்கு மேற்பட்ட நாள்", "start": {"col": 3, "row": 4}, "word": "நாட்கள்"}, {"direction": "up", "meaning": "காண்க: பிரட்டை (M. M.)", "start": {"col": 5, "row": 6}, "word": "பிரட்டி"}]}, "unlockRule": "previous-complete"},
+    {"difficulty": "easy", "gameId": "word-ladder", "id": "first-climb", "packId": "ta-core", "payload": {"choices": ["ளா", "நா", "ளூ", "ய", "தி", "க", "நோ", "வு"], "rungs": [{"meaning": "அடிப்படை", "word": "வேர்"}, {"alsoValid": ["நார்வே", "நோர்வே", "வேகர்", "வேர்வு", "வேளார்", "வேளூர்"], "meaning": "ஒற்றர்", "word": "வேயர்"}, {"meaning": "வேதங்களைப் பின்பற்றி நடப்பவர், அந்தணர்", "word": "வேதியர்"}], "timeLimitSec": 0}, "unlockRule": "previous-complete"},
+    {"difficulty": "easy", "gameId": "crossword", "id": "first-crossing", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "அசைவு", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "கம்பனம்"}, {"clue": "மிதமிஞ்சிப் பேசுதல்", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "தாண்டுதல்"}, {"clue": "பூச்சாண்டி", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "உம்மாண்டி"}, {"clue": "தூக்கம்", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "அனந்தல்"}], "rows": 5}, "unlockRule": "previous-complete"},
+    {"difficulty": "medium", "gameId": "anagram", "id": "longer-scramble", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: கோ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: கோக்"}], "meaning": "கோக்", "reveal": 0, "tiles": ["க்", "கி", "ன்", "கோ"], "timeLimitSec": 0, "translationEn": "cocaine", "word": "கோக்கின்"}, "unlockRule": "previous-complete"},
+    {"difficulty": "medium", "gameId": "missing-letters", "id": "two-blanks", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [2], "choices": ["ம", "தொ", "றா", "வி", "லொ", "வ", "னெ", "ணு"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: பலவற்றிற்குப் பொதுவாகவுள்ள குணம் ( 1"}], "meaning": "பலவற்றிற்குப் பொதுவாகவுள்ள குணம் ( 1", "word": "பொதுவியல்"}, "unlockRule": "previous-complete"}
+  ],
+  "theme": "light",
+  "titleTa": "முதல் படிகள்",
+  "version": "2026-08-21T18:00"
+}

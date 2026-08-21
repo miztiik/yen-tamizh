@@ -115,11 +115,12 @@ test("first load to playable: Home -> Daily -> a won day -> a streak", async ({ 
   await expect(page.getByTestId("app-shell")).toBeVisible();
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("yen-tamizh");
 
-  // The one live Mode is a real button; the rest are honestly marked, not
-  // disabled controls that invite a tap and then punish it.
-  await expect(page.getByTestId("mode-card")).toHaveCount(1);
-  await expect(page.getByTestId("mode-card")).toHaveAttribute("data-mode", "daily");
-  await expect(page.getByTestId("mode-card-locked")).toHaveCount(3);
+  // The live Modes are real buttons; the rest are honestly marked, not
+  // disabled controls that invite a tap and then punish it. Two are live since
+  // Row 17 turned the Journey on, and the Daily is still the first card.
+  await expect(page.getByTestId("mode-card")).toHaveCount(2);
+  await expect(page.getByTestId("mode-card").first()).toHaveAttribute("data-mode", "daily");
+  await expect(page.getByTestId("mode-card-locked")).toHaveCount(2);
 
   // Keyboard reachability with a visible focus ring (v2 a11y).
   await page.keyboard.press("Tab");
@@ -138,7 +139,7 @@ test("first load to playable: Home -> Daily -> a won day -> a streak", async ({ 
   expect(focus?.outlineStyle).not.toBe("none");
 
   // 2. ONE TAP TO PLAYING.
-  await page.getByTestId("mode-card").click();
+  await page.getByTestId("mode-card").first().click();
   await expect(page.getByTestId("session-stage")).toBeVisible();
   await expect(page.getByTestId("anagram-game")).toBeVisible();
   expect(new URL(page.url()).searchParams.get("mode")).toBe("daily");
