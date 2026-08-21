@@ -68,7 +68,7 @@ Envelope `{ ts, src, v, session, name, level, ctx, data }`. Game: `puzzle.starte
 | 20 | WordSearchGame + gen + derived set | 3 | 9,11 | G | DONE | - | #43 | worker |
 | 21 | CrosswordGame + placement solver + derived set | 5 | 9,11 | G | DONE | - | #44 | worker |
 | 22 | InfiniteMode + bulk pool + index | 4 | 12,13 | H | DONE | - | #50 | worker |
-| 23 | TimeTrialMode | 3 | 12,22 | H | READY | - | - | - |
+| 23 | TimeTrialMode | 3 | 12,22 | H | DONE | - | #51 | worker |
 
 Dependency spine: `1(done) -> {2,3} -> {4,5,6} -> {7,8} -> {9,10} -> 11 -> 12 -> 13 -> 14`; Word Ladder `15 -> 16 -> 17`; Games `18..21` parallel after `9,11`; Modes `22 -> 23` after `12,13`. Parallel groups: A `{2,3}`, B `{4,5,6}`, C `{7,8}`, G `{18,19,20,21}`, H `{22,23}`.
 
@@ -537,7 +537,7 @@ Dependency spine: `1(done) -> {2,3} -> {4,5,6} -> {7,8} -> {9,10} -> 11 -> 12 ->
 
 ## 3. Execution stamp
 
-`Execute per docs/how-to/execute-a-plan.md: orchestrator dispatches one worktree-isolated worker subagent per row; workers consult personas (Fowler/Carmack/Jony/Palm/Player/Explore) on ambiguity; AUTO-merge on green gates; parallel N = 2; honor the ESCALATE triggers in section 0. EXECUTING (user-authorized 2026-08-13). Rows 1-14 DONE (PRs #1-#12 for rows 1-13; row 14 delivered by the wordsmith plan via #33 and #35). MILESTONE: the game is PLAYABLE and LIVE - Home -> Daily -> a three-item easy/medium/hard round with hints and meanings -> summary -> streak, offline-capable, deployed to GitHub Pages, and re-baked nightly by the daily cron. SUPERSESSION (2026-08-14..18): the wordsmith lexicon pipeline (PRs #13-#36) replaced the row-8 corpus layer with a cross-validated lexicon; the corpus modules were retired in #32 and the served wordlist now derives from the lexicon (#30). Its plan-doc was closed and deleted at #36 with its rationale moved into docs/architecture/lexicon/ and docs/how-to/rebuild-the-lexicon.md; six measured open defects are recorded there, not here. Frontier: Row 15 (ladder graph builder, Level 5) is the next row and an ESCALATE pause; Rows 18-21 (Games) are AUTO and unblocked. Content note: rows 18-21 need no co-anagram tension, which is the scarce resource in Tamil.`
+`Execute per docs/how-to/execute-a-plan.md: orchestrator dispatches one worktree-isolated worker subagent per row; workers consult personas (Fowler/Carmack/Jony/Palm/Player/Explore) on ambiguity; AUTO-merge on green gates; parallel N = 2; honor the ESCALATE triggers in section 0. COMPLETE (2026-08-21). ALL 23 ROWS DONE - PRs #1-#51, every one green on CI. The game is live at https://miztiik.github.io/yen-tamizh/ with six Games (anagram, missing-letters, wordle, word-search, crossword, word-ladder) across four Modes (daily, journey, infinite, time-trial), offline-capable, re-baked nightly by the daily cron. SUPERSESSION (2026-08-14..18): the wordsmith lexicon pipeline (PRs #13-#36) replaced the row-8 corpus layer with a cross-validated lexicon; its plan-doc was closed at #36 with its rationale moved into docs/architecture/lexicon/ and docs/how-to/rebuild-the-lexicon.md, where six measured open defects are recorded. Later corrections: the daily now serves all six Games on two rings (#45); every answer word is unique, not just each board's anchor (#48). Open follow-ups live in docs, not here - the proper-noun deny-list still ends at the top of the frequency curve, and 8 forced ladder-rung repeats remain over a 180-day horizon, both measured and documented.`
 
 ## See also
 
