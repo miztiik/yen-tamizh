@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00048", "packId": "ta-core", "payload": {"choices": ["ல்", "ற்", "லூ", "ம்", "மா", "ணூ", "ரோ", "து"], "rungs": [{"meaning": "அதிகமாக", "word": "ஏற"}, {"meaning": "உகந்த", "word": "ஏற்ற"}, {"alsoValid": ["ஏமாற்ற", "ஏற்றது", "ஏற்றல்"], "meaning": "அதிகப்படி", "word": "ஏற்றம்"}], "timeLimitSec": 0}}

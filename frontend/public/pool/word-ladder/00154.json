@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00154", "packId": "ta-core", "payload": {"choices": ["அ", "ரா", "டோ", "வ", "ட்", "டை", "ளே", "ண்"], "rungs": [{"meaning": "அறிவற்றவன்", "word": "சடன்"}, {"alsoValid": ["சட்டன்", "சண்டன்", "சவடன்"], "meaning": "கீழ்மகன்", "word": "அசடன்"}, {"meaning": "பிரமா", "word": "அண்டசன்"}], "timeLimitSec": 0}}

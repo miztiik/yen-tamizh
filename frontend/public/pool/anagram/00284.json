@@ -1,0 +1,1 @@
+{"difficulty": "hard", "gameId": "anagram", "id": "00284", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: எ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: கணக்கிடுதல்"}], "meaning": "கணக்கிடுதல்", "reveal": 0, "tiles": ["எ", "த", "ல்", "ணி", "ண்", "டு"], "timeLimitSec": 0, "word": "எண்ணிடுதல்"}}

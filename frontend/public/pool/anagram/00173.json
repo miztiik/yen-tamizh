@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "anagram", "id": "00173", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: அ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: இட்டகட்டளை"}], "meaning": "இட்டகட்டளை", "reveal": 0, "tiles": ["த", "அ", "த்", "டை", "து"], "timeLimitSec": 0, "word": "அடைத்தது"}}

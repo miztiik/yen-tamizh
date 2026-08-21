@@ -1,0 +1,1 @@
+{"difficulty": "hard", "gameId": "missing-letters", "id": "00227", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [1, 2], "choices": ["தை", "பூ", "கு", "ண்", "ழை", "நொ", "நே", "க்"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: அருகன்"}], "meaning": "அருகன்", "word": "எண்குணன்"}}

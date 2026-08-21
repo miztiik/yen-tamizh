@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00016", "packId": "ta-core", "payload": {"choices": ["து", "ணி", "ஆ", "ழே", "ந்", "பூ", "மி", "ய்"], "rungs": [{"meaning": "முசுமுசுக்கை", "word": "பிரா"}, {"alsoValid": ["ஆபிரா", "பிராணி", "பிராமி", "பிராய்"], "meaning": "உரிமை", "word": "பிராது"}, {"meaning": "பருந்து", "word": "பிராந்து"}], "timeLimitSec": 0}}

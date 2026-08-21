@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "anagram", "id": "00158", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: அ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: விசேஷபாவம்"}], "meaning": "விசேஷபாவம்", "reveal": 0, "tiles": ["அ", "னை", "வி", "ரு"], "timeLimitSec": 0, "word": "அருவினை"}}

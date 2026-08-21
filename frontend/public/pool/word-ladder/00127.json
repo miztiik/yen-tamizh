@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00127", "packId": "ta-core", "payload": {"choices": ["ண", "மே", "ம்", "க", "த", "வூ", "ய", "மூ"], "rungs": [{"meaning": "ஆட்சி", "word": "பட்டம்"}, {"alsoValid": ["பட்டகம்", "பட்டணம்", "பட்டயம்", "மேம்பட்ட"], "meaning": "காண்க : பதற்றம்", "word": "பதட்டம்"}, {"meaning": "தண்டோரா", "word": "தம்பட்டம்"}], "timeLimitSec": 0}}

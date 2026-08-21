@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00161", "packId": "ta-core", "payload": {"choices": ["ர", "டு", "டை", "ழே", "யே", "த", "சே", "வ"], "rungs": [{"meaning": "இண் = இண் + ஐ => இணை", "word": "இண்"}, {"alsoValid": ["இண்டை", "இவண்"], "meaning": "கொடி வகை", "word": "இண்டு"}, {"meaning": "இரட்டை", "word": "இரண்டு"}], "timeLimitSec": 0}}

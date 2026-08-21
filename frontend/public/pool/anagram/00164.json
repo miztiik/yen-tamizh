@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "anagram", "id": "00164", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ப"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: புத்தமததோர்"}], "meaning": "புத்தமததோர்", "reveal": 0, "tiles": ["ப", "ர்", "வு", "த", "த்"], "timeLimitSec": 0, "word": "பவுத்தர்"}}

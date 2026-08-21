@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00074", "packId": "ta-core", "payload": {"choices": ["நீ", "அ", "ணூ", "ரை", "ம்", "கூ", "வு", "வீ"], "rungs": [{"meaning": "செருக்கு", "word": "மதர்"}, {"alsoValid": ["மதநீர்", "மதர்வு"], "meaning": "கொடை", "word": "தர்மம்"}, {"meaning": "அடிதடி", "word": "அதர்மம்"}], "timeLimitSec": 0}}

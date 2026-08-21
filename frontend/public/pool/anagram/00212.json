@@ -1,0 +1,1 @@
+{"difficulty": "hard", "gameId": "anagram", "id": "00212", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: க"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: கடை"}], "meaning": "கடை", "reveal": 0, "tiles": ["டை", "க", "க", "ணி", "ண்"], "timeLimitSec": 0, "word": "கடைகண்ணி"}}

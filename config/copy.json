@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-21T18:00",
+  "version": "2026-08-21T22:00",
   "changelog": [
+    {
+      "version": "2026-08-21T22:00",
+      "change": "Added the Infinite screen's wording: the difficulty chooser and its three bands, the next-puzzle control, the run counter, and the unavailable screen.",
+      "why": "Row 22 - the Infinite Mode ships, and the difficulty names are the first time this game has ever shown a player the word easy, medium or hard. They are copy rather than identifiers for exactly that reason: the band slug is what travels in a baked pool item and what the generator registry speaks, and a Tamil label baked beside it could only be corrected by a rebuild. They double as the accessible name of the chooser's three buttons, so a screen-reader user hears the band rather than a bare position. The run counter is the only new number on the screen and it is deliberately a count of what this sitting has solved rather than a score: an endless mode has no end to score against, and the honest thing to show is how far the player has come."
+    },
     {
       "version": "2026-08-21T18:00",
       "change": "Added the Journey screen's wording: the map label, the three node states, the progress line, the back-to-map control, and the unavailable screen.",
@@ -64,6 +69,13 @@
     "mode-infinite-title": "முடிவில்லா",
     "mode-infinite-title-en": "Infinite",
     "mode-infinite-note": "நிற்காத புதிர்கள்",
+    "infinite-difficulty-label": "நிலை",
+    "difficulty-easy": "எளிது",
+    "difficulty-medium": "நடுத்தரம்",
+    "difficulty-hard": "கடினம்",
+    "infinite-solved": "தீர்த்தவை",
+    "infinite-empty-title": "புதிர்கள் கிடைக்கவில்லை",
+    "infinite-empty-body": "முடிவில்லா புதிர்களை இப்போது ஏற்ற முடியவில்லை. தயவுசெய்து பிறகு வாருங்கள்.",
     "mode-time-trial-title": "நேர சவால்",
     "mode-time-trial-title-en": "Time trial",
     "mode-time-trial-note": "நேரத்துக்குள் விளையாடு",

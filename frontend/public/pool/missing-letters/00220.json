@@ -1,0 +1,1 @@
+{"difficulty": "hard", "gameId": "missing-letters", "id": "00220", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [2, 3], "choices": ["ஒ", "ரா", "ர்", "கு", "த்", "து", "ல்", "ட்"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: கொத்தாக"}], "meaning": "கொத்தாக", "word": "துணர்த்த"}}

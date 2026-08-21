@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "anagram", "id": "00021", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: பா"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: பாடப்பட்ட"}], "meaning": "பாடப்பட்ட", "reveal": 0, "tiles": ["ய", "டி", "பா"], "timeLimitSec": 0, "translationEn": "vocalic", "word": "பாடிய"}}

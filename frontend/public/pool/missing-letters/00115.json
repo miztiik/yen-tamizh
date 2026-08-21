@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "missing-letters", "id": "00115", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [2], "choices": ["தை", "ப்", "மே", "வெ", "தோ", "கு", "சொ", "ட"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: அப்பாயில்லாத அப்பனில்லாத"}], "meaning": "அப்பாயில்லாத அப்பனில்லாத", "translationEn": "fatherless", "word": "தந்தையற்ற"}}

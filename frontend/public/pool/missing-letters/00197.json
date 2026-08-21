@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "missing-letters", "id": "00197", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [3], "choices": ["தே", "மை", "வு", "போ", "ப்", "லி", "நே", "ழா"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: அங்கஅமைப்பு"}], "meaning": "அங்கஅமைப்பு", "translationEn": "representation", "word": "உருவமைப்பு"}}

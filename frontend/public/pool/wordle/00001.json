@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "wordle", "id": "00001", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 1, "kind": "category", "text": "வகை: போக்குவரத்து"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: இரயில்"}], "meaning": "இரயில்", "translationEn": "tank", "word": "தொடர்வண்டி"}}

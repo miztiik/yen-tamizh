@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00147", "packId": "ta-core", "payload": {"choices": ["ன", "றை", "ம்", "ந", "மூ", "னெ", "யை", "ளே"], "rungs": [{"meaning": "ரோஜா முதலிய பூச்சாரம்", "word": "அத்தர்"}, {"meaning": "கரு", "word": "அர்த்தம்"}, {"alsoValid": ["அநர்த்தம்", "அமூர்த்தம்"], "meaning": "கேடு", "word": "அனர்த்தம்"}], "timeLimitSec": 0}}

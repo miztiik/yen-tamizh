@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00021", "packId": "ta-core", "payload": {"choices": ["வு", "ற்", "சை", "நெ", "தா", "நொ", "வூ", "ய"], "rungs": [{"meaning": "இற", "word": "மறை"}, {"alsoValid": ["மறைசை", "மறைவு"], "meaning": "பிற", "word": "மற்றை"}, {"meaning": "மற்ற பிற", "word": "மற்றைய"}], "timeLimitSec": 0}}

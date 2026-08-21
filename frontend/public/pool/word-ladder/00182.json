@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00182", "packId": "ta-core", "payload": {"choices": ["வ", "ல்", "தே", "வோ", "நோ", "சா", "ரி", "தெ"], "rungs": [{"meaning": "துளிர்த்த", "word": "விரித்த"}, {"meaning": "பரப்புதல்", "word": "விரித்தல்"}, {"alsoValid": ["விசாரித்தல்", "விவரித்தல்"], "meaning": "அறிவித்தல்", "word": "தெரிவித்தல்"}], "timeLimitSec": 0}}

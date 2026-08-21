@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "anagram", "id": "00015", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ப"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: கேடகம்"}], "meaning": "கேடகம்", "reveal": 0, "tiles": ["சை", "ப", "ரி"], "timeLimitSec": 0, "translationEn": "buckler", "word": "பரிசை"}}

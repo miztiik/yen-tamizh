@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00139", "packId": "ta-core", "payload": {"choices": ["த்", "கௌ", "ளு", "னெ", "து", "டை", "ஞ", "சி"], "rungs": [{"meaning": "அடைதல்", "word": "புகுதல்"}, {"alsoValid": ["புளுகுதல்"], "meaning": "போகவிடுதல்", "word": "புகுத்தல்"}, {"meaning": "காண்க: புகு", "word": "புகுத்துதல்"}], "timeLimitSec": 0}}

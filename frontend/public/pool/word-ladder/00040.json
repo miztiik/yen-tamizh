@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00040", "packId": "ta-core", "payload": {"choices": ["ய", "ண்", "வு", "சு", "ரை", "மா", "ட்", "க"], "rungs": [{"meaning": "அழி", "word": "முடி"}, {"alsoValid": ["மாமுடி", "முகடி", "முசுடி", "முடிய", "முட்டி", "முண்டி"], "meaning": "அந்தம்", "word": "முடிவு"}, {"meaning": "இறுதியுரை", "word": "முடிவுரை"}], "timeLimitSec": 0}}

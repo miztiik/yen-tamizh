@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "missing-letters", "id": "00025", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [1], "choices": ["னோ", "மீ", "றை", "நே", "னி", "ப்", "தா", "நா"], "hints": [{"cost": 1, "kind": "category", "text": "வகை: இடம்"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: சிறை"}], "meaning": "சிறை", "translationEn": "Jail", "word": "சிறைச்சாலை"}}

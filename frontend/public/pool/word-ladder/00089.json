@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00089", "packId": "ta-core", "payload": {"choices": ["த", "சு", "யா", "டொ", "வி", "டெ", "ன்", "கா"], "rungs": [{"meaning": "அகம்", "word": "மனை"}, {"alsoValid": ["காமனை", "சுமனை", "மனைவி", "மன்னை"], "meaning": "கள்", "word": "மதனை"}, {"meaning": "மதம் பிடித்த யானை", "word": "மதயானை"}], "timeLimitSec": 0}}

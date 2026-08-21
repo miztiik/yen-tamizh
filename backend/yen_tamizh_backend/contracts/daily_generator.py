@@ -427,6 +427,16 @@ class DailyGenerator(SchemaModel):
     # theme was sized for: without it the Daily would be the same theme every day
     # for months, which is the opposite of the variety a theme exists to add.
     themeEveryNDays: int = Field(ge=0)
+    # Where the Infinite Mode's pre-generated pool is written, relative to the
+    # repo root - beside the bank and under frontend/public/ for the same reason
+    # (Holy Law #1: the game reads it same-origin from its own bundle).
+    poolDir: RelPath = "frontend/public/pool"
+    # How many pool puzzles to bake per Game per difficulty band. It is a
+    # CEILING rather than a quota: a band whose bucket runs out of buildable,
+    # not-yet-pooled rows stops early and the index reports what was actually
+    # made, because a pool padded with a repeat would be an endless stream that
+    # deals the same board twice under two names. 0 turns a pool bake off.
+    poolPerBand: int = Field(default=100, ge=0)
     games: list[GameGeneration] = Field(min_length=1)
 
     @model_validator(mode="after")

@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00149", "packId": "ta-core", "payload": {"choices": ["ளு", "ழி", "ஞீ", "இ", "ட்", "ழா", "மீ", "பூ"], "rungs": [{"meaning": "உண்", "word": "மிசை"}, {"alsoValid": ["பூமிசை", "மீமிசை"], "meaning": "தீங்கு", "word": "இமிசை"}, {"meaning": "காண்க: இயமரம்( 50)", "word": "இமிழிசை"}], "timeLimitSec": 0}}

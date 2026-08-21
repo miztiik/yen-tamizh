@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "wordle", "id": "00067", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 1, "kind": "category", "text": "வகை: இயற்கை"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: பெய்யும் மழையின் அளவு"}], "meaning": "பெய்யும் மழையின் அளவு", "translationEn": "rainfall", "word": "மழைப்பொழிவு"}}

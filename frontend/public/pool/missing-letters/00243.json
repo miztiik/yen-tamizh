@@ -1,0 +1,1 @@
+{"difficulty": "hard", "gameId": "missing-letters", "id": "00243", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [3, 4], "choices": ["க", "றோ", "தை", "வ்", "பு", "ள", "ம்", "யி"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: அடிபாகம்"}], "meaning": "அடிபாகம்", "translationEn": "bottom", "word": "கீழ்பாகம்"}}

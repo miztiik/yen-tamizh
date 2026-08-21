@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00057", "packId": "ta-core", "payload": {"choices": ["ரு", "ச", "ய", "தீ", "ந்", "ம்", "கு", "ர"], "rungs": [{"meaning": "செல்வம்", "word": "நிதி"}, {"alsoValid": ["நிகுதி", "நிசதி", "நிந்தி", "நிரதி", "நிருதி"], "meaning": "ஊழ்", "word": "நியதி"}, {"meaning": "பொன்", "word": "நிதியம்"}], "timeLimitSec": 0}}

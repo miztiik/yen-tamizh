@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "wordle", "id": "00022", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 1, "kind": "category", "text": "வகை: இயற்கை"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: பனியுடன் வீசும் கடும் புயல்"}], "meaning": "பனியுடன் வீசும் கடும் புயல்", "translationEn": "blizzard", "word": "பனிப்புயல்"}}

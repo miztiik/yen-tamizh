@@ -10,6 +10,7 @@ import eventEnvelopeSchema from "./event-envelope.schema.json";
 import exampleSchema from "./example.schema.json";
 import journeySchema from "./journey.schema.json";
 import missingLettersPuzzleSchema from "./missing-letters-puzzle.schema.json";
+import poolIndexSchema from "./pool-index.schema.json";
 import puzzleFileSchema from "./puzzle-file.schema.json";
 import saveSchema from "./save.schema.json";
 import wordLadderPuzzleSchema from "./word-ladder-puzzle.schema.json";
@@ -24,6 +25,7 @@ import type { EventEnvelope } from "./event-envelope";
 import type { Example } from "./example";
 import type { Journey } from "./journey";
 import type { MissingLettersPuzzle } from "./missing-letters-puzzle";
+import type { PoolIndex, PoolItem } from "./pool-index";
 import type { PuzzleFile } from "./puzzle-file";
 import type { Save } from "./save";
 import type { WordLadderPuzzle } from "./word-ladder-puzzle";
@@ -47,6 +49,16 @@ const validators = {
   example: ajv.compile<Example>(exampleSchema),
   journey: ajv.compile<Journey>(journeySchema),
   "missing-letters-puzzle": ajv.compile<MissingLettersPuzzle>(missingLettersPuzzleSchema),
+  "pool-index": ajv.compile<PoolIndex>(poolIndexSchema),
+  // ONE pool puzzle. Its shape lives in the pool index's `$defs` rather than in
+  // a schema file of its own, because a document schema stamps every file with
+  // `version` + `changelog` and a pool is ~1,800 files - see the byte
+  // measurement in backend/.../contracts/pool_index.py. Compiling the sub-schema
+  // by `$ref` keeps the validator generated rather than hand-written: these are
+  // still the exact bytes the backend exported, so the drift gate covers it.
+  "pool-item": ajv.compile<PoolItem>({
+    $ref: `${poolIndexSchema.$id}#/$defs/PoolItem`,
+  }),
   "puzzle-file": ajv.compile<PuzzleFile>(puzzleFileSchema),
   save: ajv.compile<Save>(saveSchema),
   "word-ladder-puzzle": ajv.compile<WordLadderPuzzle>(wordLadderPuzzleSchema),
@@ -68,6 +80,8 @@ export interface SchemaPayload {
   example: Example;
   journey: Journey;
   "missing-letters-puzzle": MissingLettersPuzzle;
+  "pool-index": PoolIndex;
+  "pool-item": PoolItem;
   "puzzle-file": PuzzleFile;
   save: Save;
   "word-ladder-puzzle": WordLadderPuzzle;
@@ -110,6 +124,8 @@ export type {
   EventEnvelope,
   Example,
   Journey,
+  PoolIndex,
+  PoolItem,
   PuzzleFile,
   Save,
   WordLadderPuzzle,

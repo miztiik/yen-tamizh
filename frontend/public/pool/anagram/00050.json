@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "anagram", "id": "00050", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: க"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: வண்டி"}], "meaning": "வண்டி", "reveal": 0, "tiles": ["த்", "தை", "க", "ர"], "timeLimitSec": 0, "word": "கரத்தை"}}

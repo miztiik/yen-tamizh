@@ -1,6 +1,6 @@
 # Runtime Stack and Bundle
 
-**Last Updated**: 2026-08-13
+**Last Updated**: 2026-08-21
 
 The player-facing runtime and how it is delivered: the frontend stack, the PWA/offline contract (service worker + caches), and base-path handling under the GitHub Pages project path. This is the runtime subsystem doc referenced by [../../how-to/ship-to-github-pages.md](../../how-to/ship-to-github-pages.md); the how-to is the runbook, this page is the *why*. The boundary this runtime sits behind is fixed in [../overview.md](../overview.md).
 
@@ -20,6 +20,7 @@ The service worker is the offline contract - it either caches the playable shell
 
 - **Precache (shell).** Every built asset - HTML, JS, CSS, the manifest, the app icons, and the default theme - is precached by revision. An offline reload of a visited route boots the shell entirely from the precache. `navigateFallback` maps navigations to the precached `index.html`, which is also the SPA fallback GitHub Pages serves as `404.html`.
 - **Runtime cache (bank).** Same-origin requests under `bank/` use `StaleWhileRevalidate`, bounded by an entry-count expiration so the cache cannot grow without limit. Recent bank days are precached with the shell; older days load same-origin on demand and are runtime-cached the first time they are opened. The bank directory does not exist yet (it lands in Row 13); the rule matches nothing until then and is inert when the directory is absent.
+- **Runtime cache (journeys and the Infinite pool).** Same terms, same reason, and for the pool the reason is the whole design. `globPatterns` does not list `json`, so no data file is ever precached; `pool/` and `journeys/` each get their own `StaleWhileRevalidate` rule so a board a player has OPENED still opens offline while none of the ones they have not are downloaded at all. The pool is 1,765 files and 1.39 MB - precaching it would spend the entire install budget on content a player may never reach, on a phone, before the first puzzle. Measured on the real build, the precache manifest is **27 entries / 397,863 bytes both with the pool present and with it absent**: the pool adds exactly nothing to the install. Its runtime cache is bounded at 200 entries, matching the Mode's anti-repeat window, so the cache holds about as many boards as the Mode promises not to repeat (roughly 200 KB at 0.4 to 1.6 KB a board).
 
 The matcher is guarded to **same-origin only**, so the worker never caches or reaches a cross-origin host (Holy Law #1).
 
@@ -49,6 +50,7 @@ Under GitHub Pages the site is a project page at `/yen-tamizh/`, so nothing may 
 ## Rejected alternatives
 
 - **Precache the entire bank archive.** Rejected: the archive grows daily without bound, so precaching all of it makes the install and every update heavier forever. Recent days are precached; older days are runtime-cached on demand. Authority: Carmack (bundle is the runtime; bound the cache).
+- **Precache the Infinite pool.** Rejected on the same principle and a larger number: 1.39 MB of boards, of which a session touches a few kilobytes. A pool item is fetched when it is dealt and cached then. Authority: Carmack.
 - **Fetch daily puzzles from an external CDN (e.g. `raw.githubusercontent.com`).** Rejected: it is a runtime fetch to an external host - it breaks offline play and violates Holy Law #1. The bank is baked into the bundle and loaded same-origin. Authority: the committed contract (`CLAUDE.md` Holy Law #1) and [../overview.md](../overview.md).
 - **`NetworkFirst` for `bank/`.** Rejected: it puts a network round-trip in front of immutable data the player already has, which is exactly the latency Holy Law #2 forbids on patchy 4G. `StaleWhileRevalidate` serves from cache first and revalidates in the background.
 - **Precache theme/motif art with the shell.** Rejected: the default theme ships in the shell, but non-default motif art is a runtime (non-precached) asset so the shell stays small (Carmack + Jony). It lands with the design system (Row 10).

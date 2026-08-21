@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00031", "packId": "ta-core", "payload": {"choices": ["கோ", "ணோ", "ய", "ர்", "ப", "பு", "லூ", "ல்"], "rungs": [{"meaning": "அழகான பெண்", "word": "அழகி"}, {"meaning": "அழகான", "word": "அழகிய"}, {"alsoValid": ["அழகியர்"], "meaning": "முருகியல்", "word": "அழகியல்"}], "timeLimitSec": 0}}

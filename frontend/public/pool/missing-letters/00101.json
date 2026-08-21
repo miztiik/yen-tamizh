@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "missing-letters", "id": "00101", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [3], "choices": ["மை", "ம்", "வை", "னே", "ணை", "ட", "ழ்", "ற"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: சோம்பல்"}], "meaning": "சோம்பல்", "translationEn": "sluggishness", "word": "தாமசம்"}}

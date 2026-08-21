@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "missing-letters", "id": "00018", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [3], "choices": ["னே", "தி", "கி", "வு", "க", "மா", "ள்", "ட"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: விளைவாக"}], "meaning": "விளைவாக", "translationEn": "consequently", "word": "பலனாக"}}

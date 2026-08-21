@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "wordle", "id": "00064", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 1, "kind": "category", "text": "வகை: நீர்வாழ்வன"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: நீர்க்குதிரை"}], "meaning": "நீர்க்குதிரை", "translationEn": "walrus", "word": "கடற்குதிரை"}}

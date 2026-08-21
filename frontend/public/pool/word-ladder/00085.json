@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00085", "packId": "ta-core", "payload": {"choices": ["ல", "ன", "ட", "ணொ", "த", "க", "அ", "மு"], "rungs": [{"meaning": "அதர்மம்", "word": "பாவம்"}, {"alsoValid": ["அபாவம்", "பாடவம்", "பாதவம்", "பாலவம்", "பாவனம்"], "meaning": "அக்கினி", "word": "பாவகம்"}, {"meaning": "முகக் குறிப்பு", "word": "முகபாவம்"}], "timeLimitSec": 0}}

@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00001", "packId": "ta-core", "payload": {"choices": ["ரா", "த", "சி", "கு", "வி", "வோ", "ன", "சு"], "rungs": [{"meaning": "அழிவு", "word": "நாசம்"}, {"alsoValid": ["நாசிசம்", "நாராசம்", "விநாசம்"], "meaning": "நாசம்", "word": "நாசனம்"}, {"meaning": "தொன்மையானது", "word": "சநாதனம்"}], "timeLimitSec": 0}}

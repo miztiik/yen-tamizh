@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00072", "packId": "ta-core", "payload": {"choices": ["வி", "ட", "னி", "ண்", "க", "ளோ", "நி", "ற"], "rungs": [{"meaning": "கரும்பாலை", "word": "ஆலை"}, {"alsoValid": ["ஆகலை", "ஆநிலை", "ஆனிலை", "ஆறலை", "ஆளோலை"], "meaning": "பூவாதமரம்(மலையகராதி)", "word": "ஆடலை"}, {"meaning": "கோழி", "word": "ஆண்டலை"}], "timeLimitSec": 0}}

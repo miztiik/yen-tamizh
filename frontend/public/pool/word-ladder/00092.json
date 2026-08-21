@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00092", "packId": "ta-core", "payload": {"choices": ["ழே", "வு", "ம்", "தௌ", "டீ", "ன்", "ல்", "டி"], "rungs": [{"meaning": "காண்க: முற்ற", "word": "முட்ட"}, {"alsoValid": ["முட்டடி", "முட்டன்"], "meaning": "காண்க: முட்டான்", "word": "முட்டம்"}, {"meaning": "காண்க: முற்ற", "word": "முட்டவும்"}], "timeLimitSec": 0}}

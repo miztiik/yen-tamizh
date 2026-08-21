@@ -1,0 +1,1 @@
+{"difficulty": "hard", "gameId": "missing-letters", "id": "00269", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [1, 2], "choices": ["வ", "தே", "ண", "வோ", "ம", "ள", "வை", "மோ"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: ஒரு பழங்கால வைதீக தேவர்"}], "meaning": "ஒரு பழங்கால வைதீக தேவர்", "translationEn": "Soma", "word": "சோமதேவன்"}}

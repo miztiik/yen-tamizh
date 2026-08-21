@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00171", "packId": "ta-core", "payload": {"choices": ["ச", "எ", "செ", "த", "ர", "ய", "ள்", "அ"], "rungs": [{"meaning": "அலை", "word": "பங்கம்"}, {"alsoValid": ["அபங்கம்", "பங்கசம்", "பதங்கம்"], "meaning": "அம்புஜம்", "word": "பங்கயம்"}, {"meaning": "அச்சம்", "word": "பயங்கரம்"}], "timeLimitSec": 0}}

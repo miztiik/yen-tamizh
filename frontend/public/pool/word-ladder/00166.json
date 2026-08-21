@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00166", "packId": "ta-core", "payload": {"choices": ["லி", "ரு", "ன்", "மு", "ல", "வி", "மொ", "ண"], "rungs": [{"meaning": "இருளு", "word": "கனை"}, {"alsoValid": ["கணனை", "கன்னை", "கலனை", "கலினை", "முகனை", "மொகனை"], "meaning": "பொரிக்கறி", "word": "கருனை"}, {"meaning": "பாவம்", "word": "கருவினை"}], "timeLimitSec": 0}}

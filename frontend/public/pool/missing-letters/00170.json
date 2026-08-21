@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "missing-letters", "id": "00170", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [3], "choices": ["கா", "தீ", "வா", "நெ", "மு", "கு", "டோ", "தூ"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: அந்திநேரம்"}], "meaning": "அந்திநேரம்", "translationEn": "evening", "word": "சாயங்காலம்"}}

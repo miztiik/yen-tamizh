@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00117", "packId": "ta-core", "payload": {"choices": ["மூ", "ம்", "ஞீ", "நி", "சௌ", "ஓ", "ன்", "ளு"], "rungs": [{"meaning": "முனிவன் ( )", "word": "யமி"}, {"alsoValid": ["நியமி"], "meaning": "ஒரு தமிழாண்டின் பெயர்", "word": "சௌமிய"}, {"alsoValid": ["சௌமியம்"], "meaning": "அருகன்", "word": "சௌமியன்"}], "timeLimitSec": 0}}

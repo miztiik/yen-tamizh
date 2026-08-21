@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00136", "packId": "ta-core", "payload": {"choices": ["சி", "ங்", "ர", "ள", "ற", "ந", "ல", "று"], "rungs": [{"meaning": "தொகுதி", "word": "குவை"}, {"alsoValid": ["குரவை", "குறவை", "குறுவை", "குலவை", "குளவை", "நகுவை"], "meaning": "நாக்கு", "word": "சிகுவை"}, {"meaning": "நாக்கு", "word": "சிங்குவை"}], "timeLimitSec": 0}}

@@ -1,6 +1,6 @@
 # Modes
 
-**Last Updated**: 2026-08-20
+**Last Updated**: 2026-08-21
 
 The catalog of Modes and the contract every Mode honours. A **Mode** (`modeId`) is *how a session is framed* - the thing a player picks from the home screen. It is one of the two orthogonal axes of a play session; the other is the [Game](games.md). A session is **one Mode x one-or-more Games x a [Pack](games.md#pack)**.
 
@@ -23,7 +23,7 @@ The `modeId` values are locked identifiers. Tamil titles are **working names** (
 | --- | --- | --- | --- |
 | `daily` | இன்றைய புதிர் | Today's committed playlist of N items, each a different [Game](games.md) drawn from a config-driven ring. One streak tick per completed day. Shareable result card plus a "next puzzle in HH:MM" countdown. | A month calendar path: today highlighted, past days done or missed, future days locked. |
 | `journey` | பயணம் | A curated, ordered path of levels from a journey definition; clearing a node unlocks the next. | The winding-path map with numbered nodes and a mascot guide. Defined in [journeys.md](journeys.md). |
-| `infinite` | முடிவில்லா | A lazy, endless stream with anti-repeat over an LRU window (size from config); difficulty bucket is pickable. | A single "start" node and a glyph-only difficulty picker. |
+| `infinite` | முடிவில்லா | A lazy, endless stream over a pre-generated pool, rotating the same ring of Games the Daily deals, with anti-repeat over an LRU window (size from config) and a difficulty filter the player can change mid-stream. | No menu: the card starts the stream, and the session rail carries the run counter and the three-band picker. |
 | `time-trial` | நேர சவால் | As many items as fit in the configured run duration; best runs are kept locally only. | A single "start a run" node and a countdown in the header slot. |
 
 ## The Daily holds three different Games, chosen by a window over a ring
@@ -54,6 +54,42 @@ Measured against `themed-nature`'s 429 rows, the anagram and the missing-letters
 - **One ring for both ordinary and themed days.** Rejected and measured: with all five Games on it, no registered theme can fill a themed date, so themed days stop qualifying and the feature dies with no error and no test failure.
 - **Let a themed day fall back to whichever subset of the ring the theme can fill.** Rejected: the shape a day takes is a design decision, and deriving it silently from what happened to fill means the config no longer says what a themed day is (Holy Law #6).
 
+## Infinite is a stream over a pre-generated pool
+
+The Infinite Mode is endless, and the one thing this project cannot do is generate a puzzle at run time (Holy Law #1). "Endless" is therefore spelled out in advance: **every board the stream can ever deal is baked into the bundle** under `frontend/public/pool/<gameId>/`, one puzzle per file, with a small index beside them. The bake is `python -m yen_tamizh_backend.scripts.generate_infinite`; the boards are built by the same registry the Daily uses (`daily.BUILDERS`), so a Game gets a pool for free the moment it is registered.
+
+The Mode reads its Games from `daily.games` - **one roster, not two**. A Game the Daily deals is a Game the stream deals, and the stream ROTATES that ring rather than emptying one pool, so an endless mode is a variety of boards instead of three hundred of the same one.
+
+### The stream never fetches the pool
+
+The pool is 1,765 boards and 1.39 MB, so what makes it playable on a phone is that none of it is fetched until it is played:
+
+- **Start of a stream**: one `pool/<gameId>/index.json`, 13.8 KB raw and **1.3 KB over the wire** - an `id` and a band per item, and nothing else. A Tamil word on each line would roughly double it and tell the Mode nothing it uses.
+- **Each board**: one file, 387 to 1,565 bytes (0.4 to 0.5 KB compressed).
+- **Install**: nothing. The pool is runtime-cached by the service worker like the bank and the Journeys, never precached - measured, the built precache manifest is **27 entries / 397,863 bytes with the pool and 27 entries / 397,863 bytes without it**. See [../architecture/runtime/stack-and-bundle.md](../architecture/runtime/stack-and-bundle.md).
+
+### The anti-repeat rule, and what happens when the pool runs out
+
+`save.seenInfiniteIds` is an LRU bounded by `infinite.lruWindow` (200), kept by `StorageService` and keyed `<gameId>/<id>` because a pool id is only an ordinal inside its own Game. A board is recorded **when it is dealt, not when it is solved** - a puzzle the player abandoned has still been seen.
+
+The Mode always prefers a board the window has not seen, taken in index order, which is not an arbitrary walk: a pool is baked in a frequency-stratified draw, so any prefix of a band is a proportional sample of how familiar its words are.
+
+**When the window has seen every eligible board, the stream recycles the least recently seen one.** That is the documented exhaustion behaviour, and it is the only one that keeps the Mode's promise: a player who has worked through a whole band deserves the board they met longest ago, not an apology and not a dead end.
+
+### Design rationale
+
+`poolPerBand` is **100** and the number is arithmetic rather than taste. A stream rotating six Games at one difficulty draws from 565 distinct boards, nearly three times the 200-pick window, so a repeat inside the window is impossible rather than merely unlikely - and a player who pins one Game and one band still meets 100 boards, well over an hour, before the recycle begins. The cost is 1,371,555 bytes of boards plus 81,384 of index, the largest single addition of bytes in the repo, and it is acceptable because a phone downloads only the board it plays. Authority: Carmack ([../../.github/agents/carmack.agent.md](../../.github/agents/carmack.agent.md)) plus Palm ([../../.github/agents/palm.agent.md](../../.github/agents/palm.agent.md)).
+
+A pool item file carries **no `version` / `changelog` stamp**, which is why its shape lives in `pool-index.schema.json`'s `$defs` rather than in a schema file of its own ([../architecture/contracts/schemas.md](../architecture/contracts/schemas.md)). Measured over the six Games the stamp is 512 to 1,196 bytes against a payload of 291 to 1,698, so stamping 1,765 files would spend roughly two fifths of the whole pool on one paragraph copied 1,765 times.
+
+### Rejected alternatives
+
+- **Bake the pool as the per-Game payload documents the Daily's Games already emit** (`anagram-puzzle` and its siblings), so each file validates against a registered top-level schema. Rejected on the measurement above: those schemas are `SchemaModel`s and stamp every file.
+- **Price each Game's pool by BYTES rather than by boards**, which would give the wordle three times the depth of the word search (387 bytes a board against 1,565). Rejected: equal depth per Game is a property a player can feel and equal bytes is not.
+- **Sixty boards per band** (830 KB). Rejected: it leaves a single-band stream 339 boards against a 200 window - still above it, but with no headroom for a Game whose bucket runs out, which the word-ladder's hard band already does at 65.
+- **A second roster naming which Games have pools.** Rejected: `daily.games` is already the answer to which Games are live, and a separate list would let a Game be dealt by one Mode and not the other for no reason a player could see - or let the stream ask for a pool nobody baked.
+- **Stop the stream when every eligible board has been seen.** Rejected: an endless Mode that ends is a bug with a nicer name.
+
 ## Journey is a Mode, not a third axis
 
 A **[Journey](journeys.md)** is a Mode whose Session is a curated, ordered path of levels - as opposed to Daily (calendar-bound), Infinite (endless, anti-repeat), or Time Trial (a timed sprint). It is deliberately *not* a new top-level axis: modelling it as a Mode composes cleanly with the existing Game registry and needs no new engine. The full definition, including the winding-path home and unlock rule, lives once in [journeys.md](journeys.md).
@@ -69,6 +105,7 @@ Journey could have been a third top-level axis alongside Mode and Game. It is mo
 ## See also
 
 - [journeys.md](journeys.md) - the Journey Mode in full (the curated path and its home).
+- [../how-to/generate-the-infinite-pool.md](../how-to/generate-the-infinite-pool.md) - baking the pool the Infinite Mode streams.
 - [games.md](games.md) - the Games a Mode frames into a session.
 - [core-loop.md](core-loop.md) - the verb inside every session.
 - [difficulty-and-scoring.md](difficulty-and-scoring.md) - the streak and scorer a Mode drives.

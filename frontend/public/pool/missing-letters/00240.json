@@ -1,0 +1,1 @@
+{"difficulty": "hard", "gameId": "missing-letters", "id": "00240", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [1, 4], "choices": ["ன்", "ர", "ட்", "ச", "லா", "கொ", "டி", "டீ"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: ஒருமனதாக்கு"}], "meaning": "ஒருமனதாக்கு", "translationEn": "assemble", "word": "ஒன்றுகூட்டு"}}

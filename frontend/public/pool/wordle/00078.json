@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "wordle", "id": "00078", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 1, "kind": "category", "text": "வகை: பள்ளி"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: வினைப்பெயர்"}], "meaning": "வினைப்பெயர்", "translationEn": "gerundial", "word": "தொழிற்பெயர்"}}

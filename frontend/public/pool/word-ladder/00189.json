@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00189", "packId": "ta-core", "payload": {"choices": ["யா", "ஃ", "த்", "ல்", "யி", "னை", "ளே", "உ"], "rungs": [{"meaning": "ஆடவன்", "word": "மனிதன்"}, {"meaning": "ஆண்மகன்", "word": "மனித்தன்"}, {"meaning": "மன்னிப்பு கொடுத்தல்", "word": "மன்னித்தல்"}], "timeLimitSec": 0}}

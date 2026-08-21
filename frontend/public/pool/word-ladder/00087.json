@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00087", "packId": "ta-core", "payload": {"choices": ["வா", "வி", "னி", "ழ", "ப்", "டு", "ளி", "ஆ"], "rungs": [{"meaning": "பதின்", "word": "பத்து"}, {"alsoValid": ["ஆபத்து", "படுத்து", "விபத்து"], "meaning": "கர்ப்பூரம் (அகநி.);கற்பூரம்", "word": "பனித்து"}, {"meaning": "குளிர்ச்சி", "word": "பனித்துளி"}], "timeLimitSec": 0}}

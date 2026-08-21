@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00164", "packId": "ta-core", "payload": {"choices": ["ழி", "ழோ", "ப்", "ஞூ", "அ", "மி", "லை", "ர்"], "rungs": [{"meaning": "காண்க....பஜ்ஜி", "word": "பச்சி"}, {"alsoValid": ["பச்சிலை"], "meaning": "கண்டமாலை", "word": "அபச்சி"}, {"meaning": "அப்பன் / அப்பா", "word": "அப்பச்சி"}], "timeLimitSec": 0}}

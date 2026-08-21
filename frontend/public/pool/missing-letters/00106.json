@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "missing-letters", "id": "00106", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [4], "choices": ["ழி", "டா", "பூ", "னூ", "ள", "ச்", "ணீ", "வ"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: சொந்தக்காரர்"}], "meaning": "சொந்தக்காரர்", "translationEn": "Owner", "word": "உரிமையாளர்"}}

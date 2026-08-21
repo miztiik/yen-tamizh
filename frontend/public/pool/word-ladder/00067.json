@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00067", "packId": "ta-core", "payload": {"choices": ["தௌ", "ளு", "ன", "போ", "னூ", "மு", "மோ", "ணோ"], "rungs": [{"meaning": "எப்பொழுதும்", "word": "நின்று"}, {"meaning": "அற்றுப்போ", "word": "நின்றுபோ"}, {"meaning": "நின்றுபோன", "word": "நின்றுபோன"}], "timeLimitSec": 0}}

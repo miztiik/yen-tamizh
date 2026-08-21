@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00029", "packId": "ta-core", "payload": {"choices": ["யா", "நீ", "பு", "வு", "ய", "சொ", "ப்", "யோ"], "rungs": [{"meaning": "அடை", "word": "தீர்"}, {"alsoValid": ["தீநீர்", "தீயர்", "தீயார்", "தீயோர்", "தீர்வு"], "meaning": "தீர்தல்", "word": "தீர்பு"}, {"meaning": "சங்கற்பம்", "word": "தீர்ப்பு"}], "timeLimitSec": 0}}

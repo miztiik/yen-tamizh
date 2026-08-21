@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00011", "packId": "ta-core", "payload": {"choices": ["நே", "ஆ", "தீ", "சே", "உ", "லே", "ப", "ஒ"], "rungs": [{"meaning": "உருண்டை", "word": "திரன்"}, {"alsoValid": ["உதிரன்"], "meaning": "பெரியோன் ( )", "word": "ஆதிரன்"}, {"meaning": "கடவுள்", "word": "ஆதிபரன்"}], "timeLimitSec": 0}}

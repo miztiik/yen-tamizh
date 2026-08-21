@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00076", "packId": "ta-core", "payload": {"choices": ["ழை", "னே", "ன்", "கி", "ற்", "யோ", "மா", "சூ"], "rungs": [{"meaning": "அருவி", "word": "ஆறு"}, {"alsoValid": ["ஆனேறு", "ஆமாறு", "ஆற்று"], "meaning": "நிறைந்து", "word": "ஆன்று"}, {"meaning": "அமைந்தது", "word": "ஆகின்று"}], "timeLimitSec": 0}}

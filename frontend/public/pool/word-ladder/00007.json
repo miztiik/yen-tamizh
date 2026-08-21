@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00007", "packId": "ta-core", "payload": {"choices": ["து", "ம்", "ட்", "ம", "லி", "ரொ", "எ", "ழோ"], "rungs": [{"meaning": "அகலப்படுத்து", "word": "ஓடு"}, {"alsoValid": ["ஓடும்"], "meaning": "வாக்கு", "word": "ஓட்டு"}, {"meaning": "சராசரியாக", "word": "ஓரொட்டு"}], "timeLimitSec": 0}}

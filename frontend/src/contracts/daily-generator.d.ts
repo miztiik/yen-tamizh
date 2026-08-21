@@ -47,6 +47,8 @@ export type Wordlist = string
 export type Themes = ThemedSet[]
 export type Timelimitsec = number
 export type Wordlist1 = string
+export type Pooldir = string
+export type Poolperband = number
 export type Themeeveryndays = number
 export type Version1 = string
 
@@ -58,6 +60,8 @@ bankDir: Bankdir
 changelog: Changelog
 daysAhead: Daysahead
 games: Games
+poolDir?: Pooldir
+poolPerBand?: Poolperband
 themeEveryNDays: Themeeveryndays
 version: Version1
 }

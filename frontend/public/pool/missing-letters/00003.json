@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "missing-letters", "id": "00003", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [0], "choices": ["ஐ", "ம", "வ", "சோ", "ங", "மு", "ய", "கை"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: முன்னதாக"}], "meaning": "முன்னதாக", "translationEn": "beforehand", "word": "முன்னரே"}}

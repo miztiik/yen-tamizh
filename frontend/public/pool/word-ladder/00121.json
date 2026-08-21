@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00121", "packId": "ta-core", "payload": {"choices": ["செ", "னே", "ல்", "யே", "ப்", "த்", "றே", "றை"], "rungs": [{"meaning": "அறிவில்லாதவர்", "word": "ஆதர்"}, {"alsoValid": ["ஆப்தர்"], "meaning": "அணிதல்", "word": "ஆர்தல்"}, {"meaning": "மறைத்தல்", "word": "ஆர்த்தல்"}], "timeLimitSec": 0}}

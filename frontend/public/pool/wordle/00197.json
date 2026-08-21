@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "wordle", "id": "00197", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 1, "kind": "category", "text": "வகை: இடம்"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: பொருள்களைக் காட்சிக்கு வைக்கும் கூடம்"}], "meaning": "பொருள்களைக் காட்சிக்கு வைக்கும் கூடம்", "translationEn": "repository", "word": "காட்சிச்சாலை"}}

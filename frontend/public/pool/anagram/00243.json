@@ -1,0 +1,1 @@
+{"difficulty": "hard", "gameId": "anagram", "id": "00243", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: இ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: பெண் பூப்படைதல்"}], "meaning": "பெண் பூப்படைதல்", "reveal": 0, "tiles": ["இ", "ரு", "வா", "ல்", "து", "த"], "timeLimitSec": 0, "word": "இருதுவாதல்"}}

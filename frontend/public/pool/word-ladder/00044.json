@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00044", "packId": "ta-core", "payload": {"choices": ["ளூ", "ந்", "றை", "ல்", "இ", "ந", "த்", "றி"], "rungs": [{"meaning": "இதோ", "word": "இதா"}, {"alsoValid": ["இதால்", "இந்தா"], "meaning": "வெளியில் வாராமை", "word": "இத்தா"}, {"meaning": "இதனால்", "word": "இத்தால்"}], "timeLimitSec": 0}}

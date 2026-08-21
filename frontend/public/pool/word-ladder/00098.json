@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00098", "packId": "ta-core", "payload": {"choices": ["ம்", "இ", "அ", "நி", "ட்", "ழே", "டு", "ட"], "rungs": [{"meaning": "100000000000000000", "word": "சங்கு"}, {"alsoValid": ["இசங்கு", "சடங்கு"], "meaning": "சவுரிலோத்திரம்", "word": "அங்குச"}, {"meaning": "வாழை", "word": "அங்குசம்"}], "timeLimitSec": 0}}

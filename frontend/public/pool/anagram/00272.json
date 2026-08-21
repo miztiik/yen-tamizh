@@ -1,0 +1,1 @@
+{"difficulty": "hard", "gameId": "anagram", "id": "00272", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: அ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: அழித்தவன்"}], "meaning": "அழித்தவன்", "reveal": 0, "tiles": ["அ", "ன்", "வ", "ட்", "ட"], "timeLimitSec": 0, "word": "அட்டவன்"}}

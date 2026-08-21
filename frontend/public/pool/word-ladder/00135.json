@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00135", "packId": "ta-core", "payload": {"choices": ["கி", "னு", "சா", "னோ", "ம்", "தௌ", "தீ", "பை"], "rungs": [{"meaning": "ஒரு தமிழாண்டின் பெயர்", "word": "தாரண"}, {"alsoValid": ["தாரணம்"], "meaning": "வழக்கமான", "word": "சாதாரண"}, {"meaning": "இயல்பு", "word": "சாதாரணம்"}], "timeLimitSec": 0}}

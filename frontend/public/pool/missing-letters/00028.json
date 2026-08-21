@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "missing-letters", "id": "00028", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [3], "choices": ["ங்", "வ", "ஞ", "தீ", "நே", "டு", "சோ", "ண்"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: அங்குமிங்குமாக"}], "meaning": "அங்குமிங்குமாக", "translationEn": "everywhere", "word": "அங்கங்கே"}}

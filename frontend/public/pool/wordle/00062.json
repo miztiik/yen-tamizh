@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "wordle", "id": "00062", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 1, "kind": "category", "text": "வகை: விழா"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: ஒருவர் அழைப்பினை விவரிக்கும் இதழ்"}], "meaning": "ஒருவர் அழைப்பினை விவரிக்கும் இதழ்", "translationEn": "call", "word": "அழைப்பிதழ்"}}

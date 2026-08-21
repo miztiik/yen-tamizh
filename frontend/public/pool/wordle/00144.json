@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "wordle", "id": "00144", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 1, "kind": "category", "text": "வகை: மருத்துவமனை"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: ஆர்த்தோபீடிக்"}], "meaning": "ஆர்த்தோபீடிக்", "translationEn": "orthopedic", "word": "எலும்பியல்"}}

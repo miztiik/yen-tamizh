@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00168", "packId": "ta-core", "payload": {"choices": ["ன", "க்", "ண", "அ", "னி", "வை", "லை", "த"], "rungs": [{"meaning": "ஈச்சமரம்", "word": "சாகி"}, {"alsoValid": ["அசாகி", "சாகினி", "சாதகி", "சானகி", "வைசாகி"], "meaning": "சக்கிமுக்கிக்கல்", "word": "சாக்கி"}, {"meaning": "சானிகை", "word": "சாணக்கி"}], "timeLimitSec": 0}}

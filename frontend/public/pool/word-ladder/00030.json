@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00030", "packId": "ta-core", "payload": {"choices": ["பு", "போ", "செ", "வி", "ழா", "சோ", "லி", "ரை"], "rungs": [{"meaning": "குதர்க்கம்", "word": "வாதம்"}, {"meaning": "கருத்தரங்கு", "word": "விவாதம்"}, {"meaning": "நீர்ச்சூலை", "word": "விரைவாதம்"}], "timeLimitSec": 0}}

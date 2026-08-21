@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-21T18:00",
+  "version": "2026-08-21T22:00",
   "changelog": [
+    {
+      "version": "2026-08-21T22:00",
+      "change": "Turned the infinite Mode on in ui.enabledModes.",
+      "why": "Row 22 - the Infinite Mode ships, so its Home card stops being a coming-soon tile and becomes a button. Nothing else in this file moves, and that is the point of the shape it already had: infinite.lruWindow and infinite.defaultDifficulty were minted with the core knobs in Row 7 and get their first reader here, unchanged. The window is 200 picks and it is honest at that size because of what the pool is - the Mode rotates the six Games in daily.games and each of them holds 100 boards per band, so a stream filtered to one difficulty still draws from 565 distinct boards, nearly three times the window. defaultDifficulty is medium because a stream a player did not choose a setting for should open where the Daily's middle slot does. The Games the pool is baked for are daily.games itself rather than a second roster: it is already the answer to which Games are live, and a separate list would let a Game be dealt by one Mode and not the other for no reason a player could see, or let the stream ask for a pool nobody baked."
+    },
     {
       "version": "2026-08-21T18:00",
       "change": "Turned the journey Mode on in ui.enabledModes and added ui.defaultJourney naming the path it opens.",
@@ -53,7 +58,7 @@
   "infinite": { "lruWindow": 200, "defaultDifficulty": "medium" },
   "timeTrial": { "durationSec": 120 },
   "ui": {
-    "enabledModes": ["daily", "journey"],
+    "enabledModes": ["daily", "journey", "infinite"],
     "defaultMode": "daily",
     "defaultTheme": "light",
     "defaultJourney": "beginners-ladder"

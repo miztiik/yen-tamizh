@@ -1,0 +1,1 @@
+{"difficulty": "hard", "gameId": "anagram", "id": "00288", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: செ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: உட்செவி"}], "meaning": "உட்செவி", "reveal": 0, "tiles": ["ல", "ர்", "ம", "வி", "செ"], "timeLimitSec": 0, "word": "செவிமலர்"}}

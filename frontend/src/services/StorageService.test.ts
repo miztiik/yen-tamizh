@@ -230,3 +230,59 @@ describe("StorageService day-independent Mode progress", () => {
     expect(svc.readModeProgress("infinite")).toEqual({ seen: 3 });
   });
 });
+
+// The Infinite stream's anti-repeat memory. Kept here rather than in the Mode
+// because StorageService is the only writer: the Mode decides WHICH board comes
+// next, and this decides what "already seen" means and how long it lasts.
+describe("StorageService: the seenInfiniteIds LRU", () => {
+  const INFINITE = { ...DAY, modeId: "infinite" };
+  const OTHER_MODE = { ...DAY, modeId: "journey" };
+
+  test("an absent save reads as nothing seen, never as a crash", () => {
+    expect(new StorageService({ store: memStore() }).readSeenInfiniteIds()).toEqual([]);
+  });
+
+  test("ids accumulate oldest-first", () => {
+    const svc = new StorageService({ store: memStore() });
+    svc.markInfiniteSeen(INFINITE, "anagram/00000", 10);
+    svc.markInfiniteSeen(INFINITE, "wordle/00001", 10);
+    expect(svc.readSeenInfiniteIds()).toEqual(["anagram/00000", "wordle/00001"]);
+  });
+
+  test("re-seeing an id MOVES it to the end (it is an LRU, not a capped set)", () => {
+    const svc = new StorageService({ store: memStore() });
+    for (const id of ["a/00000", "a/00001", "a/00002"]) {
+      svc.markInfiniteSeen(INFINITE, id, 10);
+    }
+    svc.markInfiniteSeen(INFINITE, "a/00000", 10);
+    expect(svc.readSeenInfiniteIds()).toEqual(["a/00001", "a/00002", "a/00000"]);
+  });
+
+  test("the window bounds the list, dropping the oldest first", () => {
+    const svc = new StorageService({ store: memStore() });
+    for (let n = 0; n < 6; n += 1) {
+      svc.markInfiniteSeen(INFINITE, `a/${String(n).padStart(5, "0")}`, 3);
+    }
+    expect(svc.readSeenInfiniteIds()).toEqual(["a/00003", "a/00004", "a/00005"]);
+  });
+
+  test("a window of zero remembers nothing (slice(-0) would have kept everything)", () => {
+    const svc = new StorageService({ store: memStore() });
+    svc.markInfiniteSeen(INFINITE, "a/00000", 0);
+    expect(svc.readSeenInfiniteIds()).toEqual([]);
+  });
+
+  test("marking a board seen leaves every other Mode's record alone", () => {
+    const svc = new StorageService({ store: memStore() });
+    svc.writeModeProgress(OTHER_MODE, { completed: { path: ["one"] } });
+    svc.markInfiniteSeen(INFINITE, "a/00000", 10);
+    expect(svc.readModeProgress("journey")).toEqual({ completed: { path: ["one"] } });
+    expect(svc.readSeenInfiniteIds()).toEqual(["a/00000"]);
+  });
+
+  test("the bounded list still validates as a save (written through the schema)", () => {
+    const svc = new StorageService({ store: memStore() });
+    svc.markInfiniteSeen(INFINITE, "a/00000", 2);
+    expect(svc.loadSave()).not.toBeNull();
+  });
+});

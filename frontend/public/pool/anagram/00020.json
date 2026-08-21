@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "anagram", "id": "00020", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ச"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: சபைக்கூட்டம்"}], "meaning": "சபைக்கூட்டம்", "reveal": 0, "tiles": ["மி", "தி", "ச"], "timeLimitSec": 0, "word": "சமிதி"}}

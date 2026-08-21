@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00192", "packId": "ta-core", "payload": {"choices": ["ல்", "சா", "ம", "றா", "த்", "வெ", "னை", "நொ"], "rungs": [{"meaning": "நண்பகல்", "word": "மதியம்"}, {"meaning": "பூமி", "word": "மத்தியம்"}, {"alsoValid": ["சாமத்தியம்"], "meaning": "காண்க: மத்திமம்", "word": "மத்தியமம்"}], "timeLimitSec": 0}}
