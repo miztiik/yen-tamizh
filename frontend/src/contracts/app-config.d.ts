@@ -26,6 +26,7 @@ export type Enabled = boolean
 export type Defaultdifficulty = string
 export type Lruwindow = number
 export type Durationsec = number
+export type Defaultjourney = string
 export type Defaultmode = string
 export type Defaulttheme = string
 /**
@@ -110,9 +111,18 @@ export interface TimeTrialConfig {
 durationSec: Durationsec
 }
 /**
- * UI shell: which Modes are live, and the default Mode and theme.
+ * UI shell: which Modes are live, the default Mode, theme, and Journey.
+ * 
+ * ``defaultJourney`` is the id of the path the Journey Mode opens - the stem
+ * of a file under ``datasets/journeys/``. It is a knob rather than a constant
+ * in the Mode for the reason every asset path in this repo is (Holy Law #6):
+ * a Journey is content, more than one can ship at once, and which one a player
+ * lands on is a curation decision that must not need a code change. It is
+ * REQUIRED rather than optional-with-a-default, because a default would put
+ * the name of one particular content file inside the schema.
  */
 export interface UiConfig {
+defaultJourney: Defaultjourney
 defaultMode: Defaultmode
 defaultTheme: Defaulttheme
 enabledModes: Enabledmodes

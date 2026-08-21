@@ -50,6 +50,17 @@ export interface SessionState {
   /** The current item's Game state, so a reload resumes mid-puzzle. */
   currentGameState: unknown;
   /**
+   * The session this snapshot was taken in.
+   *
+   * `perMode` is keyed by MODE, and one Mode can run more than one session on
+   * the same day: a Journey node is a session of its own, so the record left by
+   * a cleared node would otherwise be restored into the NEXT node and finish it
+   * before it was played. Optional, because a save written before it existed
+   * must still resume - an absent id reads as "this is mine", which is what it
+   * was when only the Daily wrote here.
+   */
+  sessionId?: string;
+  /**
    * The words resolved so far. Without it a player who reloads mid-day reaches
    * a summary missing the words they already played. Optional, because a save
    * written before it existed must still resume (it reads back as none).

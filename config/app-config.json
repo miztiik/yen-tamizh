@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-21T12:00",
+  "version": "2026-08-21T18:00",
   "changelog": [
+    {
+      "version": "2026-08-21T18:00",
+      "change": "Turned the journey Mode on in ui.enabledModes and added ui.defaultJourney naming the path it opens.",
+      "why": "Row 17 - the Journey Mode ships, so the Home card stops being a coming-soon tile and becomes a button. defaultJourney is a knob rather than a constant in the Mode for the reason every asset path in this repo is one: a Journey is content, more than one can ship at once, and which path a player lands on is a curation decision that must not need a code change. It is required rather than optional-with-a-default because a default would put the name of one particular content file inside the schema, which is exactly the hardcoding the field exists to remove. Nothing about the Daily moves: the two Modes share the Games and the runtime and share no state at all, and a Journey draws from each Game's ordinary wordlist against a ledger of its own, so turning this on cannot change a single baked day."
+    },
     {
       "version": "2026-08-21T12:00",
       "change": "Added word-ladder to daily.games, keeping the ring alphabetical; daily.themedGames is unchanged.",
@@ -47,5 +52,10 @@
   "hints": { "enabled": true, "perGame": { "anagram": 3, "missing-letters": 2, "wordle": 2 } },
   "infinite": { "lruWindow": 200, "defaultDifficulty": "medium" },
   "timeTrial": { "durationSec": 120 },
-  "ui": { "enabledModes": ["daily"], "defaultMode": "daily", "defaultTheme": "light" }
+  "ui": {
+    "enabledModes": ["daily", "journey"],
+    "defaultMode": "daily",
+    "defaultTheme": "light",
+    "defaultJourney": "beginners-ladder"
+  }
 }

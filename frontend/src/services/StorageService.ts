@@ -31,6 +31,17 @@ export interface KeyValueStore {
 const KEY_PREFIX = "yt:";
 const SAVE_KEY = `${KEY_PREFIX}save`;
 
+/**
+ * Where a Mode's day-independent progress lives inside `perMode`.
+ *
+ * Derived in one place so two callers cannot pick keys that collide, and kept
+ * inside the `perMode` map rather than beside it so the save schema still says
+ * what it has always said: progress is keyed by Mode.
+ */
+function progressKeyOf(modeId: string): string {
+  return `${modeId}-progress`;
+}
+
 /** What one streak tick did: the run before, after, and whether it moved. */
 export interface StreakTick {
   before: number;
@@ -122,6 +133,42 @@ export class StorageService {
       },
     };
     this.writeSave(next);
+  }
+
+  /**
+   * A Mode's DAY-INDEPENDENT record, or `null` when there is none.
+   *
+   * Two Modes want two different things out of `perMode` and only one of them
+   * is about today. A Daily day expires - `readSessionState` refuses a record
+   * from another date, which is what makes yesterday's half-finished day stop
+   * offering itself - while a Journey's progress is the whole point of the Mode
+   * and must survive every date. So they get SEPARATE keys: this one is
+   * `<modeId>-progress`, and the split is structural rather than a convention,
+   * because `writeSessionState` REPLACES `perMode[modeId]` wholesale and would
+   * otherwise wipe the path's progress every time the runner snapshotted a
+   * puzzle.
+   *
+   * The value is returned as an open record: what a Mode keeps in it is the
+   * Mode's business, and it arrives from storage untrusted, so the reader is
+   * expected to parse it defensively rather than cast it.
+   */
+  readModeProgress(modeId: string): Record<string, unknown> | null {
+    const save = this.loadSave();
+    if (save === null) return null;
+    return save.perMode[progressKeyOf(modeId)] ?? null;
+  }
+
+  /** Upsert a Mode's day-independent progress record. */
+  writeModeProgress(ctx: DayContext, progress: Record<string, unknown>): void {
+    const base = this.loadSave() ?? this.freshSave(ctx);
+    this.writeSave({
+      ...base,
+      version: SAVE_VERSION,
+      changelog: SAVE_CHANGELOG,
+      dayKey: dayKeyOf(ctx),
+      lastPlayed: ctx.date,
+      perMode: { ...base.perMode, [progressKeyOf(ctx.modeId)]: progress },
+    });
   }
 
   /**

@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-21",
+  "version": "2026-08-21T18:00",
   "changelog": [
+    {
+      "version": "2026-08-21T18:00",
+      "change": "Added the Journey screen's wording: the map label, the three node states, the progress line, the back-to-map control, and the unavailable screen.",
+      "why": "Row 17 - the Journey Mode ships, and every sentence on it is a sentence a player reads. The three state words carry more weight here than anywhere else in the app: they are the ACCESSIBLE NAME of a node, so a screen-reader user hears 'three, word search, locked' where a sighted one sees a dashed circle, and without them the map would announce a bare number and mean nothing. The Journey's own TITLE is deliberately NOT here - it arrives with the path, because a copy map that needed an entry minted for every file dropped would be exactly the redeploy the data-defined path exists to avoid. The node-state slugs are named for the states themselves rather than for this one path, so a second Journey needs no new copy at all."
+    },
     {
       "version": "2026-08-21",
       "change": "Added the word-ladder Game name and the result card's stat and share wording.",
@@ -48,6 +53,14 @@
     "mode-journey-title": "பயணம்",
     "mode-journey-title-en": "Journey",
     "mode-journey-note": "படிப்படியாக ஒரு பாதை",
+    "journey-map-label": "பயணப் பாதை",
+    "journey-progress": "முடித்தவை",
+    "journey-node-completed": "முடிந்தது",
+    "journey-node-available": "இப்போது விளையாடலாம்",
+    "journey-node-locked": "இன்னும் திறக்கவில்லை",
+    "journey-back-to-map": "பாதைக்குத் திரும்பு",
+    "journey-empty-title": "பாதை கிடைக்கவில்லை",
+    "journey-empty-body": "இந்தப் பயணத்தை இப்போது ஏற்ற முடியவில்லை. தயவுசெய்து பிறகு வாருங்கள்.",
     "mode-infinite-title": "முடிவில்லா",
     "mode-infinite-title-en": "Infinite",
     "mode-infinite-note": "நிற்காத புதிர்கள்",

@@ -15,7 +15,8 @@
   // imports, so the Home's critical path carries neither (Carmack).
   let Harness = $state<Component | null>(null);
   let DailySession = $state<Component<{ onHome: () => void }> | null>(null);
-  let view = $state<"home" | "daily">("home");
+  let JourneySession = $state<Component<{ onHome: () => void }> | null>(null);
+  let view = $state<"home" | "daily" | "journey">("home");
   let streak = $state(0);
 
   async function openDaily(): Promise<void> {
@@ -23,6 +24,13 @@
       DailySession = (await import("./shell/DailySession.svelte")).default;
     }
     view = "daily";
+  }
+
+  async function openJourney(): Promise<void> {
+    if (JourneySession === null) {
+      JourneySession = (await import("./shell/JourneySession.svelte")).default;
+    }
+    view = "journey";
   }
 
   function readStreak(): void {
@@ -39,9 +47,15 @@
   }
 
   function play(modeId: string): void {
-    if (modeId !== "daily") return;
-    window.history.pushState({}, "", "?mode=daily");
-    void openDaily();
+    if (modeId === "daily") {
+      window.history.pushState({}, "", "?mode=daily");
+      void openDaily();
+      return;
+    }
+    if (modeId === "journey") {
+      window.history.pushState({}, "", "?mode=journey");
+      void openJourney();
+    }
   }
 
   async function applyLocation(): Promise<void> {
@@ -80,6 +94,10 @@
       await openDaily();
       return;
     }
+    if (params.get("mode") === "journey") {
+      await openJourney();
+      return;
+    }
     view = "home";
   }
 
@@ -96,6 +114,8 @@
   <Harness />
 {:else if view === "daily" && DailySession}
   <DailySession onHome={goHome} />
+{:else if view === "journey" && JourneySession}
+  <JourneySession onHome={goHome} />
 {:else}
   <HomeShell {streak} onPlay={play} />
 {/if}

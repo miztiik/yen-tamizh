@@ -15,5 +15,10 @@
   "hints": { "enabled": true, "perGame": { "anagram": 2 } },
   "infinite": { "lruWindow": 200, "defaultDifficulty": "medium" },
   "timeTrial": { "durationSec": 120 },
-  "ui": { "enabledModes": ["daily"], "defaultMode": "daily", "defaultTheme": "light" }
+  "ui": {
+    "enabledModes": ["daily"],
+    "defaultMode": "daily",
+    "defaultTheme": "light",
+    "defaultJourney": "beginners-ladder"
+  }
 }

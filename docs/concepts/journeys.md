@@ -1,8 +1,8 @@
 # Journeys
 
-**Last Updated**: 2026-07-29
+**Last Updated**: 2026-08-21
 
-The Journey Mode, defined once. A **Journey** is a [Mode](modes.md) (`modeId` = `journey`) whose Session is a **curated, ordered path of levels** - the winding-path map on the home screen - so different players can take different routes through the same [Games](games.md). This page is the single definition of the term; every other doc links here.
+The Journey Mode, defined once. A **Journey** is a [Mode](modes.md) (`modeId` = `journey`) whose Session is a **curated, ordered path of levels** - the winding-path map - so different players can take different routes through the same [Games](games.md). This page is the single definition of the term; every other doc links here.
 
 ## What a Journey is
 
@@ -10,11 +10,21 @@ Where [Daily](modes.md) is calendar-bound and Infinite is endless, a Journey is 
 
 ## The winding-path home
 
-A Journey's home-screen chrome is the **winding-path map**: numbered nodes along a path, past nodes marked done, the current node highlighted, future nodes locked, and a small mascot guide (a Tamil letter with eyes is the standing motif). The map is chrome - it lives in the [shell](ui-shell.md), not in any Game - and it is themeable per Journey through the design system's theme axis ([design-system.md](design-system.md)).
+A Journey's chrome is the **winding-path map**: numbered nodes along a path, past nodes marked done, the current node highlighted, future nodes locked, and a marker glyph on the node the player is standing on. The map is chrome - it lives in the [shell](ui-shell.md), not in any Game - and it is themeable per Journey through the design system's theme axis ([design-system.md](design-system.md)).
+
+It is **one component with two layouts, not two components**: the path meanders by stepping alternate nodes off its axis, and the breakpoint's only job is to choose the axis - a phone reads a column, so the meander is sideways and the path runs down; a desktop reads a row, so the meander is vertical and the path runs across. Two components would be two places to fix a state bug, and the states are the whole content. A locked node is deliberately **not a disabled button**: it is plainly not a control at all, which is the same ruling the Home makes about a Mode that is not built yet, while every reachable node is a real button carrying its step number, its Game's name and its state as an accessible name, with a visible focus ring.
 
 ## The journey definition
 
 A Journey is data: a **journey definition** names an ordered set of nodes, a theme, and an unlock rule. It is a persisted surface with its own schema (`journey`) - contracts before logic, see [../architecture/contracts/schemas.md](../architecture/contracts/schemas.md). Because a Journey is just curated data over the existing Game registry, adding a themed path (a Beginner's Ladder, a Sangam-words set, a place-names set) is authoring content, not writing an engine. Which Journeys are enabled is config-driven ([config.md](config.md)).
+
+### What shipped, and what it corrects (Row 17)
+
+The definition lives at `datasets/journeys/<id>.json` - one file, one authority - and the built bundle serves it at `journeys/<id>.json`, which the Mode reads same-origin through the schema-validating loader. A node is `{ id, gameId, packId, difficulty, unlockRule, payload }`, and the `payload` is the correction worth reading: the sketch of this schema carried no board at all, which would have left the browser with a path it could not play. There is no runtime generator (Holy Law #1) and a second baked file could disagree with the definition about how many nodes the path has, so the board rides the node. That makes the whole file playable on its own, which is what lets "adding a Journey is dropping a file" be literally true. `backend/yen_tamizh_backend/scripts/build_journeys.py` fills those boards in from the committed wordlists, seeded by `<journeyId>|<nodeId>` and never by a date - a curated path that drew different words each time it was rebuilt would not be curated - and re-running it is the hand-edit gate.
+
+`unlockRule` is a closed two-member vocabulary, `open` and `previous-complete`, and the first node must be `open` or the path has no entrance. The progression rule is stated once, in `nodeStates`: a node is completed when the save says so, available when its own rule is satisfied, and locked otherwise - so clearing a node opens exactly the one after it, and nothing further along. Progress is recorded through `StorageService` under `perMode`, in a **day-independent** record of its own (`<modeId>-progress`) rather than in the runner's session snapshot. Those are two different questions and only one of them is about today: a Daily day expires, and a path must not.
+
+Two corrections to what this page used to say. The map is **not on the Home** - the Home carries a Mode card like every other Mode, and the map is the Journey screen's own chrome at `?mode=journey`; putting a path-specific map on a screen that lists four Modes would make the Home about one of them. And the **mascot with eyes has not shipped**: the marker on the node a player is standing on is a baked glyph from the Row 10 manifest (Holy Law #10, and no inline SVG), because the letter-with-eyes motif is a design-system asset that does not exist yet and a placeholder drawn inline would be exactly the bespoke icon the glyph rule exists to prevent.
 
 ## The headline Journey: Word Ladder
 
@@ -38,6 +48,7 @@ Journey is defined as a Mode (not a third axis) so the winding path is expressib
 ## See also
 
 - [modes.md](modes.md) - the Mode contract and the decision that Journey is a Mode.
+- [../how-to/add-a-journey.md](../how-to/add-a-journey.md) - authoring one, end to end.
 - [games.md](games.md) - the Games a Journey sequences, including Word Ladder.
 - [core-loop.md](core-loop.md) - the ezhuthu unit a ladder rung adds.
 - [difficulty-and-scoring.md](difficulty-and-scoring.md) - the streak and stats a Journey shows.
