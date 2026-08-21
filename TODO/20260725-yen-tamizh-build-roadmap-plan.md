@@ -62,12 +62,12 @@ Envelope `{ ts, src, v, session, name, level, ctx, data }`. Game: `puzzle.starte
 | 14 | Daily playlist + hints (changelog evolution) | 3 | 13 | - | DONE (delivered by the wordsmith plan: themed rounds #33, hint ladder + meanings #35) | - | #33,#35 | worker |
 | 15 | Ladder graph builder + word-ladder schema | 5 | 7,8 | - | DONE | - | #46 | worker |
 | 16 | WordLadderGame + share-result card | 3 | 11,15 | - | DONE | - | #47 | worker |
-| 17 | JourneyMode + winding-path home | 4 | 10,16 | - | READY | - | - | - |
+| 17 | JourneyMode + winding-path home | 4 | 10,16 | - | DONE | - | #49 | worker |
 | 18 | MissingLettersGame + gen + derived set | 3 | 9,11 | G | DONE | - | #41 | worker |
 | 19 | WordleGame + gen + derived set | 3 | 9,11 | G | DONE | - | #42 | worker |
 | 20 | WordSearchGame + gen + derived set | 3 | 9,11 | G | DONE | - | #43 | worker |
 | 21 | CrosswordGame + placement solver + derived set | 5 | 9,11 | G | DONE | - | #44 | worker |
-| 22 | InfiniteMode + bulk pool + index | 4 | 12,13 | H | PENDING | - | - | - |
+| 22 | InfiniteMode + bulk pool + index | 4 | 12,13 | H | READY | - | - | - |
 | 23 | TimeTrialMode | 3 | 12,22 | H | PENDING | - | - | - |
 
 Dependency spine: `1(done) -> {2,3} -> {4,5,6} -> {7,8} -> {9,10} -> 11 -> 12 -> 13 -> 14`; Word Ladder `15 -> 16 -> 17`; Games `18..21` parallel after `9,11`; Modes `22 -> 23` after `12,13`. Parallel groups: A `{2,3}`, B `{4,5,6}`, C `{7,8}`, G `{18,19,20,21}`, H `{22,23}`.
