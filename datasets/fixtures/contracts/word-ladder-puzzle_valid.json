@@ -1,0 +1,40 @@
+{
+  "version": "2026-08-21",
+  "changelog": [
+    {
+      "version": "2026-08-21",
+      "change": "Initial word-ladder-puzzle fixture.",
+      "why": "Row 16 contract Oracle - the valid word-ladder payload shape: a real three-rung climb lifted from the served set through the real builder, whose middle rung really is reachable three other ways from the bank it ships."
+    }
+  ],
+  "rungs": [
+    {
+      "word": "\u0b92\u0bb0\u0bc1",
+      "meaning": "\u0b85\u0bb4\u0bbf\u0b9e\u0bcd\u0b9a\u0bbf\u0bb2\u0bcd"
+    },
+    {
+      "word": "\u0b92\u0bb0\u0bc1\u0bae\u0bc8",
+      "meaning": "\u0b87\u0bb1\u0bc8\u0baf\u0bc1\u0ba3\u0bb0\u0bcd\u0bb5\u0bc1",
+      "alsoValid": [
+        "\u0b92\u0bb0\u0bc1\u0b95\u0bc8",
+        "\u0b92\u0bb0\u0bc1\u0bae\u0bbe",
+        "\u0b92\u0bb0\u0bc1\u0bb5\u0bc1"
+      ]
+    },
+    {
+      "word": "\u0b92\u0bb0\u0bc1\u0bae\u0bc8\u0baf",
+      "meaning": "\u0b92\u0bb0\u0bc7 \u0bae\u0bc8\u0baf\u0bae\u0bcd \u0b95\u0bca\u0ba3\u0bcd\u0b9f \u0baa\u0bb2 \u0bb5\u0b9f\u0bbf\u0bb5\u0b99\u0bcd\u0b95\u0bb3\u0bcd"
+    }
+  ],
+  "choices": [
+    "\u0b9a\u0bc8",
+    "\u0bae\u0bc8",
+    "\u0bb5\u0bc1",
+    "\u0baf",
+    "\u0b9a\u0bbf",
+    "\u0bae\u0bbe",
+    "\u0baa\u0bca",
+    "\u0b95\u0bc8"
+  ],
+  "timeLimitSec": 0
+}

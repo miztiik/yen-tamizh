@@ -11,6 +11,7 @@ import exampleSchema from "./example.schema.json";
 import missingLettersPuzzleSchema from "./missing-letters-puzzle.schema.json";
 import puzzleFileSchema from "./puzzle-file.schema.json";
 import saveSchema from "./save.schema.json";
+import wordLadderPuzzleSchema from "./word-ladder-puzzle.schema.json";
 import wordSearchPuzzleSchema from "./word-search-puzzle.schema.json";
 import wordlePuzzleSchema from "./wordle-puzzle.schema.json";
 import type { AnagramPuzzle } from "./anagram-puzzle";
@@ -23,6 +24,7 @@ import type { Example } from "./example";
 import type { MissingLettersPuzzle } from "./missing-letters-puzzle";
 import type { PuzzleFile } from "./puzzle-file";
 import type { Save } from "./save";
+import type { WordLadderPuzzle } from "./word-ladder-puzzle";
 import type { WordSearchPuzzle } from "./word-search-puzzle";
 import type { WordlePuzzle } from "./wordle-puzzle";
 
@@ -44,6 +46,7 @@ const validators = {
   "missing-letters-puzzle": ajv.compile<MissingLettersPuzzle>(missingLettersPuzzleSchema),
   "puzzle-file": ajv.compile<PuzzleFile>(puzzleFileSchema),
   save: ajv.compile<Save>(saveSchema),
+  "word-ladder-puzzle": ajv.compile<WordLadderPuzzle>(wordLadderPuzzleSchema),
   "word-search-puzzle": ajv.compile<WordSearchPuzzle>(wordSearchPuzzleSchema),
   "wordle-puzzle": ajv.compile<WordlePuzzle>(wordlePuzzleSchema),
 } as const;
@@ -63,6 +66,7 @@ export interface SchemaPayload {
   "missing-letters-puzzle": MissingLettersPuzzle;
   "puzzle-file": PuzzleFile;
   save: Save;
+  "word-ladder-puzzle": WordLadderPuzzle;
   "word-search-puzzle": WordSearchPuzzle;
   "wordle-puzzle": WordlePuzzle;
 }
@@ -103,6 +107,7 @@ export type {
   Example,
   PuzzleFile,
   Save,
+  WordLadderPuzzle,
   WordSearchPuzzle,
   WordlePuzzle,
 };

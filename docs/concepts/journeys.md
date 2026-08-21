@@ -20,10 +20,16 @@ A Journey is data: a **journey definition** names an ordered set of nodes, a the
 
 The clearest Journey to model is a **[Word Ladder](games.md)** path (the "one more letter" reference): start from a short word; each rung adds exactly one ezhuthu and may rearrange all of them to form the next valid word, over an increasingly long chain. The completion moment shows a small stats row - elapsed TIME, first-try rungs (INSTINCT), wrong submissions (RETRIES), and consecutive-day STREAK - plus a share card and a countdown to the next puzzle.
 
-- **Tamil adaptation.** A rung adds one **ezhuthu** and rearranges ([core-loop.md](core-loop.md)). Reachability - does a one-ezhuthu-add path exist between consecutive words? - is computed and validated **at build time** in `backend/`, so the browser only ever plays a proven-valid ladder. If Tamil word density is thin at short lengths, a ladder is seeded from a curated list rather than pure search.
+- **Tamil adaptation.** A rung adds one **ezhuthu** and rearranges ([core-loop.md](core-loop.md)). Reachability - does a one-ezhuthu-add path exist between consecutive words? - is computed and validated **at build time** in `backend/`, so the browser only ever plays a proven-valid ladder. Tamil word density at short lengths was the named risk and the measurement retired it: the served set holds 6,218 distinct four-rung climbs, so no curated seed list was needed ([games.md](games.md)).
 - **Stats mapping.** TIME, INSTINCT, RETRIES, and STREAK are all derivable from the standard [telemetry](telemetry.md) events - no new persistence beyond the save record and the streak ([difficulty-and-scoring.md](difficulty-and-scoring.md)).
 
-The stats row, share card, countdown, and mascot are **shell-level** and reused by every Game a Journey hosts, not bespoke to Word Ladder.
+The countdown and the mascot are **shell-level** and reused by every Game a Journey hosts.
+
+### Where the stats row and the share card actually landed (Row 16)
+
+They landed in the Game (`frontend/src/games/word-ladder/ShareCard.svelte`), not in the shell, and that is a correction to the sentence this page used to carry. The reason is the gate rather than the pixels: the SessionRunner clears the stage the instant a Game reports `puzzle.completed`, so a card the shell draws afterwards is a card drawn over a puzzle that is already gone - and the ladder is the one board whose result has to WAIT for a tap, because a share moment on a timer is one nobody can share. Owning the card lets the Game hold the report back until the player taps through.
+
+Nothing about the stats is bespoke: they are read off the emitted event stream by a pure function, which is exactly the mapping this page specified, and the derivation is a Game-agnostic 40 lines that a second Game with a completion moment can lift. What is bespoke is only the ladder's own marks - one glyph per rung, by how it was resolved. The card makes **no network call of any kind** (Holy Law #1); a share endpoint or a server-rendered image was rejected on that ground alone.
 
 ## Design rationale
 

@@ -81,6 +81,7 @@ from yen_tamizh_backend.generate import (
     anagram,
     crossword,
     missing_letters,
+    word_ladder,
     word_search,
     wordle,
 )
@@ -189,11 +190,13 @@ def baked_days(bank_dir: Path) -> list[str]:
 def answer_words(payload: Mapping[str, Any]) -> list[str]:
     """Every word one baked payload asks the player for, in payload order.
 
-    A payload names its answers in one of three ways and all three are read
-    here. Three of the five Games hide ONE word and put it under ``word``; a
-    search board lists what it hid under ``targets``, and a crossword lists what
-    it asks for under ``entries``. Every one of those has been met by the player
-    just as surely as a scramble's answer has.
+    A payload names its answers in one of four ways and all four are read here.
+    Three of the six Games hide ONE word and put it under ``word``; a search
+    board lists what it hid under ``targets``, a crossword lists what it asks
+    for under ``entries``, and a ladder lists what it climbs through under
+    ``rungs``. Every one of those has been met by the player just as surely as a
+    scramble's answer has - including a ladder's FIRST rung, which is given
+    rather than asked for but is printed with its meaning like any other.
 
     It is one function rather than a key lookup at each call site because the
     two readers - the anti-repeat ledger and the bake's own record of what a day
@@ -204,7 +207,7 @@ def answer_words(payload: Mapping[str, Any]) -> list[str]:
     single = payload.get("word")
     if isinstance(single, str):
         words.append(single)
-    for key in ("targets", "entries"):
+    for key in ("targets", "entries", "rungs"):
         listed = payload.get(key)
         if not isinstance(listed, list):
             continue
@@ -405,7 +408,30 @@ def _build_crossword(
     )
 
 
-# The registered Games, keyed by the ``gameId`` config names in `daily.mix`.
+def _build_word_ladder(
+    row: GameWord,
+    spec: GameGeneration,
+    day: str,
+    hint_limit: int,
+    band: DifficultyBand,
+    themed: bool,
+    prepared: Any,
+) -> BaseModel:
+    """The third builder that draws more words than the day loop picked.
+
+    The row the loop picked is the ledge the climb STARTS on, and every rung
+    above it is whatever the prepared reachability graph proves is reachable -
+    so the band gates the start and the graph decides the rest. Most served
+    words start no ladder at all, which is why this Game leans hardest of the
+    six on ``pick_words``' buildability probe: a refused row is stepped over
+    like a word the bank has already served.
+    """
+    return word_ladder.build_puzzle(
+        row, spec, f"{day}|{row.word}", hint_limit, band, prepared, themed
+    )
+
+
+# The registered Games, keyed by the ``gameId`` config names in `daily.games`.
 BUILDERS: dict[str, GameBuilder] = {
     "anagram": GameBuilder(prepare=_prepare_anagram, build=_build_anagram),
     missing_letters.GAME_ID: GameBuilder(
@@ -417,6 +443,9 @@ BUILDERS: dict[str, GameBuilder] = {
     ),
     crossword.GAME_ID: GameBuilder(
         prepare=crossword.index_served, build=_build_crossword
+    ),
+    word_ladder.GAME_ID: GameBuilder(
+        prepare=word_ladder.index_served, build=_build_word_ladder
     ),
 }
 
@@ -488,16 +517,27 @@ def playlist_games(ring: Sequence[str], playlist_length: int, day: str) -> list[
 
     A window rather than a fixed mix because the Daily serves more Games than a
     day has slots. Walking the ring by a whole playlist each day means
-    consecutive days share only the one Game the window carries over, so a
+    consecutive days share at most the one Game the window carries over, so a
     player meets a different set of boards every morning while every Game still
     comes round within one turn of the ring.
+
+    **Plus one extra step for every lap the ring has completed.** Walking by the
+    playlist alone only reaches ``len(ring) / gcd(len(ring), playlistLength)``
+    of the possible windows, so a six-Game ring dealt three a day would
+    oscillate between exactly TWO playlists for ever - and because ``day_slots``
+    ranks a window's Games against each other, every Game would then be locked
+    to one difficulty band and the other bands of its registry entry would never
+    ship. The lap term is coprime-free: after enough laps the phase has drifted
+    through every offset, so every window the ring can produce is reached
+    whatever the two numbers are. It is still a pure function of the date.
 
     The window WRAPS, so a ring shorter than the playlist deals a Game more than
     once. That is refused for ordinary days by the contract and allowed for
     themed ones, because the two make different claims: an ordinary day claims
     variety of Games, a themed day claims its words belong together.
     """
-    start = date.fromisoformat(day).toordinal() * playlist_length % len(ring)
+    walked = date.fromisoformat(day).toordinal() * playlist_length
+    start = (walked + walked // len(ring)) % len(ring)
     return [ring[(start + offset) % len(ring)] for offset in range(playlist_length)]
 
 

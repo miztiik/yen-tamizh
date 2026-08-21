@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-20T12:00",
+  "version": "2026-08-21T12:00",
   "changelog": [
+    {
+      "version": "2026-08-21T12:00",
+      "change": "Added word-ladder to daily.games, keeping the ring alphabetical; daily.themedGames is unchanged.",
+      "why": "Row 16 - the sixth Game reaches players. The ring stays in alphabetical order because that is what the workload measurement still prefers: counted as answers per board, alphabetical gives days of 7, 7, 8, 9, 10 and 10, a spread of three, and no permutation of the six beats it - the same criterion, and the same arithmetic, that chose the order when the ring replaced daily.mix. The themed ring is deliberately NOT widened, and that is a measurement rather than a symmetry: themed-nature holds 429 rows, and a ladder needs an add-one-ezhuthu chain THROUGH the set it is drawn from, so the question is not whether the theme has enough words but whether its words sit one letter apart. They do not. Over all 429 rows the theme's graph has 5 edges in total, 5 rows can climb a single rung, and ZERO can climb the three the easiest band asks for - so registering this Game against the theme would have made every themed day unbuildable rather than making it a ladder. That failure is silent by design: theme_can_fill answers no and the date falls back to the ordinary ring, so the cost would have been the loss of themed days, not a crash. hints.perGame gains no entry either: this Game bakes no rungs, its help is a play-time reveal priced in the rung it hands over, and a missing entry already reads as an allowance of zero."
+    },
     {
       "version": "2026-08-20T12:00",
       "change": "Replaced daily.mix with daily.games and daily.themedGames.",
@@ -29,7 +34,14 @@
   ],
   "daily": {
     "playlistLength": 3,
-    "games": ["anagram", "crossword", "missing-letters", "word-search", "wordle"],
+    "games": [
+      "anagram",
+      "crossword",
+      "missing-letters",
+      "word-ladder",
+      "word-search",
+      "wordle"
+    ],
     "themedGames": ["anagram", "missing-letters"]
   },
   "hints": { "enabled": true, "perGame": { "anagram": 3, "missing-letters": 2, "wordle": 2 } },
