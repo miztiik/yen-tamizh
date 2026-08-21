@@ -144,7 +144,12 @@ def band_candidates(served: ServedIndex, band: DifficultyBand) -> list[GameWord]
 
 
 def choose_words(
-    anchor: GameWord, served: ServedIndex, band: DifficultyBand, count: int, seed_text: str
+    anchor: GameWord,
+    served: ServedIndex,
+    band: DifficultyBand,
+    count: int,
+    seed_text: str,
+    used: frozenset[str] = frozenset(),
 ) -> list[GameWord]:
     """The board's whole word list: the day's anchor plus its companions.
 
@@ -153,6 +158,14 @@ def choose_words(
     dropping it would throw all of that away. Its companions come from the same
     band, so an easy board is four familiar words rather than one familiar word
     and three from the tail.
+
+    They are also drawn against the same ledger the anchor was. A companion is a
+    word the player is asked to find, so hiding one the bank has already hidden
+    is the same repeat as dealing the anchor twice - it is only less visible.
+    When the band does not hold enough fresh words the shortfall is TOPPED UP
+    from the served ones rather than the board shipping short, which is the day
+    loop's own policy (``pick_words``: a repeat is a much smaller failure than a
+    playlist that does not add up) and the ladder bank's last resort.
 
     Words are returned LONGEST FIRST, because that is the order they will be
     placed in: a long word has the fewest positions that fit it, so placing it
@@ -166,8 +179,12 @@ def choose_words(
         raise ValueError(
             f"the {band.id!r} band offers {len(pool) + 1} words for a {count}-word board"
         )
-    companions = seeded_shuffle(pool, f"{seed_text}|companions")[: count - 1]
-    chosen = [anchor, *companions]
+    fresh = [row for row in pool if row.word not in used]
+    order = seeded_shuffle(fresh, f"{seed_text}|companions")
+    if len(order) < count - 1:
+        served_before = [row for row in pool if row.word in used]
+        order = order + seeded_shuffle(served_before, f"{seed_text}|repeat")
+    chosen = [anchor, *order[: count - 1]]
     return sorted(chosen, key=lambda row: (-len(row.ezhuthu), row.word))
 
 
@@ -304,27 +321,15 @@ def build_hints(
     return hint_ladder.build_hints(row, spec, limit, {}, HINT_FIELDS)
 
 
-def build_puzzle(
-    row: GameWord,
-    spec: GameGeneration,
-    seed_text: str,
-    hint_limit: int,
-    band: DifficultyBand,
-    served: ServedIndex,
-    themed: bool = False,
-) -> WordSearchPuzzle:
-    """Build one validated word-search board from a derived-wordlist row.
+def _hide(
+    words: Sequence[GameWord], spec: GameGeneration, seed_text: str
+) -> tuple[list[list[str]], list[WordSearchTarget]] | None:
+    """Hide every word on an empty grid, or ``None`` when one of them will not fit.
 
-    ``themed`` is accepted and unused: this Game sells no rungs, so there is no
-    ``category`` rung a theme could make redundant. Taking it and saying so
-    keeps every Game's builder callable the same way (Row 19's ``seed_text``
-    did the same for the opposite reason).
+    ``None`` rather than a raise because the caller has a second word list to
+    try: which words a board holds is now a preference (see ``choose_words``),
+    and a preference that cannot be packed has to be able to fall back.
     """
-    del themed
-    # Not a no-op: with an empty vocabulary this raises when config has
-    # registered a rung against this Game and raised its allowance to match.
-    build_hints(row, spec, hint_limit)
-    words = choose_words(row, served, band, band.targets, seed_text)
     grid: list[list[str | None]] = [
         [None] * spec.gridCols for _ in range(spec.gridRows)
     ]
@@ -333,10 +338,7 @@ def build_puzzle(
         units = list(word.ezhuthu)
         spot = place_word(grid, units, f"{seed_text}|{word.word}")
         if spot is None:
-            raise ValueError(
-                f"{word.word!r} does not fit a {spec.gridRows}x{spec.gridCols} grid "
-                f"holding {len(targets)} words already"
-            )
+            return None
         start_row, start_col, direction = spot
         targets.append(
             WordSearchTarget(
@@ -348,7 +350,50 @@ def build_puzzle(
         )
     letters = [unit for word in words for unit in word.ezhuthu]
     fill_grid(grid, letters, seed_text)
-    filled = [[cell for cell in line if cell is not None] for line in grid]
+    return [[cell for cell in line if cell is not None] for line in grid], targets
+
+
+def build_puzzle(
+    row: GameWord,
+    spec: GameGeneration,
+    seed_text: str,
+    hint_limit: int,
+    band: DifficultyBand,
+    served: ServedIndex,
+    themed: bool = False,
+    used: frozenset[str] = frozenset(),
+) -> WordSearchPuzzle:
+    """Build one validated word-search board from a derived-wordlist row.
+
+    ``used`` is the day's ledger - every word the bank has already asked for -
+    and it narrows which companions this board hides. An empty ledger is the
+    honest default for a board built outside a bake: nothing has been served, so
+    nothing is off limits.
+
+    ``themed`` is accepted and unused: this Game sells no rungs, so there is no
+    ``category`` rung a theme could make redundant. Taking it and saying so
+    keeps every Game's builder callable the same way (Row 19's ``seed_text``
+    did the same for the opposite reason).
+    """
+    del themed
+    # Not a no-op: with an empty vocabulary this raises when config has
+    # registered a rung against this Game and raised its allowance to match.
+    build_hints(row, spec, hint_limit)
+    packed = _hide(
+        choose_words(row, served, band, band.targets, seed_text, used), spec, seed_text
+    )
+    if packed is None and used:
+        # Fresh companions that will not pack are worth less than a repeat: fall
+        # back to the draw this board would have made with an empty ledger.
+        packed = _hide(
+            choose_words(row, served, band, band.targets, seed_text), spec, seed_text
+        )
+    if packed is None:
+        raise ValueError(
+            f"a {spec.gridRows}x{spec.gridCols} grid does not hold the {band.id!r} "
+            f"band's {band.targets} words anchored on {row.word!r}"
+        )
+    filled, targets = packed
     extra = unintended_words(filled, served, [target.word for target in targets])
     return WordSearchPuzzle(
         version=_SCHEMA_VERSION,

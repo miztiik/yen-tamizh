@@ -236,6 +236,7 @@ def solve_mask(
     budget: int = 60_000,
     branch: int = 400,
     restarts: int = 8,
+    exclude: frozenset[str] = frozenset(),
 ) -> list[tuple[list[tuple[int, int]], GameWord]]:
     """Fill every entry of ``mask``, or raise ``SolverExhausted`` trying.
 
@@ -265,12 +266,18 @@ def solve_mask(
     would throw that away. Which entry it lands in is part of the search: if the
     first refuses to complete, the next is tried, and the restart reshuffles
     which is first.
+
+    ``exclude`` is the day's ledger, and it enters the search as words already
+    TAKEN - the same mechanism that stops one board asking for the same answer
+    twice, widened to the whole bank. ``required`` is exempt by construction: it
+    is placed directly rather than drawn from the candidate sets the exclusion
+    filters, so a ledger holding the anchor cannot refuse the anchor.
     """
     entries = mask_entries(mask)
     if not entries:
         raise SolverExhausted(f"the mask lays out no entries: {list(mask)}")
     grid: dict[tuple[int, int], str] = {}
-    taken: set[str] = set()
+    taken: set[str] = set(exclude)
     placed: dict[int, GameWord] = {}
     spent = 0
 
@@ -416,8 +423,17 @@ def build_puzzle(
     band: DifficultyBand,
     served: ServedIndex,
     themed: bool = False,
+    used: frozenset[str] = frozenset(),
 ) -> CrosswordPuzzle:
     """Build one validated crossword from a derived-wordlist row and a band mask.
+
+    ``used`` is the day's ledger - every word the bank has already asked for -
+    and the solver treats it as words already taken, so a board's other answers
+    are as unrepeated as its anchor. A mask the ledger makes unsolvable is
+    re-solved without it: this Game's answers interlock, so the fallback cannot
+    be per-entry the way the search board's is per-word, and shipping a board
+    that repeats one word is a much smaller failure than failing the day
+    (``pick_words``' own trade).
 
     ``themed`` is accepted and unused: this Game sells no rungs, so there is no
     ``category`` rung a theme could make redundant.
@@ -431,7 +447,12 @@ def build_puzzle(
             f"band {band.id!r} lays out no grid, so {GAME_ID!r} has nothing to fill"
         )
     pool = band_pool(served, band)
-    filled = solve_mask(band.grid, pool, seed_text, required=row)
+    try:
+        filled = solve_mask(band.grid, pool, seed_text, required=row, exclude=used)
+    except SolverExhausted:
+        if not used:
+            raise
+        filled = solve_mask(band.grid, pool, seed_text, required=row)
     numbers = canonical_numbers(
         [
             CrosswordEntry(

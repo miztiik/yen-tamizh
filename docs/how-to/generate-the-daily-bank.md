@@ -1,6 +1,6 @@
 # Generate the daily bank
 
-**Last Updated**: 2026-08-20
+**Last Updated**: 2026-08-21
 
 How today's puzzles get made, and what to do when you need to bake, re-bake, or
 back-fill a day. The generator is the DAILY PUZZLE ENGINE: it consumes a per-Game
@@ -145,19 +145,37 @@ narrows the selection, it never relaxes it.
 
 ## Re-running is safe
 
-A date is a pure function of its date and its wordlist, so baking one twice from
-the same inputs writes the same bytes and leaves the working tree clean. That is
-the determinism Oracle, and it is what makes `--rebake` predictable rather than
-a roll of the dice.
+A date is a pure function of its date, its wordlist, and the rest of the bank it
+is baked into, so baking one twice from the same inputs writes the same bytes and
+leaves the working tree clean. That is the determinism Oracle, and it is what
+makes `--rebake` predictable rather than a roll of the dice.
 
-Two more consequences:
+Three more consequences:
 
-- **A word is not served twice.** Words already used on OTHER days in the bank
-  are skipped. The target day's own file is ignored while collecting them, which
-  is exactly what keeps a re-bake idempotent instead of self-poisoning.
+- **A word is not served twice - EVERY word, not just the one the day picked.**
+  The ledger is every word a baked payload asks the player for: a scramble's
+  answer, a search board's targets, a crossword's entries, a ladder's rungs. It
+  holds what the bank served on other days AND what this day's earlier boards
+  already asked for, so no two boards - on one morning or two months apart - ask
+  for the same word. The target day's own file is ignored while collecting the
+  across-day half, which is exactly what keeps a re-bake idempotent instead of
+  self-poisoning.
+- **A board short of fresh words repeats rather than shipping short.** Three
+  Games draw more words than the day loop picked, and each degrades in the shape
+  its own mechanic allows: a search board tops its companions up from words the
+  bank served, a ladder steps onto a served rung only when no fresh neighbour can
+  finish the climb, and a crossword - whose answers interlock, so it cannot
+  degrade one word at a time - re-solves its whole mask with the ledger set
+  aside. A five-word grid holding four words would be a broken board and a cron
+  that fails is worse than either. Measured over 180 baked days, the ladder is
+  the only Game the graph ever forces: 75 climbs clean, 7 repeating one rung,
+  and an exhaustive search finds an all-fresh climb for none of those 7.
 - **Order matters across days, not within a run.** Days are baked oldest first,
-  so back-filling a date that sits BEFORE existing days can change what those
-  later days would pick if they were re-baked. Bake forward.
+  so back-filling a date that sits BEFORE existing days reads the later days'
+  answers as already served, and re-baking a whole WINDOW in place moves the
+  ledger under each day as it goes. Bake forward: delete the future days you
+  want rewritten and let the guard bake them fresh, rather than forcing a window
+  with `--rebake`.
 
 ## The knobs
 
@@ -219,11 +237,14 @@ Three things, and none of them is the day loop:
    nothing about the other served words registers a `prepare` that returns
    nothing, which is what the wordle does; a Game whose board holds SEVERAL
    words takes the row the loop picked as its anchor and draws the rest from
-   the index, which is what the word-search and the crossword do. A builder
-   that can be handed a row it cannot use raises `generate.Unbuildable`, and the
-   loop deals the next candidate from the same band rather than failing the day
-   - which today only the crossword needs, because only an interlocked board
-   can refuse a word.
+   the index, which is what the word-search and the crossword do. Every builder
+   is handed the day's LEDGER as its last argument - every word the bank has
+   already asked for - and a builder that draws extra words must draw them
+   against it, with a documented fallback for the case where it cannot. A
+   builder that can be handed a row it cannot use raises
+   `generate.Unbuildable`, and the loop deals the next candidate from the same
+   band rather than failing the day - which today only the crossword needs,
+   because only an interlocked board can refuse a word.
 
 Five Games are registered this way today, and none of them cost an edit to
 `puzzle-file` or to the day loop.

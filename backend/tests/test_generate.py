@@ -246,8 +246,22 @@ def test_a_rerun_over_an_existing_bank_is_idempotent(
     generator: DailyGenerator,
     wordlists: dict[str, GameWordlist],
 ) -> None:
-    """A day must not treat its own previous output as a reason to change."""
-    spec = generator.model_copy(update={"bankDir": "bank"})
+    """A day must not treat its own previous output as a reason to change.
+
+    ONE day, forced, because that is the window the claim is true over: the
+    target day's own file is excluded while the ledger is collected, so a forced
+    re-bake of a single day reads exactly the ledger its first bake read and has
+    to produce exactly the same bytes.
+
+    A whole WINDOW cannot make that claim and never could. The ledger is every
+    answer word the REST of the bank holds, so re-baking day one against days
+    two to seven feeds it a ledger that did not exist when day one was baked
+    into an empty bank - and then rewrites those days too, which moves the
+    ledger again under the days after them. That is not a defect in the bake; it
+    is the reason the re-bake guard exists and the reason the how-to says to
+    delete forward and bake forward rather than force a window in place.
+    """
+    spec = generator.model_copy(update={"bankDir": "bank", "daysAhead": 0})
     day = date.fromisoformat(FIRST_DAY)
     generate(day, tmp_path, app_config, spec, wordlists)
     before = {
@@ -921,6 +935,146 @@ def test_selection_skips_words_already_served(
         candidates, spec, FIRST_DAY, bands, used={row.word for row, _ in plain}
     )
     assert {row.word for row, _ in avoided}.isdisjoint({row.word for row, _ in plain})
+
+
+# --------------------------------------------------------------------------
+# 5a. The ledger: EVERY answer word, not just each board's anchor
+# --------------------------------------------------------------------------
+
+# How far forward the ledger run bakes. Sized by measurement, not by taste: with
+# the ledger reaching only each board's anchor, this same window bakes 456
+# distinct answer words and repeats 8 of them - the first pair already 2026-09-01
+# and 2026-10-02 - where with the ledger reaching every answer it bakes 465 and
+# repeats none. It is the slowest test in the module and it is worth it: the
+# defect it pins shipped, and shipped invisibly, because every cheaper test only
+# ever looked at the word the day loop picked.
+LEDGER_RUN_DAYS = 60
+
+
+def _answers_by_day(bank: Path) -> dict[str, list[tuple[str, str]]]:
+    """Every answer word a baked bank asks for: word -> its (date, gameId) sightings."""
+    found: dict[str, list[tuple[str, str]]] = {}
+    for day in daily.baked_days(bank):
+        document = json.loads(daily.day_path(bank, day).read_text(encoding="utf-8"))
+        for item in document["items"]:
+            for word in daily.answer_words(item["payload"]):
+                found.setdefault(word, []).append((day, str(item["gameId"])))
+    return found
+
+
+@pytest.fixture(scope="module")
+def ledger_run(
+    tmp_path_factory: pytest.TempPathFactory,
+    app_config: AppConfig,
+    generator: DailyGenerator,
+    wordlists: dict[str, GameWordlist],
+) -> Path:
+    """A bank baked far enough forward that a hole in the ledger has to show.
+
+    Baked once for the whole module, into a tmp bank rather than over the
+    committed one, because the claim is about what the ENGINE does rather than
+    about what happens to be committed: the bank ships nine days ahead of today,
+    which is not long enough for a repeat to surface.
+    """
+    root = tmp_path_factory.mktemp("ledger-run")
+    spec = generator.model_copy(
+        update={"bankDir": "bank", "daysAhead": LEDGER_RUN_DAYS - 1}
+    )
+    generate(date.fromisoformat(ORDINARY_DAY), root, app_config, spec, wordlists)
+    return root / "bank"
+
+
+def test_a_long_bake_serves_every_answer_word_exactly_once(ledger_run: Path) -> None:
+    """THE regression: a word the bank has served does not come back as a COMPANION.
+
+    Three of the six Games deal more words than the day loop picked - the search
+    board draws companions, the crossword solves a whole grid around its anchor,
+    the ladder climbs rungs above its ledge - and until the ledger reached them
+    only each board's ANCHOR was checked against what the bank had served. The
+    result was a player meeting the same word twice with nothing on screen
+    admitting it: over a bank baked without the ledger, the search board hid
+    ``vadumaangaay`` on both 2026-08-21 and 2026-08-31, and a hundred and eighty
+    days held forty-seven such repeats, one of them six times over.
+
+    The claim is made over ANSWER words - what the player is asked for - so a
+    grid's filler letters, a bank's decoys and an ``alsoValid`` alternative are
+    all outside it. Those are things a player may stumble on, not things the day
+    asked for.
+    """
+    days = daily.baked_days(ledger_run)
+    assert len(days) == LEDGER_RUN_DAYS, "the run did not bake the window it sized for"
+
+    found = _answers_by_day(ledger_run)
+    repeats = {word: seen for word, seen in found.items() if len(seen) > 1}
+    assert not repeats, (
+        f"{len(repeats)} answer words come back: {sorted(repeats)[:5]}. The one"
+        " documented way this can be honest is a ladder rung the graph forces"
+        " (see word_ladder.climb) - check the sightings before relaxing this."
+    )
+
+    # Not vacuous: the window really did deal boards with several answers on
+    # them, which is the only shape the defect could hide in.
+    served = sum(len(seen) for seen in found.values())
+    items = sum(
+        len(json.loads(daily.day_path(ledger_run, day).read_text(encoding="utf-8"))["items"])
+        for day in days
+    )
+    assert served > items * 2, f"{served} answers over {items} items is not a multi-word bank"
+
+
+def test_no_day_asks_for_the_same_word_twice(ledger_run: Path, bank_dir: Path) -> None:
+    """The WITHIN-day half of the ledger, over the long run and over the real bank.
+
+    A day's items are built in the order the player meets them, against a ledger
+    that grows by every word each item asks for, so the fourth board cannot deal
+    a word the first three already used. Before the ledger only each board's
+    anchor entered the within-day set, which left two Games on one day free to
+    ask for the same word - the least visible repeat of all, because it is two
+    boards apart on the same screen.
+    """
+    for bank in (ledger_run, bank_dir):
+        for day in daily.baked_days(bank):
+            document = json.loads(daily.day_path(bank, day).read_text(encoding="utf-8"))
+            asked = [
+                word
+                for item in document["items"]
+                for word in daily.answer_words(item["payload"])
+            ]
+            assert len(asked) == len(set(asked)), f"{day} asks twice: {sorted(asked)}"
+
+
+def test_a_backfilled_day_steps_around_the_answers_a_later_day_serves(
+    tmp_path: Path,
+    app_config: AppConfig,
+    generator: DailyGenerator,
+    wordlists: dict[str, GameWordlist],
+) -> None:
+    """The ledger is the WHOLE bank, not the days before this one.
+
+    Days are normally baked oldest first, so an earlier day rarely sees a later
+    one - but the cron back-fills a gap and an operator re-bakes a window, and
+    in both cases the day being written is surrounded by days that already
+    served words. A player who met a word on the later day has met it, whatever
+    order the files were written in.
+    """
+    spec = generator.model_copy(update={"bankDir": "bank", "daysAhead": 0})
+    later = date.fromisoformat(ORDINARY_DAY) + timedelta(days=1)
+    generate(later, tmp_path, app_config, spec, wordlists)
+    bank = tmp_path / "bank"
+    ahead = set(_answers_by_day(bank))
+    assert ahead, "the later day served nothing to step around"
+
+    generate(date.fromisoformat(ORDINARY_DAY), tmp_path, app_config, spec, wordlists)
+
+    backfilled = json.loads(
+        daily.day_path(bank, ORDINARY_DAY).read_text(encoding="utf-8")
+    )
+    asked = {
+        word
+        for item in backfilled["items"]
+        for word in daily.answer_words(item["payload"])
+    }
+    assert asked.isdisjoint(ahead), sorted(asked & ahead)
 
 
 def test_a_day_is_dealt_round_robin_across_the_difficulty_bands(
@@ -2366,6 +2520,67 @@ def test_a_board_is_a_pure_function_of_its_seed(
         assert other.grid != first.grid
 
 
+def test_a_board_hides_no_word_the_bank_has_already_hidden(
+    ws_spec: GameGeneration, ws_served: word_search.ServedIndex
+) -> None:
+    """The companions honour the same ledger the anchor was picked against.
+
+    A companion is a word the player is asked to find, so hiding one the bank
+    has already hidden is exactly the repeat the day loop refuses for anchors -
+    it is only less visible, because nothing on the board says which word was
+    the one the day picked.
+    """
+    band = ws_spec.difficulties[-1]
+    rows = word_search.band_candidates(ws_served, band)
+    moved = 0
+    for anchor in rows[:8]:
+        seed = f"{ORDINARY_DAY}|{anchor.word}"
+        blind = word_search.build_puzzle(anchor, ws_spec, seed, 0, band, ws_served)
+        companions = frozenset(
+            target.word for target in blind.targets if target.word != anchor.word
+        )
+        assert len(companions) == band.targets - 1
+
+        fresh = word_search.build_puzzle(
+            anchor, ws_spec, seed, 0, band, ws_served, used=companions
+        )
+        hidden = {target.word for target in fresh.targets}
+        assert hidden.isdisjoint(companions), sorted(hidden & companions)
+        assert anchor.word in hidden, "the ledger stole the day's own anchor"
+        assert len(fresh.targets) == band.targets
+        moved += 1
+    assert moved == 8
+
+
+def test_a_board_repeats_a_word_rather_than_hiding_fewer_than_the_band_asks(
+    ws_spec: GameGeneration, ws_served: word_search.ServedIndex
+) -> None:
+    """The degrade, stated: top up from the served words, never ship short.
+
+    ``pick_words`` already trades a repeated anchor against a playlist that does
+    not add up, and the same trade applies one layer in. A five-word grid
+    holding four words is a broken board; a five-word grid holding one word the
+    bank served two months ago is a board.
+    """
+    band = ws_spec.difficulties[-1]
+    rows = word_search.band_candidates(ws_served, band)
+    everything = frozenset(row.word for row in rows)
+    anchor = rows[0]
+
+    puzzle = word_search.build_puzzle(
+        anchor,
+        ws_spec,
+        f"{ORDINARY_DAY}|{anchor.word}",
+        0,
+        band,
+        ws_served,
+        used=everything,
+    )
+
+    assert len(puzzle.targets) == band.targets
+    assert anchor.word in {target.word for target in puzzle.targets}
+
+
 def test_the_filler_never_leaks_a_letter_no_target_uses(
     ws_spec: GameGeneration, ws_served: word_search.ServedIndex
 ) -> None:
@@ -2884,6 +3099,82 @@ def test_a_crossword_is_a_pure_function_of_its_seed(
             moved += 1
     assert compared >= 8, f"only {compared} boards compared"
     assert moved > 0, "no seed changed any board - the seed is being ignored"
+
+
+def test_a_crossword_fills_around_no_word_the_bank_has_already_asked_for(
+    cw_spec: GameGeneration, cw_served: crossword.ServedIndex
+) -> None:
+    """The ledger reaches the solver as words already TAKEN.
+
+    A crossword's other answers are asked for exactly as loudly as its anchor -
+    each has its own clue and its own number - so the whole grid, not just the
+    word the day loop picked, has to be new. The solver already refuses to place
+    one word twice on one board; the ledger widens that same set to the bank.
+    """
+    band = cw_spec.difficulties[-1]
+    pool = crossword.band_pool(cw_served, band)
+    rows = [row for words in pool.by_length.values() for row in words]
+    compared = fresh_boards = 0
+    for index in range(0, 4000, 331):
+        anchor = rows[index % len(rows)]
+        seed = f"{ORDINARY_DAY}|{anchor.word}"
+        try:
+            blind = crossword.build_puzzle(anchor, cw_spec, seed, 0, band, cw_served)
+        except crossword.SolverExhausted:
+            continue
+        others = frozenset(
+            entry.word for entry in blind.entries if entry.word != anchor.word
+        )
+        assert others, "the mask laid out only one entry"
+
+        built = crossword.build_puzzle(
+            anchor, cw_spec, seed, 0, band, cw_served, used=others
+        )
+        answers = {entry.word for entry in built.entries}
+        # Whatever the exclusion costs, the board is still whole and still holds
+        # the word the day dealt: a short grid is never a permitted outcome.
+        assert len(built.entries) == len(blind.entries)
+        assert anchor.word in answers, "the ledger stole the day's own anchor"
+        compared += 1
+        if answers.isdisjoint(others):
+            fresh_boards += 1
+    assert compared >= 8, f"only {compared} boards compared"
+    # Measured 11 of 12 on the hard band. This probe is far harsher than a bake:
+    # it forbids exactly the words the solver had already proved fit this mask
+    # around this anchor, where a day's real ledger is a couple of dozen words
+    # out of thousands. The one board that cannot be re-solved takes the
+    # documented fallback rather than failing, which the next test pins.
+    assert fresh_boards >= 10, f"{compared - fresh_boards} of {compared} ignored the ledger"
+
+
+def test_a_crossword_re_solves_without_the_ledger_rather_than_failing_the_day(
+    cw_spec: GameGeneration, cw_served: crossword.ServedIndex
+) -> None:
+    """The degrade, stated: an unsolvable exclusion is dropped, not escalated.
+
+    This Game's answers interlock, so the fallback cannot be per-word the way
+    the search board's is: an entry refused three letters in is refused by
+    everything crossing it too. The whole mask is therefore re-solved with the
+    ledger set aside, which is ``pick_words``' own trade - a board repeating one
+    word beats a day that does not bake.
+    """
+    band = cw_spec.difficulties[-1]
+    pool = crossword.band_pool(cw_served, band)
+    rows = [row for words in pool.by_length.values() for row in words]
+    everything = frozenset(row.word for row in rows)
+    for index in range(0, 4000, 331):
+        anchor = rows[index % len(rows)]
+        seed = f"{ORDINARY_DAY}|{anchor.word}"
+        try:
+            blind = crossword.build_puzzle(anchor, cw_spec, seed, 0, band, cw_served)
+        except crossword.SolverExhausted:
+            continue
+        built = crossword.build_puzzle(
+            anchor, cw_spec, seed, 0, band, cw_served, used=everything
+        )
+        assert built.model_dump_json() == blind.model_dump_json()
+        return
+    pytest.fail("no anchor in the sample solved its mask")
 
 
 def test_a_day_bakes_the_same_bytes_twice(
@@ -3699,6 +3990,74 @@ def test_the_ledger_reads_every_rung_a_served_ladder_showed(
     payload = built.model_dump(mode="json", exclude_none=True)
     assert daily.answer_words(payload) == [rung.word for rung in built.rungs]
     assert len(built.rungs) == band.targets >= 3
+
+
+def test_a_climb_steps_over_a_rung_the_bank_has_already_served(
+    wl_spec: GameGeneration, wl_graph: word_ladder.LadderGraph, wl_wordlist: GameWordlist
+) -> None:
+    """Every rung is an answer, so every rung is checked against the ledger.
+
+    ``reach`` is a fact about the GRAPH, not about the ledger, so a blocked rung
+    is stepped OVER rather than refused: the walk takes a fresh neighbour while
+    one can still finish the climb and a served one when none can. A ladder that
+    stops three rungs up would be a much bigger failure than one that repeats a
+    word, and the day loop cannot rescue it - ``NoLadder`` means "this word
+    starts no ladder", which is not what a full ledger says.
+    """
+    band = wl_spec.difficulties[0]
+    candidates = [
+        row
+        for row in wl_wordlist.words
+        if wl_graph.reach.get(word_ladder.signature(row.ezhuthu), 0) >= band.targets
+    ][:40]
+    assert len(candidates) == 40
+
+    climbed = moved = 0
+    for anchor in candidates:
+        seed = f"{ORDINARY_DAY}|{anchor.word}"
+        blind = word_ladder.build_puzzle(anchor, wl_spec, seed, 0, band, wl_graph)
+        above = frozenset(rung.word for rung in blind.rungs[1:])
+
+        built = word_ladder.build_puzzle(
+            anchor, wl_spec, seed, 0, band, wl_graph, used=above
+        )
+        rungs = [rung.word for rung in built.rungs]
+        assert rungs[0] == anchor.word, "the ledger stole the day's own ledge"
+        assert len(rungs) == band.targets, "the climb stopped short"
+        climbed += 1
+        if not (above & set(rungs)):
+            moved += 1
+    assert climbed == 40
+    # Not every ledge has a second way up - some signatures have exactly one
+    # neighbour that can finish - so this counts rather than demands.
+    assert moved >= 20, f"only {moved} of {climbed} climbs found a fresh route"
+
+
+def test_a_climb_repeats_a_rung_rather_than_stopping_short(
+    wl_spec: GameGeneration, wl_graph: word_ladder.LadderGraph, wl_wordlist: GameWordlist
+) -> None:
+    """The degrade, stated: a full ledger costs freshness, never the ladder."""
+    band = wl_spec.difficulties[0]
+    everything = frozenset(
+        row.word for rows in wl_graph.words.values() for row in rows
+    )
+    anchor = next(
+        row
+        for row in wl_wordlist.words
+        if wl_graph.reach.get(word_ladder.signature(row.ezhuthu), 0) >= band.targets
+    )
+
+    built = word_ladder.build_puzzle(
+        anchor, wl_spec, f"{ORDINARY_DAY}|{anchor.word}", 0, band, wl_graph,
+        used=everything,
+    )
+
+    assert [rung.word for rung in built.rungs] == [
+        rung.word
+        for rung in word_ladder.build_puzzle(
+            anchor, wl_spec, f"{ORDINARY_DAY}|{anchor.word}", 0, band, wl_graph
+        ).rungs
+    ]
 
 
 def test_this_game_bakes_no_hint_and_a_registered_rung_would_fail_the_bake(
