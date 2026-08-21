@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-21T22:00",
+  "version": "2026-08-21T23:00",
   "changelog": [
+    {
+      "version": "2026-08-21T23:00",
+      "change": "Turned the time-trial Mode on in ui.enabledModes.",
+      "why": "Row 23 - the Time Trial ships, so the last coming-soon tile on the Home becomes a button and every Mode this game promised is now playable. timeTrial.durationSec is untouched at the 120 it was minted with in Row 7 and gets its first reader here: two minutes is long enough that the ring of six Games deals more than one kind of board inside a run, so the sprint is a test of breadth rather than of one mechanic, and short enough that a player who has three minutes can finish one and still see their record move. It is a knob rather than a constant because it is the length of a contest, and a best run is recorded against the length it was set at - so shortening or lengthening the sprint starts a new record rather than invalidating the old one. Nothing else in this file moves: the Mode deals from the Row 22 pools, so it reads daily.games and infinite.defaultDifficulty exactly as the Infinite stream does, and adds no roster of its own."
+    },
     {
       "version": "2026-08-21T22:00",
       "change": "Turned the infinite Mode on in ui.enabledModes.",
@@ -58,7 +63,7 @@
   "infinite": { "lruWindow": 200, "defaultDifficulty": "medium" },
   "timeTrial": { "durationSec": 120 },
   "ui": {
-    "enabledModes": ["daily", "journey", "infinite"],
+    "enabledModes": ["daily", "journey", "infinite", "time-trial"],
     "defaultMode": "daily",
     "defaultTheme": "light",
     "defaultJourney": "beginners-ladder"

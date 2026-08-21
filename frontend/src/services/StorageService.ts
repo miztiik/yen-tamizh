@@ -21,6 +21,9 @@ import { dayKeyOf, type DayContext } from "../session/dayKey";
 import { previousDayIso } from "../lib/dates";
 import type { SessionState } from "../session/types";
 
+/** One recorded Time Trial best, indexed straight off the generated contract. */
+type BestRun = NonNullable<Save["bestTimeTrialRuns"]>[number];
+
 /** The minimal key-value surface StorageService needs; `localStorage` fits. */
 export interface KeyValueStore {
   getItem(key: string): string | null;
@@ -53,10 +56,15 @@ export interface StreakTick {
 // schemas/save.schema.json's changelog; bump both together when the save shape
 // changes (and add the read-side migration). ajv validates the date pattern +
 // changelog shape on every write, so a malformed stamp is caught immediately.
-const SAVE_VERSION = "2026-08-13T20:08";
+const SAVE_VERSION = "2026-08-21T23:00";
 const SAVE_CHANGELOG: Save["changelog"] = [
   {
     version: SAVE_VERSION,
+    change: "Added the optional bestTimeTrialRuns list.",
+    why: "Row 23 - a Time Trial run is only worth repeating if the last one is still standing somewhere, and there is nowhere else to stand: a leaderboard needs a runtime backend and an account, both non-goals. Optional, so a save written before this row still loads with no migration and simply has no record yet.",
+  },
+  {
+    version: "2026-08-13T20:08",
     change: "Added the optional lastStreakDay marker.",
     why: "Row 13 - the streak ticks once per COMPLETED day, so it needs a marker of its own; lastPlayed moves on every write and cannot answer that question.",
   },
@@ -240,6 +248,33 @@ export class StorageService {
       seenInfiniteIds: bounded,
     });
     return bounded;
+  }
+
+  /** Every Time Trial record this device holds, one per run length. */
+  readBestTimeTrialRuns(): BestRun[] {
+    return this.loadSave()?.bestTimeTrialRuns ?? [];
+  }
+
+  /**
+   * Persist the Time Trial record list.
+   *
+   * WHICH run beats which is not decided here - `TimeTrialMode.bestRunsWith`
+   * builds the list and this stores it, exactly as `markInfiniteSeen` takes its
+   * window as a parameter rather than reading the config that sets it.
+   * StorageService is the single WRITER, never the policy: the rule that a run
+   * only competes against runs of its own length belongs to the Mode that
+   * knows what a run length is.
+   */
+  writeBestTimeTrialRuns(ctx: DayContext, runs: readonly BestRun[]): void {
+    const base = this.loadSave() ?? this.freshSave(ctx);
+    this.writeSave({
+      ...base,
+      version: SAVE_VERSION,
+      changelog: SAVE_CHANGELOG,
+      dayKey: dayKeyOf(ctx),
+      lastPlayed: ctx.date,
+      bestTimeTrialRuns: [...runs],
+    });
   }
 
   private freshSave(ctx: DayContext): Save {

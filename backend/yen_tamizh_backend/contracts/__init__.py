@@ -105,7 +105,7 @@ from yen_tamizh_backend.contracts.lexicon_sources import (
 from yen_tamizh_backend.contracts.missing_letters_puzzle import MissingLettersPuzzle
 from yen_tamizh_backend.contracts.pool_index import PoolEntry, PoolIndex, PoolItem
 from yen_tamizh_backend.contracts.puzzle_file import PuzzleFile, PuzzleItem
-from yen_tamizh_backend.contracts.save import Save, compute_day_key
+from yen_tamizh_backend.contracts.save import Save, TimeTrialBest, compute_day_key
 from yen_tamizh_backend.contracts.served_denylist import (
     SERVED_DENYLIST_CHANGELOG,
     SERVED_DENYLIST_VERSION,
@@ -277,6 +277,7 @@ __all__ = [
     "SourceId",
     "SourceRole",
     "ThemedSet",
+    "TimeTrialBest",
     "TimeTrialConfig",
     "TypoProfile",
     "UiConfig",

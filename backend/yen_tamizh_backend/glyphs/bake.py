@@ -24,10 +24,21 @@ from yen_tamizh_backend.contracts.glyph_manifest import GlyphManifest, GlyphShap
 # is a CONSTANT, not date.today(): it records when the glyph pack's shape last
 # changed, so a re-bake on any day is byte-identical. Bump it (and append a
 # changelog entry) in the same commit that changes the pack.
-_PACK_VERSION = "2026-08-13"
+_PACK_VERSION = "2026-08-21"
 _CHANGELOG = [
     ChangelogEntry(
         version=_PACK_VERSION,
+        change="Added the timer glyph.",
+        why=(
+            "Row 23 - the Time Trial's countdown header needs an icon that "
+            "says clock, and every icon in this game is a glyph resolved by id "
+            "(Holy Law #10). Reusing one of the seven already in the pack would "
+            "have put a star or a lightbulb beside a running clock, which is "
+            "the kind of borrowed iconography that teaches a player nothing."
+        ),
+    ),
+    ChangelogEntry(
+        version="2026-08-13",
         change="Initial essential UI glyph pack baked from assets/glyphs/.",
         why=(
             "Row 10 needs a baked, schema-validated manifest the Glyph "

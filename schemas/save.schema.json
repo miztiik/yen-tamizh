@@ -27,6 +27,34 @@
       ],
       "title": "ChangelogEntry",
       "type": "object"
+    },
+    "TimeTrialBest": {
+      "additionalProperties": false,
+      "description": "The furthest a player has got in one Time Trial run length, kept locally.\n\nA best run is scored in ITEMS COMPLETED, and it is recorded against the\n``durationSec`` it was set at: the run length is a config knob, so a sprint\nof thirty seconds and a sprint of two minutes are two different contests and\na record from one can never beat the other. ``achievedOn`` is the local\ncalendar day the run finished, which is what lets the screen say when the\nrecord was set without keeping any history beside it.",
+      "properties": {
+        "achievedOn": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "title": "Achievedon",
+          "type": "string"
+        },
+        "durationSec": {
+          "minimum": 1,
+          "title": "Durationsec",
+          "type": "integer"
+        },
+        "itemsCompleted": {
+          "minimum": 0,
+          "title": "Itemscompleted",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "durationSec",
+        "itemsCompleted",
+        "achievedOn"
+      ],
+      "title": "TimeTrialBest",
+      "type": "object"
     }
   },
   "$id": "save.schema.json",
@@ -34,6 +62,13 @@
   "additionalProperties": false,
   "description": "Today's progress, streak, and last-played day; browser-local only.",
   "properties": {
+    "bestTimeTrialRuns": {
+      "items": {
+        "$ref": "#/$defs/TimeTrialBest"
+      },
+      "title": "Besttimetrialruns",
+      "type": "array"
+    },
     "changelog": {
       "items": {
         "$ref": "#/$defs/ChangelogEntry"
