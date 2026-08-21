@@ -60,9 +60,9 @@ Envelope `{ ts, src, v, session, name, level, ctx, data }`. Game: `puzzle.starte
 | 12 | AnagramGame | 3 | 11 | - | DONE | - | #9 | worker |
 | 13 | DailyMode + daily bank generator + Home | 4 | 9,12 | - | DONE | - | #12 | worker |
 | 14 | Daily playlist + hints (changelog evolution) | 3 | 13 | - | DONE (delivered by the wordsmith plan: themed rounds #33, hint ladder + meanings #35) | - | #33,#35 | worker |
-| 15 | Ladder graph builder + word-ladder schema | 5 | 7,8 | - | PENDING | - | - | - |
-| 16 | WordLadderGame + share-result card | 3 | 11,15 | - | PENDING | - | - | - |
-| 17 | JourneyMode + winding-path home | 4 | 10,16 | - | PENDING | - | - | - |
+| 15 | Ladder graph builder + word-ladder schema | 5 | 7,8 | - | DONE | - | #46 | worker |
+| 16 | WordLadderGame + share-result card | 3 | 11,15 | - | DONE | - | #47 | worker |
+| 17 | JourneyMode + winding-path home | 4 | 10,16 | - | READY | - | - | - |
 | 18 | MissingLettersGame + gen + derived set | 3 | 9,11 | G | DONE | - | #41 | worker |
 | 19 | WordleGame + gen + derived set | 3 | 9,11 | G | DONE | - | #42 | worker |
 | 20 | WordSearchGame + gen + derived set | 3 | 9,11 | G | DONE | - | #43 | worker |
