@@ -111,8 +111,24 @@
       host,
       // The Mode hands the Game its player-facing wording; the Game never reads
       // the copy map itself (docs/concepts/ui-shell.md - a Game sees only its
-      // payload and its context).
-      config: { labels: { alsoValid: copyText("anagram-also-valid") } },
+      // payload and its context). `streak` rides the same slice for the same
+      // reason: a Game may not touch storage, and the run it brags about on a
+      // result card has to be the one the save already counts, never a second
+      // one minted beside it. It is the run the player ARRIVED with, because
+      // today's tick belongs to the whole day and happens once, below.
+      config: {
+        labels: {
+          alsoValid: copyText("anagram-also-valid"),
+          statTime: copyText("stat-time"),
+          statInstinct: copyText("stat-instinct"),
+          statRetries: copyText("stat-retries"),
+          statStreak: copyText("summary-streak"),
+          share: copyText("action-share"),
+          shared: copyText("action-shared"),
+          continueOn: copyText("action-continue"),
+        },
+        streak: storage.loadSave()?.streak ?? 0,
+      },
     });
     void runner.start();
   });

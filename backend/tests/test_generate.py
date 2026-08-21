@@ -681,10 +681,15 @@ def test_a_ring_naming_an_unregistered_game_is_an_error(
     generator: DailyGenerator,
     wordlists: dict[str, GameWordlist],
 ) -> None:
+    # A gameId no row has shipped. It used to be "word-ladder", which stopped
+    # being a stand-in for "unregistered" the moment Row 16 registered it -
+    # this sentinel is deliberately not a Game anyone plans to build.
+    unregistered = "acrostic"
+    assert unregistered not in daily.BUILDERS
     broken = app_config.model_copy(
         update={
             "daily": app_config.daily.model_copy(
-                update={"playlistLength": 1, "games": ["word-ladder"]}
+                update={"playlistLength": 1, "games": [unregistered]}
             )
         }
     )
@@ -2020,7 +2025,7 @@ def test_a_day_can_be_dealt_from_more_than_one_game(
 def test_an_unregistered_game_fails_loudly(generator: DailyGenerator) -> None:
     """A ring naming a Game with no builder must not bake a silently empty day."""
     with pytest.raises(ValueError, match="no registered puzzle builder"):
-        daily.builder_for("word-ladder")
+        daily.builder_for("acrostic")
     # Every registered generator has a builder, and every builder has a
     # generator: a spare entry on either side is a Game half added.
     assert set(daily.BUILDERS) == {spec.gameId for spec in generator.games}
@@ -3600,24 +3605,100 @@ def test_an_alternative_the_bank_cannot_spell_is_refused(
         WordLadderPuzzle.model_validate({**payload, "rungs": first})
 
 
-def test_the_ladder_set_is_registered_but_no_day_bakes_it_yet(
-    generator: DailyGenerator, wl_wordlist: GameWordlist
+def test_the_ladder_set_is_registered_and_a_day_can_now_bake_it(
+    generator: DailyGenerator, app_config: AppConfig, wl_wordlist: GameWordlist
 ) -> None:
-    """Row 15 ships the proof; Row 16 ships the board, and the seam is config.
+    """Row 15 shipped the proof; Row 16 ships the board, and the seam was config.
 
-    The derived set is committed and the payload schema is registered, but no
-    ``games`` entry names the ladder - so the cron cannot bake a payload that
-    nothing can render. Adding the Game is then a config entry plus a builder
-    registration, which is the same one-Game-one-registration claim the five
-    Games before it made.
+    The claim Row 15 made was that adding this Game would cost a ``games`` entry
+    plus a builder registration and nothing else - the same one-Game-one-
+    registration claim the five Games before it made. This is that claim,
+    collected: the derived set, the registry entry, the generator spec, the
+    builder, and the ordinary ring all name it, and no other file had to move.
     """
     assert wl_wordlist.gameId == word_ladder.GAME_ID
-    assert word_ladder.GAME_ID not in {spec.gameId for spec in generator.games}
-    assert word_ladder.GAME_ID not in daily.BUILDERS
+    spec = next(one for one in generator.games if one.gameId == word_ladder.GAME_ID)
+    assert spec.wordlist == LADDER_SET
+    assert word_ladder.GAME_ID in daily.BUILDERS
+    assert word_ladder.GAME_ID in app_config.daily.games
     registry = derive.load_registry(_REPO_ROOT / "config" / "derived-wordlists.json")
     entry = next(one for one in registry.sets if one.gameId == word_ladder.GAME_ID)
     assert entry.out == LADDER_SET
     assert (entry.selection.minLength, entry.selection.maxLength) == (2, 7)
+
+
+def test_the_ladder_is_not_in_the_themed_ring_and_the_measurement_says_why(
+    generator: DailyGenerator,
+    app_config: AppConfig,
+    wordlists: dict[str, GameWordlist],
+) -> None:
+    """The one ring this Game is deliberately kept OUT of, pinned from the data.
+
+    A themed day needs every Game in it to build from that theme's few hundred
+    rows, and a ladder needs something stronger than enough words: it needs an
+    add-one-ezhuthu CHAIN through them. themed-nature has 429 rows and five
+    edges in total, so five rows can climb one rung and none can climb the three
+    the easiest band asks for. Registering it would not have crashed a bake - it
+    would have made every themed date decline in silence and fall back to an
+    ordinary day - which is exactly why the refusal is asserted here rather than
+    left to be noticed as a missing feature.
+    """
+    assert word_ladder.GAME_ID not in app_config.daily.themedGames
+    spec = next(one for one in generator.games if one.gameId == word_ladder.GAME_ID)
+    graph = word_ladder.index_served(wordlists[THEMED_SET], spec)
+    assert sum(len(above) for above in graph.up.values()) == 5
+    easiest = min(band.targets for band in spec.difficulties)
+    assert easiest == 3
+    assert not [key for key, reach in graph.reach.items() if reach >= easiest]
+
+
+def test_the_ladder_bands_have_years_of_climbable_content(
+    generator: DailyGenerator, wl_wordlist: GameWordlist, wl_graph: word_ladder.LadderGraph
+) -> None:
+    """The other half of the registration: what each band can actually deal.
+
+    Most served words start no ladder at all, so a band's row count says nothing
+    about its content - what matters is how many of those rows the graph can
+    carry the band's rung count from. Asserted as a floor rather than an exact
+    number, because the lexicon grows underneath it; the point is that the
+    thinnest band still holds decades of daily content at one draw a day.
+    """
+    claimed: dict[str, list[GameWord]] = {}
+    spec = next(one for one in generator.games if one.gameId == word_ladder.GAME_ID)
+    claimed = {band.id: [] for band in spec.difficulties}
+    for row in wl_wordlist.words:
+        band_id = daily.difficulty_of(row, spec)
+        if band_id is not None:
+            claimed[band_id].append(row)
+    for band in spec.difficulties:
+        climbable = [
+            row
+            for row in claimed[band.id]
+            if wl_graph.reach.get(word_ladder.signature(row.ezhuthu), 0) >= band.targets
+        ]
+        assert len(climbable) >= 80, f"{band.id} has {len(climbable)} climbable rows"
+
+
+def test_the_ledger_reads_every_rung_a_served_ladder_showed(
+    wl_spec: GameGeneration, wl_graph: word_ladder.LadderGraph, wl_wordlist: GameWordlist
+) -> None:
+    """The anti-repeat ledger reads a ladder's WHOLE climb, not just its start.
+
+    A ladder is the fourth way a payload names its answers, and the third that
+    names more than one. A day that served a climb has shown the player every
+    word in it - with its meaning, free, beside the rung - so all of them must
+    reach ``answer_words``, or one comes back as another day's answer.
+    """
+    band = wl_spec.difficulties[0]
+    anchor = next(
+        row
+        for row in wl_wordlist.words
+        if wl_graph.reach.get(word_ladder.signature(row.ezhuthu), 0) >= band.targets
+    )
+    built = word_ladder.build_puzzle(anchor, wl_spec, "ledger", 0, band, wl_graph)
+    payload = built.model_dump(mode="json", exclude_none=True)
+    assert daily.answer_words(payload) == [rung.word for rung in built.rungs]
+    assert len(built.rungs) == band.targets >= 3
 
 
 def test_this_game_bakes_no_hint_and_a_registered_rung_would_fail_the_bake(

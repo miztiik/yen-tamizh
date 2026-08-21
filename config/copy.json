@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-20",
+  "version": "2026-08-21",
   "changelog": [
+    {
+      "version": "2026-08-21",
+      "change": "Added the word-ladder Game name and the result card's stat and share wording.",
+      "why": "Row 16 - the sixth Game reaches players, so the session rail needs a Tamil word for the board it is naming; without it the rail would have printed the raw slug. The other six strings are the completion moment: a climber who finishes is shown TIME, INSTINCT, RETRIES and STREAK and offered a card to copy, and every one of those is a sentence a player reads, so it lives here rather than inside the component. The streak label is deliberately NOT a new slug - the card reuses summary-streak, because a run named two different things on two screens reads as two different runs."
+    },
     {
       "version": "2026-08-20",
       "change": "Added a Tamil name for each of the five Games, and the themed-round label.",
@@ -38,6 +43,7 @@
     "game-wordle-title": "சொல் யூகம்",
     "game-word-search-title": "சொல் தேடல்",
     "game-crossword-title": "குறுக்கெழுத்து",
+    "game-word-ladder-title": "சொல் ஏணி",
     "daily-theme-label": "கருப்பொருள்",
     "mode-journey-title": "பயணம்",
     "mode-journey-title-en": "Journey",
@@ -60,6 +66,12 @@
     "summary-score": "மதிப்பெண்",
     "summary-solved": "தீர்த்தவை",
     "summary-streak": "தொடர் நாட்கள்",
+    "stat-time": "நேரம்",
+    "stat-instinct": "உள்ளுணர்வு",
+    "stat-retries": "மறுமுயற்சி",
+    "action-share": "பகிர்",
+    "action-shared": "நகலெடுக்கப்பட்டது",
+    "action-continue": "தொடரவும்",
     "anagram-also-valid": "இது ஒரு சொல், ஆனால் இன்றைய சொல் அல்ல",
     "theme-nature": "இயற்கை"
   }

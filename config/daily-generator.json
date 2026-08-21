@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-20T12:00",
+  "version": "2026-08-21T12:00",
   "changelog": [
+    {
+      "version": "2026-08-21T12:00",
+      "change": "Registered the word-ladder generator: a climb of three or four rungs from a 2 to 4 ezhuthu start, picked from a bank of eight, with no attempt budget and no hint ladder.",
+      "why": "Row 16 - the sixth Game, and the second whose difficulty dial is how many answers the board asks for rather than how long they are. targets is the rung count and it is the only dial that can be one here, because what makes a climb hard is the number of steps and how familiar the words along it are, not the width of the first one: measured over the served set, a shorter start is EASIER rather than harder, since three quarters of the two-ezhuthu multisets have a word one letter above them (1,384 of 1,812) against under a tenth of the five-ezhuthu ones (659 of 9,020) and none at all of the seven-ezhuthu ones. The bands therefore all start at 2 ezhuthu and separate on familiarity and rung count - easy is 3 rungs from the most familiar quarter, medium 3 rungs from the top half, hard 4 rungs from anywhere - and the ceiling stops at 4 because the graph does: of 35,991 ezhuthu multisets only 6,563 can be climbed from at all, 2,052 can carry three rungs and 623 four, so a five-rung band would have 154 starts in the whole language. What that leaves is still years of content: 994 of the 3,009 rows the easy band claims can be climbed three rungs, 632 of medium's 7,150, and 87 of hard's 7,525. attempts is 1 and is UNREAD, on the search board's terms - a ladder is a chain, so ending it mid-way would confiscate the rungs already earned, and a wrong pick therefore costs time rather than a life. hints is empty and that is a ruling rather than an omission: every rung the shared ladder can render is a fact about ONE word, and on this board that word is always the NEXT one, so the rung would have to be bought at the only moment it is worth anything and would then hand over most of a word three or four letters long. The help this Game gives instead is a per-rung reveal priced in the rung it hands over, which is a play-time fact and lives in the Game - so config/app-config.json needs no hints.perGame entry and the allowance reads as zero. choiceCount is 8, the missing-letters number, and it is the same bet: there is no Tamil keyboard, so the bank is how an addition is entered at all, and eight puts a player who knows nothing at one in eight a rung. dailyRank is 25, between the missing-letters board and the wordle: a climb is two or three bank picks in a chain, which is heavier than one bank pick and lighter than the only board a player can lose."
+    },
     {
       "version": "2026-08-20T12:00",
       "change": "Gave every Game a dailyRank, and registered themed-nature under the missing-letters board as well as the anagram.",
@@ -292,6 +297,22 @@
           "maxStratum": 4,
           "grid": ["#.#.#", ".....", "#.#.#", ".....", "#.#.#", "....."]
         }
+      ],
+      "hints": []
+    },
+    {
+      "gameId": "word-ladder",
+      "packId": "ta-core",
+      "wordlist": "datasets/wordlists/derived/ladder.json",
+      "attempts": 1,
+      "timeLimitSec": 0,
+      "reveal": 0,
+      "choiceCount": 8,
+      "dailyRank": 25,
+      "difficulties": [
+        { "id": "easy", "minLength": 2, "maxLength": 3, "maxStratum": 1, "targets": 3 },
+        { "id": "medium", "minLength": 2, "maxLength": 4, "maxStratum": 2, "targets": 3 },
+        { "id": "hard", "minLength": 2, "maxLength": 4, "maxStratum": 4, "targets": 4 }
       ],
       "hints": []
     }

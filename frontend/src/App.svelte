@@ -71,6 +71,10 @@
       Harness = (await import("./shell/CrosswordHarness.svelte")).default;
       return;
     }
+    if (harness === "word-ladder") {
+      Harness = (await import("./shell/WordLadderHarness.svelte")).default;
+      return;
+    }
     Harness = null;
     if (params.get("mode") === "daily") {
       await openDaily();
