@@ -67,8 +67,8 @@ Envelope `{ ts, src, v, session, name, level, ctx, data }`. Game: `puzzle.starte
 | 19 | WordleGame + gen + derived set | 3 | 9,11 | G | DONE | - | #42 | worker |
 | 20 | WordSearchGame + gen + derived set | 3 | 9,11 | G | DONE | - | #43 | worker |
 | 21 | CrosswordGame + placement solver + derived set | 5 | 9,11 | G | DONE | - | #44 | worker |
-| 22 | InfiniteMode + bulk pool + index | 4 | 12,13 | H | READY | - | - | - |
-| 23 | TimeTrialMode | 3 | 12,22 | H | PENDING | - | - | - |
+| 22 | InfiniteMode + bulk pool + index | 4 | 12,13 | H | DONE | - | #50 | worker |
+| 23 | TimeTrialMode | 3 | 12,22 | H | READY | - | - | - |
 
 Dependency spine: `1(done) -> {2,3} -> {4,5,6} -> {7,8} -> {9,10} -> 11 -> 12 -> 13 -> 14`; Word Ladder `15 -> 16 -> 17`; Games `18..21` parallel after `9,11`; Modes `22 -> 23` after `12,13`. Parallel groups: A `{2,3}`, B `{4,5,6}`, C `{7,8}`, G `{18,19,20,21}`, H `{22,23}`.
 
