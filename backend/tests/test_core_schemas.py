@@ -42,6 +42,7 @@ from yen_tamizh_backend.contracts import (
     LexiconSources,
     MissingLettersPuzzle,
     PartOfSpeech,
+    PoolIndex,
     PuzzleFile,
     Save,
     WordClass,
@@ -72,6 +73,7 @@ _CORE: tuple[tuple[type[SchemaModel], str], ...] = (
     (CrosswordPuzzle, "crossword-puzzle"),
     (WordLadderPuzzle, "word-ladder-puzzle"),
     (Journey, "journey"),
+    (PoolIndex, "pool-index"),
     (Copy, "copy"),
 )
 

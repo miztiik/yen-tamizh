@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "missing-letters", "id": "00005", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [2], "choices": ["இ", "தொ", "ம", "ய", "பி", "ரி", "ழ", "கூ"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: தடை ஏதும் இல்லாத"}], "meaning": "தடை ஏதும் இல்லாத", "translationEn": "chain-less", "word": "தடையற்ற"}}

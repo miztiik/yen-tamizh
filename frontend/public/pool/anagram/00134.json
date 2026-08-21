@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "anagram", "id": "00134", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: வி"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: விசாரணை"}], "meaning": "விசாரணை", "reveal": 0, "tiles": ["வ", "ல்", "வி", "ன"], "timeLimitSec": 0, "word": "வினவல்"}}

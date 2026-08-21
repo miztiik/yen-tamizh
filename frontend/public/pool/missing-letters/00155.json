@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "missing-letters", "id": "00155", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [1], "choices": ["ம்", "லா", "ழே", "ந", "றோ", "தி", "ட்", "ர"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: எதிராக அமையும் நிலை"}], "meaning": "எதிராக அமையும் நிலை", "translationEn": "reciprocal", "word": "எதிரிடை"}}

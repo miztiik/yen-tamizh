@@ -53,6 +53,7 @@ const CORE_SCHEMAS: SchemaName[] = [
   "crossword-puzzle",
   "word-ladder-puzzle",
   "journey",
+  "pool-index",
   "copy",
 ];
 

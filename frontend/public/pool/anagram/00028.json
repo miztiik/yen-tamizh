@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "anagram", "id": "00028", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: சா"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: காரணம்"}], "meaning": "காரணம்", "reveal": 0, "tiles": ["சா", "டு", "ட்"], "timeLimitSec": 0, "translationEn": "arraign", "word": "சாட்டு"}}

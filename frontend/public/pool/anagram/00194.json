@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "anagram", "id": "00194", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: மொ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: முழுதுமிழந்தவன்"}], "meaning": "முழுதுமிழந்தவன்", "reveal": 0, "tiles": ["டை", "மொ", "ய", "ன்", "ட்"], "timeLimitSec": 0, "word": "மொட்டையன்"}}

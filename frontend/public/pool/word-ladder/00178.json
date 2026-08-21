@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00178", "packId": "ta-core", "payload": {"choices": ["ஞ", "தா", "ம்", "சி", "த", "ன்", "ண", "னெ"], "rungs": [{"meaning": "ஒத்துள்ளது", "word": "சமானம்"}, {"alsoValid": ["சதமானம்", "சன்மானம்", "சமாதானம்"], "meaning": "உபசாரச்சொல்", "word": "சம்மானம்"}, {"meaning": "அரியணை", "word": "சிம்மாசனம்"}], "timeLimitSec": 0}}

@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00162", "packId": "ta-core", "payload": {"choices": ["ள", "ர்", "வா", "ன்", "தௌ", "றை", "ங்", "வோ"], "rungs": [{"meaning": "கேளா", "word": "வேளா"}, {"alsoValid": ["வேளார்"], "meaning": "வேளன்", "word": "வேளான்"}, {"meaning": "உபகாரி", "word": "வேளாளன்"}], "timeLimitSec": 0}}

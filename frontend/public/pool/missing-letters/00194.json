@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "missing-letters", "id": "00194", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [4], "choices": ["ளா", "நோ", "பி", "யீ", "ப", "த", "மௌ", "தீ"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: அரைத்தல்"}], "meaning": "அரைத்தல்", "translationEn": "running", "word": "நடத்துதல்"}}

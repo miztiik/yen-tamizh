@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00094", "packId": "ta-core", "payload": {"choices": ["கு", "ய", "தி", "ப", "ஞா", "நி", "ழோ", "யெ"], "rungs": [{"meaning": "கலகலப்பு", "word": "கலாம்"}, {"alsoValid": ["கலாயம்"], "meaning": "பெண்கள் அணியும் இடையணி", "word": "கலாபம்"}, {"meaning": "கூட்டமாகச் சேர்ந்து", "word": "கும்பலாக"}], "timeLimitSec": 0}}

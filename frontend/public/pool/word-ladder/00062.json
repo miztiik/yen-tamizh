@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00062", "packId": "ta-core", "payload": {"choices": ["சி", "மா", "பே", "ழே", "ரே", "வ", "தூ", "ணூ"], "rungs": [{"meaning": "ஆழ்", "word": "துளை"}, {"alsoValid": ["மாதுளை"], "meaning": "தூதுவளை என்னும் மூலிகைச்செடி", "word": "தூதுளை"}, {"meaning": "ஒரு வகை மூலிகைச்செடி", "word": "தூதுவளை"}], "timeLimitSec": 0}}

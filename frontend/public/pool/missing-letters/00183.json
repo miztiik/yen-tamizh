@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "missing-letters", "id": "00183", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [3], "choices": ["அ", "ழ்", "ம்", "சு", "ழ", "ணு", "த", "னை"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: அடித்தல்"}], "meaning": "அடித்தல்", "translationEn": "spill", "word": "கொட்டுதல்"}}

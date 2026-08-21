@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "wordle", "id": "00039", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 1, "kind": "category", "text": "வகை: இடம்"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: மருந்துகடை"}], "meaning": "மருந்துகடை", "translationEn": "Medicals", "word": "மருந்தகம்"}}

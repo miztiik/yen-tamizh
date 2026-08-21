@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00099", "packId": "ta-core", "payload": {"choices": ["ங்", "றோ", "ளி", "போ", "பௌ", "ரு", "க்", "பூ"], "rungs": [{"meaning": "அநேகமான", "word": "வெகு"}, {"alsoValid": ["வெகுளி"], "meaning": "ஆண்பூனை", "word": "வெருகு"}, {"meaning": "சீகாழி", "word": "வெங்குரு"}], "timeLimitSec": 0}}

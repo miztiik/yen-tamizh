@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00137", "packId": "ta-core", "payload": {"choices": ["ளொ", "ணோ", "டு", "டே", "ல்", "றெ", "றோ", "ரை"], "rungs": [{"meaning": "மூதேவி", "word": "மூதி"}, {"alsoValid": ["மூதில்"], "meaning": "திருவாதிரைநாள் ( )", "word": "மூதிரை"}, {"meaning": "திரைச்சீலை", "word": "மூடுதிரை"}], "timeLimitSec": 0}}

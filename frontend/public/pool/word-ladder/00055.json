@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00055", "packId": "ta-core", "payload": {"choices": ["நெ", "ழோ", "ணா", "க்", "கை", "மி", "ரு", "ஞை"], "rungs": [{"meaning": "உண்டாக்கப்பட்டன", "word": "சிட்டி"}, {"alsoValid": ["சிமிட்டி", "சிருட்டி"], "meaning": "ஒரு 'கிள்ளு' அளவானது", "word": "சிட்டிகை"}, {"meaning": "கைந்நொடி", "word": "சிட்டிக்கை"}], "timeLimitSec": 0}}

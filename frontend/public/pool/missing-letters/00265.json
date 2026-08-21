@@ -1,0 +1,1 @@
+{"difficulty": "hard", "gameId": "missing-letters", "id": "00265", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [2, 3], "choices": ["யா", "நூ", "நெ", "மா", "ச", "ய்", "ர", "பெ"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: அவதியாக"}], "meaning": "அவதியாக", "translationEn": "worriedly", "word": "கிலேசமாக"}}

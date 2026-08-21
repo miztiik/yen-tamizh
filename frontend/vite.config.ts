@@ -114,6 +114,25 @@ export default defineConfig({
               cacheableResponse: { statuses: [0, 200] },
             },
           },
+          {
+            // The Infinite pool (Row 22), on the same terms - and this is the
+            // one where the terms matter most. The pool is ~1,800 files and
+            // 1.4 MB: precaching it would spend the entire install budget on
+            // content a player may never reach, on a phone, before the first
+            // puzzle. globPatterns already excludes JSON, so this rule is what
+            // makes an opened board work offline WITHOUT any of it being
+            // downloaded up front. The entry bound is the anti-repeat window's
+            // 200, so the cache holds about as many boards as the Mode promises
+            // not to repeat - roughly 200 KB at the measured 0.4-1.6 KB a board.
+            urlPattern: ({ url, sameOrigin }) =>
+              sameOrigin && url.pathname.includes("/pool/"),
+            handler: "StaleWhileRevalidate",
+            options: {
+              cacheName: "yen-tamizh-pool",
+              expiration: { maxEntries: 200, purgeOnQuotaError: true },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
         ],
       },
     }),

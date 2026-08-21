@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00119", "packId": "ta-core", "payload": {"choices": ["டொ", "டு", "ர", "லி", "ல", "னை", "தி", "ஞ"], "rungs": [{"meaning": "சொல்லுக = பேசு", "word": "நவில்"}, {"alsoValid": ["நல்விதி", "நல்வினை", "நவிலல்"], "meaning": "இடையிடையே", "word": "நடுவில்"}, {"meaning": "பேடு", "word": "நடுவிரல்"}], "timeLimitSec": 0}}

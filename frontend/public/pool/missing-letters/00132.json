@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "missing-letters", "id": "00132", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [4], "choices": ["சொ", "தி", "சே", "ளி", "ங்", "நி", "வே", "மௌ"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: தொடங்கும் முதல் படி"}], "meaning": "தொடங்கும் முதல் படி", "translationEn": "embryo", "word": "தொடக்கநிலை"}}

@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "missing-letters", "id": "00048", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [1], "choices": ["மு", "னி", "ன்", "ரௌ", "த", "டு", "றூ", "யூ"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: மின்சார ஆற்றல்"}], "meaning": "மின்சார ஆற்றல்", "translationEn": "electrical energy", "word": "மின்சக்தி"}}

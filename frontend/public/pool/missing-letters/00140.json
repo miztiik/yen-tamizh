@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "missing-letters", "id": "00140", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [4], "choices": ["பு", "பி", "ரீ", "கா", "ரா", "ச்", "ஞ", "ரோ"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: சட்டத்துக்குபுறம்பான"}], "meaning": "சட்டத்துக்குபுறம்பான", "translationEn": "illegal", "word": "சட்டவிரோத"}}

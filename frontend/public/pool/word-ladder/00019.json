@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00019", "packId": "ta-core", "payload": {"choices": ["வா", "யெ", "மை", "றோ", "ர", "யே", "ண்", "நே"], "rungs": [{"meaning": "அரை", "word": "இடை"}, {"alsoValid": ["இடைமை", "இடையே"], "meaning": "ஆதொண்டை", "word": "இண்டை"}, {"alsoValid": ["இடையெண்"], "meaning": "எலியால்", "word": "இரண்டை"}], "timeLimitSec": 0}}

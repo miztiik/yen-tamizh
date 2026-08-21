@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "wordle", "id": "00043", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 1, "kind": "category", "text": "வகை: பள்ளி"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: (கணிதம்) இரண்டால் வகுபடாத எண்கள்"}], "meaning": "(கணிதம்) இரண்டால் வகுபடாத எண்கள்", "translationEn": "odd", "word": "ஒற்றைப்படை"}}

@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "anagram", "id": "00011", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: மு"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: கட்டு"}], "meaning": "கட்டு", "reveal": 0, "tiles": ["டி", "மு", "ச்", "சு"], "timeLimitSec": 0, "translationEn": "bunch", "word": "முடிச்சு"}}

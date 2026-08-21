@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "anagram", "id": "00144", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: தி"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: அருட்பார்வை"}], "meaning": "அருட்பார்வை", "reveal": 0, "tiles": ["க", "க்", "ண்", "தி", "ரு"], "timeLimitSec": 0, "word": "திருக்கண்"}}

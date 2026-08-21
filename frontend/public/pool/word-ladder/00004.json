@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00004", "packId": "ta-core", "payload": {"choices": ["னி", "ம", "கீ", "ஞ்", "ழு", "ம்", "சொ", "யை"], "rungs": [{"meaning": "அம்புஜம்", "word": "சட்டி"}, {"alsoValid": ["சட்டினி"], "meaning": "தொகுதி", "word": "சமட்டி"}, {"alsoValid": ["மஞ்சட்டி"], "meaning": "பெரிய சுத்தியல்", "word": "சம்மட்டி"}], "timeLimitSec": 0}}

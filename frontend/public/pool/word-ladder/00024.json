@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00024", "packId": "ta-core", "payload": {"choices": ["லே", "ழா", "ரெ", "பு", "ரு", "ட", "ல்", "ற"], "rungs": [{"meaning": "தேவர்", "word": "நாகர்"}, {"alsoValid": ["கல்நார்"], "meaning": "கூத்தர்", "word": "நாடகர்"}, {"meaning": "கருநாடகத்தைச் சேர்ந்தவர்", "word": "கருநாடர்"}], "timeLimitSec": 0}}

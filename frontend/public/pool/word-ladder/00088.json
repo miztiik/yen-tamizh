@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00088", "packId": "ta-core", "payload": {"choices": ["னே", "எ", "கீ", "ப", "கூ", "ரு", "ஞீ", "த்"], "rungs": [{"meaning": "இயற்று", "word": "எழுது"}, {"alsoValid": ["எழுபது"], "meaning": "அட்சரம்", "word": "எழுத்து"}, {"meaning": "வரிவடிவம்", "word": "எழுத்துரு"}], "timeLimitSec": 0}}

@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "anagram", "id": "00190", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: மு"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: ஒடித்தல்"}], "meaning": "ஒடித்தல்", "reveal": 0, "tiles": ["த்", "றி", "மு", "த", "ல்"], "timeLimitSec": 0, "word": "முறித்தல்"}}

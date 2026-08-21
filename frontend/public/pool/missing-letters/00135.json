@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "missing-letters", "id": "00135", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [0], "choices": ["தை", "மோ", "நோ", "மி", "யா", "பு", "ஐ", "வௌ"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: ஒரு வணிக கணக்கிடும் முறை"}], "meaning": "ஒரு வணிக கணக்கிடும் முறை", "translationEn": "balance -sheet", "word": "ஐந்தொகை"}}

@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "missing-letters", "id": "00016", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [0], "choices": ["ஆ", "மி", "நூ", "உ", "தி", "வே", "ஈ", "போ"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: அனுமதி"}], "meaning": "அனுமதி", "translationEn": "order", "word": "உத்தரவு"}}

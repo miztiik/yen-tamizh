@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00157", "packId": "ta-core", "payload": {"choices": ["வி", "பீ", "மை", "கை", "ழ", "பே", "வ", "த்"], "rungs": [{"meaning": "விடுதலை", "word": "விடுதல்"}, {"alsoValid": ["கைவிடுதல்"], "meaning": "அனுப்புதல்", "word": "விடுத்தல்"}, {"meaning": "காப்பாற்றுதல்", "word": "விடுவித்தல்"}], "timeLimitSec": 0}}

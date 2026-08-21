@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00160", "packId": "ta-core", "payload": {"choices": ["த", "இ", "வே", "ல்", "கே", "வு", "லௌ", "ற"], "rungs": [{"meaning": "அனுபவி", "word": "அளை"}, {"alsoValid": ["அறளை", "அளைஇ", "அளைவு", "அவேளை"], "meaning": "நிலப்பீர்க்கு", "word": "அதளை"}, {"meaning": "தழுவுதல்", "word": "அளைதல்"}], "timeLimitSec": 0}}

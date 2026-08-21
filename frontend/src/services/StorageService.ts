@@ -199,6 +199,49 @@ export class StorageService {
     return { before, after, ticked: true };
   }
 
+  /** The pool items the Infinite stream has already dealt, oldest first. */
+  readSeenInfiniteIds(): string[] {
+    return this.loadSave()?.seenInfiniteIds ?? [];
+  }
+
+  /**
+   * Record one dealt pool item, keeping `seenInfiniteIds` an LRU bounded by
+   * `window` (`config.infinite.lruWindow`).
+   *
+   * Three properties, and each is load-bearing for the anti-repeat claim:
+   *
+   *   - It is a LEAST-RECENTLY-USED list, not a set with a cap. Re-dealing an
+   *     id MOVES it to the end rather than leaving it where it was, which is
+   *     what makes "the oldest one is the fairest to show again" a true
+   *     statement about the front of the list.
+   *   - It is bounded, so a player who never stops does not grow their save
+   *     without limit. The bound is passed in rather than read here: the window
+   *     is a config knob and StorageService reads no config (it is the writer,
+   *     not a policy).
+   *   - It is recorded when a board is DEALT, not when it is solved. A puzzle
+   *     the player abandoned has still been seen, and offering it again as if
+   *     it were new would be the repeat the window exists to prevent.
+   *
+   * The bound is applied with an explicit length arithmetic rather than
+   * `slice(-window)`, because `slice(-0)` returns the WHOLE array and a window
+   * of zero must mean "remember nothing".
+   */
+  markInfiniteSeen(ctx: DayContext, id: string, window: number): string[] {
+    const base = this.loadSave() ?? this.freshSave(ctx);
+    const promoted = [...base.seenInfiniteIds.filter((seen) => seen !== id), id];
+    const bounded =
+      window <= 0 ? [] : promoted.slice(Math.max(0, promoted.length - window));
+    this.writeSave({
+      ...base,
+      version: SAVE_VERSION,
+      changelog: SAVE_CHANGELOG,
+      dayKey: dayKeyOf(ctx),
+      lastPlayed: ctx.date,
+      seenInfiniteIds: bounded,
+    });
+    return bounded;
+  }
+
   private freshSave(ctx: DayContext): Save {
     return {
       version: SAVE_VERSION,

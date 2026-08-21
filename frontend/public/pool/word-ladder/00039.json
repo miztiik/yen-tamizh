@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00039", "packId": "ta-core", "payload": {"choices": ["ண்", "ல்", "ஏ", "கை", "ட்", "யி", "ளோ", "த"], "rungs": [{"meaning": "உபயோகி", "word": "பிடி"}, {"alsoValid": ["ஏடிபி", "கைபிடி", "பிடிகை", "பிட்டி", "பிண்டி"], "meaning": "நரம்புக்கருவிவகை", "word": "பிடில்"}, {"meaning": "ஆதிக்க", "word": "பிடியில்"}], "timeLimitSec": 0}}

@@ -1,0 +1,150 @@
+{
+  "$defs": {
+    "ChangelogEntry": {
+      "additionalProperties": false,
+      "description": "One dated entry in a schema's in-file change log (newest first).\n\n``version`` is the date-stamp of the change; ``change`` is what changed;\n``why`` is the reason it changed (CLAUDE.md section 11).",
+      "properties": {
+        "change": {
+          "minLength": 1,
+          "title": "Change",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+          "title": "Version",
+          "type": "string"
+        },
+        "why": {
+          "minLength": 1,
+          "title": "Why",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "change",
+        "why"
+      ],
+      "title": "ChangelogEntry",
+      "type": "object"
+    },
+    "PoolEntry": {
+      "additionalProperties": false,
+      "description": "One line of the index: which item, and which band it belongs to.\n\nTwo fields, and the shortness is the point. The index is fetched before the\nfirst puzzle of a stream, so every field added to it is paid for by every\nplayer on every visit and multiplied by the size of the pool - a Tamil word\non each line would roughly double it and tell the Mode nothing it uses,\nbecause the Mode picks by band and by what the save says it has seen.",
+      "properties": {
+        "difficulty": {
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "title": "Difficulty",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^\\d{5}$",
+          "title": "Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "difficulty"
+      ],
+      "title": "PoolEntry",
+      "type": "object"
+    },
+    "PoolItem": {
+      "additionalProperties": false,
+      "description": "One committed pool puzzle: its address, its framing, and its board.",
+      "properties": {
+        "difficulty": {
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "title": "Difficulty",
+          "type": "string"
+        },
+        "gameId": {
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "title": "Gameid",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^\\d{5}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "packId": {
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "title": "Packid",
+          "type": "string"
+        },
+        "payload": {
+          "additionalProperties": true,
+          "title": "Payload",
+          "type": "object"
+        }
+      },
+      "required": [
+        "id",
+        "gameId",
+        "packId",
+        "difficulty",
+        "payload"
+      ],
+      "title": "PoolItem",
+      "type": "object"
+    }
+  },
+  "$id": "pool-index.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "The manifest of one Game's pool: every item it holds, in id order.\n\n``totalCount`` is redundant with ``len(items)`` by construction, and the\nvalidator below is what makes that redundancy safe rather than a second\nauthority: a reader may show \"1 of 300\" without walking the list, and a\nhand-edited count is refused instead of believed.",
+  "properties": {
+    "changelog": {
+      "items": {
+        "$ref": "#/$defs/ChangelogEntry"
+      },
+      "minItems": 1,
+      "title": "Changelog",
+      "type": "array"
+    },
+    "gameId": {
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "title": "Gameid",
+      "type": "string"
+    },
+    "itemSchema": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/PoolItem"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "items": {
+      "items": {
+        "$ref": "#/$defs/PoolEntry"
+      },
+      "title": "Items",
+      "type": "array"
+    },
+    "totalCount": {
+      "minimum": 0,
+      "title": "Totalcount",
+      "type": "integer"
+    },
+    "version": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2})?)?$",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "version",
+    "changelog",
+    "gameId",
+    "totalCount",
+    "items"
+  ],
+  "title": "PoolIndex",
+  "type": "object"
+}

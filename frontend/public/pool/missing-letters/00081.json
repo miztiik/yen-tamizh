@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "missing-letters", "id": "00081", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [4], "choices": ["ம", "வி", "கா", "சை", "பா", "ழ", "ம்", "னா"], "hints": [{"cost": 1, "kind": "category", "text": "வகை: இடம்"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: ஓட்டல்"}], "meaning": "ஓட்டல்", "translationEn": "Hotel", "word": "உணவகம்"}}

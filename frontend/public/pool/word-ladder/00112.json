@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00112", "packId": "ta-core", "payload": {"choices": ["து", "ஆ", "பி", "நை", "சை", "ர", "சே", "நி"], "rungs": [{"meaning": "பிரவேசம் ( )", "word": "வேசம்"}, {"alsoValid": ["ஆவேசம்", "துவேசம்", "நிவேசம்"], "meaning": "அயவணம்", "word": "வேசரம்"}, {"meaning": "நுழைவது", "word": "பிரவேசம்"}], "timeLimitSec": 0}}

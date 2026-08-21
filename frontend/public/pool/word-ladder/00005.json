@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00005", "packId": "ta-core", "payload": {"choices": ["ளி", "நே", "னை", "ட்", "ணை", "தை", "இ", "டெ"], "rungs": [{"meaning": "ஊரி", "word": "புயல்"}, {"alsoValid": ["புணையல்", "புதையல்", "புனையல்"], "meaning": "இயற்கை", "word": "இயல்பு"}, {"meaning": "விதிப்படி", "word": "இயல்புளி"}], "timeLimitSec": 0}}

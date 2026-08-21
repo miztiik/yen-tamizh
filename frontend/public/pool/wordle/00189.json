@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "wordle", "id": "00189", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 1, "kind": "category", "text": "வகை: இடம்"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: மதுக்கடை"}], "meaning": "மதுக்கடை", "translationEn": "grogshop", "word": "சாராயக்கடை"}}

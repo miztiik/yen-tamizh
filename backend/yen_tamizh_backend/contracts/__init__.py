@@ -103,6 +103,7 @@ from yen_tamizh_backend.contracts.lexicon_sources import (
     WordClassEvidence,
 )
 from yen_tamizh_backend.contracts.missing_letters_puzzle import MissingLettersPuzzle
+from yen_tamizh_backend.contracts.pool_index import PoolEntry, PoolIndex, PoolItem
 from yen_tamizh_backend.contracts.puzzle_file import PuzzleFile, PuzzleItem
 from yen_tamizh_backend.contracts.save import Save, compute_day_key
 from yen_tamizh_backend.contracts.served_denylist import (
@@ -156,6 +157,11 @@ from yen_tamizh_backend.contracts.wordle_puzzle import WordlePuzzle
 # the board that renders it. Row 17 adds the first surface that is neither a
 # knob nor a Game payload but a MODE's own content: a Journey is an ordered path
 # of nodes, and registering it here is what makes authoring one a data change.
+# Row 22 adds the second, and the only one that is a MANIFEST over content rather
+# than the content itself: the Infinite pool is thousands of files and the index
+# is what makes reaching one of them a single small request. The pooled puzzle's
+# own shape rides in that schema's ``$defs`` rather than as a registered document
+# of its own - see pool_index.py for the byte measurement that decided it.
 REGISTRY: tuple[type[SchemaModel], ...] = (
     AnagramPuzzle,
     AppConfig,
@@ -172,6 +178,7 @@ REGISTRY: tuple[type[SchemaModel], ...] = (
     Lexicon,
     LexiconSources,
     MissingLettersPuzzle,
+    PoolIndex,
     PuzzleFile,
     Save,
     ServedDenylist,
@@ -254,6 +261,9 @@ __all__ = [
     "PackId",
     "PartOfSpeech",
     "ParticipialSuffix",
+    "PoolEntry",
+    "PoolIndex",
+    "PoolItem",
     "PosAlias",
     "PosRejection",
     "PuzzleFile",

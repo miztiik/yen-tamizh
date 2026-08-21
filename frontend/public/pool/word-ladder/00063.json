@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00063", "packId": "ta-core", "payload": {"choices": ["ப", "வி", "ம்", "வா", "ரி", "ழூ", "ர்", "க"], "rungs": [{"meaning": "மிக", "word": "சால"}, {"alsoValid": ["சாலரி", "சாலர்"], "meaning": "அகலம்", "word": "சாலம்"}, {"alsoValid": ["சாபலம்", "சாலகம்", "வாசாலம்"], "meaning": "கடம்பம்", "word": "விசாலம்"}], "timeLimitSec": 0}}

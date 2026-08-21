@@ -1,0 +1,12 @@
+{
+  "version": "2026-08-21T22:00",
+  "changelog": [
+    {
+      "version": "2026-08-21T22:00",
+      "change": "Initial pool index: every pooled puzzle of one Game, with its band.",
+      "why": "Row 22 - the Infinite Mode plays a pre-generated pool, and the index is the smallest thing that can answer what may be played next."
+    }
+  ],
+  "totalCount": -1,
+  "items": [{ "id": "1", "difficulty": "Easy" }]
+}

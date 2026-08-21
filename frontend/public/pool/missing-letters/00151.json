@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "missing-letters", "id": "00151", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [4], "choices": ["ணு", "ர்", "டை", "து", "சி", "போ", "ளி", "ளை"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: விளக்கிலிருந்து வரும் ஒளி"}], "meaning": "விளக்கிலிருந்து வரும் ஒளி", "translationEn": "candle-light", "word": "விளக்கொளி"}}

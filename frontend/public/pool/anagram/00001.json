@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "anagram", "id": "00001", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ம"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: பட்டத்தரசி"}], "meaning": "பட்டத்தரசி", "reveal": 0, "tiles": ["வி", "ம", "தே", "கா"], "timeLimitSec": 0, "word": "மகாதேவி"}}

@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "missing-letters", "id": "00012", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [3], "choices": ["ஞ", "நெ", "ர", "சீ", "ன", "ழ", "ட", "வெ"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: சூத்திரப்பொறி"}], "meaning": "சூத்திரப்பொறி", "translationEn": "machine mechanical contrivance", "word": "யந்திரம்"}}

@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00198", "packId": "ta-core", "payload": {"choices": ["கோ", "வொ", "ஏ", "சா", "ந்", "ர", "க்", "ஈ"], "rungs": [{"meaning": "அதிகாலை", "word": "வைகல்"}, {"meaning": "வைக்கோல்", "word": "வைக்கல்"}, {"alsoValid": ["கவைக்கோல்"], "meaning": "வயிரமணி", "word": "வைரக்கல்"}], "timeLimitSec": 0}}

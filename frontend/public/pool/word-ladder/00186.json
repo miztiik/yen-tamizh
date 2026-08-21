@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00186", "packId": "ta-core", "payload": {"choices": ["அ", "னி", "வா", "ழு", "ணீ", "ல", "னொ", "த"], "rungs": [{"meaning": "உபயோகம்", "word": "சமயம்"}, {"alsoValid": ["அசமயம்", "சமனியம்", "மலயசம்"], "meaning": "கூட்டம் ( )", "word": "சமவாயம்"}, {"meaning": "மதம் பற்றிய தருக்கம்", "word": "சமயவாதம்"}], "timeLimitSec": 0}}

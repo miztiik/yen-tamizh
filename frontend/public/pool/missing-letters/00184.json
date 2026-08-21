@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "missing-letters", "id": "00184", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [4], "choices": ["டா", "மை", "மு", "ம்", "தை", "ச்", "வே", "க"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: நேரத்திற்கு முன்பே"}], "meaning": "நேரத்திற்கு முன்பே", "translationEn": "alreadyy", "word": "முன்னதாகவே"}}

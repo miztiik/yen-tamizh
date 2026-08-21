@@ -1,0 +1,1 @@
+{"difficulty": "hard", "gameId": "missing-letters", "id": "00203", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [2, 4], "choices": ["ல்", "வூ", "ரு", "தொ", "யா", "னீ", "வா", "ந"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: வெளிவாசல"}], "meaning": "வெளிவாசல", "word": "தெருவாசல்"}}

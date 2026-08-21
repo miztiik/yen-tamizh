@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00181", "packId": "ta-core", "payload": {"choices": ["த", "ணூ", "வை", "நே", "ர", "மே", "ல்", "வு"], "rungs": [{"meaning": "சமதளமாக்கு", "word": "உழு"}, {"alsoValid": ["உழுவு", "உழுவை"], "meaning": "செப்பனிட்ட", "word": "உழுத"}, {"meaning": "உகளுதல் ( )", "word": "உழுதல்"}], "timeLimitSec": 0}}

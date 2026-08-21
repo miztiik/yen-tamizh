@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00174", "packId": "ta-core", "payload": {"choices": ["னூ", "சா", "லை", "ஒ", "ர்", "சீ", "யே", "த"], "rungs": [{"meaning": "எதிரி", "word": "யாரி"}, {"alsoValid": ["ஒரியா", "சாரியா", "சீரியா"], "meaning": "உண்டாக்கு", "word": "தயாரி"}, {"meaning": "கிராமக் காவற்காரன்", "word": "தலையாரி"}], "timeLimitSec": 0}}

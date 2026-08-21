@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "missing-letters", "id": "00050", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [1], "choices": ["கோ", "மா", "ற", "ம்", "த்", "றை", "யை", "வ"], "hints": [{"cost": 1, "kind": "category", "text": "வகை: மரம்"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: ஒரு மரவகை"}], "meaning": "ஒரு மரவகை", "word": "பூவரசு"}}

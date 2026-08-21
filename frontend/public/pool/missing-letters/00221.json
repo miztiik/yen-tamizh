@@ -1,0 +1,1 @@
+{"difficulty": "hard", "gameId": "missing-letters", "id": "00221", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [1, 3], "choices": ["வ", "நூ", "யி", "வா", "ய", "கு", "ங்", "ச்"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: பாணர்"}], "meaning": "பாணர்", "translationEn": "bards", "word": "செயிரியர்"}}

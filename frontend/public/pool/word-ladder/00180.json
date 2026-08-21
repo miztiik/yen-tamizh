@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00180", "packId": "ta-core", "payload": {"choices": ["ணோ", "வோ", "ர", "ம", "ழ", "னொ", "ச்", "நு"], "rungs": [{"meaning": "பசை", "word": "கசை"}, {"alsoValid": ["கச்சை"], "meaning": "கரணம் பதினொன்றனுள் ஒன்று", "word": "கரசை"}, {"meaning": "கைத்தட்டல்", "word": "கரவோசை"}], "timeLimitSec": 0}}

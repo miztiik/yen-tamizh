@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00003", "packId": "ta-core", "payload": {"choices": ["றெ", "சை", "ப", "தீ", "ரு", "க்", "ம்", "ணெ"], "rungs": [{"meaning": "சேவல்", "word": "அளகு"}, {"meaning": "வெள்ளெருக்கு", "word": "அளக்கு"}, {"alsoValid": ["அளருக்கு"], "meaning": "அளக்கக்கூடிய", "word": "அளக்கும்"}], "timeLimitSec": 0}}

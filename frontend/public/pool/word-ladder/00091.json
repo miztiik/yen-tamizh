@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00091", "packId": "ta-core", "payload": {"choices": ["வி", "ட", "த", "அ", "ர", "வொ", "றா", "ழை"], "rungs": [{"meaning": "அவசரம்", "word": "வேகம்"}, {"alsoValid": ["வேகடம்", "வேதகம்", "வேரகம்"], "meaning": "அறிவாற்றல்", "word": "விவேகம்"}, {"meaning": "புத்திக்குறைவு", "word": "அவிவேகம்"}], "timeLimitSec": 0}}

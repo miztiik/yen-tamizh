@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-21T12:00",
+  "version": "2026-08-21T22:00",
   "changelog": [
+    {
+      "version": "2026-08-21T22:00",
+      "change": "Added poolDir and poolPerBand, the Infinite Mode's pre-generated pool.",
+      "why": "Row 22 - there is no runtime generator (Holy Law #1), so an endless Mode has to have every board it can ever deal baked in advance, and these two knobs are where that pool lands and how deep it goes. poolDir sits beside bankDir and under frontend/public/ for the same reason the bank does: the game reads it same-origin from its own bundle. poolPerBand is 100 and the number was measured rather than picked. It is a CEILING per Game per difficulty band, so 100 buys 300 boards a Game and 1,765 in total - the word-ladder's hard band stops at 65 because the reachability graph only holds that many four-rung climbs it has not already used, which is the ceiling behaving correctly rather than a shortfall to pad. The cost is 1,371,555 bytes of item files plus about 70,000 of index, and it is the largest single addition of bytes in the repo, so here is the arithmetic that made it acceptable: a pool is never fetched in bulk, a player downloads one index of roughly 12,000 bytes to start a stream and then 387 to 1,565 bytes a board, so the whole pool costs a phone nothing it does not play. What 100 buys the player is the anti-repeat promise actually meaning something: the Mode's LRU window is 200 picks, and a stream rotating the six Games at one difficulty draws from 565 distinct boards, nearly three times the window, so a repeat inside it is impossible rather than merely unlikely - and even a player who pins one Game and one band meets 100 boards, well over an hour, before the oldest-first recycle begins. Two alternatives were measured and rejected. Sixty per band would have cost 830,000 bytes and left a single-band stream of 339 boards, still above the window but with no headroom for a Game whose bucket runs out. Pricing each Game by BYTES rather than by boards - which would give the wordle three times the depth of the word search, since a search grid renders at 1,565 bytes against 387 - was rejected because equal depth per Game is a property the player can feel and equal bytes is not."
+    },
     {
       "version": "2026-08-21T12:00",
       "change": "Registered the word-ladder generator: a climb of three or four rungs from a 2 to 4 ezhuthu start, picked from a bank of eight, with no attempt budget and no hint ladder.",
@@ -55,6 +60,8 @@
   "bankDir": "frontend/public/bank",
   "daysAhead": 6,
   "themeEveryNDays": 7,
+  "poolDir": "frontend/public/pool",
+  "poolPerBand": 100,
   "games": [
     {
       "gameId": "anagram",

@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00124", "packId": "ta-core", "payload": {"choices": ["க", "ன", "ழி", "ட", "ச", "வை", "ங்", "ர"], "rungs": [{"meaning": "அன்புகொள்", "word": "ஏல்"}, {"alsoValid": ["ஏசல்", "ஏடல்", "ஏனல்", "ஏரல்", "ஏல்வை", "ஏழில்"], "meaning": "உயரம்", "word": "ஏகல்"}, {"meaning": "அகவல்", "word": "ஏங்கல்"}], "timeLimitSec": 0}}

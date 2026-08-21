@@ -279,6 +279,18 @@
       "title": "Games",
       "type": "array"
     },
+    "poolDir": {
+      "default": "frontend/public/pool",
+      "pattern": "^[A-Za-z0-9._-]+(/[A-Za-z0-9._+-]+)*$",
+      "title": "Pooldir",
+      "type": "string"
+    },
+    "poolPerBand": {
+      "default": 100,
+      "minimum": 0,
+      "title": "Poolperband",
+      "type": "integer"
+    },
     "themeEveryNDays": {
       "minimum": 0,
       "title": "Themeeveryndays",

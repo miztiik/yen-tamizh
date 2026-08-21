@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00026", "packId": "ta-core", "payload": {"choices": ["ரௌ", "பா", "க", "ர்", "வ", "ல", "ல்", "ன்"], "rungs": [{"meaning": "ஒத்த", "word": "அன்ன"}, {"alsoValid": ["அனகன்", "அனலன்", "அன்னர்", "அன்னல்", "அபானன்"], "meaning": "அப்படிப்பட்டவன்", "word": "அன்னன்"}, {"meaning": "அத்தன்மையன்", "word": "அன்னவன்"}], "timeLimitSec": 0}}

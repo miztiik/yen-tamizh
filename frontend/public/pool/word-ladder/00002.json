@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00002", "packId": "ta-core", "payload": {"choices": ["ஞ்", "ளே", "ந்", "ய", "டூ", "ண்", "நீ", "ட்"], "rungs": [{"meaning": "ஒரு பண்வகை", "word": "தோடி"}, {"alsoValid": ["தோட்டி"], "meaning": "நீர்க்கலம்", "word": "தோண்டி"}, {"meaning": "தோண்டப்பட்ட", "word": "தோண்டிய"}], "timeLimitSec": 0}}

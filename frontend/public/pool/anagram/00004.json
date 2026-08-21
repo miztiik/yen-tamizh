@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "anagram", "id": "00004", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: பி"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: குழப்பம்"}], "meaning": "குழப்பம்", "reveal": 0, "tiles": ["ர", "மை", "பி"], "timeLimitSec": 0, "translationEn": "hallucination", "word": "பிரமை"}}

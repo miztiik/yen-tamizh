@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00101", "packId": "ta-core", "payload": {"choices": ["னீ", "மௌ", "ய", "கி", "ஞை", "கு", "சா", "லீ"], "rungs": [{"meaning": "அகில்", "word": "இறங்கி"}, {"meaning": "மேலிருந்து கீழ்பக்கமாக வருகிற", "word": "இறங்கிய"}, {"meaning": "இயக்கமுள்ள", "word": "இயங்குகிற"}], "timeLimitSec": 0}}

@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00188", "packId": "ta-core", "payload": {"choices": ["பா", "டை", "த்", "யெ", "ரி", "அ", "லூ", "கை"], "rungs": [{"meaning": "தட்டி ஒலி எழுப்பும் செயல்", "word": "தட்டல்"}, {"alsoValid": ["அதட்டல்"], "meaning": "கரகோஷம்", "word": "கைதட்டல்"}, {"meaning": "கரவோசை", "word": "கைத்தட்டல்"}], "timeLimitSec": 0}}

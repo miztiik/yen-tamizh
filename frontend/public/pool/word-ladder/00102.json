@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00102", "packId": "ta-core", "payload": {"choices": ["றே", "ரு", "மி", "டோ", "ச", "ம", "தௌ", "ற"], "rungs": [{"meaning": "கட்டம்", "word": "சதுரம்"}, {"meaning": "இனிமை", "word": "மதுரசம்"}, {"meaning": "ஒத்த அளவுள்ள நாற்கோணம்", "word": "சமசதுரம்"}], "timeLimitSec": 0}}

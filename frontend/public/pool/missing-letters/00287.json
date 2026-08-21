@@ -1,0 +1,1 @@
+{"difficulty": "hard", "gameId": "missing-letters", "id": "00287", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [1, 4], "choices": ["மீ", "லு", "ளெ", "நோ", "ழு", "னு", "க", "ணி"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: அளவில் மிகச்சிறிய."}], "meaning": "அளவில் மிகச்சிறிய.", "translationEn": "diminutiveness", "word": "மிகநுண்ணிய"}}

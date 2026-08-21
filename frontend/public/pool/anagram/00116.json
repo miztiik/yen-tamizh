@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "anagram", "id": "00116", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: க"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: ஆதாரம்"}], "meaning": "ஆதாரம்", "reveal": 0, "tiles": ["வ", "க", "டு", "ன்"], "timeLimitSec": 0, "translationEn": "monkey male", "word": "கடுவன்"}}

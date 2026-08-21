@@ -16,7 +16,8 @@
   let Harness = $state<Component | null>(null);
   let DailySession = $state<Component<{ onHome: () => void }> | null>(null);
   let JourneySession = $state<Component<{ onHome: () => void }> | null>(null);
-  let view = $state<"home" | "daily" | "journey">("home");
+  let InfiniteSession = $state<Component<{ onHome: () => void }> | null>(null);
+  let view = $state<"home" | "daily" | "journey" | "infinite">("home");
   let streak = $state(0);
 
   async function openDaily(): Promise<void> {
@@ -31,6 +32,13 @@
       JourneySession = (await import("./shell/JourneySession.svelte")).default;
     }
     view = "journey";
+  }
+
+  async function openInfinite(): Promise<void> {
+    if (InfiniteSession === null) {
+      InfiniteSession = (await import("./shell/InfiniteSession.svelte")).default;
+    }
+    view = "infinite";
   }
 
   function readStreak(): void {
@@ -55,6 +63,11 @@
     if (modeId === "journey") {
       window.history.pushState({}, "", "?mode=journey");
       void openJourney();
+      return;
+    }
+    if (modeId === "infinite") {
+      window.history.pushState({}, "", "?mode=infinite");
+      void openInfinite();
     }
   }
 
@@ -98,6 +111,10 @@
       await openJourney();
       return;
     }
+    if (params.get("mode") === "infinite") {
+      await openInfinite();
+      return;
+    }
     view = "home";
   }
 
@@ -116,6 +133,8 @@
   <DailySession onHome={goHome} />
 {:else if view === "journey" && JourneySession}
   <JourneySession onHome={goHome} />
+{:else if view === "infinite" && InfiniteSession}
+  <InfiniteSession onHome={goHome} />
 {:else}
   <HomeShell {streak} onPlay={play} />
 {/if}

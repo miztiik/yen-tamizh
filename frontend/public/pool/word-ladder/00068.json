@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00068", "packId": "ta-core", "payload": {"choices": ["தி", "வு", "தா", "ரோ", "ம்", "த", "க", "றே"], "rungs": [{"meaning": "இரு", "word": "வாழ்"}, {"alsoValid": ["வாழ்வு"], "meaning": "நீடு வாழ வாழ்த்திக் கூறும் சொல்", "word": "வாழ்க"}, {"meaning": "கீழான நிலையில்", "word": "தாழ்வாக"}], "timeLimitSec": 0}}

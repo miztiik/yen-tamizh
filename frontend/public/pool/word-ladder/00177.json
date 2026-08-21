@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00177", "packId": "ta-core", "payload": {"choices": ["ழே", "ல்", "கு", "ட்", "லை", "ஞை", "ழ", "றை"], "rungs": [{"meaning": "நெடுங்காலம் தொடர்ந்த", "word": "நீடித்த"}, {"alsoValid": ["நீடித்தல்"], "meaning": "காலநீட்டிப்பான", "word": "நீட்டித்த"}, {"meaning": "காலந்தாழ்த்துதல்", "word": "நீட்டித்தல்"}], "timeLimitSec": 0}}

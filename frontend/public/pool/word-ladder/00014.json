@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00014", "packId": "ta-core", "payload": {"choices": ["ன்", "றா", "ஃ", "ழூ", "லீ", "னெ", "வூ", "வு"], "rungs": [{"meaning": "அழி", "word": "பறி"}, {"alsoValid": ["பஃறி", "பறிவு"], "meaning": "எறுழி", "word": "பன்றி"}, {"meaning": "பலபொருள்களைப்பற்றிக் கூறும் நீதிவசனங்கள் ( அதி. 37.)", "word": "பன்னெறி"}], "timeLimitSec": 0}}

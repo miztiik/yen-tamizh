@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00151", "packId": "ta-core", "payload": {"choices": ["லெ", "ட", "நீ", "ட்", "தி", "ஞி", "ங", "றீ"], "rungs": [{"meaning": "உடைமரம்", "word": "ஒடை"}, {"meaning": "சமானம்", "word": "ஒட்டை"}, {"meaning": "சம்பா", "word": "ஒட்டடை"}], "timeLimitSec": 0}}

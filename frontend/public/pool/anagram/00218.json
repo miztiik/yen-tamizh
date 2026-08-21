@@ -1,0 +1,1 @@
+{"difficulty": "hard", "gameId": "anagram", "id": "00218", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: கொ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: அரக்குவகை"}], "meaning": "அரக்குவகை", "reveal": 0, "tiles": ["கொ", "கு", "க்", "ம்", "ர", "ப"], "timeLimitSec": 0, "word": "கொம்பரக்கு"}}

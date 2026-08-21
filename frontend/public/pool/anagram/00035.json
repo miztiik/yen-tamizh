@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "anagram", "id": "00035", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ஐ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: பஞ்சபாண்டவர்"}], "meaning": "பஞ்சபாண்டவர்", "reveal": 0, "tiles": ["ஐ", "ர்", "வ"], "timeLimitSec": 0, "translationEn": "Directoire", "word": "ஐவர்"}}

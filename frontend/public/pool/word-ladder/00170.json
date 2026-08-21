@@ -1,0 +1,1 @@
+{"difficulty": "medium", "gameId": "word-ladder", "id": "00170", "packId": "ta-core", "payload": {"choices": ["றோ", "ல்", "ழ", "ரு", "டு", "ஞே", "று", "லு"], "rungs": [{"meaning": "வயிறு", "word": "குக்கி"}, {"alsoValid": ["கிழக்கு", "குக்கில்", "குருக்கி", "குலுக்கி"], "meaning": "அடி", "word": "கிறுக்கு"}, {"meaning": "இடையூறு செய்", "word": "குறுக்கிடு"}], "timeLimitSec": 0}}

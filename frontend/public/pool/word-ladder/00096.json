@@ -1,0 +1,1 @@
+{"difficulty": "easy", "gameId": "word-ladder", "id": "00096", "packId": "ta-core", "payload": {"choices": ["ற்", "டு", "ணு", "ம்", "ஞி", "ய்", "ன்", "டெ"], "rungs": [{"meaning": "ஆட்சேபனை", "word": "ஊறு"}, {"alsoValid": ["ஊடுறு", "ஊன்று", "ஊற்று"], "meaning": "சோறு ஊணல்", "word": "ஊறும்"}, {"meaning": "தாங்கும்", "word": "ஊன்றும்"}], "timeLimitSec": 0}}
