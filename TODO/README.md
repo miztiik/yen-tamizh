@@ -1,7 +1,7 @@
 # yen-tamizh - System Design Proposal
 
-**Last Updated**: 2026-07-24
-**Status**: Proposal / pre-alpha (no game code yet). Not an execution-ready plan-doc - it is the vision + architecture this repo should build toward. Once accepted, the durable parts move into `CLAUDE.md`, `docs/concepts/`, and `docs/architecture/`, and the buildable parts become dated `TODO/<YYYYMMDD>-<slug>-plan.md` plan-docs per [../docs/how-to/author-a-plan.md](../docs/how-to/author-a-plan.md).
+**Last Updated**: 2026-08-21
+**Status**: DELIVERED. This proposal has been built. Its durable parts moved into `CLAUDE.md`, [`../docs/concepts/`](../docs/concepts/) and [`../docs/architecture/`](../docs/architecture/); its buildable parts became the dated build-roadmap plan-doc, whose 23 rows all merged (PRs #1-#51) and which was deleted at closure per [../docs/how-to/distill-a-plan.md](../docs/how-to/distill-a-plan.md). The game is live at https://miztiik.github.io/yen-tamizh/ with six Games across four Modes. This file is kept as the historical argument - the reasoning that produced the design, not the design itself. For CURRENT behaviour read `../docs/`, which wins on any disagreement (CLAUDE.md section 5).
 
 > This document distills three sibling repos (`yen-doku`, `yen-neram`, `yen-cinthanai`) and the previous-generation `yen-tamizh_OLD` into one proposal: what to learn, and what to build. It is a proposal because a system design has real rejected alternatives, cross-system consequences, and non-trivial reversal cost (CLAUDE.md Holy Law #4) - so it argues, it does not just list.
 
@@ -289,12 +289,12 @@ Per the agreed deliverable scope, this is the gap list, not the work. The tree o
 - [x] `AGENTS.md` (created - a derived pointer to `CLAUDE.md`).
 
 **Empty doc tiers the bootstrap/guardrails already link to (dangling links today):**
-- [ ] `docs/concepts/`: `core-loop.md`, `ui-shell.md`, `difficulty-and-scoring.md` (all three are linked from `docs/agents/bootstrap.md`), plus the design docs this proposal implies: `vision.md`, `games.md`, `modes.md`, `journeys.md`, `principles.md`, `telemetry.md`, `config.md`, `design-system.md`.
-- [ ] `docs/architecture/`: `overview.md`, `contracts/schemas.md` (linked from guardrails), `runtime/stack-and-bundle.md` (linked from `ship-to-github-pages.md`), `generator/pipeline.md`, `design/` (tokens + animation + glyphs).
-- [ ] `docs/how-to/`: `execute-a-plan.md` and `handle-scope-change.md` are referenced by `author-a-plan.md` / `bootstrap.md` but not present - confirm and add.
+- [x] `docs/concepts/`: `core-loop.md`, `ui-shell.md`, `difficulty-and-scoring.md` (all three are linked from `docs/agents/bootstrap.md`), plus the design docs this proposal implies: `vision.md`, `games.md`, `modes.md`, `journeys.md`, `principles.md`, `telemetry.md`, `config.md`, `design-system.md`.
+- [x] `docs/architecture/`: `overview.md`, `contracts/schemas.md` (linked from guardrails), `runtime/stack-and-bundle.md` (linked from `ship-to-github-pages.md`), `generator/pipeline.md`, `design/` (tokens + animation + glyphs).
+- [x] `docs/how-to/`: `execute-a-plan.md` and `handle-scope-change.md` are referenced by `author-a-plan.md` / `bootstrap.md` but not present - confirm and add.
 
 **Source trees not yet created (per Topology, land with their first PR):**
-- [ ] `frontend/` (Svelte + Vite + Tailwind app), `backend/` (Python pipeline), `config/` (tunables + `copy.json`), `schemas/` (the section 3.6 list), `datasets/` (curated wordlists), `data/puzzles/` (generated JSON), `TODO/` plan-docs.
+- [x] `frontend/` (Svelte + Vite + Tailwind app), `backend/` (Python pipeline), `config/` (tunables + `copy.json`), `schemas/` (the section 3.6 list), `datasets/` (curated wordlists), `data/puzzles/` (generated JSON), `TODO/` plan-docs. Shipped, with two deliberate departures: the generated bank lives in `frontend/public/bank/` rather than `data/puzzles/` so the static bundle serves it same-origin, and `datasets/` is fed by the cross-validated lexicon rather than curated wordlists.
 
 ---
 

@@ -62,4 +62,3 @@ Under GitHub Pages the site is a project page at `/yen-tamizh/`, so nothing may 
 - [../../concepts/ui-shell.md](../../concepts/ui-shell.md) - the screens and routing the shell serves.
 - [../../concepts/principles.md](../../concepts/principles.md) - the ethos (static-first, the player's phone is the architecture) this runtime serves.
 - [../../../CLAUDE.md](../../../CLAUDE.md) - the engineering contract (Holy Law #1, section 1a).
-- [../../../TODO/20260725-yen-tamizh-build-roadmap-plan.md](../../../TODO/20260725-yen-tamizh-build-roadmap-plan.md) - the build roadmap (Row 4 lands this doc).
