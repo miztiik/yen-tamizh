@@ -25,8 +25,13 @@ _REPO_ROOT = Path(__file__).resolve().parents[2]
 _SOURCE_DIR = _REPO_ROOT / "assets" / "glyphs"
 _COMMITTED = _REPO_ROOT / "frontend" / "public" / "assets" / "glyphs" / "index.json"
 
-# The essential UI glyph pack this row ships (placeholder-quality art).
-_ESSENTIAL_IDS = {"back", "check", "close", "hint", "settings", "share", "star"}
+# Every glyph the pack ships, pinned as an EQUALITY: the manifest is baked from
+# whatever *.svg happens to be in assets/glyphs/, so a stray file would
+# otherwise reach the bundle unnoticed. Adding a glyph is a deliberate edit
+# here, in bake.py's version + changelog, and in the source pack together.
+# Row 10 shipped the seven essentials; Row 23 added `timer` for the Time
+# Trial's countdown header.
+_ESSENTIAL_IDS = {"back", "check", "close", "hint", "settings", "share", "star", "timer"}
 
 
 def test_build_manifest_validates_against_the_contract() -> None:

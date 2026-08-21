@@ -90,6 +90,41 @@ A pool item file carries **no `version` / `changelog` stamp**, which is why its 
 - **A second roster naming which Games have pools.** Rejected: `daily.games` is already the answer to which Games are live, and a separate list would let a Game be dealt by one Mode and not the other for no reason a player could see - or let the stream ask for a pool nobody baked.
 - **Stop the stream when every eligible board has been seen.** Rejected: an endless Mode that ends is a bug with a nicer name.
 
+## Time Trial is the same stream with a deadline
+
+The Time Trial deals from the SAME pre-generated pool the Infinite Mode reads, rotating the same `daily.games` ring against the same `save.seenInfiniteIds` window - one pool, one anti-repeat memory, so a board met in one Mode is not new in the other. It is a new **session framing**, not a new Game and not a new dataset: the only thing it adds to a stream is an end.
+
+A run is as many boards as fit inside `timeTrial.durationSec`, and it is scored in **boards completed**. It opens on a start card rather than on a running clock, because a countdown that begins while the first board is still being fetched charges the player for the network; the clock starts once the first board is dealt, and every board after that is dealt against a clock already running.
+
+### The clock is derived from a monotonic delta, and driven by `requestAnimationFrame`
+
+Two properties, and both are load-bearing:
+
+- **Derived, never decremented.** Remaining time is `duration - (now - startedAt)` read from `performance.now()` and recomputed from scratch every frame. A counter that subtracted a frame's worth of time per frame would drift by exactly the time the browser declined to paint, so a player who switched apps would come back owing themselves the seconds they had already spent. `performance.now()` rather than the wall clock, so moving the device's time cannot lengthen or end a run.
+- **`requestAnimationFrame`, never `setInterval` or `setTimeout`** (`CLAUDE.md` section 10). rAF is the browser's own frame clock: it fires in step with the paint the countdown is drawn into and costs nothing when nothing is painting.
+
+**A hidden tab therefore freezes the readout and the run ends when the player comes back.** A browser stops delivering frames to a background tab entirely, so there is no frame in which to end. That is the behaviour worth having: the elapsed time is measured against the clock rather than against the frames the tab was given, so hiding the app buys no extra playing time - the player returns to a run that is already over. A run that ended and scored itself while nobody was watching would be the worse outcome.
+
+The header readout is the clock's only rendering. Its accessible name is copy (`time-trial-remaining`) and its value is the digits, so the remaining time is read from the same place whether or not the last-seconds colour change is perceivable - colour is emphasis, never the channel.
+
+### Best runs are local, and keyed by run length
+
+A finished run is written into the save's optional `bestTimeTrialRuns` ([../architecture/contracts/schemas.md](../architecture/contracts/schemas.md)), one record per `durationSec`. The run length is a config knob, so a thirty-second sprint and a two-minute one are different contests: changing the knob starts a new record rather than invalidating the old one, and a record from one length can never beat the other. Equalling a record does not replace it - that would rewrite the date a record was set without anyone having beaten it.
+
+### Design rationale
+
+`timeTrial.durationSec` is **120**, the value it was minted with in Row 7, and it holds because of what the ring is: six Games deal in rotation, so two minutes is long enough that a run crosses more than one mechanic and is a test of breadth rather than of one board, and short enough that a player with three minutes finishes a whole run and sees their record move. Authority: Palm ([../../.github/agents/palm.agent.md](../../.github/agents/palm.agent.md)) plus Carmack ([../../.github/agents/carmack.agent.md](../../.github/agents/carmack.agent.md)).
+
+The "one best per run length" rule is enforced by BUILDING the list rather than by checking it on write: JSON Schema cannot state uniqueness by key, so the invariant is a Pydantic validator on the contract and a pure function (`bestRunsWith`) that structurally cannot emit a duplicate. `StorageService` stores what it is handed, exactly as it takes the LRU window as a parameter rather than reading the config that sets it.
+
+### Rejected alternatives
+
+- **A global or online leaderboard.** Rejected: it needs a runtime backend and an account system, both explicit non-goals (`CLAUDE.md` section 0a). The opponent this Mode offers is the player's own last run.
+- **One best run, ignoring the run length.** Rejected: `durationSec` is a knob, so a single record would be silently invalidated - or silently inflated - the first time anyone changed it.
+- **A new pool baked for the sprint.** Rejected: the Time Trial asks the pool for exactly what the Infinite asks it for, and a second copy would be 1.39 MB of duplicate bytes plus a second anti-repeat window that could offer a player the board they just played.
+- **Start the clock when the screen opens.** Rejected: the first board still has to be fetched, so the run would charge the player for their connection.
+- **Score a run by points rather than by boards.** Rejected: the Games score on different scales, so a points total would make the sprint a test of which Games came up rather than of how fast the player is.
+
 ## Journey is a Mode, not a third axis
 
 A **[Journey](journeys.md)** is a Mode whose Session is a curated, ordered path of levels - as opposed to Daily (calendar-bound), Infinite (endless, anti-repeat), or Time Trial (a timed sprint). It is deliberately *not* a new top-level axis: modelling it as a Mode composes cleanly with the existing Game registry and needs no new engine. The full definition, including the winding-path home and unlock rule, lives once in [journeys.md](journeys.md).

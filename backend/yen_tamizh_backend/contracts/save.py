@@ -16,9 +16,9 @@ modeId, not each Mode's internal record).
 
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, Self
 
-from pydantic import Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from yen_tamizh_backend.contracts.base import SchemaModel
 from yen_tamizh_backend.contracts.common import ModeId
@@ -37,6 +37,24 @@ def compute_day_key(date: str, mode_id: str, game_id: str, pack_id: str) -> str:
     return f"{date}|{mode_id}|{game_id}|{pack_id}"
 
 
+class TimeTrialBest(BaseModel):
+    """The furthest a player has got in one Time Trial run length, kept locally.
+
+    A best run is scored in ITEMS COMPLETED, and it is recorded against the
+    ``durationSec`` it was set at: the run length is a config knob, so a sprint
+    of thirty seconds and a sprint of two minutes are two different contests and
+    a record from one can never beat the other. ``achievedOn`` is the local
+    calendar day the run finished, which is what lets the screen say when the
+    record was set without keeping any history beside it.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    durationSec: int = Field(ge=1)
+    itemsCompleted: int = Field(ge=0)
+    achievedOn: str = Field(pattern=_DATE)
+
+
 class Save(SchemaModel):
     """Today's progress, streak, and last-played day; browser-local only."""
 
@@ -50,3 +68,20 @@ class Save(SchemaModel):
     lastStreakDay: str | None = Field(default=None, pattern=_DATE)
     perMode: dict[ModeId, dict[str, Any]]
     seenInfiniteIds: list[str]
+    # The player's best Time Trial run per run length. Local only, and that is a
+    # design decision rather than a limitation: a global leaderboard needs a
+    # runtime backend and an account, both explicit non-goals (CLAUDE.md section
+    # 0a), so the only opponent this game offers is the player's own last run.
+    # Optional, so a save written before Row 23 still loads with no migration -
+    # an absent list reads as "no run has been finished yet".
+    bestTimeTrialRuns: list[TimeTrialBest] = Field(default_factory=list)
+
+    @model_validator(mode="after")
+    def _one_best_per_run_length(self) -> Self:
+        lengths = [run.durationSec for run in self.bestTimeTrialRuns]
+        if len(set(lengths)) != len(lengths):
+            raise ValueError(
+                "bestTimeTrialRuns must hold at most one best per durationSec; "
+                f"got {lengths}"
+            )
+        return self

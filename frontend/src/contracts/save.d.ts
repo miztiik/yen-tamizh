@@ -6,6 +6,10 @@
  * re-run the exporter, then re-run `npm run gen:contracts`.
  */
 
+export type Achievedon = string
+export type Durationsec = number
+export type Itemscompleted = number
+export type Besttimetrialruns = TimeTrialBest[]
 /**
  * @minItems 1
  */
@@ -24,6 +28,7 @@ export type Version1 = string
  * Today's progress, streak, and last-played day; browser-local only.
  */
 export interface Save {
+bestTimeTrialRuns?: Besttimetrialruns
 changelog: Changelog
 dayKey: Daykey
 lastPlayed: Lastplayed
@@ -32,6 +37,21 @@ perMode: Permode
 seenInfiniteIds: Seeninfiniteids
 streak: Streak
 version: Version1
+}
+/**
+ * The furthest a player has got in one Time Trial run length, kept locally.
+ * 
+ * A best run is scored in ITEMS COMPLETED, and it is recorded against the
+ * ``durationSec`` it was set at: the run length is a config knob, so a sprint
+ * of thirty seconds and a sprint of two minutes are two different contests and
+ * a record from one can never beat the other. ``achievedOn`` is the local
+ * calendar day the run finished, which is what lets the screen say when the
+ * record was set without keeping any history beside it.
+ */
+export interface TimeTrialBest {
+achievedOn: Achievedon
+durationSec: Durationsec
+itemsCompleted: Itemscompleted
 }
 /**
  * One dated entry in a schema's in-file change log (newest first).

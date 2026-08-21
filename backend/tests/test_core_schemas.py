@@ -115,6 +115,57 @@ def test_compute_day_key_joins_value_fields() -> None:
 
 
 # --------------------------------------------------------------------------
+# save evolution (Row 23): bestTimeTrialRuns is ADDITIVE.
+#
+# The save is the one MIGRATING surface (schemas.md), so the claim that matters
+# is not that the new field works - it is that a save written before the field
+# existed still loads. The committed save_valid.json IS such a payload: it was
+# minted in Row 7 and has never carried a Time Trial run, so asserting it has no
+# bestTimeTrialRuns AND validates is the no-migration-needed proof. The frontend
+# half of the same claim runs the same bytes through ajv and the real
+# StorageService (StorageService.test.ts).
+# --------------------------------------------------------------------------
+
+
+def test_a_pre_row_23_save_still_loads_and_has_no_best_runs() -> None:
+    payload = _load(_FIXTURES / "save_valid.json")
+    assert "bestTimeTrialRuns" not in payload  # genuinely a pre-Row-23 save
+    assert Save.model_validate(payload).bestTimeTrialRuns == []
+
+
+def test_a_save_carrying_best_runs_validates() -> None:
+    payload = _load(_FIXTURES / "save_valid.json")
+    payload["bestTimeTrialRuns"] = [
+        {"durationSec": 120, "itemsCompleted": 7, "achievedOn": "2026-08-21"},
+        {"durationSec": 60, "itemsCompleted": 3, "achievedOn": "2026-08-20"},
+    ]
+    assert len(Save.model_validate(payload).bestTimeTrialRuns) == 2
+
+
+def test_two_bests_at_the_same_run_length_are_refused() -> None:
+    # A run length names a contest, so it can hold exactly one record. JSON
+    # Schema cannot state uniqueness by key, which is why the invariant lives in
+    # the model - and why the frontend builds the list with a function that
+    # cannot produce a duplicate rather than trusting a check on write.
+    payload = _load(_FIXTURES / "save_valid.json")
+    payload["bestTimeTrialRuns"] = [
+        {"durationSec": 120, "itemsCompleted": 7, "achievedOn": "2026-08-21"},
+        {"durationSec": 120, "itemsCompleted": 4, "achievedOn": "2026-08-20"},
+    ]
+    with pytest.raises(ValidationError):
+        Save.model_validate(payload)
+
+
+def test_a_best_run_refuses_a_zero_length_contest() -> None:
+    payload = _load(_FIXTURES / "save_valid.json")
+    payload["bestTimeTrialRuns"] = [
+        {"durationSec": 0, "itemsCompleted": 1, "achievedOn": "2026-08-21"}
+    ]
+    with pytest.raises(ValidationError):
+        Save.model_validate(payload)
+
+
+# --------------------------------------------------------------------------
 # The lexicon contracts (Row 3).
 #
 # Payloads are BUILT from the real ezhuthu library rather than hand-typed, so a

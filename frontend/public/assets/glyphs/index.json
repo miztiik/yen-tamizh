@@ -1,6 +1,11 @@
 {
   "changelog": [
     {
+      "change": "Added the timer glyph.",
+      "version": "2026-08-21",
+      "why": "Row 23 - the Time Trial's countdown header needs an icon that says clock, and every icon in this game is a glyph resolved by id (Holy Law #10). Reusing one of the seven already in the pack would have put a star or a lightbulb beside a running clock, which is the kind of borrowed iconography that teaches a player nothing."
+    },
+    {
       "change": "Initial essential UI glyph pack baked from assets/glyphs/.",
       "version": "2026-08-13",
       "why": "Row 10 needs a baked, schema-validated manifest the Glyph component resolves by id (Holy Law #10); placeholder-quality art for later polish."
@@ -34,7 +39,11 @@
     "star": {
       "path": "M12 3 L14.5 9 L21 9.5 L16 13.5 L17.5 20 L12 16.5 L6.5 20 L8 13.5 L3 9.5 L9.5 9 Z",
       "viewBox": "0 0 24 24"
+    },
+    "timer": {
+      "path": "M9.5 2.5 L14.5 2.5 M12 2.5 L12 6 M4.5 13.5 A7.5 7.5 0 1 0 19.5 13.5 A7.5 7.5 0 1 0 4.5 13.5 Z M12 9 L12 13.5 L15 15",
+      "viewBox": "0 0 24 24"
     }
   },
-  "version": "2026-08-13"
+  "version": "2026-08-21"
 }

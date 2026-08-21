@@ -17,7 +17,8 @@
   let DailySession = $state<Component<{ onHome: () => void }> | null>(null);
   let JourneySession = $state<Component<{ onHome: () => void }> | null>(null);
   let InfiniteSession = $state<Component<{ onHome: () => void }> | null>(null);
-  let view = $state<"home" | "daily" | "journey" | "infinite">("home");
+  let TimeTrialSession = $state<Component<{ onHome: () => void }> | null>(null);
+  let view = $state<"home" | "daily" | "journey" | "infinite" | "time-trial">("home");
   let streak = $state(0);
 
   async function openDaily(): Promise<void> {
@@ -39,6 +40,13 @@
       InfiniteSession = (await import("./shell/InfiniteSession.svelte")).default;
     }
     view = "infinite";
+  }
+
+  async function openTimeTrial(): Promise<void> {
+    if (TimeTrialSession === null) {
+      TimeTrialSession = (await import("./shell/TimeTrialSession.svelte")).default;
+    }
+    view = "time-trial";
   }
 
   function readStreak(): void {
@@ -68,6 +76,11 @@
     if (modeId === "infinite") {
       window.history.pushState({}, "", "?mode=infinite");
       void openInfinite();
+      return;
+    }
+    if (modeId === "time-trial") {
+      window.history.pushState({}, "", "?mode=time-trial");
+      void openTimeTrial();
     }
   }
 
@@ -115,6 +128,10 @@
       await openInfinite();
       return;
     }
+    if (params.get("mode") === "time-trial") {
+      await openTimeTrial();
+      return;
+    }
     view = "home";
   }
 
@@ -135,6 +152,8 @@
   <JourneySession onHome={goHome} />
 {:else if view === "infinite" && InfiniteSession}
   <InfiniteSession onHome={goHome} />
+{:else if view === "time-trial" && TimeTrialSession}
+  <TimeTrialSession onHome={goHome} />
 {:else}
   <HomeShell {streak} onPlay={play} />
 {/if}

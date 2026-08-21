@@ -116,11 +116,12 @@ test("first load to playable: Home -> Daily -> a won day -> a streak", async ({ 
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("yen-tamizh");
 
   // The live Modes are real buttons; the rest are honestly marked, not
-  // disabled controls that invite a tap and then punish it. Three are live since
-  // Row 22 turned the Infinite on, and the Daily is still the first card.
-  await expect(page.getByTestId("mode-card")).toHaveCount(3);
+  // disabled controls that invite a tap and then punish it. Since Row 23 turned
+  // the Time Trial on there is no "rest" left - all four Modes ship - and the
+  // Daily is still the first card.
+  await expect(page.getByTestId("mode-card")).toHaveCount(4);
   await expect(page.getByTestId("mode-card").first()).toHaveAttribute("data-mode", "daily");
-  await expect(page.getByTestId("mode-card-locked")).toHaveCount(1);
+  await expect(page.getByTestId("mode-card-locked")).toHaveCount(0);
 
   // Keyboard reachability with a visible focus ring (v2 a11y).
   await page.keyboard.press("Tab");

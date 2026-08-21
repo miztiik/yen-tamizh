@@ -1,6 +1,11 @@
 {
-  "version": "2026-08-21T22:00",
+  "version": "2026-08-21T23:00",
   "changelog": [
+    {
+      "version": "2026-08-21T23:00",
+      "change": "Added the Time Trial screen's wording: the start card, the countdown's accessible name, the time-up screen, and the best-run line.",
+      "why": "Row 23 - the Time Trial ships, and the clock is the one piece of chrome in this game that a player must understand before they touch anything, so every word around it is copy rather than a string inside a component. time-trial-remaining is the countdown's ACCESSIBLE NAME: the digits carry the value, and without a name beside them a screen-reader user would hear a bare number counting down with nothing saying what it counts. The start screen exists because a clock that begins while the first board is still arriving would charge a player for the network, so the run opens on a card that says how long the sprint is and waits to be tapped - and that card needs a sentence of its own. time-trial-new-best is deliberately separate from time-trial-best: a record that was just broken and a record that stands are different pieces of news, and showing the same line for both would make beating your own score silent."
+    },
     {
       "version": "2026-08-21T22:00",
       "change": "Added the Infinite screen's wording: the difficulty chooser and its three bands, the next-puzzle control, the run counter, and the unavailable screen.",
@@ -79,6 +84,16 @@
     "mode-time-trial-title": "நேர சவால்",
     "mode-time-trial-title-en": "Time trial",
     "mode-time-trial-note": "நேரத்துக்குள் விளையாடு",
+    "time-trial-remaining": "மீதமுள்ள நேரம்",
+    "time-trial-duration": "ஓட்ட நேரம்",
+    "time-trial-start": "ஓட்டத்தைத் தொடங்கு",
+    "time-trial-again": "மீண்டும் ஓடு",
+    "time-trial-over-title": "நேரம் முடிந்தது",
+    "time-trial-best": "சிறந்த ஓட்டம்",
+    "time-trial-new-best": "புதிய சாதனை",
+    "time-trial-seconds": "வினாடிகள்",
+    "time-trial-empty-title": "புதிர்கள் கிடைக்கவில்லை",
+    "time-trial-empty-body": "நேர சவாலை இப்போது ஏற்ற முடியவில்லை. தயவுசெய்து பிறகு வாருங்கள்.",
     "mode-coming-soon": "விரைவில்",
     "action-play": "விளையாடு",
     "action-home": "முகப்பு",

@@ -286,3 +286,103 @@ describe("StorageService: the seenInfiniteIds LRU", () => {
     expect(svc.loadSave()).not.toBeNull();
   });
 });
+
+// The Time Trial's records. The claim that matters is not that they persist -
+// it is that the field they persist into is ADDITIVE, so the save a player
+// wrote yesterday still loads today (CLAUDE.md section 11). The backend half of
+// the same claim runs the same committed fixture through Pydantic
+// (backend/tests/test_core_schemas.py).
+describe("StorageService: Time Trial best runs (local only)", () => {
+  const TRIAL: DayContext = { ...DAY, modeId: "time-trial", date: "2026-08-21" };
+
+  test("A PRE-ROW-23 SAVE STILL LOADS, and reads as no record set", () => {
+    // These are the exact bytes the committed save fixture holds: a save minted
+    // before bestTimeTrialRuns existed. It goes in through the store rather
+    // than through writeSave, so ajv validates it on the READ path - which is
+    // where an older save actually arrives.
+    const store = memStore();
+    const preRow23 = {
+      version: "2026-08-13",
+      changelog: [
+        { version: "2026-08-13", change: "Initial save fixture.", why: "Row 7 contract Oracle." },
+      ],
+      dayKey: "2026-08-13|daily|anagram|ta-core",
+      streak: 5,
+      lastPlayed: "2026-08-13",
+      perMode: { daily: { completed: true, stars: 3 } },
+      seenInfiniteIds: ["anagram-0007", "anagram-0042"],
+    };
+    expect("bestTimeTrialRuns" in preRow23).toBe(false);
+    store.setItem("yt:save", JSON.stringify(preRow23));
+
+    const svc = new StorageService({ store });
+    const loaded = svc.loadSave();
+    expect(loaded).not.toBeNull(); // no migration needed - it just validates
+    expect(loaded?.streak).toBe(5);
+    expect(svc.readBestTimeTrialRuns()).toEqual([]);
+  });
+
+  test("a run written onto a pre-Row-23 save keeps everything that was there", () => {
+    const store = memStore();
+    store.setItem(
+      "yt:save",
+      JSON.stringify({
+        version: "2026-08-13",
+        changelog: [{ version: "2026-08-13", change: "old", why: "old" }],
+        dayKey: "2026-08-13|daily|anagram|ta-core",
+        streak: 5,
+        lastPlayed: "2026-08-13",
+        perMode: { daily: { completed: true } },
+        seenInfiniteIds: ["anagram/00007"],
+      }),
+    );
+    const svc = new StorageService({ store });
+    svc.writeBestTimeTrialRuns(TRIAL, [
+      { durationSec: 120, itemsCompleted: 6, achievedOn: "2026-08-21" },
+    ]);
+    const after = svc.loadSave();
+    expect(after?.streak).toBe(5);
+    expect(after?.perMode.daily).toEqual({ completed: true });
+    expect(after?.seenInfiniteIds).toEqual(["anagram/00007"]);
+    expect(after?.bestTimeTrialRuns).toEqual([
+      { durationSec: 120, itemsCompleted: 6, achievedOn: "2026-08-21" },
+    ]);
+  });
+
+  test("an absent save reads as no records, never as a crash", () => {
+    expect(new StorageService({ store: memStore() }).readBestTimeTrialRuns()).toEqual([]);
+  });
+
+  test("records round-trip and survive an unrelated write", () => {
+    const svc = new StorageService({ store: memStore() });
+    svc.writeBestTimeTrialRuns(TRIAL, [
+      { durationSec: 120, itemsCompleted: 6, achievedOn: "2026-08-21" },
+      { durationSec: 30, itemsCompleted: 2, achievedOn: "2026-08-20" },
+    ]);
+    svc.markInfiniteSeen({ ...TRIAL, modeId: "infinite" }, "anagram/00000", 10);
+    expect(svc.readBestTimeTrialRuns()).toHaveLength(2);
+    expect(svc.readSeenInfiniteIds()).toEqual(["anagram/00000"]);
+  });
+
+  test("the save is written through the schema, so a bad record is refused", () => {
+    const svc = new StorageService({ store: memStore() });
+    expect(() =>
+      svc.writeBestTimeTrialRuns(TRIAL, [
+        // durationSec must be at least 1 - a contest with no length is not one.
+        { durationSec: 0, itemsCompleted: 3, achievedOn: "2026-08-21" },
+      ]),
+    ).toThrow(/invalid save/i);
+  });
+
+  test("the stamped version matches the newest changelog entry", () => {
+    // The save carries its own contract stamp, and ajv checks the date pattern
+    // on every write; this pins that the two agree.
+    const svc = new StorageService({ store: memStore() });
+    svc.writeBestTimeTrialRuns(TRIAL, []);
+    const save = svc.loadSave();
+    expect(save?.version).toBe(save?.changelog[0]?.version);
+    expect(save?.changelog.some((entry) => entry.change.includes("bestTimeTrialRuns"))).toBe(
+      true,
+    );
+  });
+});

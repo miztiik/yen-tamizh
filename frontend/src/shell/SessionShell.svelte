@@ -29,6 +29,14 @@
     settingsLabel?: string;
     /** Item progress; the shell draws the dot indicator in the rail. */
     progress?: Progress | null;
+    /**
+     * Header content between the title and the settings control - the slot for
+     * a status readout that must never scroll away (the Time Trial's clock).
+     * It sits in the header rather than the rail because the rail becomes a
+     * bottom sheet on a phone, and a countdown a player has to look down for is
+     * a countdown they stop reading.
+     */
+    headerAside?: Snippet;
     /** Secondary rail content (above the progress dots). */
     rail?: Snippet;
     /** Footer toolbar content (hint / check / shuffle land here in later rows). */
@@ -45,6 +53,7 @@
     backLabel = "Back to home",
     settingsLabel = "Settings",
     progress = null,
+    headerAside,
     rail,
     footer,
     stage = $bindable(),
@@ -80,14 +89,17 @@
 
     <h1 class="truncate font-display text-lg font-semibold text-text-primary">{title}</h1>
 
-    <button
-      type="button"
-      class="inline-flex items-center rounded-md p-xs text-text-secondary transition-colors duration-fast ease-smooth hover:text-text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-      aria-label={settingsLabel}
-      onclick={() => onSettings?.()}
-    >
-      <Glyph id="settings" title={settingsLabel} />
-    </button>
+    <div class="flex shrink-0 items-center gap-xs">
+      {#if headerAside}{@render headerAside()}{/if}
+      <button
+        type="button"
+        class="inline-flex items-center rounded-md p-xs text-text-secondary transition-colors duration-fast ease-smooth hover:text-text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        aria-label={settingsLabel}
+        onclick={() => onSettings?.()}
+      >
+        <Glyph id="settings" title={settingsLabel} />
+      </button>
+    </div>
   </header>
 
   <div class="flex min-h-0 flex-1 flex-col md:flex-row">
