@@ -19,10 +19,24 @@ The rules this module enforces:
   holding all of them, which is what keeps the Daily a burst rather than a
   sitting - and because the ring is at least as long as the playlist, an
   ordinary day never deals the same Game twice.
-- **A word does not come back.** Words already used on OTHER days present in the
-  bank are skipped, so a player does not meet the same scramble twice. The
-  target date's own file is ignored while collecting them, which is exactly what
-  makes a re-run idempotent instead of self-poisoning.
+- **A word does not come back - EVERY word, not just each board's anchor.** The
+  ledger is every word ``answer_words`` reads out of a baked payload: the
+  scramble's answer, the search board's targets, the crossword's entries, the
+  ladder's rungs. Words the bank served on OTHER days are collected the same
+  way, and the target date's own file is ignored while collecting them, which is
+  exactly what makes a re-run idempotent instead of self-poisoning. The ledger
+  then keeps GROWING through the day, item by item in the order the player meets
+  them, so the fourth board cannot deal a word the first three already asked
+  for. Every builder is handed the ledger - the three that draw extra words of
+  their own honour it when they draw, and the three that hide a single word take
+  it and say they ignore it.
+- **A board short of fresh words REPEATS rather than ships short.** That is
+  ``pick_words``' own policy, applied one layer in: a search board tops its
+  companions up from words the bank has served, a ladder steps onto a served
+  rung only when no fresh neighbour can still finish the climb, and a crossword
+  re-solves its whole mask without the exclusion when the exclusion makes the
+  mask unsolvable. A repeat is a much smaller failure than a five-word grid
+  holding four words, and either is smaller than a cron that crashes.
 - **Some days are THEMED.** On the dates the configured cadence allows, if one
   registered theme can fill every slot of the THEMED window from its own
   wordlist - without repeating a word the bank has served, and with every one of
@@ -291,11 +305,28 @@ class GameBuilder:
     turns one row into a validated payload. Registering a pair here is the whole
     cost of adding a Game to the day loop, which is the promise the generator
     registry's docstring makes.
+
+    ``build``'s last argument is the day's ledger: every word the bank has
+    already asked for, on this day or an earlier one. Every builder takes it,
+    including the three that hide a single word and have nothing to draw with
+    it - because the loop deals every Game the same way, and a builder that
+    could not be handed the ledger is a builder that could quietly deal a word
+    twice.
     """
 
     prepare: Callable[[GameWordlist, GameGeneration], Any]
     build: Callable[
-        [GameWord, GameGeneration, str, int, DifficultyBand, bool, Any], BaseModel
+        [
+            GameWord,
+            GameGeneration,
+            str,
+            int,
+            DifficultyBand,
+            bool,
+            Any,
+            frozenset[str],
+        ],
+        BaseModel,
     ]
 
 
@@ -312,8 +343,9 @@ def _build_anagram(
     band: DifficultyBand,
     themed: bool,
     prepared: Any,
+    used: frozenset[str],
 ) -> BaseModel:
-    del band
+    del band, used
     index: dict[MultisetKey, tuple[str, ...]] = prepared
     partners = [
         word for word in index.get(multiset_key(row.ezhuthu), ()) if word != row.word
@@ -331,7 +363,9 @@ def _build_missing_letters(
     band: DifficultyBand,
     themed: bool,
     prepared: Any,
+    used: frozenset[str],
 ) -> BaseModel:
+    del used
     return missing_letters.build_puzzle(
         row, spec, f"{day}|{row.word}", hint_limit, band.blanks, prepared, themed
     )
@@ -358,8 +392,9 @@ def _build_wordle(
     band: DifficultyBand,
     themed: bool,
     prepared: Any,
+    used: frozenset[str],
 ) -> BaseModel:
-    del band, prepared
+    del band, prepared, used
     return wordle.build_puzzle(row, spec, f"{day}|{row.word}", hint_limit, themed)
 
 
@@ -371,6 +406,7 @@ def _build_word_search(
     band: DifficultyBand,
     themed: bool,
     prepared: Any,
+    used: frozenset[str],
 ) -> BaseModel:
     """The one builder that draws MORE words than the day loop picked.
 
@@ -381,9 +417,12 @@ def _build_word_search(
     is the only layer holding a served set, and the alternative - teaching the
     loop to deal several rows into one slot - would put one Game's arithmetic
     into the loop that is supposed to know nothing about which Game it holds.
+
+    The companions are drawn against the same ledger the anchor was, so a target
+    the bank has already hidden is not hidden again.
     """
     return word_search.build_puzzle(
-        row, spec, f"{day}|{row.word}", hint_limit, band, prepared, themed
+        row, spec, f"{day}|{row.word}", hint_limit, band, prepared, themed, used
     )
 
 
@@ -395,6 +434,7 @@ def _build_crossword(
     band: DifficultyBand,
     themed: bool,
     prepared: Any,
+    used: frozenset[str],
 ) -> BaseModel:
     """The second builder that draws more words than the day loop picked.
 
@@ -402,9 +442,12 @@ def _build_crossword(
     constrained by every answer that crosses it - so the row the loop picked
     becomes the word the solver must place, and the rest of the board is solved
     around it from the same served index and the same band.
+
+    The ledger reaches the solver as words it may not place, so the board's
+    other answers are as unrepeated as its anchor.
     """
     return crossword.build_puzzle(
-        row, spec, f"{day}|{row.word}", hint_limit, band, prepared, themed
+        row, spec, f"{day}|{row.word}", hint_limit, band, prepared, themed, used
     )
 
 
@@ -416,6 +459,7 @@ def _build_word_ladder(
     band: DifficultyBand,
     themed: bool,
     prepared: Any,
+    used: frozenset[str],
 ) -> BaseModel:
     """The third builder that draws more words than the day loop picked.
 
@@ -425,9 +469,12 @@ def _build_word_ladder(
     words start no ladder at all, which is why this Game leans hardest of the
     six on ``pick_words``' buildability probe: a refused row is stepped over
     like a word the bank has already served.
+
+    The ledger narrows which neighbour the climb steps onto, so the rungs above
+    the ledge are as unrepeated as the ledge itself.
     """
     return word_ladder.build_puzzle(
-        row, spec, f"{day}|{row.word}", hint_limit, band, prepared, themed
+        row, spec, f"{day}|{row.word}", hint_limit, band, prepared, themed, used
     )
 
 
@@ -737,8 +784,13 @@ def themed_draw(
             mine = [slot for slot in slots if slot.gameId == game_id]
             builder = builder_for(game_id)
             prepared = builder.prepare(wordlists[source], spec)
-            probe, _ = buildability_probe(
-                spec, day, hint_limit_for(app_config, game_id), True, prepared
+            probe = buildability_probe(
+                spec,
+                day,
+                hint_limit_for(app_config, game_id),
+                True,
+                prepared,
+                frozenset(seen),
             )
             picks = theme_can_fill(
                 wordlists[source].words,
@@ -770,8 +822,14 @@ def build_item(
     difficulty: str,
     themed: bool,
     prepared: Any,
+    used: frozenset[str],
 ) -> PuzzleItem:
     """One playlist entry: the Game's validated payload plus its framing.
+
+    ``used`` is the ledger this item must not deal from again - every word the
+    bank has served on another day, plus every word this day has already asked
+    for. It is passed to every builder because the loop deals every Game the
+    same way; what a Game does with it is the Game's business.
 
     The payload drops the schema stamp the model carries: the day file has its
     own ``version`` + ``changelog``, and repeating one inside every item would
@@ -780,7 +838,7 @@ def build_item(
     """
     band = next(entry for entry in spec.difficulties if entry.id == difficulty)
     puzzle = builder_for(spec.gameId).build(
-        row, spec, day, hint_limit, band, themed, prepared
+        row, spec, day, hint_limit, band, themed, prepared, used
     )
     payload = puzzle.model_dump(mode="json", exclude_none=True)
     for key in _STAMP_KEYS:
@@ -810,26 +868,31 @@ def buildability_probe(
     hint_limit: int,
     themed: bool,
     prepared: Any,
-) -> tuple[Callable[[GameWord, str], bool], dict[tuple[str, str], PuzzleItem]]:
-    """A "can this Game build this row" test, and the items it built answering it.
+    used: frozenset[str],
+) -> Callable[[GameWord, str], bool]:
+    """A "can this Game build this row" test, answered by building it.
 
     Built here rather than after the pick because "can this Game build this row"
-    can only be answered by building it - and building it twice would let the
-    answer and the item disagree. Every accepted row's item is kept, so the loop
-    that asked the question also gets the puzzle for free.
+    can only be answered by building it. The item is DISCARDED rather than
+    kept: the ledger keeps growing while the day's remaining slots are dealt, so
+    a board built to answer this question was built against a ledger that has
+    since moved, and a cached item would be exactly one item behind. The commit
+    pass in ``build_day`` therefore builds every dealt row again, against the
+    ledger as it stands when the player meets it.
+
+    Discarding cannot turn a yes into a no: every builder that reads the ledger
+    treats it as a preference with a documented fallback, so a row buildable
+    against a smaller ledger is buildable against a larger one.
     """
-    made: dict[tuple[str, str], PuzzleItem] = {}
 
     def buildable(row: GameWord, difficulty: str) -> bool:
         try:
-            made[(row.word, difficulty)] = build_item(
-                row, spec, day, hint_limit, difficulty, themed, prepared
-            )
+            build_item(row, spec, day, hint_limit, difficulty, themed, prepared, used)
         except Unbuildable:
             return False
         return True
 
-    return buildable, made
+    return buildable
 
 
 def build_day(
@@ -871,7 +934,7 @@ def build_day(
         chosen = {slot.position: row for slot, row in zip(slots, themed.rows, strict=True)}
         seen.update(row.word for row in themed.rows)
 
-    items: dict[int, PuzzleItem] = {}
+    dealt: dict[int, tuple[GameGeneration, int, GameWord, str, Any]] = {}
     prepared: dict[tuple[str, str], Any] = {}
     # Sorted so which Game draws first depends on the config, never on dict order.
     for game_id in sorted({slot.gameId for slot in slots}):
@@ -885,9 +948,6 @@ def build_day(
         key = (game_id, source)
         if key not in prepared:
             prepared[key] = builder_for(game_id).prepare(wordlists[source], spec)
-        probe, made = buildability_probe(
-            spec, day, hint_limit, themed is not None, prepared[key]
-        )
         if themed is None:
             picks = pick_words(
                 wordlists[source].words,
@@ -895,15 +955,38 @@ def build_day(
                 day,
                 [slot.difficulty for slot in mine],
                 seen,
-                probe,
+                buildability_probe(
+                    spec, day, hint_limit, False, prepared[key], frozenset(seen)
+                ),
             )
         else:
             picks = [(chosen[slot.position], slot.difficulty) for slot in mine]
         for slot, (row, difficulty) in zip(mine, picks, strict=True):
             seen.add(row.word)
-            items[slot.position] = made.get((row.word, difficulty)) or build_item(
-                row, spec, day, hint_limit, difficulty, themed is not None, prepared[key]
-            )
+            dealt[slot.position] = (spec, hint_limit, row, difficulty, prepared[key])
+
+    # Dealing is done per Game because a Game draws its whole ramp at once;
+    # BUILDING is done in the order the player meets the boards, because that is
+    # the order the ledger grows in. It starts holding every word the bank has
+    # served plus every anchor this day dealt - so a board can neither repeat an
+    # earlier board's answer nor steal a later board's anchor - and each item
+    # adds every word it actually asks for before the next one is built.
+    ledger = set(seen)
+    items: dict[int, PuzzleItem] = {}
+    for slot in slots:
+        spec, hint_limit, row, difficulty, index = dealt[slot.position]
+        item = build_item(
+            row,
+            spec,
+            day,
+            hint_limit,
+            difficulty,
+            themed is not None,
+            index,
+            frozenset(ledger),
+        )
+        ledger.update(answer_words(item.payload))
+        items[slot.position] = item
     return PuzzleFile(
         version=_PUZZLE_FILE_VERSION,
         changelog=_PUZZLE_FILE_CHANGELOG,
