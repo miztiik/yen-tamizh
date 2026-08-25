@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-08-31",
+  "items": [
+    {"difficulty": "easy", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [2], "choices": ["சொ", "ய", "னு", "அ", "கூ", "வொ", "லொ", "ளு"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: உண்மையை உணரும் ஞானம்"}], "meaning": "உண்மையை உணரும் ஞானம்", "translationEn": "reason", "word": "மெய்யறிவு"}},
+    {"difficulty": "medium", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["ந்", "கு", "மா", "தூ", "து", "ல", "ம", "ங்"], "rungs": [{"meaning": "வெள்ளீயம்", "word": "தகரம்"}, {"alsoValid": ["கரதலம்", "குரகதம்", "தரங்கம்", "துரகதம்", "தூதரகம்"], "meaning": "விலை உயர்ந்த பச்சைநிறக் கல்", "word": "மரகதம்"}, {"alsoValid": ["மகரமாதம்"], "meaning": "பராகம்", "word": "மகரந்தம்"}], "timeLimitSec": 0}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"grid": [["க", "ல்", "மூ", "ற", "ச்", "ம்", "ழி", "த"], ["ல்", "ம", "கோ", "ற்", "ச", "வ", "ம்", "ம்"], ["த", "டி", "ர்", "வ", "த்", "ச", "ச", "ல்"], ["த்", "நி", "டி", "ய", "ம", "ழி", "வை", "சொ"], ["வை", "ற்", "து", "றை", "ழி", "கோ", "ழி", "ச்"], ["டி", "இ", "ர்", "ம", "ச்", "க", "ல்", "ழி"], ["மூ", "ய", "த", "நி", "ச", "த", "ம்", "இ"], ["றை", "து", "த்", "ற", "ம", "கோ", "த்", "சொ"]], "targets": [{"direction": "right", "meaning": "பெரிய திருவிழா", "start": {"col": 1, "row": 1}, "word": "மகோற்சவம்"}, {"direction": "up", "meaning": "சேமஞ்செய்தல்", "start": {"col": 0, "row": 6}, "word": "மூடிவைத்தல்"}, {"direction": "up", "meaning": "பழிச்சொல்", "start": {"col": 7, "row": 6}, "word": "இழிச்சொல்"}, {"direction": "left", "meaning": "பாவநெறி", "start": {"col": 4, "row": 7}, "word": "மறத்துறை"}, {"direction": "up-left", "meaning": "கழியவர்", "start": {"col": 5, "row": 5}, "word": "கழியர்"}, {"direction": "right", "meaning": "தவறாது ஒவ்வொரு நாளும்", "start": {"col": 3, "row": 6}, "word": "நிசதம்"}]}}
+  ],
+  "version": "2026-08-17"
+}

@@ -24,7 +24,8 @@
     {"date": "2026-08-27", "itemCount": 3},
     {"date": "2026-08-28", "itemCount": 3},
     {"date": "2026-08-29", "itemCount": 3},
-    {"date": "2026-08-30", "itemCount": 3}
+    {"date": "2026-08-30", "itemCount": 3},
+    {"date": "2026-08-31", "itemCount": 3}
   ],
   "version": "2026-08-13"
 }
