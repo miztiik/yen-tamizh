@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-09-02",
+  "items": [
+    {"difficulty": "easy", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["லு", "லூ", "ழே", "டொ", "லி", "ட்", "மெ", "டி"], "rungs": [{"meaning": "ஒரு தானியம்", "word": "நெல்"}, {"alsoValid": ["நெல்லி", "நெல்லு"], "meaning": "நீண்டயெழுத்து", "word": "நெடில்"}, {"meaning": "மூங்கில்", "word": "நெட்டில்"}], "timeLimitSec": 0}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: இமயமலையின் ஒரு உயர்ந்த சிகரம்"}], "meaning": "இமயமலையின் ஒரு உயர்ந்த சிகரம்", "word": "கௌரிசங்கர்"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"grid": [["கா", "வா", "ர்", "து", "ன", "ன்", "சி", "ன்"], ["லி", "ல்", "ம", "த", "த்", "கொ", "ம்", "த்"], ["த", "ல்", "வ", "கா", "ற்", "ச", "வா", "து"], ["ரை", "க", "ரை", "வ", "லை", "லி", "ர", "ச"], ["வ", "லை", "த", "தி", "ல்", "த்", "பி", "க"], ["ல்", "அ", "த்", "த", "ங்", "கா", "ர்", "வ"], ["ந", "தி", "ந", "ம", "ம்", "ர", "பி", "ங்"], ["கொ", "கா", "ம", "ன", "சி", "ற்", "அ", "ம"]], "targets": [{"direction": "right", "meaning": "அத்தை மகள் (பிராமண வழக்கு)", "start": {"col": 1, "row": 5}, "word": "அத்தங்கார்"}, {"direction": "left", "meaning": "கொத்தம்", "start": {"col": 5, "row": 1}, "word": "கொத்தமல்லி"}, {"direction": "left", "meaning": "சரஸ்வதி", "start": {"col": 6, "row": 6}, "word": "பிரம்மநதி"}, {"direction": "left", "meaning": "வாசற்காவலாளன்", "start": {"col": 6, "row": 2}, "word": "வாசற்காவல்"}, {"direction": "right", "meaning": "நுட்பமான துவாரங்கள் பொருந்திய ஒரு பையைத் தன்னகத்தே கொண்டதாய்க் கரையிலிருந்து அரை மைல் தூரம் வட்டமாக வீசி மீன்களைத் துரத்திப் பிடிக்க உதவும் ஒருவகை வலை", "start": {"col": 1, "row": 3}, "word": "கரைவலை"}, {"direction": "left", "meaning": "சிறியது", "start": {"col": 6, "row": 0}, "word": "சின்னது"}]}}
+  ],
+  "version": "2026-08-17"
+}
