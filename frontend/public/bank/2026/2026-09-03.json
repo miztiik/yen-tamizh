@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-09-03",
+  "items": [
+    {"difficulty": "easy", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [1], "choices": ["சௌ", "ய்", "னூ", "தி", "மி", "ஞ்", "ரு", "ளோ"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: கூடும்"}], "meaning": "கூடும்", "translationEn": "haply", "word": "ஒருவேளை"}},
+    {"difficulty": "medium", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["ரெ", "கி", "ர்", "ப்", "யு", "பா", "ரொ", "மோ"], "rungs": [{"meaning": "அறக்கடவுள்", "word": "பகவதி"}, {"meaning": "கர்பவாதி", "word": "கர்பவதி"}, {"meaning": "கருத்தரித்து வயிற்றில் குழந்தை சுமக்கும் பெண்", "word": "கர்ப்பவதி"}], "timeLimitSec": 0}},
+    {"difficulty": "hard", "gameId": "crossword", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "தாமரை ( )", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "ஆய்மலர்"}, {"clue": "அறியப்படாமை , புலன்களுக்குப்புலப்படாமை ; புலப்படாதது", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "அகோசரம்"}, {"clue": "ஓர் அதிசயக்குறிப்பு", "direction": "across", "number": 5, "start": {"col": 0, "row": 5}, "word": "அம்மம்ம"}, {"clue": "பேயின் வடிவம்", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "பேய்க்கோலம்"}, {"clue": "ஒன்று தோன்றியதற்கான அல்லது நடந்தேறியதற்கான காரணம்", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "மூலகாரணம்"}], "rows": 6}}
+  ],
+  "version": "2026-08-17"
+}
