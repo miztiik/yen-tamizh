@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-09-04",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: நி"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: நிற்கக்கூடிய"}], "meaning": "நிற்கக்கூடிய", "reveal": 0, "tiles": ["கு", "ற்", "நி", "ம்"], "timeLimitSec": 0, "translationEn": "standing", "word": "நிற்கும்"}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: சந்தர்ப்பமின்மை"}], "meaning": "சந்தர்ப்பமின்மை", "translationEn": "impossibility", "word": "வாய்ப்பின்மை"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"alsoValid": ["மருத்து"], "grid": [["ச", "சி", "ய்", "மூ", "ரி", "க", "லு", "ம"], ["ம", "ம", "சி", "ஞ்", "ண்", "வா", "மூ", "ரி"], ["கு", "த்", "ரு", "வா", "சி", "ச்", "ரி", "ச்"], ["சி", "ஞ்", "ய்", "த்", "ச", "சி", "ரு", "சி"], ["கு", "ஞ்", "ஞ்", "க", "து", "ஞ்", "வ", "வா"], ["ம", "க்", "மூ", "ம", "ய்", "வ", "ச", "டு"], ["ச", "த்", "லு", "டு", "ண்", "து", "ரு", "ய்"], ["க்", "ண்", "ய்", "ம", "சி", "சி", "ம", "வ"]], "targets": [{"direction": "up-left", "meaning": "எளிதில் எரிச்சல் அடைபவன்; முன்கோபி", "start": {"col": 4, "row": 7}, "word": "சிடுமூஞ்சி"}, {"direction": "down-right", "meaning": "நோயிக்கான காரணத்தைக் கண்டறிவதற்கும் நோயைக் குணப்படுத்துவதற்கும் முறையான பயிற்சியைக் கொண்ட  தொழில்", "start": {"col": 1, "row": 1}, "word": "மருத்துவ"}, {"direction": "down-left", "meaning": "மதகு", "start": {"col": 5, "row": 0}, "word": "கண்வாய்"}, {"direction": "down-right", "meaning": "திருதராஷ்டிரனின் மந்திரி", "start": {"col": 4, "row": 3}, "word": "சஞ்சய்"}, {"direction": "down", "meaning": "ஒரு ரிஷி", "start": {"col": 7, "row": 0}, "word": "மரிச்சி"}, {"direction": "up-left", "meaning": "சுருக்கு முடிச்சு", "start": {"col": 3, "row": 7}, "word": "மலுக்கு"}]}}
+  ],
+  "version": "2026-08-17"
+}
