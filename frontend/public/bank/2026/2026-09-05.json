@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-09-05",
+  "items": [
+    {"difficulty": "easy", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [2], "choices": ["க", "இ", "யோ", "ங்", "கூ", "ழோ", "வீ", "றி"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: நூலகத்தை இயக்குபவர்"}], "meaning": "நூலகத்தை இயக்குபவர்", "translationEn": "librarian", "word": "நூலகர்"}},
+    {"difficulty": "medium", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["னூ", "டை", "டெ", "ன்", "னா", "ற்", "வை", "தூ"], "rungs": [{"meaning": "அடிமை", "word": "தொறு"}, {"alsoValid": ["தொற்று"], "meaning": "ஊழ்", "word": "தொன்று"}, {"meaning": "ஒன்பதும் நூறும் சேர்ந்ததாகும்.", "word": "தொன்னூறு"}], "timeLimitSec": 0}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"alsoValid": ["கனைப்பு", "சகசம்"], "grid": [["செ", "ச", "ங்", "கி", "ர", "ம்", "ம்", "ர"], ["ஒ", "க", "ப", "ம்", "ழு", "க", "ர", "பு"], ["ங்", "ச", "றை", "ம்", "றை", "பு", "ஆ", "ப்"], ["ரா", "ம்", "ர", "கா", "ரி", "ப", "ரா", "னை"], ["க்", "ஆ", "பு", "ப்", "றி", "செ", "த", "க"], ["ஒ", "ழு", "க்", "க", "றை", "ங்", "னை", "ரி"], ["ர", "ரா", "கா", "ன்", "னா", "ம்", "பு", "ன்"], ["கி", "த", "றி", "ம்", "க", "னா", "ன்", "பு"]], "targets": [{"direction": "right", "meaning": "உருக்கு", "start": {"col": 0, "row": 5}, "word": "ஒழுக்கறை"}, {"direction": "right", "meaning": "காடு", "start": {"col": 1, "row": 0}, "word": "சங்கிரம்"}, {"direction": "left", "meaning": "கப்பம்", "start": {"col": 5, "row": 3}, "word": "பரிகாரம்"}, {"direction": "left", "meaning": "குரங்குமஞ்சள்நாறி", "start": {"col": 7, "row": 7}, "word": "புன்னாகம்"}, {"direction": "down", "meaning": "அக்னிசாந்தி", "start": {"col": 6, "row": 2}, "word": "ஆராதனை"}, {"direction": "left", "meaning": "அடக்கம்", "start": {"col": 5, "row": 4}, "word": "செறிப்பு"}]}}
+  ],
+  "version": "2026-08-17"
+}
