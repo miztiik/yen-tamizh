@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-09-07",
+  "items": [
+    {"difficulty": "easy", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["ர்", "ஓ", "லி", "ய்", "ம்", "றொ", "ஆ", "ல்"], "rungs": [{"meaning": "அறுபதாண்டுக்கணக்கில் இருபத்தெட்டாம் ஆண்டு", "word": "செய"}, {"alsoValid": ["செயம்", "செயர்", "செயலி", "செய்ய"], "meaning": "ஒழுக்கம்", "word": "செயல்"}, {"meaning": "ஒழுக்கம்", "word": "செய்யல்"}], "timeLimitSec": 0}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: எங்கள் தலைவி"}], "meaning": "எங்கள் தலைவி", "translationEn": "our lady", "word": "எம்பிராட்டி"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"grid": [["த்", "ம்", "த", "பி", "ம்", "க", "றி", "வு"], ["ம்", "ர", "து", "ம", "ப", "ந்", "து", "றி"], ["ம்", "வு", "ட்", "ர", "க", "து", "கு", "ப"], ["ம்", "ன்", "க்", "டி", "ழு", "ம்", "ர", "ப்"], ["சு", "ட்", "டெ", "ழு", "த்", "து", "லை", "டி"], ["ர", "ன்", "ர", "கு", "க்", "கு", "ம", "ப"], ["கு", "ப்", "தி", "பி", "ம", "டெ", "ப", "சு"], ["ம", "ந்", "தி", "ர", "ம", "லை", "த", "ம"]], "targets": [{"direction": "right", "meaning": "இ", "start": {"col": 0, "row": 4}, "word": "சுட்டெழுத்து"}, {"direction": "up", "meaning": "புத்தகங்களைப் படித்து/வாசித்துப் பெறும் புத்தக அறிவு; ஏட்டறிவு; நூலறிவு; கல்வியறிவு", "start": {"col": 7, "row": 5}, "word": "படிப்பறிவு"}, {"direction": "right", "meaning": "மந்திரகிரி", "start": {"col": 0, "row": 7}, "word": "மந்திரமலை"}, {"direction": "left", "meaning": "அசைவு", "start": {"col": 5, "row": 0}, "word": "கம்பிதம்"}, {"direction": "left", "meaning": "குக்கன்", "start": {"col": 5, "row": 5}, "word": "குக்குரன்"}, {"direction": "left", "meaning": "இனிமை", "start": {"col": 3, "row": 1}, "word": "மதுரம்"}]}}
+  ],
+  "version": "2026-08-17"
+}
