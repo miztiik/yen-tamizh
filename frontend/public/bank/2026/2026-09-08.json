@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-09-08",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 1, "kind": "category", "text": "வகை: இயற்கை"}, {"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: நெ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: அக்கி"}], "meaning": "அக்கி", "reveal": 0, "tiles": ["ப்", "பு", "ரு", "நெ"], "timeLimitSec": 0, "translationEn": "Fire", "word": "நெருப்பு"}},
+    {"difficulty": "medium", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [5], "choices": ["ளை", "னை", "கா", "பை", "மா", "டு", "ரி", "ம்"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: எப்பவும்"}], "meaning": "எப்பவும்", "translationEn": "Always", "word": "எப்பொழுதும்"}},
+    {"difficulty": "hard", "gameId": "crossword", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "மிகத் தொலைவு", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "தொலைதூரம்"}, {"clue": "அறுபதாண்டுக் கணக்கில் பன்னிரண்டாம் ஆண்டு", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "வெகுதான்ய"}, {"clue": "பதின்மூன்று = 13", "direction": "across", "number": 5, "start": {"col": 0, "row": 5}, "word": "பதிமூன்று"}, {"clue": "இமை சிமிட்டாமல் வெகு நேரம் வரை பார்க்கும் செயல்", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "நிலைக்குத்தி"}, {"clue": "காட்சியருளுபவன்", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "பிரசன்னன்"}], "rows": 6}}
+  ],
+  "version": "2026-08-17"
+}
