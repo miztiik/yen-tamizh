@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-09-09",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: வி"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: பகைவர்"}], "meaning": "பகைவர்", "reveal": 0, "tiles": ["ர்", "டா", "ட்", "வி"], "timeLimitSec": 0, "word": "விட்டார்"}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: புலியின் குழந்தை"}], "meaning": "புலியின் குழந்தை", "translationEn": "young of a tiger", "word": "புலிக்குட்டி"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"alsoValid": ["பிறங்க", "பிறப்பி"], "grid": [["க", "டை", "க", "ங்", "ற", "பி", "டை", "ன்"], ["த்", "அ", "பொ", "ரு", "ப்", "ப", "ன்", "வு"], ["ன்", "வு", "ரு", "ற", "தி", "தி", "பொ", "தா"], ["ர", "ன்", "பி", "தா", "லி", "ன்", "கூ", "அ"], ["சி", "சு", "சி", "கூ", "ன", "லி", "த்", "டை"], ["ச்", "ன", "க்", "சு", "கூ", "த்", "ப்", "தா"], ["வ", "ன", "பி", "ன்", "ர", "க்", "தா", "தா"], ["தி", "ன்", "ப", "ங்", "ச்", "வ", "ன", "ன்"]], "targets": [{"direction": "down-right", "meaning": "சிவாலயத்தில் பூசை செய்யும் குருக்கள்", "start": {"col": 3, "row": 3}, "word": "தானத்தான்"}, {"direction": "up-right", "meaning": "அன்றாடக்கூலி", "start": {"col": 0, "row": 7}, "word": "தினக்கூலி"}, {"direction": "left", "meaning": "(தமி), (பெ), (பி.நி.) - = வழித்தோன்றல்", "start": {"col": 5, "row": 0}, "word": "பிறங்கடை"}, {"direction": "right", "meaning": "குறிஞ்சிநிலத் தலைவன் ( )", "start": {"col": 2, "row": 1}, "word": "பொருப்பன்"}, {"direction": "up", "meaning": "இந்திரன் ( 60.)", "start": {"col": 0, "row": 6}, "word": "வச்சிரன்"}, {"direction": "down", "meaning": "ஒரு அளவு (30 மிலி)", "start": {"col": 1, "row": 1}, "word": "அவுன்சு"}]}}
+  ],
+  "version": "2026-08-17"
+}
