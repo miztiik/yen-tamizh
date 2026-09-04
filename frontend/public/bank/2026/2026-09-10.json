@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-09-10",
+  "items": [
+    {"difficulty": "easy", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [3], "choices": ["மை", "றி", "ல", "ப", "கு", "தீ", "ம்", "ண"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: ஒலிப்பி"}], "meaning": "ஒலிப்பி", "translationEn": "captain", "word": "இயக்கு"}},
+    {"difficulty": "medium", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["தீ", "ல்", "து", "த்", "கோ", "நை", "கொ", "யை"], "rungs": [{"meaning": "அடைதல்", "word": "சேர்தல்"}, {"meaning": "அடைவித்தல்", "word": "சேர்த்தல்"}, {"meaning": "சேர்த்தல்", "word": "சேர்த்துதல்"}], "timeLimitSec": 0}},
+    {"difficulty": "hard", "gameId": "crossword", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "இப்பொழுது, இந்த வேளை, இந்த நேரம்", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "தற்பொழுது"}, {"clue": "அமுக்கிரா", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "அமுக்குரா"}, {"clue": "மஞ்சள் நிற மல்லிகை, தளவம்", "direction": "across", "number": 5, "start": {"col": 0, "row": 5}, "word": "செம்முல்லை"}, {"clue": "அன்னியமுகம்", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "வேற்றுமுகம்"}, {"clue": "மொக்குதல்", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "மழுக்குதல்"}], "rows": 6}}
+  ],
+  "version": "2026-08-17"
+}
