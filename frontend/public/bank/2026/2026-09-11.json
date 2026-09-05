@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-09-11",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: தூ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: ஊக்குவி"}], "meaning": "ஊக்குவி", "reveal": 0, "tiles": ["ண்", "டு", "தூ"], "timeLimitSec": 0, "translationEn": "activate", "word": "தூண்டு"}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: மாத இதழ்"}], "meaning": "மாத இதழ்", "translationEn": "monthly", "word": "திங்களிதழ்"}},
+    {"difficulty": "hard", "gameId": "crossword", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "ஒரு பண்வகை", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "நாகவராளி"}, {"clue": "விசும்புதல்; விசும்பும் போது கேட்கும் ஒலி", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "விசும்பல்"}, {"clue": "ஒரு சாதி", "direction": "across", "number": 5, "start": {"col": 0, "row": 5}, "word": "மாடுதின்னி"}, {"clue": "அ, இ, உ என்பன", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "அகச்சுட்டு"}, {"clue": "கைப்பற்ற படையுடன் நுழைதல்", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "போராடுபவன்"}], "rows": 6}}
+  ],
+  "version": "2026-08-17"
+}
