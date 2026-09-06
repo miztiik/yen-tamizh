@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-09-12",
+  "items": [
+    {"difficulty": "easy", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [1], "choices": ["சூ", "ச", "தீ", "பே", "டு", "வா", "பு", "பி"], "hints": [{"cost": 1, "kind": "category", "text": "வகை: உறவு"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: இல்லறம்"}], "meaning": "இல்லறம்", "translationEn": "covey", "word": "குடும்பம்"}},
+    {"difficulty": "medium", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["சை", "க", "ளீ", "ந்", "அ", "வி", "இ", "னை"], "rungs": [{"meaning": "யானை ( )", "word": "மதமா"}, {"meaning": "ஆனை", "word": "மந்தமா"}, {"meaning": "மெதுவாக", "word": "மந்தமாக"}], "timeLimitSec": 0}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"grid": [["பு", "லை", "தே", "ல்", "டு", "ய", "ர்", "ய"], ["றா", "க்", "ற்", "வா", "ன", "கு", "று", "ன"], ["க்", "பு", "கு", "ளி", "ன்", "ழ", "பு", "ள்"], ["கூ", "பு", "ள்", "ளி", "யி", "ய", "ல்", "வ"], ["டு", "மூ", "ளி", "யு", "ர்", "றா", "ம்", "யி"], ["அ", "ழ", "வ", "ன", "ம்", "கா", "கா", "அ"], ["வா", "யு", "மூ", "லை", "வை", "ன்", "ற்", "ல்"], ["ன்", "ய", "தே", "ன", "வை", "கூ", "ன", "று"]], "targets": [{"direction": "down-right", "meaning": "ஊதற்காற்று", "start": {"col": 2, "row": 2}, "word": "குளிர்காற்று"}, {"direction": "right", "meaning": "புள்ளிவிவரம்", "start": {"col": 1, "row": 3}, "word": "புள்ளியியல்"}, {"direction": "right", "meaning": "மருதோன்றி", "start": {"col": 0, "row": 5}, "word": "அழவனம்"}, {"direction": "down", "meaning": "சிற்றறை", "start": {"col": 0, "row": 0}, "word": "புறாக்கூடு"}, {"direction": "left", "meaning": "விநதையின் மகனாகிய கருடன்", "start": {"col": 4, "row": 7}, "word": "வைனதேயன்"}, {"direction": "right", "meaning": "வடமேற்கு", "start": {"col": 0, "row": 6}, "word": "வாயுமூலை"}]}}
+  ],
+  "version": "2026-08-17"
+}
