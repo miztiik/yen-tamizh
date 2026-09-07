@@ -1,0 +1,22 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-09-13",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: வ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: அம்பு"}], "meaning": "அம்பு", "reveal": 0, "tiles": ["டு", "வ", "ண்"], "timeLimitSec": 0, "translationEn": "bee", "word": "வண்டு"}},
+    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ச"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: கூடுகை"}], "meaning": "கூடுகை", "reveal": 0, "tiles": ["ம", "க", "ச", "ம்", "ங்"], "timeLimitSec": 0, "translationEn": "confluence", "word": "சங்கமம்"}},
+    {"difficulty": "hard", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [0, 2], "choices": ["சு", "ஊ", "ற்", "பு", "ப", "டு", "நா", "க"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: சமுத்திரக்கரையிலுள்ள காற்று"}], "meaning": "சமுத்திரக்கரையிலுள்ள காற்று", "translationEn": "sea-breeze", "word": "கடற்காற்று"}}
+  ],
+  "theme": "theme-nature",
+  "version": "2026-08-17"
+}
