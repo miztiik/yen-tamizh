@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-09-14",
+  "items": [
+    {"difficulty": "easy", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["அ", "வே", "தொ", "ழ", "க்", "பா", "ள", "னோ"], "rungs": [{"meaning": "சீனாவில் காணப்படும் ஒரு வகை கொடி", "word": "கிவி"}, {"alsoValid": ["கிளவி", "கிழவி"], "meaning": "பகுத்தறிவுள்ளவன்", "word": "விவேகி"}, {"meaning": "அசடு", "word": "அவிவேகி"}], "timeLimitSec": 0}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: தில்லைச்சிவபிரான்"}], "meaning": "தில்லைச்சிவபிரான்", "word": "மன்றவாணன்"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"alsoValid": ["திருக்கு"], "grid": [["ம்", "பி", "னி", "சு", "ம்", "ர்", "க்", "த"], ["ல்", "க்", "ஞ்", "மு", "பூ", "தா", "ழ", "ள்"], ["ங்", "த்", "ரு", "ள்", "தா", "த்", "னி", "த"], ["லை", "ல்", "கொ", "க்", "ள", "சோ", "லை", "ள"], ["கு", "கு", "ம்", "த", "த்", "ர்", "கு", "மு"], ["ள", "மு", "ம்", "ள", "கு", "க்", "ரு", "தி"], ["சு", "ஞ்", "பி", "ம்", "பூ", "ம்", "த்", "சோ"], ["த", "கு", "கொ", "தி", "கு", "ங்", "ழ", "மு"]], "targets": [{"direction": "left", "meaning": "சோளம் பயிரிடப்பட்டுள்ள தோட்டம்", "start": {"col": 5, "row": 3}, "word": "சோளக்கொல்லை"}, {"direction": "left", "meaning": "கோயிலைச் சார்ந்த குளம்/தடாகம்; கோயிற்குளம்", "start": {"col": 7, "row": 5}, "word": "திருக்குளம்"}, {"direction": "left", "meaning": "காண்க: முகூர்த்தம்", "start": {"col": 7, "row": 4}, "word": "முகுர்த்தம்"}, {"direction": "left", "meaning": "ஒன்றியாள்", "start": {"col": 7, "row": 2}, "word": "தனித்தாள்"}, {"direction": "left", "meaning": "இளம்பிஞ்சு", "start": {"col": 4, "row": 6}, "word": "பூம்பிஞ்சு"}, {"direction": "left", "meaning": "கர்ஜி", "start": {"col": 7, "row": 7}, "word": "முழங்கு"}]}}
+  ],
+  "version": "2026-08-17"
+}
