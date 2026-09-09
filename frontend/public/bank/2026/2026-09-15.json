@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-09-15",
+  "items": [
+    {"difficulty": "easy", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [1], "choices": ["ன", "யி", "மு", "ண்", "னை", "ளி", "யூ", "தீ"], "hints": [{"cost": 1, "kind": "category", "text": "வகை: தொழில்"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: துணி வெளுக்கும் தொழிலாளி"}], "meaning": "துணி வெளுக்கும் தொழிலாளி", "translationEn": "dhobi", "word": "வண்ணார்"}},
+    {"difficulty": "medium", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["ர்", "னே", "வ", "ஓ", "யே", "ம்", "நோ", "ன்"], "rungs": [{"meaning": "சிங்கள் மொழி தொடர்பான", "word": "சிங்கள"}, {"alsoValid": ["சிங்களன்", "சிங்களம்"], "meaning": "ஈழநாட்டிலுள்ள சிங்களமொழி பேசுவோர்", "word": "சிங்களர்"}, {"meaning": "இலங்கையின் சிங்கள இனத்தவர்", "word": "சிங்களவர்"}], "timeLimitSec": 0}},
+    {"difficulty": "hard", "gameId": "crossword", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "ஆராய்ச்சியாளர்", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "ஆய்வாளர்"}, {"clue": "இளை", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "இளப்பம்"}, {"clue": "முருகக்கடவுள்", "direction": "across", "number": 5, "start": {"col": 0, "row": 5}, "word": "வாகுலேயன்"}, {"clue": "நெய் விட்டு எரிக்கும் தீபம்", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "நெய்விளக்கு"}, {"clue": "அளப்பதற்கரிய., அளவிட முடியா", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "அளப்பரிய"}], "rows": 6}}
+  ],
+  "version": "2026-08-17"
+}
