@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-09-16",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 1, "kind": "category", "text": "வகை: இடம்"}, {"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ப"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: கூட்டம்"}], "meaning": "கூட்டம்", "reveal": 0, "tiles": ["ணை", "ப", "ண்"], "timeLimitSec": 0, "translationEn": "Farm", "word": "பண்ணை"}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: எறும்புகளை உண்ணும் விலங்கு = எறும்புத்தின்னி"}], "meaning": "எறும்புகளை உண்ணும் விலங்கு = எறும்புத்தின்னி", "translationEn": "pangolin", "word": "எறும்புண்ணி"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"grid": [["அ", "ங்", "க", "ரா", "ய", "ர்", "நா", "ரை"], ["கௌ", "ம்", "ங்", "க", "றோ", "ம", "ர்", "ம்"], ["ங்", "ர்", "ய", "பூ", "க்", "ற்", "ன", "ங"], ["சி", "ம", "ம்", "கா", "ங்", "ங", "கா", "கே"], ["அ", "பொ", "ர", "ய", "ங்", "கு", "கு", "ர"], ["வ", "ர்", "ம்", "யா", "கே", "ங்", "வ", "நா"], ["க", "பூ", "ம", "க்", "ய", "சி", "யா", "ளை"], ["ன", "ரை", "றோ", "ற்", "பொ", "ளை", "கௌ", "ரா"]], "targets": [{"direction": "right", "meaning": "கள்ளர் பட்டங்களு ளொன்று (கள்ளர்சரித். 145.)", "start": {"col": 0, "row": 0}, "word": "அங்கராயர்"}, {"direction": "down-left", "meaning": "வைணவர்", "start": {"col": 6, "row": 0}, "word": "நாமக்காரர்"}, {"direction": "up-left", "meaning": "வெண்கிலுகிலுப்பை ( )", "start": {"col": 6, "row": 7}, "word": "கௌசிகேயம்"}, {"direction": "down-right", "meaning": "பூங்கொத்துகளை அலங்காரமாக அமைக்கப் பயன்படுத்தும் குவளை", "start": {"col": 3, "row": 2}, "word": "பூங்குவளை"}, {"direction": "up-right", "meaning": "எங்ஙனம்? யாங்கு?", "start": {"col": 3, "row": 5}, "word": "யாங்ஙனம்"}, {"direction": "left", "meaning": "இடையில் அணியும் பொன்வடம்", "start": {"col": 4, "row": 7}, "word": "பொற்றோரை"}]}}
+  ],
+  "version": "2026-08-17"
+}
