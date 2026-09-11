@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-09-17",
+  "items": [
+    {"difficulty": "easy", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [3], "choices": ["ல்", "ழை", "வை", "ர்", "ப", "ணா", "யு", "பூ"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: கொடியவன்"}], "meaning": "கொடியவன்", "translationEn": "hand-screen", "word": "வெய்யில்"}},
+    {"difficulty": "medium", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["ர", "ப", "கா", "ர்", "ய", "தா", "சே", "ம்"], "rungs": [{"meaning": "அழகு", "word": "சவி"}, {"alsoValid": ["சவிதா", "விசய", "விசர்"], "meaning": "நஞ்சு", "word": "விசம்"}, {"alsoValid": ["சம்பவி", "விகாசம்", "விசரம்", "விசேசம்", "விரசம்"], "meaning": "கருப்பஞ்சாறு", "word": "விசயம்"}], "timeLimitSec": 0}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"grid": [["டு", "க", "ண்", "ம்", "ண்", "ப", "ரு", "வ"], ["சா", "ல்", "இ", "ல", "வ", "ங்", "க", "ம்"], ["ன்", "லை", "ற", "வ", "ழி", "ய", "ல்", "ல்"], ["ல்", "ப", "ல்", "ன்", "த", "வ", "த", "டு"], ["ங்", "ண்", "ப", "ன்", "கி", "டு", "லை", "ழி"], ["வ", "ப", "ல", "வ", "ட்", "டு", "வ", "ஓ"], ["டை", "லை", "இ", "சா", "மா", "ட்", "ஓ", "ரு"], ["ய", "ற", "கி", "வ", "ரு", "டை", "மா", "ன்"]], "targets": [{"direction": "right", "meaning": "(பெ) = கிராம்பு", "start": {"col": 2, "row": 1}, "word": "இலவங்கம்"}, {"direction": "up-left", "meaning": "ஓடுகின்ற", "start": {"col": 6, "row": 6}, "word": "ஓடுகின்ற"}, {"direction": "up-right", "meaning": "அடித்தல்", "start": {"col": 3, "row": 6}, "word": "சாட்டுதல்"}, {"direction": "right", "meaning": "வரையாடு", "start": {"col": 3, "row": 7}, "word": "வருடைமான்"}, {"direction": "up", "meaning": "வானொலி தொழில்நுட்பத்தில், சைகைகளை (குறிப்பலைகளை) ஊர்தி அலையின் அதிர்வெண்ணில் மாற்றங்களாகச் செய்து (ஏற்றி) அலைபரப்பப்படும் மின்காந்த அலைகள். அதிர்வெண் பண்பேற்றம் பெற்ற அலைகள் அல்லது அலைவரிசை; அதிர்வெண் மாற்றுகை ஏற்ற அலைகள். இப்படிப்பட்ட அலைகளில் அலைபரப்பப்படும் வானொலிச் சேவை", "start": {"col": 1, "row": 5}, "word": "பண்பலை"}, {"direction": "right", "meaning": "வழிந்தோடுவது ( )", "start": {"col": 3, "row": 2}, "word": "வழியல்"}]}}
+  ],
+  "version": "2026-08-17"
+}
