@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-09-18",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: அ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: கருமம்"}], "meaning": "கருமம்", "reveal": 0, "tiles": ["வ", "லு", "அ", "ல்"], "timeLimitSec": 0, "translationEn": "affair", "word": "அலுவல்"}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: மலைகளுக்கு இடையே அமையும் சரிந்த பக்கப் பகுதிகளையுடைய நிலப் பகுதி."}], "meaning": "மலைகளுக்கு இடையே அமையும் சரிந்த பக்கப் பகுதிகளையுடைய நிலப் பகுதி.", "translationEn": "valley", "word": "பள்ளதாக்கு"}},
+    {"difficulty": "hard", "gameId": "crossword", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "பொருத்தும் முறை", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "கோப்புமுறை"}, {"clue": "சிந்து தேசம்", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "சைந்தவம்"}, {"clue": "காசி நரேஷ் இந்தரதியூமனின் மிகச் சிறிய மகள்", "direction": "across", "number": 5, "start": {"col": 0, "row": 5}, "word": "அம்பாலிகா"}, {"clue": "தீவட்டி", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "தீப்பந்தம்"}, {"clue": "சீந்தில் என்ற படர்கொடி", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "அமுதவல்லி"}], "rows": 6}}
+  ],
+  "version": "2026-08-17"
+}
