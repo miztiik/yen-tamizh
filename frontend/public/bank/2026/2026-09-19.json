@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-09-19",
+  "items": [
+    {"difficulty": "easy", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["தை", "ர்", "ன்", "சி", "னி", "தி", "ள்", "மீ"], "rungs": [{"meaning": "சுவாசம்", "word": "அனா"}, {"alsoValid": ["அனாதி", "அனாதை", "அனானி", "அனான்", "அனாள்", "அமீனா"], "meaning": "அங்கு. (திருநெல்வேலி வழக்கு)", "word": "அன்னா"}, {"alsoValid": ["அன்னாசி", "அன்னான்", "அன்னாள்"], "meaning": "அல்நார்", "word": "அன்னார்"}], "timeLimitSec": 0}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: கொடியோன்"}], "meaning": "கொடியோன்", "word": "நராந்தகன்"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"alsoValid": ["உட்கொள்"], "grid": [["ல்", "ய்", "மா", "ய", "ரி", "தை", "க்", "ய்"], ["தை", "ள", "ஈ", "வ", "மா", "க்", "த", "ய"], ["ம்", "ல்", "ள்", "ர", "ழி", "ல்", "நி", "ள்"], ["ட", "ய", "வ", "கொ", "ப்", "ய", "ட", "கி"], ["ப", "ட்", "வி", "ர", "ட்", "ப", "ள", "உ"], ["ல்", "ள", "வை", "ரி", "கி", "உ", "த", "வை"], ["ழ", "கி", "க்", "வி", "கி", "க்", "வி", "ம்"], ["நி", "ழி", "ப", "ம்", "கொ", "ழ", "ள", "ப"]], "targets": [{"direction": "down-right", "meaning": "காற்றில் நிறைந்திருக்கும் ஈரத்தன்மை", "start": {"col": 2, "row": 1}, "word": "ஈரப்பதம்"}, {"direction": "up-left", "meaning": "உட்கருதுதல்", "start": {"col": 5, "row": 5}, "word": "உட்கொள்ளல்"}, {"direction": "up", "meaning": "உருவப்படம்", "start": {"col": 0, "row": 7}, "word": "நிழல்படம்"}, {"direction": "left", "meaning": "வினையடை. (அழு என்ற வினையுடன் வரும்போது மட்டும்) விக்கல் ஒலி போன்ற தேம்பலுடன்", "start": {"col": 6, "row": 6}, "word": "விக்கிவிக்கி"}, {"direction": "left", "meaning": "துணிச்சலாக", "start": {"col": 5, "row": 0}, "word": "தைரியமாய்"}, {"direction": "down-right", "meaning": "அநுமானப்பிரமாணம்", "start": {"col": 3, "row": 1}, "word": "வழியளவை"}]}}
+  ],
+  "version": "2026-08-17"
+}
