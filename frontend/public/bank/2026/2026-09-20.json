@@ -1,0 +1,22 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-09-20",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ம"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: இணர்"}], "meaning": "இணர்", "reveal": 0, "tiles": ["ம", "ச", "ஞ்", "ரி"], "timeLimitSec": 0, "translationEn": "catkin", "word": "மஞ்சரி"}},
+    {"difficulty": "medium", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [2], "choices": ["மா", "யி", "ங்", "ப", "ழ", "தா", "லூ", "ப்"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: மனித முயற்சியின்றி இயற்கையாகவே சூழவுள்ள உயர் நிலத்தால் அடைக்கப்பட்ட நீர் நிலை"}], "meaning": "மனித முயற்சியின்றி இயற்கையாகவே சூழவுள்ள உயர் நிலத்தால் அடைக்கப்பட்ட நீர் நிலை", "translationEn": "lake", "word": "கண்மாய்"}},
+    {"difficulty": "hard", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [4, 5], "choices": ["க", "வி", "ன்", "ர்", "ரு", "ச்", "ற", "ழி"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: ஒரு சிறுகுருவிவகை"}], "meaning": "ஒரு சிறுகுருவிவகை", "word": "தினைக்குருவி"}}
+  ],
+  "theme": "theme-nature",
+  "version": "2026-08-17"
+}
