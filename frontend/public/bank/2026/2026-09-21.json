@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-09-21",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: உ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: உள்ளாக"}], "meaning": "உள்ளாக", "reveal": 0, "tiles": ["ப", "ட்", "உ", "ட"], "timeLimitSec": 0, "translationEn": "rationale", "word": "உட்பட"}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: நீரைவெறிச்செலுத்துதல்"}], "meaning": "நீரைவெறிச்செலுத்துதல்", "translationEn": "encaustic", "word": "பாய்ச்சுதல்"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"alsoValid": ["இகலன்", "குலிகம்"], "grid": [["ரு", "ரு", "க", "ட்", "தி", "ம்", "ல்", "ச"], ["பு", "ல", "ணி", "ச", "ட்", "ப", "செ", "க"], ["இ", "ம்", "க", "லி", "கு", "ங்", "இ", "ப"], ["தி", "ச", "லி", "ல்", "த", "த்", "க", "ன்"], ["க", "ரு", "செ", "ந்", "தொ", "டை", "ல", "த"], ["பு", "ல்", "டு", "தொ", "டு", "பு", "ன்", "டை"], ["ங்", "ரு", "ட்", "த", "ரு", "தொ", "த்", "ணி"], ["ல்", "த", "கு", "இ", "ல்", "இ", "செ", "ந்"]], "targets": [{"direction": "left", "meaning": "சாதிலிங்கம். அகழுமிங்குலிக மஞ்சனவரைச் சொரிவன (சீவக. 1898)", "start": {"col": 6, "row": 2}, "word": "இங்குலிகம்"}, {"direction": "up-right", "meaning": "மலசலங்கழிநிலை", "start": {"col": 3, "row": 7}, "word": "இருபுலன்"}, {"direction": "down-right", "meaning": "அபகரிப்பவர்கள்", "start": {"col": 0, "row": 3}, "word": "திருடுதல்"}, {"direction": "left", "meaning": "விலங்குகள் எழுப்பும் பேரொலி", "start": {"col": 6, "row": 3}, "word": "கத்தல்"}, {"direction": "right", "meaning": "சிவந்த மாலை", "start": {"col": 2, "row": 4}, "word": "செந்தொடை"}, {"direction": "left", "meaning": "உண்போன்", "start": {"col": 5, "row": 1}, "word": "பட்சணி"}]}}
+  ],
+  "version": "2026-08-17"
+}
