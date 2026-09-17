@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-09-23",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 1, "kind": "category", "text": "வகை: தொழில்"}, {"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ஊ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: உதவியாளர்"}], "meaning": "உதவியாளர்", "reveal": 0, "tiles": ["ய", "ழி", "ர்", "ஊ"], "timeLimitSec": 0, "translationEn": "servant", "word": "ஊழியர்"}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: நல்ல காலம், நற்காலம்"}], "meaning": "நல்ல காலம், நற்காலம்", "translationEn": "auspicious time", "word": "நல்லகாலம்"}},
+    {"difficulty": "hard", "gameId": "crossword", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "அவரவர்", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "அவ்வவர்"}, {"clue": "மலைப்பாம்பு", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "அயகரம்"}, {"clue": "உலககுரு", "direction": "across", "number": 5, "start": {"col": 0, "row": 5}, "word": "சகத்குரு"}, {"clue": "நன்றாக", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "திவ்வியமாக"}, {"clue": "அரக்கிலொருவகை", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "அவலரக்கு"}], "rows": 6}}
+  ],
+  "version": "2026-08-17"
+}
