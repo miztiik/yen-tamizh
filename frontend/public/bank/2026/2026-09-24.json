@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-09-24",
+  "items": [
+    {"difficulty": "easy", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [1], "choices": ["வே", "ட", "நா", "ன", "தூ", "ஞ்", "தொ", "னோ"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: திருமால்"}], "meaning": "திருமால்", "word": "வானமாமலை"}},
+    {"difficulty": "medium", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["வ", "வெ", "மா", "த்", "உ", "ய", "அ", "ச"], "rungs": [{"meaning": "உறுதி", "word": "திரம்"}, {"alsoValid": ["அதிரம்", "சதிரம்", "திரயம்", "திரவம்", "மாதிரம்", "வெதிரம்"], "meaning": "இரத்தம்", "word": "உதிரம்"}, {"meaning": "அதரம்", "word": "உத்திரம்"}], "timeLimitSec": 0}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"alsoValid": ["மத்திய"], "grid": [["டை", "டி", "மெ", "கு", "மெ", "ய்", "ய", "ன்"], ["கி", "ரா", "ண்", "டை", "றொ", "ஃ", "ப", "ப"], ["ண்", "டி", "ன்", "ல்", "ய்", "ய", "இ", "கை"], ["ல்", "கை", "மி", "ய", "தி", "த்", "ம", "க்"], ["டி", "ரா", "ய", "தி", "நீ", "றொ", "தி", "த்"], ["ச", "ஃ", "மி", "மெ", "ச", "சு", "நீ", "கை"], ["கி", "க்", "ளு", "சு", "ரா", "கு", "தி", "நீ"], ["ளு", "மி", "ம", "ஃ", "இ", "ம", "ல்", "த்"]], "targets": [{"direction": "left", "meaning": "கன்னிப்பெண் ( )", "start": {"col": 6, "row": 3}, "word": "மத்தியமிகை"}, {"direction": "up", "meaning": "இராசதருமம்", "start": {"col": 4, "row": 7}, "word": "இராசநீதி"}, {"direction": "down-left", "meaning": "சிறுசெய்", "start": {"col": 3, "row": 0}, "word": "குண்டில்"}, {"direction": "left", "meaning": "சுளிக்கு", "start": {"col": 3, "row": 6}, "word": "சுளுக்கி"}, {"direction": "left", "meaning": "நான்கடியின் மிக்குவரும் வெண்பா", "start": {"col": 6, "row": 1}, "word": "பஃறொடை"}, {"direction": "right", "meaning": "உண்மையானவன்", "start": {"col": 4, "row": 0}, "word": "மெய்யன்"}]}}
+  ],
+  "version": "2026-08-17"
+}
