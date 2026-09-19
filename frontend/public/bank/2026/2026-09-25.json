@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-09-25",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 1, "kind": "category", "text": "வகை: மருத்துவமனை"}, {"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: சி"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: புண்"}], "meaning": "புண்", "reveal": 0, "tiles": ["கு", "ர", "சி", "ங்"], "timeLimitSec": 0, "translationEn": "itch", "word": "சிரங்கு"}},
+    {"difficulty": "medium", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [2], "choices": ["ப்", "வ", "வூ", "வோ", "ப", "நீ", "யோ", "ளா"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: உறுதிப்பாடு"}], "meaning": "உறுதிப்பாடு", "translationEn": "fixation", "word": "நிலைப்பு"}},
+    {"difficulty": "hard", "gameId": "crossword", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "சிறுநீர்", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "மூத்திரம்"}, {"clue": "உலக்கை", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "கழுக்காணி"}, {"clue": "ஊசியின் வடிவத்தையுடைய", "direction": "across", "number": 5, "start": {"col": 0, "row": 5}, "word": "ஊசிவடிவ"}, {"clue": "புது எழுச்சி", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "புத்தெழுச்சி"}, {"clue": "குரங்கை ஆடச்செய்து அல்லது வித்தைகாட்டச் செய்து வசிப்பவன்", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "குரங்காட்டி"}], "rows": 6}}
+  ],
+  "version": "2026-08-17"
+}
