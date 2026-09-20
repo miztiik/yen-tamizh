@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-09-26",
+  "items": [
+    {"difficulty": "easy", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["ய", "த்", "ஈ", "ல", "த", "நை", "யை", "ட"], "rungs": [{"meaning": "பியர்", "word": "பீர்"}, {"alsoValid": ["பீடர்"], "meaning": "காண்க: பீதர்பசந்து ( i", "word": "பீதர்"}, {"meaning": "மாங்கனிகளில் ஒரு வகைப்பழம்", "word": "பீத்தர்"}], "timeLimitSec": 0}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: வாழ்க்கையில் இணைந்தவர்"}], "meaning": "வாழ்க்கையில் இணைந்தவர்", "translationEn": "spouse", "word": "வாழ்விணையர்"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"grid": [["க", "ரி", "க", "கு", "ளி", "ண்", "ப", "ர"], ["ளி", "வெ", "டு", "க", "நு", "தே", "ழி", "வி"], ["வி", "நி", "சி", "டு", "நி", "ண்", "லை", "கா"], ["கு", "ய", "ங்", "ப", "சி", "ர", "கு", "ளி"], ["ல்", "று", "கா", "கா", "ரி", "வெ", "ம்", "ழி"], ["ய", "தே", "ர", "த", "ல்", "ம்", "வெ", "ப"], ["ரி", "ர", "ம்", "ழி", "தே", "று", "த", "லை"], ["வி", "ங்", "று", "சி", "டு", "ம்", "ங்", "நு"]], "targets": [{"direction": "down", "meaning": "அலங்காரம்", "start": {"col": 2, "row": 2}, "word": "சிங்காரம்"}, {"direction": "left", "meaning": "வானம்", "start": {"col": 3, "row": 1}, "word": "கடுவெளி"}, {"direction": "right", "meaning": "ஆறுதல்", "start": {"col": 4, "row": 6}, "word": "தேறுதலை"}, {"direction": "down-right", "meaning": "நிறைய", "start": {"col": 4, "row": 2}, "word": "நிரம்ப"}, {"direction": "down-right", "meaning": "<!---# குறியீட்டிற்கு அடுத்து, தமிழில் விளக்கம் எழுதி", "start": {"col": 4, "row": 1}, "word": "நுண்குழி"}, {"direction": "up", "meaning": "ஒளி", "start": {"col": 0, "row": 7}, "word": "விரியல்"}]}}
+  ],
+  "version": "2026-08-17"
+}
