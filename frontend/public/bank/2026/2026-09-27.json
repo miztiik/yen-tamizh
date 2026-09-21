@@ -1,0 +1,22 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-09-27",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: க"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: கருமை"}], "meaning": "கருமை", "reveal": 0, "tiles": ["ச", "ரி", "ல்", "க"], "timeLimitSec": 0, "translationEn": "black-earth", "word": "கரிசல்"}},
+    {"difficulty": "medium", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [3], "choices": ["ரு", "னி", "ன", "றை", "ல்", "ழு", "ம்", "து"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: தவழ்வன"}], "meaning": "தவழ்வன", "translationEn": "reptile", "word": "ஊர்வன"}},
+    {"difficulty": "hard", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [2, 3], "choices": ["கு", "பு", "வீ", "ங்", "க்", "ம்", "டெ", "ற்"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: ஆப்பிரிக்காவில் உள்ள கருப்பு மற்றும் வெள்ளை நிறக் கோடுகளை உடைய ஒரு விலங்கு"}], "meaning": "ஆப்பிரிக்காவில் உள்ள கருப்பு மற்றும் வெள்ளை நிறக் கோடுகளை உடைய ஒரு விலங்கு", "translationEn": "Zebra", "word": "வரிக்குதிரை"}}
+  ],
+  "theme": "theme-nature",
+  "version": "2026-08-17"
+}
