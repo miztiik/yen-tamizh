@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-09-28",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ந"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: இடையில்"}], "meaning": "இடையில்", "reveal": 0, "tiles": ["வே", "ந", "டு"], "timeLimitSec": 0, "translationEn": "inter(2), prep.,", "word": "நடுவே"}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: எள் உருண்டை"}], "meaning": "எள் உருண்டை", "word": "எள்ளுருண்டை"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"alsoValid": ["சமரம்", "நாயகன்"], "grid": [["ம்", "து", "நா", "மி", "ச்", "ஈ", "ச", "ப"], ["தி", "தா", "தி", "கு", "ச்", "ன்", "ப", "த்"], ["ற்", "ப", "ல", "ச", "ல", "க", "ய", "தா"], ["ஈ", "ப", "ம", "வ", "ய", "ய", "க", "வ"], ["தி", "ர", "ர", "ப", "ஞ்", "நா", "ப", "து"], ["ம்", "ம", "த்", "மி", "ன்", "பா", "நா", "ச"], ["ழி", "க", "ர", "ப", "ஞ்", "ச", "மி", "ச"], ["ப", "க", "கு", "பா", "ழி", "ப", "ற்", "க"]], "targets": [{"direction": "down-left", "meaning": "ஒரு வகை மரம்; ஈஞ்சு மரம்", "start": {"col": 5, "row": 0}, "word": "ஈச்சமரம்"}, {"direction": "up", "meaning": "அவைத்தலைவன்", "start": {"col": 5, "row": 6}, "word": "சபாநாயகன்"}, {"direction": "down", "meaning": "எண்ணிக்கையில் பத்தாவது இடத்தில் வருவது.", "start": {"col": 7, "row": 0}, "word": "பத்தாவது"}, {"direction": "left", "meaning": "ஒரு பெண்ணுடன் பலவந்தமாக உடலுறவு கொள்", "start": {"col": 7, "row": 7}, "word": "கற்பழி"}, {"direction": "down-left", "meaning": "குலதத்துக்குத் தலைவன்", "start": {"col": 3, "row": 1}, "word": "குலபதி"}, {"direction": "right", "meaning": "பார்வதி", "start": {"col": 3, "row": 6}, "word": "பஞ்சமி"}]}}
+  ],
+  "version": "2026-08-17"
+}
