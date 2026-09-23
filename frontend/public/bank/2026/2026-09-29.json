@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-09-29",
+  "items": [
+    {"difficulty": "easy", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [1], "choices": ["நோ", "ணை", "ழ்", "மோ", "ரி", "த்", "ரா", "லீ"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: குடியிருப்பு"}], "meaning": "குடியிருப்பு", "translationEn": "park", "word": "வாழ்விடம்"}},
+    {"difficulty": "medium", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["சி", "ற்", "ந்", "ம்", "ய", "ன்", "ழோ", "ர"], "rungs": [{"meaning": "அண்ணி", "word": "மதனி"}, {"alsoValid": ["தனிமம்", "மந்தனி", "மனிதன்"], "meaning": "மனிதர்கள், அவர்களின் நலன்கள், விழுமியங்கள், கண்ணியம் முதலியவற்றுக்கு முதன்மை தருதல்; மனிதநேயம்", "word": "மனிதம்"}, {"meaning": "தங்கம்", "word": "தமனியம்"}], "timeLimitSec": 0}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"alsoValid": ["கிடைத்த", "குழம்பு"], "grid": [["து", "ரு", "ற்", "மு", "ய", "ன்", "று", "லை"], ["ய்", "த", "ல்", "த", "த்", "டை", "கி", "நி"], ["றி", "த்", "ழ", "ல்", "த்", "றி", "ப", "த்"], ["மு", "எ", "ய்", "ப்", "ப", "ன்", "றி", "தி"], ["தி", "வ", "கி", "கை", "கு", "ர்", "டை", "பொ"], ["ய", "ய", "எ", "லை", "நி", "று", "ய", "கை"], ["வ", "க", "ம்", "ப்", "து", "த்", "ரு", "பொ"], ["ர்", "பு", "பு", "ம்", "ழ", "கு", "ற்", "க"]], "targets": [{"direction": "right", "meaning": "முள்ளம்பன்றி", "start": {"col": 1, "row": 3}, "word": "எய்ப்பன்றி"}, {"direction": "left", "meaning": "புவியுள் உருகிய நிலையில் காணப்படும் பொருள்.கற்குழம்பு புவியிலிருந்து எரிமலை வழியாக வெளிப்படும் போது எறி கற்குழம்பு என்ப்படுகிறது", "start": {"col": 7, "row": 7}, "word": "கற்குழம்பு"}, {"direction": "left", "meaning": "கிடைக்கின்ற நிலை", "start": {"col": 6, "row": 1}, "word": "கிடைத்தல்"}, {"direction": "left", "meaning": "தலைவனேனும் தலைவியேனும் இறந்தபின் அவர் ஆயத்தார் மூதலானோர் செயலற்று மிகவருந்தியமை கூறும் புறத்துறை", "start": {"col": 7, "row": 5}, "word": "கையறுநிலை"}, {"direction": "down", "meaning": "கிழவர்", "start": {"col": 0, "row": 3}, "word": "முதியவர்"}, {"direction": "left", "meaning": "அமையச்செய்", "start": {"col": 7, "row": 6}, "word": "பொருத்து"}]}}
+  ],
+  "version": "2026-08-17"
+}
