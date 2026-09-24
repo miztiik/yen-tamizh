@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-09-30",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: த"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: பொடி"}], "meaning": "பொடி", "reveal": 0, "tiles": ["வி", "த", "டு"], "timeLimitSec": 0, "translationEn": "bran", "word": "தவிடு"}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: வேலுடன்கூடிய குமரக்கடவுள்"}], "meaning": "வேலுடன்கூடிய குமரக்கடவுள்", "word": "பழனிவேலன்"}},
+    {"difficulty": "hard", "gameId": "crossword", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "கடைதல் முதலிய வற்றாற் குழையச்செய்தல்", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "மசித்தல்"}, {"clue": "உயர்த்துதல்", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "தூக்குதல்"}, {"clue": "தும்பைவகை ( )", "direction": "across", "number": 5, "start": {"col": 0, "row": 5}, "word": "முடிதும்பை"}, {"clue": "நாட்டின் சின்னமாக இருப்பு கம்பில் ஏற்றப்படுவது.", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "தேசியக்கொடி"}, {"clue": "மரபுரிமை", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "சுதந்தரம்"}], "rows": 6}}
+  ],
+  "version": "2026-08-17"
+}
