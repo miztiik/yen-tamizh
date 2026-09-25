@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-10-01",
+  "items": [
+    {"difficulty": "easy", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["லி", "ஆ", "ச", "மி", "ரி", "பா", "நி", "சா"], "rungs": [{"meaning": "அங்கம்.", "word": "காயம்"}, {"alsoValid": ["காசாயம்", "காரியம்", "காலியம்", "சகாயம்", "நிகாயம்", "பாகாயம்"], "meaning": "கான்மியம்", "word": "காமியம்"}, {"meaning": "இப்பிறப்பிலே செய்யும் புண்ணியபாவங்கள்", "word": "ஆகாமியம்"}], "timeLimitSec": 0}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "meaning": "எகிப்தியன் அல்லது எகிப்தில் பூர்விகமாக வசிப்பவன்", "translationEn": "Egyptian", "word": "எகிப்தியன்"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"grid": [["மூ", "மூ", "பி", "ட", "ர்", "த்", "த", "லை"], ["ங்", "த்", "சி", "ள்", "பு", "சி", "பை", "லு"], ["கி", "ங்", "ல", "பி", "ச்", "கோ", "பு", "தி"], ["ல", "மே", "ப்", "சி", "த", "ப்", "ரி", "தி"], ["ரி", "ரி", "லு", "மே", "மி", "த", "ரி", "பி"], ["சி", "ப்", "ற்", "ர", "ற்", "த்", "ப்", "லை"], ["பை", "கோ", "பி", "ல்", "த", "மி", "ர", "சி"], ["ள்", "சி", "ட", "ல்", "கி", "த்", "ச்", "ர்"]], "targets": [{"direction": "down-left", "meaning": "சின்னம்மை; வசூரி வகை", "start": {"col": 5, "row": 1}, "word": "சிச்சிலுப்பை"}, {"direction": "right", "meaning": "காண்க: பிடர் (பிங்.)", "start": {"col": 2, "row": 0}, "word": "பிடர்த்தலை"}, {"direction": "down", "meaning": "மூங்கில் விதை; மூங்கிற்கொட்டை", "start": {"col": 0, "row": 0}, "word": "மூங்கிலரிசி"}, {"direction": "down-left", "meaning": "அலைத்தல்", "start": {"col": 7, "row": 3}, "word": "திரித்தல்"}, {"direction": "up-right", "meaning": "அதிசயம்", "start": {"col": 2, "row": 6}, "word": "பிரமிப்பு"}, {"direction": "down-left", "meaning": "எடுத்துக்காட்டு", "start": {"col": 3, "row": 4}, "word": "மேற்கோள்"}]}}
+  ],
+  "version": "2026-08-17"
+}
