@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-10-02",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 1, "kind": "category", "text": "வகை: உடை"}, {"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: கை"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: கைக்கவசம்"}], "meaning": "கைக்கவசம்", "reveal": 0, "tiles": ["யு", "றை", "கை"], "timeLimitSec": 0, "translationEn": "buckshee, buckshish", "word": "கையுறை"}},
+    {"difficulty": "medium", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [1], "choices": ["அ", "வ", "ட்", "சோ", "மோ", "க", "ண்", "த்"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: சம்பா"}], "meaning": "சம்பா", "translationEn": "cobweb", "word": "ஒட்டடை"}},
+    {"difficulty": "hard", "gameId": "crossword", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "தென்மேற்கு ஆசியாவிலுள்ள ஒரு தேசம்", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "அர்மேனியா"}, {"clue": "யோகசிந்தையுடையவன் ( )", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "யோகபரன்"}, {"clue": "மின்சக்தியை ஓரிடத்திலிருந்து, வேற்றிடம் கடத்தும் கம்பி", "direction": "across", "number": 5, "start": {"col": 0, "row": 5}, "word": "மின்கம்பி"}, {"clue": "பிருகுவின் வழித் தோன்றல் சுக்கிரன்", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "பார்க்கவன்"}, {"clue": "சூரியனைச் சுற்றி வரும் இரண்டாவது பெரிய கிரகம்.", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "சனிகிரகம்"}], "rows": 6}}
+  ],
+  "version": "2026-08-17"
+}
