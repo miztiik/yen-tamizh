@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-10-03",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 1, "kind": "category", "text": "வகை: போக்குவரத்து"}, {"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ப"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: வட்ட வடிவில் உள்ள படகு. நீளமான கழியைக் (கொம்பைக்) கொண்டு நீரின் அடியே உள்ள நிலத்தை உந்தி நகர்த்தும் படகு; பெரும்பாலும் ஆற்றைக் கடக்கப் பயன்படுவது"}], "meaning": "வட்ட வடிவில் உள்ள படகு. நீளமான கழியைக் (கொம்பைக்) கொண்டு நீரின் அடியே உள்ள நிலத்தை உந்தி நகர்த்தும் படகு; பெரும்பாலும் ஆற்றைக் கடக்கப் பயன்படுவது", "reveal": 0, "tiles": ["ப", "ச", "ரி", "ல்"], "timeLimitSec": 0, "translationEn": "bateau", "word": "பரிசல்"}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: மரத்தினாலான ஓர் ஆயுதம்"}], "meaning": "மரத்தினாலான ஓர் ஆயுதம்", "translationEn": "bludgeon", "word": "குண்டாந்தடி"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"alsoValid": ["வட்டம்", "வேட்டம்"], "grid": [["ட்", "ப்", "ர", "வே", "ட", "ளி", "வ", "ல்"], ["ணா", "ம்", "ட", "ட்", "வ", "ணா", "நோ", "ம்"], ["ட", "ளி", "வெ", "ட", "ட்", "வெ", "ப்", "ப"], ["நு", "வெ", "ம", "ம்", "ப", "வ", "ழ", "ம்"], ["ம்", "ர", "ம", "சு", "ச்", "ந", "சொ", "ச்"], ["ம்", "வே", "ர்", "ச்", "சொ", "ல்", "ழ", "ச்"], ["சு", "நோ", "வ", "வ", "வெ", "பு", "து", "து"], ["ந", "நு", "து", "ப்", "பு", "ட்", "ர்", "ல்"]], "targets": [{"direction": "left", "meaning": "எட்டி முதலிய நஞ்சுள்ள மரம்", "start": {"col": 5, "row": 4}, "word": "நச்சுமரம்"}, {"direction": "left", "meaning": "சிறுகுற்றங்கள் காணுந்தன்மை", "start": {"col": 6, "row": 1}, "word": "நோணாவட்டம்"}, {"direction": "left", "meaning": "திறந்த வெளி", "start": {"col": 5, "row": 2}, "word": "வெட்டவெளி"}, {"direction": "right", "meaning": "சொல்லின் அடிப்படை மூல வடிவம்", "start": {"col": 1, "row": 5}, "word": "வேர்ச்சொல்"}, {"direction": "right", "meaning": "தணிப்பு", "start": {"col": 1, "row": 7}, "word": "நுதுப்பு"}, {"direction": "right", "meaning": "துகிர்", "start": {"col": 4, "row": 3}, "word": "பவழம்"}]}}
+  ],
+  "version": "2026-08-17"
+}
