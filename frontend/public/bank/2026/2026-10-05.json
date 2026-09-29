@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-10-05",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: அ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: அளவு"}], "meaning": "அளவு", "reveal": 0, "tiles": ["ல", "அ", "கு"], "timeLimitSec": 0, "translationEn": "bill", "word": "அலகு"}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: ஆற்றிலிருந்து பாசனத்திற்காக வெட்டிய கால்வாய்"}], "meaning": "ஆற்றிலிருந்து பாசனத்திற்காக வெட்டிய கால்வாய்", "translationEn": "creek", "word": "ஆற்றுக்கால்"}},
+    {"difficulty": "hard", "gameId": "crossword", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "இருபத்தைந்து இருக்கைகள் கொண்ட வாகனம்", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "சிற்றுந்து"}, {"clue": "கையை எடுத்து உயர வீசுதல்", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "கரவாரம்"}, {"clue": "பூமியிற் புதைந்து கிடக்கும் நிதி", "direction": "across", "number": 5, "start": {"col": 0, "row": 5}, "word": "புதைபொருள்"}, {"clue": "சித்தரத்தைச் செடி/மருந்து வகை", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "சிற்றரத்தை"}, {"clue": "வெண்முத்து", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "சந்திரகுரு"}], "rows": 6}}
+  ],
+  "version": "2026-08-17"
+}
