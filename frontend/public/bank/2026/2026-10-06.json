@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-10-06",
+  "items": [
+    {"difficulty": "easy", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [2], "choices": ["ணி", "மீ", "சு", "த்", "டே", "சீ", "ழ்", "ணு"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: சிங்கம்"}], "meaning": "சிங்கம்", "translationEn": "camkerous", "word": "அரித்து"}},
+    {"difficulty": "medium", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["ழ", "க்", "ர", "ல", "க", "னு", "ண", "ன"], "rungs": [{"meaning": "இன்பம் ஏமுற வினிதி னோம்பி ( விபீட. 114)", "word": "ஏம்"}, {"alsoValid": ["ஏணம்", "ஏனம்", "ஏனும்", "ஏலம்"], "meaning": "அதிகம்", "word": "ஏகம்"}, {"alsoValid": ["ஏரகம்", "ஏழகம்"], "meaning": "அன்பு", "word": "ஏக்கம்"}], "timeLimitSec": 0}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"grid": [["ம்", "ண்", "ல்", "து", "ம", "ய", "லி", "பொ"], ["ல்", "ய", "ண", "த", "ழு", "தெ", "க", "ழு"], ["து", "ஒ", "ம", "த", "ழு", "ய", "தெ", "பொ"], ["தெ", "இ", "ல்", "ச", "இ", "தொ", "க", "து"], ["ண்", "ம்", "ண", "ல்", "ர்", "யா", "யா", "வி"], ["ண", "ம", "கு", "க்", "லி", "லி", "தொ", "ய"], ["ர்", "ண", "வி", "ல்", "கு", "ண", "த", "ல்"], ["தொ", "யா", "ஒ", "ர்", "ல்", "ச", "க்", "பொ"]], "targets": [{"direction": "up-right", "meaning": "மெலிந்த தோற்றத்தில்", "start": {"col": 2, "row": 7}, "word": "ஒல்லியாக"}, {"direction": "down", "meaning": "பலவற்றிற்குப் பொதுவாகவுள்ள குணம் ( 1", "start": {"col": 7, "row": 2}, "word": "பொதுவியல்"}, {"direction": "down-right", "meaning": "இசைவு", "start": {"col": 1, "row": 3}, "word": "இணக்கு"}, {"direction": "up-left", "meaning": "உபயோகம்", "start": {"col": 3, "row": 3}, "word": "சமயம்"}, {"direction": "down", "meaning": "அறிவில்லாதவர்", "start": {"col": 0, "row": 3}, "word": "தெண்ணர்"}, {"direction": "up-left", "meaning": "வணங்குதல்", "start": {"col": 5, "row": 3}, "word": "தொழுதல்"}]}}
+  ],
+  "version": "2026-08-17"
+}
