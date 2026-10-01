@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-10-07",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: க"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: (பெ) - கடற்கரைப்பக்கத்து வாழும் வலைஞன்"}], "meaning": "(பெ) - கடற்கரைப்பக்கத்து வாழும் வலைஞன்", "reveal": 0, "tiles": ["யா", "க", "ரை", "ன்"], "timeLimitSec": 0, "translationEn": "symphile", "word": "கரையான்"}},
+    {"difficulty": "medium", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [4], "choices": ["ல", "ரோ", "மூ", "பொ", "ய", "ம்", "ணா", "ய்"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: இந்திய-ஐரோப்பிய மொழிக் குடும்பத்தில் உரோமான்சு மொழிக் கிளையின் ஒரு மொழி"}], "meaning": "இந்திய-ஐரோப்பிய மொழிக் குடும்பத்தில் உரோமான்சு மொழிக் கிளையின் ஒரு மொழி", "translationEn": "French", "word": "பிரான்சியம்"}},
+    {"difficulty": "hard", "gameId": "crossword", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "காண்க: மூலபரிஷத்து ( 134.)", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "மூலபருடை"}, {"clue": "வலமாகச் சுழலுகை ( )", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "வலஞ்சுழி"}, {"clue": "ஊதிடு கொம்பு", "direction": "across", "number": 5, "start": {"col": 0, "row": 5}, "word": "ஊதுகொம்பு"}, {"clue": "கலக்கமுறச் செய்", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "அலமலத்து"}, {"clue": "எருக்கஞ்செடி", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "அருச்சுனம்"}], "rows": 6}}
+  ],
+  "version": "2026-08-17"
+}
