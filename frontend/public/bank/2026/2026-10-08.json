@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-10-08",
+  "items": [
+    {"difficulty": "easy", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["மே", "னி", "ளே", "கை", "உ", "மை", "க", "ணி"], "rungs": [{"meaning": "அட்டவணை", "word": "பட்டி"}, {"alsoValid": ["உட்படி", "பட்டிகை", "பட்டிணி", "பட்டிமை"], "meaning": "உபவாசம்", "word": "பட்டினி"}, {"meaning": "நீர் உறைந்து கட்டியாகக் காணப்படும் நிலை.", "word": "பனிகட்டி"}], "timeLimitSec": 0}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: முப்பரிமாணம்"}], "meaning": "முப்பரிமாணம்", "word": "முத்திரட்சி"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"alsoValid": ["கட்டுமா", "கம்மல்"], "grid": [["வ", "ர", "ஒ", "ட்", "ண", "ம்", "ரு", "அ"], ["லெ", "மா", "டு", "ட்", "க", "ரு", "டு", "ம"], ["ப்", "ற்", "பு", "அ", "டு", "ம்", "ரு", "ரு"], ["டி", "ற", "ட்", "ப்", "ண", "ரு", "ம", "த"], ["டி", "ர", "த", "க", "டு", "ச", "வ", "ல்"], ["ட்", "ச", "நா", "பு", "தி", "லெ", "நா", "ம்"], ["ரு", "ன்", "மா", "ல்", "ற", "ல்", "ல்", "ம்"], ["தி", "க", "ற்", "ன்", "டு", "ம", "ஒ", "க"]], "targets": [{"direction": "down-right", "meaning": "மரவிக்கிரகம் (யாழ். அக.)", "start": {"col": 2, "row": 0}, "word": "ஒட்டுருவம்"}, {"direction": "up-left", "meaning": "கல்லை யெடுத்தல் , சாவுச் சடங்கில் நிறுத்திய கல்லை யெடுத்தல்", "start": {"col": 7, "row": 7}, "word": "கல்லெடுப்பு"}, {"direction": "down", "meaning": "பகைவேந்தன்", "start": {"col": 1, "row": 1}, "word": "மாற்றரசன்"}, {"direction": "down", "meaning": "அடங்குதல்", "start": {"col": 7, "row": 0}, "word": "அமருதல்"}, {"direction": "up", "meaning": "கண்", "start": {"col": 0, "row": 7}, "word": "திருட்டி"}, {"direction": "up-right", "meaning": "நறும்பண்டவகை", "start": {"col": 2, "row": 5}, "word": "நாகணம்"}]}}
+  ],
+  "version": "2026-08-17"
+}
