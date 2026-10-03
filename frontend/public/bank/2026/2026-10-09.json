@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-10-09",
+  "items": [
+    {"difficulty": "easy", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [2], "choices": ["பே", "ர", "ளி", "டோ", "றா", "ட", "ச", "வ"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: ஆண்டவன்"}], "meaning": "ஆண்டவன்", "translationEn": "deity", "word": "தெய்வம்"}},
+    {"difficulty": "medium", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["மி", "யை", "ப்", "ளை", "தா", "க", "ல்", "த்"], "rungs": [{"meaning": "அறிவில்லாதவர்", "word": "ஆதர்"}, {"alsoValid": ["ஆப்தர்"], "meaning": "அணிதல்", "word": "ஆர்தல்"}, {"meaning": "மறைத்தல்", "word": "ஆர்த்தல்"}], "timeLimitSec": 0}},
+    {"difficulty": "hard", "gameId": "crossword", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "பணம்/செல்வம் சம்பாதி", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "பொருளீட்டு"}, {"clue": "பக்குவம் கெடுகை", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "பதனழிவு"}, {"clue": "காண்க: மாரியம்மன்", "direction": "across", "number": 5, "start": {"col": 0, "row": 5}, "word": "மாரியம்மை"}, {"clue": "திருமுதுகுன்றம்", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "விருத்தகிரி"}, {"clue": "தீயசெயல், வன்கொடுமை", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "அட்டூழியம்"}], "rows": 6}}
+  ],
+  "version": "2026-08-17"
+}
