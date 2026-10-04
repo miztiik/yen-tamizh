@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-10-10",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 1, "kind": "category", "text": "வகை: தொழில்"}, {"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ந"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: நடுநிலையாளர்"}], "meaning": "நடுநிலையாளர்", "reveal": 0, "tiles": ["டு", "வ", "ர்", "ந"], "timeLimitSec": 0, "translationEn": "arbiter", "word": "நடுவர்"}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: எந்நாளும்"}], "meaning": "எந்நாளும்", "word": "எற்றைக்கும்"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"alsoValid": ["உறுப்பா"], "grid": [["லா", "வி", "வி", "ட்", "டி", "ல்", "உ", "ர்"], ["உ", "று", "ப்", "பா", "ண்", "மை", "டி", "ர்"], ["ள", "ன்", "பா", "ல்", "ண்", "த", "பா", "வா"], ["ல்", "க", "க", "த", "ரு", "ன்", "ர்", "க"], ["த", "பா", "லா", "டு", "தெ", "டு", "ப்", "ண்"], ["ட்", "தெ", "வ", "ண்", "பா", "மை", "ஆ", "வ"], ["ல்", "அ", "ஆ", "தெ", "தெ", "ல்", "டு", "ர்"], ["அ", "ரு", "வா", "ள", "ர்", "பா", "வ", "று"]], "targets": [{"direction": "right", "meaning": "ஒரு நிறுவனம் அல்லது அமைப்பில் ஒருவர் உறுப்பினராக உள்ள நிலை", "start": {"col": 0, "row": 1}, "word": "உறுப்பாண்மை"}, {"direction": "right", "meaning": "அகத்தியனாரால் தென்னாட்டிற் குடியேற்றப்பட்ட ஒரு சாதியார் (தொல்காப்பியம் பாயி.உரை.)", "start": {"col": 0, "row": 7}, "word": "அருவாளர்"}, {"direction": "up", "meaning": "இரத்தல்", "start": {"col": 3, "row": 6}, "word": "தெண்டுதல்"}, {"direction": "up", "meaning": "ஆசையாக", "start": {"col": 2, "row": 6}, "word": "ஆவலாக"}, {"direction": "up-right", "meaning": "தென்னாடு", "start": {"col": 4, "row": 4}, "word": "தென்பார்"}, {"direction": "right", "meaning": "அந்துப்பூச்சி, வெட்டுக்கிளி, பெரிய வெட்டுக்கிளி ஆகிய பூச்சியினங்களுக்கான பொதுப்பெயர்", "start": {"col": 2, "row": 0}, "word": "விட்டில்"}]}}
+  ],
+  "version": "2026-08-17"
+}
