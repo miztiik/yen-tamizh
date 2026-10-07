@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-10-13",
+  "items": [
+    {"difficulty": "easy", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["ளூ", "யி", "ளெ", "ட்", "ற்", "டை", "ர்", "சொ"], "rungs": [{"meaning": "அதிசயவிரக்கச்சொல் (தொல்காப்பியம் சொல்.40 உரை)", "word": "அந்தோ"}, {"meaning": "நெல்லி", "word": "அந்தோர்"}, {"meaning": "உறவோர்", "word": "அடைந்தோர்"}], "timeLimitSec": 0}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: எழுத்திலக்கணம் கூறும் நூற்பிரிவு"}], "meaning": "எழுத்திலக்கணம் கூறும் நூற்பிரிவு", "word": "எழுத்தியல்"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"alsoValid": ["சத்தன்", "பன்னீர்"], "grid": [["ம்", "ர", "பூ", "ற்", "க", "ச", "ர்", "ம்"], ["ம்", "ல", "ச", "தா", "வே", "ச", "ய", "றி"], ["ப", "ன", "ன", "றி", "ல்", "ல்", "டே", "ம்"], ["ய", "ன்", "த", "த்", "ச", "ட்", "இ", "ர"], ["த்", "வா", "னீ", "த்", "இ", "வே", "ட்", "ன்"], ["னீ", "தா", "வா", "ர்", "ரை", "ல", "ரை", "ம்"], ["க", "ம்", "ப", "ப்", "ப்", "து", "ம்", "டே"], ["பூ", "ம்", "பூ", "த", "து", "பூ", "ப்", "ற்"]], "targets": [{"direction": "up-left", "meaning": "அரசாங்கம்", "start": {"col": 5, "row": 6}, "word": "துரைத்தனம்"}, {"direction": "down-right", "meaning": "ரோசாப்பூ இனத்தைச் சார்ந்த பூ வகை", "start": {"col": 0, "row": 2}, "word": "பன்னீர்ப்பூ"}, {"direction": "up-right", "meaning": "மிகுந்த அன்பு; வாஞ்சை", "start": {"col": 2, "row": 5}, "word": "வாத்சல்யம்"}, {"direction": "left", "meaning": "சூடன்", "start": {"col": 4, "row": 0}, "word": "கற்பூரம்"}, {"direction": "left", "meaning": "திருக்கழுக்குன்றம்", "start": {"col": 4, "row": 1}, "word": "வேதாசலம்"}, {"direction": "up-right", "meaning": "வயல்களினிடையே செல்லும் வரப்புப்பாதை", "start": {"col": 4, "row": 4}, "word": "இட்டேறி"}]}}
+  ],
+  "version": "2026-08-17"
+}
