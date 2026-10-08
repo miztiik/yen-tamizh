@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-10-14",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ஊ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: ஊசலாட்டம்"}], "meaning": "ஊசலாட்டம்", "reveal": 0, "tiles": ["ச", "ஊ", "ல்"], "timeLimitSec": 0, "translationEn": "amplitude", "word": "ஊசல்"}},
+    {"difficulty": "medium", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [5], "choices": ["டை", "பை", "னி", "ல", "ரை", "தி", "து", "னை"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: அமிர்தம்"}], "meaning": "அமிர்தம்", "word": "மூவாமருந்து"}},
+    {"difficulty": "hard", "gameId": "crossword", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "குமளி", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "ஆப்பழம்"}, {"clue": "தளராத பற்றும் நம்பிக்கையும்", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "பற்றுறுதி"}, {"clue": "சடைப்பில்லை", "direction": "across", "number": 5, "start": {"col": 0, "row": 5}, "word": "சடைவில்லை"}, {"clue": "போர் புரியும் கப்பல் படை", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "கப்பற்படை"}, {"clue": "நெகிழச்செய்தல்", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "கழற்றுதல்"}], "rows": 6}}
+  ],
+  "version": "2026-08-17"
+}
