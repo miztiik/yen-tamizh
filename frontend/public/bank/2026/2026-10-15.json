@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-10-15",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 1, "kind": "category", "text": "வகை: கலை"}, {"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: நா"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: கூத்து"}], "meaning": "கூத்து", "reveal": 0, "tiles": ["நா", "ம்", "ட", "க"], "timeLimitSec": 0, "translationEn": "Drama", "word": "நாடகம்"}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: கிண்டல்பேச்சு"}], "meaning": "கிண்டல்பேச்சு", "translationEn": "chaff", "word": "கேலிப்பேச்சு"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"alsoValid": ["செறிப்பு", "வாருதல்"], "grid": [["லை", "ற்", "ம", "று", "வ", "லு", "ம்", "கா"], ["இ", "வு", "ளி", "கா", "ங்", "அ", "ல்", "ல்"], ["த", "ற்", "ரு", "பு", "வ", "ன்", "த", "ப்"], ["ம்", "ளி", "செ", "றி", "அ", "ரு", "வா", "த"], ["ங்", "இ", "வு", "றி", "வா", "லை", "ங்", "ப"], ["செ", "ம", "த", "லை", "ப்", "க", "ம", "வு"], ["க", "று", "த", "ப்", "சா", "பு", "பு", "ம"], ["ப", "சா", "ங்", "லை", "லு", "ப", "த", "ன்"]], "targets": [{"direction": "down-right", "meaning": "இற்செறித்தல்", "start": {"col": 0, "row": 1}, "word": "இற்செறிப்பு"}, {"direction": "up-right", "meaning": "தலைமயிர் சீவுதல்", "start": {"col": 2, "row": 6}, "word": "தலைவாருதல்"}, {"direction": "down-left", "meaning": "(பண) நாணயங்களை உருவாக்கும் தொழிற்கூடம்", "start": {"col": 7, "row": 3}, "word": "தங்கசாலை"}, {"direction": "right", "meaning": "மீட்டும்", "start": {"col": 2, "row": 0}, "word": "மறுவலும்"}, {"direction": "left", "meaning": "அங்காளம்மை", "start": {"col": 5, "row": 1}, "word": "அங்காளி"}, {"direction": "down", "meaning": "செவ்வாய்", "start": {"col": 7, "row": 4}, "word": "பவுமன்"}]}}
+  ],
+  "version": "2026-08-17"
+}
