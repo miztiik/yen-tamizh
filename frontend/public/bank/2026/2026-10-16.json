@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-10-16",
+  "items": [
+    {"difficulty": "easy", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [3], "choices": ["செ", "யே", "ணை", "எ", "பே", "ள்", "னீ", "னி"], "meaning": "அல்பேனிய தொடர்பான", "translationEn": "Albanian", "word": "அல்பேனிய"}},
+    {"difficulty": "medium", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["ணூ", "ய", "பே", "னூ", "தீ", "கெ", "நோ", "ர்"], "rungs": [{"meaning": "ஒரு சிறு மெல்லிய, நீண்ட கொளுத்த, எரிக்க உதவும் பொருள்", "word": "வத்தி"}, {"alsoValid": ["வத்திய"], "meaning": "காண்க : தீவட்டி", "word": "தீவத்தி"}, {"meaning": "எரிபந்தம்", "word": "தீவர்த்தி"}], "timeLimitSec": 0}},
+    {"difficulty": "hard", "gameId": "crossword", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "உட்புண், கடுநோய்", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "உளமாந்தை"}, {"clue": "(பத்து முகம் உடைய) இராவணன்", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "தசமுகன்"}, {"clue": "சார்புறுப்பு", "direction": "across", "number": 5, "start": {"col": 0, "row": 5}, "word": "உபாங்கம்"}, {"clue": "காண்க: மிளகுச்சம்பா", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "மிளகுசம்பா"}, {"clue": "இதுதான் இவ்வளவுதான் என்று துணிந்து கூற முடியாத நிலை.", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "சந்தேகமாக"}], "rows": 6}}
+  ],
+  "version": "2026-08-17"
+}
