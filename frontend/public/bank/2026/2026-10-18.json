@@ -1,0 +1,22 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-10-18",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: எ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: , (பெ) - 6கால்கள் கொண்ட பூச்சியினம்"}], "meaning": ", (பெ) - 6கால்கள் கொண்ட பூச்சியினம்", "reveal": 0, "tiles": ["பு", "எ", "ம்", "று"], "timeLimitSec": 0, "translationEn": "Ant", "word": "எறும்பு"}},
+    {"difficulty": "medium", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [1], "choices": ["வி", "வ", "வா", "க", "ள", "லை", "டு", "கை"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: கோதா"}], "meaning": "கோதா", "translationEn": "guana", "word": "உடும்பு"}},
+    {"difficulty": "hard", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [1, 4], "choices": ["ப்", "னி", "ளி", "ளை", "கி", "தி", "சு", "ல்"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: அரிமஞ்சரி"}], "meaning": "அரிமஞ்சரி", "translationEn": "Indian acalypha", "word": "குப்பைமேனி"}}
+  ],
+  "theme": "theme-nature",
+  "version": "2026-08-17"
+}
