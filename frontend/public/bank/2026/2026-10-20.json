@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-10-20",
+  "items": [
+    {"difficulty": "easy", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["ளி", "தோ", "கீ", "ல்", "நி", "ர்", "ளோ", "டை"], "rungs": [{"meaning": "பௌத்த", "word": "புத்த"}, {"alsoValid": ["புத்தர்", "புத்தளி", "புளித்த"], "meaning": "வீங்கி வெளியே தள்ளிய", "word": "புடைத்த"}, {"meaning": "அடித்தல்", "word": "புடைத்தல்"}], "timeLimitSec": 0}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: சுற்றுச்சுவர்"}], "meaning": "சுற்றுச்சுவர்", "translationEn": "wall", "word": "மதில்சுவர்"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"grid": [["ய்", "நா", "றி", "வெ", "கௌ", "ய்", "ம்", "ப"], ["கே", "அ", "வெ", "கா", "ப", "க", "கௌ", "ணி"], ["ள்", "ள்", "த்", "த்", "ச", "ள்", "த", "நா"], ["ம்", "தி", "வி", "வா", "ன", "த்", "வ்", "செ"], ["றி", "ர்", "ப", "த்", "ணி", "கா", "வ்", "கே"], ["வி", "உ", "க", "ப", "தா", "வ", "செ", "ச"], ["வ", "த்", "ர்", "ப", "ன", "ள்", "த", "ச"], ["உ", "அ", "த்", "ம்", "தி", "ம்", "தா", "வா"]], "targets": [{"direction": "up-right", "meaning": "காணிக்கையாகக்கொடுத்த", "start": {"col": 1, "row": 7}, "word": "அர்பணித்த"}, {"direction": "up-right", "meaning": "பேய்த்தும்மட்டி", "start": {"col": 1, "row": 5}, "word": "உபவாசகம்"}, {"direction": "down-right", "meaning": "வினாத்தாள்", "start": {"col": 0, "row": 1}, "word": "கேள்வித்தாள்"}, {"direction": "down-left", "meaning": "செவ்வகையாக", "start": {"col": 7, "row": 3}, "word": "செவ்வனம்"}, {"direction": "down-left", "meaning": "கவாத்திநகரம்", "start": {"col": 4, "row": 0}, "word": "கௌகாத்தி"}, {"direction": "left", "meaning": "வெறிபிடித்தநாய்", "start": {"col": 3, "row": 0}, "word": "வெறிநாய்"}]}}
+  ],
+  "version": "2026-08-17"
+}
