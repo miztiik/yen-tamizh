@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-10-21",
+  "items": [
+    {"difficulty": "easy", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [3], "choices": ["த்", "டு", "வெ", "னூ", "செ", "த", "ர்", "மெ"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: எளியவர்"}], "meaning": "எளியவர்", "word": "ஆர்த்தர்"}},
+    {"difficulty": "medium", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["ன", "லா", "மு", "ஃ", "ரா", "ப்", "ரி", "ம்"], "rungs": [{"meaning": "சிறுவன்", "word": "பசல்"}, {"alsoValid": ["சப்பல்", "பரிசல்"], "meaning": "தேங்காய்ப் பூ, மிளகாய், உப்பு கொண்டு செய்யப்பட்ட ஒரு வகை உணவு", "word": "சம்பல்"}, {"meaning": "சல்லாபி", "word": "சல்லாபம்"}], "timeLimitSec": 0}},
+    {"difficulty": "hard", "gameId": "crossword", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "நாடோடி", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "ஊர்சுற்றி"}, {"clue": "பேரறிஞர்", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "மகாத்துமா"}, {"clue": "அறுபதாண்டுக் கணக்கில் முப்பத்தோராம் ஆண்டு", "direction": "across", "number": 5, "start": {"col": 0, "row": 5}, "word": "ஏவிளம்பி"}, {"clue": "கொற்றவை", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "துர்க்காதேவி"}, {"clue": "சமநீளமும் சமகோணமுமுடைய உருவம்", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "நாற்சதுரம்"}], "rows": 6}}
+  ],
+  "version": "2026-08-17"
+}
