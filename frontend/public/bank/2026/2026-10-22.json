@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-10-22",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: வி"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: ஒன்றின் ஓரக் கரை"}], "meaning": "ஒன்றின் ஓரக் கரை", "reveal": 0, "tiles": ["வி", "ம்", "ளி", "பு"], "timeLimitSec": 0, "translationEn": "Edge", "word": "விளிம்பு"}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: முனைப்பு இல்லாத"}], "meaning": "முனைப்பு இல்லாத", "translationEn": "dull", "word": "முனைப்பற்ற"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"alsoValid": ["அரிப்பு", "பரிகம்", "விதிப்பு"], "grid": [["ம்", "ப்", "ரி", "ம்", "சி", "போ", "ல", "வ"], ["வி", "கை", "சை", "போ", "ம்", "ல", "சி", "வ"], ["பு", "ப்", "ம்", "பு", "சை", "க", "கா", "ரி"], ["ன்", "அ", "ட்", "மு", "ழு", "ழு", "ம்", "வி"], ["பு", "னி", "ன்", "பு", "த", "த", "ப", "தி"], ["ம்", "னி", "ப்", "தி", "ப", "ட்", "மு", "ப்"], ["கை", "ரி", "ம்", "க", "ரி", "ப", "ப", "பு"], ["அ", "ன்", "கா", "சி", "மு", "ம்", "த", "ட்"]], "targets": [{"direction": "down", "meaning": "அரசு வரி சுமத்தும் முறை", "start": {"col": 7, "row": 1}, "word": "வரிவிதிப்பு"}, {"direction": "up-right", "meaning": "சதையை அரித்துத் தின்னும் புழு", "start": {"col": 0, "row": 7}, "word": "அரிப்புழு"}, {"direction": "up-right", "meaning": "ஒரு காலவளவு , 65 ,536 கணங்கொண்ட காலவகை", "start": {"col": 2, "row": 7}, "word": "காகபதம்"}, {"direction": "left", "meaning": "சிலம்பொலி", "start": {"col": 6, "row": 1}, "word": "சிலம்போசை"}, {"direction": "down", "meaning": "அருள்", "start": {"col": 5, "row": 4}, "word": "தட்பம்"}, {"direction": "down-left", "meaning": "பின்னூட்டம்", "start": {"col": 3, "row": 3}, "word": "முன்னிகை"}]}}
+  ],
+  "version": "2026-08-17"
+}
