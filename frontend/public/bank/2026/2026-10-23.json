@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-10-23",
+  "items": [
+    {"difficulty": "easy", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [3], "choices": ["சை", "டே", "லு", "ச", "டை", "ம்", "வி", "ரு"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: தொங்கக்கூடிய"}], "meaning": "தொங்கக்கூடிய", "translationEn": "laden", "word": "தொங்கும்"}},
+    {"difficulty": "medium", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["னெ", "ல", "க", "ளூ", "லொ", "வ", "ரு", "நூ"], "rungs": [{"meaning": "குருணை", "word": "பரல்"}, {"meaning": "வாழ்த்து", "word": "பரவல்"}, {"meaning": "துயரம்", "word": "பருவரல்"}], "timeLimitSec": 0}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"alsoValid": ["கருத்தா", "சுருக்கு"], "grid": [["ம்", "க", "வா", "தி", "யா", "து", "ப", "ம்"], ["தி", "து", "க", "சு", "னே", "கு", "தி", "ர"], ["ரு", "ழா", "கு", "ரு", "து", "ல", "னே", "க"], ["வ", "து", "ர்", "க்", "த்", "வ", "ழா", "கு"], ["ல", "ரு", "சு", "கு", "ய", "தா", "வ", "த்"], ["கு", "த்", "ப", "வா", "தா", "யா", "து", "ய"], ["ரு", "கூ", "தா", "ர்", "வ", "கு", "தி", "ர"], ["ர்", "க்", "தி", "கூ", "த்", "தி", "யா", "ர்"]], "targets": [{"direction": "down", "meaning": "விலங்குகளைப் பிடித்தற்குரிய கருவிவகை", "start": {"col": 3, "row": 1}, "word": "சுருக்குவார்"}, {"direction": "down", "meaning": "எண்ணிக்கையில் பதினேழாவது இடத்தில் வருவது.", "start": {"col": 6, "row": 0}, "word": "பதினேழாவது"}, {"direction": "right", "meaning": "வைப்பாட்டி", "start": {"col": 3, "row": 7}, "word": "கூத்தியார்"}, {"direction": "down", "meaning": "கோயிலைப் பெருக்கும் துடைப்பம்", "start": {"col": 0, "row": 1}, "word": "திருவலகு"}, {"direction": "up", "meaning": "குகை", "start": {"col": 7, "row": 3}, "word": "குகரம்"}, {"direction": "up", "meaning": "தாயித்து", "start": {"col": 4, "row": 5}, "word": "தாயத்து"}]}}
+  ],
+  "version": "2026-08-17"
+}
