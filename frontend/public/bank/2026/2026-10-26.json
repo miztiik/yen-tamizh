@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-10-26",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: அ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: அசாதாரண நிலை"}], "meaning": "அசாதாரண நிலை", "reveal": 0, "tiles": ["பே", "சி", "லை", "அ"], "timeLimitSec": 0, "translationEn": "cellphone", "word": "அலைபேசி"}},
+    {"difficulty": "medium", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [4], "choices": ["ழ்", "ன்", "சி", "போ", "ழா", "த", "ஞா", "தெ"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: காண்க: புகு"}], "meaning": "காண்க: புகு", "word": "புகுத்துதல்"}},
+    {"difficulty": "hard", "gameId": "crossword", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "(பெ) - = ரொட்டி", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "சப்பாத்தி"}, {"clue": "மேற்றளமுள்ள/மேல்மாடியுள்ள கட்டிடம்", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "மச்சுவீடு"}, {"clue": "ஒரு செயல் எவ்வித இடையூறுமின்றி மேலே தொடர்ந்து செல்லுதல்.", "direction": "across", "number": 5, "start": {"col": 0, "row": 5}, "word": "தடையின்றி"}, {"clue": "ஒரு பலகாரம்", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "உப்புச்சீடை"}, {"clue": "போர்வீரன்", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "யுத்தவீரன்"}], "rows": 6}}
+  ],
+  "version": "2026-08-17"
+}
