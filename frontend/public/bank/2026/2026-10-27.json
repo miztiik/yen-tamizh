@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-10-27",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: யா"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: மூன்று யாமங்களையுடையது"}], "meaning": "மூன்று யாமங்களையுடையது", "reveal": 0, "tiles": ["மி", "யா", "னி"], "timeLimitSec": 0, "word": "யாமினி"}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: சிறப்பு அல்லது கீர்த்தி வாயந்த்து."}], "meaning": "சிறப்பு அல்லது கீர்த்தி வாயந்த்து.", "translationEn": "epic poem", "word": "மகாகாவியம்"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"grid": [["லை", "ர்", "டி", "ப்", "த", "பி", "ண", "வ"], ["கா", "ஆ", "ல", "னு", "ஆ", "ன்", "னு", "ர"], ["ட்", "ச", "ச", "வ", "ட்", "ண", "ண", "பா"], ["நா", "ன்", "கா", "ம்", "பா", "வ", "வ", "நா"], ["வ", "ச", "பு", "வ", "லை", "த", "கா", "ம்"], ["வ", "ர்", "பு", "ம்", "ர", "பி", "வ", "பெ"], ["பா", "ட்", "ச", "வ", "ப்", "பெ", "ட்", "டி"], ["த", "பெ", "நா", "ம்", "ப்", "ல", "ட்", "ட்"]], "targets": [{"direction": "right", "meaning": "சவப்பொட்டி", "start": {"col": 2, "row": 6}, "word": "சவப்பெட்டி"}, {"direction": "down-right", "meaning": "அகங்காரம்", "start": {"col": 4, "row": 1}, "word": "ஆணவம்"}, {"direction": "down-left", "meaning": "தனுவினிடம்", "start": {"col": 4, "row": 0}, "word": "தனுசன்"}, {"direction": "up", "meaning": "விடியற்காலம்", "start": {"col": 0, "row": 3}, "word": "நாட்காலை"}, {"direction": "up-left", "meaning": "கரிகாலன்", "start": {"col": 4, "row": 3}, "word": "பாவலர்"}, {"direction": "left", "meaning": "கம்பு", "start": {"col": 5, "row": 5}, "word": "பிரம்பு"}]}}
+  ],
+  "version": "2026-08-17"
+}
