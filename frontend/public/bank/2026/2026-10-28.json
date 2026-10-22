@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-10-28",
+  "items": [
+    {"difficulty": "easy", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [3], "choices": ["தீ", "ய", "தா", "வீ", "லா", "பா", "ட்", "வோ"], "hints": [{"cost": 1, "kind": "category", "text": "வகை: மருத்துவமனை"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: புஜம்"}], "meaning": "புஜம்", "translationEn": "scapula", "word": "தோள்பட்டை"}},
+    {"difficulty": "medium", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["வ", "கொ", "தீ", "ம்", "மீ", "லு", "மா", "னே"], "rungs": [{"meaning": "ஒளிவு", "word": "கரவு"}, {"meaning": "வெண்மை", "word": "கவுரம்"}, {"alsoValid": ["கவுமாரம்"], "meaning": "மேன்மை", "word": "கவுரவம்"}], "timeLimitSec": 0}},
+    {"difficulty": "hard", "gameId": "crossword", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "ஒரு பிரிவின் உள்ளே உள்ள சிறு பகுதி", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "உட்பிரிவு"}, {"clue": "சாத்தனுக்குத் தந்தை", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "சாத்தந்தை"}, {"clue": "(பெ) = கருவேப்பிலை = கறிவேப்பிலை", "direction": "across", "number": 5, "start": {"col": 0, "row": 5}, "word": "கறிவேம்பு"}, {"clue": "விலங்குகளைக் கட்டும் தூண்", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "கட்டுத்தறி"}, {"clue": "தீவட்டி", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "எரிபந்தம்"}], "rows": 6}}
+  ],
+  "version": "2026-08-17"
+}
