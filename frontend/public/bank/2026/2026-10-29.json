@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-10-29",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: நி"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: நிற்கக்கூடிய"}], "meaning": "நிற்கக்கூடிய", "reveal": 0, "tiles": ["ற்", "கி", "நி", "ற"], "timeLimitSec": 0, "translationEn": "standing", "word": "நிற்கிற"}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: கிலியின்மை"}], "meaning": "கிலியின்மை", "translationEn": "fearlessness", "word": "அச்சமின்மை"}},
+    {"difficulty": "hard", "gameId": "crossword", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "நாய் போலத் திரிபவன்", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "சுணங்கன்"}, {"clue": "திருமால், வைகுண்டன்", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "வைகுந்தன்"}, {"clue": "பேச்சுவன்மை", "direction": "across", "number": 5, "start": {"col": 0, "row": 5}, "word": "சொல்வன்மை"}, {"clue": "உள்ளடங்குதல்", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "முணங்குதல்"}, {"clue": "தகுந்தவன்", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "உகந்தவன்"}], "rows": 6}}
+  ],
+  "version": "2026-08-17"
+}
