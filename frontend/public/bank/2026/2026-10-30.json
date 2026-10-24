@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-10-30",
+  "items": [
+    {"difficulty": "easy", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [0], "choices": ["பொ", "பூ", "நெ", "மூ", "ஓ", "வீ", "ம", "வ"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: படிப்படியாய்"}], "meaning": "படிப்படியாய்", "translationEn": "fade", "word": "வரவர"}},
+    {"difficulty": "medium", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["மு", "தூ", "கி", "ண", "ட", "வ", "ச", "ணை"], "rungs": [{"meaning": "தீதுப்பொருள் தரும் ஒரு வடமொழி முன்னொட்டு", "word": "துர்"}, {"alsoValid": ["சதுர்", "துகிர்", "துடர்", "துணர்"], "meaning": "காவி", "word": "துவர்"}, {"alsoValid": ["துணைவர்", "துவசர்", "முதுவர்"], "meaning": "ஒற்றன்", "word": "தூதுவர்"}], "timeLimitSec": 0}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"alsoValid": ["கழுத்து", "குணிதம்", "தம்பம்"], "grid": [["ப", "த", "ரா", "ம்", "த", "ணி", "கு", "த"], ["இ", "சி", "தே", "ழு", "க்", "ம்", "து", "ம்"], ["இ", "றா", "க", "ம்", "ம்", "ச", "தே", "ப"], ["க்", "ஏ", "க்", "க", "ழு", "த்", "து", "ம்"], ["சி", "ரா", "ய", "ப", "உ", "கு", "ம்", "க்"], ["ம்", "ரு", "த", "த்", "இ", "ய", "இ", "ஏ"], ["க", "ணி", "ப", "கு", "க்", "ரு", "இ", "கு"], ["ப", "ச", "உ", "த", "றா", "க", "சி", "ய"]], "targets": [{"direction": "right", "meaning": "இறுமாப்பு", "start": {"col": 1, "row": 3}, "word": "ஏக்கழுத்து"}, {"direction": "left", "meaning": "இயக்கம் , நிலை என்னும் இருவகைக்கும் ஏற்ற இராசி அவை , மிதுனம் , கன்னி , தனுசு , மீனம்", "start": {"col": 4, "row": 4}, "word": "உபயராசி"}, {"direction": "left", "meaning": "வாச்சியப்பொது", "start": {"col": 7, "row": 0}, "word": "தகுணிதம்"}, {"direction": "left", "meaning": "நால்வேதங்களில் ஒன்று", "start": {"col": 6, "row": 6}, "word": "இருக்கு"}, {"direction": "right", "meaning": "வெண்தும்பை", "start": {"col": 0, "row": 2}, "word": "இறாகம்"}, {"direction": "left", "meaning": "நாடு", "start": {"col": 7, "row": 2}, "word": "பதேசம்"}]}}
+  ],
+  "version": "2026-08-17"
+}
