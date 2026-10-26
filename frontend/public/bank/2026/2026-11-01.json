@@ -1,0 +1,22 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-11-01",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: மி"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: மேகங்களின் மோதலால் உருவாகும்  ஒளி"}], "meaning": "மேகங்களின் மோதலால் உருவாகும்  ஒளி", "reveal": 0, "tiles": ["ல்", "ன", "ன்", "மி"], "timeLimitSec": 0, "translationEn": "fire", "word": "மின்னல்"}},
+    {"difficulty": "medium", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: பா"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: மழையின்றி வறண்டு போன, தாவரங்கள் அதிகம் வளராத நிலப் பகுதி"}], "meaning": "மழையின்றி வறண்டு போன, தாவரங்கள் அதிகம் வளராத நிலப் பகுதி", "reveal": 0, "tiles": ["பா", "ம்", "வ", "ன", "லை"], "timeLimitSec": 0, "translationEn": "Desert", "word": "பாலைவனம்"}},
+    {"difficulty": "hard", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [1, 3], "choices": ["கொ", "ட", "ர்", "கா", "மி", "து", "பு", "ழ"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: நீர்க்காக்கை"}], "meaning": "நீர்க்காக்கை", "word": "நீர்க்காகம்"}}
+  ],
+  "theme": "theme-nature",
+  "version": "2026-08-17"
+}
