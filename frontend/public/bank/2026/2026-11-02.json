@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-11-02",
+  "items": [
+    {"difficulty": "easy", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [4], "choices": ["றை", "தா", "டா", "பி", "லி", "யு", "ரி", "ம்"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: இந்தகாலம்"}], "meaning": "இந்தகாலம்", "translationEn": "nowadays", "word": "இக்காலம்"}},
+    {"difficulty": "medium", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["ழ்", "து", "ந", "ப", "டை", "ஏ", "த்", "க்"], "rungs": [{"meaning": "அழிதல்", "word": "படுதல்"}, {"meaning": "அழித்தல்", "word": "படுத்தல்"}, {"meaning": "உண்டாக்குதல்", "word": "படுத்துதல்"}], "timeLimitSec": 0}},
+    {"difficulty": "hard", "gameId": "crossword", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "சூரியன்", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "வெஞ்சுடர்"}, {"clue": "கருத்து, உறுதி முதலியவற்றிற்காக சில காலம் வரை தடைப்படுகிற", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "நீட்டித்த"}, {"clue": "கறிவேம்புமரம்", "direction": "across", "number": 5, "start": {"col": 0, "row": 5}, "word": "கருவேம்பு"}, {"clue": "முட்டையின் மஞ்சணிறமான உள்ளீடு", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "மஞ்சட்கரு"}, {"clue": "உறுதியான மனம்", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "திடசித்தம்"}], "rows": 6}}
+  ],
+  "version": "2026-08-17"
+}
