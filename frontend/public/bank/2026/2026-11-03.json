@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-11-03",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 1, "kind": "category", "text": "வகை: பள்ளி"}, {"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: சு"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: சூன்யம்"}], "meaning": "சூன்யம்", "reveal": 0, "tiles": ["ம்", "சு", "ழி", "ய"], "timeLimitSec": 0, "translationEn": "zero", "word": "சுழியம்"}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: சொல்லுதல்"}], "meaning": "சொல்லுதல்", "translationEn": "speaking", "word": "உரையாடுதல்"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"alsoValid": ["பரப்பு"], "grid": [["மு", "ற", "பா", "ழா", "க்", "கு", "த", "ல்"], ["த", "ப", "கு", "றி", "கு", "க்", "க", "மு"], ["ற்", "ர", "பா", "ல்", "கா", "ம", "ர", "றி"], ["சீ", "மு", "த", "ரை", "றி", "ம", "க்", "க்"], ["ர்", "ரை", "பு", "ப்", "ர", "ப", "ர", "பு"], ["சீ", "கு", "ன்", "ரை", "ப்", "ன்", "ழா", "சி"], ["மு", "கு", "கா", "ற்", "மு", "த", "ர்", "மு"], ["க", "ல்", "நோ", "ன்", "ற", "ல்", "சி", "நோ"]], "targets": [{"direction": "right", "meaning": "பயனற்றதாகச் செய்தல்", "start": {"col": 2, "row": 0}, "word": "பாழாக்குதல்"}, {"direction": "left", "meaning": "பிரச்சாரம்", "start": {"col": 5, "row": 4}, "word": "பரப்புரை"}, {"direction": "left", "meaning": "முகத்திற் றோன்றுங் குறிப்பு", "start": {"col": 7, "row": 1}, "word": "முகக்குறி"}, {"direction": "down", "meaning": "ஈரசைச்சீர் ( யாப். 2.)", "start": {"col": 0, "row": 0}, "word": "முதற்சீர்"}, {"direction": "down-right", "meaning": "நெருஞ்சில்", "start": {"col": 4, "row": 2}, "word": "காமரசி"}, {"direction": "right", "meaning": "தாங்குதல்", "start": {"col": 2, "row": 7}, "word": "நோன்றல்"}]}}
+  ],
+  "version": "2026-08-17"
+}
