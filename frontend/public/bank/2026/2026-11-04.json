@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-11-04",
+  "items": [
+    {"difficulty": "easy", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [4], "choices": ["நை", "சி", "லை", "கோ", "ம்", "வே", "லே", "யூ"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: அதிகம்"}], "meaning": "அதிகம்", "translationEn": "apology", "word": "விளக்கம்"}},
+    {"difficulty": "medium", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["க்", "ளீ", "ம்", "ச", "ரூ", "ல", "ள", "சு"], "rungs": [{"meaning": "நிலப்பிளப்பு", "word": "கமர்"}, {"alsoValid": ["கலமர்", "களமர்", "மகசர்", "மகரூர்", "மகளீர்", "மக்கர்"], "meaning": "கருமம்", "word": "கர்மம்"}, {"meaning": "நற்செயல்", "word": "சுகர்மம்"}], "timeLimitSec": 0}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"grid": [["வி", "ல", "க்", "கு", "சா", "ம", "ந்", "தி"], ["தி", "ன்", "ங்", "ச்", "கு", "அ", "த்", "வே"], ["டி", "மா", "ச்", "ச", "க்", "மா", "ர", "ய்"], ["டி", "ட்", "தி", "ர", "வே", "த்", "ச", "ங்"], ["கு", "ல்", "வெ", "ம்", "க்", "தி", "ம்", "கு"], ["ய்", "ட்", "கு", "கு", "சா", "ய", "வி", "ழ"], ["ம", "கு", "ல", "ச்", "ற", "ன்", "ந்", "ல்"], ["வெ", "ய", "அ", "ழ", "தி", "வி", "ற", "வி"]], "targets": [{"direction": "down", "meaning": "மந்திரி", "start": {"col": 5, "row": 1}, "word": "அமாத்தியன்"}, {"direction": "up-left", "meaning": "விறகு தறிப்பவன்", "start": {"col": 5, "row": 7}, "word": "விறகுவெட்டி"}, {"direction": "down", "meaning": "புல்லாங்குழல்", "start": {"col": 7, "row": 1}, "word": "வேய்ங்குழல்"}, {"direction": "down", "meaning": "கூர்ச்சர நாடு", "start": {"col": 3, "row": 0}, "word": "குச்சரம்"}, {"direction": "right", "meaning": "செவ்வந்தி", "start": {"col": 4, "row": 0}, "word": "சாமந்தி"}, {"direction": "right", "meaning": "அகற்று", "start": {"col": 0, "row": 0}, "word": "விலக்கு"}]}}
+  ],
+  "version": "2026-08-17"
+}
