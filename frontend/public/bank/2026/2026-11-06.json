@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-11-06",
+  "items": [
+    {"difficulty": "easy", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["க", "னீ", "ம்", "ணை", "ர", "ணு", "சா", "ப்"], "rungs": [{"meaning": "காண்க : பாவம்", "word": "பாபம்"}, {"alsoValid": ["பாப்பம்"], "meaning": "ஆதிசேடனாகிய படுக்கை", "word": "பாம்பணை"}, {"meaning": "அரணை", "word": "பாம்பரணை"}], "timeLimitSec": 0}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: வட்டமான பாறை"}], "meaning": "வட்டமான பாறை", "word": "வட்டப்பாறை"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"alsoValid": ["மருந்து"], "grid": [["க", "ர", "வா", "து", "னி", "ல்", "ன்", "து"], ["ரு", "பூ", "ம்", "த", "பா", "ம", "ப", "ந்"], ["சா", "வா", "ம்", "ர", "ள", "ந்", "ரு", "ரு"], ["அ", "டு", "று", "ம", "வா", "ந்", "ரி", "ம"], ["ப்", "வே", "று", "ப", "டு", "ரு", "வி", "வா"], ["ன்", "பா", "னி", "ப்", "பூ", "ரி", "கு", "சா"], ["ன்", "த", "ந்", "ப", "க", "ப", "கு", "னி"], ["த", "து", "று", "ல்", "வி", "ள", "அ", "வே"]], "targets": [{"direction": "up", "meaning": "(இறவாமல் காக்கும்) தேவாமிர்தம்; சாகாமருந்து", "start": {"col": 7, "row": 5}, "word": "சாவாமருந்து"}, {"direction": "left", "meaning": "கபந்தன்", "start": {"col": 4, "row": 6}, "word": "கபந்தன்"}, {"direction": "up-left", "meaning": "வியாழக்கிழமை", "start": {"col": 6, "row": 5}, "word": "குருவாரம்"}, {"direction": "right", "meaning": "மசாலா உணவுப் பொருள் மற்றும் மசாலா தண்ணீர் ஊற்றி சாப்பிடப்படும் சின்னப் பூரி", "start": {"col": 1, "row": 5}, "word": "பானிப்பூரி"}, {"direction": "left", "meaning": "மட்டில்", "start": {"col": 6, "row": 7}, "word": "அளவில்"}, {"direction": "right", "meaning": "ஒதுங்கு", "start": {"col": 1, "row": 4}, "word": "வேறுபடு"}]}}
+  ],
+  "version": "2026-08-17"
+}
