@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-11-07",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 1, "kind": "category", "text": "வகை: மருத்துவமனை"}, {"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: அ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: ஆடை"}], "meaning": "ஆடை", "reveal": 0, "tiles": ["று", "வை", "அ"], "timeLimitSec": 0, "translationEn": "autoplasty", "word": "அறுவை"}},
+    {"difficulty": "medium", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [1], "choices": ["றா", "கீ", "ணி", "ய", "லை", "ந்", "ச", "ட"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: அழகு"}], "meaning": "அழகு", "translationEn": "beauty", "word": "சௌந்தரியம்"}},
+    {"difficulty": "hard", "gameId": "crossword", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "தேன்குழாய்", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "தேன்குழல்"}, {"clue": "வாள்,ஈர்வாள்", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "இரம்பம்"}, {"clue": "கருமையாதல்", "direction": "across", "number": 5, "start": {"col": 0, "row": 5}, "word": "கறுக்கல்"}, {"clue": "(ஒருவர்) தம் வாழ்க்கையைத் தாமே எடுத்துச்சொல்லும் கூற்றுரை", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "தன்வரலாறு"}, {"clue": "தெளிவின்றிக் கலவரமாக", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "குழப்பமாக"}], "rows": 6}}
+  ],
+  "version": "2026-08-17"
+}
