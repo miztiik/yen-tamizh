@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-11-09",
+  "items": [
+    {"difficulty": "easy", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [1], "choices": ["ள", "ர்", "ச", "சை", "யெ", "சூ", "ழ", "சா"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: குறிப்பிட்ட வடிவத்திற்காக, திரும்ப திரும்ப பயன்படுத்தும் சொற்களின் தொகுப்பு, வாக்கியங்கள் அல்லது நிரல்கள்"}], "meaning": "குறிப்பிட்ட வடிவத்திற்காக, திரும்ப திரும்ப பயன்படுத்தும் சொற்களின் தொகுப்பு, வாக்கியங்கள் அல்லது நிரல்கள்", "translationEn": "cast", "word": "வார்ப்புரு"}},
+    {"difficulty": "medium", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["த்", "ன்", "மு", "ல்", "ன", "யா", "ம்", "ரா"], "rungs": [{"meaning": "சிற்பி", "word": "தபதி"}, {"alsoValid": ["தனபதி", "தம்பதி", "தராபதி", "பதிதன்", "பதிதல்", "யாதபதி"], "meaning": "ஒழுங்கு", "word": "பத்ததி"}, {"alsoValid": ["பதமுத்தி"], "meaning": "அழுத்துதல்", "word": "பதித்தல்"}], "timeLimitSec": 0}},
+    {"difficulty": "hard", "gameId": "crossword", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "பார்ப்பார்", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "மறைவாணர்"}, {"clue": "பெருங்காற்று , புயல்", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "கடுங்கால்"}, {"clue": "ஒரு நிலையிலிருந்து நீங்கிவேறொரு நிலைக்குப் போதல்.", "direction": "across", "number": 5, "start": {"col": 0, "row": 5}, "word": "செல்கின்ற"}, {"clue": "(வாக்கியப் பயன்பாடு) - நடந்த இடத்தைப் பார்க்கிறார்கள்", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "சூறையாடுதல்"}, {"clue": "அதிகமாக பணமும் வசதியும் படைத்தவன்", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "பணக்காரன்"}], "rows": 6}}
+  ],
+  "version": "2026-08-17"
+}
