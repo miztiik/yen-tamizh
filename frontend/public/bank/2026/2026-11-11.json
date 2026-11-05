@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-11-11",
+  "items": [
+    {"difficulty": "easy", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [3], "choices": ["ளை", "சை", "ரு", "பே", "நி", "நே", "ணெ", "ள"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: திருவிருந்து"}], "meaning": "திருவிருந்து", "translationEn": "kyrie eleison", "word": "நற்கருணை"}},
+    {"difficulty": "medium", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["ண்", "ங்", "சி", "ரு", "உ", "லை", "தே", "க்"], "rungs": [{"meaning": "அடிபட்ட காயக்கட்டு", "word": "கவணம்"}, {"alsoValid": ["உணவகம்", "சிவகணம்", "தேவகணம்", "வக்கணம்", "வங்கணம்", "வணக்கம்"], "meaning": "சந்தனம்", "word": "வண்ணகம்"}, {"alsoValid": ["கருவண்ணம்"], "meaning": "கலைநயம்", "word": "கலைவண்ணம்"}], "timeLimitSec": 0}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"grid": [["லை", "ம்", "ப", "வெ", "ம", "யா", "ண்", "மை"], ["ன்", "ன்", "கா", "ள்", "ளா", "யா", "டு", "வ"], ["ன்", "ட்", "ட்", "ளா", "ஈ", "ப", "ட்", "யா"], ["யா", "ப்", "டு", "ண்", "ள்", "ஈ", "லி", "உ"], ["லி", "உ", "ம", "மை", "ர", "டி", "கா", "ட்"], ["வ", "ப்", "ர", "இ", "ட்", "டி", "ம", "யோ"], ["வெ", "ப", "ம்", "யோ", "ட்", "ன்", "உ", "ல்"], ["இ", "ல்", "ஈ", "ன்", "யா", "லை", "இ", "ளா"]], "targets": [{"direction": "down", "meaning": "தாழ்ந்தவின மரக்கட்டை", "start": {"col": 2, "row": 1}, "word": "காட்டுமரம்"}, {"direction": "down", "meaning": "பயிர்த்தொழில்", "start": {"col": 3, "row": 0}, "word": "வெள்ளாண்மை"}, {"direction": "left", "meaning": "ஈ", "start": {"col": 6, "row": 7}, "word": "இலையான்"}, {"direction": "up-right", "meaning": "ஈச்சோப்பி", "start": {"col": 2, "row": 7}, "word": "ஈயோட்டி"}, {"direction": "down", "meaning": "உப்புதல்", "start": {"col": 1, "row": 4}, "word": "உப்பல்"}, {"direction": "up", "meaning": "வலியன்", "start": {"col": 0, "row": 5}, "word": "வலியான்"}]}}
+  ],
+  "version": "2026-08-17"
+}
