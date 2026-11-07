@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-11-13",
+  "items": [
+    {"difficulty": "easy", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["கை", "ய", "வு", "ழ", "ரு", "ன்", "மா", "மை"], "rungs": [{"meaning": "பக்குவம்", "word": "கனி"}, {"alsoValid": ["கனிய", "கனிவு", "கமானி", "கருனி", "கழனி", "கவுனி"], "meaning": "ஆயிழை", "word": "கன்னி"}, {"alsoValid": ["கன்னிகை"], "meaning": "கன்னித்தன்மை", "word": "கன்னிமை"}], "timeLimitSec": 0}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: புவியியல்"}], "meaning": "புவியியல்", "translationEn": "physics", "word": "பூகோளவியல்"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"grid": [["ள்", "ம", "க", "ட", "ரா", "த", "ர்", "அ"], ["ப", "ஞ்", "சா", "ய", "ம்", "ப", "கொ", "ன்"], ["ப", "அ", "ர", "த", "பு", "த", "க", "பு"], ["ர", "ப", "ய", "கு", "ந்", "ன்", "மா", "கொ"], ["ம", "ரு", "ஏ", "ர்", "ட", "ன்", "ள", "ள்"], ["கு", "ந்", "மி", "வ", "ள", "ம", "ரா", "ரா"], ["ரு", "நி", "ச", "மா", "ப", "மி", "ஏ", "ச"], ["பு", "நி", "வ", "ஞ்", "ம்", "ன்", "ன்", "சா"]], "targets": [{"direction": "down", "meaning": "பிரியம்கொள்", "start": {"col": 7, "row": 0}, "word": "அன்புகொள்"}, {"direction": "up", "meaning": "மிகுதியாக", "start": {"col": 6, "row": 6}, "word": "ஏராளமாக"}, {"direction": "up-right", "meaning": "வளையாமல் நேராக நிற்கும்", "start": {"col": 1, "row": 6}, "word": "நிமிர்ந்த"}, {"direction": "right", "meaning": "கோரைவகை", "start": {"col": 0, "row": 1}, "word": "பஞ்சாயம்"}, {"direction": "down", "meaning": "ஆசான்", "start": {"col": 0, "row": 2}, "word": "பரமகுரு"}, {"direction": "up-right", "meaning": "பயனற்றவன்", "start": {"col": 2, "row": 6}, "word": "சவடன்"}]}}
+  ],
+  "version": "2026-08-17"
+}
