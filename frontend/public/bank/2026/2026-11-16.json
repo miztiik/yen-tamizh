@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-11-16",
+  "items": [
+    {"difficulty": "easy", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [1], "choices": ["ர", "சா", "டீ", "சூ", "ய", "வு", "ரு", "யோ"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: ஆதி"}], "meaning": "ஆதி", "translationEn": "Beginning", "word": "ஆரம்பம்"}},
+    {"difficulty": "medium", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["ண்", "பி", "க", "ட்", "ல", "கோ", "சோ", "கு"], "rungs": [{"meaning": "அறியாமை", "word": "சடம்"}, {"alsoValid": ["குடசம்", "சகடம்", "சகோடம்", "சடலம்", "சண்டம்", "சோடசம்"], "meaning": "உபவிதி", "word": "சட்டம்"}, {"alsoValid": ["சட்டம்பி"], "meaning": "உடல்", "word": "சட்டகம்"}], "timeLimitSec": 0}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"alsoValid": ["திரும்பு"], "grid": [["அ", "ம்", "நே", "ம்", "து", "க்", "தி", "சு"], ["ரு", "வி", "ர்", "னை", "சு", "அ", "ரு", "னை"], ["க்", "பா", "மை", "த்", "ர்", "தி", "ம்", "வ"], ["க", "வ", "யா", "ரு", "பா", "ள", "பு", "ர்"], ["ம்", "னை", "ள", "பு", "நே", "க்", "மு", "க"], ["மு", "ரு", "ர்", "சு", "மை", "னை", "னை", "யா"], ["க", "வி", "சு", "க்", "கோ", "த்", "து", "வி"], ["கோ", "அ", "அ", "சு", "க", "ம்", "ம்", "வி"]], "targets": [{"direction": "down", "meaning": "வாழ்வில் ஏற்படும் பெரிய மாற்றம்", "start": {"col": 6, "row": 0}, "word": "திரும்புமுனை"}, {"direction": "down", "meaning": "நேர்மையுடன் நடப்பவர்", "start": {"col": 2, "row": 0}, "word": "நேர்மையாளர்"}, {"direction": "right", "meaning": "பிஸ்கெட்டு", "start": {"col": 1, "row": 6}, "word": "விசுக்கோத்து"}, {"direction": "down", "meaning": "சுருக்கம்", "start": {"col": 0, "row": 0}, "word": "அருக்கம்"}, {"direction": "right", "meaning": "அசெளக்கியம்", "start": {"col": 2, "row": 7}, "word": "அசுகம்"}, {"direction": "down", "meaning": "பார்வதி", "start": {"col": 1, "row": 1}, "word": "விபாவனை"}]}}
+  ],
+  "version": "2026-08-17"
+}
