@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-11-18",
+  "items": [
+    {"difficulty": "easy", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["ள்", "தி", "ள", "ச", "நே", "தா", "அ", "சி"], "rungs": [{"meaning": "இசைக்குழல்", "word": "வாரி"}, {"alsoValid": ["சவாரி", "நேவாரி", "வாசரி", "வாசிரி", "வாதாரி", "வாரிதி", "வாளரி"], "meaning": "சிறுநீர்", "word": "அவாரி"}, {"meaning": "கோடாரி", "word": "அரிவாள்"}], "timeLimitSec": 0}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: பொதிசோறு"}], "meaning": "பொதிசோறு", "translationEn": "prog", "word": "கட்டுச்சோறு"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"grid": [["ழி", "த", "வி", "ளா", "ங்", "ர", "ரை", "றி"], ["ண்", "பெ", "ண்", "ண", "ர", "சு", "ண", "மு"], ["ரை", "க", "க", "ல்", "க", "ர", "த்", "த"], ["க", "வா", "ரை", "வி", "த", "ர", "க", "ம"], ["ண", "ம", "சு", "ழி", "வ", "றி", "ங்", "ங்"], ["வா", "அ", "வ", "ற", "சு", "க", "மு", "மு"], ["பெ", "ற", "வி", "க", "ளா", "ல்", "த்", "அ"], ["அ", "ர", "க", "ளா", "க", "வ", "ல்", "த"]], "targets": [{"direction": "right", "meaning": "பெண்ணரசி", "start": {"col": 1, "row": 1}, "word": "பெண்ணரசு"}, {"direction": "up-right", "meaning": "அகிம்சை", "start": {"col": 0, "row": 7}, "word": "அறவழி"}, {"direction": "right", "meaning": "வண்டி", "start": {"col": 4, "row": 2}, "word": "கரத்த"}, {"direction": "down-left", "meaning": "பங்களா", "start": {"col": 7, "row": 3}, "word": "மங்களா"}, {"direction": "up-left", "meaning": "துளிர்த்தல்", "start": {"col": 6, "row": 5}, "word": "முறிதல்"}, {"direction": "left", "meaning": "கடுக", "start": {"col": 3, "row": 3}, "word": "விரைவாக"}]}}
+  ],
+  "version": "2026-08-17"
+}
