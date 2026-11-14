@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-11-20",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: அ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: அண்மையில்"}], "meaning": "அண்மையில்", "reveal": 0, "tiles": ["ரு", "கே", "அ"], "timeLimitSec": 0, "translationEn": "anear,v", "word": "அருகே"}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: மந்திரச்சால்"}], "meaning": "மந்திரச்சால்", "word": "மந்திரகிரி"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"alsoValid": ["பிரதம", "மாறுதல்"], "grid": [["க்", "மா", "கொ", "ழு", "யா", "ப", "டை", "ர"], ["ப", "ல்", "லி", "ள்", "வா", "கி", "கை", "ம்"], ["பி", "ர", "த", "ம", "ர்", "மா", "ட", "ணை"], ["கி", "ங்", "பி", "ம்", "று", "பீ", "அ", "டை"], ["ங்", "அ", "க்", "த", "லி", "று", "ம", "யா"], ["வா", "க்", "ல்", "ப", "பி", "வ", "த", "ணை"], ["ழு", "சி", "க்", "கி", "க்", "கொ", "ள்", "அ"], ["வ", "சி", "கி", "ர்", "பீ", "ட", "கை", "த"]], "targets": [{"direction": "right", "meaning": "மாட்டிக்கொள்", "start": {"col": 1, "row": 6}, "word": "சிக்கிக்கொள்"}, {"direction": "down-left", "meaning": "ஒருவர் கையினின்றும் மற்றொருவர் கைக்குச் செல்லுதல்", "start": {"col": 6, "row": 1}, "word": "கைமாறுதல்"}, {"direction": "up-right", "meaning": "பலி செலுத்தும் மேடை", "start": {"col": 3, "row": 5}, "word": "பலிபீடம்"}, {"direction": "right", "meaning": "தலைமை அமைச்சர்", "start": {"col": 0, "row": 2}, "word": "பிரதமர்"}, {"direction": "up", "meaning": "பூடு வகை ( )", "start": {"col": 0, "row": 7}, "word": "வழுவாங்கி"}, {"direction": "up", "meaning": "பிள்ளைக்கு இடும் துகிற் படுக்கை", "start": {"col": 7, "row": 6}, "word": "அணையாடை"}]}}
+  ],
+  "version": "2026-08-17"
+}

@@ -105,7 +105,8 @@
     {"date": "2026-11-16", "itemCount": 3},
     {"date": "2026-11-17", "itemCount": 3},
     {"date": "2026-11-18", "itemCount": 3},
-    {"date": "2026-11-19", "itemCount": 3}
+    {"date": "2026-11-19", "itemCount": 3},
+    {"date": "2026-11-20", "itemCount": 3}
   ],
   "version": "2026-08-13"
 }
