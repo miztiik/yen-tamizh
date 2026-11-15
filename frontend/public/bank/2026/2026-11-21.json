@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-11-21",
+  "items": [
+    {"difficulty": "easy", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [1], "choices": ["ளு", "ணு", "தை", "மோ", "வா", "ட", "மி", "யெ"], "meaning": "(தமி), (பெ ) - அணுக்கரு என்பது பொருள்கள் யாவற்றின் அடிப்படையான அணு என்பதன் உள்ளே நடுவாக அமைந்துள்ள மேலும் சிறிய கருவான பொருள். அணுவின் பெரும் ஆற்றல் இவ் அணுக்கருவின் உள்ளே உள்ளது. அணுக்கருவின் உள்ளே நேர்மின்னி, நொதுமி போன்ற அணுக்கூறான துகள்கள் உள்ளன", "word": "அணுக்கரு"}},
+    {"difficulty": "medium", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["த", "ன", "ச்", "தா", "கு", "க", "பொ", "வ"], "rungs": [{"meaning": "அடி", "word": "சந்தம்"}, {"alsoValid": ["சகுந்தம்", "சந்தகம்", "சந்ததம்", "வசந்தம்"], "meaning": "குலவரி", "word": "சந்தனம்"}, {"meaning": "நிலையான மகிழ்ச்சி", "word": "சதானந்தம்"}], "timeLimitSec": 0}},
+    {"difficulty": "hard", "gameId": "crossword", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "போரில் சண்டையிடும் வீரன்", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "போர்வீரன்"}, {"clue": "பறவை", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "சகுந்தம்"}, {"clue": "ஒன்பது", "direction": "across", "number": 5, "start": {"col": 0, "row": 5}, "word": "மும்மூன்று"}, {"clue": "குணமின்மை, குணமில்லாமை", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "நிர்க்குணம்"}, {"clue": "தலைவன்", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "சிரத்தவன்"}], "rows": 6}}
+  ],
+  "version": "2026-08-17"
+}
