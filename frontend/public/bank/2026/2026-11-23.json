@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-11-23",
+  "items": [
+    {"difficulty": "easy", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [1], "choices": ["த்", "னே", "ணை", "ரை", "கீ", "ஃ", "சோ", "லா"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: நிலம், வீடு முதலியவற்றை குறிப்பிட்ட ஆண்டுகளுக்கு வாடகைக்கு விட போடப்படும் ஒப்பந்தம்/உடன்படிக்கை; கவுல் ஒப்பந்தம்"}], "meaning": "நிலம், வீடு முதலியவற்றை குறிப்பிட்ட ஆண்டுகளுக்கு வாடகைக்கு விட போடப்படும் ஒப்பந்தம்/உடன்படிக்கை; கவுல் ஒப்பந்தம்", "translationEn": "contract", "word": "குத்தகை"}},
+    {"difficulty": "medium", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["யா", "சா", "ன", "த", "தோ", "ர", "ர", "வு"], "rungs": [{"meaning": "கயிறு முதலியவற்றை மாட்டி ஒன்றை உயரந் தூக்குதற்குரிய உருளை", "word": "சாம்பி"}, {"alsoValid": ["சாம்பியா", "பிசானம்"], "meaning": "காண்க: பிசாசப்பிரியம் (சங்.அக.)", "word": "பிசாரம்"}, {"alsoValid": ["பிரசாதம்"], "meaning": "பரவச்செய்கை", "word": "பிரசாரம்"}], "timeLimitSec": 0}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"alsoValid": ["மட்டம்", "வாய்ப்பு"], "grid": [["ன்", "ம்", "ட", "ட்", "ம", "ல", "நி", "ம"], ["பெ", "பெ", "மா", "ய்", "ர்", "ம்", "பு", "ல"], ["வா", "ரி", "பெ", "ய்", "ன", "யோ", "ட", "வா"], ["ட்", "யோ", "ற்", "ர", "பெ", "ரி", "ய்", "வ"], ["மா", "ர்", "ற", "பு", "வா", "ப்", "ப்", "த"], ["த", "சா", "வ", "ம்", "பு", "ன", "ட", "நி"], ["ன", "ற", "ன்", "ண்", "ம", "ற்", "ம்", "ர"], ["ம்", "ண்", "கா", "ம்", "ர", "சா", "ர", "கா"]], "targets": [{"direction": "left", "meaning": "தரைமட்டம்", "start": {"col": 6, "row": 0}, "word": "நிலமட்டம்"}, {"direction": "left", "meaning": "எரிச்சல்", "start": {"col": 7, "row": 7}, "word": "காரசாரம்"}, {"direction": "down", "meaning": "அப்பன்", "start": {"col": 2, "row": 2}, "word": "பெற்றவன்"}, {"direction": "down-left", "meaning": "நாக்குப்புண்", "start": {"col": 7, "row": 2}, "word": "வாய்ப்புண்"}, {"direction": "down", "meaning": "காண்க: பெரியார்", "start": {"col": 1, "row": 1}, "word": "பெரியோர்"}, {"direction": "down", "meaning": "கிராம்பு ( )", "start": {"col": 0, "row": 4}, "word": "மாதனம்"}]}}
+  ],
+  "version": "2026-08-17"
+}
