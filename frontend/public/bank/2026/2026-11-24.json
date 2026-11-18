@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-11-24",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 1, "kind": "category", "text": "வகை: படுக்கையறை"}, {"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: தொ"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: ஊஞ்சல்"}], "meaning": "ஊஞ்சல்", "reveal": 0, "tiles": ["டி", "தொ", "ட்", "ல்"], "timeLimitSec": 0, "translationEn": "cot", "word": "தொட்டில்"}},
+    {"difficulty": "medium", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [0], "choices": ["பௌ", "மா", "மெ", "எ", "தீ", "நோ", "ஊ", "ச"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: கொலைஞர்"}], "meaning": "கொலைஞர்", "translationEn": "fiend", "word": "சண்டாளர்"}},
+    {"difficulty": "hard", "gameId": "crossword", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "அதிகண்ட யோகத்தின் தனித்தமிழ் சொல்", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "மாகண்டம்"}, {"clue": "மச்சுக்கால்", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "ஊசிக்கால்"}, {"clue": "விதிப்படி", "direction": "across", "number": 5, "start": {"col": 0, "row": 5}, "word": "இயல்புளி"}, {"clue": "எவ்வளவு குறைவாக இருக்க முடியுமோ அவ்வளவு", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "மிகச்சிறிய"}, {"clue": "மெய்காப்பணி", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "உடற்காப்பு"}], "rows": 6}}
+  ],
+  "version": "2026-08-17"
+}
