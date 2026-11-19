@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-11-25",
+  "items": [
+    {"difficulty": "easy", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["று", "ற்", "றை", "கை", "ச", "நா", "னி", "ம்"], "rungs": [{"meaning": "அப்பால்", "word": "வெளியே"}, {"meaning": "அகல்", "word": "வெளியேறு"}, {"alsoValid": ["வெளியேற்று"], "meaning": "வெளியேறுகிற", "word": "வெளியேறும்"}], "timeLimitSec": 0}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: முதற்கடவுள்"}], "meaning": "முதற்கடவுள்", "word": "ஆதிமூர்த்தி"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"alsoValid": ["தப்பறை", "மூட்டுதல்"], "grid": [["மூ", "ரு", "க", "லை", "ம", "அ", "ணி", "டு"], ["த்", "ண்", "து", "த", "ரு", "ட்", "த்", "ணி"], ["ப்", "நி", "க", "தீ", "த", "லை", "க்", "ம"], ["ர்", "லை", "டு", "மூ", "ப்", "றை", "து", "ண்"], ["க", "த்", "ம", "ட்", "ப", "ப்", "த்", "க"], ["க்", "த", "டை", "டு", "றை", "அ", "டை", "ட்"], ["து", "ண்", "தீ", "த", "ல்", "ர்", "அ", "நி"], ["ம", "ம", "த", "ல்", "ப", "த", "து", "த"]], "targets": [{"direction": "down", "meaning": "நெருப்புப் பற்றவைத்தல்", "start": {"col": 3, "row": 2}, "word": "தீமூட்டுதல்"}, {"direction": "down", "meaning": "காண்க: மருதநிலப்பறை ( )", "start": {"col": 4, "row": 0}, "word": "மருதப்பறை"}, {"direction": "up", "meaning": "முழுவதும்", "start": {"col": 6, "row": 6}, "word": "அடைத்து"}, {"direction": "up", "meaning": "உருத்திராக்கம்", "start": {"col": 7, "row": 4}, "word": "கண்மணி"}, {"direction": "up", "meaning": "காசநோயாளிகள்", "start": {"col": 0, "row": 6}, "word": "துக்கர்"}, {"direction": "down", "meaning": "நிலையான", "start": {"col": 1, "row": 2}, "word": "நிலைத்த"}]}}
+  ],
+  "version": "2026-08-17"
+}
