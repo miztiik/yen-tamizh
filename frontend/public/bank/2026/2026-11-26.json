@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-11-26",
+  "items": [
+    {"difficulty": "easy", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [1], "choices": ["டீ", "தா", "ர்", "யூ", "நா", "டை", "நோ", "பா"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: உதாகரணம்."}], "meaning": "உதாகரணம்.", "translationEn": "Example", "word": "உதாரணம்"}},
+    {"difficulty": "medium", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["ரை", "ஞெ", "னே", "ந்", "த்", "வா", "ல்", "தை"], "rungs": [{"meaning": "தவத்தோன்", "word": "தவசி"}, {"alsoValid": ["சிதவல்", "சிவத்த"], "meaning": "கனிந்த", "word": "சிவந்த"}, {"meaning": "வாடகைக்கு வசிக்கும் மக்கள்", "word": "வந்தவாசி"}], "timeLimitSec": 0}},
+    {"difficulty": "hard", "gameId": "crossword", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "பகைவர் அணுகாதவண்ணம் வளர்த்துக் காக்கப்படும் காவல் மரம்", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "கடிமரம்"}, {"clue": "அடுக்கு", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "அடுக்கல்"}, {"clue": "விலை முதலியவற்றை வரையறையாகக் கூறும் உறுதி", "direction": "across", "number": 5, "start": {"col": 0, "row": 5}, "word": "சொல்லுறுதி"}, {"clue": "தாக்குண்ணுதல் , அடிக்கப்படுதல்", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "அடிபடுதல்"}, {"clue": "மரத்தின் கன்று; இளமரம்", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "மரக்கன்று"}], "rows": 6}}
+  ],
+  "version": "2026-08-17"
+}
