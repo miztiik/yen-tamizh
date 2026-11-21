@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-11-27",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: நி"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: நிறம் தரும் அடர்த்தியான நுண்பொருள்; நிறப்பொருள்"}], "meaning": "நிறம் தரும் அடர்த்தியான நுண்பொருள்; நிறப்பொருள்", "reveal": 0, "tiles": ["மி", "நி", "ற"], "timeLimitSec": 0, "translationEn": "pigment", "word": "நிறமி"}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: கொடுக்கல் வாங்கல்"}], "meaning": "கொடுக்கல் வாங்கல்", "translationEn": "book-account", "word": "பற்றுவரவு"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"alsoValid": ["ஆண்டகை"], "grid": [["கா", "ரி", "கு", "க்", "தா", "த்", "ரி", "உ"], ["ஆ", "மை", "கை", "ட", "ண்", "ஆ", "பு", "உ"], ["சி", "ழ", "க", "ஏ", "த்", "ரை", "ன்", "ழ"], ["ங்", "ள்", "க", "சு", "மை", "கா", "ள்", "க்"], ["ற்", "கொ", "ண்", "ல்", "ங்", "ன்", "க", "ரை"], ["த்", "ல்", "யி", "சு", "ரை", "ழ", "கை", "பு"], ["ற்", "யி", "ட", "கொ", "ற்", "து", "தா", "ற்"], ["ட", "து", "மை", "சி", "ன்", "து", "கு", "ஏ"]], "targets": [{"direction": "left", "meaning": "அர்ப்பணி", "start": {"col": 7, "row": 0}, "word": "உரித்தாக்கு"}, {"direction": "left", "meaning": "வீரம்", "start": {"col": 5, "row": 1}, "word": "ஆண்டகைமை"}, {"direction": "up", "meaning": "உறங்கு", "start": {"col": 1, "row": 7}, "word": "துயில்கொள்"}, {"direction": "up", "meaning": "ஒருவரது தனிப்பட்ட சாதனை/வெற்றி முதலியவற்றுக்காக நடக்கும் பாராட்டு/பரிசளிப்பு நிகழ்ச்சியில் பாராட்டு /பரிசு பெறுபவர் அதை ஏற்றுக்கொண்டு நிகழ்த்தும் நன்றியுரை", "start": {"col": 7, "row": 7}, "word": "ஏற்புரை"}, {"direction": "down-left", "meaning": "கழலுதல்", "start": {"col": 6, "row": 4}, "word": "கழற்சி"}, {"direction": "up-right", "meaning": "கப்பல் திருப்பும் கருவி", "start": {"col": 3, "row": 5}, "word": "சுங்கான்"}]}}
+  ],
+  "version": "2026-08-17"
+}
