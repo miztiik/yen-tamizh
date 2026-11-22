@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-11-28",
+  "items": [
+    {"difficulty": "easy", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [3], "choices": ["ர்", "ண்", "மூ", "னி", "ணா", "வ", "கீ", "ப்"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: அதிகாராம்"}], "meaning": "அதிகாராம்", "translationEn": "office of village headman", "word": "நாட்டாண்மை"}},
+    {"difficulty": "medium", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["வா", "வ", "ஔ", "ணோ", "லூ", "ஒ", "க", "றை"], "rungs": [{"meaning": "அச்சம்", "word": "உரும்"}, {"alsoValid": ["உருவாம்"], "meaning": "அங்கஅமைப்பு", "word": "உருவம்"}, {"meaning": "உவமையாக உள்ள பொருளுக்கும் உவமிக்கப்படும் பொருளுக்கும் வேறுபாடு தோன்றாமல் இரண்டும் ஒன்று என்ற உணர்வு தோன்ற இரண்டையும் ஒற்றுமைப்படுத்துவது. இதில் உவம உருபு தோன்றாது", "word": "உருவகம்"}], "timeLimitSec": 0}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"alsoValid": ["கைத்தல்"], "grid": [["அ", "க", "தூ", "க", "வு", "கை", "ம்", "ப"], ["ள", "டு", "மி", "ந்", "ன", "ம்", "ரா", "ய"], ["க", "ம", "ய", "ம்", "ப", "து", "ஆ", "ப்"], ["ப", "த", "ம்", "ண", "ப்", "கை", "க", "தி"], ["ந்", "து", "ல்", "ரா", "டு", "த்", "அ", "ன"], ["தி", "மி", "மு", "பு", "கொ", "த", "வு", "ல்"], ["த்", "ப", "கொ", "தி", "ள", "ல்", "கொ", "தி"], ["பு", "தூ", "ண", "ஆ", "மு", "க", "ம", "ல்"]], "targets": [{"direction": "down", "meaning": "கூந்தலி னொழுங்கு", "start": {"col": 0, "row": 0}, "word": "அளகபந்தி"}, {"direction": "up", "meaning": "பிரம்மபுராணம்", "start": {"col": 3, "row": 7}, "word": "ஆதிபுராணம்"}, {"direction": "up", "meaning": "காண்க: கொடுப்பனை (யாழ். அக.)", "start": {"col": 4, "row": 5}, "word": "கொடுப்பனவு"}, {"direction": "down", "meaning": "இடித்தல்", "start": {"col": 5, "row": 2}, "word": "துகைத்தல்"}, {"direction": "down", "meaning": "புகை", "start": {"col": 2, "row": 0}, "word": "தூமியம்"}, {"direction": "right", "meaning": "காண்க: மகமல்", "start": {"col": 4, "row": 7}, "word": "முகமல்"}]}}
+  ],
+  "version": "2026-08-17"
+}
