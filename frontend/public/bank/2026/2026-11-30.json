@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-11-30",
+  "items": [
+    {"difficulty": "easy", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["ல்", "மு", "னா", "ர", "ம", "வை", "பீ", "ழ்"], "rungs": [{"meaning": "மெக்கா", "word": "மக்கா"}, {"alsoValid": ["மக்கானா"], "meaning": "பூஞ்சோலை", "word": "மரக்கா"}, {"alsoValid": ["மரக்காழ்"], "meaning": "உப்பளம்", "word": "மரக்கால்"}], "timeLimitSec": 0}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: நன்னாரிவகை"}], "meaning": "நன்னாரிவகை", "word": "காட்டுக்கொடி"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"alsoValid": ["சீவுதல்"], "grid": [["த", "ன்", "லை", "ர்", "அ", "வை", "ல", "ம்"], ["ண", "த", "ன", "ப", "ர்", "ன", "ச", "ள்"], ["ணி", "ர்", "லை", "பா", "ம்", "க", "ல", "வை"], ["வு", "ள்", "ப்", "சீ", "ச", "ரா", "ப", "ன்"], ["கோ", "ண", "ரா", "ல்", "வு", "வை", "ணி", "ப்"], ["கோ", "ச", "ல", "த", "ம்", "த", "ய", "ரா"], ["த", "ன்", "க", "ல்", "மா", "ணி", "ல்", "த"], ["பா", "ல்", "ய", "அ", "மா", "ச", "சீ", "லை"]], "targets": [{"direction": "up-right", "meaning": "மாறுகண்", "start": {"col": 0, "row": 5}, "word": "கோணப்பார்வை"}, {"direction": "down-right", "meaning": "கழுத்தையறுத்தல்", "start": {"col": 1, "row": 1}, "word": "தலைசீவுதல்"}, {"direction": "down-right", "meaning": "அக்கினிதேவன்", "start": {"col": 4, "row": 0}, "word": "அனலன்"}, {"direction": "up-right", "meaning": "இயற்கையானது", "start": {"col": 4, "row": 3}, "word": "சகசம்"}, {"direction": "down", "meaning": "வழிபாடு", "start": {"col": 6, "row": 3}, "word": "பணியல்"}, {"direction": "up-left", "meaning": "மடமொழி மாதராள் ( 384)", "start": {"col": 4, "row": 6}, "word": "மாதராள்"}]}}
+  ],
+  "version": "2026-08-17"
+}
