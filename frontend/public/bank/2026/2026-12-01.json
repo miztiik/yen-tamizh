@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-12-01",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 1, "kind": "category", "text": "வகை: மருத்துவமனை"}, {"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: ச"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: உரோமம்"}], "meaning": "உரோமம்", "reveal": 0, "tiles": ["ம", "ம்", "ரு", "ச"], "timeLimitSec": 0, "translationEn": "skin", "word": "சருமம்"}},
+    {"difficulty": "medium", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [4], "choices": ["வா", "டா", "மீ", "தா", "ரி", "ணி", "ந்", "பு"], "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: உயர்ந்தோர்"}], "meaning": "உயர்ந்தோர்", "translationEn": "otherwise-minded", "word": "உலகத்தார்"}},
+    {"difficulty": "hard", "gameId": "crossword", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "பரம்பரையாயுள்ள சாதி விரோதம்", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "குலப்பகை"}, {"clue": "அரச குடும்பத்தில் பிறந்தவள்.", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "இளவரசி"}, {"clue": "மகளுக்கு மகள்", "direction": "across", "number": 5, "start": {"col": 0, "row": 5}, "word": "தௌகித்திரி"}, {"clue": "பேதிமருந்து", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "மலமிளக்கி"}, {"clue": "சாபமாகிய அம்பையுடையாள் தவப்பெண்", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "சாபசரத்தி"}], "rows": 6}}
+  ],
+  "version": "2026-08-17"
+}
