@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-12-02",
+  "items": [
+    {"difficulty": "easy", "gameId": "anagram", "packId": "ta-core", "payload": {"attempts": 3, "hints": [{"cost": 1, "kind": "category", "text": "வகை: உடை"}, {"cost": 2, "kind": "first-ezhuthu", "text": "முதல் எழுத்து: கா"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: கொலுசு"}], "meaning": "கொலுசு", "reveal": 0, "tiles": ["ணி", "ல", "கா"], "timeLimitSec": 0, "translationEn": "balmoral", "word": "காலணி"}},
+    {"difficulty": "medium", "gameId": "wordle", "packId": "ta-core", "payload": {"attempts": 8, "hints": [{"cost": 3, "kind": "meaning", "text": "பொருள்: கட்டுண்ணுதல்"}], "meaning": "கட்டுண்ணுதல்", "word": "துவக்குதல்"}},
+    {"difficulty": "hard", "gameId": "word-search", "packId": "ta-core", "payload": {"alsoValid": ["சாணக்கி"], "grid": [["கூ", "சா", "கோ", "லா", "ப்", "பூ", "ர்", "ர"], ["பு", "ம", "ண", "லா", "ணு", "ண்", "க", "லா"], ["டு", "ப்", "ணி", "க்", "க", "லா", "லா", "க்"], ["மை", "ன்", "று", "க்", "கி", "நி", "த", "ப்"], ["லா", "பூ", "ண", "ணு", "கூ", "ய", "ர", "ப்"], ["ல்", "ய", "த", "மை", "ண்", "டு", "ன்", "ல்"], ["நி", "கோ", "று", "பு", "ம", "பெ", "க்", "லா"], ["ணி", "ர்", "பெ", "சா", "கி", "நி", "ன்", "ண்"]], "targets": [{"direction": "down-right", "meaning": "வடமொழியில் அர்த்தசாஸ்திரம் இயற்றியவரும் சந்திரகுப்தமௌரியனுக்கு மந்திரியாக விளங்கியவருமாகிய அந்தணர்", "start": {"col": 1, "row": 0}, "word": "சாணக்கியன்"}, {"direction": "up-left", "meaning": "அல்குல்", "start": {"col": 5, "row": 6}, "word": "பெண்ணுறுப்பு"}, {"direction": "down", "meaning": "கலாபதி", "start": {"col": 6, "row": 1}, "word": "கலாதரன்"}, {"direction": "right", "meaning": "தெற்கு மகாராஷ்டிராவின் ஒரு நகரம்", "start": {"col": 2, "row": 0}, "word": "கோலாப்பூர்"}, {"direction": "down-right", "meaning": "கடிகாரம்", "start": {"col": 1, "row": 1}, "word": "மணிக்கூடு"}, {"direction": "up", "meaning": "அழிவது", "start": {"col": 0, "row": 6}, "word": "நில்லாமை"}]}}
+  ],
+  "version": "2026-08-17"
+}
