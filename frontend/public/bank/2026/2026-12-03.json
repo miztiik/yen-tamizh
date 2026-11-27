@@ -1,0 +1,21 @@
+{
+  "changelog": [
+    {
+      "change": "Added the optional theme slug to a day.",
+      "version": "2026-08-17",
+      "why": "Row 15 - a themed day draws every slot from one theme's wordlist, and the shell can only announce that if the day says so. The SLUG travels rather than the Tamil label, because the label is copy the shell already reads and a baked label could only be corrected by a rebuild. Absent means an ordinary day, so every day baked before this still validates unchanged."
+    },
+    {
+      "change": "Initial baked daily playlist.",
+      "version": "2026-08-13",
+      "why": "Row 13 - the first committed day of the puzzle bank."
+    }
+  ],
+  "date": "2026-12-03",
+  "items": [
+    {"difficulty": "easy", "gameId": "missing-letters", "packId": "ta-core", "payload": {"attempts": 3, "blanks": [0], "choices": ["மை", "நே", "இ", "ஊ", "ஐ", "து", "வ", "சா"], "hints": [{"cost": 1, "kind": "category", "text": "வகை: நிறம்"}, {"cost": 3, "kind": "meaning", "text": "பொருள்: வெளிறிய நீலம்"}], "meaning": "வெளிறிய நீலம்", "translationEn": "light blue", "word": "இளநீலம்"}},
+    {"difficulty": "medium", "gameId": "word-ladder", "packId": "ta-core", "payload": {"choices": ["கே", "வு", "ப்", "கூ", "சா", "லு", "தௌ", "ளி"], "rungs": [{"meaning": "நூலழகுகளுள் ஒன்று , வல்லெழுத்துச் சேராது வருவது", "word": "இழைபு"}, {"meaning": "செய்தொழில்", "word": "இழைப்பு"}, {"meaning": "சீவுளி", "word": "இழைப்புளி"}], "timeLimitSec": 0}},
+    {"difficulty": "hard", "gameId": "crossword", "packId": "ta-core", "payload": {"cols": 5, "entries": [{"clue": "பற்றுக்கோடு", "direction": "across", "number": 3, "start": {"col": 0, "row": 1}, "word": "செல்சார்வு"}, {"alsoValid": ["வாசல்படி"], "clue": "வாசலின் படி; வாசல் நிலையின் அடிப்பாகம்", "direction": "across", "number": 4, "start": {"col": 0, "row": 3}, "word": "வாசற்படி"}, {"clue": "மத நூல்களில் வர்ணிக்கப்படும் நாக ஜாதி பெண்", "direction": "across", "number": 5, "start": {"col": 0, "row": 5}, "word": "நாககன்னி"}, {"clue": "ஓய்வைக் கொடுக்ககூடிய", "direction": "down", "number": 1, "start": {"col": 1, "row": 0}, "word": "உல்லாசமாக"}, {"clue": "செய்யப்பட்ட செயல்களுக்கான பலன்", "direction": "down", "number": 2, "start": {"col": 3, "row": 0}, "word": "கர்மபலன்"}], "rows": 6}}
+  ],
+  "version": "2026-08-17"
+}
